@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Channel Browser</title>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script src="https://unpkg.com/vue-router@4"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #FF6B35;
+            --secondary: #004E89;
+            --accent: #F7B801;
+            --dark: #1A1A2E;
+            --light: #F8F9FA;
+            --surface: #FFFFFF;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'DM Sans', sans-serif;
+            background: linear-gradient(135deg, var(--light) 0%, #E8EAF0 100%);
+            color: var(--dark);
+            min-height: 100vh;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: -50%;
+            right: -20%;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle, rgba(255, 107, 53, 0.1) 0%, transparent 70%);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        #app {
+            position: relative;
+            z-index: 1;
+        }
+
+        .header {
+            background: var(--surface);
+            box-shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
+            padding: 2rem 0;
+            margin-bottom: 3rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary), var(--accent), var(--secondary));
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        h1 {
+            font-family: 'Archivo Black', sans-serif;
+            font-size: 3.5rem;
+            color: var(--dark);
+            text-transform: uppercase;
+            letter-spacing: -2px;
+            line-height: 1;
+        }
+
+        .subtitle {
+            color: var(--secondary);
+            font-size: 1.125rem;
+            margin-top: 0.5rem;
+            font-weight: 500;
+        }
+
+        .nav {
+            display: flex;
+            gap: 1rem;
+            margin-top: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .nav-btn {
+            background: var(--surface);
+            border: 2px solid var(--dark);
+            padding: 0.75rem 1.5rem;
+            font-size: 1rem;
+            font-weight: 700;
+            font-family: 'DM Sans', sans-serif;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .nav-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: var(--primary);
+            transition: left 0.3s ease;
+            z-index: -1;
+        }
+
+        .nav-btn:hover::before {
+            left: 0;
+        }
+
+        .nav-btn:hover {
+            color: var(--surface);
+            border-color: var(--primary);
+            transform: translateY(-2px);
+        }
+
+        .nav-btn.active {
+            background: var(--secondary);
+            color: var(--surface);
+            border-color: var(--secondary);
+        }
+
+        .channel-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+            animation: fadeIn 0.6s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .channel-item {
+            background: var(--surface);
+            border: 3px solid var(--dark);
+            padding: 2rem;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+            animation: slideUp 0.5s ease-out backwards;
+        }
+
+        .channel-item:nth-child(1) { animation-delay: 0.1s; }
+        .channel-item:nth-child(2) { animation-delay: 0.2s; }
+        .channel-item:nth-child(3) { animation-delay: 0.3s; }
+        .channel-item:nth-child(4) { animation-delay: 0.4s; }
+        .channel-item:nth-child(5) { animation-delay: 0.5s; }
+        .channel-item:nth-child(6) { animation-delay: 0.6s; }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .channel-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 6px;
+            height: 100%;
+            background: var(--primary);
+            transform: scaleY(0);
+            transition: transform 0.3s ease;
+        }
+
+        .channel-item:hover::before {
+            transform: scaleY(1);
+        }
+
+        .channel-item:hover {
+            transform: translateX(10px);
+            box-shadow: -8px 8px 0 var(--accent);
+        }
+
+        .channel-item h3 {
+            font-family: 'Archivo Black', sans-serif;
+            font-size: 1.75rem;
+            margin-bottom: 0.75rem;
+            color: var(--dark);
+            text-transform: uppercase;
+            letter-spacing: -1px;
+        }
+
+        .channel-item p {
+            color: #555;
+            line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+
+        .channel-item .meta {
+            display: flex;
+            gap: 1rem;
+            font-size: 0.875rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .channel-item .category-tag {
+            background: var(--accent);
+            color: var(--dark);
+            padding: 0.25rem 0.75rem;
+            border-radius: 0;
+        }
+
+        .detail-page {
+            animation: fadeIn 0.6s ease-out;
+        }
+
+        .detail-header {
+            background: var(--surface);
+            border: 3px solid var(--dark);
+            padding: 3rem;
+            margin-bottom: 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .detail-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 200px;
+            height: 200px;
+            background: radial-gradient(circle, var(--primary) 0%, transparent 70%);
+            opacity: 0.2;
+        }
+
+        .detail-header h2 {
+            font-family: 'Archivo Black', sans-serif;
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            color: var(--dark);
+            text-transform: uppercase;
+            letter-spacing: -2px;
+        }
+
+        .detail-content {
+            background: var(--surface);
+            border: 3px solid var(--dark);
+            padding: 2rem;
+            line-height: 1.8;
+            font-size: 1.125rem;
+        }
+
+        .back-btn {
+            display: inline-block;
+            background: var(--secondary);
+            color: var(--surface);
+            border: 3px solid var(--secondary);
+            padding: 1rem 2rem;
+            font-size: 1rem;
+            font-weight: 700;
+            font-family: 'DM Sans', sans-serif;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            text-decoration: none;
+            margin-bottom: 2rem;
+        }
+
+        .back-btn:hover {
+            background: var(--surface);
+            color: var(--secondary);
+            transform: translateX(-5px);
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 4rem 2rem;
+            color: #999;
+        }
+
+        .empty-state h3 {
+            font-family: 'Archivo Black', sans-serif;
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <div class="header">
+            <div class="container">
+                <h1>Channel Browser</h1>
+                <p class="subtitle">Explore content by category</p>
+            </div>
+        </div>
+        <router-view></router-view>
+    </div>
+
+    <script>
+        const { createApp } = Vue;
+        const { createRouter, createWebHashHistory } = VueRouter;
+
+        const ITEMS = [
+                        {
+                            id: 1,
+                            title: 'AI Revolution',
+                            description: 'Exploring the latest developments in artificial intelligence and machine learning.',
+                            category: 'technology',
+                            route: 'detail'
+                        },
+                        {
+                            id: 2,
+                            title: 'Quantum Computing',
+                            description: 'The future of computing is here with quantum processors.',
+                            category: 'technology',
+                            route: 'detail'
+                        },
+                        {
+                            id: 3,
+                            title: 'Space Exploration',
+                            description: 'Journey to the stars and beyond with modern space missions.',
+                            category: 'science',
+                            route: 'detail'
+                        },
+                        {
+                            id: 4,
+                            title: 'Climate Science',
+                            description: 'Understanding our changing planet through data and research.',
+                            category: 'science',
+                            route: 'detail'
+                        },
+                        {
+                            id: 5,
+                            title: 'Modern Architecture',
+                            description: 'Innovative designs shaping our cities and communities.',
+                            category: 'design',
+                            route: 'detail'
+                        },
+                        {
+                            id: 6,
+                            title: 'Digital Art',
+                            description: 'Creative expression in the digital age.',
+                            category: 'design',
+                            route: 'detail'
+                        }
+                    ]
+
+        // Channel Component
+        const Channel = {
+            name: 'Channel',
+            props: {
+                items: {
+                    type: Array,
+                    required: true
+                },
+                category: {
+                    type: String,
+                    required: true
+                }
+            },
+            template: `
+                <div class="container">
+                    <div class="channel-grid" v-if="filteredItems.length > 0">
+                        <div 
+                            v-for="item in filteredItems" 
+                            :key="item.id"
+                            class="channel-item"
+                            @click="navigateToItem(item)"
+                        >
+                            <h3>{{ item.title }}</h3>
+                            <p>{{ item.description }}</p>
+                            <div class="meta">
+                                <span class="category-tag">{{ item.category }}</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div v-else class="empty-state">
+                        <h3>No items found</h3>
+                        <p>There are no items in the "{{ category }}" category.</p>
+                    </div>
+                </div>
+            `,
+            computed: {
+                filteredItems() {
+                    return this.items.filter(item => item.category === this.category);
+                }
+            },
+            methods: {
+                navigateToItem(item) {
+                    this.$router.push({ name: item.route, params: { id: item.id }});
+                }
+            }
+        };
+
+        // Home Page Component
+        const HomePage = {
+            name: 'HomePage',
+            components: {
+                Channel
+            },
+            data() {
+                return {
+                    selectedCategory: 'technology',
+                    items: ITEMS,
+                    categories: ['technology', 'science', 'design']
+                }
+            },
+            template: `
+                <div class="container">
+                    <div class="nav">
+                        <button 
+                            v-for="cat in categories" 
+                            :key="cat"
+                            @click="selectedCategory = cat"
+                            :class="['nav-btn', { active: selectedCategory === cat }]"
+                        >
+                            {{ cat }}
+                        </button>
+                    </div>
+                </div>
+                <div style="margin-top: 3rem;">
+                    <channel :items="items" :category="selectedCategory"></channel>
+                </div>
+            `
+        };
+
+        // Detail Page Component
+        const DetailPage = {
+            name: 'DetailPage',
+            template: `
+                <div class="container detail-page">
+                    <router-link to="/" class="back-btn">← Back to Browse</router-link>
+                    <div class="detail-header">
+                        <h2>{{ item.title }}</h2>
+                        <div class="meta">
+                            <span class="category-tag">{{ item.category }}</span>
+                        </div>
+                    </div>
+                    <div class="detail-content">
+                        <p>{{ item.description }}</p>
+                        <p style="margin-top: 1rem;">This is the detail page for <strong>{{ item.title }}</strong>. You can add more detailed content, images, videos, or any other information about this item here.</p>
+                    </div>
+                </div>
+            `,
+            computed: {
+                item() {
+                    console.log(this.$route.params.id)
+                    for(let i in ITEMS){
+                        if(this.$route.params.id == ITEMS[i].id){
+                            return ITEMS[i]
+                        }
+                    }
+                }
+            }
+        };
+
+        // Router Configuration
+        const routes = [
+            {
+                path: '/',
+                component: HomePage
+            },
+            {
+                name: 'detail',
+                path: '/detail/:id?',
+                component: DetailPage
+            }
+        ];
+
+        const router = createRouter({
+            history: createWebHashHistory(),
+            routes
+        });
+
+        // Create App
+        const app = createApp({});
+        app.use(router);
+        app.mount('#app');
+    </script>
+</body>
+</html>
