@@ -930,10 +930,10 @@
         "title":"Restaurants with Food Donations in Mpls",
         "description":"Food donations for families struggling during the ICE raids in Mpls.",
         "subtitle":"",
-        "category": "",
+        "category": "A Resource Guide in Mpls During ICE Occupation",
         "footer":"",
         "map":true,
-        "image":"/img/abolis.jpeg",
+        "image":"/img/abolish.jpeg",
         "columns":[
             {
                 "header":"Name",
