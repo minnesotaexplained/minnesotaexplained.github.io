@@ -937,7 +937,7 @@
         "columns":[
             {
                 "header":"Name",
-                "field":"name",
+                "field":"title",
                 "width":"10%",
                 "type":"name",
                 "sortable":true
@@ -969,7 +969,7 @@
         ],
         "data":[
               {
-                "name": "Bauhaus Brew Labs",
+                "title": "Bauhaus Brew Labs",
                 "address": "1315 Tyler St NE, Minneapolis, MN 55413",
                 "description": "A family of musicians, scientists, artists and beer lovers, aiming to reinvigorate the spirit of the family brewery. Bauhaus takes a unique look at classic German-inspired beer styles, skewed slightly by a sense of play and adventure. Their flavor-forward, sessionable beers are crafted to surprise and delight without taxing the palate.",
                 "website": "https://www.bauhausbrewlabs.com/",
@@ -978,7 +978,7 @@
                 "coordinates": [45.0008, -93.2450]
               },
               {
-                "name": "Beckett's",
+                "title": "Beckett's",
                 "address": "3216 Hennepin Ave S, Minneapolis, MN 55408",
                 "description": "A neighborhood bar designed for sports enthusiasts, movie buffs, and pop culture aficionados alike. Beckett's uniquely blends a casual, welcoming atmosphere with an unparalleled game-day viewing experience, making it the ultimate destination for fans of all kinds.",
                 "website": "https://becketts.bar",
@@ -987,7 +987,7 @@
                 "coordinates": [44.9443, -93.2982]
               },
               {
-                "name": "Hope Breakfast Bar",
+                "title": "Hope Breakfast Bar",
                 "address": "101 4th Ave N, Minneapolis, MN 55401",
                 "description": "Hope Breakfast Bar is here to start your day with optimism. They specialize in breakfast and brunch favorites, done with their own hope-filled spin. They also proudly serve brunch cocktails from open to close each day, earning the 'bar' portion of their name.",
                 "website": "https://www.hopebreakfast.com/",
@@ -996,7 +996,7 @@
                 "coordinates": [44.9856, -93.2721]
               },
               {
-                "name": "Indeed Brewing",
+                "title": "Indeed Brewing",
                 "address": "711 NE 15th Ave, Minneapolis, MN 55413",
                 "description": "Cultivating an artfully eclectic line-up of beers from the heart of Northeast Minneapolis. Indeed's diverse offerings are anchored by its flagship Day Tripper Pale Ale, driven by new hits like Flavorwave IPA and Mexican Honey Light, and elevated by its Wooden Soul series of wild, sour, and barrel-aged beer.",
                 "website": "https://indeedbrewing.com/",
@@ -1005,7 +1005,7 @@
                 "coordinates": [45.0004, -93.2431]
               },
               {
-                "name": "Nightingale",
+                "title": "Nightingale",
                 "address": "2551 Lyndale Ave S, Minneapolis, MN 55405",
                 "description": "A Whittier restaurant serving bar snacks, small plates and entrees that encourage sharing in a warm and hospitable setting. Opened in October 2012, they offer a menu designed for sharing and embrace the social aspect of dining to deliver a full experience to their guests.",
                 "website": "https://www.nightingalempls.com/",
@@ -1014,7 +1014,7 @@
                 "coordinates": [44.9556, -93.2878]
               },
               {
-                "name": "Odd Mart",
+                "title": "Odd Mart",
                 "address": "2520 Lyndale Ave S, Minneapolis, MN 55405",
                 "description": "A vibrant and eclectic shopping destination offering a unique blend of independent comics, local art, and an impressive array of quirky merchandise. This welcoming space is brimming with character, featuring everything from vintage magazines to custom-designed T-shirts. It's not just a store; it's a community hub where art and culture converge.",
                 "website": "https://glorpgum.com/",
@@ -1023,7 +1023,7 @@
                 "coordinates": [44.9564, -93.2878]
               },
               {
-                "name": "Owamni",
+                "title": "Owamni",
                 "address": "425 W River Pkwy, Minneapolis, MN 55401",
                 "description": "An award-winning full-service Indigenous restaurant by The Sioux Chef showcasing true North American Indigenous foods and culture. The goal of this restaurant is to showcase modern Indigenous foods, prioritizing purchasing from Indigenous producers first, and building seasonal menus to reflect region, culture, and Indigenous food identities.",
                 "website": "https://owamni.com/",
@@ -1032,7 +1032,7 @@
                 "coordinates": [44.9811, -93.2603]
               },
               {
-                "name": "Tender Lovin' Chix",
+                "title": "Tender Lovin' Chix",
                 "address": "2700 Lyndale Ave S, Minneapolis, MN 55408",
                 "description": "Where Southern and Asian flavors collide (Blackanese). This Minneapolis restaurant offers a unique dining experience with crispy chicken tenders, flavorful fried rice, and their signature yum yum sauce. It's the ultimate comfort food, with a twist.",
                 "website": "https://www.tenderlovinchix.com/",
@@ -1041,7 +1041,7 @@
                 "coordinates": [44.9532, -93.2882]
               },
               {
-                "name": "Workhorse Coffee Bar",
+                "title": "Workhorse Coffee Bar",
                 "address": "2399 University Ave W, St Paul, MN 55114",
                 "description": "A welcoming destination offering responsibly sourced and locally roasted coffee paired with stellar customer service. Workhorse Coffee Bar is a craft coffee destination featuring traditional espresso beverages, seasonal signature coffee and tea, and local bakery items. They are also home to the Smallest Museum in St Paul.",
                 "website": "https://www.workhorsecoffee.com/",
@@ -1050,7 +1050,7 @@
                 "coordinates": [44.9625, -93.1952]
               },
               {
-                "name": "Wrecktangle Pizza",
+                "title": "Wrecktangle Pizza",
                 "address": "703 W Lake St, Minneapolis, MN 55408",
                 "description": "Detroit in style, Minnesota in interpretation. Come for the pizza, stay for the friendship. They specialize in Detroit-style pizza with crispy cheese baked onto the crust, offering unique and creative pizza combinations.",
                 "website": "https://wrecktanglepizza.com/",
