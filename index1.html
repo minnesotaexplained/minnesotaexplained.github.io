@@ -1,0 +1,1902 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Minnesota Explained</title>
+    <style>
+        :root {
+            --bg-primary: white;
+            --bg-secondary: #f8f9fa;
+            --bg-tertiary: #f7fafc;
+            --text-primary: #2d3748;
+            --text-secondary: #555;
+            --text-tertiary: #666;
+            --text-quaternary: #6c757d;
+            --border-primary: #e0e0e0;
+            --border-secondary: #e2e8f0;
+            --border-tertiary: #e9ecef;
+            --accent-primary: #2a5298;
+            --accent-secondary: #1e3c72;
+            --accent-tertiary: #667eea;
+            --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.1);
+            --shadow-md: 0 2px 8px rgba(0, 0, 0, 0.1);
+            --shadow-lg: 0 4px 16px rgba(42, 82, 152, 0.15);
+            --hover-bg: #f8f9ff;
+            --table-hover: #f7fafc;
+        }
+
+        [data-theme="dark"] {
+            --bg-primary: #1a202c;
+            --bg-secondary: #2d3748;
+            --bg-tertiary: #2d3748;
+            --text-primary: #e2e8f0;
+            --text-secondary: #cbd5e0;
+            --text-tertiary: #a0aec0;
+            --text-quaternary: #718096;
+            --border-primary: #4a5568;
+            --border-secondary: #4a5568;
+            --border-tertiary: #4a5568;
+            --accent-primary: #4299e1;
+            --accent-secondary: #63b3ed;
+            --accent-tertiary: #667eea;
+            --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.3);
+            --shadow-md: 0 2px 8px rgba(0, 0, 0, 0.3);
+            --shadow-lg: 0 4px 16px rgba(0, 0, 0, 0.4);
+            --hover-bg: #2d3748;
+            --table-hover: #2d3748;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        #map {
+          height: 500px;
+        }
+
+        #map.no-show {
+          height: 0px;
+          width: 0px;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            min-height: 100vh;
+            margin: 0;
+            padding: 0;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        .navbar {
+            background: linear-gradient(135deg, var(--accent-secondary) 0%, var(--accent-primary) 100%);
+            color: white;
+            padding: 20px 40px;
+            box-shadow: var(--shadow-md);
+            top: 0;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .back-button {
+            background: rgba(255, 255, 255, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: all 0.2s ease;
+            display: none;
+        }
+
+        .back-button:hover {
+            background: rgba(255, 255, 255, 0.3);
+        }
+
+        .back-button.visible {
+            display: block;
+        }
+
+        .navbar-content {
+            flex: 1;
+        }
+
+        .navbar-title {
+            font-size: 1.8em;
+            font-weight: 700;
+            margin: 0 0 5px 0;
+        }
+
+        .navbar-subtitle {
+            font-size: 1em;
+            opacity: 0.9;
+            margin: 0;
+        }
+
+        /* Dark Mode Toggle */
+        .dark-mode-toggle {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-left: auto;
+        }
+
+        .toggle-switch {
+            position: relative;
+            width: 60px;
+            height: 30px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 15px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .toggle-switch:hover {
+            background: rgba(255, 255, 255, 0.3);
+        }
+
+        .toggle-slider {
+            position: absolute;
+            top: 3px;
+            left: 3px;
+            width: 22px;
+            height: 22px;
+            background: white;
+            border-radius: 50%;
+            transition: transform 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+        }
+
+        .toggle-slider::before {
+            content: '☀️';
+        }
+
+        [data-theme="dark"] .toggle-slider {
+            transform: translateX(30px);
+        }
+
+        [data-theme="dark"] .toggle-slider::before {
+            content: '🌙';
+        }
+
+        .cards-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 3rem 2rem;
+        }
+
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .card {
+            background: var(--bg-primary);
+            border: 1px solid var(--border-primary);
+            border-radius: 8px;
+            padding: 1.5rem;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            box-shadow: var(--shadow-md);
+        }
+
+        .card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-lg);
+            border-color: var(--accent-primary);
+        }
+
+        .card-title {
+            color: var(--accent-primary);
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 0.75rem;
+        }
+
+        .card-description {
+            color: var(--text-tertiary);
+            line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+
+        .card-link {
+            color: var(--accent-primary);
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        .card {
+            background: var(--bg-primary);
+            border: 1px solid var(--border-primary);
+            border-radius: 8px;
+            padding: 1.5rem;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            box-shadow: var(--shadow-md);
+            
+            /* Add background image */
+            background-image: url('');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            
+            /* Optional: Add overlay for better text readability */
+            position: relative;
+        }
+
+        /* Optional: Add a dark overlay to improve text contrast */
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5); /* Adjust opacity as needed */
+            border-radius: 8px;
+            z-index: 0;
+        }
+
+        /* Make sure text appears above the overlay */
+        .card > * {
+            position: relative;
+            z-index: 1;
+            color: white; /* Adjust text color for visibility */
+        }
+
+        .card-container.card-title {
+            color: white; /* Override for better visibility */
+        }
+
+        .card-container.card-description {
+            color: rgba(255, 255, 255, 0.9); /* Slightly transparent white */
+        }
+
+        .card-link {
+            color: white; /* Or use a bright accent color */
+        }
+
+        .loading {
+            text-align: center;
+            padding: 4rem 2rem;
+            color: var(--text-tertiary);
+        }
+
+        .loading-spinner {
+            width: 50px;
+            height: 50px;
+            border: 4px solid var(--border-primary);
+            border-top: 4px solid var(--accent-primary);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 1rem;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .error {
+            text-align: center;
+            padding: 4rem 2rem;
+            color: #d32f2f;
+        }
+
+        .error-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .table-view {
+            display: none;
+        }
+
+        .table-view.active {
+            display: block;
+        }
+
+        .text-view.active {
+            display: block;
+        }
+
+        .text-view {
+            display: none;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 20px auto;
+            background: var(--bg-primary);
+            overflow: hidden;
+            height: calc(100vh - 120px);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .contain {
+            max-width: 900px;
+            margin: 20px auto;
+            display: flex;
+            flex-direction: column;
+            padding-right:30px;
+            padding-left: 30px;
+        }
+
+        .text-content {
+            flex: 1;
+            overflow-y: auto;
+            padding: 40px;
+            line-height: 1.8;
+        }
+
+        .text-content h1, .text-content h2, .text-content h3 {
+            color: var(--accent-secondary);
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .text-content h1 {
+            font-size: 2rem;
+            border-bottom: 2px solid var(--accent-primary);
+            padding-bottom: 0.5rem;
+        }
+
+        .text-content h2 {
+            font-size: 1.5rem;
+        }
+
+        .text-content h3 {
+            font-size: 1.2rem;
+        }
+
+        .text-content p {
+            margin-bottom: 1rem;
+            color: var(--text-secondary);
+        }
+
+        .text-content ul, .text-content ol {
+            margin-left: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .text-content a {
+            color: var(--accent-primary);
+            text-decoration: none;
+        }
+
+        .text-content a:hover {
+            text-decoration: underline;
+        }
+
+        .text-content code {
+            background: var(--bg-secondary);
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-family: monospace;
+            color: var(--accent-tertiary);
+        }
+
+        .text-content pre {
+            background: var(--bg-secondary);
+            padding: 1rem;
+            border-radius: 6px;
+            overflow-x: auto;
+            margin-bottom: 1rem;
+        }
+
+        .text-content blockquote {
+            border-left: 4px solid var(--accent-primary);
+            padding-left: 1rem;
+            margin: 1rem 0;
+            color: var(--text-tertiary);
+            font-style: italic;
+        }
+
+        .table-wrapper {
+            overflow-y: auto;
+            flex: 1;
+            padding: 0 20px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 14px;
+        }
+
+        thead {
+            background: var(--bg-secondary);
+            position: sticky;
+            top: 0;
+            z-index: 10;
+            box-shadow: var(--shadow-sm);
+        }
+
+        th {
+            padding: 15px;
+            text-align: left;
+            font-weight: 600;
+            color: var(--text-primary);
+            border-bottom: 2px solid var(--accent-tertiary);
+            text-transform: uppercase;
+            font-size: 12px;
+            letter-spacing: 0.5px;
+        }
+
+        th.sortable {
+            cursor: pointer;
+            user-select: none;
+            position: relative;
+            padding-right: 25px;
+        }
+
+        th.sortable:hover {
+            background: var(--hover-bg);
+        }
+
+        th.sortable::after {
+            content: '⇅';
+            position: absolute;
+            right: 8px;
+            opacity: 0.3;
+            font-size: 14px;
+        }
+
+        th.sortable.sort-asc::after {
+            content: '↑';
+            opacity: 1;
+            color: var(--accent-primary);
+        }
+
+        th.sortable.sort-desc::after {
+            content: '↓';
+            opacity: 1;
+            color: var(--accent-primary);
+        }
+
+        th.filterable {
+            position: relative;
+        }
+
+        .filter-toggle {
+            position: absolute;
+            right: 8px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(102, 126, 234, 0.1);
+            border: 1px solid rgba(102, 126, 234, 0.3);
+            color: var(--accent-tertiary);
+            padding: 2px 6px;
+            border-radius: 3px;
+            cursor: pointer;
+            font-size: 10px;
+            transition: all 0.2s;
+        }
+
+        .filter-toggle:hover {
+            background: rgba(102, 126, 234, 0.2);
+            border-color: var(--accent-tertiary);
+        }
+
+        .filter-toggle.active {
+            background: var(--accent-tertiary);
+            color: white;
+        }
+
+        th.filterable.sortable {
+            padding-right: 60px;
+        }
+
+        .filter-dropdown {
+            display: none;
+            margin-top: 5px;
+        }
+
+        .filter-dropdown.active {
+            display: block;
+        }
+
+        .filter-dropdown select {
+            width: 100%;
+            padding: 4px 8px;
+            border: 2px solid var(--accent-tertiary);
+            border-radius: 4px;
+            font-size: 11px;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            cursor: pointer;
+            text-transform: none;
+            letter-spacing: normal;
+        }
+
+        .filter-dropdown select:focus {
+            outline: none;
+            border-color: var(--accent-primary);
+        }
+
+        .filter-active-indicator {
+            display: inline-block;
+            width: 8px;
+            height: 8px;
+            background: var(--accent-tertiary);
+            border-radius: 50%;
+            margin-left: 5px;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        td {
+            padding: 15px;
+            border-bottom: 1px solid var(--border-tertiary);
+            vertical-align: top;
+        }
+
+        tr:hover {
+            background: var(--table-hover);
+            transition: background 0.2s ease;
+        }
+
+        .department-name {
+            font-weight: 600;
+            color: var(--accent-secondary);
+        }
+
+        .department-name a {
+            color: var(--accent-secondary);
+            text-decoration: none;
+            transition: color 0.2s ease;
+        }
+
+        .department-name a:hover {
+            color: var(--accent-tertiary);
+            text-decoration: underline;
+        }
+
+        .program-title {
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 0.25rem;
+        }
+
+        .program-link {
+            color: var(--accent-primary);
+            text-decoration: none;
+            font-size: 0.85rem;
+        }
+
+        .program-link:hover {
+            text-decoration: underline;
+        }
+
+        .commissioner-name {
+            color: var(--text-primary);
+        }
+
+        .description {
+            color: var(--text-secondary);
+            line-height: 1.6;
+            font-size: 13px;
+        }
+
+        .commissioner-powers {
+            color: var(--text-secondary);
+            line-height: 1.6;
+            font-size: 13px;
+        }
+
+        .employees {
+            font-weight: 600;
+            color: var(--accent-tertiary);
+            text-align: center;
+        }
+
+        .no-data {
+            color: var(--text-quaternary);
+            font-style: italic;
+        }
+
+        .website-link {
+            color: var(--accent-tertiary);
+            text-decoration: none;
+            font-size: 13px;
+            word-break: break-all;
+            transition: color 0.2s ease;
+        }
+
+        .website-link:hover {
+            color: var(--accent-secondary);
+            text-decoration: underline;
+        }
+
+        .categories {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .category-tag {
+            background: var(--bg-secondary);
+            color: var(--text-secondary);
+            padding: 0.25rem 0.75rem;
+            border-radius: 12px;
+            font-size: 0.75rem;
+            font-weight: 500;
+            border: 1px solid var(--border-secondary);
+        }
+
+        footer {
+            text-align: center;
+            padding: 15px 20px;
+            color: var(--text-quaternary);
+            font-size: 14px;
+            border-top: 1px solid var(--border-tertiary);
+            background: var(--bg-primary);
+            flex-shrink: 0;
+        }
+
+        @media (max-width: 768px) {
+            .navbar {
+                padding: 15px 20px;
+            }
+
+            .navbar-title {
+                font-size: 1.5em;
+            }
+
+            .navbar-subtitle {
+                font-size: 0.9em;
+            }
+
+            .dark-mode-toggle {
+                margin-left: 10px;
+            }
+
+            table {
+                font-size: 12px;
+            }
+
+            th, td {
+                padding: 10px;
+            }
+        }
+
+        /* Text View Scoped Styles */
+        .textView h1, .textView h2, .textView h3, .textView h4, .textView h5, .textView h6 {
+            color: var(--accent-secondary);
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .textView h1 {
+            font-size: 2.5rem;
+            border-bottom: 3px solid var(--accent-primary);
+            padding-bottom: 0.75rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .textView h2 {
+            font-size: 2rem;
+            border-bottom: 2px solid var(--border-primary);
+            padding-bottom: 0.5rem;
+        }
+
+        .textView h3 {
+            font-size: 1.5rem;
+            color: var(--accent-primary);
+        }
+
+        .textView h4 {
+            font-size: 1.25rem;
+        }
+
+        .textView h5 {
+            font-size: 1.1rem;
+        }
+
+        .textView h6 {
+            font-size: 1rem;
+        }
+
+        .textView p {
+            margin-bottom: 1.25rem;
+            color: var(--text-primary);
+            font-size: 1rem;
+        }
+
+        .textView ul, .textView ol {
+            margin-left: 2rem;
+            margin-bottom: 1.5rem;
+            color: var(--text-primary);
+        }
+
+        .textView li {
+            margin-bottom: 0.5rem;
+            line-height: 1.6;
+        }
+
+        .textView ul ul, .textView ol ul, .textView ul ol, .textView ol ol {
+            margin-top: 0.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .textView a {
+            color: var(--accent-primary);
+            text-decoration: none;
+            font-weight: 500;
+            border-bottom: 1px solid transparent;
+            transition: border-color 0.2s;
+        }
+
+        .textView a:hover {
+            border-bottom-color: var(--accent-primary);
+        }
+
+        .textView strong, .textView b {
+            color: var(--accent-secondary);
+            font-weight: 600;
+        }
+
+        .textView em, .textView i {
+            color: var(--text-secondary);
+        }
+
+        .textView code {
+            background: var(--bg-secondary);
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 0.9em;
+            color: var(--accent-tertiary);
+            border: 1px solid var(--border-primary);
+        }
+
+        .textView pre {
+            background: var(--bg-secondary);
+            padding: 1.5rem;
+            border-radius: 8px;
+            overflow-x: auto;
+            margin-bottom: 1.5rem;
+            border: 1px solid var(--border-primary);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .textView pre code {
+            background: none;
+            padding: 0;
+            border: none;
+            color: var(--text-primary);
+            font-size: 0.875rem;
+        }
+
+        .textView blockquote {
+            border-left: 4px solid var(--accent-primary);
+            padding-left: 1.5rem;
+            padding-right: 1rem;
+            padding-top: 0.5rem;
+            padding-bottom: 0.5rem;
+            margin: 1.5rem 0;
+            background: var(--bg-tertiary);
+            color: var(--text-secondary);
+            font-style: italic;
+            border-radius: 0 4px 4px 0;
+        }
+
+        .textView blockquote p:last-child {
+            margin-bottom: 0;
+        }
+
+        .textView hr {
+            border: none;
+            border-top: 2px solid var(--border-primary);
+            margin: 2rem 0;
+        }
+
+        .textView table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 1.5rem;
+            border: 1px solid var(--border-primary);
+        }
+
+        .textView table th {
+            background: var(--bg-secondary);
+            padding: 12px;
+            text-align: left;
+            font-weight: 600;
+            color: var(--accent-secondary);
+            border-bottom: 2px solid var(--accent-primary);
+        }
+
+        .textView table td {
+            padding: 12px;
+            border-bottom: 1px solid var(--border-primary);
+        }
+
+        .textView table tr:hover {
+            background: var(--table-hover);
+        }
+
+        .textView img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            margin: 1.5rem 0;
+            box-shadow: var(--shadow-md);
+        }
+
+        .textView .highlight-box {
+            background: rgba(255, 193, 7, 0.1);
+            border-left: 4px solid #ffc107;
+            padding: 1rem 1.5rem;
+            margin: 1.5rem 0;
+            border-radius: 0 4px 4px 0;
+        }
+
+        .textView .info-box {
+            background: rgba(33, 150, 243, 0.1);
+            border-left: 4px solid #2196f3;
+            padding: 1rem 1.5rem;
+            margin: 1.5rem 0;
+            border-radius: 0 4px 4px 0;
+        }
+
+        .textView .warning-box {
+            background: rgba(255, 152, 0, 0.1);
+            border-left: 4px solid #ff9800;
+            padding: 1rem 1.5rem;
+            margin: 1.5rem 0;
+            border-radius: 0 4px 4px 0;
+        }
+
+        .textView .success-box {
+            background: rgba(76, 175, 80, 0.1);
+            border-left: 4px solid #4caf50;
+            padding: 1rem 1.5rem;
+            margin: 1.5rem 0;
+            border-radius: 0 4px 4px 0;
+        }
+    </style>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+</head>
+<body>
+    <nav class="navbar">
+        <button class="back-button" id="backButton" onclick="showCards()">← Back</button>
+        <div class="navbar-content">
+            <h1 class="navbar-title">Minnesota Explained</h1>
+            <p class="navbar-subtitle" id="navbarSubtitle"></p>
+        </div>
+        <div class="dark-mode-toggle">
+            <div class="toggle-switch" onclick="toggleDarkMode()">
+                <div class="toggle-slider"></div>
+            </div>
+        </div>
+    </nav>
+
+    <div id="cardsView" class="cards-container">
+        <div id="intro" style="padding-bottom:10px">
+            <div>
+                <h2 class="card-title">Minnesota Explained</h2>
+                <p class="card-description">Minnesota Explained is a free guide to Minnesota state and Minneapolis city resources meant for residents.</p>
+            </div>
+        </div>
+        <div id="loadingState" class="loading">
+            <div class="loading-spinner"></div>
+            <p>Loading data...</p>
+        </div>
+        <div id="errorState" class="error" style="display: none;">
+            <div class="error-title">Failed to Load Data</div>
+            <p id="errorMessage"></p>
+        </div>
+        <div id="categoriesContainer"></div>
+    </div>
+
+    <div class="contain">
+        <div id="map" class="no-show"></div>
+    </div>
+
+    <div id="tableView" class="table-view">
+        <div class="container">
+            <div class="table-wrapper">
+                <table>
+                    <thead id="tableHead"></thead>
+                    <tbody id="tableBody"></tbody>
+                </table>
+            </div>
+            <footer id="tableFooter"></footer>
+        </div>
+    </div>
+
+    <div id="textView" class="text-view">
+        <div class="contain">
+            <div id="textContent"></div>
+            <div id="textFooter"></div>
+        </div>
+    </div>
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script>
+        let artifacts = [];
+        let currentArtifactIndex = null;
+        let sortColumn = null;
+        let sortDirection = 'asc';
+        let activeFilters = {}; // { columnIndex: selectedValue }
+        let filterDropdownStates = {}; // { columnIndex: true/false }
+
+        // Replace this URL with your GitHub Gist raw URL or other data source
+        const DATA_URL = './artifacts.json';
+
+        // Dark Mode Functions
+        function initDarkMode() {
+            const savedTheme = localStorage.getItem('theme') || 'light';
+            document.documentElement.setAttribute('data-theme', savedTheme);
+        }
+
+        function toggleDarkMode() {
+            const currentTheme = document.documentElement.getAttribute('data-theme');
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            document.documentElement.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+        }
+
+        // Initialize dark mode on page load
+        initDarkMode();
+
+        /* 
+         * Artifact structure:
+         * {
+         *   title: "Artifact Title",
+         *   description: "Card description",
+         *   subtitle: "Navbar subtitle when viewing",
+         *   footer: "Footer text",
+         *   type: "array" or "text",
+         *   
+         *   // For type "array" (table display):
+         *   columns: [...],
+         *   data: [...]
+         *   
+         *   // For type "text" (HTML content display):
+         *   data: "<h1>Your HTML content here</h1><p>..."
+         * }
+         * 
+         * Column structure for array type:
+         * {
+         *   header: "Column Name",     // Display name
+         *   field: "field_name",       // Data field name
+         *   width: "20%",              // Column width
+         *   type: "text",              // text, number, link, department-link, program-link, categories, index
+         *   sortable: true,            // Enable sorting for this column
+         *   filterable: true           // Enable filtering for this column
+         * }
+         */
+
+        // Fetch data from remote source
+        async function loadData() {
+            try {
+                const response = await fetch(DATA_URL);
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                artifacts = await response.json();
+                
+                // Hide loading, show cards
+                document.getElementById('loadingState').style.display = 'none';
+                renderCards();
+            } catch (error) {
+                console.error('Error loading data:', error);
+                
+                // For demo purposes, load sample data if fetch fails
+                loadSampleData();
+                
+                document.getElementById('loadingState').style.display = 'none';
+                renderCards();
+            }
+        }
+
+        // Sample data for demo purposes (remove this when you have real data)
+        function loadSampleData() {
+            artifacts = [
+
+   
+    {
+        "title":"Shelters, Services, Clinics",
+        "description":"This data represents a comprehensive directory of the nonprofit safety net in Minneapolis, specifically curated for individuals and families experiencing housing instability.",
+        "subtitle":"",
+        "footer":"",
+        "category":"test",
+        "image":"https://www.katiejones.org/uploads/1/1/3/9/113909967/published/kj.jpg?1717458365",
+        "map":true,
+        "columns":[
+            {
+                "header":"#",
+                "field":"index",
+                "width":"3%",
+                "type":"index"
+            },
+            {
+                "header":"Title",
+                "field":"title",
+                "width":"10%",
+                "type":"title",
+                "sortable":true
+            },
+            {
+                "header":"Description",
+                "field":"description",
+                "width":"20%",
+                "type":"text"
+            },
+            {
+                "header":"Address",
+                "field":"address",
+                "width":"5%",
+                "type":"text"
+            },
+            {
+                "header":"Services",
+                "field":"services",
+                "width":"10%",
+                "type":"categories",
+                "filterable":true
+            },
+            {
+                "header":"Website",
+                "field":"link",
+                "width":"5%",
+                "type":"link"
+            }
+        ],
+        "data":[
+              {
+                "title": "Agate Housing & Services",
+                "category": "Emergency Shelter & Outreach",
+                "description": "Formed by the merger of St. Stephen’s and House of Charity; focuses on ending homelessness through street outreach and housing-first models.",
+                "address": "2309 Nicollet Ave, Minneapolis, MN 55404",
+                "coordinates": [44.9600, -93.2778],
+                "services": ["Street outreach", "Emergency shelter for men/couples", "Food shelf", "Public showers", "Permanent supportive housing"],
+                "link": "https://agatemn.org"
+              },
+              {
+                "title": "AICDC Homeward Bound",
+                "category": "Culturally Specific Shelter",
+                "description": "The American Indian Community Development Corporation provides culturally specific shelter and services for Native American individuals.",
+                "address": "2012 Cedar Ave, Minneapolis, MN 55404",
+                "coordinates": [44.9631, -93.2472],
+                "services": ["Emergency shelter for single adults", "Culturally specific case management", "Health referrals", "Sober living support"],
+                "link": "https://aicdc-mn.org"
+              },
+              {
+                "title": "Avivo Village",
+                "category": "Emergency Shelter & Health",
+                "description": "An indoor 'tiny house' shelter community specifically designed to move people from unsheltered encampments into safe, private dwellings.",
+                "address": "1251 Washington Ave N, Minneapolis, MN 55401",
+                "coordinates": [44.9926, -93.2783],
+                "services": ["Low-barrier tiny house shelter", "Mental health services", "Addiction recovery", "Career education", "Housing case management"],
+                "link": "https://avivomn.org"
+              },
+              {
+                "title": "Catholic Charities: Higher Ground & Opportunity Center",
+                "category": "General Shelter & Day Services",
+                "description": "A massive service hub providing both overnight shelter and daytime resources like showers, laundry, and housing case management.",
+                "address": "165 Glenwood Avenue North, Minneapolis, MN 55405",
+                "coordinates": [44.9814, -93.2809],
+                "services": ["Overnight shelter", "Day center", "Pay-for-stay housing", "Showers and laundry", "Employment assistance"],
+                "link": "https://cctwincities.org"
+              },
+              {
+                "title": "Community Emergency Service (CES)",
+                "category": "Food Shelf",
+                "description": "A choice-based food shelf providing fresh, nutritious food and home-delivery services for those with mobility issues.",
+                "address": "1900 11th Ave S, Minneapolis, MN 55404",
+                "coordinates": [44.9634, -93.2604],
+                "services": ["Food market", "Home-delivered meals", "Pet food shelf", "Crisis financial help"],
+                "link": "https://cesmn.org"
+              },
+              {
+                "title": "Groveland Food Shelf",
+                "category": "Food Shelf",
+                "description": "Non-profit providing emergency groceries and hygiene items to the Stevens Square neighborhood and students.",
+                "address": "1900 Nicollet Ave, Minneapolis, MN 55403",
+                "coordinates": [44.9639, -93.2779],
+                "services": ["Emergency groceries", "Personal hygiene items", "Mobile outreach"],
+                "link": "https://www.grovelandfoodshelf.org"
+              },
+              {
+                "title": "Hennepin County Health Care for the Homeless",
+                "category": "Medical Clinic",
+                "description": "Specialized medical team operating clinics within Minneapolis shelters to remove barriers to care.",
+                "address": "525 Portland Ave S, Minneapolis, MN 55415",
+                "coordinates": [44.9748, -93.2641],
+                "services": ["Primary care", "Mental health therapy", "Substance use disorder support", "Medication refills"],
+                "link": "https://www.hennepin.us/residents/health-medical/health-care-for-the-homeless"
+              },
+              {
+                "title": "NorthPoint Health & Wellness Center",
+                "category": "Integrated Health & Food",
+                "description": "Multi-specialty center integrating primary medical care with human services and a food shelf.",
+                "address": "1313 Penn Ave N, Minneapolis, MN 55411",
+                "coordinates": [44.9922, -93.3008],
+                "services": ["Medical and dental care", "Full-service food shelf", "Behavioral health", "WIC services"],
+                "link": "https://www.northpointhealth.org"
+              },
+              {
+                "title": "Our Saviour’s Housing",
+                "category": "Emergency & Transitional Shelter",
+                "description": "Provides emergency shelter and transitional housing for single adults, specifically focusing on those with mental health or chemical health needs.",
+                "address": "2219 Chicago Ave S, Minneapolis, MN 55404",
+                "coordinates": [44.9610, -93.2625],
+                "services": ["Emergency shelter", "Transitional housing", "Permanent supportive housing"],
+                "link": "https://oscs-mn.org"
+              },
+              {
+                "title": "People Serving People",
+                "category": "Family Services",
+                "description": "The largest family-focused shelter in Minnesota, providing comprehensive wrap-around services for families and children.",
+                "address": "614 South 3rd Street, Minneapolis, MN 55415",
+                "coordinates": [44.9765, -93.2618],
+                "services": ["Family emergency shelter", "Early learning center", "K-12 tutoring", "On-site medical clinic", "Financial literacy"],
+                "link": "https://www.peopleservingpeople.org"
+              },
+              {
+                "title": "Phillips Neighborhood Clinic",
+                "category": "Medical Clinic",
+                "description": "Free, student-run clinic providing health care services to those without insurance.",
+                "address": "2742 15th Ave S, Minneapolis, MN 55407",
+                "coordinates": [44.9529, -93.2536],
+                "services": ["Free primary care", "Mental health counseling", "Physical therapy", "Lab work"],
+                "link": "https://sites.google.com/view/phillipsneighborhoodclinic"
+              },
+              {
+                "title": "Sharing & Caring Hands",
+                "category": "Comprehensive Emergency Services",
+                "description": "Provides a massive range of immediate safety-net services including food, medical care, and family shelter.",
+                "address": "525 N 7th St, Minneapolis, MN 55405",
+                "coordinates": [44.9839, -93.2789],
+                "services": ["Free medical/dental clinic", "Mary's Place family shelter", "Daily hot meals", "Vouchers for beds/shoes"],
+                "link": "https://sharingandcaringhands.org"
+              },
+              {
+                "title": "Simpson Housing Services",
+                "category": "General Shelter & Supportive Housing",
+                "description": "Provides individual advocacy and a range of housing programs from emergency shelter to permanent supportive homes.",
+                "address": "128 W 33rd St, Minneapolis, MN 55408",
+                "coordinates": [44.9427, -93.2798],
+                "services": ["Adult shelter", "Family supportive housing", "Children and youth programs", "Housing advocacy"],
+                "link": "https://www.simpsonhousing.org"
+              },
+              {
+                "title": "The Bridge for Youth",
+                "category": "Youth Services",
+                "description": "Focused on youth ages 10–17, providing crisis intervention and emergency housing.",
+                "address": "1111 West 22nd St, Minneapolis, MN 55405",
+                "coordinates": [44.9613, -93.2932],
+                "services": ["Youth emergency shelter", "24/7 crisis hotline", "Family reunification", "Transitional living"],
+                "link": "https://bridgeforyouth.org"
+              },
+              {
+                "title": "The Link",
+                "category": "Youth Services",
+                "description": "Supports youth experiencing homelessness, sexual exploitation, or juvenile justice system involvement.",
+                "address": "1210 Glenwood Ave, Minneapolis, MN 55405",
+                "coordinates": [44.9814, -93.3004],
+                "services": ["Emergency youth housing", "Safe Harbor services", "Rental assistance"],
+                "link": "https://thelinkmn.org"
+              },
+              {
+                "title": "The Salvation Army: Harbor Light Center",
+                "category": "Emergency Shelter & Medical",
+                "description": "One of the largest homeless outreach facilities in Minnesota, offering emergency shelter and specialized recovery programs.",
+                "address": "1010 Currie Ave, Minneapolis, MN 55403",
+                "coordinates": [44.9806, -93.2806],
+                "services": ["Emergency housing", "Sober living programs", "Daily hot meals", "On-site medical clinic"],
+                "link": "https://centralusa.salvationarmy.org/northern/harborlightcenter"
+              },
+              {
+                "title": "YouthLink",
+                "category": "Youth Services",
+                "description": "A service hub for youth ages 16–24, connecting them to housing, education, and health care.",
+                "address": "41 North 12th St, Minneapolis, MN 55403",
+                "coordinates": [44.9801, -93.2785],
+                "services": ["Drop-in resource center", "Housing referrals", "Mental health care", "GED/Employment help"],
+                "link": "https://www.youthlinkmn.org"
+              }
+        ]
+    },
+                {
+                    title: "Minnesota State Departments",
+                    description: "Explore state government departments and agencies.",
+                    subtitle: "State Departments - Sample Data",
+                    footer: "Sample data - Replace with real data source",
+                    type: "array",
+                    "image":"https://images.squarespace-cdn.com/content/v1/5c9542c8840b163998cf4804/2d9eee0e-b8fd-4ef2-9184-a402997000bf/20240212-session-32+MN+House.jpg",
+                    columns: [
+                        {
+                            "header":"#",
+                            "field":"index",
+                            "width":"3%",
+                            "type":"index"
+                        },
+                        {
+                            "header":"Department",
+                            "field":"department",
+                            "width":"14%",
+                            "type":"department-link",
+                            "sortable":true
+                        },
+                        {
+                            "header":"Commissioner",
+                            "field":"commissioner",
+                            "width":"11%",
+                            "type":"text"
+                        },
+                        {
+                            "header":"Commissioner Powers",
+                            "field":"commissioner_powers",
+                            "width":"20%",
+                            "type":"text"
+                        },
+                        {
+                            "header":"Employees",
+                            "field":"employees",
+                            "width":"8%",
+                            "type":"number"
+                        },
+                        {
+                            "header":"Website",
+                            "field":"url",
+                            "width":"14%",
+                            "type":"link"
+                        }
+                    ],
+                    data: [
+                        {
+                            "department":"Department of Administration",
+                            "commissioner":"Tamar Gronvall",
+                            "description":"The department manages and administers centralized operations of state agencies, including procurement of goods and services, travel and fleet services, building construction and maintenance, real estate leasing and management, and facilities and maintenance services. Provides a broad range of business management, administrative and professional services and resources to state agencies, local governments and the public.",
+                            "commissioner_powers":"Manages and administers centralized operations of state agencies; procurement of goods and services; building construction and maintenance; real estate leasing and management; facilities and maintenance services; oversight of state buildings and properties; administers grants management and data practices; enforces data practices act and open meeting law.",
+                            "employees":524,
+                            "url":"https://mn.gov/admin"
+                        },
+                        {
+                            "department":"Department of Agriculture",
+                            "commissioner":"Thom Petersen",
+                            "description":"The department encourages and promotes agricultural industries, assists in the marketing of farm products, and exercises regulatory powers to ensure the continued high quality of Minnesota agricultural production. Enhances Minnesotans' quality of life by ensuring the integrity of the food supply, the health of the environment, and the strength of the agricultural economy.",
+                            "commissioner_powers":"Encourages and promotes agricultural industries; assists in marketing of farm products; exercises regulatory powers to ensure high quality of agricultural production; inspects food manufacturers, dairy farms, feed mills; regulates pesticides and fertilizers; licenses applicators; protects crops and plant species from pests and diseases; certifies nursery stock and seed industries.",
+                            "employees":548,
+                            "url":"https://mda.state.mn.us"
+                        },
+                    ]
+                },
+                {
+                    title: "About Minnesota Government",
+                    description: "Learn about the structure and history of Minnesota's government.",
+                    subtitle: "About Minnesota Government",
+                    footer: "Sample text content - Last updated January 2026",
+                    type: "text",
+                    data: `
+                        <h1>Minnesota State Government</h1>
+                        
+                        <p>Minnesota has a rich tradition of government service and public administration. The state's government structure is designed to serve its diverse population efficiently and effectively.</p>
+                        
+                        <h2>Three Branches of Government</h2>
+                        
+                        <h3>Executive Branch</h3>
+                        <p>The executive branch is led by the Governor and includes various state agencies and departments that carry out state laws and provide services to Minnesotans.</p>
+                        <ul>
+                            <li>Governor's Office</li>
+                            <li>Lieutenant Governor</li>
+                            <li>State Agencies and Departments</li>
+                        </ul>
+                        
+                        <h3>Legislative Branch</h3>
+                        <p>The Minnesota Legislature consists of two bodies:</p>
+                        <ul>
+                            <li><strong>Senate:</strong> 67 members serving 4-year terms</li>
+                            <li><strong>House of Representatives:</strong> 134 members serving 2-year terms</li>
+                        </ul>
+                        
+                        <h3>Judicial Branch</h3>
+                        <p>Minnesota's court system ensures justice and interprets laws. It includes:</p>
+                        <ul>
+                            <li>Minnesota Supreme Court</li>
+                            <li>Court of Appeals</li>
+                            <li>District Courts</li>
+                        </ul>
+                        
+                        <h2>Key Facts</h2>
+                        <blockquote>
+                            Minnesota became the 32nd state to join the Union on May 11, 1858.
+                        </blockquote>
+                        
+                        <p>The state capital is Saint Paul, while Minneapolis is the largest city. Together, they form the "Twin Cities" metropolitan area.</p>
+                        
+                        <h2>Government Services</h2>
+                        <p>Minnesota state government provides numerous services including:</p>
+                        <ol>
+                            <li>Education and early childhood programs</li>
+                            <li>Healthcare services and public health</li>
+                            <li>Transportation infrastructure</li>
+                            <li>Environmental protection</li>
+                            <li>Public safety and corrections</li>
+                            <li>Economic development and workforce programs</li>
+                        </ol>
+                        
+                        <p>For more information, visit the official Minnesota state website at <a href="https://mn.gov" target="_blank">mn.gov</a>.</p>
+                    `
+                },
+                {
+                    title: "DCYF Programs",
+                    description: "Department of Children, Youth and Family programs.",
+                    subtitle: "DCYF Programs - Sample Data",
+                    footer: "Sample data - Replace with real data source",
+                    type: "array",
+                    "image":"https://mediasvc.ancestry.com/v2/image/namespaces/9241/media/e157698c-334c-492c-8084-be42b0a1d213?Client=Browser:ContextUI&ImageQuality=UltraHighQuality",
+                    columns: [
+                        {
+                            "header":"Program",
+                            "field":"title",
+                            "width":"25%",
+                            "type":"program-link",
+                            "sortable":true
+                        },
+                        {
+                            "header":"Description",
+                            "field":"description",
+                            "width":"50%",
+                            "type":"text"
+                        },
+                        {
+                            "header":"Categories",
+                            "field":"categories",
+                            "width":"25%",
+                            "type":"categories",
+                            "filterable":true
+                        }
+                    ],
+                    data: [
+                        {
+                            "title":"Whole Family Approach",
+                            "description":"In order to better coordinate and resource the systems that service children, youth, and families, the Department of Children, Youth, and Families is taking a Whole Family Approach to our work. A Whole Family Approach is an approach to practice, program and policy decision making that recognizes and addresses the needs of children and the adults in their lives simultaneously. This approach recognizes that families come in all different shapes and sizes and that families define themselves.",
+                            "link":"https://dcyf.mn.gov/whole-family-approach",
+                            "categories":[
+                                "Child Care and Early Learning",
+                                "Family Resources",
+                                "Income Support"
+                            ]
+                        },
+                        {
+                            "title":"Child Care Access Grants",
+                            "description":"Child Care Access Grantees can help families experiencing homelessness or housing instability apply for and maintain their child care assistance.",
+                            "link":"https://dcyf.mn.gov/programs-directory/child-care-access-grants",
+                            "categories":[
+                                "Child Care and Early Learning"
+                            ]
+                        },
+                    ]
+                },
+                {
+                    "title":"Progressive Legislative Ideas",
+                    "description":"Legislative bills that could redistribute wealth in Minnesota.",
+                    "subtitle":"",
+                    "footer":"",
+                    "columns":[
+                        {
+                            "header":"#",
+                            "field":"index",
+                            "width":"3%",
+                            "type":"index"
+                        },
+                        {
+                            "header":"Bill Title",
+                            "field":"title",
+                            "width":"10%",
+                            "type":"title",
+                            "sortable":true
+                        },
+                        {
+                            "header":"Description",
+                            "field":"description",
+                            "width":"20%",
+                            "type":"text"
+                        },
+                        {
+                            "header":"Text",
+                            "field":"text",
+                            "width":"50%",
+                            "type":"text"
+                        },
+                        {
+                            "header":"Categories",
+                            "field":"categories",
+                            "width":"10%",
+                            "type":"categories",
+                            "filterable":true
+                        }
+                    ],
+                    "data":[
+                      {
+                        "title": "Minnesota Basic Income Grant Program Act",
+                        "categories": ["Direct Assistance", "Anti-Poverty", "Human Services"],
+                        "description": "Establishes a statewide competitive grant program to provide monthly cash payments of $350 to $1,200 to low-income residents to disrupt poverty and build community wealth.",
+                        "text": "A bill for an act relating to human services; establishing a Minnesota basic income grant program; requiring a report; appropriating money. BE IT ENACTED BY THE LEGISLATURE OF THE STATE OF MINNESOTA: Section 1. MINNESOTA BASIC INCOME GRANT PROGRAM. Subdivision 1. Establishment. The commissioner of human services must establish a competitive grant program for local government entities, Minnesota's Tribal Nations, or nonprofit organizations to provide regular cash payments to eligible recipients in order to disrupt poverty, build wealth, advance equity, and support a recipient's basic needs. Subd. 4. Use of grant money. Grantees must use grant money to: (1) design and implement a basic income grant program; (2) provide a monthly payment between $350 to $1,200 to eligible recipients for a period of 12 to 24 months; and (3) collect data on the economic status of recipients. Subd. 5. Eligible recipients. Persons eligible to receive monthly payments must be receiving public benefits or have a household income less than or equal to 300 percent of the federal poverty guidelines."
+                      },
+                      {
+                        "title": "Corporate Franchise Tax Rate Contingency Act",
+                        "categories": ["Corporate Taxation", "Fiscal Policy", "Revenue Neutrality"],
+                        "description": "Adjusts the state corporate tax rate upward if federal corporate taxes are reduced, ensuring that large corporations continue to contribute a fair share to the state's general fund.",
+                        "text": "A bill for an act relating to taxation; corporate franchise; providing for a contingent increase in the tax rate; amending Minnesota Statutes 2024, section 290.06, subdivision 1. BE IT ENACTED BY THE LEGISLATURE OF THE STATE OF MINNESOTA: Section 1. Minnesota Statutes 2024, section 290.06, subdivision 1, is amended to read: Subdivision 1. Computation, corporations. (a) For taxable years beginning after December 31, 2024, the franchise tax imposed upon corporations shall be computed by applying to their taxable income the rate greater of: (1) 9.8 percent; or (2) the rate calculated under paragraph (c). (b) Pursuant to enactment of federal legislation decreasing the corporate franchise tax rate, the commissioner must calculate the percentage decrease and increase Minnesota's tax rate by a corresponding percentage, rounded to the nearest twentieth of a percent."
+                      },
+                      {
+                        "title": "Expanded Corporate Tax Compliance & Enforcement Initiative",
+                        "categories": ["Enforcement & Oversight", "Corporate Reform", "Government Operations"],
+                        "description": "Allocates funding to the Department of Revenue to specifically target and collect unpaid tax liabilities from corporations with over $25 million in Minnesota sales.",
+                        "text": "A bill for an act relating to taxation; appropriating money for an expanded corporate tax compliance initiative. BE IT ENACTED BY THE LEGISLATURE OF THE STATE OF MINNESOTA: Section 1. APPROPRIATION; EXPANDED CORPORATE TAX COMPLIANCE INITIATIVE. Subdivision 1. Appropriation. $10,000,000 in fiscal year 2026 is appropriated from the general fund to the commissioner of revenue to develop and implement an expanded corporate tax compliance initiative. Subd. 2. Requirements. The initiative must prioritize compliance and enforcement activities among corporations reporting $25,000,000 or more in Minnesota sales or gross receipts for a taxable year to ensure the identification and collection of tax liabilities from corporations that currently do not accurately report taxable income."
+                      },
+                      {
+                        "title": "Net Investment Income Tax Act",
+                        "categories": ["Wealth & Capital Taxation", "Individual Income Tax", "Equity"],
+                        "description": "Imposes a 1% tax on net investment income exceeding $1 million for individuals and trusts, redirecting capital gains and dividend wealth into the state treasury.",
+                        "text": "A bill for an act relating to taxation; individual income; imposing a tax on net investment income. BE IT ENACTED BY THE LEGISLATURE OF THE STATE OF MINNESOTA: Section 1. NET INVESTMENT INCOME TAX. (a) A tax is imposed on the net investment income of individuals, estates, and trusts for the taxable year. (b) The tax is equal to one percent of the taxpayer's net investment income in excess of $1,000,000. (c) 'Net investment income' has the meaning given in section 1411(c) of the Internal Revenue Code. (d) This section is effective for taxable years beginning after December 31, 2023."
+                      }
+                    ]
+                },
+                {
+                    "title":"City Council Member Katie Cashman",
+                    "description":"A dashboard of the council member's work.",
+                    "subtitle":"About Minnesota Government",
+                    "footer":"",
+                    "type":"link",
+                    "link":"/cashman.html",
+                },
+
+            ];
+        }
+
+        function renderCards() {
+            const container = document.getElementById('categoriesContainer');
+            container.innerHTML = '';
+
+            // Group artifacts by category
+            const categorized = {};
+            artifacts.forEach(artifact => {
+                const category = artifact.category || '';
+                if (!categorized[category]) {
+                    categorized[category] = [];
+                }
+                categorized[category].push(artifact);
+            });
+            
+            // Render each category section
+            Object.keys(categorized).sort().forEach(category => {
+                const categorySection = document.createElement('div');
+                categorySection.className = 'category-section';
+                
+                const categoryTitle = document.createElement('h2');
+                categoryTitle.className = 'category-title';
+                categoryTitle.textContent = category;
+                categorySection.appendChild(categoryTitle);
+                
+                const cardsGrid = document.createElement('div');
+                cardsGrid.className = 'cards-grid';
+                
+                categorized[category].forEach((artifact, index) => {
+                    // Find the global index for this artifact
+                    const globalIndex = artifacts.indexOf(artifact);
+                    
+                    const card = document.createElement('div');
+                    card.className = 'card';
+                    card.onclick = () => showTable(globalIndex);
+                    
+                    card.innerHTML = `
+                        <h2 class="card-title">${artifact.title}</h2>
+                        <p class="card-description">${artifact.description}</p>
+                        <span class="card-link">View Details</span>
+                    `;
+
+                    // Add background image if artifact has an image property
+                    if (artifact.image) {
+                        card.style.backgroundImage = `url('${artifact.image}')`;
+                    }
+                    
+                    cardsGrid.appendChild(card);
+                });
+                
+                categorySection.appendChild(cardsGrid);
+                container.appendChild(categorySection);
+            });
+        }
+
+        async function showTable(index) {
+            const artifact = artifacts[index];
+            currentArtifactIndex = index;
+            sortColumn = null;
+            sortDirection = 'asc';
+            activeFilters = {};
+            filterDropdownStates = {};
+        
+            if(artifact.type !== 'link'){
+                document.getElementById('navbarSubtitle').textContent = artifact.subtitle;
+                document.getElementById('backButton').classList.add('visible');
+                document.getElementById('cardsView').style.display = 'none';
+            }
+            
+            // Check artifact type and render accordingly
+            if(artifact.type === 'link'){
+                window.location.href = artifact.link;
+            } else if (artifact.type === 'text') {
+                var response = await fetch(artifact.src);
+                artifact.data = await response.text();
+                document.getElementById('tableView').classList.remove('active');
+                document.getElementById('textView').classList.add('active');
+                renderTextContent(artifact);
+            } else {
+                // Default to array/table type
+                document.getElementById('textView').classList.remove('active');
+                document.getElementById('tableView').classList.add('active');
+                renderDynamicTable(artifact);
+            }
+
+            if(artifact.map == true){
+                document.getElementById('map').classList = "";
+                loadMap(artifact.data)
+            }
+        }
+
+        function showCards() {
+            killMap();
+            document.getElementById('cardsView').style.display = 'block';
+            document.getElementById('tableView').classList.remove('active');
+            document.getElementById('textView').classList.remove('active');
+            document.getElementById('backButton').classList.remove('visible');
+            document.getElementById('navbarSubtitle').textContent = '';
+        }
+
+        function renderDynamicTable(artifact) {
+            const tableHead = document.getElementById('tableHead');
+            const tableBody = document.getElementById('tableBody');
+            const tableFooter = document.getElementById('tableFooter');
+            
+            // Filter data based on active filters
+            let displayData = [...artifact.data];
+            Object.keys(activeFilters).forEach(colIndex => {
+                const filterValue = activeFilters[colIndex];
+                if (filterValue !== '') {
+                    const column = artifact.columns[colIndex];
+                    displayData = displayData.filter(row => {
+                        const value = row[column.field];
+                        if (column.type === 'categories') {
+                            return value && value.includes(filterValue);
+                        }
+                        return String(value || '').toLowerCase() === filterValue.toLowerCase();
+                    });
+                }
+            });
+            
+            // Sort data if a sort column is selected
+            if (sortColumn !== null) {
+                displayData = sortData(displayData, artifact.columns[sortColumn], sortDirection);
+            }
+
+            var isMobile = false
+
+            try{
+                isMobile = navigator.userAgentData.mobile;
+            } catch(e){
+
+            }
+            
+            // Render header
+            const headerRow = document.createElement('tr');
+
+            if(isMobile){
+                const th = document.createElement('th');
+                th.textContent = artifact.title;
+                headerRow.appendChild(th);
+            } else {
+
+                artifact.columns.forEach((col, colIndex) => {
+                    const th = document.createElement('th');
+                    if (col.width) th.style.width = col.width;
+                    
+                    // Create header content wrapper
+                    const headerContent = document.createElement('div');
+                    headerContent.style.position = 'relative';
+                    
+                    // Add header text
+                    const headerText = document.createElement('span');
+                    headerText.textContent = col.header;
+                    headerContent.appendChild(headerText);
+                    
+                    // Add active filter indicator
+                    if (activeFilters[colIndex] && activeFilters[colIndex] !== '') {
+                        const indicator = document.createElement('span');
+                        indicator.className = 'filter-active-indicator';
+                        headerContent.appendChild(indicator);
+                    }
+                    
+                    // Add filter toggle button if filterable
+                    if (col.filterable) {
+                        th.classList.add('filterable');
+                        /*const toggleBtn = document.createElement('span');
+                        toggleBtn.className = 'filter-toggle';
+                        toggleBtn.textContent = 'Filter';
+                        toggleBtn.title = 'Toggle filter';
+                        if (filterDropdownStates[colIndex]) {
+                            toggleBtn.classList.add('active');
+                        }
+                        toggleBtn.onclick = (e) => {
+                            e.stopPropagation();
+                            toggleFilter(colIndex);
+                        };
+                        headerContent.appendChild(toggleBtn);*/
+                        
+                        // Add filter dropdown
+                        const filterDiv = document.createElement('div');
+                        filterDiv.className = 'filter-dropdown';
+                        filterDiv.classList.add('active');
+                        
+                        const select = document.createElement('select');
+                        select.onchange = (e) => handleFilterChange(colIndex, e.target.value);
+                        
+                        // Get unique values for this column
+                        const uniqueValues = getUniqueValues(artifact.data, col);
+                        
+                        // Add "All" option
+                        const allOption = document.createElement('option');
+                        allOption.value = '';
+                        allOption.textContent = '-- All --';
+                        select.appendChild(allOption);
+                        
+                        // Add unique values as options
+                        uniqueValues.forEach(value => {
+                            const option = document.createElement('option');
+                            option.value = value;
+                            option.textContent = value;
+                            if (activeFilters[colIndex] === value) {
+                                option.selected = true;
+                            }
+                            select.appendChild(option);
+                        });
+                        
+                        filterDiv.appendChild(select);
+                        headerContent.appendChild(filterDiv);
+                    }
+                    
+                    th.appendChild(headerContent);
+                    
+                    // Add sortable class and click handler if sortable
+                    if (col.sortable) {
+                        th.classList.add('sortable');
+                        if (sortColumn === colIndex) {
+                            th.classList.add(sortDirection === 'asc' ? 'sort-asc' : 'sort-desc');
+                        }
+                        th.onclick = () => handleSort(colIndex);
+                    }
+                    
+                    headerRow.appendChild(th);
+                    
+                });
+            }
+            tableHead.innerHTML = '';
+            tableHead.appendChild(headerRow);
+            
+            // Render body
+            tableBody.innerHTML = '';
+
+
+            displayData.forEach((row, rowIndex) => {
+                const tr = document.createElement('tr');
+                
+                if(isMobile){
+                    var td = document.createElement('td');
+                    tr.appendChild(td);
+                }
+
+                artifact.columns.forEach(col => {
+
+                    if(isMobile){
+                        const div = document.createElement('div');
+                        const value = col.type === 'index' ? rowIndex + 1 : row[col.field];
+                        
+                        switch(col.type) {
+                            case 'index':
+                                div.className = 'employees';
+                                div.textContent = rowIndex + 1;
+                                break;
+                            case 'department-link':
+                                div.className = 'department-name';
+                                div.innerHTML = `<a href="${row.url}" target="_blank" rel="noopener noreferrer">${value}</a>`;
+                                break;
+                            case 'program-link':
+                                div.innerHTML = `<div class="program-title">${value}</div><a href="${row.link}" target="_blank" class="program-link">View Details →</a>`;
+                                break;
+                            case 'title':
+                                div.innerHTML = `<div class="program-title">${value}</div>`;
+                                break;
+                            case 'link':
+                                div.innerHTML = `<a href="${value}" target="_blank" rel="noopener noreferrer" class="website-link">${value}</a>`;
+                                break;
+                            default:
+                                if (col.field === 'description') td.className = 'description';
+                                else if (col.field === 'commissioner_powers') td.className = 'commissioner-powers';
+                                else if (col.field === 'commissioner') td.className = 'commissioner-name';
+                                div.innerHTML = `<b>${col.header}</b> - ` +  value || '';
+                                break;
+                        }
+                        
+                        td.appendChild(div);
+                    } else {
+
+                        const td = document.createElement('td');
+                        const value = col.type === 'index' ? rowIndex + 1 : row[col.field];
+                        
+                        switch(col.type) {
+                            case 'index':
+                                td.className = 'employees';
+                                td.textContent = rowIndex + 1;
+                                break;
+                            case 'department-link':
+                                td.className = 'department-name';
+                                td.innerHTML = `<a href="${row.url}" target="_blank" rel="noopener noreferrer">${value}</a>`;
+                                break;
+                            case 'program-link':
+                                td.innerHTML = `<div class="program-title">${value}</div><a href="${row.link}" target="_blank" class="program-link">View Details →</a>`;
+                                break;
+                            case 'title':
+                                td.innerHTML = `<div class="program-title">${value}</div>`;
+                                break;
+                            case 'link':
+                                td.innerHTML = `<a href="${value}" target="_blank" rel="noopener noreferrer" class="website-link">${value}</a>`;
+                                break;
+                            case 'number':
+                                td.className = 'employees';
+                                td.innerHTML = value !== null ? value.toLocaleString() : '<span class="no-data">N/A</span>';
+                                break;
+                            case 'categories':
+                                td.innerHTML = `<div class="categories">${value.map(cat => `<span class="category-tag">${cat}</span>`).join('')}</div>`;
+                                break;
+                            case 'text':
+                            default:
+                                if (col.field === 'description') td.className = 'description';
+                                else if (col.field === 'commissioner_powers') td.className = 'commissioner-powers';
+                                else if (col.field === 'commissioner') td.className = 'commissioner-name';
+                                td.textContent = value || '';
+                                break;
+                        }
+                        
+                        tr.appendChild(td);
+                    }
+                });
+                
+                tableBody.appendChild(tr);
+            });
+            
+            const filterCount = Object.values(activeFilters).filter(v => v !== '').length;
+            const footerText = artifact.footer + (filterCount > 0 ? ` | ${displayData.length} of ${artifact.data.length} rows shown` : '');
+            tableFooter.textContent = footerText;
+        }
+
+        function handleSort(colIndex) {
+            if (sortColumn === colIndex) {
+                // Toggle sort direction
+                sortDirection = sortDirection === 'asc' ? 'desc' : 'asc';
+            } else {
+                // New column, default to ascending
+                sortColumn = colIndex;
+                sortDirection = 'asc';
+            }
+            
+            renderDynamicTable(artifacts[currentArtifactIndex]);
+        }
+
+        function toggleFilter(colIndex) {
+            filterDropdownStates[colIndex] = !filterDropdownStates[colIndex];
+            renderDynamicTable(artifacts[currentArtifactIndex]);
+        }
+
+        function handleFilterChange(colIndex, value) {
+            activeFilters[colIndex] = value;
+            renderDynamicTable(artifacts[currentArtifactIndex]);
+        }
+
+        function getUniqueValues(data, column) {
+            const values = new Set();
+            
+            data.forEach(row => {
+                const value = row[column.field];
+                if (column.type === 'categories' && Array.isArray(value)) {
+                    // For categories, add each category separately
+                    value.forEach(cat => values.add(cat));
+                } else if (value !== null && value !== undefined && value !== '') {
+                    values.add(String(value));
+                }
+            });
+            
+            return Array.from(values).sort();
+        }
+
+        function renderTextContent(artifact) {
+            const textContent = document.getElementById('textContent');
+            const textFooter = document.getElementById('textFooter');
+            
+            // Render HTML content
+            textContent.innerHTML = artifact.data;
+            textFooter.textContent = artifact.footer || '';
+        }
+
+        function sortData(data, column, direction) {
+            return data.sort((a, b) => {
+                let aVal = a[column.field];
+                let bVal = b[column.field];
+                
+                // Handle null values
+                if (aVal === null || aVal === undefined) return direction === 'asc' ? 1 : -1;
+                if (bVal === null || bVal === undefined) return direction === 'asc' ? -1 : 1;
+                
+                // Sort based on column type
+                if (column.type === 'number') {
+                    aVal = Number(aVal);
+                    bVal = Number(bVal);
+                } else if (column.type === 'categories') {
+                    // Sort by first category
+                    aVal = aVal[0] || '';
+                    bVal = bVal[0] || '';
+                } else {
+                    // Text sorting (case insensitive)
+                    aVal = String(aVal).toLowerCase();
+                    bVal = String(bVal).toLowerCase();
+                }
+                
+                if (aVal < bVal) return direction === 'asc' ? -1 : 1;
+                if (aVal > bVal) return direction === 'asc' ? 1 : -1;
+                return 0;
+            });
+        }
+
+        // Load data when page loads
+        loadData();
+
+        let map;
+        function loadMap(data){            
+            // Initialize the map centered on Minneapolis
+            map = L.map('map').setView([44.9778, -93.2650], 13);
+
+            // Add OpenStreetMap tiles
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+              attribution: '© OpenStreetMap contributors',
+              maxZoom: 19
+            }).addTo(map);
+
+            // Add a few markers
+            for(let i in data){
+                marker = L.marker([data[i].coordinates[0], data[i].coordinates[1]]).addTo(map);
+                marker.bindPopup('<b>' + data[i].title + '</b><br>' + data[i].description);
+            }
+        }
+
+        function killMap(){
+            if(map != null){
+                map.remove()
+                map = null;
+                document.getElementById('map').innerHTML = "";
+                document.getElementById('map').classList = "no-show";
+            }
+        }
+    </script>
+</body>
+</html>

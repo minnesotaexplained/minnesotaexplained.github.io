@@ -273,6 +273,12 @@
         "image":"/img/dcyf.jpg",
         "columns":[
             {
+                "header":"#",
+                "field":"index",
+                "width":"3%",
+                "type":"index"
+            },
+            {
                 "header":"Program",
                 "field":"title",
                 "width":"25%",
@@ -291,6 +297,12 @@
                 "width":"25%",
                 "type":"categories",
                 "filterable":true
+            },
+            {
+                "header":"Link",
+                "field":"link",
+                "width":"5%",
+                "type":"link"
             }
         ],
         "data":[
@@ -940,7 +952,7 @@
         "title":"Restaurants with Food Donations in Mpls",
         "description":"Food donations for families struggling during the ICE raids in Mpls.",
         "subtitle":"",
-        "category": "A Resource Guide in Mpls During ICE Occupation",
+        "category": "ICE Resource Guide",
         "footer":"",
         "map":true,
         "image":"/img/abolish.jpeg",

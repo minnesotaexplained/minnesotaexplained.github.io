@@ -4,6 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Minnesota Explained</title>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script src="https://unpkg.com/vue-router@4"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
     <style>
         :root {
             --bg-primary: white;
@@ -99,6 +106,15 @@
 
         .back-button.visible {
             display: block;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 20px auto;
+            display: flex;
+            flex-direction: column;
+            padding-right:30px;
+            padding-left: 30px;
         }
 
         .navbar-content {
@@ -296,32 +312,6 @@
             font-size: 1.5rem;
             font-weight: 600;
             margin-bottom: 1rem;
-        }
-
-        .table-view {
-            display: none;
-        }
-
-        .table-view.active {
-            display: block;
-        }
-
-        .text-view.active {
-            display: block;
-        }
-
-        .text-view {
-            display: none;
-        }
-
-        .container {
-            max-width: 1400px;
-            margin: 20px auto;
-            background: var(--bg-primary);
-            overflow: hidden;
-            height: calc(100vh - 120px);
-            display: flex;
-            flex-direction: column;
         }
 
         .contain {
@@ -674,272 +664,55 @@
                 padding: 10px;
             }
         }
-
-        /* Text View Scoped Styles */
-        .textView h1, .textView h2, .textView h3, .textView h4, .textView h5, .textView h6 {
-            color: var(--accent-secondary);
-            margin-top: 2rem;
-            margin-bottom: 1rem;
-            font-weight: 600;
-        }
-
-        .textView h1 {
-            font-size: 2.5rem;
-            border-bottom: 3px solid var(--accent-primary);
-            padding-bottom: 0.75rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .textView h2 {
-            font-size: 2rem;
-            border-bottom: 2px solid var(--border-primary);
-            padding-bottom: 0.5rem;
-        }
-
-        .textView h3 {
-            font-size: 1.5rem;
-            color: var(--accent-primary);
-        }
-
-        .textView h4 {
-            font-size: 1.25rem;
-        }
-
-        .textView h5 {
-            font-size: 1.1rem;
-        }
-
-        .textView h6 {
-            font-size: 1rem;
-        }
-
-        .textView p {
-            margin-bottom: 1.25rem;
-            color: var(--text-primary);
-            font-size: 1rem;
-        }
-
-        .textView ul, .textView ol {
-            margin-left: 2rem;
-            margin-bottom: 1.5rem;
-            color: var(--text-primary);
-        }
-
-        .textView li {
-            margin-bottom: 0.5rem;
-            line-height: 1.6;
-        }
-
-        .textView ul ul, .textView ol ul, .textView ul ol, .textView ol ol {
-            margin-top: 0.5rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .textView a {
-            color: var(--accent-primary);
-            text-decoration: none;
-            font-weight: 500;
-            border-bottom: 1px solid transparent;
-            transition: border-color 0.2s;
-        }
-
-        .textView a:hover {
-            border-bottom-color: var(--accent-primary);
-        }
-
-        .textView strong, .textView b {
-            color: var(--accent-secondary);
-            font-weight: 600;
-        }
-
-        .textView em, .textView i {
-            color: var(--text-secondary);
-        }
-
-        .textView code {
-            background: var(--bg-secondary);
-            padding: 3px 8px;
-            border-radius: 4px;
-            font-family: 'Courier New', Courier, monospace;
-            font-size: 0.9em;
-            color: var(--accent-tertiary);
-            border: 1px solid var(--border-primary);
-        }
-
-        .textView pre {
-            background: var(--bg-secondary);
-            padding: 1.5rem;
-            border-radius: 8px;
-            overflow-x: auto;
-            margin-bottom: 1.5rem;
-            border: 1px solid var(--border-primary);
-            box-shadow: var(--shadow-sm);
-        }
-
-        .textView pre code {
-            background: none;
-            padding: 0;
-            border: none;
-            color: var(--text-primary);
-            font-size: 0.875rem;
-        }
-
-        .textView blockquote {
-            border-left: 4px solid var(--accent-primary);
-            padding-left: 1.5rem;
-            padding-right: 1rem;
-            padding-top: 0.5rem;
-            padding-bottom: 0.5rem;
-            margin: 1.5rem 0;
-            background: var(--bg-tertiary);
-            color: var(--text-secondary);
-            font-style: italic;
-            border-radius: 0 4px 4px 0;
-        }
-
-        .textView blockquote p:last-child {
-            margin-bottom: 0;
-        }
-
-        .textView hr {
-            border: none;
-            border-top: 2px solid var(--border-primary);
-            margin: 2rem 0;
-        }
-
-        .textView table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-bottom: 1.5rem;
-            border: 1px solid var(--border-primary);
-        }
-
-        .textView table th {
-            background: var(--bg-secondary);
-            padding: 12px;
-            text-align: left;
-            font-weight: 600;
-            color: var(--accent-secondary);
-            border-bottom: 2px solid var(--accent-primary);
-        }
-
-        .textView table td {
-            padding: 12px;
-            border-bottom: 1px solid var(--border-primary);
-        }
-
-        .textView table tr:hover {
-            background: var(--table-hover);
-        }
-
-        .textView img {
-            max-width: 100%;
-            height: auto;
-            border-radius: 8px;
-            margin: 1.5rem 0;
-            box-shadow: var(--shadow-md);
-        }
-
-        .textView .highlight-box {
-            background: rgba(255, 193, 7, 0.1);
-            border-left: 4px solid #ffc107;
-            padding: 1rem 1.5rem;
-            margin: 1.5rem 0;
-            border-radius: 0 4px 4px 0;
-        }
-
-        .textView .info-box {
-            background: rgba(33, 150, 243, 0.1);
-            border-left: 4px solid #2196f3;
-            padding: 1rem 1.5rem;
-            margin: 1.5rem 0;
-            border-radius: 0 4px 4px 0;
-        }
-
-        .textView .warning-box {
-            background: rgba(255, 152, 0, 0.1);
-            border-left: 4px solid #ff9800;
-            padding: 1rem 1.5rem;
-            margin: 1.5rem 0;
-            border-radius: 0 4px 4px 0;
-        }
-
-        .textView .success-box {
-            background: rgba(76, 175, 80, 0.1);
-            border-left: 4px solid #4caf50;
-            padding: 1rem 1.5rem;
-            margin: 1.5rem 0;
-            border-radius: 0 4px 4px 0;
-        }
     </style>
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
 </head>
 <body>
-    <nav class="navbar">
-        <button class="back-button" id="backButton" onclick="showCards()">← Back</button>
-        <div class="navbar-content">
-            <h1 class="navbar-title">Minnesota Explained</h1>
-            <p class="navbar-subtitle" id="navbarSubtitle"></p>
-        </div>
-        <div class="dark-mode-toggle">
-            <div class="toggle-switch" onclick="toggleDarkMode()">
-                <div class="toggle-slider"></div>
+    <div id="app">
+        <nav class="navbar">
+            <button class="back-button" id="backButton" onclick="showCards()">← Back</button>
+            <div class="navbar-content">
+                <h1 class="navbar-title">Minnesota Explained</h1>
+                <p class="navbar-subtitle" id="navbarSubtitle"></p>
             </div>
-        </div>
-    </nav>
-
-    <div id="cardsView" class="cards-container">
-        <div id="intro" style="padding-bottom:10px">
-            <div>
-                <h2 class="card-title">Minnesota Explained</h2>
-                <p class="card-description">Minnesota Explained is a free guide to Minnesota state and Minneapolis city resources meant for residents.</p>
+            <div class="dark-mode-toggle">
+                <div class="toggle-switch" onclick="toggleDarkMode()">
+                    <div class="toggle-slider"></div>
+                </div>
             </div>
-        </div>
-        <div id="loadingState" class="loading">
-            <div class="loading-spinner"></div>
-            <p>Loading data...</p>
-        </div>
-        <div id="errorState" class="error" style="display: none;">
-            <div class="error-title">Failed to Load Data</div>
-            <p id="errorMessage"></p>
-        </div>
-        <div id="categoriesContainer"></div>
-    </div>
-
-    <div class="contain">
-        <div id="map" class="no-show"></div>
-    </div>
-
-    <div id="tableView" class="table-view">
-        <div class="container">
-            <div class="table-wrapper">
-                <table>
-                    <thead id="tableHead"></thead>
-                    <tbody id="tableBody"></tbody>
-                </table>
-            </div>
-            <footer id="tableFooter"></footer>
+        </nav>
+        <div>
+            <router-view></router-view>
         </div>
     </div>
 
-    <div id="textView" class="text-view">
-        <div class="contain">
-            <div id="textContent"></div>
-            <div id="textFooter"></div>
-        </div>
-    </div>
-
-    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
     <script>
-        let artifacts = [];
-        let currentArtifactIndex = null;
-        let sortColumn = null;
-        let sortDirection = 'asc';
-        let activeFilters = {}; // { columnIndex: selectedValue }
-        let filterDropdownStates = {}; // { columnIndex: true/false }
+        const { createApp } = Vue;
+        const { createRouter, createWebHashHistory } = VueRouter;
 
-        // Replace this URL with your GitHub Gist raw URL or other data source
+        const moveToFront = (arr, elementToMove) => {
+            const index = arr.findIndex(item => item === elementToMove);
+
+            if (index > -1) {
+                // 1. Create a shallow copy to avoid mutating the original array
+                const newArr = [...arr]; 
+
+                // 2. Remove the element from its current position and store it
+                const [removedElement] = newArr.splice(index, 1); 
+
+                // 3. Add the removed element to the beginning of the array
+                newArr.unshift(removedElement); 
+
+                return newArr;
+            }
+
+            // If the element is not found, return the original array (or a copy)
+            return [...arr]; 
+        };
+
+
         const DATA_URL = './artifacts.json';
+        let ITEMS = []
+
 
         // Dark Mode Functions
         function initDarkMode() {
@@ -954,36 +727,25 @@
             localStorage.setItem('theme', newTheme);
         }
 
+
+        async function fetchData(endpoint) {
+          try {
+            // Replace with your actual API endpoint
+            let response = await fetch(endpoint);
+            if (!response.ok) {
+              throw new Error('Network response was not ok');
+            }
+            // Assuming the API returns raw HTML as a string
+            let html = await response.text(); 
+            return html
+          } catch (err) {
+            error.value = err.message;
+            console.error('Error fetching HTML:', err);
+          }
+        }
+
         // Initialize dark mode on page load
         initDarkMode();
-
-        /* 
-         * Artifact structure:
-         * {
-         *   title: "Artifact Title",
-         *   description: "Card description",
-         *   subtitle: "Navbar subtitle when viewing",
-         *   footer: "Footer text",
-         *   type: "array" or "text",
-         *   
-         *   // For type "array" (table display):
-         *   columns: [...],
-         *   data: [...]
-         *   
-         *   // For type "text" (HTML content display):
-         *   data: "<h1>Your HTML content here</h1><p>..."
-         * }
-         * 
-         * Column structure for array type:
-         * {
-         *   header: "Column Name",     // Display name
-         *   field: "field_name",       // Data field name
-         *   width: "20%",              // Column width
-         *   type: "text",              // text, number, link, department-link, program-link, categories, index
-         *   sortable: true,            // Enable sorting for this column
-         *   filterable: true           // Enable filtering for this column
-         * }
-         */
 
         // Fetch data from remote source
         async function loadData() {
@@ -992,911 +754,482 @@
                 if (!response.ok) {
                     throw new Error(`HTTP error! status: ${response.status}`);
                 }
-                artifacts = await response.json();
-                
-                // Hide loading, show cards
-                document.getElementById('loadingState').style.display = 'none';
-                renderCards();
+                ITEMS = await response.json();
             } catch (error) {
+                ITEMS = [
+                    {
+                        "id":1,
+                        "title":"Your Guide to Minnesota State Agencies",
+                        "description":"Learn where to find information and stay informed about state government.",
+                        "subtitle":"About Minnesota Government",
+                        "footer":"",
+                        "category": "Learn",
+                        "type":"link",
+                        "image":"/img/flag.webp",
+                        "link":"/onboard.html"
+                    },
+                    {
+                        "id":2,
+                        "title":"Minneapolis City Government",
+                        "description":"Learn about the city branches of government and their responsibilities.",
+                        "subtitle":"",
+                        "footer":"",
+                        "category": "Minneapolis Government",
+                        "type":"link",
+                        "image":"/img/city.jpg",
+                        "link":"/mplsgov.html"
+                    },
+                ]
+
+
                 console.error('Error loading data:', error);
-                
-                // For demo purposes, load sample data if fetch fails
-                loadSampleData();
-                
-                document.getElementById('loadingState').style.display = 'none';
-                renderCards();
             }
         }
 
-        // Sample data for demo purposes (remove this when you have real data)
-        function loadSampleData() {
-            artifacts = [
-
-   
-    {
-        "title":"Shelters, Services, Clinics",
-        "description":"This data represents a comprehensive directory of the nonprofit safety net in Minneapolis, specifically curated for individuals and families experiencing housing instability.",
-        "subtitle":"",
-        "footer":"",
-        "category":"test",
-        "image":"https://www.katiejones.org/uploads/1/1/3/9/113909967/published/kj.jpg?1717458365",
-        "map":true,
-        "columns":[
-            {
-                "header":"#",
-                "field":"index",
-                "width":"3%",
-                "type":"index"
-            },
-            {
-                "header":"Title",
-                "field":"title",
-                "width":"10%",
-                "type":"title",
-                "sortable":true
-            },
-            {
-                "header":"Description",
-                "field":"description",
-                "width":"20%",
-                "type":"text"
-            },
-            {
-                "header":"Address",
-                "field":"address",
-                "width":"5%",
-                "type":"text"
-            },
-            {
-                "header":"Services",
-                "field":"services",
-                "width":"10%",
-                "type":"categories",
-                "filterable":true
-            },
-            {
-                "header":"Website",
-                "field":"link",
-                "width":"5%",
-                "type":"link"
-            }
-        ],
-        "data":[
-              {
-                "title": "Agate Housing & Services",
-                "category": "Emergency Shelter & Outreach",
-                "description": "Formed by the merger of St. Stephen’s and House of Charity; focuses on ending homelessness through street outreach and housing-first models.",
-                "address": "2309 Nicollet Ave, Minneapolis, MN 55404",
-                "coordinates": [44.9600, -93.2778],
-                "services": ["Street outreach", "Emergency shelter for men/couples", "Food shelf", "Public showers", "Permanent supportive housing"],
-                "link": "https://agatemn.org"
-              },
-              {
-                "title": "AICDC Homeward Bound",
-                "category": "Culturally Specific Shelter",
-                "description": "The American Indian Community Development Corporation provides culturally specific shelter and services for Native American individuals.",
-                "address": "2012 Cedar Ave, Minneapolis, MN 55404",
-                "coordinates": [44.9631, -93.2472],
-                "services": ["Emergency shelter for single adults", "Culturally specific case management", "Health referrals", "Sober living support"],
-                "link": "https://aicdc-mn.org"
-              },
-              {
-                "title": "Avivo Village",
-                "category": "Emergency Shelter & Health",
-                "description": "An indoor 'tiny house' shelter community specifically designed to move people from unsheltered encampments into safe, private dwellings.",
-                "address": "1251 Washington Ave N, Minneapolis, MN 55401",
-                "coordinates": [44.9926, -93.2783],
-                "services": ["Low-barrier tiny house shelter", "Mental health services", "Addiction recovery", "Career education", "Housing case management"],
-                "link": "https://avivomn.org"
-              },
-              {
-                "title": "Catholic Charities: Higher Ground & Opportunity Center",
-                "category": "General Shelter & Day Services",
-                "description": "A massive service hub providing both overnight shelter and daytime resources like showers, laundry, and housing case management.",
-                "address": "165 Glenwood Avenue North, Minneapolis, MN 55405",
-                "coordinates": [44.9814, -93.2809],
-                "services": ["Overnight shelter", "Day center", "Pay-for-stay housing", "Showers and laundry", "Employment assistance"],
-                "link": "https://cctwincities.org"
-              },
-              {
-                "title": "Community Emergency Service (CES)",
-                "category": "Food Shelf",
-                "description": "A choice-based food shelf providing fresh, nutritious food and home-delivery services for those with mobility issues.",
-                "address": "1900 11th Ave S, Minneapolis, MN 55404",
-                "coordinates": [44.9634, -93.2604],
-                "services": ["Food market", "Home-delivered meals", "Pet food shelf", "Crisis financial help"],
-                "link": "https://cesmn.org"
-              },
-              {
-                "title": "Groveland Food Shelf",
-                "category": "Food Shelf",
-                "description": "Non-profit providing emergency groceries and hygiene items to the Stevens Square neighborhood and students.",
-                "address": "1900 Nicollet Ave, Minneapolis, MN 55403",
-                "coordinates": [44.9639, -93.2779],
-                "services": ["Emergency groceries", "Personal hygiene items", "Mobile outreach"],
-                "link": "https://www.grovelandfoodshelf.org"
-              },
-              {
-                "title": "Hennepin County Health Care for the Homeless",
-                "category": "Medical Clinic",
-                "description": "Specialized medical team operating clinics within Minneapolis shelters to remove barriers to care.",
-                "address": "525 Portland Ave S, Minneapolis, MN 55415",
-                "coordinates": [44.9748, -93.2641],
-                "services": ["Primary care", "Mental health therapy", "Substance use disorder support", "Medication refills"],
-                "link": "https://www.hennepin.us/residents/health-medical/health-care-for-the-homeless"
-              },
-              {
-                "title": "NorthPoint Health & Wellness Center",
-                "category": "Integrated Health & Food",
-                "description": "Multi-specialty center integrating primary medical care with human services and a food shelf.",
-                "address": "1313 Penn Ave N, Minneapolis, MN 55411",
-                "coordinates": [44.9922, -93.3008],
-                "services": ["Medical and dental care", "Full-service food shelf", "Behavioral health", "WIC services"],
-                "link": "https://www.northpointhealth.org"
-              },
-              {
-                "title": "Our Saviour’s Housing",
-                "category": "Emergency & Transitional Shelter",
-                "description": "Provides emergency shelter and transitional housing for single adults, specifically focusing on those with mental health or chemical health needs.",
-                "address": "2219 Chicago Ave S, Minneapolis, MN 55404",
-                "coordinates": [44.9610, -93.2625],
-                "services": ["Emergency shelter", "Transitional housing", "Permanent supportive housing"],
-                "link": "https://oscs-mn.org"
-              },
-              {
-                "title": "People Serving People",
-                "category": "Family Services",
-                "description": "The largest family-focused shelter in Minnesota, providing comprehensive wrap-around services for families and children.",
-                "address": "614 South 3rd Street, Minneapolis, MN 55415",
-                "coordinates": [44.9765, -93.2618],
-                "services": ["Family emergency shelter", "Early learning center", "K-12 tutoring", "On-site medical clinic", "Financial literacy"],
-                "link": "https://www.peopleservingpeople.org"
-              },
-              {
-                "title": "Phillips Neighborhood Clinic",
-                "category": "Medical Clinic",
-                "description": "Free, student-run clinic providing health care services to those without insurance.",
-                "address": "2742 15th Ave S, Minneapolis, MN 55407",
-                "coordinates": [44.9529, -93.2536],
-                "services": ["Free primary care", "Mental health counseling", "Physical therapy", "Lab work"],
-                "link": "https://sites.google.com/view/phillipsneighborhoodclinic"
-              },
-              {
-                "title": "Sharing & Caring Hands",
-                "category": "Comprehensive Emergency Services",
-                "description": "Provides a massive range of immediate safety-net services including food, medical care, and family shelter.",
-                "address": "525 N 7th St, Minneapolis, MN 55405",
-                "coordinates": [44.9839, -93.2789],
-                "services": ["Free medical/dental clinic", "Mary's Place family shelter", "Daily hot meals", "Vouchers for beds/shoes"],
-                "link": "https://sharingandcaringhands.org"
-              },
-              {
-                "title": "Simpson Housing Services",
-                "category": "General Shelter & Supportive Housing",
-                "description": "Provides individual advocacy and a range of housing programs from emergency shelter to permanent supportive homes.",
-                "address": "128 W 33rd St, Minneapolis, MN 55408",
-                "coordinates": [44.9427, -93.2798],
-                "services": ["Adult shelter", "Family supportive housing", "Children and youth programs", "Housing advocacy"],
-                "link": "https://www.simpsonhousing.org"
-              },
-              {
-                "title": "The Bridge for Youth",
-                "category": "Youth Services",
-                "description": "Focused on youth ages 10–17, providing crisis intervention and emergency housing.",
-                "address": "1111 West 22nd St, Minneapolis, MN 55405",
-                "coordinates": [44.9613, -93.2932],
-                "services": ["Youth emergency shelter", "24/7 crisis hotline", "Family reunification", "Transitional living"],
-                "link": "https://bridgeforyouth.org"
-              },
-              {
-                "title": "The Link",
-                "category": "Youth Services",
-                "description": "Supports youth experiencing homelessness, sexual exploitation, or juvenile justice system involvement.",
-                "address": "1210 Glenwood Ave, Minneapolis, MN 55405",
-                "coordinates": [44.9814, -93.3004],
-                "services": ["Emergency youth housing", "Safe Harbor services", "Rental assistance"],
-                "link": "https://thelinkmn.org"
-              },
-              {
-                "title": "The Salvation Army: Harbor Light Center",
-                "category": "Emergency Shelter & Medical",
-                "description": "One of the largest homeless outreach facilities in Minnesota, offering emergency shelter and specialized recovery programs.",
-                "address": "1010 Currie Ave, Minneapolis, MN 55403",
-                "coordinates": [44.9806, -93.2806],
-                "services": ["Emergency housing", "Sober living programs", "Daily hot meals", "On-site medical clinic"],
-                "link": "https://centralusa.salvationarmy.org/northern/harborlightcenter"
-              },
-              {
-                "title": "YouthLink",
-                "category": "Youth Services",
-                "description": "A service hub for youth ages 16–24, connecting them to housing, education, and health care.",
-                "address": "41 North 12th St, Minneapolis, MN 55403",
-                "coordinates": [44.9801, -93.2785],
-                "services": ["Drop-in resource center", "Housing referrals", "Mental health care", "GED/Employment help"],
-                "link": "https://www.youthlinkmn.org"
-              }
-        ]
-    },
-                {
-                    title: "Minnesota State Departments",
-                    description: "Explore state government departments and agencies.",
-                    subtitle: "State Departments - Sample Data",
-                    footer: "Sample data - Replace with real data source",
-                    type: "array",
-                    "image":"https://images.squarespace-cdn.com/content/v1/5c9542c8840b163998cf4804/2d9eee0e-b8fd-4ef2-9184-a402997000bf/20240212-session-32+MN+House.jpg",
-                    columns: [
-                        {
-                            "header":"#",
-                            "field":"index",
-                            "width":"3%",
-                            "type":"index"
-                        },
-                        {
-                            "header":"Department",
-                            "field":"department",
-                            "width":"14%",
-                            "type":"department-link",
-                            "sortable":true
-                        },
-                        {
-                            "header":"Commissioner",
-                            "field":"commissioner",
-                            "width":"11%",
-                            "type":"text"
-                        },
-                        {
-                            "header":"Commissioner Powers",
-                            "field":"commissioner_powers",
-                            "width":"20%",
-                            "type":"text"
-                        },
-                        {
-                            "header":"Employees",
-                            "field":"employees",
-                            "width":"8%",
-                            "type":"number"
-                        },
-                        {
-                            "header":"Website",
-                            "field":"url",
-                            "width":"14%",
-                            "type":"link"
-                        }
-                    ],
-                    data: [
-                        {
-                            "department":"Department of Administration",
-                            "commissioner":"Tamar Gronvall",
-                            "description":"The department manages and administers centralized operations of state agencies, including procurement of goods and services, travel and fleet services, building construction and maintenance, real estate leasing and management, and facilities and maintenance services. Provides a broad range of business management, administrative and professional services and resources to state agencies, local governments and the public.",
-                            "commissioner_powers":"Manages and administers centralized operations of state agencies; procurement of goods and services; building construction and maintenance; real estate leasing and management; facilities and maintenance services; oversight of state buildings and properties; administers grants management and data practices; enforces data practices act and open meeting law.",
-                            "employees":524,
-                            "url":"https://mn.gov/admin"
-                        },
-                        {
-                            "department":"Department of Agriculture",
-                            "commissioner":"Thom Petersen",
-                            "description":"The department encourages and promotes agricultural industries, assists in the marketing of farm products, and exercises regulatory powers to ensure the continued high quality of Minnesota agricultural production. Enhances Minnesotans' quality of life by ensuring the integrity of the food supply, the health of the environment, and the strength of the agricultural economy.",
-                            "commissioner_powers":"Encourages and promotes agricultural industries; assists in marketing of farm products; exercises regulatory powers to ensure high quality of agricultural production; inspects food manufacturers, dairy farms, feed mills; regulates pesticides and fertilizers; licenses applicators; protects crops and plant species from pests and diseases; certifies nursery stock and seed industries.",
-                            "employees":548,
-                            "url":"https://mda.state.mn.us"
-                        },
-                    ]
+        // Channel Component
+        const Channel = {
+            name: 'Channel',
+            props: {
+                items: {
+                    type: Array,
+                    required: true
                 },
-                {
-                    title: "About Minnesota Government",
-                    description: "Learn about the structure and history of Minnesota's government.",
-                    subtitle: "About Minnesota Government",
-                    footer: "Sample text content - Last updated January 2026",
-                    type: "text",
-                    data: `
-                        <h1>Minnesota State Government</h1>
-                        
-                        <p>Minnesota has a rich tradition of government service and public administration. The state's government structure is designed to serve its diverse population efficiently and effectively.</p>
-                        
-                        <h2>Three Branches of Government</h2>
-                        
-                        <h3>Executive Branch</h3>
-                        <p>The executive branch is led by the Governor and includes various state agencies and departments that carry out state laws and provide services to Minnesotans.</p>
-                        <ul>
-                            <li>Governor's Office</li>
-                            <li>Lieutenant Governor</li>
-                            <li>State Agencies and Departments</li>
-                        </ul>
-                        
-                        <h3>Legislative Branch</h3>
-                        <p>The Minnesota Legislature consists of two bodies:</p>
-                        <ul>
-                            <li><strong>Senate:</strong> 67 members serving 4-year terms</li>
-                            <li><strong>House of Representatives:</strong> 134 members serving 2-year terms</li>
-                        </ul>
-                        
-                        <h3>Judicial Branch</h3>
-                        <p>Minnesota's court system ensures justice and interprets laws. It includes:</p>
-                        <ul>
-                            <li>Minnesota Supreme Court</li>
-                            <li>Court of Appeals</li>
-                            <li>District Courts</li>
-                        </ul>
-                        
-                        <h2>Key Facts</h2>
-                        <blockquote>
-                            Minnesota became the 32nd state to join the Union on May 11, 1858.
-                        </blockquote>
-                        
-                        <p>The state capital is Saint Paul, while Minneapolis is the largest city. Together, they form the "Twin Cities" metropolitan area.</p>
-                        
-                        <h2>Government Services</h2>
-                        <p>Minnesota state government provides numerous services including:</p>
-                        <ol>
-                            <li>Education and early childhood programs</li>
-                            <li>Healthcare services and public health</li>
-                            <li>Transportation infrastructure</li>
-                            <li>Environmental protection</li>
-                            <li>Public safety and corrections</li>
-                            <li>Economic development and workforce programs</li>
-                        </ol>
-                        
-                        <p>For more information, visit the official Minnesota state website at <a href="https://mn.gov" target="_blank">mn.gov</a>.</p>
-                    `
-                },
-                {
-                    title: "DCYF Programs",
-                    description: "Department of Children, Youth and Family programs.",
-                    subtitle: "DCYF Programs - Sample Data",
-                    footer: "Sample data - Replace with real data source",
-                    type: "array",
-                    "image":"https://mediasvc.ancestry.com/v2/image/namespaces/9241/media/e157698c-334c-492c-8084-be42b0a1d213?Client=Browser:ContextUI&ImageQuality=UltraHighQuality",
-                    columns: [
-                        {
-                            "header":"Program",
-                            "field":"title",
-                            "width":"25%",
-                            "type":"program-link",
-                            "sortable":true
-                        },
-                        {
-                            "header":"Description",
-                            "field":"description",
-                            "width":"50%",
-                            "type":"text"
-                        },
-                        {
-                            "header":"Categories",
-                            "field":"categories",
-                            "width":"25%",
-                            "type":"categories",
-                            "filterable":true
-                        }
-                    ],
-                    data: [
-                        {
-                            "title":"Whole Family Approach",
-                            "description":"In order to better coordinate and resource the systems that service children, youth, and families, the Department of Children, Youth, and Families is taking a Whole Family Approach to our work. A Whole Family Approach is an approach to practice, program and policy decision making that recognizes and addresses the needs of children and the adults in their lives simultaneously. This approach recognizes that families come in all different shapes and sizes and that families define themselves.",
-                            "link":"https://dcyf.mn.gov/whole-family-approach",
-                            "categories":[
-                                "Child Care and Early Learning",
-                                "Family Resources",
-                                "Income Support"
-                            ]
-                        },
-                        {
-                            "title":"Child Care Access Grants",
-                            "description":"Child Care Access Grantees can help families experiencing homelessness or housing instability apply for and maintain their child care assistance.",
-                            "link":"https://dcyf.mn.gov/programs-directory/child-care-access-grants",
-                            "categories":[
-                                "Child Care and Early Learning"
-                            ]
-                        },
-                    ]
-                },
-                {
-                    "title":"Progressive Legislative Ideas",
-                    "description":"Legislative bills that could redistribute wealth in Minnesota.",
-                    "subtitle":"",
-                    "footer":"",
-                    "columns":[
-                        {
-                            "header":"#",
-                            "field":"index",
-                            "width":"3%",
-                            "type":"index"
-                        },
-                        {
-                            "header":"Bill Title",
-                            "field":"title",
-                            "width":"10%",
-                            "type":"title",
-                            "sortable":true
-                        },
-                        {
-                            "header":"Description",
-                            "field":"description",
-                            "width":"20%",
-                            "type":"text"
-                        },
-                        {
-                            "header":"Text",
-                            "field":"text",
-                            "width":"50%",
-                            "type":"text"
-                        },
-                        {
-                            "header":"Categories",
-                            "field":"categories",
-                            "width":"10%",
-                            "type":"categories",
-                            "filterable":true
-                        }
-                    ],
-                    "data":[
-                      {
-                        "title": "Minnesota Basic Income Grant Program Act",
-                        "categories": ["Direct Assistance", "Anti-Poverty", "Human Services"],
-                        "description": "Establishes a statewide competitive grant program to provide monthly cash payments of $350 to $1,200 to low-income residents to disrupt poverty and build community wealth.",
-                        "text": "A bill for an act relating to human services; establishing a Minnesota basic income grant program; requiring a report; appropriating money. BE IT ENACTED BY THE LEGISLATURE OF THE STATE OF MINNESOTA: Section 1. MINNESOTA BASIC INCOME GRANT PROGRAM. Subdivision 1. Establishment. The commissioner of human services must establish a competitive grant program for local government entities, Minnesota's Tribal Nations, or nonprofit organizations to provide regular cash payments to eligible recipients in order to disrupt poverty, build wealth, advance equity, and support a recipient's basic needs. Subd. 4. Use of grant money. Grantees must use grant money to: (1) design and implement a basic income grant program; (2) provide a monthly payment between $350 to $1,200 to eligible recipients for a period of 12 to 24 months; and (3) collect data on the economic status of recipients. Subd. 5. Eligible recipients. Persons eligible to receive monthly payments must be receiving public benefits or have a household income less than or equal to 300 percent of the federal poverty guidelines."
-                      },
-                      {
-                        "title": "Corporate Franchise Tax Rate Contingency Act",
-                        "categories": ["Corporate Taxation", "Fiscal Policy", "Revenue Neutrality"],
-                        "description": "Adjusts the state corporate tax rate upward if federal corporate taxes are reduced, ensuring that large corporations continue to contribute a fair share to the state's general fund.",
-                        "text": "A bill for an act relating to taxation; corporate franchise; providing for a contingent increase in the tax rate; amending Minnesota Statutes 2024, section 290.06, subdivision 1. BE IT ENACTED BY THE LEGISLATURE OF THE STATE OF MINNESOTA: Section 1. Minnesota Statutes 2024, section 290.06, subdivision 1, is amended to read: Subdivision 1. Computation, corporations. (a) For taxable years beginning after December 31, 2024, the franchise tax imposed upon corporations shall be computed by applying to their taxable income the rate greater of: (1) 9.8 percent; or (2) the rate calculated under paragraph (c). (b) Pursuant to enactment of federal legislation decreasing the corporate franchise tax rate, the commissioner must calculate the percentage decrease and increase Minnesota's tax rate by a corresponding percentage, rounded to the nearest twentieth of a percent."
-                      },
-                      {
-                        "title": "Expanded Corporate Tax Compliance & Enforcement Initiative",
-                        "categories": ["Enforcement & Oversight", "Corporate Reform", "Government Operations"],
-                        "description": "Allocates funding to the Department of Revenue to specifically target and collect unpaid tax liabilities from corporations with over $25 million in Minnesota sales.",
-                        "text": "A bill for an act relating to taxation; appropriating money for an expanded corporate tax compliance initiative. BE IT ENACTED BY THE LEGISLATURE OF THE STATE OF MINNESOTA: Section 1. APPROPRIATION; EXPANDED CORPORATE TAX COMPLIANCE INITIATIVE. Subdivision 1. Appropriation. $10,000,000 in fiscal year 2026 is appropriated from the general fund to the commissioner of revenue to develop and implement an expanded corporate tax compliance initiative. Subd. 2. Requirements. The initiative must prioritize compliance and enforcement activities among corporations reporting $25,000,000 or more in Minnesota sales or gross receipts for a taxable year to ensure the identification and collection of tax liabilities from corporations that currently do not accurately report taxable income."
-                      },
-                      {
-                        "title": "Net Investment Income Tax Act",
-                        "categories": ["Wealth & Capital Taxation", "Individual Income Tax", "Equity"],
-                        "description": "Imposes a 1% tax on net investment income exceeding $1 million for individuals and trusts, redirecting capital gains and dividend wealth into the state treasury.",
-                        "text": "A bill for an act relating to taxation; individual income; imposing a tax on net investment income. BE IT ENACTED BY THE LEGISLATURE OF THE STATE OF MINNESOTA: Section 1. NET INVESTMENT INCOME TAX. (a) A tax is imposed on the net investment income of individuals, estates, and trusts for the taxable year. (b) The tax is equal to one percent of the taxpayer's net investment income in excess of $1,000,000. (c) 'Net investment income' has the meaning given in section 1411(c) of the Internal Revenue Code. (d) This section is effective for taxable years beginning after December 31, 2023."
-                      }
-                    ]
-                },
-                {
-                    "title":"City Council Member Katie Cashman",
-                    "description":"A dashboard of the council member's work.",
-                    "subtitle":"About Minnesota Government",
-                    "footer":"",
-                    "type":"link",
-                    "link":"/cashman.html",
-                },
-
-            ];
-        }
-
-        function renderCards() {
-            const container = document.getElementById('categoriesContainer');
-            container.innerHTML = '';
-
-            // Group artifacts by category
-            const categorized = {};
-            artifacts.forEach(artifact => {
-                const category = artifact.category || '';
-                if (!categorized[category]) {
-                    categorized[category] = [];
+                category: {
+                    type: String,
+                    required: true
                 }
-                categorized[category].push(artifact);
-            });
-            
-            // Render each category section
-            Object.keys(categorized).sort().forEach(category => {
-                const categorySection = document.createElement('div');
-                categorySection.className = 'category-section';
-                
-                const categoryTitle = document.createElement('h2');
-                categoryTitle.className = 'category-title';
-                categoryTitle.textContent = category;
-                categorySection.appendChild(categoryTitle);
-                
-                const cardsGrid = document.createElement('div');
-                cardsGrid.className = 'cards-grid';
-                
-                categorized[category].forEach((artifact, index) => {
-                    // Find the global index for this artifact
-                    const globalIndex = artifacts.indexOf(artifact);
-                    
-                    const card = document.createElement('div');
-                    card.className = 'card';
-                    card.onclick = () => showTable(globalIndex);
-                    
-                    card.innerHTML = `
-                        <h2 class="card-title">${artifact.title}</h2>
-                        <p class="card-description">${artifact.description}</p>
-                        <span class="card-link">View Details</span>
-                    `;
-
-                    // Add background image if artifact has an image property
-                    if (artifact.image) {
-                        card.style.backgroundImage = `url('${artifact.image}')`;
+            },
+            template: `
+                <div class="category-section">
+                    <h2 class="category-title">{{ category }}</h2>
+                    <div class="cards-grid" v-if="filteredItems.length > 0">
+                        <div 
+                            v-for="item in filteredItems" 
+                            :key="item.id"
+                            class="card"
+                            v-bind:style="{ backgroundImage: 'url(' + item.image + ')' }"
+                            @click="navigateToItem(item)"
+                        >
+                            <h2 class="card-title">{{ item.title }}</h2>
+                            <div class="card-description">{{ item.description }}</div>
+                            <div class="card-link">View Details</div>
+                        </div>
+                    </div>
+                    <div v-else class="empty-state">
+                        <h3>No items found</h3>
+                        <p>There are no items in the "{{ category }}" category.</p>
+                    </div>
+                </div>
+            `,
+            computed: {
+                filteredItems() {
+                    return this.items.filter(item => item.category === this.category);
+                }
+            },
+            methods: {
+                navigateToItem(item) {
+                    if(item.link){
+                        location.assign(item.link);
+                    } else {
+                        console.log(item)
+                        console.log(item.id)
+                        this.$router.push({ name: "page", params: { id: item.id }});
                     }
-                    
-                    cardsGrid.appendChild(card);
-                });
-                
-                categorySection.appendChild(cardsGrid);
-                container.appendChild(categorySection);
-            });
-        }
-
-        async function showTable(index) {
-            const artifact = artifacts[index];
-            currentArtifactIndex = index;
-            sortColumn = null;
-            sortDirection = 'asc';
-            activeFilters = {};
-            filterDropdownStates = {};
-        
-            if(artifact.type !== 'link'){
-                document.getElementById('navbarSubtitle').textContent = artifact.subtitle;
-                document.getElementById('backButton').classList.add('visible');
-                document.getElementById('cardsView').style.display = 'none';
+                }
             }
-            
-            // Check artifact type and render accordingly
-            if(artifact.type === 'link'){
-                window.location.href = artifact.link;
-            } else if (artifact.type === 'text') {
-                var response = await fetch(artifact.src);
-                artifact.data = await response.text();
-                document.getElementById('tableView').classList.remove('active');
-                document.getElementById('textView').classList.add('active');
-                renderTextContent(artifact);
-            } else {
-                // Default to array/table type
-                document.getElementById('textView').classList.remove('active');
-                document.getElementById('tableView').classList.add('active');
-                renderDynamicTable(artifact);
-            }
+        };
 
-            if(artifact.map == true){
-                document.getElementById('map').classList = "";
-                loadMap(artifact.data)
-            }
-        }
+        // Map Component
+        const MapComponent = {
+            name: 'MapComponent',
+            props: {
+                items: {
+                    type: Array,
+                    required: true
+                }
+            },
+            template: `
+                <div class="map-container">
+                    <div class="map-wrapper">
+                        <div id="map"></div>
+                    </div>
+                </div>
+            `,
+            mounted() {
+                this.initMap();
+            },
+            watch: {
+                items: {
+                    handler() {
+                        this.updateMarkers();
+                    },
+                    deep: true
+                }
+            },
+            methods: {
+                initMap() {
+                    // Initialize the map
+                    this.map = L.map('map').setView([20, 0], 2);
 
-        function showCards() {
-            killMap();
-            document.getElementById('cardsView').style.display = 'block';
-            document.getElementById('tableView').classList.remove('active');
-            document.getElementById('textView').classList.remove('active');
-            document.getElementById('backButton').classList.remove('visible');
-            document.getElementById('navbarSubtitle').textContent = '';
-        }
+                    // Add tile layer
+                    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                        attribution: '© OpenStreetMap contributors',
+                        maxZoom: 18
+                    }).addTo(this.map);
 
-        function renderDynamicTable(artifact) {
-            const tableHead = document.getElementById('tableHead');
-            const tableBody = document.getElementById('tableBody');
-            const tableFooter = document.getElementById('tableFooter');
-            
-            // Filter data based on active filters
-            let displayData = [...artifact.data];
-            Object.keys(activeFilters).forEach(colIndex => {
-                const filterValue = activeFilters[colIndex];
-                if (filterValue !== '') {
-                    const column = artifact.columns[colIndex];
-                    displayData = displayData.filter(row => {
-                        const value = row[column.field];
-                        if (column.type === 'categories') {
-                            return value && value.includes(filterValue);
+                    // Add markers
+                    this.updateMarkers();
+                },
+                updateMarkers() {
+                    if (!this.map) return;
+
+                    // Clear existing markers
+                    if (this.markers) {
+                        this.markers.forEach(marker => marker.remove());
+                    }
+                    this.markers = [];
+
+                    // Add new markers
+                    this.items.forEach(item => {
+                        if (item.coordinates && Array.isArray(item.coordinates) && item.coordinates.length === 2) {
+                            const marker = L.marker(item.coordinates).addTo(this.map);
+                            
+                            // Add popup with item information
+                            const popupContent = `
+                                <h4>${item.title || 'Location'}</h4>
+                                <p>${item.description || ''}</p>
+                                ${item.category ? `<span style="background: var(--accent); padding: 0.25rem 0.5rem; font-weight: 700; font-size: 0.75rem;">${item.category}</span>` : ''}
+                            `;
+                            marker.bindPopup(popupContent);
+                            
+                            this.markers.push(marker);
                         }
-                        return String(value || '').toLowerCase() === filterValue.toLowerCase();
+                    });
+
+                    // Fit bounds to show all markers if there are any
+                    if (this.markers.length > 0) {
+                        const group = L.featureGroup(this.markers);
+                        this.map.fitBounds(group.getBounds().pad(0.1));
+                    }
+                }
+            },
+            beforeUnmount() {
+                if (this.map) {
+                    this.map.remove();
+                }
+            }
+        };
+
+        // Home Page Component
+        const HomePage = {
+            name: 'HomePage',
+            components: {
+                Channel,
+                MapComponent
+            },
+            data() {
+                categories = [...new Set(ITEMS.map(obj => obj.category))];
+                categories.sort();
+                categories = moveToFront(categories, "ICE Resource Guide");
+                return {
+                    items: ITEMS,
+                    categories: categories
+                }
+            },
+            template: `
+                <div class="cards-container">
+                    <div id="intro" style="margin-bottom:50px">
+                        <h2 class="card-title">Minnesota Explained</h2>
+                        <p class="card-description">Minnesota Explained is a free guide to Minnesota state and Minneapolis city resources meant for residents.</p>
+                    </div>
+                    <div id="categoriesContainer">
+                        <div v-for="cat in categories">
+                            <channel :items="items" :category="cat"></channel>
+                        </div>
+                    </div>
+                </div>
+            `
+        };
+
+        // Table Component
+        const TableComponent = {
+            name: 'TableComponent',
+            props: {
+                data: {
+                    type: Array,
+                    required: true
+                },
+                columns: {
+                    type: Array,
+                    required: true
+                },
+                title: {
+                    type: String,
+                    default: 'Data Table'
+                }
+            },
+            data() {
+                return {
+                    sortField: null,
+                    sortDirection: 'asc', // 'asc' or 'desc'
+                    filters: {} // Object to store filter values by field
+                }
+            },
+            computed: {
+                categoryColumns() {
+                    return this.columns.filter(col => col.type === 'categories');
+                },
+                filteredData() {
+                    let result = this.data;
+
+                    // Apply all active filters
+                    Object.keys(this.filters).forEach(field => {
+                        const filterValue = this.filters[field];
+                        if (filterValue && filterValue !== 'all') {
+                            result = result.filter(item => {
+                                const itemValue = item[field];
+
+                                // Handle case-insensitive comparison
+                                return itemValue.indexOf(filterValue) > -1
+                            });
+                        }
+                    });
+
+                    return result;
+                },
+                hasActiveFilters() {
+                    return Object.values(this.filters).some(val => val && val !== 'all');
+                },
+                sortedData() {
+                    let result = this.filteredData;
+
+                    if (!this.sortField) {
+                        return result;
+                    }
+
+                    return [...result].sort((a, b) => {
+                        let aVal = a[this.sortField];
+                        let bVal = b[this.sortField];
+
+                        // Handle null/undefined
+                        if (aVal == null) return 1;
+                        if (bVal == null) return -1;
+
+                        // Handle arrays (like coordinates) - convert to string for comparison
+                        if (Array.isArray(aVal)) aVal = aVal.join(',');
+                        if (Array.isArray(bVal)) bVal = bVal.join(',');
+
+                        // Handle numbers
+                        if (typeof aVal === 'number' && typeof bVal === 'number') {
+                            return this.sortDirection === 'asc' ? aVal - bVal : bVal - aVal;
+                        }
+
+                        // Handle strings (case-insensitive)
+                        aVal = String(aVal).toLowerCase();
+                        bVal = String(bVal).toLowerCase();
+
+                        if (this.sortDirection === 'asc') {
+                            return aVal < bVal ? -1 : aVal > bVal ? 1 : 0;
+                        } else {
+                            return aVal > bVal ? -1 : aVal < bVal ? 1 : 0;
+                        }
                     });
                 }
-            });
-            
-            // Sort data if a sort column is selected
-            if (sortColumn !== null) {
-                displayData = sortData(displayData, artifact.columns[sortColumn], sortDirection);
-            }
+            },
+            template: `
+                <div class="table-container">
+                    <div class="table-wrapper" style="overflow-y:auto;height:600px">
+                        <table v-if="data.length > 0">
+                            <thead>
+                                <tr>
+                                    <th 
+                                        v-for="column in columns" 
+                                        :key="column.field"
+                                        :style="{width:column.width}"
+                                        :class="{
+                                            'sortable': column.sortable,
+                                            'sorted-asc': sortField === column.field && sortDirection === 'asc',
+                                            'sorted-desc': sortField === column.field && sortDirection === 'desc'
+                                        }"
+                                        @click="column.sortable ? handleSort(column.field) : null"
+                                    >
 
-            var isMobile = false
-
-            try{
-                isMobile = navigator.userAgentData.mobile;
-            } catch(e){
-
-            }
-            
-            // Render header
-            const headerRow = document.createElement('tr');
-
-            if(isMobile){
-                const th = document.createElement('th');
-                th.textContent = artifact.title;
-                headerRow.appendChild(th);
-            } else {
-
-                artifact.columns.forEach((col, colIndex) => {
-                    const th = document.createElement('th');
-                    if (col.width) th.style.width = col.width;
-                    
-                    // Create header content wrapper
-                    const headerContent = document.createElement('div');
-                    headerContent.style.position = 'relative';
-                    
-                    // Add header text
-                    const headerText = document.createElement('span');
-                    headerText.textContent = col.header;
-                    headerContent.appendChild(headerText);
-                    
-                    // Add active filter indicator
-                    if (activeFilters[colIndex] && activeFilters[colIndex] !== '') {
-                        const indicator = document.createElement('span');
-                        indicator.className = 'filter-active-indicator';
-                        headerContent.appendChild(indicator);
-                    }
-                    
-                    // Add filter toggle button if filterable
-                    if (col.filterable) {
-                        th.classList.add('filterable');
-                        /*const toggleBtn = document.createElement('span');
-                        toggleBtn.className = 'filter-toggle';
-                        toggleBtn.textContent = 'Filter';
-                        toggleBtn.title = 'Toggle filter';
-                        if (filterDropdownStates[colIndex]) {
-                            toggleBtn.classList.add('active');
+                                        <div>{{ column.header }}</div>
+                                        <div v-if="column.type == 'categories'">
+                                            <select 
+                                                style="width:50px"
+                                                class="filter-select"
+                                                v-model="filters[column.field]"
+                                                @change="handleFilterChange"
+                                            >
+                                                <option value="all">All {{ column.label }}</option>
+                                                <option 
+                                                    v-for="option in getUniqueValues(column.field)" 
+                                                    :key="option"
+                                                    :value="option"
+                                                >
+                                                    {{ formatValue(option, column) }}
+                                                </option>
+                                            </select>
+                                        </div>
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr v-for="(row, index) in sortedData" :key="index">
+                                    <td v-for="column in columns" :key="column.field">
+                                        <a v-if="column.type == 'link'" :href="row[column.field]">
+                                            {{ row[column.field] }}
+                                        </a>
+                                        <div class="category-tag" v-if="column.type == 'categories'" v-for="cat in row[column.field]">
+                                            {{ cat }}
+                                        </div>
+                                        <div v-if="column.type != 'link' && column.type != 'categories'">
+                                            {{ formatValue(row[column.field], column, index) }}
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <div v-else class="table-empty">
+                            No data available
+                        </div>
+                    </div>
+                </div>
+            `,
+            methods: {
+                getUniqueValues(field) {
+                    let values = [];
+                    for(let d of this.data){
+                        for(let val of d[field]){
+                            values.push(val)
                         }
-                        toggleBtn.onclick = (e) => {
-                            e.stopPropagation();
-                            toggleFilter(colIndex);
-                        };
-                        headerContent.appendChild(toggleBtn);*/
-                        
-                        // Add filter dropdown
-                        const filterDiv = document.createElement('div');
-                        filterDiv.className = 'filter-dropdown';
-                        filterDiv.classList.add('active');
-                        
-                        const select = document.createElement('select');
-                        select.onchange = (e) => handleFilterChange(colIndex, e.target.value);
-                        
-                        // Get unique values for this column
-                        const uniqueValues = getUniqueValues(artifact.data, col);
-                        
-                        // Add "All" option
-                        const allOption = document.createElement('option');
-                        allOption.value = '';
-                        allOption.textContent = '-- All --';
-                        select.appendChild(allOption);
-                        
-                        // Add unique values as options
-                        uniqueValues.forEach(value => {
-                            const option = document.createElement('option');
-                            option.value = value;
-                            option.textContent = value;
-                            if (activeFilters[colIndex] === value) {
-                                option.selected = true;
-                            }
-                            select.appendChild(option);
-                        });
-                        
-                        filterDiv.appendChild(select);
-                        headerContent.appendChild(filterDiv);
                     }
-                    
-                    th.appendChild(headerContent);
-                    
-                    // Add sortable class and click handler if sortable
-                    if (col.sortable) {
-                        th.classList.add('sortable');
-                        if (sortColumn === colIndex) {
-                            th.classList.add(sortDirection === 'asc' ? 'sort-asc' : 'sort-desc');
-                        }
-                        th.onclick = () => handleSort(colIndex);
-                    }
-                    
-                    headerRow.appendChild(th);
-                    
-                });
-            }
-            tableHead.innerHTML = '';
-            tableHead.appendChild(headerRow);
-            
-            // Render body
-            tableBody.innerHTML = '';
-
-
-            displayData.forEach((row, rowIndex) => {
-                const tr = document.createElement('tr');
-                
-                if(isMobile){
-                    var td = document.createElement('td');
-                    tr.appendChild(td);
-                }
-
-                artifact.columns.forEach(col => {
-
-                    if(isMobile){
-                        const div = document.createElement('div');
-                        const value = col.type === 'index' ? rowIndex + 1 : row[col.field];
-                        
-                        switch(col.type) {
-                            case 'index':
-                                div.className = 'employees';
-                                div.textContent = rowIndex + 1;
-                                break;
-                            case 'department-link':
-                                div.className = 'department-name';
-                                div.innerHTML = `<a href="${row.url}" target="_blank" rel="noopener noreferrer">${value}</a>`;
-                                break;
-                            case 'program-link':
-                                div.innerHTML = `<div class="program-title">${value}</div><a href="${row.link}" target="_blank" class="program-link">View Details →</a>`;
-                                break;
-                            case 'title':
-                                div.innerHTML = `<div class="program-title">${value}</div>`;
-                                break;
-                            case 'link':
-                                div.innerHTML = `<a href="${value}" target="_blank" rel="noopener noreferrer" class="website-link">${value}</a>`;
-                                break;
-                            default:
-                                if (col.field === 'description') td.className = 'description';
-                                else if (col.field === 'commissioner_powers') td.className = 'commissioner-powers';
-                                else if (col.field === 'commissioner') td.className = 'commissioner-name';
-                                div.innerHTML = `<b>${col.header}</b> - ` +  value || '';
-                                break;
-                        }
-                        
-                        td.appendChild(div);
+                    return [...new Set(values)].filter(val => val != null).sort();
+                },
+                handleFilterChange() {
+                    // Filters are automatically applied through computed properties
+                },
+                clearFilters() {
+                    this.filters = {};
+                },
+                handleSort(field) {
+                    if (this.sortField === field) {
+                        // Toggle direction if clicking the same field
+                        this.sortDirection = this.sortDirection === 'asc' ? 'desc' : 'asc';
                     } else {
-
-                        const td = document.createElement('td');
-                        const value = col.type === 'index' ? rowIndex + 1 : row[col.field];
-                        
-                        switch(col.type) {
-                            case 'index':
-                                td.className = 'employees';
-                                td.textContent = rowIndex + 1;
-                                break;
-                            case 'department-link':
-                                td.className = 'department-name';
-                                td.innerHTML = `<a href="${row.url}" target="_blank" rel="noopener noreferrer">${value}</a>`;
-                                break;
-                            case 'program-link':
-                                td.innerHTML = `<div class="program-title">${value}</div><a href="${row.link}" target="_blank" class="program-link">View Details →</a>`;
-                                break;
-                            case 'title':
-                                td.innerHTML = `<div class="program-title">${value}</div>`;
-                                break;
-                            case 'link':
-                                td.innerHTML = `<a href="${value}" target="_blank" rel="noopener noreferrer" class="website-link">${value}</a>`;
-                                break;
-                            case 'number':
-                                td.className = 'employees';
-                                td.innerHTML = value !== null ? value.toLocaleString() : '<span class="no-data">N/A</span>';
-                                break;
-                            case 'categories':
-                                td.innerHTML = `<div class="categories">${value.map(cat => `<span class="category-tag">${cat}</span>`).join('')}</div>`;
-                                break;
-                            case 'text':
-                            default:
-                                if (col.field === 'description') td.className = 'description';
-                                else if (col.field === 'commissioner_powers') td.className = 'commissioner-powers';
-                                else if (col.field === 'commissioner') td.className = 'commissioner-name';
-                                td.textContent = value || '';
-                                break;
-                        }
-                        
-                        tr.appendChild(td);
+                        // New field, default to ascending
+                        this.sortField = field;
+                        this.sortDirection = 'asc';
                     }
-                });
-                
-                tableBody.appendChild(tr);
-            });
-            
-            const filterCount = Object.values(activeFilters).filter(v => v !== '').length;
-            const footerText = artifact.footer + (filterCount > 0 ? ` | ${displayData.length} of ${artifact.data.length} rows shown` : '');
-            tableFooter.textContent = footerText;
-        }
+                },
+                formatValue(value, column, index) {
 
-        function handleSort(colIndex) {
-            if (sortColumn === colIndex) {
-                // Toggle sort direction
-                sortDirection = sortDirection === 'asc' ? 'desc' : 'asc';
-            } else {
-                // New column, default to ascending
-                sortColumn = colIndex;
-                sortDirection = 'asc';
-            }
-            
-            renderDynamicTable(artifacts[currentArtifactIndex]);
-        }
+                    if(column.field == "index"){
+                        return index + 1
+                    }
 
-        function toggleFilter(colIndex) {
-            filterDropdownStates[colIndex] = !filterDropdownStates[colIndex];
-            renderDynamicTable(artifacts[currentArtifactIndex]);
-        }
-
-        function handleFilterChange(colIndex, value) {
-            activeFilters[colIndex] = value;
-            renderDynamicTable(artifacts[currentArtifactIndex]);
-        }
-
-        function getUniqueValues(data, column) {
-            const values = new Set();
-            
-            data.forEach(row => {
-                const value = row[column.field];
-                if (column.type === 'categories' && Array.isArray(value)) {
-                    // For categories, add each category separately
-                    value.forEach(cat => values.add(cat));
-                } else if (value !== null && value !== undefined && value !== '') {
-                    values.add(String(value));
+                    // If column has a custom formatter function, use it
+                    if (column.formatter && typeof column.formatter === 'function') {
+                        return column.formatter(value);
+                    }
+                    
+                    // Handle arrays (like coordinates)
+                    if (Array.isArray(value)) {
+                        return value.join(', ');
+                    }
+                    
+                    // Handle null/undefined
+                    if (value === null || value === undefined) {
+                        return '-';
+                    }
+                    
+                    return value;
                 }
-            });
-            
-            return Array.from(values).sort();
-        }
+            }
+        };
 
-        function renderTextContent(artifact) {
-            const textContent = document.getElementById('textContent');
-            const textFooter = document.getElementById('textFooter');
-            
-            // Render HTML content
-            textContent.innerHTML = artifact.data;
-            textFooter.textContent = artifact.footer || '';
-        }
-
-        function sortData(data, column, direction) {
-            return data.sort((a, b) => {
-                let aVal = a[column.field];
-                let bVal = b[column.field];
-                
-                // Handle null values
-                if (aVal === null || aVal === undefined) return direction === 'asc' ? 1 : -1;
-                if (bVal === null || bVal === undefined) return direction === 'asc' ? -1 : 1;
-                
-                // Sort based on column type
-                if (column.type === 'number') {
-                    aVal = Number(aVal);
-                    bVal = Number(bVal);
-                } else if (column.type === 'categories') {
-                    // Sort by first category
-                    aVal = aVal[0] || '';
-                    bVal = bVal[0] || '';
-                } else {
-                    // Text sorting (case insensitive)
-                    aVal = String(aVal).toLowerCase();
-                    bVal = String(bVal).toLowerCase();
+        // Detail Page Component
+        const DetailPage = {
+            name: 'DetailPage',
+            components: {
+                MapComponent,
+                TableComponent
+            },
+            data(){
+                return {
+                    item:null
                 }
-                
-                if (aVal < bVal) return direction === 'asc' ? -1 : 1;
-                if (aVal > bVal) return direction === 'asc' ? 1 : -1;
-                return 0;
-            });
-        }
+            },
+            async created(){
+                let item;
+                for(let i in ITEMS){
+                    if(this.$route.params.id == ITEMS[i].id){
+                        this.item = ITEMS[i]
+                        break
+                    }
+                }
+                if(this.item.src){
+                    this.item.html = await fetchData(this.item.src)
+                }
+            },
+            template: `
+                <div class="container detail-page">
+                    <router-link to="/" class="back-btn">Back</router-link>
 
-        // Load data when page loads
-        loadData();
+                    <div class="detail-header">
+                        <h2>{{ item.title }}</h2>
+                    </div>
 
-        let map;
-        function loadMap(data){            
-            // Initialize the map centered on Minneapolis
-            map = L.map('map').setView([44.9778, -93.2650], 13);
+                    <div class="detail-content">
+                        
+                        <div style="margin-bottom:20px" v-if="item.map">
+                            <map-component :items="item.data"></map-component>
+                        </div>
 
-            // Add OpenStreetMap tiles
-            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-              attribution: '© OpenStreetMap contributors',
-              maxZoom: 19
-            }).addTo(map);
+                        <div v-if="item.columns">
+                            <table-component 
+                                :data="item.data" 
+                                :columns="item.columns"
+                                :title="item.title"
+                            ></table-component>
+                        </div>  
 
-            // Add a few markers
-            for(let i in data){
-                marker = L.marker([data[i].coordinates[0], data[i].coordinates[1]]).addTo(map);
-                marker.bindPopup('<b>' + data[i].title + '</b><br>' + data[i].description);
+                        <div>
+                            <div v-html="item.html"></div>
+                        </div>
+                    </div>
+                </div>
+            `,
+        };
+
+        // Router Configuration
+        const routes = [
+            {
+                path: '/',
+                component: HomePage
+            },
+            {
+                name: 'page',
+                path: '/page/:id?',
+                component: DetailPage
             }
-        }
+        ];
 
-        function killMap(){
-            if(map != null){
-                map.remove()
-                map = null;
-                document.getElementById('map').innerHTML = "";
-                document.getElementById('map').classList = "no-show";
-            }
+        const router = createRouter({
+            history: createWebHashHistory(),
+            routes
+        });
+
+        // Create App
+        const app = createApp({});
+
+        async function load_app(){
+            await loadData()
+            app.use(router);
+            app.mount('#app');    
         }
+        load_app();
     </script>
 </body>
 </html>
