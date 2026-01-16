@@ -115,6 +115,39 @@
             font-weight: 500;
         }
 
+        input[type="checkbox"] {
+            cursor: pointer;
+            accent-color: #667eea;
+        }
+
+        .agreement-box {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.75rem;
+            background: #f8f9fa;
+            padding: 1rem;
+            border-radius: 6px;
+            border: 2px solid #667eea;
+            transition: background 0.3s;
+        }
+
+        .agreement-box:hover {
+            background: #f0f3ff;
+        }
+
+        .agreement-box input[type="checkbox"] {
+            width: 24px;
+            height: 24px;
+            margin-top: 2px;
+        }
+
+        .agreement-box label {
+            margin: 0;
+            cursor: pointer;
+            flex: 1;
+            line-height: 1.5;
+        }
+
         .info-box {
             background: #f8f9fa;
             border-left: 4px solid #667eea;
@@ -229,9 +262,10 @@
         <div class="form-container">
             <form id="dopaForm">
                 <div class="info-box">
-                    <p><strong>Important:</strong> After generating this form:</p>
-                    <p>• DO NOT sign or date the form yet</p>
-                    <p>• You must sign and date it in front of a notary public with your photo ID</p>
+                    <p><strong>About Electronic Signatures:</strong></p>
+                    <p>• This form allows you to add an electronic signature for your records</p>
+                    <p>• The electronic signature is NOT legally binding for this document</p>
+                    <p>• You MUST print and sign the generated PDF in front of a notary public with your photo ID</p>
                     <p>• Your Attorney-in-Fact does NOT need to sign in front of a notary, but must sign before using it</p>
                 </div>
 
@@ -304,6 +338,30 @@
                     <p>• There is an existing Order for Protection in effect against the other parent to protect you or your child</p>
                 </div>
 
+                <div class="form-section">
+                    <h2>Electronic Signature</h2>
+                    
+                    <div class="form-group">
+                        <label for="signature">Type Your Full Name as Signature <span class="required">*</span></label>
+                        <input type="text" id="signature" name="signature" required placeholder="Type your full legal name">
+                        <div class="small-text">By typing your name, you are electronically signing this document. Note: You will still need to sign the printed document in front of a notary.</div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="signatureDate">Date of Signature <span class="required">*</span></label>
+                        <input type="date" id="signatureDate" name="signatureDate" required>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="agreement-box">
+                            <input type="checkbox" id="agreeCheckbox" name="agreeCheckbox" required>
+                            <label for="agreeCheckbox">
+                                <strong>I Agree:</strong> I swear that everything I have stated in this document is true and correct. I understand that this electronic signature is for my records only, and I must still sign the printed form in front of a notary public for it to be legally valid.
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
                 <div class="button-group">
                     <button type="button" class="btn-secondary" onclick="resetForm()">Clear Form</button>
                     <button type="submit" class="btn-primary">Generate PDF</button>
@@ -318,6 +376,12 @@
     </div>
 
     <script>
+        // Set today's date as default for signature date
+        document.addEventListener('DOMContentLoaded', function() {
+            const today = new Date().toISOString().split('T')[0];
+            document.getElementById('signatureDate').value = today;
+        });
+        
         // Handle duration radio button changes
         document.querySelectorAll('input[name="duration"]').forEach(radio => {
             radio.addEventListener('change', function() {
@@ -336,6 +400,9 @@
             document.getElementById('dopaForm').reset();
             document.getElementById('specificEndDate').style.display = 'none';
             document.getElementById('specificEndDate').required = false;
+            // Reset signature date to today
+            const today = new Date().toISOString().split('T')[0];
+            document.getElementById('signatureDate').value = today;
         }
 
         // Format date for display on PDF
@@ -393,6 +460,7 @@
                 // Embed fonts
                 const helvetica = await pdfDoc.embedFont(StandardFonts.Helvetica);
                 const helveticaBold = await pdfDoc.embedFont(StandardFonts.HelveticaBold);
+                const helveticaOblique = await pdfDoc.embedFont(StandardFonts.HelveticaOblique);
                 
                 const pageWidth = 612; // 8.5 inches
                 const pageHeight = 792; // 11 inches
@@ -1019,6 +1087,18 @@
                 });
                 y -= 30;
                 
+                // Add electronic signature note if signature is present
+                if (data.signature) {
+                    page3.drawText('[Electronic Signature - Must be notarized for legal validity]', {
+                        x: pageWidth - margin - 300,
+                        y: y + 25,
+                        size: 8,
+                        font: helvetica,
+                        color: rgb(0.5, 0, 0)
+                    });
+                }
+                
+                // Date field with actual date
                 page3.drawText('Date: _________________', {
                     x: margin,
                     y: y,
@@ -1027,6 +1107,17 @@
                     color: rgb(0, 0, 0)
                 });
                 
+                // Add the signature date
+                if (data.signatureDate) {
+                    page3.drawText(formatDate(data.signatureDate), {
+                        x: margin + 40,
+                        y: y,
+                        size: 10,
+                        font: helvetica,
+                        color: rgb(0, 0, 0.6)
+                    });
+                }
+                
                 page3.drawText('_________________________________________', {
                     x: pageWidth - margin - 300,
                     y: y,
@@ -1034,6 +1125,18 @@
                     font: helvetica,
                     color: rgb(0, 0, 0)
                 });
+                
+                // Add the electronic signature
+                if (data.signature) {
+                    page3.drawText(data.signature, {
+                        x: pageWidth - margin - 295,
+                        y: y + 5,
+                        size: 16,
+                        font: helveticaOblique,
+                        color: rgb(0, 0, 0.6)
+                    });
+                }
+                
                 y -= 12;
                 
                 page3.drawText('(sign your name)', {
@@ -1052,6 +1155,18 @@
                     font: helvetica,
                     color: rgb(0, 0, 0)
                 });
+                
+                // Add the printed name
+                if (data.parentName) {
+                    page3.drawText(data.parentName, {
+                        x: pageWidth - margin - 295,
+                        y: y + 5,
+                        size: 11,
+                        font: helvetica,
+                        color: rgb(0, 0, 0.6)
+                    });
+                }
+                
                 y -= 12;
                 
                 page3.drawText('(print your name)', {
@@ -1187,7 +1302,7 @@
                 
                 // Hide loading, show success message
                 document.getElementById('loadingIndicator').classList.remove('active');
-                alert('✅ Your DOPA form has been generated from scratch and downloaded!\n\nRemember:\n• DO NOT sign it yet\n• Sign in front of a notary public with your photo ID\n• Give or mail a copy to the other parent within 30 days (if required)');
+                alert('✅ Your DOPA form has been generated with your electronic signature!\n\nIMPORTANT REMINDERS:\n• This electronic signature is for your records only\n• You MUST still sign the printed form in front of a notary public with photo ID\n• The notary signature is what makes this document legally valid\n• Give or mail a copy to the other parent within 30 days (if required)');
                 document.getElementById('dopaForm').style.display = 'block';
                 
             } catch (error) {
