@@ -1,0 +1,1202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOPA Form Generator</title>
+    <script src="https://unpkg.com/pdf-lib@1.17.1/dist/pdf-lib.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 2rem;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 2rem;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .header p {
+            opacity: 0.9;
+            font-size: 1rem;
+        }
+
+        .form-container {
+            padding: 2rem;
+        }
+
+        .form-section {
+            margin-bottom: 2rem;
+        }
+
+        .form-section h2 {
+            color: #667eea;
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid #f0f0f0;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        label {
+            display: block;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 0.5rem;
+            font-size: 0.95rem;
+        }
+
+        input[type="text"],
+        input[type="date"],
+        select {
+            width: 100%;
+            padding: 0.75rem;
+            border: 2px solid #e0e0e0;
+            border-radius: 6px;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+        }
+
+        input[type="text"]:focus,
+        input[type="date"]:focus,
+        select:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        .radio-group {
+            display: flex;
+            gap: 2rem;
+            margin-top: 0.5rem;
+        }
+
+        .radio-option {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .radio-option input[type="radio"] {
+            width: 20px;
+            height: 20px;
+            cursor: pointer;
+        }
+
+        .radio-option label {
+            margin: 0;
+            cursor: pointer;
+            font-weight: 500;
+        }
+
+        .info-box {
+            background: #f8f9fa;
+            border-left: 4px solid #667eea;
+            padding: 1rem;
+            margin: 1.5rem 0;
+            border-radius: 4px;
+        }
+
+        .info-box p {
+            color: #555;
+            line-height: 1.6;
+            margin-bottom: 0.5rem;
+        }
+
+        .info-box p:last-child {
+            margin-bottom: 0;
+        }
+
+        .button-group {
+            display: flex;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        button {
+            flex: 1;
+            padding: 1rem;
+            font-size: 1rem;
+            font-weight: 600;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        button:active {
+            transform: translateY(0);
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+
+        .btn-secondary {
+            background: #f0f0f0;
+            color: #333;
+        }
+
+        .loading {
+            display: none;
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .loading.active {
+            display: block;
+        }
+
+        .spinner {
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #667eea;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 1rem;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .small-text {
+            font-size: 0.85rem;
+            color: #666;
+            margin-top: 0.25rem;
+        }
+
+        .required {
+            color: #e74c3c;
+        }
+
+        @media (max-width: 600px) {
+            body {
+                padding: 1rem;
+            }
+
+            .form-container {
+                padding: 1.5rem;
+            }
+
+            .button-group {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Delegation of Parental Authority (DOPA)</h1>
+            <p>Minnesota Form - Generate PDF from Scratch</p>
+        </div>
+
+        <div class="form-container">
+            <form id="dopaForm">
+                <div class="info-box">
+                    <p><strong>Important:</strong> After generating this form:</p>
+                    <p>• DO NOT sign or date the form yet</p>
+                    <p>• You must sign and date it in front of a notary public with your photo ID</p>
+                    <p>• Your Attorney-in-Fact does NOT need to sign in front of a notary, but must sign before using it</p>
+                </div>
+
+                <div class="form-section">
+                    <h2>Parent/Guardian Information</h2>
+                    
+                    <div class="form-group">
+                        <label for="county">County <span class="required">*</span></label>
+                        <input type="text" id="county" name="county" required placeholder="e.g., Hennepin">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="parentName">Your Full Name <span class="required">*</span></label>
+                        <input type="text" id="parentName" name="parentName" required placeholder="Your complete legal name">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="childName">Child's Full Name <span class="required">*</span></label>
+                        <input type="text" id="childName" name="childName" required placeholder="Child's complete legal name">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="childBirthdate">Child's Birthdate <span class="required">*</span></label>
+                        <input type="date" id="childBirthdate" name="childBirthdate" required>
+                    </div>
+                </div>
+
+                <div class="form-section">
+                    <h2>Attorney-in-Fact Information</h2>
+                    
+                    <div class="form-group">
+                        <label for="attorneyName">Attorney-in-Fact Full Name <span class="required">*</span></label>
+                        <input type="text" id="attorneyName" name="attorneyName" required placeholder="Person you're appointing to care for your child">
+                        <div class="small-text">Note: "Attorney-in-Fact" is what the person you name is called - they do not have to be an attorney.</div>
+                    </div>
+                </div>
+
+                <div class="form-section">
+                    <h2>DOPA Duration</h2>
+                    
+                    <div class="form-group">
+                        <label>This DOPA lasts: <span class="required">*</span></label>
+                        <div class="radio-group">
+                            <div class="radio-option">
+                                <input type="radio" id="durationOneYear" name="duration" value="oneYear" checked>
+                                <label for="durationOneYear">For one year from the date of my signature</label>
+                            </div>
+                        </div>
+                        <div class="radio-group" style="margin-top: 0.5rem;">
+                            <div class="radio-option">
+                                <input type="radio" id="durationSpecific" name="duration" value="specific">
+                                <label for="durationSpecific">Until a specific date (less than one year):</label>
+                            </div>
+                        </div>
+                        <input type="date" id="specificEndDate" name="specificEndDate" style="margin-top: 0.5rem; display: none;" placeholder="Select end date">
+                    </div>
+                </div>
+
+                <div class="info-box">
+                    <p><strong>This DOPA gives your Attorney-in-Fact permission to:</strong></p>
+                    <p>• Get medical treatment for your child</p>
+                    <p>• Enroll your child in school</p>
+                    <p>• Provide a home, care, and supervision of your child</p>
+                    <p><strong>It does NOT give permission to:</strong> Consent to marriage or adoption of your child</p>
+                </div>
+
+                <div class="info-box">
+                    <p><strong>Legal Requirement:</strong> By law, you must give or mail a copy of this document to any other parent within 30 days of signing it, unless:</p>
+                    <p>• The other parent does not have parenting time rights or has supervised parenting time rights, OR</p>
+                    <p>• There is an existing Order for Protection in effect against the other parent to protect you or your child</p>
+                </div>
+
+                <div class="button-group">
+                    <button type="button" class="btn-secondary" onclick="resetForm()">Clear Form</button>
+                    <button type="submit" class="btn-primary">Generate PDF</button>
+                </div>
+            </form>
+
+            <div class="loading" id="loadingIndicator">
+                <div class="spinner"></div>
+                <p>Generating your DOPA form from scratch...</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Handle duration radio button changes
+        document.querySelectorAll('input[name="duration"]').forEach(radio => {
+            radio.addEventListener('change', function() {
+                const specificDateInput = document.getElementById('specificEndDate');
+                if (this.value === 'specific') {
+                    specificDateInput.style.display = 'block';
+                    specificDateInput.required = true;
+                } else {
+                    specificDateInput.style.display = 'none';
+                    specificDateInput.required = false;
+                }
+            });
+        });
+
+        function resetForm() {
+            document.getElementById('dopaForm').reset();
+            document.getElementById('specificEndDate').style.display = 'none';
+            document.getElementById('specificEndDate').required = false;
+        }
+
+        // Format date for display on PDF
+        function formatDate(dateString) {
+            if (!dateString) return '';
+            const date = new Date(dateString);
+            const month = String(date.getMonth() + 1).padStart(2, '0');
+            const day = String(date.getDate()).padStart(2, '0');
+            const year = date.getFullYear();
+            return `${month}/${day}/${year}`;
+        }
+
+        // Helper to draw text with word wrapping
+        function drawTextWrapped(page, text, x, y, maxWidth, fontSize, font, lineHeight = fontSize * 1.2) {
+            const words = text.split(' ');
+            let line = '';
+            let currentY = y;
+            
+            for (let i = 0; i < words.length; i++) {
+                const testLine = line + words[i] + ' ';
+                const testWidth = font.widthOfTextAtSize(testLine, fontSize);
+                
+                if (testWidth > maxWidth && i > 0) {
+                    page.drawText(line.trim(), { x, y: currentY, size: fontSize, font, color: PDFLib.rgb(0, 0, 0) });
+                    line = words[i] + ' ';
+                    currentY -= lineHeight;
+                } else {
+                    line = testLine;
+                }
+            }
+            
+            if (line.trim()) {
+                page.drawText(line.trim(), { x, y: currentY, size: fontSize, font, color: PDFLib.rgb(0, 0, 0) });
+            }
+            
+            return currentY;
+        }
+
+        document.getElementById('dopaForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const formData = new FormData(e.target);
+            const data = Object.fromEntries(formData.entries());
+            
+            // Show loading indicator
+            document.getElementById('loadingIndicator').classList.add('active');
+            document.getElementById('dopaForm').style.display = 'none';
+            
+            try {
+                const { PDFDocument, rgb, StandardFonts } = PDFLib;
+                
+                // Create a new PDF document
+                const pdfDoc = await PDFDocument.create();
+                
+                // Embed fonts
+                const helvetica = await pdfDoc.embedFont(StandardFonts.Helvetica);
+                const helveticaBold = await pdfDoc.embedFont(StandardFonts.HelveticaBold);
+                
+                const pageWidth = 612; // 8.5 inches
+                const pageHeight = 792; // 11 inches
+                const margin = 50;
+                
+                // ==================== PAGE 1: Instructions ====================
+                const page1 = pdfDoc.addPage([pageWidth, pageHeight]);
+                let y = pageHeight - margin;
+                
+                // Title
+                page1.drawText('Delegation of Parental Authority (DOPA)', {
+                    x: margin,
+                    y: y,
+                    size: 16,
+                    font: helveticaBold,
+                    color: rgb(0, 0, 0)
+                });
+                y -= 30;
+                
+                // Instructions section
+                page1.drawText('The Delegation of Parental Authority (DOPA) form is on the next 2 pages.', {
+                    x: margin,
+                    y: y,
+                    size: 11,
+                    font: helvetica,
+                    color: rgb(0, 0, 0)
+                });
+                y -= 30;
+                
+                // After you fill out your form section
+                page1.drawText('After you fill out your form:', {
+                    x: margin,
+                    y: y,
+                    size: 12,
+                    font: helveticaBold,
+                    color: rgb(0, 0, 0)
+                });
+                y -= 25;
+                
+                // Bullet point with box
+                page1.drawRectangle({
+                    x: margin,
+                    y: y - 15,
+                    width: 10,
+                    height: 10,
+                    borderColor: rgb(0, 0, 0),
+                    borderWidth: 1
+                });
+                
+                const bullet1 = 'DO NOT sign or date the form right away.';
+                page1.drawText(bullet1, {
+                    x: margin + 20,
+                    y: y - 3,
+                    size: 11,
+                    font: helveticaBold,
+                    color: rgb(0, 0, 0)
+                });
+                y -= 20;
+                
+                const text1 = 'You need to sign and date your DOPA in front of a notary public. Bring';
+                page1.drawText(text1, {
+                    x: margin + 20,
+                    y: y,
+                    size: 10,
+                    font: helvetica,
+                    color: rgb(0, 0, 0)
+                });
+                y -= 15;
+                
+                page1.drawText('your photo ID because the notary public will need to check it.', {
+                    x: margin + 20,
+                    y: y,
+                    size: 10,
+                    font: helvetica,
+                    color: rgb(0, 0, 0)
+                });
+                y -= 20;
+                
+                page1.drawText('Your attorney-in-fact does NOT need to sign it in front of a notary.', {
+                    x: margin + 20,
+                    y: y,
+                    size: 10,
+                    font: helvetica,
+                    color: rgb(0, 0, 0)
+                });
+                y -= 15;
+                
+                page1.drawText('They do need to sign it before using it though.', {
+                    x: margin + 20,
+                    y: y,
+                    size: 10,
+                    font: helvetica,
+                    color: rgb(0, 0, 0)
+                });
+                y -= 30;
+                
+                // Second bullet
+                page1.drawRectangle({
+                    x: margin,
+                    y: y - 15,
+                    width: 10,
+                    height: 10,
+                    borderColor: rgb(0, 0, 0),
+                    borderWidth: 1
+                });
+                
+                page1.drawText('Make copies AFTER the form is signed.', {
+                    x: margin + 20,
+                    y: y - 3,
+                    size: 11,
+                    font: helveticaBold,
+                    color: rgb(0, 0, 0)
+                });
+                y -= 20;
+                
+                page1.drawText('Make copies of your form after the notary signs and stamps it. Keep', {
+                    x: margin + 20,
+                    y: y,
+                    size: 10,
+                    font: helvetica,
+                    color: rgb(0, 0, 0)
+                });
+                y -= 15;
+                
+                page1.drawText('one copy for your records and give the original to your Attorney-in-', {
+                    x: margin + 20,
+                    y: y,
+                    size: 10,
+                    font: helvetica,
+                    color: rgb(0, 0, 0)
+                });
+                y -= 15;
+                
+                page1.drawText('Fact.', {
+                    x: margin + 20,
+                    y: y,
+                    size: 10,
+                    font: helvetica,
+                    color: rgb(0, 0, 0)
+                });
+                y -= 30;
+                
+                // Third bullet
+                page1.drawRectangle({
+                    x: margin,
+                    y: y - 15,
+                    width: 10,
+                    height: 10,
+                    borderColor: rgb(0, 0, 0),
+                    borderWidth: 1
+                });
+                
+                page1.drawText('For more information:', {
+                    x: margin + 20,
+                    y: y - 3,
+                    size: 11,
+                    font: helveticaBold,
+                    color: rgb(0, 0, 0)
+                });
+                y -= 20;
+                
+                page1.drawText('Read the Delegation of Parental Authority (DOPA) fact sheet at', {
+                    x: margin + 20,
+                    y: y,
+                    size: 10,
+                    font: helvetica,
+                    color: rgb(0, 0, 0)
+                });
+                y -= 15;
+                
+                page1.drawText('http://bit.ly/2mxfa47.', {
+                    x: margin + 20,
+                    y: y,
+                    size: 10,
+                    font: helvetica,
+                    color: rgb(0, 0, 0.7)
+                });
+                
+                // ==================== PAGE 2: Main Form ====================
+                const page2 = pdfDoc.addPage([pageWidth, pageHeight]);
+                y = pageHeight - margin;
+                
+                // Header
+                page2.drawText('Page 1 of 2', {
+                    x: pageWidth - margin - 70,
+                    y: y,
+                    size: 10,
+                    font: helvetica,
+                    color: rgb(0, 0, 0)
+                });
+                y -= 30;
+                
+                // Title
+                page2.drawText('DELEGATION OF PARENTAL AUTHORITY (DOPA)', {
+                    x: margin,
+                    y: y,
+                    size: 14,
+                    font: helveticaBold,
+                    color: rgb(0, 0, 0)
+                });
+                y -= 20;
+                
+                page2.drawText('Delegation of Powers by Parent Minn. Stat. § 524.5-211', {
+                    x: margin,
+                    y: y,
+                    size: 10,
+                    font: helvetica,
+                    color: rgb(0, 0, 0)
+                });
+                y -= 30;
+                
+                // State/County section
+                page2.drawText('STATE OF MINNESOTA      )', {
+                    x: margin,
+                    y: y,
+                    size: 10,
+                    font: helvetica,
+                    color: rgb(0, 0, 0)
+                });
+                y -= 15;
+                
+                page2.drawText('                        ) ss.', {
+                    x: margin,
+                    y: y,
+                    size: 10,
+                    font: helvetica,
+                    color: rgb(0, 0, 0)
+                });
+                y -= 15;
+                
+                page2.drawText(`COUNTY OF ${data.county.toUpperCase()}      )`, {
+                    x: margin,
+                    y: y,
+                    size: 10,
+                    font: helvetica,
+                    color: rgb(0, 0, 0)
+                });
+                y -= 30;
+                
+                // Section 1
+                page2.drawText('1. My name is _____________________________________________.', {
+                    x: margin,
+                    y: y,
+                    size: 10,
+                    font: helvetica,
+                    color: rgb(0, 0, 0)
+                });
+                
+                page2.drawText(data.parentName, {
+                    x: margin + 90,
+                    y: y,
+                    size: 10,
+                    font: helveticaBold,
+                    color: rgb(0, 0, 0.6)
+                });
+                y -= 12;
+                
+                page2.drawText('(your name)', {
+                    x: margin + 220,
+                    y: y,
+                    size: 8,
+                    font: helvetica,
+                    color: rgb(0.4, 0.4, 0.4)
+                });
+                y -= 20;
+                
+                page2.drawText('I am the parent of _____________________________________________.', {
+                    x: margin,
+                    y: y,
+                    size: 10,
+                    font: helvetica,
+                    color: rgb(0, 0, 0)
+                });
+                
+                page2.drawText(data.childName, {
+                    x: margin + 115,
+                    y: y,
+                    size: 10,
+                    font: helveticaBold,
+                    color: rgb(0, 0, 0.6)
+                });
+                y -= 12;
+                
+                page2.drawText('(your child\'s name)', {
+                    x: margin + 220,
+                    y: y,
+                    size: 8,
+                    font: helvetica,
+                    color: rgb(0.4, 0.4, 0.4)
+                });
+                y -= 20;
+                
+                page2.drawText(`My child's birthdate is ${formatDate(data.childBirthdate)}.`, {
+                    x: margin,
+                    y: y,
+                    size: 10,
+                    font: helvetica,
+                    color: rgb(0, 0, 0)
+                });
+                y -= 12;
+                
+                page2.drawText('(your child\'s birthday)', {
+                    x: margin + 220,
+                    y: y,
+                    size: 8,
+                    font: helvetica,
+                    color: rgb(0.4, 0.4, 0.4)
+                });
+                y -= 25;
+                
+                // Section 2
+                page2.drawText('2. I appoint _____________________________________________, to be my legal Attorney-', {
+                    x: margin,
+                    y: y,
+                    size: 10,
+                    font: helvetica,
+                    color: rgb(0, 0, 0)
+                });
+                
+                page2.drawText(data.attorneyName, {
+                    x: margin + 75,
+                    y: y,
+                    size: 10,
+                    font: helveticaBold,
+                    color: rgb(0, 0, 0.6)
+                });
+                y -= 15;
+                
+                page2.drawText(`in-Fact to have parental authority over my child, ${data.childName}.`, {
+                    x: margin,
+                    y: y,
+                    size: 10,
+                    font: helvetica,
+                    color: rgb(0, 0, 0)
+                });
+                y -= 15;
+                
+                const noteText = 'Note: Attorney-in-Fact is what the person you name to care for your child is called. That person does not have to be';
+                page2.drawText(noteText, {
+                    x: margin,
+                    y: y,
+                    size: 8,
+                    font: helvetica,
+                    color: rgb(0.3, 0.3, 0.3)
+                });
+                y -= 12;
+                
+                page2.drawText('an attorney.', {
+                    x: margin,
+                    y: y,
+                    size: 8,
+                    font: helvetica,
+                    color: rgb(0.3, 0.3, 0.3)
+                });
+                y -= 25;
+                
+                // Duration section
+                page2.drawText('This DOPA lasts: (check one)', {
+                    x: margin,
+                    y: y,
+                    size: 10,
+                    font: helvetica,
+                    color: rgb(0, 0, 0)
+                });
+                y -= 20;
+                
+                // Checkbox for one year
+                page2.drawRectangle({
+                    x: margin + 10,
+                    y: y - 10,
+                    width: 12,
+                    height: 12,
+                    borderColor: rgb(0, 0, 0),
+                    borderWidth: 1
+                });
+                
+                if (data.duration === 'oneYear') {
+                    page2.drawText('X', {
+                        x: margin + 13,
+                        y: y - 8,
+                        size: 10,
+                        font: helveticaBold,
+                        color: rgb(0, 0, 0)
+                    });
+                }
+                
+                page2.drawText('For one year from the date of my signature', {
+                    x: margin + 30,
+                    y: y - 3,
+                    size: 10,
+                    font: helvetica,
+                    color: rgb(0, 0, 0)
+                });
+                y -= 20;
+                
+                page2.drawText('OR', {
+                    x: margin + 10,
+                    y: y,
+                    size: 10,
+                    font: helveticaBold,
+                    color: rgb(0, 0, 0)
+                });
+                y -= 20;
+                
+                // Checkbox for specific date
+                page2.drawRectangle({
+                    x: margin + 10,
+                    y: y - 10,
+                    width: 12,
+                    height: 12,
+                    borderColor: rgb(0, 0, 0),
+                    borderWidth: 1
+                });
+                
+                if (data.duration === 'specific') {
+                    page2.drawText('X', {
+                        x: margin + 13,
+                        y: y - 8,
+                        size: 10,
+                        font: helveticaBold,
+                        color: rgb(0, 0, 0)
+                    });
+                }
+                
+                const endDateText = data.duration === 'specific' && data.specificEndDate 
+                    ? formatDate(data.specificEndDate) 
+                    : '___________________';
+                
+                page2.drawText(`until ${endDateText}, (fill in date) which is less than one year following`, {
+                    x: margin + 30,
+                    y: y - 3,
+                    size: 10,
+                    font: helvetica,
+                    color: rgb(0, 0, 0)
+                });
+                y -= 15;
+                
+                page2.drawText('the date of my signature.', {
+                    x: margin + 30,
+                    y: y,
+                    size: 10,
+                    font: helvetica,
+                    color: rgb(0, 0, 0)
+                });
+                y -= 25;
+                
+                // Section 3
+                page2.drawText('3. This DOPA gives my Attorney-in-Fact permission to care for and make decisions about my', {
+                    x: margin,
+                    y: y,
+                    size: 10,
+                    font: helvetica,
+                    color: rgb(0, 0, 0)
+                });
+                y -= 15;
+                
+                page2.drawText('child named above. These decisions include, but are not limited to:', {
+                    x: margin,
+                    y: y,
+                    size: 10,
+                    font: helvetica,
+                    color: rgb(0, 0, 0)
+                });
+                y -= 20;
+                
+                page2.drawText('a. Getting medical treatment for my child', {
+                    x: margin + 20,
+                    y: y,
+                    size: 10,
+                    font: helvetica,
+                    color: rgb(0, 0, 0)
+                });
+                y -= 15;
+                
+                page2.drawText('b. Enrolling my child in school', {
+                    x: margin + 20,
+                    y: y,
+                    size: 10,
+                    font: helvetica,
+                    color: rgb(0, 0, 0)
+                });
+                y -= 15;
+                
+                page2.drawText('c. Providing a home, care, and supervision of my child', {
+                    x: margin + 20,
+                    y: y,
+                    size: 10,
+                    font: helvetica,
+                    color: rgb(0, 0, 0)
+                });
+                y -= 25;
+                
+                // Section 4
+                page2.drawText('4. This DOPA does not give my Attorney-in-Fact permission to consent to the marriage or', {
+                    x: margin,
+                    y: y,
+                    size: 10,
+                    font: helvetica,
+                    color: rgb(0, 0, 0)
+                });
+                y -= 15;
+                
+                page2.drawText('adoption of my child.', {
+                    x: margin,
+                    y: y,
+                    size: 10,
+                    font: helvetica,
+                    color: rgb(0, 0, 0)
+                });
+                y -= 25;
+                
+                // Section 5
+                page2.drawText('5. I understand that by law I have to give or mail a copy of this document to any other parent', {
+                    x: margin,
+                    y: y,
+                    size: 10,
+                    font: helvetica,
+                    color: rgb(0, 0, 0)
+                });
+                y -= 15;
+                
+                page2.drawText('within 30 days of signing it unless:', {
+                    x: margin,
+                    y: y,
+                    size: 10,
+                    font: helvetica,
+                    color: rgb(0, 0, 0)
+                });
+                y -= 20;
+                
+                page2.drawText('a. The other parent does not have parenting time rights or has supervised parenting', {
+                    x: margin + 20,
+                    y: y,
+                    size: 10,
+                    font: helvetica,
+                    color: rgb(0, 0, 0)
+                });
+                y -= 15;
+                
+                page2.drawText('time rights', {
+                    x: margin + 30,
+                    y: y,
+                    size: 10,
+                    font: helvetica,
+                    color: rgb(0, 0, 0)
+                });
+                y -= 15;
+                
+                page2.drawText('OR', {
+                    x: margin + 20,
+                    y: y,
+                    size: 10,
+                    font: helveticaBold,
+                    color: rgb(0, 0, 0)
+                });
+                y -= 15;
+                
+                page2.drawText('b. There is an existing Order for Protection in effect against the other parent to protect', {
+                    x: margin + 20,
+                    y: y,
+                    size: 10,
+                    font: helvetica,
+                    color: rgb(0, 0, 0)
+                });
+                y -= 15;
+                
+                page2.drawText('me or my child.', {
+                    x: margin + 30,
+                    y: y,
+                    size: 10,
+                    font: helvetica,
+                    color: rgb(0, 0, 0)
+                });
+                y -= 25;
+                
+                page2.drawText('[SIGNATURES ON FOLLOWING PAGE – Page 2]', {
+                    x: margin,
+                    y: y,
+                    size: 10,
+                    font: helveticaBold,
+                    color: rgb(0, 0, 0)
+                });
+                
+                // ==================== PAGE 3: Signatures ====================
+                const page3 = pdfDoc.addPage([pageWidth, pageHeight]);
+                y = pageHeight - margin;
+                
+                // Header
+                page3.drawText('Page 2 of 2', {
+                    x: pageWidth - margin - 70,
+                    y: y,
+                    size: 10,
+                    font: helvetica,
+                    color: rgb(0, 0, 0)
+                });
+                y -= 40;
+                
+                // Signatures title
+                page3.drawText('SIGNATURES', {
+                    x: margin,
+                    y: y,
+                    size: 14,
+                    font: helveticaBold,
+                    color: rgb(0, 0, 0)
+                });
+                y -= 30;
+                
+                page3.drawText('I swear that everything I have stated in this document is true and correct.', {
+                    x: margin,
+                    y: y,
+                    size: 10,
+                    font: helvetica,
+                    color: rgb(0, 0, 0)
+                });
+                y -= 30;
+                
+                // Parent/Guardian signature section
+                page3.drawText('Parent or Guardian:', {
+                    x: margin,
+                    y: y,
+                    size: 11,
+                    font: helveticaBold,
+                    color: rgb(0, 0, 0)
+                });
+                y -= 30;
+                
+                page3.drawText('Date: _________________', {
+                    x: margin,
+                    y: y,
+                    size: 10,
+                    font: helvetica,
+                    color: rgb(0, 0, 0)
+                });
+                
+                page3.drawText('_________________________________________', {
+                    x: pageWidth - margin - 300,
+                    y: y,
+                    size: 10,
+                    font: helvetica,
+                    color: rgb(0, 0, 0)
+                });
+                y -= 12;
+                
+                page3.drawText('(sign your name)', {
+                    x: pageWidth - margin - 250,
+                    y: y,
+                    size: 8,
+                    font: helvetica,
+                    color: rgb(0.4, 0.4, 0.4)
+                });
+                y -= 25;
+                
+                page3.drawText('_________________________________________', {
+                    x: pageWidth - margin - 300,
+                    y: y,
+                    size: 10,
+                    font: helvetica,
+                    color: rgb(0, 0, 0)
+                });
+                y -= 12;
+                
+                page3.drawText('(print your name)', {
+                    x: pageWidth - margin - 250,
+                    y: y,
+                    size: 8,
+                    font: helvetica,
+                    color: rgb(0.4, 0.4, 0.4)
+                });
+                y -= 40;
+                
+                // Notary section
+                page3.drawText('Subscribed and sworn to before me', {
+                    x: margin,
+                    y: y,
+                    size: 10,
+                    font: helvetica,
+                    color: rgb(0, 0, 0)
+                });
+                y -= 15;
+                
+                page3.drawText('this _____ day of ________, 20___.', {
+                    x: margin,
+                    y: y,
+                    size: 10,
+                    font: helvetica,
+                    color: rgb(0, 0, 0)
+                });
+                y -= 30;
+                
+                page3.drawText('_____________________________', {
+                    x: margin,
+                    y: y,
+                    size: 10,
+                    font: helvetica,
+                    color: rgb(0, 0, 0)
+                });
+                y -= 12;
+                
+                page3.drawText('Notary Public', {
+                    x: margin,
+                    y: y,
+                    size: 10,
+                    font: helvetica,
+                    color: rgb(0, 0, 0)
+                });
+                y -= 50;
+                
+                // Attorney-in-Fact section
+                page3.drawText('Attorney-in-Fact: (the Attorney-in-Fact does not have to sign in front of a notary)', {
+                    x: margin,
+                    y: y,
+                    size: 11,
+                    font: helveticaBold,
+                    color: rgb(0, 0, 0)
+                });
+                y -= 25;
+                
+                page3.drawText(`I accept the responsibilities of Attorney-in-Fact for ${data.childName}.`, {
+                    x: margin,
+                    y: y,
+                    size: 10,
+                    font: helvetica,
+                    color: rgb(0, 0, 0)
+                });
+                y -= 12;
+                
+                page3.drawText('(child\'s name)', {
+                    x: margin + 300,
+                    y: y,
+                    size: 8,
+                    font: helvetica,
+                    color: rgb(0.4, 0.4, 0.4)
+                });
+                y -= 30;
+                
+                page3.drawText('Date:_________________', {
+                    x: margin,
+                    y: y,
+                    size: 10,
+                    font: helvetica,
+                    color: rgb(0, 0, 0)
+                });
+                
+                page3.drawText('________________________________________', {
+                    x: pageWidth - margin - 300,
+                    y: y,
+                    size: 10,
+                    font: helvetica,
+                    color: rgb(0, 0, 0)
+                });
+                y -= 12;
+                
+                page3.drawText('(Attorney-in-Fact signature)', {
+                    x: pageWidth - margin - 250,
+                    y: y,
+                    size: 8,
+                    font: helvetica,
+                    color: rgb(0.4, 0.4, 0.4)
+                });
+                y -= 25;
+                
+                page3.drawText('________________________________________', {
+                    x: pageWidth - margin - 300,
+                    y: y,
+                    size: 10,
+                    font: helvetica,
+                    color: rgb(0, 0, 0)
+                });
+                y -= 12;
+                
+                page3.drawText('(Attorney-in-Fact printed name)', {
+                    x: pageWidth - margin - 260,
+                    y: y,
+                    size: 8,
+                    font: helvetica,
+                    color: rgb(0.4, 0.4, 0.4)
+                });
+                
+                // Save the PDF
+                const pdfBytes = await pdfDoc.save();
+                
+                // Create download link
+                const blob = new Blob([pdfBytes], { type: 'application/pdf' });
+                const url = URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = 'DOPA_Form_Complete.pdf';
+                document.body.appendChild(a);
+                a.click();
+                document.body.removeChild(a);
+                URL.revokeObjectURL(url);
+                
+                // Hide loading, show success message
+                document.getElementById('loadingIndicator').classList.remove('active');
+                alert('✅ Your DOPA form has been generated from scratch and downloaded!\n\nRemember:\n• DO NOT sign it yet\n• Sign in front of a notary public with your photo ID\n• Give or mail a copy to the other parent within 30 days (if required)');
+                document.getElementById('dopaForm').style.display = 'block';
+                
+            } catch (error) {
+                console.error('Error generating PDF:', error);
+                document.getElementById('loadingIndicator').classList.remove('active');
+                alert('❌ Error generating PDF. Please try again or check the console for details.');
+                document.getElementById('dopaForm').style.display = 'block';
+            }
+        });
+    </script>
+</body>
+</html>
