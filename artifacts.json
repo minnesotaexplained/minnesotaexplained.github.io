@@ -1081,6 +1081,39 @@
                 "coordinates": [44.9483, -93.2870]
               }
             ]
+    },
+    {
+        "id":11,
+        "title":"ICE Legal Resource Guide",
+        "description":"Comprehensive Legal Support and Resources for Immigration Matters.",
+        "subtitle":"About Minnesota Government",
+        "footer":"",
+        "category": "ICE Resource Guide",
+        "type":"link",
+        "image":"/img/legal.webp",
+        "link":"/ice_legal.html"
+    },
+    {
+        "id":12,
+        "title":"Immigration Lawyers (Local) Legal Resource Guide",
+        "description":"Comprehensive Legal Support and Resources for Immigration Matters.",
+        "subtitle":"",
+        "footer":"",
+        "category": "ICE Resource Guide",
+        "type":"link",
+        "image":"/img/court.jpg",
+        "link":"/immigration_lawyers.html"
+    },
+    {
+        "id":12,
+        "title":"List of Organizations and Families to Support",
+        "description":"Help individuals, families and orgs affected by ICE in Mpls.",
+        "subtitle":"",
+        "footer":"",
+        "category": "ICE Resource Guide",
+        "type":"link",
+        "image":"/img/mutualaid.png",
+        "link":"https://linktr.ee/mplsmutualaid"
     }
 ]
 

@@ -1,0 +1,801 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Immigration Lawyers Directory</title>
+    <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400;700&family=Source+Sans+Pro:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #2c5f7c;
+            --secondary-color: #4a8fb8;
+            --accent-color: #e89c3f;
+            --text-dark: #2a2a2a;
+            --text-light: #5a5a5a;
+            --background: #f8f9fa;
+            --card-bg: #ffffff;
+            --border-color: #dde2e6;
+            --header-bg: #234b5e;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Source Sans Pro', sans-serif;
+            background-color: var(--background);
+            color: var(--text-dark);
+            line-height: 1.6;
+        }
+
+        .header {
+            background: linear-gradient(135deg, var(--header-bg) 0%, var(--primary-color) 100%);
+            color: white;
+            padding: 3rem 2rem;
+            text-align: center;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            font-family: 'Libre Baskerville', serif;
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            letter-spacing: -0.5px;
+        }
+
+        .subtitle {
+            font-size: 1.1rem;
+            opacity: 0.95;
+            font-weight: 400;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .intro {
+            background: var(--card-bg);
+            padding: 1.5rem;
+            border-radius: 8px;
+            border-left: 4px solid var(--accent-color);
+            margin-bottom: 2rem;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+        }
+
+        .intro p {
+            color: var(--text-light);
+            font-size: 1rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .legend {
+            display: flex;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+            margin-top: 1rem;
+            font-size: 0.9rem;
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .legend-badge {
+            background: var(--secondary-color);
+            color: white;
+            padding: 0.2rem 0.5rem;
+            border-radius: 4px;
+            font-weight: 600;
+            font-size: 0.85rem;
+        }
+
+        .table-container {
+            background: var(--card-bg);
+            border-radius: 8px;
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+            overflow: hidden;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        thead {
+            background: var(--primary-color);
+            color: white;
+        }
+
+        th {
+            padding: 1rem;
+            text-align: left;
+            font-weight: 600;
+            font-size: 0.95rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        tbody tr {
+            border-bottom: 1px solid var(--border-color);
+            transition: background-color 0.2s ease;
+        }
+
+        tbody tr:hover {
+            background-color: #f5f8fa;
+        }
+
+        tbody tr:last-child {
+            border-bottom: none;
+        }
+
+        td {
+            padding: 1rem;
+            vertical-align: top;
+        }
+
+        .attorney-name {
+            font-weight: 600;
+            color: var(--primary-color);
+            font-size: 1.05rem;
+            margin-bottom: 0.25rem;
+        }
+
+        .firm-name {
+            color: var(--text-light);
+            font-size: 0.9rem;
+            font-style: italic;
+            margin-bottom: 0.25rem;
+        }
+
+        .language-badges {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+            margin-bottom: 0.5rem;
+        }
+
+        .language-badge {
+            background: var(--accent-color);
+            color: white;
+            padding: 0.2rem 0.6rem;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .address {
+            color: var(--text-dark);
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+
+        .contact-info {
+            margin-top: 0.5rem;
+        }
+
+        .phone {
+            color: var(--secondary-color);
+            font-weight: 600;
+            text-decoration: none;
+            display: block;
+            margin-bottom: 0.25rem;
+        }
+
+        .phone:hover {
+            text-decoration: underline;
+        }
+
+        .email {
+            color: var(--secondary-color);
+            text-decoration: none;
+            font-size: 0.9rem;
+        }
+
+        .email:hover {
+            text-decoration: underline;
+        }
+
+        .state-header {
+            background: var(--secondary-color);
+            color: white;
+            padding: 0.75rem 1rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .footer {
+            text-align: center;
+            padding: 2rem;
+            color: var(--text-light);
+            font-size: 0.9rem;
+            margin-top: 2rem;
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 1.8rem;
+            }
+
+            .container {
+                padding: 1rem;
+            }
+
+            table {
+                font-size: 0.9rem;
+            }
+
+            th, td {
+                padding: 0.75rem 0.5rem;
+            }
+
+            .legend {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+        }
+
+        .navbar {
+            background-color:#1e3c72;
+            color: white;
+            padding: 20px 40px;
+            box-shadow: var(--shadow-md);
+            top: 0;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .navbar-content {
+            flex: 1;
+        }
+
+        .navbar-title {
+            font-size: 1.8em;
+            font-weight: 700;
+            margin: 0 0 5px 0;
+        }
+
+        .navbar-subtitle {
+            font-size: 1em;
+            opacity: 0.9;
+            margin: 0;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-content">
+            <h1 class="navbar-title"><a href="/" style="color:white; text-decoration:none">Minnesota Explained</a></h1>
+            <p class="navbar-subtitle" id="navbarSubtitle"></p>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div style="margin-bottom: 20px;">
+            <h1>Immigration Lawyers Directory</h1>
+            <p class="subtitle">Specialized Legal Professionals in Minnesota & Surrounding States</p>
+        </div>
+        <div class="intro">
+            <p><strong>About this directory:</strong> The following attorneys specialize in immigration issues, but are not employees of the Immigrant Law Center of Minnesota. This is not a comprehensive list of all immigration attorneys, and inclusion in this list does not constitute an endorsement.</p>
+            <p>For names of other immigration attorneys, see the 'other pages' section, or visit <a href="https://www.lawhelpmn.org" target="_blank">www.lawhelpmn.org</a> or <a href="https://www.aila.org" target="_blank">www.aila.org</a></p>
+            
+            <div class="legend">
+                <div class="legend-item">
+                    <span class="legend-badge">ES</span>
+                    <span>Speaks Spanish</span>
+                </div>
+                <div class="legend-item">
+                    <span class="legend-badge">PT</span>
+                    <span>Speaks Portuguese</span>
+                </div>
+                <div class="legend-item">
+                    <span class="legend-badge">VI</span>
+                    <span>Speaks Vietnamese</span>
+                </div>
+                <div class="legend-item">
+                    <span class="legend-badge">RU</span>
+                    <span>Speaks Russian</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Attorney / Firm</th>
+                        <th>Address & Contact</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Minnesota Attorneys -->
+                    <tr>
+                        <td colspan="2" class="state-header">Minnesota</td>
+                    </tr>
+                    
+                    <tr>
+                        <td>
+                            <div class="attorney-name">Attorney Karen Ellingson</div>
+                            <div class="language-badges">
+                                <span class="language-badge">ES</span>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="address">33 East Wentworth Avenue, Suite 360<br>West Saint Paul, MN 55118</div>
+                            <div class="contact-info">
+                                <a href="tel:651-451-1660" class="phone">(651) 451-1660</a>
+                            </div>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            <div class="attorney-name">Attorney Michael Boston</div>
+                            <div class="language-badges">
+                                <span class="language-badge">ES</span>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="address">33 East Wentworth Avenue, Suite 360<br>West Saint Paul, MN 55118</div>
+                            <div class="contact-info">
+                                <a href="tel:651-455-1518" class="phone">(651) 455-1518</a>
+                            </div>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            <div class="attorney-name">Attorney Michael Davis</div>
+                            <div class="firm-name">Davis and Goldfarb, PLLC</div>
+                            <div class="language-badges">
+                                <span class="language-badge">ES</span>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="address">1201 Harmon Place, Suite 303<br>Minneapolis, MN 55403</div>
+                            <div class="contact-info">
+                                <a href="tel:612-630-2244" class="phone">(612) 630-2244</a>
+                            </div>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            <div class="attorney-name">Attorney Julie Carlson</div>
+                            <div class="language-badges">
+                                <span class="language-badge">ES</span>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="address">155 Wabasha Street South, Suite 110<br>Saint Paul, MN 55107</div>
+                            <div class="contact-info">
+                                <a href="tel:612-456-7105" class="phone">(612) 456-7105</a>
+                            </div>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            <div class="attorney-name">Attorney Mark Frey</div>
+                        </td>
+                        <td>
+                            <div class="address">2151 Hamline Avenue North, Suite 206<br>Saint Paul, MN 55113</div>
+                            <div class="contact-info">
+                                <a href="tel:651-486-7117" class="phone">(651) 486-7117</a>
+                            </div>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            <div class="attorney-name">Attorney Steven Thai</div>
+                            <div class="attorney-name">Attorney Mirella Ceja-Orozco</div>
+                            <div class="language-badges">
+                                <span class="language-badge">ES</span>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="address">11650 Wayzata Blvd<br>Minnetonka, MN 55305</div>
+                            <div class="contact-info">
+                                <a href="tel:952-541-1090" class="phone">(952) 541-1090</a>
+                            </div>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            <div class="attorney-name">Attorney Richard Breklman</div>
+                            <div class="language-badges">
+                                <span class="language-badge">ES</span>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="address">2901 Metro Drive, Suite 501<br>Bloomington, MN 55425</div>
+                            <div class="contact-info">
+                                <a href="tel:612-822-4724" class="phone">(612) 822-4724</a>
+                            </div>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            <div class="attorney-name">Attorney Lesley Guyton</div>
+                            <div class="language-badges">
+                                <span class="language-badge">ES</span>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="address">Baker Court Suite 240<br>821 Raymond Avenue<br>Saint Paul, MN 55114</div>
+                            <div class="contact-info">
+                                <a href="tel:651-644-8664" class="phone">(651) 644-8664</a>
+                            </div>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            <div class="attorney-name">Attorney Sheila Stuhlman</div>
+                            <div class="language-badges">
+                                <span class="language-badge">ES</span>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="address">5601 Nicollet Avenue South<br>Minneapolis, MN 55419</div>
+                            <div class="contact-info">
+                                <a href="tel:612-254-8224" class="phone">(612) 254-8224</a>
+                            </div>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            <div class="attorney-name">Attorney Jenny Kowski Dahlberg</div>
+                        </td>
+                        <td>
+                            <div class="address">413 Waconta Street, Suite 440<br>Saint Paul, MN 55101</div>
+                            <div class="contact-info">
+                                <a href="tel:651-321-8472" class="phone">(651) 321-8472</a>
+                            </div>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            <div class="attorney-name">Attorney Patricia Mattos</div>
+                            <div class="language-badges">
+                                <span class="language-badge">ES</span>
+                                <span class="language-badge">PT</span>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="address">1919 University Avenue West, Suite 190<br>Saint Paul, MN 55104</div>
+                            <div class="contact-info">
+                                <a href="tel:651-726-2514" class="phone">(651) 726-2514</a>
+                            </div>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            <div class="attorney-name">Wilson Law Group</div>
+                            <div class="language-badges">
+                                <span class="language-badge">ES</span>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="address">3019 Minnehaha Avenue, Suite 200<br>Minneapolis, MN 55406</div>
+                            <div class="contact-info">
+                                <a href="tel:612-436-7100" class="phone">(612) 436-7100</a>
+                            </div>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            <div class="attorney-name">Attorney Elizabeth Streefland</div>
+                        </td>
+                        <td>
+                            <div class="address">3104 4th Avenue South, Suite 5010<br>Minneapolis, MN 55410</div>
+                            <div class="contact-info">
+                                <a href="tel:612-789-0379" class="phone">(612) 789-0379</a>
+                                <a href="mailto:elizabeth@3streefland.com" class="email">elizabeth@3streefland.com</a>
+                            </div>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            <div class="attorney-name">Attorney Kim Hunter</div>
+                        </td>
+                        <td>
+                            <div class="address">656 Selby Avenue<br>Saint Paul, MN 55104</div>
+                            <div class="contact-info">
+                                <a href="tel:651-641-0440" class="phone">(651) 641-0440</a>
+                            </div>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            <div class="attorney-name">Attorney Maineng Moua</div>
+                            <div class="firm-name">Mai N. Moua Law Office</div>
+                            <div class="language-badges">
+                                <span class="language-badge">Hmong</span>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="address">5901 Brooklyn Blvd, Suite 213<br>Brooklyn Center, MN 55429</div>
+                            <div class="contact-info">
+                                <a href="tel:612-656-9159" class="phone">(612) 656-9159</a>
+                            </div>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            <div class="attorney-name">Attorney Kwao Amegashie</div>
+                            <div class="firm-name">Amegashie Law Office, LLC</div>
+                        </td>
+                        <td>
+                            <div class="address">5353 Gamble Drive, Suite 345<br>Minneapolis, MN 55416</div>
+                            <div class="contact-info">
+                                <a href="tel:952-546-5000" class="phone">(952) 546-5000</a>
+                            </div>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            <div class="attorney-name">Paschal Nwokocha, LLC</div>
+                        </td>
+                        <td>
+                            <div class="address">105 Fifth Ave S, Suite 550<br>Minneapolis, MN 55401</div>
+                            <div class="contact-info">
+                                <a href="tel:612-465-0060" class="phone">(612) 465-0060</a>
+                            </div>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            <div class="attorney-name">De Leon & Nestor, LLC</div>
+                            <div class="firm-name">Susana de Leon, Bruce D. Nestor</div>
+                            <div class="language-badges">
+                                <span class="language-badge">ES</span>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="address">3547 Cedar Avenue South<br>Minneapolis, MN 55407</div>
+                            <div class="contact-info">
+                                <a href="tel:612-822-6269" class="phone">(612) 822-6269</a>
+                            </div>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            <div class="attorney-name">Attorney Graham Ojala-Barbour</div>
+                            <div class="language-badges">
+                                <span class="language-badge">ES</span>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="address">821 Raymond Avenue, Suite 520<br>Saint Paul, MN 55114</div>
+                            <div class="contact-info">
+                                <a href="tel:651-214-6284" class="phone">(651) 214-6284</a>
+                            </div>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            <div class="attorney-name">Aust Schmiechen, P.A.</div>
+                            <div class="firm-name">Brian Aust (ES), Maltuda Schmiechen (RU)</div>
+                            <div class="language-badges">
+                                <span class="language-badge">ES</span>
+                                <span class="language-badge">RU</span>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="address">Crown Roller Mill<br>105 Fifth Avenue South, Suite 485<br>Minneapolis, MN 55401-2536</div>
+                            <div class="contact-info">
+                                <a href="tel:612-724-4860" class="phone">(612) 724-4860</a>
+                            </div>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            <div class="attorney-name">Attorney Nancy Peterson</div>
+                        </td>
+                        <td>
+                            <div class="address">842 Raymond Ave. #209<br>St. Paul, MN 55114</div>
+                            <div class="contact-info">
+                                <a href="tel:651-647-6250" class="phone">(651) 647-6250</a>
+                            </div>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            <div class="attorney-name">Attorney Khanh Nguyen</div>
+                            <div class="language-badges">
+                                <span class="language-badge">VI</span>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="address">8200 Humboldt Avenue S. #315<br>Bloomington, MN 55431</div>
+                            <div class="contact-info">
+                                <a href="tel:952-888-3788" class="phone">(952) 888-3788</a>
+                            </div>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            <div class="attorney-name">Attorney Paula Schwartzbauer</div>
+                            <div class="language-badges">
+                                <span class="language-badge">ES</span>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="address">5601 Nicollet Avenue<br>Minneapolis, MN 55419</div>
+                            <div class="contact-info">
+                                <a href="tel:612-870-1049" class="phone">(612) 870-1049</a>
+                            </div>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            <div class="attorney-name">Attorney Jeffrey Larson</div>
+                            <div class="language-badges">
+                                <span class="language-badge">ES</span>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="address">5601 Nicollet Avenue<br>Minneapolis, MN 55419</div>
+                            <div class="contact-info">
+                                <a href="tel:612-879-8223" class="phone">(612) 879-8223</a>
+                            </div>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            <div class="attorney-name">Attorney Monica Nevin</div>
+                            <div class="firm-name">Nevin Law Office, LLC</div>
+                            <div class="language-badges">
+                                <span class="language-badge">ES</span>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="address">PO Box 7010<br>Minneapolis, MN 55407</div>
+                            <div class="contact-info">
+                                <a href="tel:612-564-1453" class="phone">(612) 564-1453</a>
+                            </div>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            <div class="attorney-name">Attorney Barbara Erlandson</div>
+                        </td>
+                        <td>
+                            <div class="address">1624 Harmon Place, Suite 300-C<br>Minneapolis, MN 55403</div>
+                            <div class="contact-info">
+                                <a href="tel:612-750-7188" class="phone">(612) 750-7188</a>
+                            </div>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            <div class="attorney-name">Attorney Kara Lynum</div>
+                            <div class="language-badges">
+                                <span class="language-badge">ES</span>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="address">413 Waconta Street, Suite 440<br>St. Paul, MN 55101</div>
+                            <div class="contact-info">
+                                <a href="tel:651-300-9383" class="phone">(651) 300-9383</a>
+                            </div>
+                        </td>
+                    </tr>
+
+                    <!-- Other States -->
+                    <tr>
+                        <td colspan="2" class="state-header">Other States</td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            <div class="attorney-name">Attorney David J. Chapman</div>
+                            <div class="firm-name">Chapman Immigration Group</div>
+                        </td>
+                        <td>
+                            <div class="address">1121 Westne Drive, Suite 206<br>Fargo, ND 58103</div>
+                            <div class="contact-info">
+                                <a href="tel:701-232-5899" class="phone">(701) 232-5899</a>
+                            </div>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            <div class="attorney-name">Attorney Henry Evans</div>
+                            <div class="attorney-name">Attorney Megan Tomjack-Newcombe</div>
+                            <div class="firm-name">Evans Law, L.C.</div>
+                            <div class="language-badges">
+                                <span class="language-badge">ES</span>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="address">121 South Main Avenue<br>Sioux Falls, SD 57104</div>
+                            <div class="contact-info">
+                                <a href="tel:605-339-1500" class="phone">(605) 339-1500</a>
+                            </div>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            <div class="attorney-name">Attorney Chuck Berendes</div>
+                        </td>
+                        <td>
+                            <div class="address">3710 East Ave. S<br>La Crosse, WI 54601</div>
+                            <div class="contact-info">
+                                <a href="tel:608-782-0710" class="phone">(608) 782-0710</a>
+                            </div>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            <div class="attorney-name">Attorney Charlene D'Cruz</div>
+                            <div class="language-badges">
+                                <span class="language-badge">ES</span>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="address">P.O. Box 821<br>Ashland, Wisconsin 54806</div>
+                            <div class="contact-info">
+                                <a href="tel:651-233-4080" class="phone">(651) 233-4080</a>
+                            </div>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            <div class="attorney-name">Attorney Sue Swanson</div>
+                            <div class="language-badges">
+                                <span class="language-badge">ES</span>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="address">218 South 3rd Street<br>Grand Forks, North Dakota 58201</div>
+                            <div class="contact-info">
+                                <a href="tel:701-787-8802" class="phone">(701) 787-8802</a>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="footer">
+            <p>This directory is provided for informational purposes. Please verify contact information directly with each attorney before scheduling consultations.</p>
+        </div>
+    </div>
+</body>
+</html>

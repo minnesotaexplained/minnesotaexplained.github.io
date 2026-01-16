@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Legal ICE Resource Guide</title>
+    <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:wght@400;600;700&family=Work+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #1a4d2e;
+            --secondary-color: #2d6a4f;
+            --accent-color: #d4a574;
+            --text-dark: #1a1a1a;
+            --text-light: #4a4a4a;
+            --background: #fafaf8;
+            --card-bg: #ffffff;
+            --border-color: #e0ddd5;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Work Sans', sans-serif;
+            background-color: var(--background);
+            color: var(--text-dark);
+            line-height: 1.7;
+            padding: 0;
+        }
+
+        .header {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            color: white;
+            padding: 4rem 2rem 3rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                repeating-linear-gradient(
+                    45deg,
+                    transparent,
+                    transparent 10px,
+                    rgba(255, 255, 255, 0.03) 10px,
+                    rgba(255, 255, 255, 0.03) 20px
+                );
+            pointer-events: none;
+        }
+
+        h1 {
+            font-family: 'Crimson Pro', serif;
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            position: relative;
+            z-index: 1;
+            letter-spacing: -0.5px;
+            animation: fadeInDown 0.8s ease-out;
+        }
+
+        .subtitle {
+            font-size: 1.1rem;
+            opacity: 0.95;
+            font-weight: 400;
+            position: relative;
+            z-index: 1;
+            animation: fadeInUp 0.8s ease-out 0.2s both;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 3rem 2rem 4rem;
+        }
+
+        .intro {
+            background: var(--card-bg);
+            padding: 2rem;
+            border-radius: 8px;
+            border-left: 4px solid var(--accent-color);
+            margin-bottom: 3rem;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+            animation: fadeIn 0.8s ease-out 0.4s both;
+        }
+
+        .intro p {
+            color: var(--text-light);
+            font-size: 1.05rem;
+            line-height: 1.8;
+        }
+
+        .resources-grid {
+            display: grid;
+            gap: 2rem;
+        }
+
+        .resource-card {
+            background: var(--card-bg);
+            padding: 2rem;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+            transition: all 0.3s ease;
+            animation: fadeInUp 0.6s ease-out both;
+        }
+
+        .resource-card:nth-child(1) { animation-delay: 0.5s; }
+        .resource-card:nth-child(2) { animation-delay: 0.55s; }
+        .resource-card:nth-child(3) { animation-delay: 0.6s; }
+        .resource-card:nth-child(4) { animation-delay: 0.65s; }
+        .resource-card:nth-child(5) { animation-delay: 0.7s; }
+        .resource-card:nth-child(n+6) { animation-delay: 0.75s; }
+
+        .resource-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(26, 77, 46, 0.12);
+            border-color: var(--accent-color);
+        }
+
+        .resource-title {
+            font-family: 'Crimson Pro', serif;
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+            line-height: 1.4;
+        }
+
+        .resource-description {
+            color: var(--text-light);
+            margin-bottom: 1.25rem;
+            font-size: 0.98rem;
+        }
+
+        .resource-link {
+            display: inline-flex;
+            align-items: center;
+            color: var(--secondary-color);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            padding: 0.75rem 1.5rem;
+            border: 2px solid var(--secondary-color);
+            border-radius: 6px;
+            font-size: 0.95rem;
+        }
+
+        .resource-link:hover {
+            background-color: var(--secondary-color);
+            color: white;
+            transform: translateX(4px);
+        }
+
+        .resource-link::after {
+            content: '→';
+            margin-left: 0.5rem;
+            transition: transform 0.3s ease;
+        }
+
+        .resource-link:hover::after {
+            transform: translateX(4px);
+        }
+
+        .footer {
+            text-align: center;
+            padding: 2rem;
+            color: var(--text-light);
+            font-size: 0.9rem;
+            border-top: 1px solid var(--border-color);
+            margin-top: 3rem;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2rem;
+            }
+
+            .header {
+                padding: 3rem 1.5rem 2rem;
+            }
+
+            .container {
+                padding: 2rem 1rem;
+            }
+
+            .resource-card {
+                padding: 1.5rem;
+            }
+        }
+
+
+        .navbar {
+            background-color:#1e3c72;
+            color: white;
+            padding: 20px 40px;
+            box-shadow: var(--shadow-md);
+            top: 0;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .navbar-content {
+            flex: 1;
+        }
+
+        .navbar-title {
+            font-size: 1.8em;
+            font-weight: 700;
+            margin: 0 0 5px 0;
+        }
+
+        .navbar-subtitle {
+            font-size: 1em;
+            opacity: 0.9;
+            margin: 0;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-content">
+            <h1 class="navbar-title"><a href="/" style="color:white; text-decoration:none">Minnesota Explained</a></h1>
+            <p class="navbar-subtitle" id="navbarSubtitle"></p>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div>
+            <h1>ICE Legal Resource Guide</h1>
+        </div>
+        <div class="intro">
+            <p>This guide provides essential legal resources and support services for individuals and families facing immigration-related challenges. Each organization listed below offers specialized assistance ranging from legal representation to emergency support services.</p>
+        </div>
+
+        <div class="resources-grid">
+            <section class="resource-card">
+                <h2 class="resource-title">Attorney Agency Referral List - English</h2>
+                <p class="resource-description">Access the complete attorney agency referral list in English to find qualified legal representation.</p>
+                <a href="https://www.theadvocatesforhumanrights.org/Res/Attorney%20Agency%20Referral%20List%20-%20ENGLISH%203.pdf" class="resource-link" target="_blank" rel="noopener noreferrer">View Resource</a>
+            </section>
+
+            <section class="resource-card">
+                <h2 class="resource-title">Attorney Agency Referral List - Spanish</h2>
+                <p class="resource-description">Acceda a la lista completa de referencias de agencias de abogados en español para encontrar representación legal calificada.</p>
+                <a href="https://www.theadvocatesforhumanrights.org/Res/Attorney%20Agency%20Referral%20List%20-%20SPANISH%203.pdf" class="resource-link" target="_blank" rel="noopener noreferrer">View Resource</a>
+            </section>
+
+            <section class="resource-card">
+                <h2 class="resource-title">List of Reputable Local Immigration Lawyers</h2>
+                <p class="resource-description">Find trusted and reputable immigration lawyers in your local area who can provide professional legal assistance.</p>
+                <a href="https://static1.squarespace.com/static/60f458abe1b28f3a7d94464a/t/60f63934b2b0835cff978639/1626749236321/immigration-lawyers.pdf" class="resource-link" target="_blank" rel="noopener noreferrer">View Resource</a>
+                <a href="/immigration_lawyers.html" class="resource-link" target="_blank" rel="noopener noreferrer">View Page</a>
+            </section>
+
+            <section class="resource-card">
+                <h2 class="resource-title">COPAL Helpline</h2>
+                <p class="resource-description">If you have been directly impacted by federal activity and need support, please call the COPAL Helpline at <strong>612-255-3112</strong>.</p>
+                <a href="https://copalmn.org/" class="resource-link" target="_blank" rel="noopener noreferrer">Visit Website</a>
+            </section>
+
+            <section class="resource-card">
+                <h2 class="resource-title">MIRAC Deportation Defense</h2>
+                <p class="resource-description">Contact <strong>miracmn@gmail.com</strong> to see if we are able to assist you or someone you know who is detained by Immigration and Customs Enforcement (ICE).</p>
+                <a href="https://www.miracmn.com/resources#:~:text=Anti%2DDeportation%20%26%20Immigration%20Resources" class="resource-link" target="_blank" rel="noopener noreferrer">Visit Website</a>
+            </section>
+
+            <section class="resource-card">
+                <h2 class="resource-title">Immigrant Law Center of Minnesota</h2>
+                <p class="resource-description">If you are detained by ICE or calling on behalf of someone in the custody of ICE, call <strong>651-641-1011</strong> during their intake hours to receive assistance.</p>
+                <a href="https://www.ilcm.org/" class="resource-link" target="_blank" rel="noopener noreferrer">Visit Website</a>
+            </section>
+
+            <section class="resource-card">
+                <h2 class="resource-title">MN National Lawyers Guild Legal Hotline</h2>
+                <p class="resource-description">Call <strong>612-444-2654</strong> for protest-related legal assistance, before, during or after an action.</p>
+                <a href="https://nlgmn.org/about-2/" class="resource-link" target="_blank" rel="noopener noreferrer">Visit Website</a>
+            </section>
+
+            <section class="resource-card">
+                <h2 class="resource-title">Mid-Minnesota Legal Aid / Southern MN Legal Services</h2>
+                <p class="resource-description">Free legal services for people with low income, older people, people with disabilities. Can assist with immigration, housing/tenant issues, family law, disability law, public benefits, and more. Call <strong>1-877-696-6529</strong>.</p>
+                <a href="https://mylegalaid.org/" class="resource-link" target="_blank" rel="noopener noreferrer">Visit Website</a>
+            </section>
+
+            <section class="resource-card">
+                <h2 class="resource-title">Advocates for Human Rights</h2>
+                <p class="resource-description">Free legal help to people in immigration detention, seeking asylum, and unaccompanied children. Serves all of Minnesota; must be at or below 200% federal poverty guidelines. Call <strong>612-341-9845</strong>.</p>
+                <a href="https://www.theadvocatesforhumanrights.org/Home" class="resource-link" target="_blank" rel="noopener noreferrer">Visit Website</a>
+            </section>
+
+            <section class="resource-card">
+                <h2 class="resource-title">Adult Representation Services (ARS)</h2>
+                <p class="resource-description">Serves Hennepin County residents only. Provides independent legal representation and support to people experiencing poverty in civil matters including immigration legal rep, housing/tenant defense, and child protection matters. Call <strong>612-348-7012</strong> or email <strong>contactars@hennepin.us</strong>.</p>
+                <a href="https://www.hennepin.us/adult-representation-services/" class="resource-link" target="_blank" rel="noopener noreferrer">Visit Website</a>
+            </section>
+
+            <section class="resource-card">
+                <h2 class="resource-title">Volunteer Lawyers Network Minnesota (VLN)</h2>
+                <p class="resource-description">Free legal services/representation on a range of civil issues, including immigration and more. Call intake Monday through Thursday from 10am-1pm at <strong>612-752-6677</strong> or complete online intake form.</p>
+                <a href="https://www.vlnmn.org/" class="resource-link" target="_blank" rel="noopener noreferrer">Visit Website</a>
+            </section>
+
+            <section class="resource-card">
+                <h2 class="resource-title">LawHelpMN.org</h2>
+                <p class="resource-description">Self-help legal resource on a variety of legal issues, answers many commonly asked questions, provides forms/guides, and legal services search tool.</p>
+                <a href="https://www.lawhelpmn.org/" class="resource-link" target="_blank" rel="noopener noreferrer">Visit Website</a>
+            </section>
+
+            <section class="resource-card">
+                <h2 class="resource-title">Delegation of Parental Authority (DOPA)</h2>
+                <p class="resource-description">A legal document for parents making temporary arrangements to ensure your children are cared for by an adult if you are unable/unavailable.</p>
+                <a href="https://www.lawhelpmn.org/self-help-library/fact-sheet/delegation-parental-authority-dopa" class="resource-link" target="_blank" rel="noopener noreferrer">View Resource</a>
+            </section>
+
+            <section class="resource-card">
+                <h2 class="resource-title">VLN MN Family Deportation Preparedness Manual</h2>
+                <p class="resource-description">Planning for care of children and assets in the event you are arrested, detained, or deported.</p>
+                <a href="https://www.vlnmn.org/wp-content/uploads/2025/07/Minnesota_Family_Deportation_Preparedness_Manual.pdf" class="resource-link" target="_blank" rel="noopener noreferrer">View Manual</a>
+            </section>
+
+            <section class="resource-card">
+                <h2 class="resource-title">ICE Waiver Form - Rep. Ilhan Omar's Office</h2>
+                <p class="resource-description">Carry a filled-out ICE waiver form with the "Recipient" listed as Rep. Ilhan Omar's office. This allows Rep. Omar's office to request information about you if you are detained.</p>
+                <a href="https://www.ice.gov/node/60831" class="resource-link" target="_blank" rel="noopener noreferrer">Get Form</a>
+            </section>
+
+            <section class="resource-card">
+                <h2 class="resource-title">Midwest Immigration Bond Fund</h2>
+                <p class="resource-description">Get help paying an immigration bond.</p>
+                <a href="https://www.mibfc.org/gethelp" class="resource-link" target="_blank" rel="noopener noreferrer">Get Help</a>
+            </section>
+
+            <section class="resource-card">
+                <h2 class="resource-title">ACLU Minnesota</h2>
+                <p class="resource-description">To report ICE misconduct and constitutional violations, file a report with ACLU MN.</p>
+                <a href="https://www.aclu-mn.org/" class="resource-link" target="_blank" rel="noopener noreferrer">File Report</a>
+            </section>
+
+            <section class="resource-card">
+                <h2 class="resource-title">Detainee Locator</h2>
+                <p class="resource-description">Online tool to locate individuals detained by ICE.</p>
+                <a href="https://locator.ice.gov/odls/#/search" class="resource-link" target="_blank" rel="noopener noreferrer">Search Detainees</a>
+            </section>
+
+            <section class="resource-card">
+                <h2 class="resource-title">Report Evidence of Abuse or Excessive Force</h2>
+                <p class="resource-description">Have video footage or other evidence? Email Monarca at <strong>info@monarcamn.org</strong> with evidence of abuse or excessive force. Reach out to the ACLU at <strong>support@aclu-mn.org</strong> with evidence of excessive force against an observer.</p>
+                <a href="mailto:info@monarcamn.org" class="resource-link">Contact Monarca</a>
+            </section>
+        </div>
+
+        <div class="footer">
+            <p>This resource guide is provided for informational purposes. Please verify contact information and availability with each organization directly.</p>
+        </div>
+    </div>
+</body>
+</html>
