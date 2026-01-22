@@ -28,8 +28,39 @@
             overflow: hidden;
         }
 
-        .header {
+
+        .language-switcher {
+            background: #f8f9fa;
+            padding: 1rem;
+            display: flex;
+            justify-content: center;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+            border-bottom: 2px solid #e0e0e0;
+        }
+
+        .lang-btn {
+            padding: 0.5rem 1.25rem;
+            border: 2px solid #667eea;
+            background: white;
+            color: #667eea;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: all 0.3s;
+        }
+
+        .lang-btn:hover {
+            background: #f0f3ff;
+        }
+
+        .lang-btn.active {
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+
+        .header {
             color: white;
             padding: 2rem;
             text-align: center;
@@ -237,6 +268,83 @@
             color: #e74c3c;
         }
 
+
+        .notary-section {
+            display: none;
+            background: #f0f8ff;
+            border: 3px solid #667eea;
+            border-radius: 12px;
+            padding: 2rem;
+            margin-top: 2rem;
+        }
+
+        .notary-section.active {
+            display: block;
+        }
+
+        .notary-section h2 {
+            color: #667eea;
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+
+        .notary-section p {
+            font-size: 1rem;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+
+        .notary-options {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+
+        .notary-option {
+            background: white;
+            border: 2px solid #667eea;
+            border-radius: 8px;
+            padding: 1.5rem;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .notary-option:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+        }
+
+        .notary-option h3 {
+            color: #667eea;
+            font-size: 1.2rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .notary-option p {
+            margin-bottom: 0.75rem;
+            font-size: 0.95rem;
+        }
+
+        .notary-option a {
+            display: inline-block;
+            color: #667eea;
+            font-weight: 600;
+            text-decoration: none;
+            border-bottom: 2px solid transparent;
+            transition: border-color 0.2s;
+        }
+
+        .notary-option a:hover {
+            border-bottom-color: #667eea;
+        }
+
+        .notary-option .address {
+            color: #666;
+            font-size: 0.9rem;
+            font-style: italic;
+        }
+
         @media (max-width: 600px) {
             body {
                 padding: 1rem;
@@ -253,68 +361,87 @@
     </style>
 </head>
 <body>
+    <nav style="margin:0; text-align: center;">
+        <h3><a href="/" style="color:white; text-decoration: none;">Minnesota Explained</a></h3>
+    </nav>
+
+    <div class="header">
+        <h1><span data-translate="title">Delegation of Parental Authority (DOPA)</span></h1>
+        <p><span data-translate="subtitle">Minnesota Form - Generate PDF from Scratch</span></p>
+        <p style="font-size:12px; margin-top:20px">Legal Document by 
+            <a style="color:white" href="https://www.linkedin.com/in/hannahlee-burton/" target="_blank">Hannah Burton</a>, 
+            <a style="color:white" href="https://www.linkedin.com/in/erin-anderson-b45a84232/" target="_blank">Erin Anderson</a>, 
+            <a style="color:white" href="https://www.linkedin.com/in/standersondev/" target="_blank">Stephen Anderson</a>, 
+            <a style="color:white" href="https://www.rockpinelaw.com/" target="_blank">Scotty Ducharme</a>
+            with another way to generate through Rockpine Law <a style="color:white" href="https://www.rockpinelaw.com/resources-for-migrants-2">here</a>
+        </p>
+    </div>
+
     <div class="container">
-        <div class="header">
-            <h1>Delegation of Parental Authority (DOPA)</h1>
-            <p>Minnesota Form - Generate PDF from Scratch</p>
+        <div class="language-switcher">
+            <button class="lang-btn active" type="button" onclick="changeLanguage('en')">English</button>
+            <button class="lang-btn" type="button" onclick="changeLanguage('es')">Español</button>
+            <button class="lang-btn" type="button" onclick="changeLanguage('so')">Soomaali</button>
+            <button class="lang-btn" type="button" onclick="changeLanguage('hmn')">Hmoob</button>
+            <button class="lang-btn" type="button" onclick="changeLanguage('sw')">Kiswahili</button>
         </div>
 
         <div class="form-container">
             <form id="dopaForm">
                 <div class="info-box">
-                    <p><strong>About Delegation of Parental Authority</strong> (this form) </p>
-                    <p>If you are a parent who is concerned about being arrested, detained, or deported and separated from your children you should consider completing a Delegation of Parental Authority (DOPA). A DOPA allows you to designate another trusted adult to have the legal authority to care for your children in case you cannot. The DOPA can be notarized virtually, by City of Minneapolis Clerks, or in person at most UPS stores.</p>
+                    <p><strong><span data-translate="aboutTitle">About Delegation of Parental Authority</span></strong> <span data-translate="aboutTitleSuffix">(this form)</span> </p>
+                    <p><span data-translate="aboutText">If you are a parent who is concerned about being arrested, detained, or deported and separated from your children you should consider completing a Delegation of Parental Authority (DOPA). A DOPA allows you to designate another trusted adult to have the legal authority to care for your children in case you cannot. The DOPA can be notarized virtually, by City of Minneapolis Clerks, or in person at most UPS stores.</span></p>
                 </div>
 
                 <div class="form-section">
-                    <h2>Parent/Guardian and Child Information</h2>
+                    <h2><span data-translate="section1">Parent/Guardian and Child Information</span></h2>
                     
                     <div class="form-group">
-                        <label for="county">County <span class="required">*</span></label>
+                        <label for="county"><span data-translate="countyLabel">County</span> <span class="required">*</span></label>
                         <input type="text" id="county" name="county" required placeholder="e.g., Hennepin">
                     </div>
 
                     <div class="form-group">
-                        <label for="parentName">Your Full Name <span class="required">*</span></label>
+                        <label for="parentName"><span data-translate="parentNameLabel">Your Full Name</span> <span class="required">*</span></label>
                         <input type="text" id="parentName" name="parentName" required placeholder="Your complete legal name">
                     </div>
 
                     <div class="form-group">
-                        <label for="childName">Child's Full Name <span class="required">*</span></label>
+                        <label for="childName"><span data-translate="childNameLabel">Child's Full Name</span> <span class="required">*</span></label>
                         <input type="text" id="childName" name="childName" required placeholder="Child's complete legal name">
                     </div>
 
                     <div class="form-group">
-                        <label for="childBirthdate">Child's Birthdate <span class="required">*</span></label>
+                        <label for="childBirthdate"><span data-translate="childBirthdateLabel">Child's Birthdate</span> <span class="required">*</span></label>
                         <input type="date" id="childBirthdate" name="childBirthdate" required>
                     </div>
                 </div>
 
                 <div class="form-section">
-                    <h2>Attorney-in-Fact Information</h2>
+                    <h2><span data-translate="section2">Attorney-in-Fact Information</span></h2>
                     
                     <div class="form-group">
-                        <label for="attorneyName">Attorney-in-Fact Full Name <span class="required">*</span></label>
+                        <label for="attorneyName"><span data-translate="attorneyNameLabel">Attorney-in-Fact Full Name</span> <span class="required">*</span></label>
                         <input type="text" id="attorneyName" name="attorneyName" required placeholder="Person you're appointing to care for your child">
-                        <div class="small-text">Note: "Attorney-in-Fact" is what the person you name is called - they do not have to be an attorney.</div>
+                        <div class="small-text"><span data-translate="attorneyNote">Note: "Attorney-in-Fact" is what the person you name is called - they do not have to be an attorney.</span></div>
                     </div>
                 </div>
 
                 <div class="form-section">
-                    <h2>DOPA Duration</h2>
+                    <h2><span data-translate="section3">DOPA Duration</span></h2>
                     
                     <div class="form-group">
-                        <label>This DOPA lasts: <span class="required">*</span></label>
+                        <label><span data-translate="durationLabel">This DOPA lasts:</span> <span class="required">*</span></label>
                         <div class="radio-group">
                             <div class="radio-option">
                                 <input type="radio" id="durationOneYear" name="duration" value="oneYear" checked>
-                                <label for="durationOneYear">For one year from the date of my signature</label>
+                                <label for="durationOneYear"><span data-translate="oneYear">For one year from the date of my signature</span></label>
                             </div>
                         </div>
                         <div class="radio-group" style="margin-top: 0.5rem;">
                             <div class="radio-option">
                                 <input type="radio" id="durationSpecific" name="duration" value="specific">
-                                <label for="durationSpecific">Until a specific date (less than one year):</label>
+                                <label for="durationSpecific"><span data-translate="specificDate">Until a specific date (less than one year):</span></label>
                             </div>
                         </div>
                         <input type="date" id="specificEndDate" name="specificEndDate" style="margin-top: 0.5rem; display: none;" placeholder="Select end date">
@@ -322,17 +449,17 @@
                 </div>
 
                 <div class="info-box">
-                    <p><strong>This DOPA gives your Attorney-in-Fact permission to:</strong></p>
-                    <p>• Get medical treatment for your child</p>
-                    <p>• Enroll your child in school</p>
-                    <p>• Provide a home, care, and supervision of your child</p>
-                    <p><strong>It does NOT give permission to:</strong> Consent to marriage or adoption of your child</p>
+                    <p><strong><span data-translate="permissionsTitle">This DOPA gives your Attorney-in-Fact permission to:</span></strong></p>
+                    <p>• <span data-translate="perm1">Get medical treatment for your child</span></p>
+                    <p>• <span data-translate="perm2">Enroll your child in school</span></p>
+                    <p>• <span data-translate="perm3">Provide a home, care, and supervision of your child</span></p>
+                    <p><strong><span data-translate="noPermTitle">It does NOT give permission to:</span></strong> <span data-translate="noPerm">Consent to marriage or adoption of your child</span></p>
                 </div>
 
                 <div class="info-box">
-                    <p><strong>Legal Requirement:</strong> By law, you must give or mail a copy of this document to any other parent within 30 days of signing it, unless:</p>
-                    <p>• The other parent does not have parenting time rights or has supervised parenting time rights, OR</p>
-                    <p>• There is an existing Order for Protection in effect against the other parent to protect you or your child</p>
+                    <p><strong><span data-translate="legalReqTitle">Legal Requirement:</span></strong> <span data-translate="legalReqText">By law, you must give or mail a copy of this document to any other parent within 30 days of signing it, unless:</span></p>
+                    <p>• <span data-translate="exception1">The other parent does not have parenting time rights or has supervised parenting time rights, OR</span></p>
+                    <p>• <span data-translate="exception2">There is an existing Order for Protection in effect against the other parent to protect you or your child</span></p>
                 </div>
 
                 <!--<div class="form-section">
@@ -360,15 +487,50 @@
                 </div>-->
 
                 <div class="button-group">
-                    <button type="button" class="btn-secondary" onclick="resetForm()">Clear Form</button>
-                    <button type="submit" class="btn-primary">Generate PDF</button>
+                    <button type="button" class="btn-secondary" onclick="resetForm()"><span data-translate="clearBtn">Clear Form</span></button>
+                    <button type="submit" class="btn-primary"><span data-translate="generateBtn">Generate PDF</span></button>
                 </div>
             </form>
 
             <div class="loading" id="loadingIndicator">
                 <div class="spinner"></div>
-                <p>Generating your DOPA form from scratch...</p>
+                <p><span data-translate="generating">Generating your DOPA form from scratch...</span></p>
             </div>
+
+            <div id="notarySection" class="notary-section">
+                <h2><span data-translate="notaryTitle">Next Step: Get Your Form Notarized</span></h2>
+                <p><span data-translate="notaryIntro">Your DOPA form has been generated! To make it legally valid, you must sign it in front of a notary public with your photo ID. Here are three ways to get your form notarized:</span></p>
+
+                <div class="notary-options">
+                    <div class="notary-option">
+                        <h3><span data-translate="option1Title">Option 1: Remote Online Notarization (From Home)</span></h3>
+                        <p><span data-translate="option1Desc">Get notarized from the comfort of your home via video call.</span></p>
+                        <a href="https://notary.sos.mn.gov/search/searchfornotary" target="_blank" rel="noopener noreferrer">
+                            <span data-translate="option1Link">Minnesota Notary Lookup - Select "Remote Notarization"</span> →
+                        </a>
+                    </div>
+
+                    <div class="notary-option">
+                        <h3><span data-translate="option2Title">Option 2: City of Minneapolis Service Center</span></h3>
+                        <p><span data-translate="option2Desc">Visit the City of Minneapolis Service Center in person (free service).</span></p>
+                        <p class="address">
+                            <span data-translate="option2Address">Public Service Building, 505 Fourth Ave. S., Skyway level, Minneapolis, MN 55415</span>
+                        </p>
+                        <a href="https://www.minneapolismn.gov/government/departments/clerk/" target="_blank" rel="noopener noreferrer">
+                            <span data-translate="option2Link">City of Minneapolis Service Center</span> →
+                        </a>
+                    </div>
+
+                    <div class="notary-option">
+                        <h3><span data-translate="option3Title">Option 3: UPS Store Notary</span></h3>
+                        <p><span data-translate="option3Desc">Find a nearby UPS Store that offers notary services (fee applies).</span></p>
+                        <a href="https://www.theupsstore.com/tools/find-a-store" target="_blank" rel="noopener noreferrer">
+                            <span data-translate="option3Link">Find a UPS Store with Notary Services</span> →
+                        </a>
+                    </div>
+                </div>
+            </div>
+
         </div>
     </div>
 
@@ -400,6 +562,8 @@
             // Reset signature date to today
             const today = new Date().toISOString().split('T')[0];
             document.getElementById('signatureDate').value = today;
+            // Hide notary section
+            document.getElementById('notarySection').classList.remove('active');
         }
 
         // Format date for display on PDF
@@ -1093,10 +1257,18 @@
                 document.body.removeChild(a);
                 URL.revokeObjectURL(url);
                 
-                // Hide loading, show success message
+                // Hide loading, show form and notary section
                 document.getElementById('loadingIndicator').classList.remove('active');
-                alert('✅ Your DOPA form has been generated with your electronic signature!\n\nIMPORTANT REMINDERS:\n• You MUST still sign the printed form in front of a notary public with photo ID\n• The notary signature is what makes this document legally valid\n• Give or mail a copy to the other parent within 30 days (if required)');
                 document.getElementById('dopaForm').style.display = 'block';
+                
+                // Show the notary section
+                const notarySection = document.getElementById('notarySection');
+                notarySection.classList.add('active');
+                
+                // Scroll to the notary section
+                setTimeout(() => {
+                    notarySection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }, 100);
                 
             } catch (error) {
                 console.error('Error generating PDF:', error);
@@ -1105,6 +1277,251 @@
                 document.getElementById('dopaForm').style.display = 'block';
             }
         });
+    
+        // Translation data
+        const translations = {
+            en: {
+                title: "Delegation of Parental Authority (DOPA)",
+                subtitle: "Minnesota Form - Generate PDF from Scratch",
+                aboutTitle: "About Delegation of Parental Authority",
+                aboutTitleSuffix: "(this form)",
+                aboutText: "If you are a parent who is concerned about being arrested, detained, or deported and separated from your children you should consider completing a Delegation of Parental Authority (DOPA). A DOPA allows you to designate another trusted adult to have the legal authority to care for your children in case you cannot. The DOPA can be notarized virtually, by City of Minneapolis Clerks, or in person at most UPS stores.",
+                section1: "Parent/Guardian and Child Information",
+                countyLabel: "County",
+                parentNameLabel: "Your Full Name",
+                childNameLabel: "Child's Full Name",
+                childBirthdateLabel: "Child's Birthdate",
+                section2: "Attorney-in-Fact Information",
+                attorneyNameLabel: "Attorney-in-Fact Full Name",
+                attorneyNote: 'Note: "Attorney-in-Fact" is what the person you name is called - they do not have to be an attorney.',
+                section3: "DOPA Duration",
+                durationLabel: "This DOPA lasts:",
+                oneYear: "For one year from the date of my signature",
+                specificDate: "Until a specific date (less than one year):",
+                permissionsTitle: "This DOPA gives your Attorney-in-Fact permission to:",
+                perm1: "Get medical treatment for your child",
+                perm2: "Enroll your child in school",
+                perm3: "Provide a home, care, and supervision of your child",
+                noPermTitle: "It does NOT give permission to:",
+                noPerm: "Consent to marriage or adoption of your child",
+                legalReqTitle: "Legal Requirement:",
+                legalReqText: "By law, you must give or mail a copy of this document to any other parent within 30 days of signing it, unless:",
+                exception1: "The other parent does not have parenting time rights or has supervised parenting time rights, OR",
+                exception2: "There is an existing Order for Protection in effect against the other parent to protect you or your child",
+                clearBtn: "Clear Form",
+                generateBtn: "Generate PDF",
+                generating: "Generating your DOPA form from scratch...",
+                notaryTitle: "Next Step: Get Your Form Notarized",
+                notaryIntro: "Your DOPA form has been generated! To make it legally valid, you must sign it in front of a notary public with your photo ID. Here are three ways to get your form notarized:",
+                option1Title: "Option 1: Remote Online Notarization (From Home)",
+                option1Desc: "Get notarized from the comfort of your home via video call.",
+                option1Link: "Minnesota Notary Lookup - Select \"Remote Notarization\"",
+                option2Title: "Option 2: City of Minneapolis Service Center",
+                option2Desc: "Visit the City of Minneapolis Service Center in person (free service).",
+                option2Address: "Public Service Building, 505 Fourth Ave. S., Skyway level, Minneapolis, MN 55415",
+                option2Link: "City of Minneapolis Service Center",
+                option3Title: "Option 3: UPS Store Notary",
+                option3Desc: "Find a nearby UPS Store that offers notary services (fee applies).",
+                option3Link: "Find a UPS Store with Notary Services"
+            },
+            es: {
+                title: "Delegación de Autoridad Parental (DOPA)",
+                subtitle: "Formulario de Minnesota - Generar PDF desde cero",
+                aboutTitle: "Acerca de la Delegación de Autoridad Parental",
+                aboutTitleSuffix: "(este formulario)",
+                aboutText: "Si usted es un padre que está preocupado por ser arrestado, detenido o deportado y separado de sus hijos, debe considerar completar una Delegación de Autoridad Parental (DOPA). Una DOPA le permite designar a otro adulto de confianza para que tenga la autoridad legal para cuidar de sus hijos en caso de que usted no pueda. La DOPA puede ser notarizada virtualmente, por los Secretarios de la Ciudad de Minneapolis, o en persona en la mayoría de las tiendas UPS.",
+                section1: "Información del Padre/Tutor y del Niño",
+                countyLabel: "Condado",
+                parentNameLabel: "Su Nombre Completo",
+                childNameLabel: "Nombre Completo del Niño",
+                childBirthdateLabel: "Fecha de Nacimiento del Niño",
+                section2: "Información del Apoderado",
+                attorneyNameLabel: "Nombre Completo del Apoderado",
+                attorneyNote: 'Nota: "Apoderado" es como se llama a la persona que usted nombra; no tiene que ser un abogado.',
+                section3: "Duración de DOPA",
+                durationLabel: "Esta DOPA dura:",
+                oneYear: "Por un año desde la fecha de mi firma",
+                specificDate: "Hasta una fecha específica (menos de un año):",
+                permissionsTitle: "Esta DOPA le da permiso a su Apoderado para:",
+                perm1: "Obtener tratamiento médico para su hijo",
+                perm2: "Inscribir a su hijo en la escuela",
+                perm3: "Proporcionar un hogar, cuidado y supervisión de su hijo",
+                noPermTitle: "NO le da permiso para:",
+                noPerm: "Consentir el matrimonio o adopción de su hijo",
+                legalReqTitle: "Requisito Legal:",
+                legalReqText: "Por ley, debe entregar o enviar por correo una copia de este documento a cualquier otro padre dentro de 30 días de firmarlo, a menos que:",
+                exception1: "El otro padre no tenga derechos de tiempo de crianza o tenga derechos de tiempo de crianza supervisados, O",
+                exception2: "Exista una Orden de Protección vigente contra el otro padre para protegerlo a usted o a su hijo",
+                clearBtn: "Limpiar Formulario",
+                generateBtn: "Generar PDF",
+                generating: "Generando su formulario DOPA desde cero...",
+                notaryTitle: "Siguiente Paso: Notarizar Su Formulario",
+                notaryIntro: "¡Su formulario DOPA ha sido generado! Para que sea legalmente válido, debe firmarlo frente a un notario público con su identificación con foto. Aquí hay tres formas de notarizar su formulario:",
+                option1Title: "Opción 1: Notarización Remota en Línea (Desde Casa)",
+                option1Desc: "Obtenga notarización desde la comodidad de su hogar a través de videollamada.",
+                option1Link: "Búsqueda de Notarios de Minnesota - Seleccione \"Notarización Remota\"",
+                option2Title: "Opción 2: Centro de Servicios de la Ciudad de Minneapolis",
+                option2Desc: "Visite el Centro de Servicios de la Ciudad de Minneapolis en persona (servicio gratuito).",
+                option2Address: "Edificio de Servicio Público, 505 Fourth Ave. S., nivel Skyway, Minneapolis, MN 55415",
+                option2Link: "Centro de Servicios de la Ciudad de Minneapolis",
+                option3Title: "Opción 3: Notario de Tienda UPS",
+                option3Desc: "Encuentre una tienda UPS cercana que ofrezca servicios de notario (se aplica tarifa).",
+                option3Link: "Encuentre una Tienda UPS con Servicios de Notario"
+            },
+            so: {
+                title: "U-Wareejinta Awooda Waalidiinta (DOPA)",
+                subtitle: "Foomka Minnesota - Ku samee PDF bilowga ah",
+                aboutTitle: "Ku saabsan U-wareejinta Awooda Waalidiinta",
+                aboutTitleSuffix: "(foomkan)",
+                aboutText: "Haddii aad tahay waalid ka welwelsan in lagu xiro, lagu haysto, ama laga masaafiyo oo laga sooco carruurtaada waa inaad tixgelisaa dhammaystirka U-wareejinta Awooda Waalidiinta (DOPA). DOPA waxay kuu ogolaanaysaa inaad magacowdo qof weyn kale oo aad ku kalsoon tahay si uu u yeesho awood sharci ah inuu daryeelo carruurtaada haddii aadan karin. DOPA waxaa lagu shahaadin karaa internetka, Xafiisyada Magaalada Minneapolis, ama si toos ah oo ku taal inta badan dukaammada UPS.",
+                section1: "Macluumaadka Waalid/Masuul iyo Ilmaha",
+                countyLabel: "Gobolka",
+                parentNameLabel: "Magacaaga Buuxa",
+                childNameLabel: "Magaca Buuxa ee Ilmaha",
+                childBirthdateLabel: "Taariikhda Dhalashada Ilmaha",
+                section2: "Macluumaadka Wakiilka-Xeerka",
+                attorneyNameLabel: "Magaca Buuxa ee Wakiilka-Xeerka",
+                attorneyNote: 'Fiiro gaar ah: "Wakiilka-Xeerka" waa waxa lagu yiraahdo qofka aad magacowdo - uma baahna inuu noqdo qareen.',
+                section3: "Muddada DOPA",
+                durationLabel: "DOPA-dani waxay socotaa:",
+                oneYear: "Hal sano laga bilaabo taariikhda saxiixayga",
+                specificDate: "Ilaa taariikh gaar ah (ka yar hal sano):",
+                permissionsTitle: "DOPA-dan waxay Wakiilkaaga-Xeerka siisaa ogolaansho uu:",
+                perm1: "Helo daaweyn caafimaad ilmahaaga",
+                perm2: "Dugsiga ku qoro ilmahaaga",
+                perm3: "Siiyo guri, daryeel, iyo kormeer ilmahaaga",
+                noPermTitle: "MA siiso ogolaansho uu:",
+                noPerm: "Raali ka noqdo guurka ama korsashada ilmahaaga",
+                legalReqTitle: "Shuruudda Sharciga:",
+                legalReqText: "Sharciga, waa inaad siisaa ama boosta ugu dirtaa koobiga warqaddan waalid kale gudaha 30 maalmood ka dib markaad saxiixdo, mooyaane:",
+                exception1: "Waalidka kalena aanuu lahayn xuquuqda waqtiga waalidnimada ama uu leeyahay xuquuqda waqtiga waalidnimada la kormeero, AMA",
+                exception2: "Ay jirto Amar Ilaalinta oo socda oo ka gees ah waalidka kale si loola ilaalinayo adiga ama ilmahaaga",
+                clearBtn: "Nadiifi Foomka",
+                generateBtn: "Samee PDF",
+                generating: "Waxaa la sameynayaa foomkaaga DOPA bilowga ah...",
+                notaryTitle: "Tallaabada Xigta: Hel Foomkaaga oo La Shahaado",
+                notaryIntro: "Foomkaaga DOPA waa la sameeyay! Si uu sharci ahaan u noqdo mid sax ah, waa inaad ku saxiixdaa horta noteer caam ah adiga oo wata aqoonsigaaga sawirka leh. Halkan waxaa ah saddex qaab oo aad u heli karto foomkaaga in lagu shahaado:",
+                option1Title: "Doorasho 1: Shahaadintu Internetka (Guriga)",
+                option1Desc: "Hel shahaadin adiga oo jooga gurigaaga iyadoo la adeegsanayo wicitaanka fiidiyowga.",
+                option1Link: "Raadinta Noteerka Minnesota - Dooro \"Shahaadintu Fog\"",
+                option2Title: "Doorasho 2: Xarunta Adeega Magaalada Minneapolis",
+                option2Desc: "Booqo Xarunta Adeega Magaalada Minneapolis si toos ah (adeeg bilaash ah).",
+                option2Address: "Dhismaha Adeegga Dadweynaha, 505 Fourth Ave. S., heerka Skyway, Minneapolis, MN 55415",
+                option2Link: "Xarunta Adeega Magaalada Minneapolis",
+                option3Title: "Doorasho 3: Noteerka Dukaanka UPS",
+                option3Desc: "Hel dukaan UPS oo dhow oo bixiya adeegyada noteer (lacag ayaa la bixiyaa).",
+                option3Link: "Hel Dukaan UPS oo Leh Adeegyada Noteer"
+            },
+            hmn: {
+                title: "Kev Tso Cai Rau Niam Txiv (DOPA)",
+                subtitle: "Daim Ntawv Minnesota - Tsim PDF tshiab",
+                aboutTitle: "Txog Kev Tso Cai Rau Niam Txiv",
+                aboutTitleSuffix: "(daim ntawv no)",
+                aboutText: "Yog koj yog niam txiv uas txhawj txog kev raug ntes, raug kaw, lossis raug xa tawm thiab sib nrauj ntawm koj cov menyuam, koj yuav tsum xav txog ua tiav Kev Tso Cai Rau Niam Txiv (DOPA). DOPA tso cai rau koj xaiv lwm tus neeg laus uas ntseeg siab kom muaj cai raug cai saib xyuas koj cov menyuam yog tias koj ua tsis tau. DOPA tuaj yeem raug notarized hauv computer, los ntawm Lub Nroog Minneapolis Cov Neeg Ua Haujlwm, lossis ntawm tus kheej ntawm feem ntau UPS cov khw.",
+                section1: "Niam Txiv/Tus Saib Xyuas thiab Cov Ntaub Ntawv Menyuam",
+                countyLabel: "Lub Nroog",
+                parentNameLabel: "Koj Lub Npe Tag Nrho",
+                childNameLabel: "Tus Menyuam Lub Npe Tag Nrho",
+                childBirthdateLabel: "Tus Menyuam Hnub Yug",
+                section2: "Tus Neeg Sawv Cev Cov Ntaub Ntawv",
+                attorneyNameLabel: "Tus Neeg Sawv Cev Lub Npe Tag Nrho",
+                attorneyNote: 'Nco tseg: "Tus Neeg Sawv Cev" yog dab tsi tus neeg koj npe hu ua - lawv tsis tas yuav yog tus kws lij choj.',
+                section3: "DOPA Lub Sijhawm",
+                durationLabel: "DOPA no kav ntev:",
+                oneYear: "Rau ib xyoos txij hnub kuv kos npe",
+                specificDate: "Txog ib hnub tshwj xeeb (tsawg dua ib xyoos):",
+                permissionsTitle: "DOPA no muab kev tso cai rau koj Tus Neeg Sawv Cev rau:",
+                perm1: "Tau kev kho mob rau koj tus menyuam",
+                perm2: "Sau npe koj tus menyuam hauv tsev kawm ntawv",
+                perm3: "Muab tsev, kev saib xyuas, thiab kev saib xyuas koj tus menyuam",
+                noPermTitle: "Nws TSIS muab kev tso cai rau:",
+                noPerm: "Pom zoo rau kev sib yuav lossis kev saws me nyuam ntawm koj tus menyuam",
+                legalReqTitle: "Txoj Cai Lij Choj:",
+                legalReqText: "Raws li txoj cai, koj yuav tsum muab lossis xa ntawv ib daim ntawv theej ntawm daim ntawv no mus rau lwm tus niam txiv hauv 30 hnub ntawm kev kos npe rau nws, tshwj tsis yog:",
+                exception1: "Lwm tus niam txiv tsis muaj cai lub sijhawm niam txiv lossis muaj cai lub sijhawm niam txiv saib xyuas, LOSSIS",
+                exception2: "Muaj Tsab Cai Tiv Thaiv uas muaj nyob rau tawm tsam lwm tus niam txiv los tiv thaiv koj lossis koj tus menyuam",
+                clearBtn: "Ntxuav Daim Ntawv",
+                generateBtn: "Tsim PDF",
+                generating: "Tsim koj daim ntawv DOPA los ntawm kos...",
+                notaryTitle: "Kauj Ruam Tom Ntej: Tau Koj Daim Ntawv Notarized",
+                notaryIntro: "Koj daim ntawv DOPA tau tsim lawm! Txhawm rau kom nws raug cai, koj yuav tsum kos npe rau nws nyob rau hauv pem hauv ntej ntawm tus kws lees paub nrog koj daim ID duab. Nov yog peb txoj hauv kev kom tau koj daim ntawv notarized:",
+                option1Title: "Kev Xaiv 1: Kev Notarization Hauv Online Deb (Los Ntawm Tsev)",
+                option1Desc: "Tau notarized ntawm koj lub tsev xis nyob los ntawm kev hu xov tooj video.",
+                option1Link: "Minnesota Notary Saib - Xaiv \"Kev Notarization Deb\"",
+                option2Title: "Kev Xaiv 2: Lub Chaw Pabcuam Hauv Nroog Minneapolis",
+                option2Desc: "Mus ntsib Lub Chaw Pabcuam Hauv Nroog Minneapolis ntawm tus kheej (kev pabcuam dawb).",
+                option2Address: "Lub Tsev Pabcuam Pej Xeem, 505 Fourth Ave. S., Skyway qib, Minneapolis, MN 55415",
+                option2Link: "Lub Chaw Pabcuam Hauv Nroog Minneapolis",
+                option3Title: "Kev Xaiv 3: UPS Khw Notary",
+                option3Desc: "Nrhiav ib lub khw UPS nyob ze uas muaj cov kev pabcuam notary (them nqi).",
+                option3Link: "Nrhiav Lub Khw UPS Nrog Cov Kev Pabcuam Notary"
+            },
+            sw: {
+                title: "Uwakilishi wa Mamlaka ya Wazazi (DOPA)",
+                subtitle: "Fomu ya Minnesota - Tengeneza PDF kutoka Mwanzo",
+                aboutTitle: "Kuhusu Uwakilishi wa Mamlaka ya Wazazi",
+                aboutTitleSuffix: "(fomu hii)",
+                aboutText: "Ikiwa wewe ni mzazi anayejali kukamatwa, kufungwa, au kuhamishwa na kutengwa na watoto wako unapaswa kuzingatia kukamilisha Uwakilishi wa Mamlaka ya Wazazi (DOPA). DOPA inakuruhusu kuchagua mtu mzima mwingine wa kuaminika kuwa na mamlaka ya kisheria ya kuwatunza watoto wako ikiwa huwezi. DOPA inaweza kutiwa saini mbele ya notari kwa njia ya kompyuta, na Makarani wa Jiji la Minneapolis, au kibinafsi katika duka nyingi za UPS.",
+                section1: "Taarifa za Mzazi/Mlezi na Mtoto",
+                countyLabel: "Kaunti",
+                parentNameLabel: "Jina Lako Kamili",
+                childNameLabel: "Jina Kamili la Mtoto",
+                childBirthdateLabel: "Tarehe ya Kuzaliwa ya Mtoto",
+                section2: "Taarifa za Wakala-Kisheria",
+                attorneyNameLabel: "Jina Kamili la Wakala-Kisheria",
+                attorneyNote: 'Kumbuka: "Wakala-Kisheria" ndio wanaitwa mtu unayemchagua - hawalazimiki kuwa wakili.',
+                section3: "Muda wa DOPA",
+                durationLabel: "DOPA hii inadumu:",
+                oneYear: "Kwa mwaka mmoja kutoka tarehe ya saini yangu",
+                specificDate: "Hadi tarehe maalum (chini ya mwaka mmoja):",
+                permissionsTitle: "DOPA hii inampa Wakala-Kisheria wako ruhusa ya:",
+                perm1: "Kupata matibabu ya kimatibabu kwa mtoto wako",
+                perm2: "Kuandikisha mtoto wako shuleni",
+                perm3: "Kutoa nyumba, huduma, na usimamizi wa mtoto wako",
+                noPermTitle: "HAITOI ruhusa ya:",
+                noPerm: "Kukubali ndoa au ukuaji wa mtoto wako",
+                legalReqTitle: "Mahitaji ya Kisheria:",
+                legalReqText: "Kwa sheria, lazima utoe au utume nakala ya hati hii kwa mzazi mwingine yeyote ndani ya siku 30 baada ya kuisaini, isipokuwa:",
+                exception1: "Mzazi mwingine hana haki za wakati wa uzazi au ana haki za wakati wa uzazi zilizosimamishwa, AU",
+                exception2: "Kuna Amri ya Ulinzi inayotekelezwa dhidi ya mzazi mwingine ili kukulinda wewe au mtoto wako",
+                clearBtn: "Safisha Fomu",
+                generateBtn: "Tengeneza PDF",
+                generating: "Inatengeneza fomu yako ya DOPA kutoka mwanzo...",
+                notaryTitle: "Hatua Inayofuata: Pata Fomu Yako Ithibitishwe",
+                notaryIntro: "Fomu yako ya DOPA imetengenezwa! Ili ifanye kazi kisheria, lazima uitie saini mbele ya notari wa umma na kitambulisho chako chenye picha. Hapa kuna njia tatu za kupata fomu yako ithibitishwe:",
+                option1Title: "Chaguo la 1: Uthibitishaji wa Mbali Mtandaoni (Kutoka Nyumbani)",
+                option1Desc: "Pata uthibitishaji kutoka starehe ya nyumbani kwako kupitia simu ya video.",
+                option1Link: "Utafutaji wa Notari wa Minnesota - Chagua \"Uthibitishaji wa Mbali\"",
+                option2Title: "Chaguo la 2: Kituo cha Huduma cha Jiji la Minneapolis",
+                option2Desc: "Tembelea Kituo cha Huduma cha Jiji la Minneapolis kibinafsi (huduma ya bure).",
+                option2Address: "Jengo la Huduma za Umma, 505 Fourth Ave. S., ngazi ya Skyway, Minneapolis, MN 55415",
+                option2Link: "Kituo cha Huduma cha Jiji la Minneapolis",
+                option3Title: "Chaguo la 3: Notari ya Duka la UPS",
+                option3Desc: "Tafuta duka la UPS lililokaribu ambalo linatoa huduma za notari (ada inatumika).",
+                option3Link: "Tafuta Duka la UPS Lenye Huduma za Notari"
+            }
+        };
+
+        let currentLanguage = 'en';
+
+        function changeLanguage(lang) {
+            currentLanguage = lang;
+            
+            // Update active button
+            document.querySelectorAll('.lang-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            event.target.classList.add('active');
+            
+            // Update all translated elements
+            document.querySelectorAll('[data-translate]').forEach(element => {
+                const key = element.getAttribute('data-translate');
+                if (translations[lang] && translations[lang][key]) {
+                    element.textContent = translations[lang][key];
+                }
+            });
+        }
+
     </script>
 </body>
 </html>
