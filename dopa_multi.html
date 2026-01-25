@@ -368,6 +368,8 @@
     <div class="header">
         <h1><span data-translate="title">Delegation of Parental Authority (DOPA)</span></h1>
         <p><span data-translate="subtitle">Minnesota Form - Generate PDF from Scratch</span></p>
+        <p style="font-size:15px; margin-top:20px">More information can be found at <b>Law Help MN</b> <a style="color:white" href="https://www.lawhelpmn.org/self-help-library/fact-sheet/delegation-parental-authority-dopa">here</a>!
+        </p>
         <p style="font-size:12px; margin-top:20px">Made in conjunction with 
             <a style="color:white" href="https://www.linkedin.com/in/hannahlee-burton/" target="_blank">Hannah Burton</a>, 
             <a style="color:white" href="https://www.linkedin.com/in/erin-anderson-b45a84232/" target="_blank">Erin Anderson</a>, 
@@ -540,6 +542,7 @@
             const today = new Date().toISOString().split('T')[0];
             document.getElementById('signatureDate').value = today;
         });*/
+        let helveticaOblique;
         
         // Handle duration radio button changes
         document.querySelectorAll('input[name="duration"]').forEach(radio => {
@@ -576,8 +579,14 @@
             return `${month}/${day}/${year}`;
         }
 
-        // Helper to draw text with word wrapping
+        // Helper to draw text with word wrapping and bilingual font support
         function drawTextWrapped(page, text, x, y, maxWidth, fontSize, font, lineHeight = fontSize * 1.2) {
+            // Check if text contains bilingual separator " / "
+            if (text.includes(' / ')) {
+                return drawBilingualText(page, text, x, y, maxWidth, fontSize, font, lineHeight);
+            }
+            
+            // Regular single-language text
             const words = text.split(' ');
             let line = '';
             let currentY = y;
@@ -601,6 +610,79 @@
             
             return currentY;
         }
+        
+        // Helper to draw bilingual text (English in regular, translation in italic)
+        function drawBilingualText(page, text, x, y, maxWidth, fontSize, font, lineHeight = fontSize * 1.2) {
+            // Split on " / " to get English and translation
+            const separatorIndex = text.indexOf(' / ');
+            const englishPart = text.substring(0, separatorIndex);
+            const translationPart = text.substring(separatorIndex + 3); // +3 to skip " / "
+            
+            let currentY = y;
+            let currentX = x;
+            
+            // Process English words
+            const englishWords = englishPart.split(' ');
+            let line = '';
+            
+            for (let i = 0; i < englishWords.length; i++) {
+                const testLine = line + englishWords[i] + ' ';
+                const testWidth = font.widthOfTextAtSize(testLine, fontSize);
+                
+                if (testWidth > maxWidth && i > 0) {
+                    page.drawText(line.trim(), { x: currentX, y: currentY, size: fontSize, font, color: PDFLib.rgb(0, 0, 0) });
+                    line = englishWords[i] + ' ';
+                    currentY -= lineHeight;
+                    currentX = x;
+                } else {
+                    line = testLine;
+                }
+            }
+            
+            // Draw remaining English text and add separator
+            if (line.trim()) {
+                const lineWidth = font.widthOfTextAtSize(line.trim(), fontSize);
+                page.drawText(line.trim(), { x: currentX, y: currentY, size: fontSize, font, color: PDFLib.rgb(0, 0, 0) });
+                currentX += lineWidth;
+                
+                // Add " / " separator
+                const separatorWidth = font.widthOfTextAtSize(' / ', fontSize);
+                if (currentX + separatorWidth > x + maxWidth) {
+                    // Move to next line
+                    currentY -= lineHeight;
+                    currentX = x;
+                }
+                page.drawText(' / ', { x: currentX, y: currentY, size: fontSize, font, color: PDFLib.rgb(0, 0, 0) });
+                currentX += separatorWidth;
+            }
+            
+            // Process translation words in italic
+            const translationWords = translationPart.split(' ');
+            line = '';
+            
+            for (let i = 0; i < translationWords.length; i++) {
+                const testLine = line + translationWords[i] + ' ';
+                const testWidth = helveticaOblique.widthOfTextAtSize(testLine, fontSize);
+                
+                // Check if we need to wrap
+                if (currentX + testWidth > x + maxWidth && line !== '') {
+                    // Draw current line
+                    page.drawText(line.trim(), { x: currentX, y: currentY, size: fontSize, font: helveticaOblique, color: PDFLib.rgb(0, 0, 0) });
+                    line = translationWords[i] + ' ';
+                    currentY -= lineHeight;
+                    currentX = x;
+                } else {
+                    line = testLine;
+                }
+            }
+            
+            // Draw remaining translation text
+            if (line.trim()) {
+                page.drawText(line.trim(), { x: currentX, y: currentY, size: fontSize, font: helveticaOblique, color: PDFLib.rgb(0, 0, 0) });
+            }
+            
+            return currentY;
+        }
 
         function drawCenteredText(page, font, text, size, y, rgb) {
             const pageWidth = page.getWidth();
@@ -613,7 +695,7 @@
                 y: y,
                 size: size,
                 font: font,
-                color: rgb(0, 0, 0), // Black color
+                color: PDFLib.rgb(0, 0, 0), // Black color
             });
         }
 
@@ -632,42 +714,49 @@
                 
                 // Create a new PDF document
                 const pdfDoc = await PDFDocument.create();
+                const translation_space = 15;
                 
                 // Embed fonts
                 const helvetica = await pdfDoc.embedFont(StandardFonts.Helvetica);
                 const helveticaBold = await pdfDoc.embedFont(StandardFonts.HelveticaBold);
-                const helveticaOblique = await pdfDoc.embedFont(StandardFonts.HelveticaOblique);
+                helveticaOblique = await pdfDoc.embedFont(StandardFonts.HelveticaOblique);
                 
                 const pageWidth = 612; // 8.5 inches
                 const pageHeight = 792; // 11 inches
                 const margin = 50;
-                
-                // ==================== PAGE 1: Instructions ====================
-                const page1 = pdfDoc.addPage([pageWidth, pageHeight]);
+
+                // Page management variables
+                let currentPage = pdfDoc.addPage([pageWidth, pageHeight]);
                 let y = pageHeight - margin;
+                let pageNumber = 1;
+                const bottomMargin = 200; // Reserve space for page number
+                
+                // Helper function to check if we need a new page
+                function checkNewPage() {
+                    if (y < bottomMargin) {
+                        // Add page number to current page before creating new one
+                        drawCenteredText(currentPage, helvetica, `Page ${pageNumber}`, 9, 25, rgb);
+                        
+                        // Create new page
+                        currentPage = pdfDoc.addPage([pageWidth, pageHeight]);
+                        y = pageHeight - margin;
+                        pageNumber++;
+                    }
+                    return currentPage;
+                }
+                
+                // ==================== PDF Content Generation ====================
                 
                 // Instructions section
-                page1.drawText('The Delegation of Parental Authority (DOPA) form is on the next 2 pages.', {
-                    x: margin,
-                    y: y,
-                    size: 10,
-                    font: helvetica,
-                    color: rgb(0, 0, 0)
-                });
+                y = drawWithTranslation(currentPage, 'The Delegation of Parental Authority (DOPA) form is on the following pages.', 'dopaFormNext', margin, y, pageWidth - margin * 2, 10, helvetica);
                 y -= 15;
                 
                 // After you fill out your form section
-                page1.drawText('After you fill out your form:', {
-                    x: margin,
-                    y: y,
-                    size: 10,
-                    font: helvetica,
-                    color: rgb(0, 0, 0)
-                });
+                y = drawWithTranslation(currentPage, 'After you fill out your form:', 'afterFillOut', margin, y, pageWidth - margin * 2, 10, helvetica);
                 y -= 25;
                 
                 // Bullet point with box
-                page1.drawCircle({
+                currentPage.drawCircle({
                     x: margin,
                     y: y - 15,
                     width: 10,
@@ -676,55 +765,30 @@
                     color: rgb(0, 0, 0),
                 });
                 
-                const bullet1 = 'DO NOT sign or date the form right away.';
-                page1.drawText(bullet1, {
-                    x: margin + 20,
-                    y: y - 3,
-                    size: 11,
-                    font: helveticaBold,
-                    color: rgb(0, 0, 0)
-                });
+                y = drawWithTranslation(currentPage, 'DO NOT sign or date the form right away.', 'doNotSign', margin + 20, y - 3, pageWidth - margin * 2 - 40, 11, helveticaBold);
                 y -= 20;
                 
-                const text1 = 'You need to sign and date your DOPA in front of a notary public. Bring';
-                page1.drawText(text1, {
-                    x: margin + 20,
-                    y: y,
-                    size: 10,
-                    font: helvetica,
-                    color: rgb(0, 0, 0)
-                });
-                y -= 15;
-                
-                page1.drawText('your photo ID because the notary public will need to check it.', {
-                    x: margin + 20,
-                    y: y,
-                    size: 10,
-                    font: helvetica,
-                    color: rgb(0, 0, 0)
-                });
+                // English text
+                const englishText1 = 'You need to sign and date your DOPA in front of a notary public. Bring your photo ID because the notary public will need to check it.';
+                y = drawTextWrapped(currentPage, englishText1, margin + 20, y, pageWidth - margin * 2 - 40, 10, helvetica);
+                // Translation
+                const trans1 = t('needToSign');
+                const trans2 = t('photoId');
+                if (trans1 && trans2) {
+                    y -= translation_space;
+                    const translationText = trans1 + ' ' + trans2;
+                    y = drawTextWrappedWithColor(currentPage, translationText, margin + 20, y, pageWidth - margin * 2 - 40, 9, helveticaOblique, PDFLib.rgb(0.3, 0.3, 0.3));
+                }
                 y -= 20;
                 
-                page1.drawText('Your attorney-in-fact does NOT need to sign it in front of a notary.', {
-                    x: margin + 20,
-                    y: y,
-                    size: 10,
-                    font: helvetica,
-                    color: rgb(0, 0, 0)
-                });
+                y = drawWithTranslation(currentPage, 'Your attorney-in-fact does NOT need to sign it in front of a notary.', 'attorneyNoNotary', margin + 20, y, pageWidth - margin * 2 - 40, 10, helvetica);
                 y -= 15;
                 
-                page1.drawText('They do need to sign it before using it though.', {
-                    x: margin + 20,
-                    y: y,
-                    size: 10,
-                    font: helvetica,
-                    color: rgb(0, 0, 0)
-                });
+                y = drawWithTranslation(currentPage, 'They do need to sign it before using it though.', 'needSignBefore', margin + 20, y, pageWidth - margin * 2 - 40, 10, helvetica);
                 y -= 30;
                 
                 // bullet
-                page1.drawCircle({
+                currentPage.drawCircle({
                     x: margin,
                     y: y - 15,
                     width: 10,
@@ -733,150 +797,192 @@
                     color: rgb(0, 0, 0),
                 });                
                 
-                page1.drawText('Make copies AFTER the form is signed.', {
-                    x: margin + 20,
-                    y: y - 3,
-                    size: 11,
-                    font: helveticaBold,
-                    color: rgb(0, 0, 0)
-                });
+                y = drawWithTranslation(currentPage, 'Make copies AFTER the form is signed.', 'makeCopiesAfter', margin + 20, y - 3, pageWidth - margin * 2 - 40, 11, helveticaBold);
                 y -= 20;
                 
-                page1.drawText('Make copies of your form after the notary signs and stamps it. Keep', {
-                    x: margin + 20,
-                    y: y,
-                    size: 10,
-                    font: helvetica,
-                    color: rgb(0, 0, 0)
-                });
-                y -= 15;
-                
-                page1.drawText('one copy for your records and give the original to your Attorney-in-', {
-                    x: margin + 20,
-                    y: y,
-                    size: 10,
-                    font: helvetica,
-                    color: rgb(0, 0, 0)
-                });
-                y -= 15;
-                
-                page1.drawText('Fact.', {
-                    x: margin + 20,
-                    y: y,
-                    size: 10,
-                    font: helvetica,
-                    color: rgb(0, 0, 0)
-                });
+                // English text
+                const copyEnglish = 'Make copies of your form after the notary signs and stamps it. Keep one copy for your records and give the original to your Attorney-in-Fact.';
+                y = drawTextWrapped(currentPage, copyEnglish, margin + 20, y, pageWidth - margin * 2 - 40, 10, helvetica);
+                // Translation
+                const transCopy1 = t('makeCopiesText');
+                const transCopy2 = t('oneForRecords');
+                const transCopy3 = t('fact');
+                if (transCopy1 && transCopy2 && transCopy3) {
+                    y -= translation_space;
+                    const copyTranslation = transCopy1 + ' ' + transCopy2 + ' ' + transCopy3;
+                    y = drawTextWrappedWithColor(currentPage, copyTranslation, margin + 20, y, pageWidth - margin * 2 - 40, 9, helveticaOblique, PDFLib.rgb(0.3, 0.3, 0.3));
+                }
                 y -= 30;
                 
                 // Third bullet
-                page1.drawCircle({
-                    x: margin,
-                    y: y - 15,
-                    width: 10,
-                    height: 10,
-                    size: 2,
-                    color: rgb(0, 0, 0),
-                }); 
+                currentPage.drawCircle({x: margin, y: y - 15, width: 10, height: 10, size: 2, color: rgb(0, 0, 0), });
                 
-                page1.drawText('For more information:', {
-                    x: margin + 20,
-                    y: y - 3,
-                    size: 11,
-                    font: helveticaBold,
-                    color: rgb(0, 0, 0)
-                });
+                y = drawWithTranslation(currentPage, 'For more information:', 'forMoreInfo', margin + 20, y - 3, pageWidth - margin * 2 - 40, 11, helveticaBold);
                 y -= 20;
                 
-                page1.drawText('Read the Delegation of Parental Authority (DOPA) fact sheet at', {
-                    x: margin + 20,
-                    y: y,
-                    size: 10,
-                    font: helvetica,
-                    color: rgb(0, 0, 0)
-                });
+                y = drawWithTranslation(currentPage, 'Read the Delegation of Parental Authority (DOPA) fact sheet at', 'readFactSheet', margin + 20, y, pageWidth - margin * 2 - 40, 10, helvetica);
                 y -= 15;
                 
-                page1.drawText('http://bit.ly/2mxfa47.', {
-                    x: margin + 20,
-                    y: y,
-                    size: 10,
-                    font: helvetica,
-                    color: rgb(0, 0, 0.7)
-                });
+                currentPage.drawText('http://bit.ly/2mxfa47.', {x: margin + 20, y: y, size: 10, font: helvetica, color: rgb(0, 0, 0.7) });
                 
+
+                // new page
+                currentPage = pdfDoc.addPage([pageWidth, pageHeight]);
+                y = pageHeight - 50;
+
                 // ==================== PAGE 2: Main Form ====================
-                const page2 = pdfDoc.addPage([pageWidth, pageHeight]);
-                y = pageHeight - margin;
-                y -= 30;
-                
-                // Title
-                drawCenteredText(page2, helveticaBold, 'DELEGATION OF PARENTAL AUTHORITY (DOPA)', 10, y, rgb) 
+                                // Title
+                drawCenteredText(currentPage, helveticaBold, 'DELEGATION OF PARENTAL AUTHORITY (DOPA)', 10, y, rgb);
+                const titleTrans = t('delegationTitle');
+                if (titleTrans) {
+                    y -= 12;
+                    drawCenteredText(currentPage, helveticaOblique, titleTrans, 9, y, PDFLib.rgb(0.3, 0.3, 0.3));
+                }
                 y -= 20;
-                drawCenteredText(page2, helvetica, 'Delegation of Powers by Parent Minn. Stat. § 524.5-211', 10, y, rgb)
+                drawCenteredText(currentPage, helvetica, 'Delegation of Powers by Parent Minn. Stat. § 524.5-211', 10, y, rgb);
+                const subtitleTrans = t('delegationSubtitle');
+                if (subtitleTrans) {
+                    y -= 12;
+                    drawCenteredText(currentPage, helveticaOblique, subtitleTrans, 9, y, PDFLib.rgb(0.3, 0.3, 0.3));
+                }
                 y -= 30;
                 
                 // State/County section
-                page2.drawText('STATE OF MINNESOTA', {x: margin, y: y, size: 10, font: helveticaBold, color: rgb(0, 0, 0) });
-                page2.drawText(')', {x: margin + 200, y: y, size: 10, font: helveticaBold, color: rgb(0, 0, 0) });
+                currentPage.drawText('STATE OF MINNESOTA', {x: margin, y: y, size: 10, font: helveticaBold, color: rgb(0, 0, 0) });
+                currentPage.drawText(')', {x: margin + 200, y: y, size: 10, font: helveticaBold, color: rgb(0, 0, 0) });
+                const stateTrans = t('stateOfMN');
+                if (stateTrans) {
+                    y -= 12;
+                    currentPage.drawText(stateTrans, {x: margin, y: y, size: 9, font: helveticaOblique, color: PDFLib.rgb(0.3, 0.3, 0.3) });
+                }
                 y -= 15;
                 
-                page2.drawText(') ss.', {x: margin + 200, y: y, size: 10, font: helveticaBold, color: rgb(0, 0, 0) });
+                currentPage.drawText(') ss.', {x: margin + 200, y: y, size: 10, font: helveticaBold, color: rgb(0, 0, 0) });
                 y -= 15;
                 
-                page2.drawText(`COUNTY OF ${data.county.toUpperCase()}`, {x: margin, y: y, size: 10, font: helveticaBold, color: rgb(0, 0, 0) });
-                page2.drawText(')', {x: margin + 200, y: y, size: 10, font: helveticaBold, color: rgb(0, 0, 0) });
+                currentPage.drawText('COUNTY OF ' + data.county.toUpperCase(), {x: margin, y: y, size: 10, font: helveticaBold, color: rgb(0, 0, 0) });
+                currentPage.drawText(')', {x: margin + 200, y: y, size: 10, font: helveticaBold, color: rgb(0, 0, 0) });
+                const countyTrans = t('countyOf');
+                if (countyTrans) {
+                    y -= 12;
+                    currentPage.drawText(countyTrans + ' ' + data.county.toUpperCase(), {x: margin, y: y, size: 9, font: helveticaOblique, color: PDFLib.rgb(0.3, 0.3, 0.3) });
+                }
                 y -= 30;
                 
+                currentPage = checkNewPage();
                 // Section 1
-                page2.drawText('1.', {x: margin, y: y, size: 10, font: helvetica, color: rgb(0, 0, 0) });
-                page2.drawText('My name is _____________________________________________.', {x: margin + 20, y: y, size: 10, font: helvetica, color: rgb(0, 0, 0) });
-                page2.drawText(data.parentName, {x: margin + 90, y: y, size: 10, font: helveticaBold, color: rgb(0, 0, 0) });
+                currentPage.drawText('1.', {x: margin, y: y, size: 10, font: helvetica, color: rgb(0, 0, 0) });
+                // Draw English label
+                y = drawTextWrapped(currentPage, 'My name is', margin + 20, y, pageWidth - margin * 2 - 40, 10, helvetica);
+                // Draw translation
+                const myNameTrans = t('myNameIs');
+                if (myNameTrans) {
+                    y -= translation_space;
+                    y = drawTextWrappedWithColor(currentPage, myNameTrans, margin + 20, y, pageWidth - margin * 2 - 40, 9, helveticaOblique, PDFLib.rgb(0.3, 0.3, 0.3));
+                }
+                y -= 15;
+                // Draw underscores and data
+                currentPage.drawText('_____________________________________________.', {x: margin + 20, y: y, size: 10, font: helvetica, color: rgb(0, 0, 0) });
+                currentPage.drawText(data.parentName, {x: margin + 20, y: y, size: 10, font: helveticaBold, color: rgb(0, 0, 0) });
                 y -= 12;
                 
-                page2.drawText('(your name)', {x: margin + 220, y: y, size: 8, font: helvetica, color: rgb(0.4, 0.4, 0.4) });
+                currentPage.drawText('(your name)', {x: margin + 220, y: y, size: 8, font: helvetica, color: rgb(0.4, 0.4, 0.4) });
+                const yourNameTrans = t('yourName');
+                if (yourNameTrans) {
+                    currentPage.drawText(yourNameTrans, {x: margin + 320, y: y, size: 7, font: helveticaOblique, color: PDFLib.rgb(0.4, 0.4, 0.4) });
+                }
                 y -= 20;
                 
-                page2.drawText('I am the parent of _____________________________________________.', {x: margin + 20, y: y, size: 10, font: helvetica, color: rgb(0, 0, 0) });
-                
-                page2.drawText(data.childName, {x: margin + 115, y: y, size: 10, font: helveticaBold, color: rgb(0, 0, 0) });
+                // Draw English label
+                y = drawTextWrapped(currentPage, 'I am the parent of', margin + 20, y, pageWidth - margin * 2 - 40, 10, helvetica);
+                // Draw translation
+                const parentOfTrans = t('iAmParentOf');
+                if (parentOfTrans) {
+                    y -= translation_space;
+                    y = drawTextWrappedWithColor(currentPage, parentOfTrans, margin + 20, y, pageWidth - margin * 2 - 40, 9, helveticaOblique, PDFLib.rgb(0.3, 0.3, 0.3));
+                }
+                y -= 15;
+                // Draw underscores and data
+                currentPage.drawText('_____________________________________________.', {x: margin + 20, y: y, size: 10, font: helvetica, color: rgb(0, 0, 0) });
+                currentPage.drawText(data.childName, {x: margin + 20, y: y, size: 10, font: helveticaBold, color: rgb(0, 0, 0) });
                 y -= 12;
                 
-                page2.drawText('(your child\'s name)', {x: margin + 220, y: y, size: 8, font: helvetica, color: rgb(0.4, 0.4, 0.4) });
+                currentPage.drawText('(your child\'s name)', {x: margin + 220, y: y, size: 8, font: helvetica, color: rgb(0.4, 0.4, 0.4) });
+                const childNameLabelTrans = t('yourChildName');
+                if (childNameLabelTrans) {
+                    currentPage.drawText(childNameLabelTrans, {x: margin + 320, y: y, size: 7, font: helveticaOblique, color: PDFLib.rgb(0.4, 0.4, 0.4) });
+                }
                 y -= 20;
                 
-                page2.drawText(`My child's birthdate is _____________________________________________.`, {x: margin + 20, y: y, size: 10, font: helvetica, color: rgb(0, 0, 0) });
-                page2.drawText(formatDate(data.childBirthdate), {x: margin + 125, y: y, size: 10, font: helvetica, color: rgb(0, 0, 0) });
+                // Draw English label
+                y = drawTextWrapped(currentPage, 'My child\'s birthdate is', margin + 20, y, pageWidth - margin * 2 - 40, 10, helvetica);
+                // Draw translation
+                const birthdateTrans = t('childBirthdate');
+                if (birthdateTrans) {
+                    y -= translation_space;
+                    y = drawTextWrappedWithColor(currentPage, birthdateTrans, margin + 20, y, pageWidth - margin * 2 - 40, 9, helveticaOblique, PDFLib.rgb(0.3, 0.3, 0.3));
+                }
+                y -= 15;
+                // Draw underscores and data
+                currentPage.drawText('_____________________________________________.', {x: margin + 20, y: y, size: 10, font: helvetica, color: rgb(0, 0, 0) });
+                currentPage.drawText(formatDate(data.childBirthdate), {x: margin + 20, y: y, size: 10, font: helvetica, color: rgb(0, 0, 0) });
                 y -= 12;
                 
-                page2.drawText('(your child\'s birthday)', {x: margin + 220, y: y, size: 8, font: helvetica, color: rgb(0.4, 0.4, 0.4) });
+                currentPage.drawText('(your child\'s birthday)', {x: margin + 220, y: y, size: 8, font: helvetica, color: rgb(0.4, 0.4, 0.4) });
+                const birthdayLabelTrans = t('yourChildBirthday');
+                if (birthdayLabelTrans) {
+                    currentPage.drawText(birthdayLabelTrans, {x: margin + 330, y: y, size: 7, font: helveticaOblique, color: PDFLib.rgb(0.4, 0.4, 0.4) });
+                }
                 y -= 25;
                 
+                currentPage = checkNewPage();
                 // Section 2
-                page2.drawText('2.', {x: margin, y: y, size: 10, font: helvetica, color: rgb(0, 0, 0) });  
-                page2.drawText('I appoint _____________________________________________, to be my legal Attorney-', {x: margin + 20, y: y, size: 10, font: helvetica, color: rgb(0, 0, 0) });  
-                page2.drawText(data.attorneyName, {x: margin + 75, y: y, size: 10, font: helveticaBold, color: rgb(0, 0, 0) });
+                currentPage.drawText('2.', {x: margin, y: y, size: 10, font: helvetica, color: rgb(0, 0, 0) });
+                // Draw English label
+                y = drawTextWrapped(currentPage, 'I appoint', margin + 20, y, pageWidth - margin * 2 - 40, 10, helvetica);
+                // Draw translation
+                const appointTrans = t('iAppoint');
+                if (appointTrans) {
+                    y -= translation_space;
+                    y = drawTextWrappedWithColor(currentPage, appointTrans, margin + 20, y, pageWidth - margin * 2 - 40, 9, helveticaOblique, PDFLib.rgb(0.3, 0.3, 0.3));
+                }
+                y -= 15;
+                // Draw underscores and data
+                currentPage.drawText('_____________________________________________, to be my legal Attorney-', {x: margin + 20, y: y, size: 10, font: helvetica, color: rgb(0, 0, 0) });
+                currentPage.drawText(data.attorneyName, {x: margin + 20, y: y, size: 10, font: helveticaBold, color: rgb(0, 0, 0) });
                 y -= 15;
                 
-                page2.drawText(`in-Fact to have parental authority over my child, ${data.childName}.`, {x: margin + 20, y: y, size: 10, font: helvetica, color: rgb(0, 0, 0) });
+                // English text
+                y = drawTextWrapped(currentPage, 'in-Fact to have parental authority over my child, ' + data.childName + '.', margin + 20, y, pageWidth - margin * 2 - 40, 10, helvetica);
+                // Translation
+                const inFactTrans = t('inFactParental');
+                if (inFactTrans) {
+                    y -= translation_space;
+                    y = drawTextWrappedWithColor(currentPage, inFactTrans + ' ' + data.childName + '.', margin + 20, y, pageWidth - margin * 2 - 40, 9, helveticaOblique, PDFLib.rgb(0.3, 0.3, 0.3));
+                }
                 y -= 15;
                 
-                const noteText = 'Note: Attorney-in-Fact is what the person you name to care for your child is called. That person does not have to be';
-                page2.drawText(noteText, {x: margin, y: y, size: 8, font: helvetica, color: rgb(0.3, 0.3, 0.3) });
-                y -= 12;
-                
-                page2.drawText('an attorney.', {x: margin, y: y, size: 8, font: helvetica, color: rgb(0.3, 0.3, 0.3) });
+                // English note
+                const noteEnglish = 'Note: Attorney-in-Fact is what the person you name to care for your child is called. That person does not have to be an attorney.';
+                y = drawTextWrapped(currentPage, noteEnglish, margin, y, pageWidth - margin * 2, 8, helvetica);
+                // Translation
+                const noteTrans1 = t('noteAttorney');
+                const noteTrans2 = t('anAttorney');
+                if (noteTrans1 && noteTrans2) {
+                    y -= translation_space;
+                    y = drawTextWrappedWithColor(currentPage, noteTrans1 + ' ' + noteTrans2, margin, y, pageWidth - margin * 2, 7, helveticaOblique, PDFLib.rgb(0.3, 0.3, 0.3));
+                }
                 y -= 25;
                 
                 // Duration section
-                page2.drawText('This DOPA lasts: (check one)', {x: margin, y: y, size: 10, font: helvetica, color: rgb(0, 0, 0) });
+                y = drawWithTranslation(currentPage, 'This DOPA lasts: (check one)', 'dopaLasts', margin, y, pageWidth - margin * 2, 10, helvetica);
                 y -= 20;
                 
                 // Checkbox for one year
-                page2.drawRectangle({x: margin + 10, y: y - 10, width: 12, height: 12, borderColor: rgb(0, 0, 0), borderWidth: 1 });
+                currentPage.drawRectangle({x: margin + 10, y: y - 10, width: 12, height: 12, borderColor: rgb(0, 0, 0), borderWidth: 1 });
                 
                 if (data.duration === 'oneYear') {
-                    page2.drawText('X', {
+                    currentPage.drawText('X', {
                         x: margin + 13,
                         y: y - 8,
                         size: 10,
@@ -885,17 +991,17 @@
                     });
                 }
                 
-                page2.drawText('For one year from the date of my signature', {x: margin + 30, y: y - 3, size: 10, font: helvetica, color: rgb(0, 0, 0) });
+                y = drawWithTranslation(currentPage, 'For one year from the date of my signature', 'oneYearFrom', margin + 30, y - 3, pageWidth - margin * 2 - 60, 10, helvetica);
                 y -= 20;
                 
-                page2.drawText('OR', {x: margin + 10, y: y, size: 10, font: helveticaBold, color: rgb(0, 0, 0) });
+                y = drawWithTranslation(currentPage, 'OR', 'orText', margin + 10, y, pageWidth - margin * 2 - 20, 10, helveticaBold);
                 y -= 20;
                 
                 // Checkbox for specific date
-                page2.drawRectangle({x: margin + 10, y: y - 10, width: 12, height: 12, borderColor: rgb(0, 0, 0), borderWidth: 1 });
+                currentPage.drawRectangle({x: margin + 10, y: y - 10, width: 12, height: 12, borderColor: rgb(0, 0, 0), borderWidth: 1 });
                 
                 if (data.duration === 'specific') {
-                    page2.drawText('X', {
+                    currentPage.drawText('X', {
                         x: margin + 13,
                         y: y - 8,
                         size: 10,
@@ -908,136 +1014,163 @@
                     ? formatDate(data.specificEndDate) 
                     : '___________________';
                 
-                page2.drawText(`until ${endDateText}, (fill in date) which is less than one year following`, {x: margin + 30, y: y - 3, size: 10, font: helvetica, color: rgb(0, 0, 0) });
-                y -= 15;
-                
-                page2.drawText('the date of my signature.', {x: margin + 30, y: y, size: 10, font: helvetica, color: rgb(0, 0, 0) });
+                // English text
+                const untilEnglish = 'until ' + endDateText + ', (fill in date) which is less than one year following the date of my signature.';
+                y = drawTextWrapped(currentPage, untilEnglish, margin + 30, y - 3, pageWidth - margin * 2 - 60, 10, helvetica);
+                // Translation
+                const untilTrans1 = t('untilDate');
+                const untilTrans2 = t('fillInDate');
+                const untilTrans3 = t('dateOfSig');
+                if (untilTrans1 && untilTrans2 && untilTrans3) {
+                    y -= translation_space;
+                    const untilTransText = untilTrans1 + ' ' + endDateText + untilTrans2 + ' ' + untilTrans3;
+                    y = drawTextWrappedWithColor(currentPage, untilTransText, margin + 30, y, pageWidth - margin * 2 - 60, 9, helveticaOblique, PDFLib.rgb(0.3, 0.3, 0.3));
+                }
                 y -= 25;
                 
-                // Section 3
-                page2.drawText('3.', {x: margin, y: y, size: 10, font: helvetica, color: rgb(0, 0, 0) });
-                page2.drawText('This DOPA gives my Attorney-in-Fact permission to care for and make decisions about my', {x: margin + 20, y: y, size: 10, font: helvetica, color: rgb(0, 0, 0) });
-                y -= 15;
-                
-                page2.drawText('child named above. These decisions include, but are not limited to:', {x: margin + 20, y: y, size: 10, font: helvetica, color: rgb(0, 0, 0) });
+                currentPage = checkNewPage();
+                // Section 3 - All English first, then all translations
+                currentPage.drawText('3.', {x: margin, y: y, size: 10, font: helvetica, color: rgb(0, 0, 0) });
+                // English text - main sentence
+                const section3English = 'This DOPA gives my Attorney-in-Fact permission to care for and make decisions about my child named above. These decisions include, but are not limited to:';
+                y = drawTextWrapped(currentPage, section3English, margin + 20, y, pageWidth - margin * 2 - 40, 10, helvetica);
                 y -= 20;
                 
-                page2.drawText('a. Getting medical treatment for my child', {x: margin + 40, y: y, size: 10, font: helvetica, color: rgb(0, 0, 0) });
+                // English sub-bullets
+                y = drawTextWrapped(currentPage, 'a. Getting medical treatment for my child', margin + 40, y, pageWidth - margin * 2 - 80, 10, helvetica);
                 y -= 15;
-                
-                page2.drawText('b. Enrolling my child in school', {x: margin + 40, y: y, size: 10, font: helvetica, color: rgb(0, 0, 0) });
+                y = drawTextWrapped(currentPage, 'b. Enrolling my child in school', margin + 40, y, pageWidth - margin * 2 - 80, 10, helvetica);
                 y -= 15;
-                
-                page2.drawText('c. Providing a home, care, and supervision of my child', {x: margin + 40, y: y, size: 10, font: helvetica, color: rgb(0, 0, 0) });
-                y -= 25;
-                
-                // Section 4
-                page2.drawText('4.', {x: margin, y: y, size: 10, font: helvetica, color: rgb(0, 0, 0) });
-                page2.drawText('This DOPA does not give my Attorney-in-Fact permission to consent to the marriage or', {x: margin + 20, y: y, size: 10, font: helvetica, color: rgb(0, 0, 0) });
-                y -= 15;
-                
-                page2.drawText('adoption of my child.', {
-                    x: margin + 20,
-                    y: y,
-                    size: 10,
-                    font: helvetica,
-                    color: rgb(0, 0, 0)
-                });
-                y -= 25;
-                
-                // Section 5
-                page2.drawText('5.', {x: margin, y: y, size: 10, font: helvetica, color: rgb(0, 0, 0) }); 
-                page2.drawText('I understand that by law I have to give or mail a copy of this document to any other parent', {x: margin + 20, y: y, size: 10, font: helvetica, color: rgb(0, 0, 0) }); 
-                y -= 15;
-                
-                page2.drawText('within 30 days of signing it unless:', {
-                    x: margin + 20,
-                    y: y,
-                    size: 10,
-                    font: helvetica,
-                    color: rgb(0, 0, 0)
-                });
+                y = drawTextWrapped(currentPage, 'c. Providing a home, care, and supervision of my child', margin + 40, y, pageWidth - margin * 2 - 80, 10, helvetica);
                 y -= 20;
                 
-                page2.drawText('a. The other parent does not have parenting time rights or has supervised parenting', {
-                    x: margin + 40,
-                    y: y,
-                    size: 10,
-                    font: helvetica,
-                    color: rgb(0, 0, 0)
-                });
+                // Translation - all together
+                const sec3Trans1 = t('dopaGivesPermission');
+                const sec3Trans2 = t('childNamedAbove');
+                const sec3TransA = t('getMedical');
+                const sec3TransB = t('enrollSchool');
+                const sec3TransC = t('provideHome');
+                
+                if (sec3Trans1 && sec3Trans2) {
+                    y -= translation_space;
+                    const sec3MainTrans = sec3Trans1 + ' ' + sec3Trans2;
+                    y = drawTextWrappedWithColor(currentPage, sec3MainTrans, margin + 20, y, pageWidth - margin * 2 - 40, 9, helveticaOblique, PDFLib.rgb(0.3, 0.3, 0.3));
+                    y -= 15;
+                    
+                    if (sec3TransA) {
+                        y = drawTextWrappedWithColor(currentPage, sec3TransA, margin + 40, y, pageWidth - margin * 2 - 80, 9, helveticaOblique, PDFLib.rgb(0.3, 0.3, 0.3));
+                        y -= 12;
+                    }
+                    if (sec3TransB) {
+                        y = drawTextWrappedWithColor(currentPage, sec3TransB, margin + 40, y, pageWidth - margin * 2 - 80, 9, helveticaOblique, PDFLib.rgb(0.3, 0.3, 0.3));
+                        y -= 12;
+                    }
+                    if (sec3TransC) {
+                        y = drawTextWrappedWithColor(currentPage, sec3TransC, margin + 40, y, pageWidth - margin * 2 - 80, 9, helveticaOblique, PDFLib.rgb(0.3, 0.3, 0.3));
+                    }
+                }
+                y -= 25;
+                
+                currentPage = checkNewPage();
+                // Section 4 - All English first, then translation
+                currentPage.drawText('4.', {x: margin, y: y, size: 10, font: helvetica, color: rgb(0, 0, 0) });
+                // English text
+                const section4English = 'This DOPA does not give my Attorney-in-Fact permission to consent to the marriage or adoption of my child.';
+                y = drawTextWrapped(currentPage, section4English, margin + 20, y, pageWidth - margin * 2 - 40, 10, helvetica);
+                
+                // Translation
+                const sec4Trans1 = t('dopaNotGive');
+                const sec4Trans2 = t('adoptionChild');
+                if (sec4Trans1 && sec4Trans2) {
+                    y -= translation_space;
+                    const sec4TransText = sec4Trans1 + ' ' + sec4Trans2;
+                    y = drawTextWrappedWithColor(currentPage, sec4TransText, margin + 20, y, pageWidth - margin * 2 - 40, 9, helveticaOblique, PDFLib.rgb(0.3, 0.3, 0.3));
+                }
+                y -= 25;
+                
+                currentPage = checkNewPage();
+                // Section 5 - All English with sub-bullets first, then all translations
+                currentPage.drawText('5.', {x: margin, y: y, size: 10, font: helvetica, color: rgb(0, 0, 0) });
+                // English main text
+                const section5English = 'I understand that by law I have to give or mail a copy of this document to any other parent within 30 days of signing it unless:';
+                y = drawTextWrapped(currentPage, section5English, margin + 20, y, pageWidth - margin * 2 - 40, 10, helvetica);
+                y -= 20;
+                
+                // English sub-bullets
+                const item5aEnglish = 'a. The other parent does not have parenting time rights or has supervised parenting time rights';
+                y = drawTextWrapped(currentPage, item5aEnglish, margin + 40, y, pageWidth - margin * 2 - 80, 10, helvetica);
                 y -= 15;
                 
-                page2.drawText('time rights', {
-                    x: margin + 50,
-                    y: y,
-                    size: 10,
-                    font: helvetica,
-                    color: rgb(0, 0, 0)
-                });
+                currentPage.drawText('OR', {x: margin + 40, y: y, size: 10, font: helveticaBold, color: rgb(0, 0, 0) });
                 y -= 15;
                 
-                page2.drawText('OR', {
-                    x: margin + 40,
-                    y: y,
-                    size: 10,
-                    font: helveticaBold,
-                    color: rgb(0, 0, 0)
-                });
-                y -= 15;
+                const item5bEnglish = 'b. There is an existing Order for Protection in effect against the other parent to protect me or my child.';
+                y = drawTextWrapped(currentPage, item5bEnglish, margin + 40, y, pageWidth - margin * 2 - 80, 10, helvetica);
+                y -= 20;
                 
-                page2.drawText('b. There is an existing Order for Protection in effect against the other parent to protect', {
-                    x: margin + 40,
-                    y: y,
-                    size: 10,
-                    font: helvetica,
-                    color: rgb(0, 0, 0)
-                });
-                y -= 15;
+                // Translation - all together
+                const sec5Trans1 = t('iUnderstand');
+                const sec5Trans2 = t('within30Days');
+                const sec5TransA1 = t('otherParentNo');
+                const sec5TransA2 = t('timeRights');
+                const sec5TransOR = t('orCaps');
+                const sec5TransB1 = t('existingOrder');
+                const sec5TransB2 = t('meOrChild');
                 
-                page2.drawText('me or my child.', {
-                    x: margin + 50,
-                    y: y,
-                    size: 10,
-                    font: helvetica,
-                    color: rgb(0, 0, 0)
-                });
+                if (sec5Trans1 && sec5Trans2) {
+                    y -= translation_space;
+                    const sec5MainTrans = sec5Trans1 + ' ' + sec5Trans2;
+                    y = drawTextWrappedWithColor(currentPage, sec5MainTrans, margin + 20, y, pageWidth - margin * 2 - 40, 9, helveticaOblique, PDFLib.rgb(0.3, 0.3, 0.3));
+                    y -= 15;
+                    
+                    if (sec5TransA1 && sec5TransA2) {
+                        const item5aTrans = sec5TransA1 + ' ' + sec5TransA2;
+                        y = drawTextWrappedWithColor(currentPage, item5aTrans, margin + 40, y, pageWidth - margin * 2 - 80, 9, helveticaOblique, PDFLib.rgb(0.3, 0.3, 0.3));
+                        y -= 12;
+                    }
+                    
+                    if (sec5TransOR) {
+                        currentPage.drawText(sec5TransOR, {x: margin + 40, y: y, size: 9, font: helveticaOblique, color: PDFLib.rgb(0.3, 0.3, 0.3) });
+                        y -= 12;
+                    }
+                    
+                    if (sec5TransB1 && sec5TransB2) {
+                        const item5bTrans = sec5TransB1 + ' ' + sec5TransB2;
+                        y = drawTextWrappedWithColor(currentPage, item5bTrans, margin + 40, y, pageWidth - margin * 2 - 80, 9, helveticaOblique, PDFLib.rgb(0.3, 0.3, 0.3));
+                    }
+                }
                 y -= 25;
                 
 
-                drawCenteredText(page2, helvetica, '[SIGNATURES ON FOLLOWING PAGE – Page 2]', 9, y, rgb)
-                drawCenteredText(page2, helvetica, 'Page 1 of 2', 9, y - 30, rgb)
+                // No translation needed for page markers in English mode
+                y -= 10;
                 
+
+
+                // new page
+                currentPage = pdfDoc.addPage([pageWidth, pageHeight]);
+                y = pageHeight - 50;
+
                 // ==================== PAGE 3: Signatures ====================
-                const page3 = pdfDoc.addPage([pageWidth, pageHeight]);
-                y = pageHeight - margin;
-                
                 // Signatures title
-                drawCenteredText(page3, helvetica, 'SIGNATURES', 10, y, rgb)
+                drawCenteredText(currentPage, helvetica, 'SIGNATURES', 10, y, rgb);
+                const sigTitleTrans = t('signatures');
+                if (sigTitleTrans) {
+                    y -= 12;
+                    drawCenteredText(currentPage, helveticaOblique, sigTitleTrans, 9, y, PDFLib.rgb(0.3, 0.3, 0.3));
+                }
                 y -= 30;
                 
-                page3.drawText('I swear that everything I have stated in this document is true and correct.', {
-                    x: margin,
-                    y: y,
-                    size: 10,
-                    font: helvetica,
-                    color: rgb(0, 0, 0)
-                });
+                y = drawWithTranslation(currentPage, 'I swear that everything I have stated in this document is true and correct.', 'iSwear', margin, y, pageWidth - margin * 2, 10, helvetica);
                 y -= 30;
                 
                 // Parent/Guardian signature section
-                page3.drawText('Parent or Guardian:', {
-                    x: margin,
-                    y: y,
-                    size: 11,
-                    font: helveticaBold,
-                    color: rgb(0, 0, 0)
-                });
+                y = drawWithTranslation(currentPage, 'Parent or Guardian:', 'parentGuardian', margin, y, pageWidth - margin * 2, 11, helveticaBold);
                 y -= 30;
                 
                 // Add electronic signature note if signature is present
                 /*if (data.signature) {
-                    page3.drawText('[Electronic Signature - Must be notarized for legal validity]', {
+                    currentPage.drawText('[Electronic Signature - Must be notarized for legal validity]', {
                         x: pageWidth - margin - 300,
                         y: y + 25,
                         size: 8,
@@ -1047,17 +1180,16 @@
                 }*/
                 
                 // Date field with actual date
-                page3.drawText('Date: _________________', {
-                    x: margin,
-                    y: y,
-                    size: 10,
-                    font: helvetica,
-                    color: rgb(0, 0, 0)
-                });
+                currentPage.drawText('Date:', {x: margin, y: y, size: 10, font: helvetica, color: rgb(0, 0, 0) });
+                const dateLabelTrans = t('dateLabel');
+                if (dateLabelTrans) {
+                    currentPage.drawText(dateLabelTrans, {x: margin + 45, y: y, size: 9, font: helveticaOblique, color: PDFLib.rgb(0.3, 0.3, 0.3) });
+                }
+                currentPage.drawText(' _________________', {x: margin + 35, y: y, size: 10, font: helvetica, color: rgb(0, 0, 0) });
                 
                 // Add the signature date
                 if (data.signatureDate) {
-                    page3.drawText(formatDate(data.signatureDate), {
+                    currentPage.drawText(formatDate(data.signatureDate), {
                         x: margin + 40,
                         y: y,
                         size: 10,
@@ -1066,7 +1198,7 @@
                     });
                 }
                 
-                page3.drawText('_________________________________________', {
+                currentPage.drawText('_________________________________________', {
                     x: pageWidth - margin - 300,
                     y: y,
                     size: 10,
@@ -1076,7 +1208,7 @@
                 
                 // Add the electronic signature
                 if (data.signature) {
-                    page3.drawText(data.signature, {
+                    currentPage.drawText(data.signature, {
                         x: pageWidth - margin - 295,
                         y: y + 5,
                         size: 16,
@@ -1087,16 +1219,14 @@
                 
                 y -= 12;
                 
-                page3.drawText('(sign your name)', {
-                    x: pageWidth - margin - 250,
-                    y: y,
-                    size: 8,
-                    font: helvetica,
-                    color: rgb(0.4, 0.4, 0.4)
-                });
+                currentPage.drawText('(sign your name)', {x: pageWidth - margin - 250, y: y, size: 8, font: helvetica, color: rgb(0.4, 0.4, 0.4) });
+                const signNameTrans = t('signYourName');
+                if (signNameTrans) {
+                    currentPage.drawText(signNameTrans, {x: pageWidth - margin - 180, y: y, size: 7, font: helveticaOblique, color: PDFLib.rgb(0.4, 0.4, 0.4) });
+                }
                 y -= 25;
                 
-                page3.drawText('_________________________________________', {
+                currentPage.drawText('_________________________________________', {
                     x: pageWidth - margin - 300,
                     y: y,
                     size: 10,
@@ -1106,7 +1236,7 @@
                 
                 // Add the printed name
                 if (data.parentName) {
-                    page3.drawText(data.parentName, {
+                    currentPage.drawText(data.parentName, {
                         x: pageWidth - margin - 295,
                         y: y + 5,
                         size: 11,
@@ -1117,35 +1247,22 @@
                 
                 y -= 12;
                 
-                page3.drawText('(print your name)', {
-                    x: pageWidth - margin - 250,
-                    y: y,
-                    size: 8,
-                    font: helvetica,
-                    color: rgb(0.4, 0.4, 0.4)
-                });
+                currentPage.drawText('(print your name)', {x: pageWidth - margin - 250, y: y, size: 8, font: helvetica, color: rgb(0.4, 0.4, 0.4) });
+                const printNameTrans = t('printYourName');
+                if (printNameTrans) {
+                    currentPage.drawText(printNameTrans, {x: pageWidth - margin - 180, y: y, size: 7, font: helveticaOblique, color: PDFLib.rgb(0.4, 0.4, 0.4) });
+                }
                 y -= 40;
                 
+                currentPage = checkNewPage();
                 // Notary section
-                page3.drawText('Subscribed and sworn to before me', {
-                    x: margin,
-                    y: y,
-                    size: 10,
-                    font: helvetica,
-                    color: rgb(0, 0, 0)
-                });
+                y = drawWithTranslation(currentPage, 'Subscribed and sworn to before me', 'subscribedSworn', margin, y, pageWidth - margin * 2, 10, helvetica);
                 y -= 15;
                 
-                page3.drawText('this _____ day of ________, 20___.', {
-                    x: margin,
-                    y: y,
-                    size: 10,
-                    font: helvetica,
-                    color: rgb(0, 0, 0)
-                });
+                y = drawWithTranslation(currentPage, 'this _____ day of ________, 20___.', 'thisDayOf', margin, y, pageWidth - margin * 2, 10, helvetica);
                 y -= 30;
                 
-                page3.drawText('_____________________________', {
+                currentPage.drawText('_____________________________', {
                     x: margin,
                     y: y,
                     size: 10,
@@ -1154,59 +1271,49 @@
                 });
                 y -= 12;
                 
-                page3.drawText('Notary Public', {
-                    x: margin,
-                    y: y,
-                    size: 10,
-                    font: helvetica,
-                    color: rgb(0, 0, 0)
-                });
+                y = drawWithTranslation(currentPage, 'Notary Public', 'notaryPublic', margin, y, pageWidth - margin * 2, 10, helvetica);
                 y -= 50;
                 
+                currentPage = checkNewPage();
                 // Attorney-in-Fact section
-                page3.drawText('Attorney-in-Fact: (the Attorney-in-Fact does not have to sign in front of a notary)', {
-                    x: margin,
-                    y: y,
-                    size: 11,
-                    font: helveticaBold,
-                    color: rgb(0, 0, 0)
-                });
+                y = drawWithTranslation(currentPage, 'Attorney-in-Fact: (the Attorney-in-Fact does not have to sign in front of a notary)', 'attorneyInFactLabel', margin, y, pageWidth - margin * 2, 11, helveticaBold);
                 y -= 25;
                 
-                page3.drawText(`I accept the responsibilities of Attorney-in-Fact for _____________________________ .`, {
-                    x: margin,
-                    y: y,
-                    size: 10,
-                    font: helvetica,
-                    color: rgb(0, 0, 0)
-                });
-                page3.drawText(data.childName, {
-                    x: pageWidth - margin - 270,
-                    y: y,
-                    size: 10,
-                    font: helvetica,
-                    color: rgb(0, 0, 0)
-                });
+                // English text
+                currentPage.drawText('I accept the responsibilities of Attorney-in-Fact for _____________________________ .', {x: margin, y: y, size: 10, font: helvetica, color: rgb(0, 0, 0) });
+                currentPage.drawText(data.childName, {x: pageWidth - margin - 270, y: y, size: 10, font: helvetica, color: rgb(0, 0, 0) });
+                // Translation
+                const acceptTrans = t('iAcceptResp');
+                if (acceptTrans) {
+                    y -= 12;
+                    currentPage.drawText(acceptTrans + ' _____________________________ .', {x: margin, y: y, size: 9, font: helveticaOblique, color: PDFLib.rgb(0.3, 0.3, 0.3) });
+                    currentPage.drawText(data.childName, {x: pageWidth - margin - 270, y: y, size: 9, font: helveticaOblique, color: PDFLib.rgb(0.3, 0.3, 0.3) });
+                }
                 y -= 12;
                 
-                page3.drawText('(child\'s name)', {
-                    x: margin + 300,
-                    y: y,
-                    size: 8,
-                    font: helvetica,
-                    color: rgb(0.4, 0.4, 0.4)
-                });
+                currentPage.drawText('(child\'s name)', {x: margin + 300, y: y, size: 8, font: helvetica, color: rgb(0.4, 0.4, 0.4) });
+                const childLabelTrans = t('childNameLabel');
+                if (childLabelTrans) {
+                    currentPage.drawText(childLabelTrans, {x: margin + 380, y: y, size: 7, font: helveticaOblique, color: PDFLib.rgb(0.4, 0.4, 0.4) });
+                }
                 y -= 30;
                 
-                page3.drawText('Date:_________________', {
+                currentPage.drawText('Date:', {
                     x: margin,
                     y: y,
                     size: 10,
                     font: helvetica,
                     color: rgb(0, 0, 0)
                 });
+                currentPage.drawText('_________________', {
+                    x: margin + 35,
+                    y: y,
+                    size: 10,
+                    font: helvetica,
+                    color: rgb(0, 0, 0)
+                });
                 
-                page3.drawText('________________________________________', {
+                currentPage.drawText('________________________________________', {
                     x: pageWidth - margin - 300,
                     y: y,
                     size: 10,
@@ -1215,16 +1322,14 @@
                 });
                 y -= 12;
                 
-                page3.drawText('(Attorney-in-Fact signature)', {
-                    x: pageWidth - margin - 250,
-                    y: y,
-                    size: 8,
-                    font: helvetica,
-                    color: rgb(0.4, 0.4, 0.4)
-                });
+                currentPage.drawText('(Attorney-in-Fact signature)', {x: pageWidth - margin - 250, y: y, size: 8, font: helvetica, color: rgb(0.4, 0.4, 0.4) });
+                const attySigTrans = t('attorneySignature');
+                if (attySigTrans) {
+                    currentPage.drawText(attySigTrans, {x: pageWidth - margin - 150, y: y, size: 7, font: helveticaOblique, color: PDFLib.rgb(0.4, 0.4, 0.4) });
+                }
                 y -= 25;
                 
-                page3.drawText('________________________________________', {
+                currentPage.drawText('________________________________________', {
                     x: pageWidth - margin - 300,
                     y: y,
                     size: 10,
@@ -1233,15 +1338,15 @@
                 });
                 y -= 12;
                 
-                page3.drawText('(Attorney-in-Fact printed name)', {
-                    x: pageWidth - margin - 260,
-                    y: y,
-                    size: 8,
-                    font: helvetica,
-                    color: rgb(0.4, 0.4, 0.4)
-                });
+                currentPage.drawText('(Attorney-in-Fact printed name)', {x: pageWidth - margin - 260, y: y, size: 8, font: helvetica, color: rgb(0.4, 0.4, 0.4) });
+                const attyPrintTrans = t('attorneyPrinted');
+                if (attyPrintTrans) {
+                    currentPage.drawText(attyPrintTrans, {x: pageWidth - margin - 150, y: y, size: 7, font: helveticaOblique, color: PDFLib.rgb(0.4, 0.4, 0.4) });
+                }
                 y -= 20;
-                drawCenteredText(page3, helvetica, 'Page 2 of 2', 9, 25, rgb)
+                
+                // Add final page number
+                drawCenteredText(currentPage, helvetica, `Page ${pageNumber}`, 9, 25, rgb);
                 
                 // Save the PDF
                 const pdfBytes = await pdfDoc.save();
@@ -1503,6 +1608,342 @@
         };
 
         let currentLanguage = 'en';
+
+        // PDF Text Translations - for bilingual PDF generation
+        const pdfTranslations = {
+            es: {
+                // Page 1 - Instructions
+                dopaFormNext: "El formulario de Delegación de Autoridad Parental (DOPA) está en las páginas siguientes.",
+                afterFillOut: "Después de llenar su formulario:",
+                doNotSign: "NO firme ni feche el formulario de inmediato.",
+                needToSign: "Necesita firmar y fechar su DOPA frente a un notario público. Traiga",
+                photoId: "su identificación con foto porque el notario público necesitará verificarla.",
+                attorneyNoNotary: "Su apoderado NO necesita firmarlo frente a un notario.",
+                needSignBefore: "Sí necesitan firmarlo antes de usarlo.",
+                makeCopiesAfter: "Haga copias DESPUÉS de que se firme el formulario.",
+                makeCopiesText: "Haga copias de su formulario después de que el notario lo firme y lo selle. Guarde",
+                oneForRecords: "una copia para sus registros y entregue el original a su Apoderado.",
+                fact: "Hecho",
+                forMoreInfo: "Para más información:",
+                readFactSheet: "Lea la hoja informativa de Delegación de Autoridad Parental (DOPA) en",
+                
+                // Page 2 - Main Form  
+                delegationTitle: "DELEGACIÓN DE AUTORIDAD PARENTAL (DOPA)",
+                delegationSubtitle: "Delegación de Poderes por Padre Minn. Stat. § 524.5-211",
+                stateOfMN: "ESTADO DE MINNESOTA",
+                countyOf: "CONDADO DE",
+                myNameIs: "Mi nombre es",
+                yourName: "su nombre",
+                iAmParentOf: "Soy padre/madre de",
+                yourChildName: "nombre de su hijo",
+                childBirthdate: "La fecha de nacimiento de mi hijo es",
+                yourChildBirthday: "cumpleaños de su hijo",
+                iAppoint: "Yo nombro",
+                toBeLegal: ", para ser mi Apoderado legal",
+                inFactParental: "con autoridad parental sobre mi hijo,",
+                noteAttorney: "Nota: Apoderado es como se llama a la persona que usted nombra para cuidar de su hijo. Esa persona no tiene que ser",
+                anAttorney: "un abogado.",
+                dopaLasts: "Esta DOPA dura: (marque uno)",
+                oneYearFrom: "Por un año desde la fecha de mi firma",
+                orText: "O",
+                untilDate: "hasta",
+                fillInDate: ", (complete la fecha) que es menos de un año después",
+                dateOfSig: "la fecha de mi firma.",
+                dopaGivesPermission: "Esta DOPA le da permiso a mi Apoderado para cuidar y tomar decisiones sobre mi",
+                childNamedAbove: "hijo nombrado arriba. Estas decisiones incluyen, pero no se limitan a:",
+                getMedical: "a. Obtener tratamiento médico para mi hijo",
+                enrollSchool: "b. Inscribir a mi hijo en la escuela",
+                provideHome: "c. Proporcionar un hogar, cuidado y supervisión de mi hijo",
+                dopaNotGive: "Esta DOPA no le da permiso a mi Apoderado para consentir el matrimonio o",
+                adoptionChild: "adopción de mi hijo.",
+                iUnderstand: "Entiendo que por ley tengo que dar o enviar por correo una copia de este documento a cualquier otro padre",
+                within30Days: "dentro de 30 días de firmarlo a menos que:",
+                otherParentNo: "a. El otro padre no tenga derechos de tiempo de crianza o tenga derechos de tiempo de crianza supervisados",
+                timeRights: "derechos de tiempo",
+                orCaps: "O",
+                existingOrder: "b. Exista una Orden de Protección vigente contra el otro padre para proteger",
+                meOrChild: "a mí o a mi hijo.",
+                signaturesFollowing: "[FIRMAS EN LA PÁGINA SIGUIENTE – Página 2]",
+                page1of2: "Página 1 de 2",
+                
+                // Page 3 - Signatures
+                signatures: "FIRMAS",
+                iSwear: "Juro que todo lo que he declarado en este documento es verdadero y correcto.",
+                parentGuardian: "Padre o Tutor:",
+                dateLabel: "Fecha:",
+                signYourName: "firme su nombre",
+                printYourName: "escriba su nombre",
+                subscribedSworn: "Suscrito y jurado ante mí",
+                thisDayOf: "este _____ día de ________, 20___.",
+                notaryPublic: "Notario Público",
+                attorneyInFactLabel: "Apoderado: (el Apoderado no tiene que firmar frente a un notario)",
+                iAcceptResp: "Acepto las responsabilidades de Apoderado para",
+                childNameLabel: "nombre del niño",
+                attorneySignature: "firma del Apoderado",
+                attorneyPrinted: "nombre impreso del Apoderado",
+                page2of2: "Página 2 de 2"
+            },
+            so: {
+                // Somali translations - continuing pattern...
+                dopaFormNext: "Foomka U-wareejinta Awooda Waalidiinta (DOPA) wuxuu ku jiraa bogagga soo socda.",
+                afterFillOut: "Ka dib markaad buuxiso foomkaaga:",
+                doNotSign: "HA saxiixin ama taariikh gelin foomka degdeg ah.",
+                needToSign: "Waxaad u baahan tahay inaad saxiixdo oo taariikh geliso DOPA-daada horta noteer caam ah. Keen",
+                photoId: "aqoonsi sawir leh sababtoo ah noteerka caanka ahi wuu u baahan doonaa inuu hubiyo.",
+                attorneyNoNotary: "Wakiilkaaga-Xeerka UMA baahna inuu ku saxiixo horta noteer.",
+                needSignBefore: "Waxay u baahan yihiin inay saxiixaan ka hor inta aanay isticmaalin.",
+                makeCopiesAfter: "Samee koobiyado KA DIB marka foomka la saxiixo.",
+                makeCopiesText: "Samee koobiyado foomkaaga ka dib marka noteerku saxiixo oo shaabadeeyo. Hayso",
+                oneForRecords: "hal koobiyad diiwaankaaga iyo sii asalka Wakiilkaaga-Xeerka.",
+                fact: "Xaqiiqo",
+                forMoreInfo: "Wixii macluumaad dheeraad ah:",
+                readFactSheet: "Akhri xaashida xaqiiqooyinka U-wareejinta Awooda Waalidiinta (DOPA) ee",
+                delegationTitle: "U-WAREEJINTA AWOODA WAALIDIINTA (DOPA)",
+                delegationSubtitle: "U-wareejinta Awoodaha Waalid Minn. Stat. § 524.5-211",
+                stateOfMN: "GOBOLKA MINNESOTA",
+                countyOf: "DEGMADA",
+                myNameIs: "Magacaygu waa",
+                yourName: "magacaaga",
+                iAmParentOf: "Waxaan ahay waalid",
+                yourChildName: "magaca ilmahaaga",
+                childBirthdate: "Taariikhda dhalashada ilmahaygu waa",
+                yourChildBirthday: "dhalaashada ilmahaaga",
+                iAppoint: "Waxaan magacaabayaa",
+                toBeLegal: ", inuu noqdo Wakiilkayga-Xeerka sharci ah",
+                inFactParental: "oo leh awood waalidnimo ilmahayga,",
+                noteAttorney: "Fiiro gaar ah: Wakiilka-Xeerka waa waxa lagu yiraahdo qofka aad u magacowdo inaad daryeesho ilmahaaga. Qofkaasi uma baahna inuu noqdo",
+                anAttorney: "qareen.",
+                dopaLasts: "DOPA-dan waxay socotaa: (calaamadee mid)",
+                oneYearFrom: "Hal sano laga bilaabo taariikhda saxiixayga",
+                orText: "AMA",
+                untilDate: "ilaa",
+                fillInDate: ", (buuxi taariikhda) taasoo ka yar hal sano ka dib",
+                dateOfSig: "taariikhda saxiixayga.",
+                dopaGivesPermission: "DOPA-dan waxay ogolaansho siisaa Wakiilkayga-Xeerka inuu daryeelo oo go'aansado",
+                childNamedAbove: "ilmaha kor ku xusan. Go'aanadani waxay ku jiraan, laakiin kuma koobna:",
+                getMedical: "a. Helida daaweynta caafimaadka ilmahayga",
+                enrollSchool: "b. Dugsiga ku qorista ilmahayga",
+                provideHome: "c. Bixinta guri, daryeel, iyo kormeerka ilmahayga",
+                dopaNotGive: "DOPA-dan kuma siiso ogolaansho Wakiilkayga-Xeerka inuu raali ka noqdo guurka ama",
+                adoptionChild: "korsashada ilmahayga.",
+                iUnderstand: "Waan fahmay inay sharciga ku qoran tahay inaan siiyo ama boosta ugu diro koobiyad warqaddan waalid kale",
+                within30Days: "gudaha 30 maalmood ka dib markaad saxiixdo mooyaane:",
+                otherParentNo: "a. Waalidka kale uu haynin xuquuqda waqtiga waalidnimada ama uu leeyahay xuquuqda waqtiga waalidnimada la kormeero",
+                timeRights: "xuquuqda waqtiga",
+                orCaps: "AMA",
+                existingOrder: "b. Uu jiro Amar Ilaalinta oo jira oo ka gees ah waalidka kale si",
+                meOrChild: "aniga ama ilmahayga loola ilaalinayo.",
+                signaturesFollowing: "[SAXIIXYO BOGGA XIGA – Bog 2]",
+                page1of2: "Bog 1 ee 2",
+                signatures: "SAXIIXYO",
+                iSwear: "Waxaan ku dhaartay in wax walba aan ku sheegay warqaddan uu yahay mid run ah oo sax ah.",
+                parentGuardian: "Waalid ama Masuul:",
+                dateLabel: "Taariikh:",
+                signYourName: "saxiix magacaaga",
+                printYourName: "qor magacaaga",
+                subscribedSworn: "Ku qoran oo lay dhaariyay hortayda",
+                thisDayOf: "maalintani _____ ee ________, 20___.",
+                notaryPublic: "Noteer Dadweyne",
+                attorneyInFactLabel: "Wakiilka-Xeerka: (Wakiilka-Xeerka kuma saxiixin doono horta noteer)",
+                iAcceptResp: "Waxaan aqbalay mas'uuliyadaha Wakiilka-Xeerka ee",
+                childNameLabel: "magaca ilmaha",
+                attorneySignature: "saxiixa Wakiilka-Xeerka",
+                attorneyPrinted: "magaca la qoray Wakiilka-Xeerka",
+                page2of2: "Bog 2 ee 2"
+            },
+            hmn: {
+                dopaFormNext: "Daim ntawv Kev Tso Cai Rau Niam Txiv (DOPA) nyob rau cov nplooj ntawv hauv qab no.",
+                afterFillOut: "Tom qab koj sau koj daim ntawv:",
+                doNotSign: "TSI TXHOB kos npe lossis sau hnub rau daim ntawv tam sim ntawd.",
+                needToSign: "Koj yuav tsum kos npe thiab sau hnub koj daim DOPA rau hauv pem hauv ntej ntawm tus kws lees paub pej xeem. Nqa",
+                photoId: "koj daim ID duab vim tus kws lees paub pej xeem yuav tsum tau xyuas nws.",
+                attorneyNoNotary: "Koj Tus Neeg Sawv Cev TSIS tas yuav kos npe rau hauv pem hauv ntej ntawm tus kws lees paub.",
+                needSignBefore: "Lawv yuav tsum kos npe rau nws ua ntej siv nws.",
+                makeCopiesAfter: "Ua cov qauv TOM QAB thaum daim ntawv raug kos npe.",
+                makeCopiesText: "Ua cov qauv ntawm koj daim ntawv tom qab tus kws lees paub kos npe thiab ntaus nws. Khaws",
+                oneForRecords: "ib daim qauv rau koj cov ntaub ntawv thiab muab tus qub rau koj Tus Neeg Sawv Cev.",
+                fact: "Qhov Tseeb",
+                forMoreInfo: "Rau cov ntaub ntawv ntxiv:",
+                readFactSheet: "Nyeem daim ntawv qhia txog Kev Tso Cai Rau Niam Txiv (DOPA) ntawm",
+                delegationTitle: "KEV TSO CAI RAU NIAM TXIV (DOPA)",
+                delegationSubtitle: "Kev Tso Cai Rau Hwj Chim los ntawm Niam Txiv Minn. Stat. § 524.5-211",
+                stateOfMN: "XEV MINNESOTA",
+                countyOf: "NROOG",
+                myNameIs: "Kuv lub npe yog",
+                yourName: "koj lub npe",
+                iAmParentOf: "Kuv yog niam txiv ntawm",
+                yourChildName: "koj tus menyuam lub npe",
+                childBirthdate: "Kuv tus menyuam hnub yug yog",
+                yourChildBirthday: "koj tus menyuam hnub yug",
+                iAppoint: "Kuv teem",
+                toBeLegal: ", ua kuv Tus Neeg Sawv Cev raug cai",
+                inFactParental: "kom muaj cai niam txiv tshaj kuv tus menyuam,",
+                noteAttorney: "Nco tseg: Tus Neeg Sawv Cev yog dab tsi tus neeg koj npe los saib xyuas koj tus menyuam raug hu ua. Tus neeg ntawd tsis tas yuav yog",
+                anAttorney: "tus kws lij choj.",
+                dopaLasts: "Daim DOPA no kav ntev: (kos ib qho)",
+                oneYearFrom: "Rau ib xyoos txij hnub kuv kos npe",
+                orText: "LOSSIS",
+                untilDate: "txog",
+                fillInDate: ", (sau hnub) uas yog tsawg dua ib xyoos tom qab",
+                dateOfSig: "hnub kuv kos npe.",
+                dopaGivesPermission: "Daim DOPA no muab kev tso cai rau kuv Tus Neeg Sawv Cev los saib xyuas thiab txiav txim siab txog kuv",
+                childNamedAbove: "tus menyuam uas muaj npe saum toj no. Cov kev txiav txim siab no suav nrog, tab sis tsis txwv rau:",
+                getMedical: "a. Tau kev kho mob rau kuv tus menyuam",
+                enrollSchool: "b. Sau npe kuv tus menyuam hauv tsev kawm ntawv",
+                provideHome: "c. Muab tsev, kev saib xyuas, thiab kev saib xyuas kuv tus menyuam",
+                dopaNotGive: "Daim DOPA no tsis pub kev tso cai rau kuv Tus Neeg Sawv Cev pom zoo rau kev sib yuav lossis",
+                adoptionChild: "kev saws me nyuam ntawm kuv tus menyuam.",
+                iUnderstand: "Kuv nkag siab tias raws li txoj cai kuv yuav tsum muab lossis xa ntawv ib daim qauv ntawm daim ntawv no mus rau lwm tus niam txiv",
+                within30Days: "hauv 30 hnub ntawm kev kos npe rau nws tshwj tsis yog:",
+                otherParentNo: "a. Lwm tus niam txiv tsis muaj cai lub sijhawm niam txiv lossis muaj cai lub sijhawm niam txiv saib xyuas",
+                timeRights: "cai sijhawm",
+                orCaps: "LOSSIS",
+                existingOrder: "b. Muaj Tsab Cai Tiv Thaiv uas muaj nyob rau tawm tsam lwm tus niam txiv los tiv thaiv",
+                meOrChild: "kuv lossis kuv tus menyuam.",
+                signaturesFollowing: "[KEV KOS NPE NYOB HAUV NQE LUS TOM NTEJ – Nplooj Ntawv 2]",
+                page1of2: "Nplooj Ntawv 1 ntawm 2",
+                signatures: "KEV KOS NPE",
+                iSwear: "Kuv cog lus tias txhua yam kuv tau hais nyob rau hauv daim ntawv no yog qhov tseeb thiab raug.",
+                parentGuardian: "Niam Txiv lossis Tus Saib Xyuas:",
+                dateLabel: "Hnub:",
+                signYourName: "kos koj lub npe",
+                printYourName: "luam koj lub npe",
+                subscribedSworn: "Sau npe thiab cog lus rau pem hauv ntej kuv",
+                thisDayOf: "lub no _____ hnub ntawm ________, 20___.",
+                notaryPublic: "Tus Kws Lees Paub Pej Xeem",
+                attorneyInFactLabel: "Tus Neeg Sawv Cev: (Tus Neeg Sawv Cev tsis tas yuav kos npe rau pem hauv ntej ntawm tus kws lees paub)",
+                iAcceptResp: "Kuv lees txais lub luag haujlwm ntawm Tus Neeg Sawv Cev rau",
+                childNameLabel: "tus menyuam lub npe",
+                attorneySignature: "Tus Neeg Sawv Cev kos npe",
+                attorneyPrinted: "Tus Neeg Sawv Cev lub npe luam",
+                page2of2: "Nplooj Ntawv 2 ntawm 2"
+            },
+            sw: {
+                dopaFormNext: "Fomu ya Uwakilishi wa Mamlaka ya Wazazi (DOPA) iko kwenye kurasa zinazofuata.",
+                afterFillOut: "Baada ya kujaza fomu yako:",
+                doNotSign: "USITIE saini au tarehe fomu mara moja.",
+                needToSign: "Unahitaji kutia saini na tarehe DOPA yako mbele ya notari wa umma. Leta",
+                photoId: "kitambulisho chako chenye picha kwa sababu notari wa umma atahitaji kukiangalia.",
+                attorneyNoNotary: "Wakala-Kisheria wako HAHITAJI kutia saini mbele ya notari.",
+                needSignBefore: "Wanahitaji kuitia saini kabla ya kuitumia.",
+                makeCopiesAfter: "Fanya nakala BAADA fomu kutia saini.",
+                makeCopiesText: "Fanya nakala za fomu yako baada ya notari kutia saini na kuiwekea muhuri. Weka",
+                oneForRecords: "nakala moja kwa rekodi zako na umpe asili Wakala-Kisheria wako.",
+                fact: "Ukweli",
+                forMoreInfo: "Kwa maelezo zaidi:",
+                readFactSheet: "Soma karatasi ya ukweli ya Uwakilishi wa Mamlaka ya Wazazi (DOPA) kwenye",
+                delegationTitle: "UWAKILISHI WA MAMLAKA YA WAZAZI (DOPA)",
+                delegationSubtitle: "Uwakilishi wa Mamlaka na Mzazi Minn. Stat. § 524.5-211",
+                stateOfMN: "JIMBO LA MINNESOTA",
+                countyOf: "KAUNTI YA",
+                myNameIs: "Jina langu ni",
+                yourName: "jina lako",
+                iAmParentOf: "Mimi ni mzazi wa",
+                yourChildName: "jina la mtoto wako",
+                childBirthdate: "Tarehe ya kuzaliwa ya mtoto wangu ni",
+                yourChildBirthday: "siku ya kuzaliwa ya mtoto wako",
+                iAppoint: "Ninateua",
+                toBeLegal: ", kuwa Wakala-Kisheria wangu wa kisheria",
+                inFactParental: "kuwa na mamlaka ya uzazi juu ya mtoto wangu,",
+                noteAttorney: "Kumbuka: Wakala-Kisheria ndio anaitwa mtu unayemteua kumtunza mtoto wako. Mtu huyo si lazima awe",
+                anAttorney: "wakili.",
+                dopaLasts: "DOPA hii inadumu: (chagua moja)",
+                oneYearFrom: "Kwa mwaka mmoja kutoka tarehe ya saini yangu",
+                orText: "AU",
+                untilDate: "hadi",
+                fillInDate: ", (jaza tarehe) ambayo ni chini ya mwaka mmoja baada ya",
+                dateOfSig: "tarehe ya saini yangu.",
+                dopaGivesPermission: "DOPA hii inampa ruhusa Wakala-Kisheria wangu kumtunza na kufanya maamuzi kuhusu",
+                childNamedAbove: "mtoto aliyetajwa hapo juu. Maamuzi haya yanajumuisha, lakini hayazuiliwi na:",
+                getMedical: "a. Kupata matibabu ya kimatibabu kwa mtoto wangu",
+                enrollSchool: "b. Kuandikisha mtoto wangu shuleni",
+                provideHome: "c. Kutoa nyumba, huduma, na usimamizi wa mtoto wangu",
+                dopaNotGive: "DOPA hii haitoi ruhusa kwa Wakala-Kisheria wangu kukubali ndoa au",
+                adoptionChild: "ukuaji wa mtoto wangu.",
+                iUnderstand: "Naelewa kwamba kwa sheria lazima nitoe au nitume nakala ya hati hii kwa mzazi mwingine yeyote",
+                within30Days: "ndani ya siku 30 baada ya kuisaini isipokuwa:",
+                otherParentNo: "a. Mzazi mwingine hana haki za wakati wa uzazi au ana haki za wakati wa uzazi zilizosimamishwa",
+                timeRights: "haki za wakati",
+                orCaps: "AU",
+                existingOrder: "b. Kuna Amri ya Ulinzi inayotekelezwa dhidi ya mzazi mwingine ili",
+                meOrChild: "kunilindalinda mimi au mtoto wangu.",
+                signaturesFollowing: "[SAINI KWENYE UKURASA UFUATAO – Ukurasa 2]",
+                page1of2: "Ukurasa 1 wa 2",
+                signatures: "SAINI",
+                iSwear: "Naapa kwamba kila kitu nilichosema katika hati hii ni kweli na sahihi.",
+                parentGuardian: "Mzazi au Mlezi:",
+                dateLabel: "Tarehe:",
+                signYourName: "tia saini jina lako",
+                printYourName: "andika jina lako",
+                subscribedSworn: "Imeandikishwa na kuapishwa mbele yangu",
+                thisDayOf: "siku hii _____ ya ________, 20___.",
+                notaryPublic: "Notari wa Umma",
+                attorneyInFactLabel: "Wakala-Kisheria: (Wakala-Kisheria hahitaji kutia saini mbele ya notari)",
+                iAcceptResp: "Ninakubali wajibu wa Wakala-Kisheria kwa",
+                childNameLabel: "jina la mtoto",
+                attorneySignature: "saini ya Wakala-Kisheria",
+                attorneyPrinted: "jina lililoandikwa la Wakala-Kisheria",
+                page2of2: "Ukurasa 2 wa 2"
+            }
+        };
+
+        // Helper function to get translation text only
+        // Returns empty string for EN, or translation text for other languages
+        function t(translationKey) {
+            if (currentLanguage === 'en') {
+                return ''; // No translation in English mode
+            } else {
+                const translation = pdfTranslations[currentLanguage] && pdfTranslations[currentLanguage][translationKey];
+                return translation || ''; // Return translation or empty string
+            }
+        }
+        
+        // Helper to draw English text followed by translation underneath
+        function drawWithTranslation(page, englishText, translationKey, x, y, maxWidth, fontSize, font) {
+            // Draw English text
+            y = drawTextWrapped(page, englishText, x, y, maxWidth, fontSize, font);
+            
+            // Draw translation if exists
+            const translation = t(translationKey);
+            if (translation) {
+                y -= 10; // Small gap between English and translation
+                const translationSize = fontSize - 1; // 1pt smaller
+                const darkGray = PDFLib.rgb(0.3, 0.3, 0.3); // Dark gray color
+                
+                // Draw translation in italic, smaller, dark gray
+                const translationY = drawTextWrappedWithColor(page, translation, x, y, maxWidth, translationSize, helveticaOblique, darkGray);
+                return translationY;
+            }
+            
+            return y;
+        }
+        
+        // Helper to draw text with custom color
+        function drawTextWrappedWithColor(page, text, x, y, maxWidth, fontSize, font, color) {
+            const words = text.split(' ');
+            let line = '';
+            let currentY = y;
+            const lineHeight = fontSize * 1.2;
+            
+            for (let i = 0; i < words.length; i++) {
+                const testLine = line + words[i] + ' ';
+                const testWidth = font.widthOfTextAtSize(testLine, fontSize);
+                
+                if (testWidth > maxWidth && i > 0) {
+                    page.drawText(line.trim(), { x, y: currentY, size: fontSize, font, color });
+                    line = words[i] + ' ';
+                    currentY -= lineHeight;
+                } else {
+                    line = testLine;
+                }
+            }
+            
+            if (line.trim()) {
+                page.drawText(line.trim(), { x, y: currentY, size: fontSize, font, color });
+            }
+            
+            return currentY;
+        }
 
         function changeLanguage(lang) {
             currentLanguage = lang;
