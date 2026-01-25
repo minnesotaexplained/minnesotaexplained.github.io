@@ -1,0 +1,1402 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HELP Referral Form</title>
+    <script src="https://unpkg.com/pdf-lib@1.17.1/dist/pdf-lib.min.js"></script>
+    <script src="https://unpkg.com/downloadjs@1.4.7"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:wght@400;600;700&family=Work+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --warm-white: #fdfbf7;
+            --deep-blue: #1a4d6d;
+            --soft-teal: #4a9ead;
+            --warm-sand: #e8dcc5;
+            --clay: #c67b5c;
+            --charcoal: #2d3436;
+            --border: #d4c5ad;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Work Sans', sans-serif;
+            background: linear-gradient(135deg, var(--warm-white) 0%, #f5ede0 100%);
+            color: var(--charcoal);
+            min-height: 100vh;
+            padding: 2rem 1rem;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 4px 24px rgba(26, 77, 109, 0.08);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, var(--deep-blue) 0%, var(--soft-teal) 100%);
+            color: white;
+            padding: 3rem 2.5rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header-btns {
+            background: linear-gradient(135deg, var(--deep-blue) 0%, var(--soft-teal) 100%);
+            color: white;
+            padding-top: 10px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -10%;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+            border-radius: 50%;
+        }
+
+        .header h1 {
+            font-family: 'Crimson Pro', serif;
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .header p {
+            font-size: 1rem;
+            opacity: 0.95;
+            line-height: 1.6;
+            position: relative;
+            z-index: 1;
+        }
+
+        .note-box {
+            background: #fff8e6;
+            border-left: 4px solid var(--clay);
+            padding: 1.25rem 1.5rem;
+            margin: 2rem 2.5rem;
+            border-radius: 4px;
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+
+        .note-box strong {
+            color: var(--deep-blue);
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .form-content {
+            padding: 2.5rem;
+        }
+
+        .section {
+            margin-bottom: 3rem;
+        }
+
+        .section-title {
+            font-family: 'Crimson Pro', serif;
+            font-size: 1.75rem;
+            font-weight: 600;
+            color: var(--deep-blue);
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.75rem;
+            border-bottom: 2px solid var(--warm-sand);
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-group.full-width {
+            grid-column: 1 / -1;
+        }
+
+        label {
+            font-weight: 500;
+            margin-bottom: 0.5rem;
+            color: var(--charcoal);
+            font-size: 0.95rem;
+        }
+
+        input[type="text"],
+        input[type="date"],
+        input[type="email"],
+        input[type="tel"],
+        select,
+        textarea {
+            padding: 0.75rem 1rem;
+            border: 2px solid var(--border);
+            border-radius: 8px;
+            font-family: 'Work Sans', sans-serif;
+            font-size: 1rem;
+            transition: all 0.2s ease;
+            background: var(--warm-white);
+        }
+
+        input:focus,
+        select:focus,
+        textarea:focus {
+            outline: none;
+            border-color: var(--soft-teal);
+            box-shadow: 0 0 0 3px rgba(74, 158, 173, 0.1);
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 120px;
+            line-height: 1.6;
+        }
+
+        .checkbox-group {
+            margin-top: 1rem;
+        }
+
+        .checkbox-item {
+            display: flex;
+            align-items: start;
+            margin-bottom: 0.75rem;
+            padding: 0.75rem;
+            border-radius: 8px;
+            transition: background 0.2s ease;
+        }
+
+        .checkbox-item:hover {
+            background: var(--warm-white);
+        }
+
+        .checkbox-item input[type="checkbox"] {
+            width: 20px;
+            height: 20px;
+            margin-right: 0.75rem;
+            margin-top: 2px;
+            cursor: pointer;
+            accent-color: var(--soft-teal);
+        }
+
+        .checkbox-item label {
+            margin-bottom: 0;
+            cursor: pointer;
+            line-height: 1.5;
+        }
+
+        .radio-group {
+            display: flex;
+            gap: 2rem;
+            margin-top: 0.75rem;
+        }
+
+        .radio-item {
+            display: flex;
+            align-items: center;
+        }
+
+        .radio-item input[type="radio"] {
+            width: 18px;
+            height: 18px;
+            margin-right: 0.5rem;
+            cursor: pointer;
+            accent-color: var(--soft-teal);
+        }
+
+        .radio-item label {
+            margin-bottom: 0;
+            cursor: pointer;
+        }
+
+        .question {
+            background: var(--warm-white);
+            padding: 1.5rem;
+            border-radius: 12px;
+            margin-bottom: 1.5rem;
+            border: 1px solid var(--border);
+        }
+
+        .question-label {
+            font-weight: 600;
+            color: var(--deep-blue);
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        .submit-section {
+            background: linear-gradient(to bottom, transparent 0%, var(--warm-white) 50%);
+            padding: 2.5rem;
+            text-align: center;
+        }
+
+        .submit-btn {
+            background: linear-gradient(135deg, var(--clay) 0%, #d88866 100%);
+            color: white;
+            border: none;
+            padding: 1rem 3rem;
+            font-size: 1.1rem;
+            font-weight: 600;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 16px rgba(198, 123, 92, 0.3);
+            font-family: 'Work Sans', sans-serif;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 24px rgba(198, 123, 92, 0.4);
+        }
+
+        .submit-btn:active {
+            transform: translateY(0);
+        }
+
+        .submit-btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .status-message {
+            margin-top: 1.5rem;
+            padding: 1rem 1.5rem;
+            border-radius: 8px;
+            text-align: center;
+            font-weight: 500;
+        }
+
+        .status-message.success {
+            background: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+
+        .status-message.error {
+            background: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+
+        #otherText {
+            margin-left: 2rem;
+            margin-top: 0.5rem;
+        }
+
+        .next-steps {
+            background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%);
+            border: 2px solid #4caf50;
+            border-radius: 12px;
+            padding: 2rem;
+            margin-top: 2rem;
+            display: none;
+        }
+
+        .next-steps h3 {
+            font-family: 'Crimson Pro', serif;
+            color: var(--deep-blue);
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .next-steps p {
+            line-height: 1.6;
+            margin-bottom: 1rem;
+            color: var(--charcoal);
+        }
+
+        .next-steps ol {
+            margin-left: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .next-steps li {
+            margin-bottom: 0.75rem;
+            line-height: 1.6;
+        }
+
+        .mailto-btn {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--deep-blue) 0%, var(--soft-teal) 100%);
+            color: white;
+            text-decoration: none;
+            padding: 1rem 2.5rem;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 16px rgba(26, 77, 109, 0.3);
+        }
+
+        .mailto-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 24px rgba(26, 77, 109, 0.4);
+        }
+
+        .contact-info {
+            background: var(--warm-white);
+            border-left: 4px solid var(--soft-teal);
+            padding: 1rem;
+            margin-top: 1.5rem;
+            border-radius: 8px;
+            font-size: 0.9rem;
+        }
+
+        .contact-info strong {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--deep-blue);
+        }
+
+        .language-selector {
+            display: flex;
+            gap: 0.5rem;
+            justify-content: center;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .language-btn {
+            background: rgba(255, 255, 255, 0.2);
+            border: 2px solid rgba(255, 255, 255, 0.4);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
+            cursor: pointer;
+            font-family: 'Work Sans', sans-serif;
+            font-weight: 500;
+            transition: all 0.2s ease;
+            font-size: 0.9rem;
+        }
+
+        .language-btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+            border-color: rgba(255, 255, 255, 0.6);
+        }
+
+        .language-btn.active {
+            background: white;
+            color: var(--deep-blue);
+            border-color: white;
+        }
+
+        @media (max-width: 768px) {
+            .header {
+                padding: 2rem 1.5rem;
+            }
+
+            .header h1 {
+                font-size: 2rem;
+            }
+
+            .form-content {
+                padding: 1.5rem;
+            }
+
+            .note-box {
+                margin: 1.5rem 1.5rem;
+            }
+
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .radio-group {
+                flex-direction: column;
+                gap: 0.75rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav style="margin-bottom:20px; text-align: center;">
+        <h3><a href="/" style="color:#1a4d6d; text-decoration: none;">Minnesota Explained</a></h3>
+    </nav>
+    <div style="margin-bottom:20px; text-align: center;">
+        <h1 data-i18n="title" style="color:#1a4d6d;">HELP Referral Form</h1>
+        <p data-i18n="subtitle" style="color:#1a4d6d;">Adult Representation Services - Hennepin County</p>
+    </div>
+    <div class="container">
+        <div class="header-btns">
+            <div class="language-selector">
+                <button class="language-btn active" onclick="changeLanguage('en')">English</button>
+                <button class="language-btn" onclick="changeLanguage('es')">Español</button>
+                <button class="language-btn" onclick="changeLanguage('so')">Soomaali</button>
+                <button class="language-btn" onclick="changeLanguage('hmn')">Hmoob</button>
+                <button class="language-btn" onclick="changeLanguage('sw')">Kiswahili</button>
+            </div>
+        </div>
+
+        <div class="note-box">
+            <strong data-i18n="noteTitle">NOTE:</strong> <span data-i18n="noteText">If the family has been contacted by child protection and would like 
+            to talk to an attorney as soon as possible regarding their rights, please provide them with 
+            the ARS Intake phone line in addition to completing this referral form.</span>
+            <strong data-i18n="notePhone"> ARS Intake Phone #: 612-348-7012</strong>
+        </div>
+
+        <form id="referralForm" class="form-content">
+            <div class="section">
+                <div class="form-group">
+                    <label for="dateOfReferral" data-i18n="dateOfReferral">Date of Referral</label>
+                    <input type="date" id="dateOfReferral" name="dateOfReferral">
+                </div>
+            </div>
+
+            <div class="section">
+                <div class="section-title" data-i18n="referredByTitle">Referred by</div>
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label for="referredByName" data-i18n="name">Name</label>
+                        <input type="text" id="referredByName" name="referredByName">
+                    </div>
+                    <div class="form-group">
+                        <label for="referredByTitle" data-i18n="titleAgency">Title/Agency</label>
+                        <input type="text" id="referredByTitle" name="referredByTitle">
+                    </div>
+                    <div class="form-group">
+                        <label for="referredByPhone" data-i18n="phone">Phone</label>
+                        <input type="tel" id="referredByPhone" name="referredByPhone">
+                    </div>
+                    <div class="form-group">
+                        <label for="referredByEmail" data-i18n="email">Email</label>
+                        <input type="email" id="referredByEmail" name="referredByEmail">
+                    </div>
+                </div>
+            </div>
+
+            <div class="section">
+                <div class="section-title" data-i18n="parentInfoTitle">Parent Information (Prospective client)</div>
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label for="parentName" data-i18n="name">Name</label>
+                        <input type="text" id="parentName" name="parentName">
+                    </div>
+                    <div class="form-group">
+                        <label for="parentDob" data-i18n="dateOfBirth">Date of Birth</label>
+                        <input type="date" id="parentDob" name="parentDob">
+                    </div>
+                    <div class="form-group full-width">
+                        <label for="parentAddress" data-i18n="address">Address</label>
+                        <input type="text" id="parentAddress" name="parentAddress">
+                    </div>
+                    <div class="form-group">
+                        <label for="parentPhone" data-i18n="phone">Phone</label>
+                        <input type="tel" id="parentPhone" name="parentPhone">
+                    </div>
+                    <div class="form-group">
+                        <label for="parentEmail" data-i18n="email">Email</label>
+                        <input type="email" id="parentEmail" name="parentEmail">
+                    </div>
+                    <div class="form-group">
+                        <label for="preferredContact" data-i18n="preferredContact">Preferred contact method</label>
+                        <select id="preferredContact" name="preferredContact">
+                            <option value="Phone">Phone</option>
+                            <option value="Email">Email</option>
+                            <option value="Mail">Mail</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="bestContactTime" data-i18n="bestContactTime">Best day/time to contact</label>
+                        <input type="text" id="bestContactTime" name="bestContactTime" data-i18n="bestContactPlaceholder" placeholder="e.g., Weekdays after 5pm">
+                    </div>
+                    <div class="form-group">
+                        <label for="race" data-i18n="race">Race</label>
+                        <input type="text" id="race" name="race">
+                    </div>
+                    <div class="form-group">
+                        <label for="tribalAffiliation" data-i18n="tribalAffiliation">Tribal affiliation</label>
+                        <input type="text" id="tribalAffiliation" name="tribalAffiliation">
+                    </div>
+                    <div class="form-group">
+                        <label for="primaryLanguage" data-i18n="primaryLanguage">Primary language</label>
+                        <input type="text" id="primaryLanguage" name="primaryLanguage">
+                    </div>
+                    <div class="form-group full-width">
+                        <label for="agesOfChildren" data-i18n="agesOfChildren">Ages of children</label>
+                        <input type="text" id="agesOfChildren" name="agesOfChildren" data-i18n="agesPlaceholder" placeholder="e.g., 3, 7, 12">
+                    </div>
+                </div>
+            </div>
+
+            <div class="section">
+                <div class="section-title" data-i18n="eligibilityTitle">Eligibility Questions</div>
+                
+                <div class="question">
+                    <span class="question-label" data-i18n="question1">1. Does the parent reside in Hennepin County?</span>
+                    <div class="radio-group">
+                        <div class="radio-item">
+                            <input type="radio" id="hennepinYes" name="hennepin" value="yes">
+                            <label for="hennepinYes" data-i18n="yes">Yes</label>
+                        </div>
+                        <div class="radio-item">
+                            <input type="radio" id="hennepinNo" name="hennepin" value="no">
+                            <label for="hennepinNo" data-i18n="no">No</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="question">
+                    <span class="question-label">
+                        <span data-i18n="question2">2. Does the parent have limited financial resources?</span> 
+                        <br><small data-i18n="question2Sub">(ARS will contact the parent to complete a full financial screen to ensure eligibility for HELP services)</small>
+                    </span>
+                    <div class="radio-group">
+                        <div class="radio-item">
+                            <input type="radio" id="financialYes" name="limitedFinancial" value="yes">
+                            <label for="financialYes" data-i18n="yes">Yes</label>
+                        </div>
+                        <div class="radio-item">
+                            <input type="radio" id="financialNo" name="limitedFinancial" value="no">
+                            <label for="financialNo" data-i18n="no">No</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="question">
+                    <span class="question-label" data-i18n="question3">3. Parent/family has experienced (check all that apply):</span>
+                    <div class="checkbox-group">
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="reported" name="reported">
+                            <label for="reported" data-i18n="exp1">Reported to child protection (or may be in the near future)</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="welfare" name="welfare">
+                            <label for="welfare" data-i18n="exp2">Recent history of welfare checks by law enforcement</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="recentContact" name="recentContact">
+                            <label for="recentContact" data-i18n="exp3">Recent contact with child protection</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="receiving" name="receiving">
+                            <label for="receiving" data-i18n="exp4">Currently receiving services through child protection outside of court</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="substance" name="substance">
+                            <label for="substance" data-i18n="exp5">Past/present illicit substance or alcohol use that may lead to a CP report</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="mentalHealth" name="mentalHealth">
+                            <label for="mentalHealth" data-i18n="exp6">Difficulties accessing mental health care for parent or child that may lead to a CP report</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="custody" name="custody">
+                            <label for="custody" data-i18n="exp7">A prior transfer of custody or termination of their parental rights</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="other" name="other">
+                            <label for="other" data-i18n="exp8">Other</label>
+                        </div>
+                    </div>
+                    <input type="text" id="otherText" name="otherText" data-i18n="otherPlaceholder" placeholder="Please specify..." style="display: none;">
+                </div>
+
+                <div class="question">
+                    <span class="question-label" data-i18n="question4">4. Parent is aware of this referral:</span>
+                    <div class="radio-group">
+                        <div class="radio-item">
+                            <input type="radio" id="awareYes" name="parentAware" value="yes">
+                            <label for="awareYes" data-i18n="yes">Yes</label>
+                        </div>
+                        <div class="radio-item">
+                            <input type="radio" id="awareNo" name="parentAware" value="no">
+                            <label for="awareNo" data-i18n="no">No</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section">
+                <div class="section-title" data-i18n="referralDetailsTitle">Referral Details</div>
+                <div class="form-group">
+                    <label for="referralReason" data-i18n="referralReason">
+                        Please describe the reason for the referral, including details about the family's current situation:
+                    </label>
+                    <textarea id="referralReason" name="referralReason" rows="6"></textarea>
+                </div>
+            </div>
+
+            <div class="submit-section">
+                <button type="submit" class="submit-btn" id="submitBtn" data-i18n="submitBtn">
+                    Generate PDF
+                </button>
+                <div id="statusMessage"></div>
+                <div id="nextSteps" class="next-steps">
+                    <h3 data-i18n="nextStepsTitle">📧 Next Steps</h3>
+                    <p><strong data-i18n="nextStepsSuccess">Your PDF has been downloaded successfully!</strong> <span data-i18n="nextStepsInstructions">Now you need to submit it to Hennepin County Adult Representation Services.</span></p>
+                    
+                    <p data-i18n="nextStepsSubmit">You can submit the completed form by:</p>
+                    <ol>
+                        <li><strong data-i18n="nextStepsEmail">Email (Recommended):</strong> <span data-i18n="nextStepsEmailDesc">Click the button below to open your email client with the address pre-filled</span></li>
+                        <li><strong data-i18n="nextStepsFax">Fax:</strong> <span data-i18n="nextStepsFaxDesc">Fax the completed form to 612-543-0938</span></li>
+                    </ol>
+                    
+                    <div style="text-align: center; margin: 1.5rem 0;">
+                        <a href="mailto:ContactARS@hennepin.us?subject=HELP%20Referral%20Form%20Submission&body=Please%20find%20attached%20the%20completed%20HELP%20Referral%20Form.%0D%0A%0D%0AThank%20you." class="mailto-btn" data-i18n="emailButton">
+                            📨 Email Form to ARS
+                        </a>
+                    </div>
+                    
+                    <div class="contact-info">
+                        <strong data-i18n="altContactTitle">Alternative Contact Methods:</strong>
+                        Email: ContactARS@hennepin.us<br>
+                        Phone: 612-348-7012<br>
+                        Fax: 612-543-0938<br>
+                        Address: 525 Portland Ave., Ste 1000, Minneapolis, MN 55415-1600
+                    </div>
+                    
+                    <p style="margin-top: 1rem; font-size: 0.9rem; font-style: italic;">
+                        <strong data-i18n="altContactNote">Note:</strong> <span data-i18n="altContactReminder">Remember to attach the downloaded PDF file to your email before sending.</span>
+                    </p>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        // Translations
+        const translations = {
+            en: {
+                title: "HELP Referral Form",
+                subtitle: "Adult Representation Services - Hennepin County",
+                noteTitle: "NOTE:",
+                noteText: "If the family has been contacted by child protection and would like to talk to an attorney as soon as possible regarding their rights, please provide them with the ARS Intake phone line in addition to completing this referral form.",
+                notePhone: "ARS Intake Phone #: 612-348-7012",
+                dateOfReferral: "Date of Referral",
+                referredByTitle: "Referred by",
+                name: "Name",
+                titleAgency: "Title/Agency",
+                phone: "Phone",
+                email: "Email",
+                parentInfoTitle: "Parent Information (Prospective client)",
+                dateOfBirth: "Date of Birth",
+                address: "Address",
+                preferredContact: "Preferred contact method",
+                bestContactTime: "Best day/time to contact",
+                bestContactPlaceholder: "e.g., Weekdays after 5pm",
+                race: "Race",
+                tribalAffiliation: "Tribal affiliation",
+                primaryLanguage: "Primary language",
+                agesOfChildren: "Ages of children",
+                agesPlaceholder: "e.g., 3, 7, 12",
+                eligibilityTitle: "Eligibility Questions",
+                question1: "1. Does the parent reside in Hennepin County?",
+                yes: "Yes",
+                no: "No",
+                question2: "2. Does the parent have limited financial resources?",
+                question2Sub: "(ARS will contact the parent to complete a full financial screen to ensure eligibility for HELP services)",
+                question3: "3. Parent/family has experienced (check all that apply):",
+                exp1: "Reported to child protection (or may be in the near future)",
+                exp2: "Recent history of welfare checks by law enforcement",
+                exp3: "Recent contact with child protection",
+                exp4: "Currently receiving services through child protection outside of court",
+                exp5: "Past/present illicit substance or alcohol use that may lead to a CP report",
+                exp6: "Difficulties accessing mental health care for parent or child that may lead to a CP report",
+                exp7: "A prior transfer of custody or termination of their parental rights",
+                exp8: "Other",
+                otherPlaceholder: "Please specify...",
+                question4: "4. Parent is aware of this referral:",
+                referralDetailsTitle: "Referral Details",
+                referralReason: "Please describe the reason for the referral, including details about the family's current situation:",
+                submitBtn: "Generate PDF",
+                creatingPdf: "Creating PDF...",
+                successMessage: "PDF created successfully and downloaded!",
+                errorMessage: "Error creating PDF. Please try again.",
+                nextStepsTitle: "📧 Next Steps",
+                nextStepsSuccess: "Your PDF has been downloaded successfully!",
+                nextStepsInstructions: "Now you need to submit it to Hennepin County Adult Representation Services.",
+                nextStepsSubmit: "You can submit the completed form by:",
+                nextStepsEmail: "Email (Recommended):",
+                nextStepsEmailDesc: "Click the button below to open your email client with the address pre-filled",
+                nextStepsFax: "Fax:",
+                nextStepsFaxDesc: "Fax the completed form to 612-543-0938",
+                emailButton: "📨 Email Form to ARS",
+                altContactTitle: "Alternative Contact Methods:",
+                altContactNote: "Note:",
+                altContactReminder: "Remember to attach the downloaded PDF file to your email before sending."
+            },
+            es: {
+                title: "Formulario de Referencia HELP",
+                subtitle: "Servicios de Representación de Adultos - Condado de Hennepin",
+                noteTitle: "NOTA:",
+                noteText: "Si la familia ha sido contactada por protección infantil y desea hablar con un abogado lo antes posible sobre sus derechos, proporcióneles la línea telefónica de admisión de ARS además de completar este formulario de referencia.",
+                notePhone: "Teléfono de Admisión ARS: 612-348-7012",
+                dateOfReferral: "Fecha de Referencia",
+                referredByTitle: "Referido por",
+                name: "Nombre",
+                titleAgency: "Título/Agencia",
+                phone: "Teléfono",
+                email: "Correo Electrónico",
+                parentInfoTitle: "Información del Padre/Madre (Cliente Prospectivo)",
+                dateOfBirth: "Fecha de Nacimiento",
+                address: "Dirección",
+                preferredContact: "Método de contacto preferido",
+                bestContactTime: "Mejor día/hora para contactar",
+                bestContactPlaceholder: "ej., Entre semana después de las 5pm",
+                race: "Raza",
+                tribalAffiliation: "Afiliación tribal",
+                primaryLanguage: "Idioma principal",
+                agesOfChildren: "Edades de los niños",
+                agesPlaceholder: "ej., 3, 7, 12",
+                eligibilityTitle: "Preguntas de Elegibilidad",
+                question1: "1. ¿El padre/madre reside en el Condado de Hennepin?",
+                yes: "Sí",
+                no: "No",
+                question2: "2. ¿El padre/madre tiene recursos financieros limitados?",
+                question2Sub: "(ARS contactará al padre/madre para completar una evaluación financiera completa para asegurar elegibilidad para servicios HELP)",
+                question3: "3. El padre/familia ha experimentado (marque todos los que apliquen):",
+                exp1: "Reportado a protección infantil (o puede ser en el futuro cercano)",
+                exp2: "Historial reciente de verificaciones de bienestar por parte de la policía",
+                exp3: "Contacto reciente con protección infantil",
+                exp4: "Actualmente recibiendo servicios a través de protección infantil fuera de la corte",
+                exp5: "Uso pasado/presente de sustancias ilícitas o alcohol que puede llevar a un reporte de CP",
+                exp6: "Dificultades para acceder a atención de salud mental para el padre/madre o niño que puede llevar a un reporte de CP",
+                exp7: "Una transferencia previa de custodia o terminación de sus derechos parentales",
+                exp8: "Otro",
+                otherPlaceholder: "Por favor especifique...",
+                question4: "4. El padre/madre está consciente de esta referencia:",
+                referralDetailsTitle: "Detalles de la Referencia",
+                referralReason: "Por favor describa la razón de la referencia, incluyendo detalles sobre la situación actual de la familia:",
+                submitBtn: "Generar PDF",
+                creatingPdf: "Creando PDF...",
+                successMessage: "¡PDF creado exitosamente y descargado!",
+                errorMessage: "Error al crear PDF. Por favor intente de nuevo.",
+                nextStepsTitle: "📧 Próximos Pasos",
+                nextStepsSuccess: "¡Su PDF ha sido descargado exitosamente!",
+                nextStepsInstructions: "Ahora necesita enviarlo a los Servicios de Representación de Adultos del Condado de Hennepin.",
+                nextStepsSubmit: "Puede enviar el formulario completado por:",
+                nextStepsEmail: "Correo Electrónico (Recomendado):",
+                nextStepsEmailDesc: "Haga clic en el botón de abajo para abrir su cliente de correo con la dirección prellenada",
+                nextStepsFax: "Fax:",
+                nextStepsFaxDesc: "Envíe por fax el formulario completado al 612-543-0938",
+                emailButton: "📨 Enviar Formulario por Correo a ARS",
+                altContactTitle: "Métodos de Contacto Alternativos:",
+                altContactNote: "Nota:",
+                altContactReminder: "Recuerde adjuntar el archivo PDF descargado a su correo electrónico antes de enviarlo."
+            },
+            so: {
+                title: "Foomka Tixraaca HELP",
+                subtitle: "Adeegyada Matalaadda Dadka Waaweyn - Degmada Hennepin",
+                noteTitle: "OGEYSIIS:",
+                noteText: "Haddii qoysku ay la xiriirtay ilaalinta carruurta oo ay rabaan inay la hadlaan qareen sida ugu dhaqsaha badan ee ku saabsan xuquuqdooda, fadlan sii iyaga talefoonka qaadashada ARS marka lagu daro buuxinta foomkan tixraaca.",
+                notePhone: "Telefoonka Qaadashada ARS: 612-348-7012",
+                dateOfReferral: "Taariikhda Tixraaca",
+                referredByTitle: "Waxaa soo gudbiyey",
+                name: "Magaca",
+                titleAgency: "Jagada/Hay'adda",
+                phone: "Telefoon",
+                email: "Iimaylka",
+                parentInfoTitle: "Macluumaadka Waalidka (Macmiilka Mustaqbalka)",
+                dateOfBirth: "Taariikhda Dhalashada",
+                address: "Cinwaanka",
+                preferredContact: "Habka la xiriirka ee la doorbido",
+                bestContactTime: "Maalinta/waqtiga ugu fiican ee lagu xiriiro",
+                bestContactPlaceholder: "tusaale ahaan, Maalmaha shaqada ka dib 5pm",
+                race: "Jinsi",
+                tribalAffiliation: "Xiriirka Qabiilka",
+                primaryLanguage: "Luuqadda Aasaasiga ah",
+                agesOfChildren: "Da'da carruurta",
+                agesPlaceholder: "tusaale ahaan, 3, 7, 12",
+                eligibilityTitle: "Su'aalaha Xaqnimada",
+                question1: "1. Waalidku ma deggan yahay Degmada Hennepin?",
+                yes: "Haa",
+                no: "Maya",
+                question2: "2. Waalidku ma leeyahay kheyraad dhaqaale oo xadidan?",
+                question2Sub: "(ARS waxay la xiriiri doontaa waalidka si ay u buuxiyaan baaritaan dhaqaale oo buuxa si loo hubiyo xaqnimada adeegyada HELP)",
+                question3: "3. Waalidka/qoysku waxay la kulmeen (calaamadee dhammaan kuwa ku haboon):",
+                exp1: "Loo soo sheegay ilaalinta carruurta (ama laga yaabo inuu noqdo mustaqbalka dhow)",
+                exp2: "Taariikh dhow oo ah hubinta fayoobidda ee booliska",
+                exp3: "Xiriir dhow oo la yeeshay ilaalinta carruurta",
+                exp4: "Hadda waxay helayaan adeegyo iyagoo loo marayo ilaalinta carruurta meel ka baxsan maxkamadda",
+                exp5: "Isticmaalka hore/hadda ee walxaha sharci darrada ah ama khamriga ee keeni kara warbixin CP",
+                exp6: "Dhib loo heli karo daryeelka caafimaadka maskaxda waalidka ama ilmaha ee keeni kara warbixin CP",
+                exp7: "Wareejin hore oo xannaanada ama joojinta xuquuqda waalidnimada",
+                exp8: "Kuwa kale",
+                otherPlaceholder: "Fadlan cadeey...",
+                question4: "4. Waalidku wuu og yahay tixraacan:",
+                referralDetailsTitle: "Faahfaahinta Tixraaca",
+                referralReason: "Fadlan sharax sababta tixraaca, oo ay ku jiraan faahfaahin ku saabsan xaalada hadda ee qoyska:",
+                submitBtn: "Samee PDF",
+                creatingPdf: "Sameynaya PDF...",
+                successMessage: "PDF si guul leh loo sameeyey oo la soo dejiyey!",
+                errorMessage: "Khalad ayaa ka dhacay sameynta PDF. Fadlan isku day mar kale.",
+                nextStepsTitle: "📧 Tillaabooyinka Xiga",
+                nextStepsSuccess: "PDF-kaaga si guul leh ayaa loo soo dejiyey!",
+                nextStepsInstructions: "Hadda waxaad u baahan tahay inaad u gudbiso Adeegyada Matalaadda Dadka Waaweyn ee Degmada Hennepin.",
+                nextStepsSubmit: "Waxaad gudbisaa foomka la buuxiyey:",
+                nextStepsEmail: "Iimaylka (La Talinayaa):",
+                nextStepsEmailDesc: "Guji badhanka hoose si aad u furto macmiilka iimaylkaaga iyadoo cinwaanka hore loo buuxiyey",
+                nextStepsFax: "Fax:",
+                nextStepsFaxDesc: "Fax u dir foomka la buuxiyey 612-543-0938",
+                emailButton: "📨 Iimaylka U Dir Foomka ARS",
+                altContactTitle: "Habab Xiriir oo Kale:",
+                altContactNote: "Fiiro gaar ah:",
+                altContactReminder: "Xusuusnow inaad ku lifaaqdo faylka PDF ee la soo dejiyey iimaylkaaga ka hor intaadan u dirin."
+            },
+            hmn: {
+                title: "HELP Daim Ntawv Xa Mus",
+                subtitle: "Cov Kev Pabcuam Sawv Cev Rau Cov Neeg Laus - Hennepin County",
+                noteTitle: "LUS CEEV:",
+                noteText: "Yog tias tsev neeg tau raug tiv tauj los ntawm kev tiv thaiv menyuam yaus thiab xav tham nrog tus kws lij choj sai li sai tau txog lawv txoj cai, thov muab ARS Intake xov tooj rau lawv ntxiv rau kev ua tiav daim ntawv xa no.",
+                notePhone: "ARS Intake Xov Tooj: 612-348-7012",
+                dateOfReferral: "Hnub Xa Mus",
+                referredByTitle: "Xa los ntawm",
+                name: "Lub Npe",
+                titleAgency: "Lub Npe/Lub Koom Haum",
+                phone: "Xov Tooj",
+                email: "Email",
+                parentInfoTitle: "Niam Txiv Cov Ntaub Ntawv (Tus Neeg Muas Zaub Yav Tom Ntej)",
+                dateOfBirth: "Hnub Yug",
+                address: "Chaw Nyob",
+                preferredContact: "Txoj kev tiv tauj uas nyiam",
+                bestContactTime: "Hnub/sijhawm zoo tshaj plaws los tiv tauj",
+                bestContactPlaceholder: "piv txwv li, Hnub ua haujlwm tom qab 5pm",
+                race: "Haiv Neeg",
+                tribalAffiliation: "Kev Sib Koom Ua Ke",
+                primaryLanguage: "Hom Lus Tseem Ceeb",
+                agesOfChildren: "Menyuam Hnub Nyoog",
+                agesPlaceholder: "piv txwv li, 3, 7, 12",
+                eligibilityTitle: "Cov Lus Nug Txog Kev Tsim Nyog",
+                question1: "1. Puas yog niam txiv nyob hauv Hennepin County?",
+                yes: "Yog",
+                no: "Tsis yog",
+                question2: "2. Puas yog niam txiv muaj peev nyiaj txiag tsawg?",
+                question2Sub: "(ARS yuav tiv tauj niam txiv los ua kom tiav daim ntawv tshuaj xyuas nyiaj txiag kom paub tseeb tias tsim nyog rau kev pabcuam HELP)",
+                question3: "3. Niam txiv/tsev neeg tau ntsib (kos txhua yam uas siv tau):",
+                exp1: "Raug ceeb toom rau kev tiv thaiv menyuam yaus (los yog tej zaum yuav nyob rau yav tom ntej)",
+                exp2: "Keeb kwm tsis ntev los no ntawm kev kuaj xyuas kev noj qab haus huv los ntawm tub ceev xwm",
+                exp3: "Kev sib cuag tsis ntev los no nrog kev tiv thaiv menyuam yaus",
+                exp4: "Tam sim no tau txais kev pabcuam los ntawm kev tiv thaiv menyuam yaus sab nraum tsev hais plaub",
+                exp5: "Yav dhau los/tam sim no siv cov tshuaj tsis raug cai los yog cawv uas yuav ua rau muaj CP ceeb toom",
+                exp6: "Teeb meem nkag mus rau kev saib xyuas kev puas siab puas ntsws rau niam txiv los yog menyuam uas yuav ua rau muaj CP ceeb toom",
+                exp7: "Dhau los hloov kev saib xyuas los yog txiav lawv txoj cai niam txiv",
+                exp8: "Lwm yam",
+                otherPlaceholder: "Thov qhia meej...",
+                question4: "4. Niam txiv paub txog qhov xa no:",
+                referralDetailsTitle: "Xa Cov Ntsiab Lus",
+                referralReason: "Thov piav qhia vim li cas thiaj xa, suav nrog cov ntsiab lus txog tsev neeg qhov xwm txheej tam sim no:",
+                submitBtn: "Tsim PDF",
+                creatingPdf: "Tsim PDF...",
+                successMessage: "PDF tsim tau zoo thiab rub tawm lawm!",
+                errorMessage: "Yuam kev tsim PDF. Thov sim dua.",
+                nextStepsTitle: "📧 Cov Kauj Ruam Tom Ntej",
+                nextStepsSuccess: "Koj daim PDF tau rub tawm zoo lawm!",
+                nextStepsInstructions: "Tam sim no koj yuav tsum xa nws mus rau Hennepin County Cov Kev Pabcuam Sawv Cev Rau Cov Neeg Laus.",
+                nextStepsSubmit: "Koj tuaj yeem xa daim ntawv ua tiav los ntawm:",
+                nextStepsEmail: "Email (Pom Zoo):",
+                nextStepsEmailDesc: "Nias lub pob hauv qab no qhib koj tus email client nrog chaw nyob ua ntej sau",
+                nextStepsFax: "Fax:",
+                nextStepsFaxDesc: "Fax daim ntawv ua tiav rau 612-543-0938",
+                emailButton: "📨 Email Daim Ntawv Rau ARS",
+                altContactTitle: "Lwm Txoj Kev Tiv Thauj:",
+                altContactNote: "Lus Ceeb Toom:",
+                altContactReminder: "Nco ntsoov txuas daim ntawv PDF rub tawm rau koj email ua ntej xa."
+            },
+            sw: {
+                title: "Fomu ya Marejeo ya HELP",
+                subtitle: "Huduma za Uwakilishi wa Watu Wazima - Hennepin County",
+                noteTitle: "KUMBUKA:",
+                noteText: "Ikiwa familia imepigwa simu na ulinzi wa watoto na wanataka kuzungumza na wakili haraka iwezekanavyo kuhusu haki zao, tafadhali wape nambari ya simu ya ARS Intake pamoja na kukamilisha fomu hii ya marejeo.",
+                notePhone: "Nambari ya Simu ya ARS Intake: 612-348-7012",
+                dateOfReferral: "Tarehe ya Marejeo",
+                referredByTitle: "Imerejewa na",
+                name: "Jina",
+                titleAgency: "Cheo/Shirika",
+                phone: "Simu",
+                email: "Barua Pepe",
+                parentInfoTitle: "Maelezo ya Mzazi (Mteja wa Baadaye)",
+                dateOfBirth: "Tarehe ya Kuzaliwa",
+                address: "Anwani",
+                preferredContact: "Njia ya mawasiliano inayopendelewa",
+                bestContactTime: "Siku/wakati bora wa kuwasiliana",
+                bestContactPlaceholder: "mfano, Siku za wiki baada ya 5pm",
+                race: "Jamii",
+                tribalAffiliation: "Ushirikiano wa Kikabila",
+                primaryLanguage: "Lugha Kuu",
+                agesOfChildren: "Umri wa Watoto",
+                agesPlaceholder: "mfano, 3, 7, 12",
+                eligibilityTitle: "Maswali ya Ustahiki",
+                question1: "1. Je, mzazi anaishi katika Hennepin County?",
+                yes: "Ndiyo",
+                no: "Hapana",
+                question2: "2. Je, mzazi ana rasilimali za kifedha zilizo chache?",
+                question2Sub: "(ARS itawasiliana na mzazi kukamilisha ukaguzi kamili wa kifedha kuhakikisha ustahiki wa huduma za HELP)",
+                question3: "3. Mzazi/familia imepitia (weka alama zote zinazotumika):",
+                exp1: "Imeripotiwa kwa ulinzi wa watoto (au inaweza kuwa katika siku zijazo)",
+                exp2: "Historia ya hivi karibuni ya ukaguzi wa ustawi na maafisa wa sheria",
+                exp3: "Mawasiliano ya hivi karibuni na ulinzi wa watoto",
+                exp4: "Kwa sasa inapokea huduma kupitia ulinzi wa watoto nje ya mahakama",
+                exp5: "Matumizi ya zamani/ya sasa ya madawa yasiyo halali au pombe ambayo yanaweza kusababisha ripoti ya CP",
+                exp6: "Ugumu wa kupata huduma za afya ya akili kwa mzazi au mtoto ambayo inaweza kusababisha ripoti ya CP",
+                exp7: "Uhamishaji wa ulinzi wa awali au kusitishwa kwa haki zao za uzazi",
+                exp8: "Nyingine",
+                otherPlaceholder: "Tafadhali eleza...",
+                question4: "4. Mzazi anafahamu kuhusu marejeo haya:",
+                referralDetailsTitle: "Maelezo ya Marejeo",
+                referralReason: "Tafadhali eleza sababu ya marejeo, ikijumuisha maelezo kuhusu hali ya familia ya sasa:",
+                submitBtn: "Tengeneza PDF",
+                creatingPdf: "Inatengeneza PDF...",
+                successMessage: "PDF imeundwa kwa mafanikio na kupakuliwa!",
+                errorMessage: "Hitilafu katika kuunda PDF. Tafadhali jaribu tena.",
+                nextStepsTitle: "📧 Hatua Zinazofuata",
+                nextStepsSuccess: "PDF yako imeshapakuliwa kwa mafanikio!",
+                nextStepsInstructions: "Sasa unahitaji kuiwasilisha kwa Huduma za Uwakilishi wa Watu Wazima wa Hennepin County.",
+                nextStepsSubmit: "Unaweza kuwasilisha fomu iliyokamilika kwa:",
+                nextStepsEmail: "Barua Pepe (Inashauriwa):",
+                nextStepsEmailDesc: "Bonyeza kitufe hapo chini kufungua programu yako ya barua pepe na anwani imeshajazwa",
+                nextStepsFax: "Faksi:",
+                nextStepsFaxDesc: "Tuma faksi ya fomu iliyokamilika kwa 612-543-0938",
+                emailButton: "📨 Tuma Fomu kwa Barua Pepe kwa ARS",
+                altContactTitle: "Njia Mbadala za Mawasiliano:",
+                altContactNote: "Kumbuka:",
+                altContactReminder: "Kumbuka kuambatanisha faili ya PDF iliyopakuliwa kwa barua pepe yako kabla ya kutuma."
+            }
+        };
+
+        let currentLanguage = 'en';
+
+        function changeLanguage(lang) {
+            currentLanguage = lang;
+            
+            // Update all buttons
+            document.querySelectorAll('.language-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            event.target.classList.add('active');
+            
+            // Update all elements with data-i18n
+            document.querySelectorAll('[data-i18n]').forEach(element => {
+                const key = element.getAttribute('data-i18n');
+                if (translations[lang][key]) {
+                    // Check if this is a placeholder translation
+                    if (key.includes('Placeholder')) {
+                        element.placeholder = translations[lang][key];
+                    } else if (element.tagName === 'INPUT' && element.type === 'text') {
+                        // For text inputs that aren't placeholders, check if they have a placeholder attribute
+                        if (element.hasAttribute('placeholder')) {
+                            element.placeholder = translations[lang][key];
+                        }
+                    } else if (element.tagName === 'TEXTAREA') {
+                        // Textareas don't usually have placeholders in this form, so just skip
+                    } else {
+                        // Regular text content
+                        element.textContent = translations[lang][key];
+                    }
+                }
+            });
+            
+            // Update button text specifically
+            document.getElementById('submitBtn').textContent = translations[lang].submitBtn;
+        }
+
+        // Show/hide "Other" text field
+        document.getElementById('other').addEventListener('change', function() {
+            document.getElementById('otherText').style.display = this.checked ? 'block' : 'none';
+        });
+
+        // Handle form submission
+        document.getElementById('referralForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const submitBtn = document.getElementById('submitBtn');
+            const statusMessage = document.getElementById('statusMessage');
+            
+            submitBtn.disabled = true;
+            submitBtn.textContent = translations[currentLanguage].creatingPdf;
+            statusMessage.innerHTML = '';
+            document.getElementById('nextSteps').style.display = 'none';
+            
+            try {
+                // Get form data
+                const formData = new FormData(e.target);
+                const data = {};
+                
+                // Get all text inputs
+                for (let [key, value] of formData.entries()) {
+                    data[key] = value;
+                }
+                
+                // Get checkboxes
+                data.reported = document.getElementById('reported').checked;
+                data.welfare = document.getElementById('welfare').checked;
+                data.recentContact = document.getElementById('recentContact').checked;
+                data.receiving = document.getElementById('receiving').checked;
+                data.substance = document.getElementById('substance').checked;
+                data.mentalHealth = document.getElementById('mentalHealth').checked;
+                data.custody = document.getElementById('custody').checked;
+                data.other = document.getElementById('other').checked;
+                
+                // Generate PDF
+                await generatePDF(data);
+                
+                statusMessage.innerHTML = '<div class="status-message success">' + translations[currentLanguage].successMessage + '</div>';
+                
+                // Show next steps
+                document.getElementById('nextSteps').style.display = 'block';
+                
+            } catch (error) {
+                console.error('Error generating PDF:', error);
+                statusMessage.innerHTML = '<div class="status-message error">' + translations[currentLanguage].errorMessage + '</div>';
+            } finally {
+                submitBtn.disabled = false;
+                submitBtn.textContent = translations[currentLanguage].submitBtn;
+            }
+        });
+
+        async function generatePDF(data) {
+            const { PDFDocument, rgb, StandardFonts } = PDFLib;
+            
+            // Create a new PDF document
+            const pdfDoc = await PDFDocument.create();
+            
+            // Embed fonts
+            const helveticaFont = await pdfDoc.embedFont(StandardFonts.Helvetica);
+            const helveticaBold = await pdfDoc.embedFont(StandardFonts.HelveticaBold);
+            const helveticaItalic = await pdfDoc.embedFont(StandardFonts.HelveticaOblique);
+            const timesRoman = await pdfDoc.embedFont(StandardFonts.TimesRoman);
+            
+            // Page dimensions
+            const pageWidth = 612;
+            const pageHeight = 792;
+            let pageFontSize = 9;
+            
+            // Add first page
+            let page = pdfDoc.addPage([pageWidth, pageHeight]);
+            let yPosition = pageHeight - 80;
+            
+            // Helper function to add text
+            function addText(text, x, y, options = {}) {
+                const fontSize = options.fontSize || pageFontSize;
+                let font = options.bold ? helveticaBold : helveticaFont;
+
+                if(options.italic){
+                    font = options.italic ? helveticaItalic : helveticaFont;
+                }
+                if(options.font){
+                    font = options.font;
+                }
+
+                const color = options.color || rgb(0, 0, 0);
+                
+                page.drawText(text, {
+                    x: x,
+                    y: y,
+                    size: fontSize,
+                    font: font,
+                    color: color
+                });
+            }
+            
+            // Helper function to add checkbox
+            function addCheckbox(checked, x, y) {
+                // Draw checkbox square
+                page.drawRectangle({
+                    x: x,
+                    y: y,
+                    width: 12,
+                    height: 12,
+                    borderColor: rgb(0, 0, 0),
+                    borderWidth: 1
+                });
+                
+                // Draw X if checked
+                if (checked) {
+                    addText('X', x + 2, y + 1, { fontSize: 10, bold: true });
+                }
+            }
+            
+            // Helper function to wrap text
+            function wrapText(text, maxWidth, fontSize) {
+                const words = text.split(' ');
+                const lines = [];
+                let currentLine = '';
+                
+                words.forEach(word => {
+                    const testLine = currentLine + (currentLine ? ' ' : '') + word;
+                    const width = helveticaFont.widthOfTextAtSize(testLine, fontSize);
+                    
+                    if (width > maxWidth && currentLine) {
+                        lines.push(currentLine);
+                        currentLine = word;
+                    } else {
+                        currentLine = testLine;
+                    }
+                });
+                
+                if (currentLine) {
+                    lines.push(currentLine);
+                }
+                
+                return lines;
+            }
+
+            function drawCenteredText(text, y, options = {}) {
+                const fontSize = options.fontSize || 10;
+                let font = options.bold ? helveticaBold : helveticaFont;
+
+                if(options.font){
+                    font = options.font;
+                }
+
+                const pageWidth = page.getWidth();
+                const textWidth = font.widthOfTextAtSize(text, fontSize);
+                // Calculate the x position: (page width / 2) - (text width / 2)
+                const x = (pageWidth - textWidth) / 2;
+
+                page.drawText(text, {
+                    x: x,
+                    y: y,
+                    size: fontSize,
+                    font: font,
+                    color: rgb(0, 0, 0), // Black color
+                });
+            }
+
+            function drawLine(y){
+
+                // Draw the line (similar to <hr>)
+                page.drawLine({
+                  start: { x: 50, y: y },
+                  end: { x: pageWidth - 50, y: y },
+                  thickness: 1,
+                  color: rgb(0, 0, 0), // Black
+                  opacity: 1,
+                });
+
+            }
+
+            async function addImg(img_path, y, x){
+                const url = img_path
+                const pngImageBytes = await fetch(url).then((res) => res.arrayBuffer())
+                img = await pdfDoc.embedPng(pngImageBytes)
+
+                // 4. Draw the image on the page
+                const { width, height } = img.scale(0.6); // Scale the image to 50%
+                page.drawImage(img, {
+                    x: 70,
+                    y: y,
+                    width: width,
+                    height: height,
+                });
+            }
+
+            extra_space = 10
+            
+            // Title
+            await addImg("/img/ars.png", yPosition, 10);
+            drawCenteredText('Adult Representation Services', yPosition, { fontSize: 25, font:timesRoman });
+            yPosition -= 10 + extra_space;
+            drawLine(yPosition);
+            yPosition -= 30 + extra_space;
+            drawCenteredText('HELP Referral Form', yPosition, { fontSize: 16, bold: true });
+            yPosition -= 25 + extra_space;
+            
+            // Note
+            addText('NOTE: If the family has been contacted by child protection and would like to talk to an attorney', 50, yPosition, { fontSize: 11, italic:true });
+            yPosition -= 12;
+            addText('as soon as possible regarding their rights, please provide them with the ARS Intake phone line in', 50, yPosition, { fontSize: 11, italic:true });
+            yPosition -= 12;
+            addText('addition to completing this referral form.', 50, yPosition, { fontSize: 11, italic:true });
+            yPosition -= 12;
+            addText('ARS Intake Phone #: 612-348-7012', 50, yPosition, { fontSize: 11, bold: true });
+            yPosition -= 25 + extra_space;
+            
+            // Date of Referral
+            addText('Date of Referral:', 50, yPosition, { bold: true });
+            addText(data.dateOfReferral || '', 150, yPosition);
+            yPosition -= 25 + extra_space;
+            
+            // Referred by section
+            addText('Referred by:', 50, yPosition, { bold: true });
+            yPosition -= 18 + extra_space;
+            addText('Name:', 50, yPosition);
+            addText(data.referredByName || '', 150, yPosition);
+            addText('Title/Agency:', 320, yPosition);
+            addText(data.referredByTitle || '', 410, yPosition);
+            yPosition -= 15 + extra_space;
+            addText('Phone:', 50, yPosition);
+            addText(data.referredByPhone || '', 150, yPosition);
+            addText('Email:', 320, yPosition);
+            addText(data.referredByEmail || '', 410, yPosition);
+            yPosition -= 25 + extra_space;
+            
+            // Parent Information section
+            addText('Parent Information (Prospective client):', 50, yPosition, { bold: true });
+            yPosition -= 18 + extra_space;
+            addText('Name:', 50, yPosition);
+            addText(data.parentName || '', 150, yPosition);
+            addText('Date of Birth:', 320, yPosition);
+            addText(data.parentDob || '', 410, yPosition);
+            yPosition -= 15 + extra_space;
+            addText('Address:', 50, yPosition);
+            addText(data.parentAddress || '', 150, yPosition);
+            yPosition -= 15 + extra_space;
+            addText('Phone:', 50, yPosition);
+            addText(data.parentPhone || '', 150, yPosition);
+            addText('Email:', 320, yPosition);
+            addText(data.parentEmail || '', 410, yPosition);
+            yPosition -= 15 + extra_space;
+            addText('Preferred contact method:', 50, yPosition);
+            addText(data.preferredContact || '', 200, yPosition);
+            addText('Best day/time to contact:', 320, yPosition);
+            addText(data.bestContactTime || '', 470, yPosition);
+            yPosition -= 15 + extra_space;
+            addText('Race:', 50, yPosition);
+            addText(data.race || '', 150, yPosition);
+            addText('Tribal affiliation:', 320, yPosition);
+            addText(data.tribalAffiliation || '', 420, yPosition);
+            yPosition -= 15 + extra_space;
+            addText('Primary language:', 50, yPosition);
+            addText(data.primaryLanguage || '', 160, yPosition);
+            yPosition -= 15 + extra_space;
+            addText('Ages of children:', 50, yPosition);
+            addText(data.agesOfChildren || '', 150, yPosition);
+            yPosition -= 30 + extra_space;
+            
+            // Eligibility Questions
+            addText('Eligibility Questions', 50, yPosition, { bold: true });
+            yPosition -= 20 + extra_space;
+            
+            addText('1. Does the parent reside in Hennepin County?', 50, yPosition);
+            yPosition -= 15 + extra_space;
+            addCheckbox(data.hennepin === 'yes', 70, yPosition);
+            addText('Yes', 90, yPosition);
+            addCheckbox(data.hennepin === 'no', 140, yPosition);
+            addText('No', 160, yPosition);
+            yPosition -= 20 + extra_space;
+            
+            // Check if we need a new page
+            if (yPosition < 200) {
+                page = pdfDoc.addPage([pageWidth, pageHeight]);
+                yPosition = pageHeight - 50;
+            }
+            
+            addText('2. Does the parent have limited financial resources?', 50, yPosition);
+            yPosition -= 12 + extra_space;
+            addText('(ARS will contact the parent to complete a full financial screen to ensure eligibility for HELP services)', 50, yPosition, { fontSize: 8 });
+            yPosition -= 15 + extra_space;
+            addCheckbox(data.limitedFinancial === 'yes', 70, yPosition);
+            addText('Yes', 90, yPosition);
+            addCheckbox(data.limitedFinancial === 'no', 140, yPosition);
+            addText('No', 160, yPosition);
+            yPosition -= 20 + extra_space;
+            
+            addText('3. Parent/family has experienced (check all that apply):', 50, yPosition);
+            yPosition -= 15 + extra_space;
+            
+            const experiences = [
+                { checked: data.reported, label: 'Reported to child protection (or may be in the near future)' },
+                { checked: data.welfare, label: 'Recent history of welfare checks by law enforcement' },
+                { checked: data.recentContact, label: 'Recent contact with child protection' },
+                { checked: data.receiving, label: 'Currently receiving services through child protection outside of court' },
+                { checked: data.substance, label: 'Past/present illicit substance or alcohol use that may lead to a CP report' },
+                { checked: data.mentalHealth, label: 'Difficulties accessing mental health care for parent or child that may lead to a CP report' },
+                { checked: data.custody, label: 'A prior transfer of custody or termination of their parental rights' },
+                { checked: data.other, label: 'Other: ' + (data.otherText || '') }
+            ];
+            
+            experiences.forEach(exp => {
+                if (yPosition < 100) {
+                    page = pdfDoc.addPage([pageWidth, pageHeight]);
+                    yPosition = pageHeight - 50;
+                }
+                
+                addCheckbox(exp.checked, 70, yPosition);
+                
+                // Wrap long labels
+                const lines = wrapText(exp.label, 480, 9);
+                lines.forEach((line, index) => {
+                    addText(line, 90, yPosition - (index * 12), { fontSize: 9 });
+                });
+                yPosition -= (lines.length * 12) + 3;
+            });
+            
+            yPosition -= 10;
+            
+            if (yPosition < 150) {
+                page = pdfDoc.addPage([pageWidth, pageHeight]);
+                yPosition = pageHeight - 50;
+            }
+            
+            addText('4. Parent is aware of this referral:', 50, yPosition);
+            yPosition -= 15 + extra_space;
+            addCheckbox(data.parentAware === 'yes', 70, yPosition);
+            addText('Yes', 90, yPosition);
+            addCheckbox(data.parentAware === 'no', 140, yPosition);
+            addText('No', 160, yPosition);
+            yPosition -= 30 + extra_space;
+            
+            // Referral reason
+            addText('Please describe the reason for the referral, including details about the family\'s current situation:', 50, yPosition, { bold: true });
+            yPosition -= 15 + extra_space;
+            
+            if (data.referralReason) {
+                const reasonLines = wrapText(data.referralReason, 500, 9);
+                reasonLines.forEach(line => {
+                    if (yPosition < 80) {
+                        page = pdfDoc.addPage([pageWidth, pageHeight]);
+                        yPosition = pageHeight - 50;
+                    }
+                    addText(line, 50, yPosition, { fontSize: 9 });
+                    yPosition -= 12;
+                });
+            }
+            
+            yPosition -= 60;
+            
+            // Contact information at bottom
+            if (yPosition < 120) {
+                page = pdfDoc.addPage([pageWidth, pageHeight]);
+                yPosition = pageHeight - 50;
+            }
+            
+            addText('Submit completed referral form via email or fax to:', 50, yPosition, { bold: true });
+            yPosition -= 15;
+            addText('Hennepin County Adult Representation Services', 50, yPosition, { fontSize: 9 });
+            yPosition -= 12;
+            addText('525 Portland Ave., Ste 1000, Minneapolis, MN 55415-1600', 50, yPosition, { fontSize: 9 });
+            yPosition -= 12;
+            addText('Main Office: 612-348-7012 | Fax: 612-543-0938', 50, yPosition, { fontSize: 9 });
+            yPosition -= 12;
+            addText('Email: mailto:ContactARS@hennepin.us', 50, yPosition, { fontSize: 9 });
+            yPosition -= 12;
+            addText('http://www.hennepin.us/ars', 50, yPosition, { fontSize: 9, color: rgb(0.1, 0.3, 0.7) });
+            
+            // Save and download the PDF
+            const pdfBytes = await pdfDoc.save();
+            
+            // Create blob and download
+            const blob = new Blob([pdfBytes], { type: 'application/pdf' });
+            const url = window.URL.createObjectURL(blob);
+            const link = document.createElement('a');
+            link.href = url;
+            link.download = 'help-referral-form-' + new Date().toISOString().split('T')[0] + '.pdf';
+            link.click();
+            
+            // Clean up
+            window.URL.revokeObjectURL(url);
+        }
+    </script>
+</body>
+</html>

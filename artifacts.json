@@ -967,6 +967,16 @@
         "type":"link",
         "image":"/img/dopa.png",
         "link":"/dopa_multi.html"
+    },{
+        "id":15,
+        "title":"HELP Referral Form (Adult Representation Services)",
+        "description":"If a family has been contacted by child protection and would like to talk to an attorney as soon as possible regarding their rights, use this form!",
+        "subtitle":"",
+        "footer":"",
+        "category": "ICE Resource Guide",
+        "type":"link",
+        "image":"/img/cps.png",
+        "link":"/help-ars.html"
     },
     {
         "id":12,
