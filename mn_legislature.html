@@ -4,6 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Minnesota Legislature</title>
+    
+    <!-- Leaflet CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    
     <style>
         * {
             margin: 0;
@@ -50,7 +54,33 @@
         .chamber-subtitle {
             text-align: center;
             color: #666;
+            margin-bottom: 30px;
             font-size: 1em;
+        }
+
+        /* Map Styles */
+        .map-container {
+            width: 500px;
+            height: 500px;
+            margin: 0 auto 30px auto;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        #map {
+            width: 100%;
+            height: 100%;
+            background: #f0f0f0;
+        }
+
+        .map-info {
+            text-align: center;
+            color: #666;
+            font-size: 0.9em;
+            margin-top: 10px;
+            margin-bottom: 20px;
         }
 
         .summary {
@@ -166,6 +196,24 @@
             border: 3px solid #6c757d;
         }
 
+        /* Highlighted dot from map hover */
+        .dot.map-highlighted {
+            animation: pulse 1s ease-in-out infinite;
+            box-shadow: 0 0 20px rgba(255, 215, 0, 0.8);
+            z-index: 15;
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1.2);
+                box-shadow: 0 0 20px rgba(255, 215, 0, 0.8);
+            }
+            50% {
+                transform: scale(1.3);
+                box-shadow: 0 0 30px rgba(255, 215, 0, 1);
+            }
+        }
+
         /* Modal Styles */
         .modal-overlay {
             display: none;
@@ -205,8 +253,8 @@
         }
 
         .modal-image {
-            width: 20%;
-            height: 20%;
+            width: 80px;
+            height: 80px;
             border-radius: 50%;
             object-fit: cover;
         }
@@ -373,6 +421,22 @@
         }
 
         @media (max-width: 768px) {
+            .party-section{
+                padding: 0px;
+            }
+
+            .party-count {
+                background: #f0f0f0;
+                border-radius: 20px;
+                font-weight: 600;
+                color: #666;
+                font-size: 10px;
+            }
+            .map-container {
+                width: 100%;
+                height: 400px;
+            }
+
             .dots-grid {
                 grid-template-columns: repeat(5, 1fr);
                 gap: 12px;
@@ -393,31 +457,38 @@
                 right: 10px;
             }
         }
+        input, textarea { padding: 8px; width: 100%; box-sizing: border-box; }
+        #emailLink { font-weight: bold; color: #007bff; text-decoration: underline; cursor: pointer; }
+        .text-muted{ color:#444 }
+        .text-center{text-align: center;}
     </style>
 </head>
 <body>
-    <nav style="margin:0; text-align: center;">
-        <h3><a href="/" style="text-decoration: none;">Minnesota Explained</a></h3>
-    </nav>
     <div class="container">
         <h1>Minnesota Legislature</h1>
         <p class="subtitle">2025-2026 Session</p>
 
         <!-- House of Representatives Section -->
         <div class="chamber-section">
-            <h4 class="chamber-title">House of Representatives</h4>
+            <h2 class="chamber-title">House of Representatives</h2>
             <p class="chamber-subtitle">134 Members</p>
+            <div class="map-info">Click a representative to highlight their district • Hover over a district to highlight their representative</div>
 
             <div class="summary">
                 <div class="summary-stats" id="house-summary-stats"></div>
             </div>
 
             <div class="party-sections-container" id="house-container"></div>
+
+            <!-- District Map -->
+            <div class="map-container">
+                <div id="map"></div>
+            </div>
         </div>
 
         <!-- Senate Section -->
         <div class="chamber-section">
-            <h4 class="chamber-title">State Senate</h4>
+            <h2 class="chamber-title">State Senate</h2>
             <p class="chamber-subtitle">67 Members</p>
 
             <div class="summary">
@@ -453,11 +524,27 @@
                     <div id="modal-population" class="modal-info-value"></div>
                 </div>
                 <div class="modal-info-group">
-                    <div class="modal-info-label">Contact</div>
-                    <div id="modal-phone" class="modal-info-value"></div>
-                    <a id="modal-email" class="modal-info-value" href="" target="_blank">
-                        <span id="modal-email-text"></span>
-                    </a>
+                    <div class="modal-info-label">Phone</div>
+                    <a id="modal-phone" class="modal-info-value"></a>
+                </div>
+                <div class="modal-info-group">
+                    <div class="text-center" style="margin-top:10px; margin-bottom: 10px;">
+                        <div class="modal-info-label">Email Generation</div>
+
+                        <input id="userName" name="name" placeholder="Enter your name" />
+                        <input id="userCity" name="city "placeholder="Enter your city" />
+                        <input id="userPhone" name="phone" placeholder="Enter your phone" />
+                        <button class="modal-link" onclick="generate_text()">Denounce ICE's Actions</button>
+                    </div>
+
+                    <div class="modal-info-value">Subject</div>
+                    <input id="emailSubject" autocomplete="off" placeholder="Enter subject line" />
+
+                    <div class="modal-info-value">Message Body</div>
+                    <textarea id="emailBody" rows="15" placeholder="Enter your message"></textarea>
+
+                    <p class="modal-info-value">Click below to send</p>
+                    <a id="modal-email" class=""></a>
                 </div>
                 <div class="modal-info-group" id="social-media-group">
                     <div class="modal-info-label">Social Media</div>
@@ -474,13 +561,188 @@
         </div>
     </div>
 
+    <!-- Leaflet JS -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    
+    <!-- Proj4 and Proj4Leaflet -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/proj4js/2.11.0/proj4.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/proj4leaflet/1.0.1/proj4leaflet.min.js"></script>
+
     <script>
+
+        const subjectInput = document.getElementById('emailSubject');
+        const bodyInput = document.getElementById('emailBody');
+        const emailLink = document.getElementById('modal-email');
+
+        function updateMailto() {
+            const recipient = "example@domain.com";
+            // encodeURIComponent handles spaces, newlines, and symbols
+            const subject = encodeURIComponent(subjectInput.value);
+            const body = encodeURIComponent(bodyInput.value);
+
+            // Construct the mailto string
+            emailLink.href = `mailto:${recipient}?subject=${subject}&body=${body}`;
+        }
+
+        // Listen for typing in both fields
+        subjectInput.addEventListener('input', updateMailto);
+        bodyInput.addEventListener('input', updateMailto);
+
+
         // Social media icon SVGs
         const socialIcons = {
             twitter: '<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>',
             facebook: '<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>',
             instagram: '<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 0C8.74 0 8.333.015 7.053.072 5.775.132 4.905.333 4.14.63c-.789.306-1.459.717-2.126 1.384S.935 3.35.63 4.14C.333 4.905.131 5.775.072 7.053.012 8.333 0 8.74 0 12s.015 3.667.072 4.947c.06 1.277.261 2.148.558 2.913.306.788.717 1.459 1.384 2.126.667.666 1.336 1.079 2.126 1.384.766.296 1.636.499 2.913.558C8.333 23.988 8.74 24 12 24s3.667-.015 4.947-.072c1.277-.06 2.148-.262 2.913-.558.788-.306 1.459-.718 2.126-1.384.666-.667 1.079-1.335 1.384-2.126.296-.765.499-1.636.558-2.913.06-1.28.072-1.687.072-4.947s-.015-3.667-.072-4.947c-.06-1.277-.262-2.149-.558-2.913-.306-.789-.718-1.459-1.384-2.126C21.319 1.347 20.651.935 19.86.63c-.765-.297-1.636-.499-2.913-.558C15.667.012 15.26 0 12 0zm0 2.16c3.203 0 3.585.016 4.85.071 1.17.055 1.805.249 2.227.415.562.217.96.477 1.382.896.419.42.679.819.896 1.381.164.422.36 1.057.413 2.227.057 1.266.07 1.646.07 4.85s-.015 3.585-.074 4.85c-.061 1.17-.256 1.805-.421 2.227-.224.562-.479.96-.899 1.382-.419.419-.824.679-1.38.896-.42.164-1.065.36-2.235.413-1.274.057-1.649.07-4.859.07-3.211 0-3.586-.015-4.859-.074-1.171-.061-1.816-.256-2.236-.421-.569-.224-.96-.479-1.379-.899-.421-.419-.69-.824-.9-1.38-.165-.42-.359-1.065-.42-2.235-.045-1.26-.061-1.649-.061-4.844 0-3.196.016-3.586.061-4.861.061-1.17.255-1.814.42-2.234.21-.57.479-.96.9-1.381.419-.419.81-.689 1.379-.898.42-.166 1.051-.361 2.221-.421 1.275-.045 1.65-.06 4.859-.06l.045.03zm0 3.678c-3.405 0-6.162 2.76-6.162 6.162 0 3.405 2.76 6.162 6.162 6.162 3.405 0 6.162-2.76 6.162-6.162 0-3.405-2.76-6.162-6.162-6.162zM12 16c-2.21 0-4-1.79-4-4s1.79-4 4-4 4 1.79 4 4-1.79 4-4 4zm7.846-10.405c0 .795-.646 1.44-1.44 1.44-.795 0-1.44-.646-1.44-1.44 0-.794.646-1.439 1.44-1.439.793-.001 1.44.645 1.44 1.439z"/></svg>'
         };
+
+        // Map Variables
+        let map;
+        let geoLayer;
+        let currentHighlightedLayer = null;
+        let currentHighlightedDot = null;
+        const MN_UTM15_DEF = "+proj=utm +zone=15 +datum=NAD83 +units=m +no_defs";
+        
+        // District to dot mapping
+        const districtToDot = {};
+
+        // Initialize Map
+        function initializeMap() {
+            map = L.map('map').setView([46.3, -94.2], 7);
+
+            L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
+                attribution: '&copy; OpenStreetMap'
+            }).addTo(map);
+
+            // Load districts
+            loadDistricts();
+        }
+
+        function loadDistricts() {
+            fetch('districts.json')
+                .then(response => {
+                    if (!response.ok) throw new Error("districts.json not found");
+                    return response.json();
+                })
+                .then(data => {
+                    renderGeoJSON(data);
+                })
+                .catch(err => {
+                    console.error('Map error:', err);
+                });
+        }
+
+        function renderGeoJSON(data) {
+            geoLayer = L.geoJSON(data, {
+                coordsToLatLng: function(coords) {
+                    const transformed = proj4(MN_UTM15_DEF, 'WGS84', [coords[0], coords[1]]);
+                    return new L.LatLng(transformed[1], transformed[0]);
+                },
+                smoothFactor: 2.0,
+                renderer: L.canvas(),
+                style: {
+                    color: "#34495e",
+                    weight: 1,
+                    fillOpacity: 0.1
+                },
+                onEachFeature: function(feature, layer) {
+                    const districtName = feature.properties.DISTRICT;
+                    
+                    // Hover to highlight corresponding dot
+                    layer.on('mouseover', function() {
+                        this.setStyle({ fillOpacity: 0.3, weight: 2 });
+                        highlightDotFromMap(districtName);
+                    });
+                    
+                    layer.on('mouseout', function() {
+                        geoLayer.resetStyle(this);
+                        unhighlightDotFromMap();
+                    });
+                }
+            }).addTo(map);
+
+            map.fitBounds(geoLayer.getBounds());
+        }
+
+        function highlightDistrict(districtName) {
+            if (!geoLayer) return;
+
+            // Reset previous highlight
+            if (currentHighlightedLayer) {
+                geoLayer.resetStyle(currentHighlightedLayer);
+            }
+
+            // Find and highlight new district
+            geoLayer.eachLayer(layer => {
+                if (layer.feature && layer.feature.properties.DISTRICT === districtName) {
+                    layer.setStyle({
+                        fillColor: '#ffd700',
+                        fillOpacity: 0.6,
+                        weight: 3,
+                        color: '#ff6b00'
+                    });
+                    currentHighlightedLayer = layer;
+                    
+                    // Pan to district
+                    map.fitBounds(layer.getBounds(), { maxZoom: 10, padding: [50, 50] });
+                }
+            });
+        }
+
+        function highlightDotFromMap(districtName) {
+            // Remove previous highlight
+            if (currentHighlightedDot) {
+                currentHighlightedDot.classList.remove('map-highlighted');
+            }
+            
+            // Find and highlight the dot for this district
+            const dot = districtToDot[districtName];
+            if (dot) {
+                dot.classList.add('map-highlighted');
+                currentHighlightedDot = dot;
+                
+                // Scroll the dot into view
+                dot.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'nearest' });
+            }
+        }
+
+        function unhighlightDotFromMap() {
+            if (currentHighlightedDot) {
+                currentHighlightedDot.classList.remove('map-highlighted');
+                currentHighlightedDot = null;
+            }
+        }
+
+        function generate_text(){
+
+            userName = document.getElementById('userName').value;
+            userCity = document.getElementById('userCity').value;
+            userPhone = document.getElementById('userPhone').value;
+
+            document.getElementById('emailSubject').value = "CONSTITUENT CONCERN: Restoration of Order and Local Control in Minneapolis"
+            document.getElementById('emailBody').textContent = `Dear Representative `+ document.getElementById('modal-name').textContent +`,
+
+My name is ` + userName + `, and I am a constituent living in ` + userCity + `. I am writing to you today because I am deeply concerned about the current scale of the federal ICE and Border Patrol presence in Minnesota under "Operation Metro Surge."
+
+While I value the importance of the rule of law, the current federal "occupation" of our communities has moved beyond standard enforcement and into a territory that threatens the safety and stability of our neighborhoods. As a conservative, I believe in the importance of local control and limited federal overreach.
+
+Right now, we are seeing:
+
+A Threat to Public Safety: The recent tragic shootings of Minnesota residents by federal agents have escalated tensions and created a climate of fear that makes it harder for local law enforcement to maintain peace.
+
+Government Overreach: The reported use of "force to enter homes without judicial warrants" is a direct violation of the constitutional protections all residents should enjoy.
+
+Economic & Social Instability: The disruption to our local workforce and day-to-day commerce is harming Minnesota’s economy and creating unnecessary chaos.
+
+I urge you to join other members of the legislature in denouncing the current scale of this federal surge. Please stand up for Minnesota’s sovereignty and the safety of all our residents by calling for a return to orderly, local-led governance.
+
+I look forward to hearing your position on this critical issue.
+
+Sincerely,
+
+` + userName + " " +  userPhone
+            updateMailto();
+        }
 
         // Modal functionality
         const modalOverlay = document.getElementById('modal-overlay');
@@ -498,9 +760,14 @@
             document.getElementById('modal-district').textContent = member.district_name;
             document.getElementById('modal-location').textContent = member.district_location;
             document.getElementById('modal-population').textContent = member.district_population;
+            document.getElementById('modal-phone').href = "tel:" + member.government_phone;
             document.getElementById('modal-phone').textContent = member.government_phone;
+
             document.getElementById('modal-email').href = "mailto:" + member.government_email;
-            document.getElementById('modal-email-text').textContent = member.government_email;
+            document.getElementById('modal-email').textContent = member.government_email;
+            document.getElementById('emailSubject').value = ""
+            document.getElementById('emailBody').textContent = ""
+
             document.getElementById('modal-term').textContent = member.term_expires;
             document.getElementById('modal-link').href = member.government_website_url;
             
@@ -540,7 +807,6 @@
                 }
             }
             
-            // Hide social media group if no social links
             socialGroup.style.display = hasSocial ? 'block' : 'none';
             
             modalOverlay.classList.add('active');
@@ -557,7 +823,6 @@
             }
         });
 
-        // Keyboard support - ESC to close
         document.addEventListener('keydown', (e) => {
             if (e.key === 'Escape' && modalOverlay.classList.contains('active')) {
                 closeModal();
@@ -605,7 +870,7 @@
             `;
         }
 
-        function createPartySection(partyName, members, cssClass) {
+        function createPartySection(partyName, members, cssClass, isHouse = false) {
             const section = document.createElement('div');
             section.className = 'party-section';
 
@@ -616,12 +881,12 @@
             legendDot.className = 'legend-dot';
             legendDot.style.background = cssClass === 'republican' ? '#dc3545' : cssClass === 'dfl' ? '#0d6efd' : '#6c757d';
             
-            const title = document.createElement('h2');
+            const title = document.createElement('h4');
             title.textContent = partyName;
             
             const count = document.createElement('span');
             count.className = 'party-count';
-            count.textContent = `${members.length} members`;
+            count.textContent = `${members.length}`;
 
             header.appendChild(legendDot);
             header.appendChild(title);
@@ -632,7 +897,7 @@
             grid.className = 'dots-grid';
 
             members.forEach(member => {
-                const dot = createDot(member, cssClass);
+                const dot = createDot(member, cssClass, isHouse);
                 grid.appendChild(dot);
             });
 
@@ -640,7 +905,7 @@
             return section;
         }
 
-        function createDot(member, cssClass) {
+        function createDot(member, cssClass, isHouse = false) {
             const dot = document.createElement('div');
             dot.className = `dot ${cssClass}`;
             
@@ -663,12 +928,27 @@
             };
             
             dot.appendChild(img);
-            dot.addEventListener('click', () => openModal(member, cssClass));
+            
+            dot.addEventListener('click', () => {
+                openModal(member, cssClass);
+                
+                // Highlight district on map for House members
+                if (isHouse) {
+                    const districtName = member.district_name.replace('District ', '');
+                    highlightDistrict(districtName);
+                }
+            });
+            
+            // Store reference for map hover highlighting
+            if (isHouse) {
+                const districtName = member.district_name.replace('District ', '');
+                districtToDot[districtName] = dot;
+            }
             
             return dot;
         }
 
-        function loadMembers(dataFile, containerId, summaryId) {
+        function loadMembers(dataFile, containerId, summaryId, isHouse = false) {
             fetch(dataFile)
                 .then(response => response.json())
                 .then(members => {
@@ -693,15 +973,15 @@
                     const container = document.getElementById(containerId);
                     
                     if (grouped['Republican'].length > 0) {
-                        container.appendChild(createPartySection('Republican', grouped['Republican'], 'republican'));
+                        container.appendChild(createPartySection('Republican', grouped['Republican'], 'republican', isHouse));
                     }
 
                     if (grouped['Democratic-Farmer-Labor'].length > 0) {
-                        container.appendChild(createPartySection('Democratic-Farmer-Labor', grouped['Democratic-Farmer-Labor'], 'dfl'));
+                        container.appendChild(createPartySection('Democratic-Farmer-Labor', grouped['Democratic-Farmer-Labor'], 'dfl', isHouse));
                     }
 
                     if (grouped['Other'].length > 0) {
-                        container.appendChild(createPartySection('Other', grouped['Other'], 'other'));
+                        container.appendChild(createPartySection('Other', grouped['Other'], 'other', isHouse));
                     }
                 })
                 .catch(error => {
@@ -711,9 +991,10 @@
                 });
         }
 
-        // Load both chambers
-        loadMembers('senate.json', 'senate-container', 'senate-summary-stats');
-        loadMembers('reps.json', 'house-container', 'house-summary-stats');
+        // Initialize everything
+        initializeMap();
+        loadMembers('reps.json', 'house-container', 'house-summary-stats', true);
+        loadMembers('senate.json', 'senate-container', 'senate-summary-stats', false);
     </script>
 </body>
 </html>

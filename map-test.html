@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MN House Districts - Vertex Map</title>
+    
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    
+    <style>
+        body { margin: 0; padding: 0; font-family: sans-serif; }
+        #map { height: 100vh; width: 100%; background: #f0f0f0; }
+        .control-panel {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+            max-width: 250px;
+        }
+        h3 { margin-top: 0; color: #2c3e50; }
+        #status { font-size: 0.9em; color: #7f8c8d; }
+    </style>
+</head>
+<body>
+
+    <div id="map"></div>
+    
+    <div class="control-panel">
+        <h3>District Viewer</h3>
+        <p id="info">Hover over a district</p>
+        <div id="status">Loading data...</div>
+    </div>
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/proj4js/2.11.0/proj4.js"></script>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/proj4leaflet/1.0.1/proj4leaflet.min.js"></script>
+
+    <script>
+        // --- 1. CONFIGURATION ---
+        // Minnesota LCC-GIS typically uses UTM Zone 15N (EPSG:26915)
+        const MN_UTM15_DEF = "+proj=utm +zone=15 +datum=NAD83 +units=m +no_defs";
+        
+        // Initialize Map (Standard WGS84 for the base tiles)
+        const map = L.map('map').setView([46.3, -94.2], 7);
+
+        // Add a grayscale tile layer to make the red vertices pop
+        L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
+            attribution: '&copy; OpenStreetMap'
+        }).addTo(map);
+
+        // --- 2. DATA LOADING ---
+        // Replace 'districts.json' with your actual filename
+        fetch('districts.json')
+            .then(response => {
+                if (!response.ok) throw new Error("File not found. Ensure districts.json is in this folder.");
+                return response.json();
+            })
+            .then(data => {
+                document.getElementById('status').innerText = "Processing coordinates...";
+                renderGeoJSON(data);
+            })
+            .catch(err => {
+                document.getElementById('status').innerHTML = `<span style="color:red">${err.message}</span>`;
+            });
+
+        // --- 3. RENDERING LOGIC ---
+        function renderGeoJSON(data) {
+            const geoLayer = L.geoJSON(data, {
+                // Convert Projected [X, Y] to [Lat, Lng]
+                coordsToLatLng: function(coords) {
+                    const transformed = proj4(MN_UTM15_DEF, 'WGS84', [coords[0], coords[1]]);
+                    return new L.LatLng(transformed[1], transformed[0]);
+                },
+                // ADD THESE TWO LINES:
+                smoothFactor: 2.0, // Higher = faster performance, simpler shapes
+                renderer: L.canvas(), // Switches from SVG to Canvas (Canvas is MUCH faster for large data)
+                style: {
+                    color: "#34495e",
+                    weight: 1,
+                    fillOpacity: 0.1
+                },
+                onEachFeature: function(feature, layer) {
+                    // Interaction
+                    layer.on('mouseover', function() {
+                        this.setStyle({ fillOpacity: 0.3, weight: 2 });
+                        document.getElementById('info').innerHTML = `<strong>District:</strong> ${feature.properties.DISTRICT || 'N/A'}`;
+                    });
+                    layer.on('mouseout', function() {
+                        geoLayer.resetStyle(this);
+                    });
+                }
+            }).addTo(map);
+
+            // Zoom map to fit the state
+            map.fitBounds(geoLayer.getBounds());
+            document.getElementById('status').innerText = "Map Ready";
+        }
+    </script>
+</body>
+</html>
