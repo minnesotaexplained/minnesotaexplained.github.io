@@ -575,7 +575,7 @@
         const emailLink = document.getElementById('modal-email');
 
         function updateMailto() {
-            const recipient = "example@domain.com";
+            const recipient = document.getElementById('modal-email').textContent;
             // encodeURIComponent handles spaces, newlines, and symbols
             const subject = encodeURIComponent(subjectInput.value);
             const body = encodeURIComponent(bodyInput.value);
