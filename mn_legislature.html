@@ -1,0 +1,719 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Minnesota Legislature</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: #fff;
+            padding: 40px 20px;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 10px;
+            font-size: 2.5em;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #666;
+            margin-bottom: 40px;
+            font-size: 1.1em;
+        }
+
+        .chamber-section {
+            padding: 30px;
+            margin-bottom: 40px;
+        }
+
+        .chamber-title {
+            color: #333;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+
+        .chamber-subtitle {
+            text-align: center;
+            color: #666;
+            font-size: 1em;
+        }
+
+        .summary {
+            padding: 20px;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .summary-stats {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            flex-wrap: wrap;
+        }
+
+        .stat {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .stat-number {
+            font-size: 2em;
+            font-weight: 700;
+        }
+
+        .stat-label {
+            color: #666;
+            font-size: 0.9em;
+        }
+
+        .legend-dot {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            display: inline-block;
+            margin-right: 8px;
+        }
+
+        .party-sections-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+
+        .party-section {
+            padding: 30px;
+        }
+
+        .party-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid #eee;
+        }
+
+        .party-header h2 {
+            font-size: 1.5em;
+            color: #333;
+            margin-left: 15px;
+        }
+
+        .party-count {
+            margin-left: auto;
+            background: #f0f0f0;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-weight: 600;
+            color: #666;
+        }
+
+        .dots-grid {
+            display: grid;
+            grid-template-columns: repeat(10, 1fr);
+            gap: 15px;
+            justify-items: center;
+        }
+
+        .dot {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+            position: relative;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            overflow: hidden;
+        }
+
+        .dot img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .dot:hover {
+            transform: scale(1.15);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+            z-index: 10;
+        }
+
+        .dot.republican {
+            border: 3px solid #dc3545;
+        }
+
+        .dot.dfl {
+            border: 3px solid #0d6efd;
+        }
+
+        .dot.other {
+            border: 3px solid #6c757d;
+        }
+
+        /* Modal Styles */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .modal-overlay.active {
+            display: flex;
+        }
+
+        .modal {
+            background: white;
+            border-radius: 12px;
+            max-width: 500px;
+            width: 100%;
+            max-height: 90vh;
+            overflow-y: auto;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+            position: relative;
+        }
+
+        .modal-header {
+            padding: 24px;
+            border-bottom: 1px solid #eee;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .modal-image {
+            width: 20%;
+            height: 20%;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        .modal-image.republican {
+            border: 4px solid #dc3545;
+        }
+
+        .modal-image.dfl {
+            border: 4px solid #0d6efd;
+        }
+
+        .modal-image.other {
+            border: 4px solid #6c757d;
+        }
+
+        .modal-title-section {
+            flex: 1;
+        }
+
+        .modal-name {
+            font-size: 1.5em;
+            font-weight: 700;
+            color: #333;
+            margin-bottom: 4px;
+        }
+
+        .modal-party {
+            font-size: 0.95em;
+            font-weight: 600;
+            padding: 4px 12px;
+            border-radius: 4px;
+            display: inline-block;
+        }
+
+        .modal-party.republican {
+            background: #dc354520;
+            color: #dc3545;
+        }
+
+        .modal-party.dfl {
+            background: #0d6efd20;
+            color: #0d6efd;
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: none;
+            border: none;
+            font-size: 28px;
+            cursor: pointer;
+            color: #666;
+            width: 32px;
+            height: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            transition: background 0.2s;
+        }
+
+        .modal-close:hover {
+            background: #f0f0f0;
+            color: #333;
+        }
+
+        .modal-body {
+            padding: 24px;
+        }
+
+        .modal-info-group {
+            margin-bottom: 20px;
+        }
+
+        .modal-info-group:last-child {
+            margin-bottom: 0;
+        }
+
+        .modal-info-label {
+            font-weight: 600;
+            color: #666;
+            font-size: 0.85em;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 6px;
+        }
+
+        .modal-info-value {
+            color: #333;
+            font-size: 1em;
+            line-height: 1.5;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 12px;
+            margin-top: 8px;
+        }
+
+        .social-link {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            text-decoration: none;
+            transition: transform 0.2s ease, opacity 0.2s ease;
+            background: #f0f0f0;
+        }
+
+        .social-link:hover {
+            transform: scale(1.1);
+            opacity: 0.8;
+        }
+
+        .social-link.twitter {
+            background: #1DA1F2;
+        }
+
+        .social-link.facebook {
+            background: #1877F2;
+        }
+
+        .social-link.instagram {
+            background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+        }
+
+        .social-link svg {
+            width: 20px;
+            height: 20px;
+            fill: white;
+        }
+
+        .modal-footer {
+            padding: 20px 24px;
+            border-top: 1px solid #eee;
+            display: flex;
+            justify-content: flex-end;
+        }
+
+        .modal-link {
+            display: inline-block;
+            padding: 10px 20px;
+            background: #0d6efd;
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;
+            font-weight: 600;
+            font-size: 0.9em;
+            transition: background 0.2s;
+        }
+
+        .modal-link:hover {
+            background: #0b5ed7;
+        }
+
+        @media (max-width: 1024px) {
+            .party-sections-container {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .dots-grid {
+                grid-template-columns: repeat(5, 1fr);
+                gap: 12px;
+            }
+
+            .dot {
+                width: 35px;
+                height: 35px;
+            }
+
+            .modal-header {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .modal-close {
+                top: 10px;
+                right: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav style="margin:0; text-align: center;">
+        <h3><a href="/" style="text-decoration: none;">Minnesota Explained</a></h3>
+    </nav>
+    <div class="container">
+        <h1>Minnesota Legislature</h1>
+        <p class="subtitle">2025-2026 Session</p>
+
+        <!-- House of Representatives Section -->
+        <div class="chamber-section">
+            <h4 class="chamber-title">House of Representatives</h4>
+            <p class="chamber-subtitle">134 Members</p>
+
+            <div class="summary">
+                <div class="summary-stats" id="house-summary-stats"></div>
+            </div>
+
+            <div class="party-sections-container" id="house-container"></div>
+        </div>
+
+        <!-- Senate Section -->
+        <div class="chamber-section">
+            <h4 class="chamber-title">State Senate</h4>
+            <p class="chamber-subtitle">67 Members</p>
+
+            <div class="summary">
+                <div class="summary-stats" id="senate-summary-stats"></div>
+            </div>
+
+            <div class="party-sections-container" id="senate-container"></div>
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal-overlay" id="modal-overlay">
+        <div class="modal">
+            <button class="modal-close" id="modal-close">&times;</button>
+            <div class="modal-header">
+                <img id="modal-image" class="modal-image" src="" alt="">
+                <div class="modal-title-section">
+                    <div id="modal-name" class="modal-name"></div>
+                    <div id="modal-party" class="modal-party"></div>
+                </div>
+            </div>
+            <div class="modal-body">
+                <div class="modal-info-group">
+                    <div class="modal-info-label">District</div>
+                    <div id="modal-district" class="modal-info-value"></div>
+                </div>
+                <div class="modal-info-group">
+                    <div class="modal-info-label">Location</div>
+                    <div id="modal-location" class="modal-info-value"></div>
+                </div>
+                <div class="modal-info-group">
+                    <div class="modal-info-label">Population</div>
+                    <div id="modal-population" class="modal-info-value"></div>
+                </div>
+                <div class="modal-info-group">
+                    <div class="modal-info-label">Contact</div>
+                    <div id="modal-phone" class="modal-info-value"></div>
+                    <a id="modal-email" class="modal-info-value" href="" target="_blank">
+                        <span id="modal-email-text"></span>
+                    </a>
+                </div>
+                <div class="modal-info-group" id="social-media-group">
+                    <div class="modal-info-label">Social Media</div>
+                    <div id="modal-social" class="social-links"></div>
+                </div>
+                <div class="modal-info-group">
+                    <div class="modal-info-label">Term Expires</div>
+                    <div id="modal-term" class="modal-info-value"></div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <a id="modal-link" class="modal-link" href="" target="_blank">View Full Profile</a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Social media icon SVGs
+        const socialIcons = {
+            twitter: '<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>',
+            facebook: '<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>',
+            instagram: '<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 0C8.74 0 8.333.015 7.053.072 5.775.132 4.905.333 4.14.63c-.789.306-1.459.717-2.126 1.384S.935 3.35.63 4.14C.333 4.905.131 5.775.072 7.053.012 8.333 0 8.74 0 12s.015 3.667.072 4.947c.06 1.277.261 2.148.558 2.913.306.788.717 1.459 1.384 2.126.667.666 1.336 1.079 2.126 1.384.766.296 1.636.499 2.913.558C8.333 23.988 8.74 24 12 24s3.667-.015 4.947-.072c1.277-.06 2.148-.262 2.913-.558.788-.306 1.459-.718 2.126-1.384.666-.667 1.079-1.335 1.384-2.126.296-.765.499-1.636.558-2.913.06-1.28.072-1.687.072-4.947s-.015-3.667-.072-4.947c-.06-1.277-.262-2.149-.558-2.913-.306-.789-.718-1.459-1.384-2.126C21.319 1.347 20.651.935 19.86.63c-.765-.297-1.636-.499-2.913-.558C15.667.012 15.26 0 12 0zm0 2.16c3.203 0 3.585.016 4.85.071 1.17.055 1.805.249 2.227.415.562.217.96.477 1.382.896.419.42.679.819.896 1.381.164.422.36 1.057.413 2.227.057 1.266.07 1.646.07 4.85s-.015 3.585-.074 4.85c-.061 1.17-.256 1.805-.421 2.227-.224.562-.479.96-.899 1.382-.419.419-.824.679-1.38.896-.42.164-1.065.36-2.235.413-1.274.057-1.649.07-4.859.07-3.211 0-3.586-.015-4.859-.074-1.171-.061-1.816-.256-2.236-.421-.569-.224-.96-.479-1.379-.899-.421-.419-.69-.824-.9-1.38-.165-.42-.359-1.065-.42-2.235-.045-1.26-.061-1.649-.061-4.844 0-3.196.016-3.586.061-4.861.061-1.17.255-1.814.42-2.234.21-.57.479-.96.9-1.381.419-.419.81-.689 1.379-.898.42-.166 1.051-.361 2.221-.421 1.275-.045 1.65-.06 4.859-.06l.045.03zm0 3.678c-3.405 0-6.162 2.76-6.162 6.162 0 3.405 2.76 6.162 6.162 6.162 3.405 0 6.162-2.76 6.162-6.162 0-3.405-2.76-6.162-6.162-6.162zM12 16c-2.21 0-4-1.79-4-4s1.79-4 4-4 4 1.79 4 4-1.79 4-4 4zm7.846-10.405c0 .795-.646 1.44-1.44 1.44-.795 0-1.44-.646-1.44-1.44 0-.794.646-1.439 1.44-1.439.793-.001 1.44.645 1.44 1.439z"/></svg>'
+        };
+
+        // Modal functionality
+        const modalOverlay = document.getElementById('modal-overlay');
+        const modalClose = document.getElementById('modal-close');
+
+        function openModal(member, cssClass) {
+            document.getElementById('modal-name').textContent = member.name;
+            document.getElementById('modal-party').textContent = member.party;
+            document.getElementById('modal-party').className = `modal-party ${cssClass}`;
+            
+            document.getElementById('modal-image').src = member.image_url;
+            document.getElementById('modal-image').alt = member.name;
+            document.getElementById('modal-image').className = `modal-image ${cssClass}`;
+            
+            document.getElementById('modal-district').textContent = member.district_name;
+            document.getElementById('modal-location').textContent = member.district_location;
+            document.getElementById('modal-population').textContent = member.district_population;
+            document.getElementById('modal-phone').textContent = member.government_phone;
+            document.getElementById('modal-email').href = "mailto:" + member.government_email;
+            document.getElementById('modal-email-text').textContent = member.government_email;
+            document.getElementById('modal-term').textContent = member.term_expires;
+            document.getElementById('modal-link').href = member.government_website_url;
+            
+            // Handle social media links
+            const socialContainer = document.getElementById('modal-social');
+            const socialGroup = document.getElementById('social-media-group');
+            socialContainer.innerHTML = '';
+            
+            let hasSocial = false;
+            
+            if (member.social_media) {
+                if (member.social_media.twitter) {
+                    socialContainer.innerHTML += `
+                        <a href="${member.social_media.twitter}" target="_blank" class="social-link twitter" title="Twitter/X">
+                            ${socialIcons.twitter}
+                        </a>
+                    `;
+                    hasSocial = true;
+                }
+                
+                if (member.social_media.facebook) {
+                    socialContainer.innerHTML += `
+                        <a href="${member.social_media.facebook}" target="_blank" class="social-link facebook" title="Facebook">
+                            ${socialIcons.facebook}
+                        </a>
+                    `;
+                    hasSocial = true;
+                }
+                
+                if (member.social_media.instagram) {
+                    socialContainer.innerHTML += `
+                        <a href="${member.social_media.instagram}" target="_blank" class="social-link instagram" title="Instagram">
+                            ${socialIcons.instagram}
+                        </a>
+                    `;
+                    hasSocial = true;
+                }
+            }
+            
+            // Hide social media group if no social links
+            socialGroup.style.display = hasSocial ? 'block' : 'none';
+            
+            modalOverlay.classList.add('active');
+        }
+
+        function closeModal() {
+            modalOverlay.classList.remove('active');
+        }
+
+        modalClose.addEventListener('click', closeModal);
+        modalOverlay.addEventListener('click', (e) => {
+            if (e.target === modalOverlay) {
+                closeModal();
+            }
+        });
+
+        // Keyboard support - ESC to close
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && modalOverlay.classList.contains('active')) {
+                closeModal();
+            }
+        });
+
+        function displaySummary(grouped, summaryId) {
+            const summaryEl = document.getElementById(summaryId);
+            
+            const republican = grouped['Republican'].length;
+            const dfl = grouped['Democratic-Farmer-Labor'].length;
+            const other = grouped['Other'].length;
+            const total = republican + dfl + other;
+
+            summaryEl.innerHTML = `
+                <div class="stat">
+                    <span class="legend-dot" style="background: #dc3545;"></span>
+                    <div>
+                        <div class="stat-number" style="color: #dc3545;">${republican}</div>
+                        <div class="stat-label">Republicans</div>
+                    </div>
+                </div>
+                <div class="stat">
+                    <span class="legend-dot" style="background: #0d6efd;"></span>
+                    <div>
+                        <div class="stat-number" style="color: #0d6efd;">${dfl}</div>
+                        <div class="stat-label">DFL</div>
+                    </div>
+                </div>
+                ${other > 0 ? `
+                <div class="stat">
+                    <span class="legend-dot" style="background: #6c757d;"></span>
+                    <div>
+                        <div class="stat-number" style="color: #6c757d;">${other}</div>
+                        <div class="stat-label">Other</div>
+                    </div>
+                </div>
+                ` : ''}
+                <div class="stat">
+                    <div>
+                        <div class="stat-number" style="color: #333;">${total}</div>
+                        <div class="stat-label">Total</div>
+                    </div>
+                </div>
+            `;
+        }
+
+        function createPartySection(partyName, members, cssClass) {
+            const section = document.createElement('div');
+            section.className = 'party-section';
+
+            const header = document.createElement('div');
+            header.className = 'party-header';
+            
+            const legendDot = document.createElement('span');
+            legendDot.className = 'legend-dot';
+            legendDot.style.background = cssClass === 'republican' ? '#dc3545' : cssClass === 'dfl' ? '#0d6efd' : '#6c757d';
+            
+            const title = document.createElement('h2');
+            title.textContent = partyName;
+            
+            const count = document.createElement('span');
+            count.className = 'party-count';
+            count.textContent = `${members.length} members`;
+
+            header.appendChild(legendDot);
+            header.appendChild(title);
+            header.appendChild(count);
+            section.appendChild(header);
+
+            const grid = document.createElement('div');
+            grid.className = 'dots-grid';
+
+            members.forEach(member => {
+                const dot = createDot(member, cssClass);
+                grid.appendChild(dot);
+            });
+
+            section.appendChild(grid);
+            return section;
+        }
+
+        function createDot(member, cssClass) {
+            const dot = document.createElement('div');
+            dot.className = `dot ${cssClass}`;
+            
+            const img = document.createElement('img');
+            img.src = member.image_url;
+            img.alt = member.name;
+            img.title = member.name;
+            
+            img.onerror = function() {
+                const initials = member.name.split(' ').map(n => n[0]).join('');
+                this.style.display = 'none';
+                dot.style.background = cssClass === 'republican' ? '#dc3545' : cssClass === 'dfl' ? '#0d6efd' : '#6c757d';
+                dot.style.color = 'white';
+                dot.style.fontSize = '14px';
+                dot.style.display = 'flex';
+                dot.style.alignItems = 'center';
+                dot.style.justifyContent = 'center';
+                dot.style.fontWeight = 'bold';
+                dot.textContent = initials;
+            };
+            
+            dot.appendChild(img);
+            dot.addEventListener('click', () => openModal(member, cssClass));
+            
+            return dot;
+        }
+
+        function loadMembers(dataFile, containerId, summaryId) {
+            fetch(dataFile)
+                .then(response => response.json())
+                .then(members => {
+                    const grouped = {
+                        'Republican': [],
+                        'Democratic-Farmer-Labor': [],
+                        'Other': []
+                    };
+
+                    members.forEach(member => {
+                        if (member.party === 'Republican') {
+                            grouped['Republican'].push(member);
+                        } else if (member.party === 'Democratic-Farmer-Labor') {
+                            grouped['Democratic-Farmer-Labor'].push(member);
+                        } else {
+                            grouped['Other'].push(member);
+                        }
+                    });
+
+                    displaySummary(grouped, summaryId);
+
+                    const container = document.getElementById(containerId);
+                    
+                    if (grouped['Republican'].length > 0) {
+                        container.appendChild(createPartySection('Republican', grouped['Republican'], 'republican'));
+                    }
+
+                    if (grouped['Democratic-Farmer-Labor'].length > 0) {
+                        container.appendChild(createPartySection('Democratic-Farmer-Labor', grouped['Democratic-Farmer-Labor'], 'dfl'));
+                    }
+
+                    if (grouped['Other'].length > 0) {
+                        container.appendChild(createPartySection('Other', grouped['Other'], 'other'));
+                    }
+                })
+                .catch(error => {
+                    console.error(`Error loading ${dataFile}:`, error);
+                    document.getElementById(containerId).innerHTML = 
+                        `<p style="text-align: center; color: #dc3545;">Error loading data. Please ensure ${dataFile} is in the same directory.</p>`;
+                });
+        }
+
+        // Load both chambers
+        loadMembers('senate.json', 'senate-container', 'senate-summary-stats');
+        loadMembers('reps.json', 'house-container', 'house-summary-stats');
+    </script>
+</body>
+</html>

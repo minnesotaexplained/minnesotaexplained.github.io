@@ -999,6 +999,17 @@
         "type":"link",
         "image":"/img/mutualaid.png",
         "link":"https://linktr.ee/mplsmutualaid"
+    },
+    {
+        "id":16,
+        "title":"MN Congress",
+        "description":"Detailed map of all representatives and senators.",
+        "subtitle":"",
+        "footer":"",
+        "category": "State Government",
+        "type":"link",
+        "image":"/img/congress.webp",
+        "link":"/mn_legislature.html"
     }
 ]
 

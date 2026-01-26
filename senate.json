@@ -1,0 +1,1141 @@
+[
+  {
+    "name": "Mark Johnson",
+    "district_name": "District 01",
+    "district_location": "Clay, Kittson, Marshall, Norman, Pennington, Polk, Red Lake, Roseau Counties",
+    "district_population": "38,848",
+    "government_website_url": "https://www.senate.mn/members/index.php?district=01",
+    "party": "Republican",
+    "term_expires": "2026",
+    "image_url": "https://gis.lcc.mn.gov/iMaps/districts/images/Senate/1.jpg",
+    "government_email": "sen.mark.johnson@senate.mn",
+    "government_phone": "651-296-5782",
+    "social_media": {
+      "twitter": null,
+      "facebook": null,
+      "instagram": null
+    }
+  },
+  {
+    "name": "Steve Green",
+    "district_name": "District 02",
+    "district_location": "Becker, Beltrami, Cass, Clearwater, Hubbard, Itasca, Lake of the Woods, Mahnomen Counties",
+    "district_population": "40,859",
+    "government_website_url": "https://www.senate.mn/members/index.php?district=02",
+    "party": "Republican",
+    "term_expires": "2026",
+    "image_url": "https://gis.lcc.mn.gov/iMaps/districts/images/Senate/2.jpg",
+    "government_email": "sen.steve.green@senate.mn",
+    "government_phone": "651-296-8063",
+    "social_media": {
+      "twitter": null,
+      "facebook": null,
+      "instagram": null
+    }
+  },
+  {
+    "name": "Grant Hauschild",
+    "district_name": "District 03",
+    "district_location": "Cook, Itasca, Koochiching, Lake, St. Louis Counties",
+    "district_population": "39,474",
+    "government_website_url": "https://www.senate.mn/members/index.php?district=03",
+    "party": "Democratic-Farmer-Labor",
+    "term_expires": "2026",
+    "image_url": "https://gis.lcc.mn.gov/iMaps/districts/images/Senate/3.jpg",
+    "government_email": "sen.grant.hauschild@senate.mn",
+    "government_phone": "651-296-1789",
+    "social_media": {
+      "twitter": null,
+      "facebook": null,
+      "instagram": null
+    }
+  },
+  {
+    "name": "Rob Kupec",
+    "district_name": "District 04",
+    "district_location": "Becker, Clay, Clay County Counties",
+    "district_population": "43,701",
+    "government_website_url": "https://www.senate.mn/members/index.php?district=04",
+    "party": "Democratic-Farmer-Labor",
+    "term_expires": "2026",
+    "image_url": "https://gis.lcc.mn.gov/iMaps/districts/images/Senate/4.jpg",
+    "government_email": "sen.rob.kupec@senate.mn",
+    "government_phone": "651-296-3205",
+    "social_media": {
+      "twitter": null,
+      "facebook": null,
+      "instagram": null
+    }
+  },
+  {
+    "name": "Paul Utke",
+    "district_name": "District 05",
+    "district_location": "Becker, Cass, Hubbard, Morrison, Todd, Wadena Counties",
+    "district_population": "40,622",
+    "government_website_url": "https://www.senate.mn/members/index.php?district=05",
+    "party": "Republican",
+    "term_expires": "2026",
+    "image_url": "https://gis.lcc.mn.gov/iMaps/districts/images/Senate/5.jpg",
+    "government_email": "sen.paul.utke@senate.mn",
+    "government_phone": "651-296-9651",
+    "social_media": {
+      "twitter": null,
+      "facebook": null,
+      "instagram": null
+    }
+  },
+  {
+    "name": "Keri Heintzeman",
+    "district_name": "District 06",
+    "district_location": "Cass, Crow Wing, Crow Wing County, Itasca Counties",
+    "district_population": "38,762",
+    "government_website_url": "https://www.senate.mn/members/index.php?district=06",
+    "party": "Republican",
+    "term_expires": "2026",
+    "image_url": "https://gis.lcc.mn.gov/iMaps/districts/images/Senate/6.jpg",
+    "government_email": "sen.keri.heintzeman@senate.mn",
+    "government_phone": "651-296-7079",
+    "social_media": {
+      "twitter": null,
+      "facebook": null,
+      "instagram": null
+    }
+  },
+  {
+    "name": "Robert Farnsworth",
+    "district_name": "District 07",
+    "district_location": "Aitkin, Itasca, St. Louis, St. Louis County Counties",
+    "district_population": "39,829",
+    "government_website_url": "https://www.senate.mn/members/index.php?district=07",
+    "party": "Republican",
+    "term_expires": "2026",
+    "image_url": "https://gis.lcc.mn.gov/iMaps/districts/images/Senate/7.jpg",
+    "government_email": "sen.robert.farnsworth@senate.mn",
+    "government_phone": "651-296-8436",
+    "social_media": {
+      "twitter": null,
+      "facebook": null,
+      "instagram": null
+    }
+  },
+  {
+    "name": "Jen McEwen",
+    "district_name": "District 08",
+    "district_location": "St. Louis County Counties",
+    "district_population": "42,275",
+    "government_website_url": "https://www.senate.mn/members/index.php?district=08",
+    "party": "Democratic-Farmer-Labor",
+    "term_expires": "2026",
+    "image_url": "https://gis.lcc.mn.gov/iMaps/districts/images/Senate/8.jpg",
+    "government_email": "sen.jen.mcewen@senate.mn",
+    "government_phone": "651-296-4188",
+    "social_media": {
+      "twitter": null,
+      "facebook": null,
+      "instagram": null
+    }
+  },
+  {
+    "name": "Jordan Rasmusson",
+    "district_name": "District 09",
+    "district_location": "Douglas, Grant, Otter Tail, Traverse, Wilkin Counties",
+    "district_population": "40,356",
+    "government_website_url": "https://www.senate.mn/members/index.php?district=09",
+    "party": "Republican",
+    "term_expires": "2026",
+    "image_url": "https://gis.lcc.mn.gov/iMaps/districts/images/Senate/9.jpg",
+    "government_email": "sen.jordan.rasmusson@senate.mn",
+    "government_phone": "651-296-4875",
+    "social_media": {
+      "twitter": null,
+      "facebook": null,
+      "instagram": null
+    }
+  },
+  {
+    "name": "Nathan Wesenberg",
+    "district_name": "District 10",
+    "district_location": "Aitkin, Benton, Crow Wing, Isanti, Kanabec, Mille Lacs, Morrison Counties",
+    "district_population": "40,910",
+    "government_website_url": "https://www.senate.mn/members/index.php?district=10",
+    "party": "Republican",
+    "term_expires": "2026",
+    "image_url": "https://gis.lcc.mn.gov/iMaps/districts/images/Senate/10.jpg",
+    "government_email": "sen.nathan.wesenberg@senate.mn",
+    "government_phone": "651-296-4913",
+    "social_media": {
+      "twitter": null,
+      "facebook": null,
+      "instagram": null
+    }
+  },
+  {
+    "name": "Jason Rarick",
+    "district_name": "District 11",
+    "district_location": "Carlton, Chisago, Kanabec, Pine, St. Louis Counties",
+    "district_population": "39,600",
+    "government_website_url": "https://www.senate.mn/members/index.php?district=11",
+    "party": "Republican",
+    "term_expires": "2026",
+    "image_url": "https://gis.lcc.mn.gov/iMaps/districts/images/Senate/11.jpg",
+    "government_email": "sen.jason.rarick@senate.mn",
+    "government_phone": "651-296-1508",
+    "social_media": {
+      "twitter": null,
+      "facebook": null,
+      "instagram": null
+    }
+  },
+  {
+    "name": "Torrey Westrom",
+    "district_name": "District 12",
+    "district_location": "Big Stone, Douglas, Pope, Stearns, Stevens, Swift Counties",
+    "district_population": "39,976",
+    "government_website_url": "https://www.senate.mn/members/index.php?district=12",
+    "party": "Republican",
+    "term_expires": "2026",
+    "image_url": "https://gis.lcc.mn.gov/iMaps/districts/images/Senate/12.jpg",
+    "government_email": "sen.torrey.westrom@senate.mn",
+    "government_phone": "651-296-3826",
+    "social_media": {
+      "twitter": null,
+      "facebook": null,
+      "instagram": null
+    }
+  },
+  {
+    "name": "Jeff Howe",
+    "district_name": "District 13",
+    "district_location": "Benton, Stearns, Stearns County Counties",
+    "district_population": "41,907",
+    "government_website_url": "https://www.senate.mn/members/index.php?district=13",
+    "party": "Republican",
+    "term_expires": "2026",
+    "image_url": "https://gis.lcc.mn.gov/iMaps/districts/images/Senate/13.jpg",
+    "government_email": "sen.jeff.howe@senate.mn",
+    "government_phone": "651-296-2084",
+    "social_media": {
+      "twitter": null,
+      "facebook": null,
+      "instagram": null
+    }
+  },
+  {
+    "name": "Aric Putnam",
+    "district_name": "District 14",
+    "district_location": "Benton, Sherburne, Stearns, Stearns County Counties",
+    "district_population": "42,088",
+    "government_website_url": "https://www.senate.mn/members/index.php?district=14",
+    "party": "Democratic-Farmer-Labor",
+    "term_expires": "2026",
+    "image_url": "https://gis.lcc.mn.gov/iMaps/districts/images/Senate/14.jpg",
+    "government_email": "sen.aric.putnam@senate.mn",
+    "government_phone": "651-296-6455",
+    "social_media": {
+      "twitter": null,
+      "facebook": null,
+      "instagram": null
+    }
+  },
+  {
+    "name": "Gary Dahms",
+    "district_name": "District 15",
+    "district_location": "Blue Earth, Brown, Chippewa, Lac qui Parle, Lyon, Redwood, Yellow Medicine Counties",
+    "district_population": "41,693",
+    "government_website_url": "https://www.senate.mn/members/index.php?district=15",
+    "party": "Republican",
+    "term_expires": "2026",
+    "image_url": "https://gis.lcc.mn.gov/iMaps/districts/images/Senate/15.jpg",
+    "government_email": "sen.gary.dahms@senate.mn",
+    "government_phone": "651-296-8138",
+    "social_media": {
+      "twitter": null,
+      "facebook": null,
+      "instagram": null
+    }
+  },
+  {
+    "name": "Andrew Lang",
+    "district_name": "District 16",
+    "district_location": "Chippewa, Kandiyohi, Kandiyohi County, Meeker, Renville Counties",
+    "district_population": "38,559",
+    "government_website_url": "https://www.senate.mn/members/index.php?district=16",
+    "party": "Republican",
+    "term_expires": "2026",
+    "image_url": "https://gis.lcc.mn.gov/iMaps/districts/images/Senate/16.jpg",
+    "government_email": "sen.andrew.lang@senate.mn",
+    "government_phone": "651-296-4918",
+    "social_media": {
+      "twitter": null,
+      "facebook": null,
+      "instagram": null
+    }
+  },
+  {
+    "name": "Glenn Gruenhagen",
+    "district_name": "District 17",
+    "district_location": "Carver, McLeod, Meeker, Sibley, Wright Counties",
+    "district_population": "39,776",
+    "government_website_url": "https://www.senate.mn/members/index.php?district=17",
+    "party": "Republican",
+    "term_expires": "2026",
+    "image_url": "https://gis.lcc.mn.gov/iMaps/districts/images/Senate/17.jpg",
+    "government_email": "sen.glenn.gruenhagen@senate.mn",
+    "government_phone": "651-296-4131",
+    "social_media": {
+      "twitter": null,
+      "facebook": null,
+      "instagram": null
+    }
+  },
+  {
+    "name": "Nick Frentz",
+    "district_name": "District 18",
+    "district_location": "Blue Earth, Blue Earth County, Le Sueur, Nicollet Counties",
+    "district_population": "39,587",
+    "government_website_url": "https://www.senate.mn/members/index.php?district=18",
+    "party": "Democratic-Farmer-Labor",
+    "term_expires": "2026",
+    "image_url": "https://gis.lcc.mn.gov/iMaps/districts/images/Senate/18.jpg",
+    "government_email": "sen.nick.frentz@senate.mn",
+    "government_phone": "651-296-6153",
+    "social_media": {
+      "twitter": null,
+      "facebook": null,
+      "instagram": null
+    }
+  },
+  {
+    "name": "John Jasinski",
+    "district_name": "District 19",
+    "district_location": "Goodhue, Rice, Steele, Waseca Counties",
+    "district_population": "43,226",
+    "government_website_url": "https://www.senate.mn/members/index.php?district=19",
+    "party": "Republican",
+    "term_expires": "2026",
+    "image_url": "https://gis.lcc.mn.gov/iMaps/districts/images/Senate/19.jpg",
+    "government_email": "sen.john.jasinski@senate.mn",
+    "government_phone": "651-296-0284",
+    "social_media": {
+      "twitter": null,
+      "facebook": null,
+      "instagram": null
+    }
+  },
+  {
+    "name": "Steve Drazkowski",
+    "district_name": "District 20",
+    "district_location": "Dakota, Goodhue, Olmsted, Wabasha, Winona Counties",
+    "district_population": "42,409",
+    "government_website_url": "https://www.senate.mn/members/index.php?district=20",
+    "party": "Republican",
+    "term_expires": "2026",
+    "image_url": "https://gis.lcc.mn.gov/iMaps/districts/images/Senate/20.jpg",
+    "government_email": "sen.steve.drazkowski@senate.mn",
+    "government_phone": "651-296-5612",
+    "social_media": {
+      "twitter": null,
+      "facebook": null,
+      "instagram": null
+    }
+  },
+  {
+    "name": "Bill Weber",
+    "district_name": "District 21",
+    "district_location": "Cottonwood, Jackson, Lincoln, Martin, Murray, Nobles, Pipestone, Rock, Watonwan Counties",
+    "district_population": "40,424",
+    "government_website_url": "https://www.senate.mn/members/index.php?district=21",
+    "party": "Republican",
+    "term_expires": "2026",
+    "image_url": "https://gis.lcc.mn.gov/iMaps/districts/images/Senate/21.jpg",
+    "government_email": "sen.bill.weber@senate.mn",
+    "government_phone": "651-296-5650",
+    "social_media": {
+      "twitter": null,
+      "facebook": null,
+      "instagram": null
+    }
+  },
+  {
+    "name": "Rich Draheim",
+    "district_name": "District 22",
+    "district_location": "Blue Earth, Faribault, Le Sueur, Martin, Rice, Scott, Watonwan Counties",
+    "district_population": "39,153",
+    "government_website_url": "https://www.senate.mn/members/index.php?district=22",
+    "party": "Republican",
+    "term_expires": "2026",
+    "image_url": "https://gis.lcc.mn.gov/iMaps/districts/images/Senate/22.jpg",
+    "government_email": "sen.rich.draheim@senate.mn",
+    "government_phone": "651-296-5558",
+    "social_media": {
+      "twitter": null,
+      "facebook": null,
+      "instagram": null
+    }
+  },
+  {
+    "name": "Gene Dornink",
+    "district_name": "District 23",
+    "district_location": "Faribault, Freeborn, Mower, Steele, Waseca Counties",
+    "district_population": "38,555",
+    "government_website_url": "https://www.senate.mn/members/index.php?district=23",
+    "party": "Republican",
+    "term_expires": "2026",
+    "image_url": "https://gis.lcc.mn.gov/iMaps/districts/images/Senate/23.jpg",
+    "government_email": "sen.gene.dornink@senate.mn",
+    "government_phone": "651-296-5240",
+    "social_media": {
+      "twitter": null,
+      "facebook": null,
+      "instagram": null
+    }
+  },
+  {
+    "name": "Carla Nelson",
+    "district_name": "District 24",
+    "district_location": "Dodge, Olmsted, Olmsted County Counties",
+    "district_population": "40,178",
+    "government_website_url": "https://www.senate.mn/members/index.php?district=24",
+    "party": "Republican",
+    "term_expires": "2026",
+    "image_url": "https://gis.lcc.mn.gov/iMaps/districts/images/Senate/24.jpg",
+    "government_email": "sen.carla.nelson@senate.mn",
+    "government_phone": "651-296-4848",
+    "social_media": {
+      "twitter": null,
+      "facebook": null,
+      "instagram": null
+    }
+  },
+  {
+    "name": "Liz Boldon",
+    "district_name": "District 25",
+    "district_location": "Olmsted County Counties",
+    "district_population": "44,406",
+    "government_website_url": "https://www.senate.mn/members/index.php?district=25",
+    "party": "Democratic-Farmer-Labor",
+    "term_expires": "2026",
+    "image_url": "https://gis.lcc.mn.gov/iMaps/districts/images/Senate/25.jpg",
+    "government_email": "sen.liz.boldon@senate.mn",
+    "government_phone": "651-296-3903",
+    "social_media": {
+      "twitter": null,
+      "facebook": null,
+      "instagram": null
+    }
+  },
+  {
+    "name": "Jeremy Miller",
+    "district_name": "District 26",
+    "district_location": "Fillmore, Houston, Mower, Winona County Counties",
+    "district_population": "44,450",
+    "government_website_url": "https://www.senate.mn/members/index.php?district=26",
+    "party": "Republican",
+    "term_expires": "2026",
+    "image_url": "https://gis.lcc.mn.gov/iMaps/districts/images/Senate/26.jpg",
+    "government_email": "sen.jeremy.miller@senate.mn",
+    "government_phone": "651-296-5649",
+    "social_media": {
+      "twitter": null,
+      "facebook": null,
+      "instagram": null
+    }
+  },
+  {
+    "name": "Andrew Mathews",
+    "district_name": "District 27",
+    "district_location": "Anoka, Isanti, Mille Lacs, Sherburne, Sherburne County Counties",
+    "district_population": "39,886",
+    "government_website_url": "https://www.senate.mn/members/index.php?district=27",
+    "party": "Republican",
+    "term_expires": "2026",
+    "image_url": "https://gis.lcc.mn.gov/iMaps/districts/images/Senate/27.jpg",
+    "government_email": "sen.andrew.mathews@senate.mn",
+    "government_phone": "651-296-8075",
+    "social_media": {
+      "twitter": null,
+      "facebook": null,
+      "instagram": null
+    }
+  },
+  {
+    "name": "Mark Koran",
+    "district_name": "District 28",
+    "district_location": "Chisago, Chisago County, Isanti Counties",
+    "district_population": "38,658",
+    "government_website_url": "https://www.senate.mn/members/index.php?district=28",
+    "party": "Republican",
+    "term_expires": "2026",
+    "image_url": "https://gis.lcc.mn.gov/iMaps/districts/images/Senate/28.jpg",
+    "government_email": "sen.mark.koran@senate.mn",
+    "government_phone": "651-296-5419",
+    "social_media": {
+      "twitter": null,
+      "facebook": null,
+      "instagram": null
+    }
+  },
+  {
+    "name": "Michael Holmstrom",
+    "district_name": "District 29",
+    "district_location": "Hennepin, Meeker, Wright, Wright County Counties",
+    "district_population": "42,661",
+    "government_website_url": "https://www.senate.mn/members/index.php?district=29",
+    "party": "Republican",
+    "term_expires": "2026",
+    "image_url": "https://gis.lcc.mn.gov/iMaps/districts/images/Senate/29.jpg",
+    "government_email": "sen.michael.holmstrom@senate.mn",
+    "government_phone": "651-296-5981",
+    "social_media": {
+      "twitter": null,
+      "facebook": null,
+      "instagram": null
+    }
+  },
+  {
+    "name": "Eric Lucero",
+    "district_name": "District 30",
+    "district_location": "Anoka, Hennepin, Sherburne, Wright Counties",
+    "district_population": "46,671",
+    "government_website_url": "https://www.senate.mn/members/index.php?district=30",
+    "party": "Republican",
+    "term_expires": "2026",
+    "image_url": "https://gis.lcc.mn.gov/iMaps/districts/images/Senate/30.jpg",
+    "government_email": "sen.eric.lucero@senate.mn",
+    "government_phone": "651-296-5655",
+    "social_media": {
+      "twitter": null,
+      "facebook": null,
+      "instagram": null
+    }
+  },
+  {
+    "name": "Cal Bahr",
+    "district_name": "District 31",
+    "district_location": "Anoka, Anoka County, Isanti Counties",
+    "district_population": "42,383",
+    "government_website_url": "https://www.senate.mn/members/index.php?district=31",
+    "party": "Republican",
+    "term_expires": "2026",
+    "image_url": "https://gis.lcc.mn.gov/iMaps/districts/images/Senate/31.jpg",
+    "government_email": "sen.cal.bahr@senate.mn",
+    "government_phone": "651-296-3219",
+    "social_media": {
+      "twitter": null,
+      "facebook": null,
+      "instagram": null
+    }
+  },
+  {
+    "name": "Michael Kreun",
+    "district_name": "District 32",
+    "district_location": "Anoka County Counties",
+    "district_population": "42,674",
+    "government_website_url": "https://www.senate.mn/members/index.php?district=32",
+    "party": "Republican",
+    "term_expires": "2026",
+    "image_url": "https://gis.lcc.mn.gov/iMaps/districts/images/Senate/32.jpg",
+    "government_email": "sen.michael.kreun@senate.mn",
+    "government_phone": "651-296-1282",
+    "social_media": {
+      "twitter": null,
+      "facebook": null,
+      "instagram": null
+    }
+  },
+  {
+    "name": "Karin Housley",
+    "district_name": "District 33",
+    "district_location": "Washington County Counties",
+    "district_population": "43,741",
+    "government_website_url": "https://www.senate.mn/members/index.php?district=33",
+    "party": "Republican",
+    "term_expires": "2026",
+    "image_url": "https://gis.lcc.mn.gov/iMaps/districts/images/Senate/33.jpg",
+    "government_email": "sen.karin.housley@senate.mn",
+    "government_phone": "651-296-4351",
+    "social_media": {
+      "twitter": null,
+      "facebook": null,
+      "instagram": null
+    }
+  },
+  {
+    "name": "John Hoffman",
+    "district_name": "District 34",
+    "district_location": "Anoka, Hennepin, Wright Counties",
+    "district_population": "46,719",
+    "government_website_url": "https://www.senate.mn/members/index.php?district=34",
+    "party": "Democratic-Farmer-Labor",
+    "term_expires": "2026",
+    "image_url": "https://gis.lcc.mn.gov/iMaps/districts/images/Senate/34.jpg",
+    "government_email": "sen.john.hoffman@senate.mn",
+    "government_phone": "651-296-4154",
+    "social_media": {
+      "twitter": null,
+      "facebook": null,
+      "instagram": null
+    }
+  },
+  {
+    "name": "Jim Abeler",
+    "district_name": "District 35",
+    "district_location": "Anoka County Counties",
+    "district_population": "42,661",
+    "government_website_url": "https://www.senate.mn/members/index.php?district=35",
+    "party": "Republican",
+    "term_expires": "2026",
+    "image_url": "https://gis.lcc.mn.gov/iMaps/districts/images/Senate/35.jpg",
+    "government_email": "sen.jim.abeler@senate.mn",
+    "government_phone": "651-296-3733",
+    "social_media": {
+      "twitter": null,
+      "facebook": null,
+      "instagram": null
+    }
+  },
+  {
+    "name": "Heather Gustafson",
+    "district_name": "District 36",
+    "district_location": "Anoka, Ramsey, Washington Counties",
+    "district_population": "43,574",
+    "government_website_url": "https://www.senate.mn/members/index.php?district=36",
+    "party": "Democratic-Farmer-Labor",
+    "term_expires": "2026",
+    "image_url": "https://gis.lcc.mn.gov/iMaps/districts/images/Senate/36.jpg",
+    "government_email": "sen.heather.gustafson@senate.mn",
+    "government_phone": "651-296-1253",
+    "social_media": {
+      "twitter": null,
+      "facebook": null,
+      "instagram": null
+    }
+  },
+  {
+    "name": "Warren Limmer",
+    "district_name": "District 37",
+    "district_location": "Hennepin County Counties",
+    "district_population": "45,673",
+    "government_website_url": "https://www.senate.mn/members/index.php?district=37",
+    "party": "Republican",
+    "term_expires": "2026",
+    "image_url": "https://gis.lcc.mn.gov/iMaps/districts/images/Senate/37.jpg",
+    "government_email": "sen.warren.limmer@senate.mn",
+    "government_phone": "651-296-2159",
+    "social_media": {
+      "twitter": null,
+      "facebook": null,
+      "instagram": null
+    }
+  },
+  {
+    "name": "Susan Pha",
+    "district_name": "District 38",
+    "district_location": "Hennepin County Counties",
+    "district_population": "43,506",
+    "government_website_url": "https://www.senate.mn/members/index.php?district=38",
+    "party": "Democratic-Farmer-Labor",
+    "term_expires": "2026",
+    "image_url": "https://gis.lcc.mn.gov/iMaps/districts/images/Senate/38.jpg",
+    "government_email": "sen.susan.pha@senate.mn",
+    "government_phone": "651-296-2556",
+    "social_media": {
+      "twitter": null,
+      "facebook": null,
+      "instagram": null
+    }
+  },
+  {
+    "name": "Mary Kunesh",
+    "district_name": "District 39",
+    "district_location": "Anoka, Hennepin, Ramsey Counties",
+    "district_population": "43,099",
+    "government_website_url": "https://www.senate.mn/members/index.php?district=39",
+    "party": "Democratic-Farmer-Labor",
+    "term_expires": "2026",
+    "image_url": "https://gis.lcc.mn.gov/iMaps/districts/images/Senate/39.jpg",
+    "government_email": "sen.mary.kunesh@senate.mn",
+    "government_phone": "651-296-4334",
+    "social_media": {
+      "twitter": null,
+      "facebook": null,
+      "instagram": null
+    }
+  },
+  {
+    "name": "John Marty",
+    "district_name": "District 40",
+    "district_location": "Ramsey County Counties",
+    "district_population": "43,649",
+    "government_website_url": "https://www.senate.mn/members/index.php?district=40",
+    "party": "Democratic-Farmer-Labor",
+    "term_expires": "2026",
+    "image_url": "https://gis.lcc.mn.gov/iMaps/districts/images/Senate/40.jpg",
+    "government_email": "sen.john.marty@senate.mn",
+    "government_phone": "651-296-5645",
+    "social_media": {
+      "twitter": null,
+      "facebook": null,
+      "instagram": null
+    }
+  },
+  {
+    "name": "Judy Seeberger",
+    "district_name": "District 41",
+    "district_location": "Dakota, Washington, Washington County Counties",
+    "district_population": "43,659",
+    "government_website_url": "https://www.senate.mn/members/index.php?district=41",
+    "party": "Democratic-Farmer-Labor",
+    "term_expires": "2026",
+    "image_url": "https://gis.lcc.mn.gov/iMaps/districts/images/Senate/41.jpg",
+    "government_email": "sen.judy.seeberger@senate.mn",
+    "government_phone": "651-296-8060",
+    "social_media": {
+      "twitter": null,
+      "facebook": null,
+      "instagram": null
+    }
+  },
+  {
+    "name": "Bonnie Westlin",
+    "district_name": "District 42",
+    "district_location": "Hennepin County Counties",
+    "district_population": "42,816",
+    "government_website_url": "https://www.senate.mn/members/index.php?district=42",
+    "party": "Democratic-Farmer-Labor",
+    "term_expires": "2026",
+    "image_url": "https://gis.lcc.mn.gov/iMaps/districts/images/Senate/42.jpg",
+    "government_email": "sen.bonnie.westlin@senate.mn",
+    "government_phone": "651-296-8869",
+    "social_media": {
+      "twitter": null,
+      "facebook": null,
+      "instagram": null
+    }
+  },
+  {
+    "name": "Ann Rest",
+    "district_name": "District 43",
+    "district_location": "Hennepin County Counties",
+    "district_population": "42,507",
+    "government_website_url": "https://www.senate.mn/members/index.php?district=43",
+    "party": "Democratic-Farmer-Labor",
+    "term_expires": "2026",
+    "image_url": "https://gis.lcc.mn.gov/iMaps/districts/images/Senate/43.jpg",
+    "government_email": "sen.ann.rest@senate.mn",
+    "government_phone": "651-296-2889",
+    "social_media": {
+      "twitter": null,
+      "facebook": null,
+      "instagram": null
+    }
+  },
+  {
+    "name": "Tou Xiong",
+    "district_name": "District 44",
+    "district_location": "Ramsey, Ramsey County, Washington Counties",
+    "district_population": "45,795",
+    "government_website_url": "https://www.senate.mn/members/index.php?district=44",
+    "party": "Democratic-Farmer-Labor",
+    "term_expires": "2026",
+    "image_url": "https://gis.lcc.mn.gov/iMaps/districts/images/Senate/44.jpg",
+    "government_email": "sen.tou.xiong@senate.mn",
+    "government_phone": "651-296-6820",
+    "social_media": {
+      "twitter": null,
+      "facebook": null,
+      "instagram": null
+    }
+  },
+  {
+    "name": "Ann Johnson Stewart",
+    "district_name": "District 45",
+    "district_location": "Hennepin County Counties",
+    "district_population": "41,472",
+    "government_website_url": "https://www.senate.mn/members/index.php?district=45",
+    "party": "Democratic-Farmer-Labor",
+    "term_expires": "2026",
+    "image_url": "https://gis.lcc.mn.gov/iMaps/districts/images/Senate/45.jpg",
+    "government_email": "sen.ann.stewart@senate.mn",
+    "government_phone": "651-296-9261",
+    "social_media": {
+      "twitter": null,
+      "facebook": null,
+      "instagram": null
+    }
+  },
+  {
+    "name": "Ron Latz",
+    "district_name": "District 46",
+    "district_location": "Hennepin County Counties",
+    "district_population": "43,571",
+    "government_website_url": "https://www.senate.mn/members/index.php?district=46",
+    "party": "Democratic-Farmer-Labor",
+    "term_expires": "2026",
+    "image_url": "https://gis.lcc.mn.gov/iMaps/districts/images/Senate/46.jpg",
+    "government_email": "sen.ron.latz@senate.mn",
+    "government_phone": "651-296-8065",
+    "social_media": {
+      "twitter": null,
+      "facebook": null,
+      "instagram": null
+    }
+  },
+  {
+    "name": "Amanda Hemmingsen-Jaeger",
+    "district_name": "District 47",
+    "district_location": "Ramsey, Washington, Washington County Counties",
+    "district_population": "47,235",
+    "government_website_url": "https://www.senate.mn/members/index.php?district=47",
+    "party": "Democratic-Farmer-Labor",
+    "term_expires": "2026",
+    "image_url": "https://gis.lcc.mn.gov/iMaps/districts/images/Senate/47.jpg",
+    "government_email": "sen.amanda.hemmingsenjaeger@senate.mn",
+    "government_phone": "651-296-5537",
+    "social_media": {
+      "twitter": null,
+      "facebook": null,
+      "instagram": null
+    }
+  },
+  {
+    "name": "Julia Coleman",
+    "district_name": "District 48",
+    "district_location": "Carver County Counties",
+    "district_population": "41,585",
+    "government_website_url": "https://www.senate.mn/members/index.php?district=48",
+    "party": "Republican",
+    "term_expires": "2026",
+    "image_url": "https://gis.lcc.mn.gov/iMaps/districts/images/Senate/48.jpg",
+    "government_email": "sen.julia.coleman@senate.mn",
+    "government_phone": "651-296-4837",
+    "social_media": {
+      "twitter": null,
+      "facebook": null,
+      "instagram": null
+    }
+  },
+  {
+    "name": "Steve Cwodzinski",
+    "district_name": "District 49",
+    "district_location": "Hennepin County Counties",
+    "district_population": "44,004",
+    "government_website_url": "https://www.senate.mn/members/index.php?district=49",
+    "party": "Democratic-Farmer-Labor",
+    "term_expires": "2026",
+    "image_url": "https://gis.lcc.mn.gov/iMaps/districts/images/Senate/49.jpg",
+    "government_email": "sen.steve.cwodzinski@senate.mn",
+    "government_phone": "651-296-1314",
+    "social_media": {
+      "twitter": null,
+      "facebook": null,
+      "instagram": null
+    }
+  },
+  {
+    "name": "Alice Mann",
+    "district_name": "District 50",
+    "district_location": "Hennepin County Counties",
+    "district_population": "42,453",
+    "government_website_url": "https://www.senate.mn/members/index.php?district=50",
+    "party": "Democratic-Farmer-Labor",
+    "term_expires": "2026",
+    "image_url": "https://gis.lcc.mn.gov/iMaps/districts/images/Senate/50.jpg",
+    "government_email": "sen.alice.mann@senate.mn",
+    "government_phone": "651-296-6238",
+    "social_media": {
+      "twitter": null,
+      "facebook": null,
+      "instagram": null
+    }
+  },
+  {
+    "name": "Melissa Halvorson Wiklund",
+    "district_name": "District 51",
+    "district_location": "Hennepin County Counties",
+    "district_population": "42,365",
+    "government_website_url": "https://www.senate.mn/members/index.php?district=51",
+    "party": "Democratic-Farmer-Labor",
+    "term_expires": "2026",
+    "image_url": "https://gis.lcc.mn.gov/iMaps/districts/images/Senate/51.jpg",
+    "government_email": "sen.melissa.wiklund@senate.mn",
+    "government_phone": "651-296-8061",
+    "social_media": {
+      "twitter": null,
+      "facebook": null,
+      "instagram": null
+    }
+  },
+  {
+    "name": "Jim Carlson",
+    "district_name": "District 52",
+    "district_location": "Dakota County Counties",
+    "district_population": "41,539",
+    "government_website_url": "https://www.senate.mn/members/index.php?district=52",
+    "party": "Democratic-Farmer-Labor",
+    "term_expires": "2026",
+    "image_url": "https://gis.lcc.mn.gov/iMaps/districts/images/Senate/52.jpg",
+    "government_email": "sen.jim.carlson@senate.mn",
+    "government_phone": "651-296-8073",
+    "social_media": {
+      "twitter": null,
+      "facebook": null,
+      "instagram": null
+    }
+  },
+  {
+    "name": "Matt Klein",
+    "district_name": "District 53",
+    "district_location": "Dakota, Dakota County, Washington Counties",
+    "district_population": "46,861",
+    "government_website_url": "https://www.senate.mn/members/index.php?district=53",
+    "party": "Democratic-Farmer-Labor",
+    "term_expires": "2026",
+    "image_url": "https://gis.lcc.mn.gov/iMaps/districts/images/Senate/53.jpg",
+    "government_email": "sen.matt.klein@senate.mn",
+    "government_phone": "651-296-4370",
+    "social_media": {
+      "twitter": null,
+      "facebook": null,
+      "instagram": null
+    }
+  },
+  {
+    "name": "Eric Pratt",
+    "district_name": "District 54",
+    "district_location": "Scott County Counties",
+    "district_population": "42,420",
+    "government_website_url": "https://www.senate.mn/members/index.php?district=54",
+    "party": "Republican",
+    "term_expires": "2026",
+    "image_url": "https://gis.lcc.mn.gov/iMaps/districts/images/Senate/54.jpg",
+    "government_email": "sen.eric.pratt@senate.mn",
+    "government_phone": "651-296-4123",
+    "social_media": {
+      "twitter": null,
+      "facebook": null,
+      "instagram": null
+    }
+  },
+  {
+    "name": "Lindsey Port",
+    "district_name": "District 55",
+    "district_location": "Dakota, Dakota County, Scott Counties",
+    "district_population": "45,937",
+    "government_website_url": "https://www.senate.mn/members/index.php?district=55",
+    "party": "Democratic-Farmer-Labor",
+    "term_expires": "2026",
+    "image_url": "https://gis.lcc.mn.gov/iMaps/districts/images/Senate/55.jpg",
+    "government_email": "sen.lindsey.port@senate.mn",
+    "government_phone": "651-296-5975",
+    "social_media": {
+      "twitter": null,
+      "facebook": null,
+      "instagram": null
+    }
+  },
+  {
+    "name": "Erin Maye Quade",
+    "district_name": "District 56",
+    "district_location": "Dakota County Counties",
+    "district_population": "44,231",
+    "government_website_url": "https://www.senate.mn/members/index.php?district=56",
+    "party": "Democratic-Farmer-Labor",
+    "term_expires": "2026",
+    "image_url": "https://gis.lcc.mn.gov/iMaps/districts/images/Senate/56.jpg",
+    "government_email": "sen.erin.quade@senate.mn",
+    "government_phone": "651-296-4120",
+    "social_media": {
+      "twitter": null,
+      "facebook": null,
+      "instagram": null
+    }
+  },
+  {
+    "name": "Zach Duckworth",
+    "district_name": "District 57",
+    "district_location": "Dakota, Dakota County, Scott Counties",
+    "district_population": "47,402",
+    "government_website_url": "https://www.senate.mn/members/index.php?district=57",
+    "party": "Republican",
+    "term_expires": "2026",
+    "image_url": "https://gis.lcc.mn.gov/iMaps/districts/images/Senate/57.jpg",
+    "government_email": "sen.zach.duckworth@senate.mn",
+    "government_phone": "651-296-7633",
+    "social_media": {
+      "twitter": null,
+      "facebook": null,
+      "instagram": null
+    }
+  },
+  {
+    "name": "Bill Lieske",
+    "district_name": "District 58",
+    "district_location": "Dakota, Goodhue, Rice, Scott Counties",
+    "district_population": "45,802",
+    "government_website_url": "https://www.senate.mn/members/index.php?district=58",
+    "party": "Republican",
+    "term_expires": "2026",
+    "image_url": "https://gis.lcc.mn.gov/iMaps/districts/images/Senate/58.jpg",
+    "government_email": "sen.bill.lieske@senate.mn",
+    "government_phone": "651-296-5019",
+    "social_media": {
+      "twitter": null,
+      "facebook": null,
+      "instagram": null
+    }
+  },
+  {
+    "name": "Bobby Joe Champion",
+    "district_name": "District 59",
+    "district_location": "Hennepin County Counties",
+    "district_population": "47,464",
+    "government_website_url": "https://www.senate.mn/members/index.php?district=59",
+    "party": "Democratic-Farmer-Labor",
+    "term_expires": "2026",
+    "image_url": "https://gis.lcc.mn.gov/iMaps/districts/images/Senate/59.jpg",
+    "government_email": "sen.bobby.champion@senate.mn",
+    "government_phone": "651-296-9246",
+    "social_media": {
+      "twitter": null,
+      "facebook": null,
+      "instagram": null
+    }
+  },
+  {
+    "name": "Doron Clark",
+    "district_name": "District 60",
+    "district_location": "Hennepin County Counties",
+    "district_population": "47,402",
+    "government_website_url": "https://www.senate.mn/members/index.php?district=60",
+    "party": "Democratic-Farmer-Labor",
+    "term_expires": "2026",
+    "image_url": "https://gis.lcc.mn.gov/iMaps/districts/images/Senate/60.jpg",
+    "government_email": "sen.doron.clark@senate.mn",
+    "government_phone": "651-296-7809",
+    "social_media": {
+      "twitter": null,
+      "facebook": null,
+      "instagram": null
+    }
+  },
+  {
+    "name": "D. Scott Dibble",
+    "district_name": "District 61",
+    "district_location": "Hennepin County Counties",
+    "district_population": "44,138",
+    "government_website_url": "https://www.senate.mn/members/index.php?district=61",
+    "party": "Democratic-Farmer-Labor",
+    "term_expires": "2026",
+    "image_url": "https://gis.lcc.mn.gov/iMaps/districts/images/Senate/61.jpg",
+    "government_email": "sen.d..dibble@senate.mn",
+    "government_phone": "651-296-4191",
+    "social_media": {
+      "twitter": null,
+      "facebook": null,
+      "instagram": null
+    }
+  },
+  {
+    "name": "Omar Fateh",
+    "district_name": "District 62",
+    "district_location": "Hennepin County Counties",
+    "district_population": "41,386",
+    "government_website_url": "https://www.senate.mn/members/index.php?district=62",
+    "party": "Democratic-Farmer-Labor",
+    "term_expires": "2026",
+    "image_url": "https://gis.lcc.mn.gov/iMaps/districts/images/Senate/62.jpg",
+    "government_email": "sen.omar.fateh@senate.mn",
+    "government_phone": "651-296-4261",
+    "social_media": {
+      "twitter": null,
+      "facebook": null,
+      "instagram": null
+    }
+  },
+  {
+    "name": "Zaynab Mohamed",
+    "district_name": "District 63",
+    "district_location": "Hennepin County Counties",
+    "district_population": "41,829",
+    "government_website_url": "https://www.senate.mn/members/index.php?district=63",
+    "party": "Democratic-Farmer-Labor",
+    "term_expires": "2026",
+    "image_url": "https://gis.lcc.mn.gov/iMaps/districts/images/Senate/63.jpg",
+    "government_email": "sen.zaynab.mohamed@senate.mn",
+    "government_phone": "651-296-4274",
+    "social_media": {
+      "twitter": null,
+      "facebook": null,
+      "instagram": null
+    }
+  },
+  {
+    "name": "Erin Murphy",
+    "district_name": "District 64",
+    "district_location": "Ramsey County Counties",
+    "district_population": "42,213",
+    "government_website_url": "https://www.senate.mn/members/index.php?district=64",
+    "party": "Democratic-Farmer-Labor",
+    "term_expires": "2026",
+    "image_url": "https://gis.lcc.mn.gov/iMaps/districts/images/Senate/64.jpg",
+    "government_email": "sen.erin.murphy@senate.mn",
+    "government_phone": "651-296-5931",
+    "social_media": {
+      "twitter": null,
+      "facebook": null,
+      "instagram": null
+    }
+  },
+  {
+    "name": "Sandra Pappas",
+    "district_name": "District 65",
+    "district_location": "Dakota, Ramsey, Ramsey County Counties",
+    "district_population": "43,562",
+    "government_website_url": "https://www.senate.mn/members/index.php?district=65",
+    "party": "Democratic-Farmer-Labor",
+    "term_expires": "2026",
+    "image_url": "https://gis.lcc.mn.gov/iMaps/districts/images/Senate/65.jpg",
+    "government_email": "sen.sandra.pappas@senate.mn",
+    "government_phone": "651-296-1802",
+    "social_media": {
+      "twitter": null,
+      "facebook": null,
+      "instagram": null
+    }
+  },
+  {
+    "name": "Clare Oumou Verbeten",
+    "district_name": "District 66",
+    "district_location": "Ramsey County Counties",
+    "district_population": "41,356",
+    "government_website_url": "https://www.senate.mn/members/index.php?district=66",
+    "party": "Democratic-Farmer-Labor",
+    "term_expires": "2026",
+    "image_url": "https://gis.lcc.mn.gov/iMaps/districts/images/Senate/66.jpg",
+    "government_email": "sen.clare.verbeten@senate.mn",
+    "government_phone": "651-296-8866",
+    "social_media": {
+      "twitter": null,
+      "facebook": null,
+      "instagram": null
+    }
+  },
+  {
+    "name": "Foung Hawj",
+    "district_name": "District 67",
+    "district_location": "Ramsey County Counties",
+    "district_population": "45,048",
+    "government_website_url": "https://www.senate.mn/members/index.php?district=67",
+    "party": "Democratic-Farmer-Labor",
+    "term_expires": "2026",
+    "image_url": "https://gis.lcc.mn.gov/iMaps/districts/images/Senate/67.jpg",
+    "government_email": "sen.foung.hawj@senate.mn",
+    "government_phone": "651-296-5285",
+    "social_media": {
+      "twitter": null,
+      "facebook": null,
+      "instagram": null
+    }
+  }
+]
