@@ -461,6 +461,9 @@
         #emailLink { font-weight: bold; color: #007bff; text-decoration: underline; cursor: pointer; }
         .text-muted{ color:#444 }
         .text-center{text-align: center;}
+        .muted{
+            opacity: 0.6;
+        }
     </style>
 </head>
 <body>
@@ -481,12 +484,12 @@
                 <div class="summary-stats" id="house-summary-stats"></div>
             </div>
 
-            <div class="party-sections-container" id="house-container"></div>
-
             <!-- District Map -->
             <div class="map-container">
                 <div id="map"></div>
             </div>
+            <div class="party-sections-container" id="house-container"></div>
+
         </div>
 
         <!-- Senate Section -->
@@ -537,7 +540,8 @@
                         <input id="userName" name="name" placeholder="Enter your name" />
                         <input id="userCity" name="city "placeholder="Enter your city" />
                         <input id="userPhone" name="phone" placeholder="Enter your phone" />
-                        <button class="modal-link" onclick="generate_text()">Denounce ICE's Actions</button>
+                        <button class="modal-link" onclick="denounce_ice_republican()">Denounce ICE's Actions (as if republican)</button>
+                        <button class="modal-link" onclick="denounce_ice_nonpartisan()">Denounce ICE's Actions (non-partisan)</button>
                     </div>
 
                     <div class="modal-info-value">Subject</div>
@@ -603,8 +607,11 @@
         let map;
         let geoLayer;
         let currentHighlightedLayer = null;
+        let selectedLayer = null;
         let currentHighlightedDot = null;
+        let currentHighlightedDotSenate = null;
         const MN_UTM15_DEF = "+proj=utm +zone=15 +datum=NAD83 +units=m +no_defs";
+        let ALL_LAYERS = [];
         
         // District to dot mapping
         const districtToDot = {};
@@ -646,25 +653,57 @@
                 style: {
                     color: "#34495e",
                     weight: 1,
-                    fillOpacity: 0.1
+                    fillOpacity: 0.4
                 },
                 onEachFeature: function(feature, layer) {
                     const districtName = feature.properties.DISTRICT;
+                    let layer_color = getDistrictColor(districtName);
+                    layer.setStyle({ fillColor: layer_color });
+                    ALL_LAYERS.push(layer)
                     
                     // Hover to highlight corresponding dot
                     layer.on('mouseover', function() {
-                        this.setStyle({ fillOpacity: 0.3, weight: 2 });
+                        this.setStyle({ fillOpacity: 0.8, weight: 2 });
+                    });
+
+                    layer.on('click', function() {
+                        reset_layers(ALL_LAYERS);
+                        this.setStyle({ fillOpacity: 0.8, weight: 2 });
                         highlightDotFromMap(districtName);
                     });
                     
                     layer.on('mouseout', function() {
-                        geoLayer.resetStyle(this);
-                        unhighlightDotFromMap();
+                        if(selectedLayer != districtName){
+                            this.setStyle({ fillOpacity: 0.4, weight: 1 });
+                        }
                     });
                 }
             }).addTo(map);
 
             map.fitBounds(geoLayer.getBounds());
+        }
+
+        function reset_layers(layers){
+            for(let l of layers){
+                l.setStyle({ fillOpacity: 0.4, weight: 1 });
+            }
+        }
+
+        function getDistrictColor(districtName){
+            const houseDot = districtToDot[districtName];
+            const senateDot = districtToDot[districtName.substring(0,2)];
+            let senator = senateDot.classList.contains("dfl") ? "dfl" : "republican";
+            let house = houseDot.classList.contains("dfl") ? "dfl" : "republican";
+            let purple = "#800080";
+            let red = "#dc3545";
+            let blue = "#0d6efd";
+            let color_map = {
+                "dflrepublican":purple,
+                "republicandfl":purple,
+                "dfldfl":blue,
+                "republicanrepublican":red,
+            };
+            return color_map[senator+house]
         }
 
         function highlightDistrict(districtName) {
@@ -677,14 +716,15 @@
 
             // Find and highlight new district
             geoLayer.eachLayer(layer => {
-                if (layer.feature && layer.feature.properties.DISTRICT === districtName) {
+                if (layer.feature && layer.feature.properties.DISTRICT.indexOf(districtName) > -1) {
+
+                    // means 
                     layer.setStyle({
-                        fillColor: '#ffd700',
-                        fillOpacity: 0.6,
+                        fillOpacity: 0.8,
                         weight: 3,
-                        color: '#ff6b00'
+                        color: '#000'
                     });
-                    currentHighlightedLayer = layer;
+                    selectedLayer = districtName;
                     
                     // Pan to district
                     map.fitBounds(layer.getBounds(), { maxZoom: 10, padding: [50, 50] });
@@ -692,21 +732,47 @@
             });
         }
 
+        function fadeAll(){
+            const elements = document.getElementsByClassName('dot');
+            for (let i = 0; i < elements.length; i++) {
+                // Access individual element using elements[i]
+                elements[i].classList.add('muted')
+            }
+        }
+
+        function unFadeAll(){
+            const elements = document.getElementsByClassName('dot');
+            for (let i = 0; i < elements.length; i++) {
+                // Access individual element using elements[i]
+                elements[i].classList.remove('muted')
+            }
+        }
+
         function highlightDotFromMap(districtName) {
+            fadeAll();
+
             // Remove previous highlight
             if (currentHighlightedDot) {
                 currentHighlightedDot.classList.remove('map-highlighted');
             }
+            if(currentHighlightedDotSenate){
+                currentHighlightedDotSenate.classList.remove('map-highlighted');
+            }
             
             // Find and highlight the dot for this district
-            const dot = districtToDot[districtName];
-            if (dot) {
-                dot.classList.add('map-highlighted');
-                currentHighlightedDot = dot;
-                
-                // Scroll the dot into view
-                dot.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'nearest' });
+            const houseDot = districtToDot[districtName];
+            const senateDot = districtToDot[districtName.substring(0,2)];
+            if (houseDot) {
+                houseDot.classList.remove('muted');
+                houseDot.classList.add('map-highlighted');
+                currentHighlightedDot = houseDot;
+
+                senateDot.classList.remove('muted');
+                senateDot.classList.add('map-highlighted');
+                currentHighlightedDotSenate = senateDot;
             }
+
+            highlightDistrict(districtName);
         }
 
         function unhighlightDotFromMap() {
@@ -714,9 +780,13 @@
                 currentHighlightedDot.classList.remove('map-highlighted');
                 currentHighlightedDot = null;
             }
+            if (currentHighlightedDotSenate) {
+                currentHighlightedDotSenate.classList.remove('map-highlighted');
+                currentHighlightedDotSenate = null;
+            }
         }
 
-        function generate_text(){
+        function denounce_ice_republican(){
 
             userName = document.getElementById('userName').value;
             userCity = document.getElementById('userCity').value;
@@ -746,6 +816,37 @@ Sincerely,
 ` + userName + " " +  userPhone
             updateMailto();
         }
+
+        function denounce_ice_nonpartisan(){
+
+            userName = document.getElementById('userName').value;
+            userCity = document.getElementById('userCity').value;
+            userPhone = document.getElementById('userPhone').value;
+
+            document.getElementById('emailSubject').value = "CONSTITUENT INQUIRY: Ensuring Local Order and Constitutional Protections in Minneapolis"
+            document.getElementById('emailBody').textContent = `Dear Representative `+ document.getElementById('modal-name').textContent +`,
+
+As a resident of ` + userCity + `. I am writing to express my concern regarding the current scale of federal agency operations (ICE and CBP) within our local community. I am contacting you not as a partisan, but as a concerned citizen who values the stability of our neighborhoods and the integrity of our constitutional protections.
+
+While federal agencies have their specific mandates, the recent escalation of "Operation Metro Surge" has created significant challenges for our local governance and public safety:
+
+Public Safety and Local Resources: Our local law enforcement is being diverted from their primary duties to manage the chaos and public unrest resulting from these federal incursions. This is a strain on our local tax dollars and makes our streets less safe.
+
+Constitutional Integrity: Reports of federal agents entering homes without judicial warrants and the tragic fatalities involving civilians raise serious questions about the protection of Fourth Amendment rights. A respect for the law must include a respect for the limits placed on federal power.
+
+Economic Impact: The disruption of local businesses and the atmosphere of fear in our commercial districts are harming Minnesota’s economic recovery and community stability.
+
+I believe in the importance of local control and the principle that federal power should not supersede the safety and rights of Minnesota citizens without clear judicial oversight.
+
+I ask that you use your platform to call for greater transparency and a return to orderly, coordinated law enforcement that respects our state's sovereignty. I would appreciate hearing your thoughts on how we can restore balance and ensure that federal operations do not further destabilize our community.
+
+Thank you for your time and for your service to our district.
+
+Sincerely,
+
+` + userName + " " +  userPhone
+            updateMailto();
+        } 
 
         // Modal functionality
         const modalOverlay = document.getElementById('modal-overlay');
@@ -933,20 +1034,17 @@ Sincerely,
             dot.appendChild(img);
             
             dot.addEventListener('click', () => {
+                reset_layers(ALL_LAYERS);
                 openModal(member, cssClass);
                 
-                // Highlight district on map for House members
-                if (isHouse) {
-                    const districtName = member.district_name.replace('District ', '');
-                    highlightDistrict(districtName);
-                }
+                // Highlight district on map for any member
+                const districtName = member.district_name.replace('District ', '');
+                highlightDotFromMap(districtName);
             });
             
             // Store reference for map hover highlighting
-            if (isHouse) {
-                const districtName = member.district_name.replace('District ', '');
-                districtToDot[districtName] = dot;
-            }
+            let districtName = member.district_name.replace('District ', '');
+            districtToDot[districtName] = dot;
             
             return dot;
         }
