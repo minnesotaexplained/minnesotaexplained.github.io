@@ -1002,13 +1002,13 @@
     },
     {
         "id":16,
-        "title":"MN Congress",
+        "title":"MN Congressional Map and Contact",
         "description":"Detailed map of all representatives and senators.",
         "subtitle":"",
         "footer":"",
         "category": "State Government",
         "type":"link",
-        "image":"/img/congress.webp",
+        "image":"/img/calls.jpg",
         "link":"/mn_legislature.html"
     }
 ]
