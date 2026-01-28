@@ -32,6 +32,7 @@
             --shadow-lg: 0 4px 16px rgba(42, 82, 152, 0.15);
             --hover-bg: #f8f9ff;
             --table-hover: #f7fafc;
+            --home-image:url("/img/mx-blue.png");
         }
 
         [data-theme="dark"] {
@@ -53,6 +54,7 @@
             --shadow-lg: 0 4px 16px rgba(0, 0, 0, 0.4);
             --hover-bg: #2d3748;
             --table-hover: #2d3748;
+            --home-image:url("/img/mx-white.png");
         }
 
         * {
@@ -644,6 +646,12 @@
             font-weight: bold;
         }
 
+        #homeImg{
+            content:var(--home-image);
+            display: inline-block;
+            height: 40px;
+        }
+
         @media (max-width: 768px) {
             .navbar {
                 padding: 15px 20px;
@@ -972,7 +980,7 @@
             template: `
                 <div class="cards-container">
                     <div id="intro" style="margin-bottom:50px">
-                        <h2 class="card-title">Minnesota Explained</h2>
+                        <img id="homeImg" src="" height="40px" />
                         <p class="card-description">Minnesota Explained is a free guide to Minnesota state and Minneapolis city resources meant for residents.</p>
                     </div>
                     <div id="categoriesContainer">
