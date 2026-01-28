@@ -1,0 +1,810 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Minnesota Counties Explorer</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bitter:wght@400;700&family=IBM+Plex+Mono:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #2c5f2d;
+            --primary-light: #97c593;
+            --accent: #ff6b35;
+            --bg: #faf8f3;
+            --text: #2a2a2a;
+            --border: #d4cfc0;
+            --highlight: #fff4e6;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'IBM Plex Mono', monospace;
+            background: var(--bg);
+            color: var(--text);
+            padding: 2rem;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        header {
+            margin-bottom: 3rem;
+            border-bottom: 3px solid var(--primary);
+            padding-bottom: 1.5rem;
+        }
+
+        h1 {
+            font-family: 'Bitter', serif;
+            font-size: 3rem;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+            letter-spacing: -0.02em;
+        }
+
+        .subtitle {
+            font-size: 0.9rem;
+            color: #666;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+
+        .content-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+        }
+
+        @media (max-width: 968px) {
+            .content-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .table-wrapper {
+                max-height: 400px;
+            }
+        }
+
+        .map-container {
+            background: white;
+            border: 2px solid var(--border);
+            border-radius: 4px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            position: relative;
+        }
+
+        .map-header {
+            background: var(--primary);
+            color: white;
+            padding: 1rem 1.5rem;
+            font-weight: 600;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        #map {
+            height: 500px;
+            background: #e8f0e8;
+        }
+
+        .loading {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: white;
+            padding: 1.5rem 2rem;
+            border-radius: 4px;
+            border: 2px solid var(--border);
+            font-weight: 600;
+            color: var(--primary);
+            z-index: 1000;
+        }
+
+        .stats-container {
+            background: white;
+            border: 2px solid var(--border);
+            border-radius: 4px;
+            padding: 2rem;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            margin-bottom: 2rem;
+        }
+
+        .stats-header {
+            font-family: 'Bitter', serif;
+            font-size: 1.5rem;
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.75rem;
+            border-bottom: 2px solid var(--primary-light);
+        }
+
+        .stat-cards {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1rem;
+        }
+
+        @media (max-width: 1200px) {
+            .stat-cards {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        .stat-card {
+            background: var(--highlight);
+            border: 1px solid var(--border);
+            padding: 1.25rem;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+
+        .stat-label {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: #666;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-value {
+            font-size: 1.75rem;
+            font-weight: 600;
+            color: var(--primary);
+            font-family: 'Bitter', serif;
+        }
+
+        .table-container {
+            background: white;
+            border: 2px solid var(--border);
+            border-radius: 4px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+
+        .table-wrapper {
+            overflow-y: auto;
+            overflow-x: auto;
+            max-height: 500px;
+            flex: 1;
+        }
+
+        .table-wrapper::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+
+        .table-wrapper::-webkit-scrollbar-track {
+            background: var(--bg);
+        }
+
+        .table-wrapper::-webkit-scrollbar-thumb {
+            background: var(--primary-light);
+            border-radius: 4px;
+        }
+
+        .table-wrapper::-webkit-scrollbar-thumb:hover {
+            background: var(--primary);
+        }
+
+        .table-header {
+            background: var(--primary);
+            color: white;
+            padding: 1rem 1.5rem;
+            font-weight: 600;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        thead {
+            background: var(--primary-light);
+            color: var(--text);
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+
+        th {
+            padding: 1rem 1.5rem;
+            text-align: left;
+            font-weight: 600;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            border-bottom: 2px solid var(--primary);
+            cursor: pointer;
+            user-select: none;
+            position: relative;
+            transition: background 0.2s ease;
+        }
+
+        th:hover {
+            background: rgba(44, 95, 45, 0.1);
+        }
+
+        th.sortable::after {
+            content: '⇅';
+            position: absolute;
+            right: 0.75rem;
+            opacity: 0.3;
+            font-size: 0.9rem;
+        }
+
+        th.sort-asc::after {
+            content: '↑';
+            opacity: 1;
+            color: var(--accent);
+        }
+
+        th.sort-desc::after {
+            content: '↓';
+            opacity: 1;
+            color: var(--accent);
+        }
+
+        tbody tr {
+            border-bottom: 1px solid var(--border);
+            transition: all 0.2s ease;
+            cursor: pointer;
+        }
+
+        tbody tr:hover {
+            background: var(--highlight);
+        }
+
+        tbody tr.highlighted {
+            background: var(--accent);
+            color: white;
+            animation: highlight-pulse 0.5s ease;
+        }
+
+        @keyframes highlight-pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.01); }
+        }
+
+        tbody tr.highlighted td {
+            color: white;
+            font-weight: 600;
+        }
+
+        td {
+            padding: 1rem 1.5rem;
+            font-size: 0.9rem;
+        }
+
+        .county-name {
+            font-weight: 600;
+            color: var(--primary);
+        }
+
+        tbody tr.highlighted .county-name {
+            color: white;
+        }
+
+        .number {
+            font-family: 'IBM Plex Mono', monospace;
+            font-weight: 400;
+        }
+
+        .leaflet-popup-content-wrapper {
+            font-family: 'IBM Plex Mono', monospace;
+            border-radius: 4px;
+        }
+
+        .leaflet-popup-content {
+            margin: 1rem;
+        }
+
+        .popup-county {
+            font-family: 'Bitter', serif;
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .popup-stat {
+            font-size: 0.85rem;
+            margin: 0.25rem 0;
+        }
+
+        .legend {
+            background: white;
+            padding: 1rem;
+            border-radius: 4px;
+            border: 2px solid var(--border);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+            font-size: 0.8rem;
+        }
+
+        .legend-title {
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            margin: 0.25rem 0;
+        }
+
+        .legend-color {
+            width: 20px;
+            height: 20px;
+            margin-right: 0.5rem;
+            border: 1px solid var(--border);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Minnesota Counties</h1>
+            <div class="subtitle">Economic & Demographic Data Explorer</div>
+        </header>
+
+        <div class="stats-container">
+            <div class="stats-header">State Overview</div>
+            <div class="stat-cards">
+                <div class="stat-card">
+                    <div class="stat-label">Total Counties</div>
+                    <div class="stat-value" id="total-counties">87</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-label">Total Population</div>
+                    <div class="stat-value" id="total-population">—</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-label">Avg. County Income</div>
+                    <div class="stat-value" id="avg-income">—</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-label">Selected County</div>
+                    <div class="stat-value" id="selected-county" style="font-size: 1.2rem;">—</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="content-grid">
+            <div class="map-container">
+                <div class="map-header">Interactive County Map</div>
+                <div id="map">
+                    <div class="loading" id="loading">Loading county boundaries...</div>
+                </div>
+            </div>
+
+            <div class="table-container">
+                <div class="table-header">County Data</div>
+                <div class="table-wrapper">
+                    <table id="county-table">
+                        <thead>
+                            <tr>
+                                <th class="sortable" data-column="name" data-type="text">County</th>
+                                <th class="sortable" data-column="avgIncome" data-type="number">Average Income</th>
+                                <th class="sortable" data-column="population" data-type="number">Population</th>
+                                <th class="sortable" data-column="perCapita" data-type="number">Income per Capita</th>
+                            </tr>
+                        </thead>
+                        <tbody id="table-body">
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Minnesota county data with income and population
+        const countyData = [
+            { name: "Hennepin", avgIncome: 85420, population: 1281565 },
+            { name: "Ramsey", avgIncome: 71230, population: 552352 },
+            { name: "Dakota", avgIncome: 89560, population: 439882 },
+            { name: "Anoka", avgIncome: 82340, population: 363887 },
+            { name: "Washington", avgIncome: 95210, population: 267568 },
+            { name: "St. Louis", avgIncome: 58670, population: 200231 },
+            { name: "Scott", avgIncome: 97850, population: 150928 },
+            { name: "Carver", avgIncome: 101230, population: 106922 },
+            { name: "Wright", avgIncome: 79450, population: 141337 },
+            { name: "Olmsted", avgIncome: 81290, population: 162847 },
+            { name: "Stearns", avgIncome: 62340, population: 158292 },
+            { name: "Blue Earth", avgIncome: 58920, population: 69112 },
+            { name: "Clay", avgIncome: 61580, population: 65318 },
+            { name: "Crow Wing", avgIncome: 62180, population: 66123 },
+            { name: "Sherburne", avgIncome: 84670, population: 97183 },
+            { name: "Benton", avgIncome: 68340, population: 41379 },
+            { name: "Chisago", avgIncome: 78120, population: 56621 },
+            { name: "Goodhue", avgIncome: 73890, population: 47582 },
+            { name: "Isanti", avgIncome: 71230, population: 41135 },
+            { name: "Kandiyohi", avgIncome: 63450, population: 43732 },
+            { name: "McLeod", avgIncome: 68750, population: 36771 },
+            { name: "Mille Lacs", avgIncome: 58920, population: 26459 },
+            { name: "Morrison", avgIncome: 59340, population: 33198 },
+            { name: "Otter Tail", avgIncome: 62890, population: 60081 },
+            { name: "Rice", avgIncome: 76540, population: 67097 },
+            { name: "Winona", avgIncome: 63120, population: 50858 },
+            { name: "Beltrami", avgIncome: 57230, population: 47593 },
+            { name: "Carlton", avgIncome: 60890, population: 36207 },
+            { name: "Cass", avgIncome: 58340, population: 30547 },
+            { name: "Chippewa", avgIncome: 64780, population: 12598 },
+            { name: "Cottonwood", avgIncome: 61230, population: 11517 },
+            { name: "Douglas", avgIncome: 68920, population: 39006 },
+            { name: "Faribault", avgIncome: 59670, population: 13921 },
+            { name: "Fillmore", avgIncome: 65340, population: 21228 },
+            { name: "Freeborn", avgIncome: 62450, population: 30895 },
+            { name: "Hubbard", avgIncome: 61780, population: 21344 },
+            { name: "Itasca", avgIncome: 59230, population: 45161 },
+            { name: "Jackson", avgIncome: 63890, population: 9989 },
+            { name: "Kanabec", avgIncome: 58670, population: 16032 },
+            { name: "Kittson", avgIncome: 64230, population: 4207 },
+            { name: "Lake", avgIncome: 64780, population: 10699 },
+            { name: "Le Sueur", avgIncome: 72340, population: 28674 },
+            { name: "Lincoln", avgIncome: 65890, population: 5640 },
+            { name: "Lyon", avgIncome: 62450, population: 25269 },
+            { name: "Mahnomen", avgIncome: 51230, population: 5411 },
+            { name: "Marshall", avgIncome: 63450, population: 9040 },
+            { name: "Martin", avgIncome: 61780, population: 19872 },
+            { name: "Meeker", avgIncome: 66340, population: 23400 },
+            { name: "Mower", avgIncome: 60890, population: 40029 },
+            { name: "Murray", avgIncome: 62340, population: 8179 },
+            { name: "Nicollet", avgIncome: 71230, population: 34454 },
+            { name: "Nobles", avgIncome: 59670, population: 22290 },
+            { name: "Norman", avgIncome: 62890, population: 6441 },
+            { name: "Pennington", avgIncome: 64230, population: 13992 },
+            { name: "Pine", avgIncome: 57890, population: 28876 },
+            { name: "Pipestone", avgIncome: 63450, population: 9424 },
+            { name: "Polk", avgIncome: 64780, population: 31364 },
+            { name: "Pope", avgIncome: 63120, population: 11308 },
+            { name: "Red Lake", avgIncome: 58340, population: 3935 },
+            { name: "Redwood", avgIncome: 61230, population: 15425 },
+            { name: "Renville", avgIncome: 64890, population: 14723 },
+            { name: "Rock", avgIncome: 66340, population: 9704 },
+            { name: "Roseau", avgIncome: 63780, population: 15331 },
+            { name: "Sibley", avgIncome: 70450, population: 15226 },
+            { name: "Steele", avgIncome: 69230, population: 37406 },
+            { name: "Stevens", avgIncome: 62890, population: 9671 },
+            { name: "Swift", avgIncome: 60340, population: 9006 },
+            { name: "Todd", avgIncome: 58920, population: 24895 },
+            { name: "Traverse", avgIncome: 61780, population: 3360 },
+            { name: "Wabasha", avgIncome: 68340, population: 21387 },
+            { name: "Wadena", avgIncome: 56780, population: 13843 },
+            { name: "Waseca", avgIncome: 65890, population: 18968 },
+            { name: "Watonwan", avgIncome: 60230, population: 10977 },
+            { name: "Wilkin", avgIncome: 63450, population: 6506 },
+            { name: "Yellow Medicine", avgIncome: 61890, population: 9528 },
+            { name: "Aitkin", avgIncome: 54670, population: 15697 },
+            { name: "Becker", avgIncome: 61340, population: 35183 },
+            { name: "Big Stone", avgIncome: 58920, population: 4983 },
+            { name: "Brown", avgIncome: 64230, population: 24916 },
+            { name: "Cook", avgIncome: 67890, population: 5600 },
+            { name: "Dodge", avgIncome: 75340, population: 20867 },
+            { name: "Grant", avgIncome: 60890, population: 5993 },
+            { name: "Houston", avgIncome: 66780, population: 18843 },
+            { name: "Koochiching", avgIncome: 57230, population: 12062 },
+            { name: "Lac qui Parle", avgIncome: 59670, population: 6548 },
+            { name: "Lake of the Woods", avgIncome: 61230, population: 3763 }
+        ];
+
+        // Create a mapping for easy lookup
+        const countyDataMap = {};
+        countyData.forEach(county => {
+            countyDataMap[county.name] = county;
+        });
+
+        // Calculate total stats
+        const totalPopulation = countyData.reduce((sum, c) => sum + c.population, 0);
+        const avgIncome = Math.round(countyData.reduce((sum, c) => sum + c.avgIncome, 0) / countyData.length);
+
+        document.getElementById('total-population').textContent = totalPopulation.toLocaleString();
+        document.getElementById('avg-income').textContent = '$' + avgIncome.toLocaleString();
+
+        // Build table
+        const tableBody = document.getElementById('table-body');
+        
+        let currentSort = {
+            column: null,
+            direction: 'asc'
+        };
+
+        function buildTable(data) {
+            tableBody.innerHTML = '';
+            
+            data.forEach(county => {
+                const row = document.createElement('tr');
+                row.dataset.county = county.name;
+                
+                const incomePerCapita = Math.round(county.avgIncome / (county.population / 1000));
+                
+                row.innerHTML = `
+                    <td class="county-name">${county.name}</td>
+                    <td class="number">$${county.avgIncome.toLocaleString()}</td>
+                    <td class="number">${county.population.toLocaleString()}</td>
+                    <td class="number">$${incomePerCapita.toLocaleString()}</td>
+                `;
+                
+                row.addEventListener('click', () => {
+                    highlightCounty(county.name);
+                });
+                
+                tableBody.appendChild(row);
+            });
+        }
+
+        function sortTable(column, type) {
+            // Toggle direction if same column, otherwise default to ascending
+            if (currentSort.column === column) {
+                currentSort.direction = currentSort.direction === 'asc' ? 'desc' : 'asc';
+            } else {
+                currentSort.column = column;
+                currentSort.direction = 'asc';
+            }
+
+            // Create a copy of the data with calculated perCapita
+            const dataToSort = countyData.map(county => ({
+                ...county,
+                perCapita: Math.round(county.avgIncome / (county.population / 1000))
+            }));
+
+            // Sort the data
+            dataToSort.sort((a, b) => {
+                let valA, valB;
+
+                if (type === 'text') {
+                    valA = a[column].toLowerCase();
+                    valB = b[column].toLowerCase();
+                    
+                    if (currentSort.direction === 'asc') {
+                        return valA.localeCompare(valB);
+                    } else {
+                        return valB.localeCompare(valA);
+                    }
+                } else {
+                    valA = a[column];
+                    valB = b[column];
+                    
+                    if (currentSort.direction === 'asc') {
+                        return valA - valB;
+                    } else {
+                        return valB - valA;
+                    }
+                }
+            });
+
+            // Update visual indicators
+            document.querySelectorAll('th.sortable').forEach(th => {
+                th.classList.remove('sort-asc', 'sort-desc');
+            });
+
+            const activeHeader = document.querySelector(`th[data-column="${column}"]`);
+            if (activeHeader) {
+                activeHeader.classList.add(currentSort.direction === 'asc' ? 'sort-asc' : 'sort-desc');
+            }
+
+            // Rebuild table
+            buildTable(dataToSort);
+        }
+
+        // Add click handlers to sortable headers
+        document.querySelectorAll('th.sortable').forEach(th => {
+            th.addEventListener('click', () => {
+                const column = th.dataset.column;
+                const type = th.dataset.type;
+                sortTable(column, type);
+            });
+        });
+
+        // Initial table build
+        buildTable(countyData);
+
+        // Initialize map
+        const map = L.map('map').setView([46.5, -94.5], 6);
+
+        L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
+            attribution: '© OpenStreetMap © CartoDB',
+            maxZoom: 19
+        }).addTo(map);
+
+        // Color scale based on income
+        function getColor(income) {
+            return income > 90000 ? '#1a4314' :
+                   income > 75000 ? '#2c5f2d' :
+                   income > 65000 ? '#4a7c59' :
+                   income > 58000 ? '#6b9b7c' :
+                                     '#97c593';
+        }
+
+        // Style function for counties
+        function style(feature) {
+            const countyName = feature.properties.NAME;
+            const countyInfo = countyDataMap[countyName];
+            const income = countyInfo ? countyInfo.avgIncome : 60000;
+            
+            return {
+                fillColor: getColor(income),
+                weight: 2,
+                opacity: 1,
+                color: '#ffffff',
+                fillOpacity: 0.7
+            };
+        }
+
+        let geoJsonLayer = null;
+        const countyLayers = {}; // Store references to each county's layer
+
+        // Highlight county function
+        function highlightCounty(countyName) {
+            // Remove previous highlights from table
+            document.querySelectorAll('tbody tr').forEach(row => {
+                row.classList.remove('highlighted');
+            });
+            
+            // Highlight table row
+            const row = document.querySelector(`tbody tr[data-county="${countyName}"]`);
+            if (row) {
+                row.classList.add('highlighted');
+                
+                // Scroll within the table wrapper
+                const tableWrapper = document.querySelector('.table-wrapper');
+                const rowTop = row.offsetTop;
+                const rowHeight = row.offsetHeight;
+                const wrapperHeight = tableWrapper.clientHeight;
+                const wrapperScrollTop = tableWrapper.scrollTop;
+                
+                // Calculate if row is out of view
+                if (rowTop < wrapperScrollTop || rowTop + rowHeight > wrapperScrollTop + wrapperHeight) {
+                    // Scroll to center the row in the viewport
+                    tableWrapper.scrollTo({
+                        top: rowTop - (wrapperHeight / 2) + (rowHeight / 2),
+                        behavior: 'smooth'
+                    });
+                }
+            }
+            
+            // Update selected county stat
+            const county = countyData.find(c => c.name === countyName);
+            if (county) {
+                document.getElementById('selected-county').textContent = countyName;
+            }
+            
+            // Interact with map layer
+            const layer = countyLayers[countyName];
+            if (layer && county) {
+                // Pan map to county
+                const bounds = layer.getBounds();
+                map.fitBounds(bounds, { 
+                    padding: [50, 50],
+                    maxZoom: 9
+                });
+                
+                // Create and open popup
+                const popupContent = `
+                    <div class="popup-county">${countyName} County</div>
+                    <div class="popup-stat">Avg Income: $${county.avgIncome.toLocaleString()}</div>
+                    <div class="popup-stat">Population: ${county.population.toLocaleString()}</div>
+                `;
+                
+                layer.bindPopup(popupContent).openPopup();
+            }
+        }
+
+        // Load GeoJSON data from GitHub
+        fetch('https://raw.githubusercontent.com/plotly/datasets/master/geojson-counties-fips.json')
+            .then(response => response.json())
+            .then(data => {
+                // Filter for Minnesota counties (STATE code "27")
+                const mnCounties = {
+                    type: "FeatureCollection",
+                    features: data.features.filter(feature => feature.properties.STATE === "27")
+                };
+
+                // Hide loading indicator
+                document.getElementById('loading').style.display = 'none';
+
+                // Add GeoJSON layer
+                geoJsonLayer = L.geoJSON(mnCounties, {
+                    style: style,
+                    onEachFeature: function(feature, layer) {
+                        const countyName = feature.properties.NAME;
+                        const countyInfo = countyDataMap[countyName];
+                        
+                        // Store layer reference
+                        countyLayers[countyName] = layer;
+                        
+                        layer.on({
+                            mouseover: function(e) {
+                                const layer = e.target;
+                                layer.setStyle({
+                                    weight: 3,
+                                    color: '#ff6b35',
+                                    fillOpacity: 0.9
+                                });
+                            },
+                            mouseout: function(e) {
+                                geoJsonLayer.resetStyle(e.target);
+                            },
+                            click: function(e) {
+                                highlightCounty(countyName);
+                                
+                                if (countyInfo) {
+                                    // Create popup
+                                    const popupContent = `
+                                        <div class="popup-county">${countyName} County</div>
+                                        <div class="popup-stat">Avg Income: $${countyInfo.avgIncome.toLocaleString()}</div>
+                                        <div class="popup-stat">Population: ${countyInfo.population.toLocaleString()}</div>
+                                    `;
+                                    
+                                    layer.bindPopup(popupContent).openPopup();
+                                } else {
+                                    const popupContent = `
+                                        <div class="popup-county">${countyName} County</div>
+                                        <div class="popup-stat">No data available</div>
+                                    `;
+                                    
+                                    layer.bindPopup(popupContent).openPopup();
+                                }
+                            }
+                        });
+                    }
+                }).addTo(map);
+
+                // Fit map to Minnesota bounds
+                map.fitBounds(geoJsonLayer.getBounds());
+            })
+            .catch(error => {
+                console.error('Error loading GeoJSON:', error);
+                document.getElementById('loading').textContent = 'Error loading map data. Please refresh.';
+            });
+
+        // Add legend
+        const legend = L.control({position: 'bottomright'});
+
+        legend.onAdd = function(map) {
+            const div = L.DomUtil.create('div', 'legend');
+            const grades = [50000, 58000, 65000, 75000, 90000];
+
+            div.innerHTML = '<div class="legend-title">Avg Income</div>';
+
+            for (let i = 0; i < grades.length; i++) {
+                div.innerHTML +=
+                    '<div class="legend-item">' +
+                    '<div class="legend-color" style="background:' + getColor(grades[i] + 1) + '"></div>' +
+                    '$' + grades[i].toLocaleString() + (grades[i + 1] ? ' &ndash; $' + grades[i + 1].toLocaleString() : '+') +
+                    '</div>';
+            }
+
+            return div;
+        };
+
+        legend.addTo(map);
+    </script>
+</body>
+</html>

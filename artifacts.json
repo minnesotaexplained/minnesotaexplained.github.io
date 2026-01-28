@@ -1010,6 +1010,17 @@
         "type":"link",
         "image":"/img/calls.jpg",
         "link":"/mn_legislature.html"
+    },
+    {
+        "id":16,
+        "title":"County Statistics",
+        "description":"Map of counties and their economic statistics.",
+        "subtitle":"",
+        "footer":"",
+        "category": "State Statistics",
+        "type":"link",
+        "image":"/img/flag.webp",
+        "link":"/mn_county_stats.html"
     }
 ]
 
