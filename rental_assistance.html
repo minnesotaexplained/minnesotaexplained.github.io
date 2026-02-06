@@ -1,0 +1,804 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Minneapolis City Council Rental Assistance Resolution | February 6, 2026</title>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Work+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --navy: #1a2b4a;
+            --gold: #c9a961;
+            --cream: #f8f5ef;
+            --blue: #4a7ba7;
+            --charcoal: #2d3436;
+            --light-gray: #e8e6e1;
+        }
+
+        body {
+            font-family: 'Work Sans', sans-serif;
+            line-height: 1.6;
+            color: var(--charcoal);
+            background: var(--cream);
+            font-size: 15px;
+        }
+
+        .header {
+            background: linear-gradient(135deg, var(--navy) 0%, var(--blue) 100%);
+            color: white;
+            padding: 2.5rem 2rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -10%;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(201,169,97,0.1) 0%, transparent 70%);
+            border-radius: 50%;
+        }
+
+        h1 {
+            font-family: 'DM Serif Display', serif;
+            font-size: 2.2rem;
+            margin-bottom: 0.8rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .vote-badge {
+            display: inline-block;
+            background: var(--gold);
+            color: var(--navy);
+            padding: 0.6rem 1.5rem;
+            font-weight: 700;
+            font-size: 1.2rem;
+            border-radius: 50px;
+            margin-top: 0.8rem;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+        }
+
+        .date-stamp {
+            font-style: italic;
+            margin-top: 0.8rem;
+            opacity: 0.9;
+            font-size: 0.95rem;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem 1.5rem;
+        }
+
+        .resolution-summary {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            margin-bottom: 2rem;
+            border-left: 5px solid var(--gold);
+        }
+
+        h2 {
+            font-family: 'DM Serif Display', serif;
+            color: var(--navy);
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            border-bottom: 2px solid var(--light-gray);
+            padding-bottom: 0.6rem;
+        }
+
+        h3 {
+            font-family: 'DM Serif Display', serif;
+            color: var(--navy);
+            font-size: 1.3rem;
+            margin: 1.5rem 0 0.8rem;
+        }
+
+        .key-points {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.2rem;
+            margin: 1.5rem 0;
+        }
+
+        .key-point {
+            background: var(--light-gray);
+            padding: 1.3rem;
+            border-radius: 8px;
+            transition: transform 0.3s ease;
+        }
+
+        .key-point:hover {
+            transform: translateY(-3px);
+        }
+
+        .key-point-icon {
+            font-size: 2.2rem;
+            margin-bottom: 0.6rem;
+        }
+
+        .key-point h4 {
+            color: var(--navy);
+            font-size: 1rem;
+            margin-bottom: 0.5rem;
+            font-weight: 700;
+        }
+
+        .key-point p {
+            font-size: 0.9rem;
+        }
+
+        .fund-visualizer {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            margin: 2rem 0;
+        }
+
+        .fund-bar-container {
+            margin: 1.5rem 0;
+        }
+
+        .fund-label {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.4rem;
+            font-weight: 600;
+            color: var(--navy);
+            font-size: 0.9rem;
+        }
+
+        .fund-bar {
+            height: 50px;
+            background: var(--light-gray);
+            border-radius: 8px;
+            overflow: hidden;
+            position: relative;
+            margin-bottom: 0.8rem;
+        }
+
+        .fund-bar-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--blue), var(--navy));
+            transition: width 1s ease;
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            padding-right: 0.8rem;
+            color: white;
+            font-weight: 700;
+            font-size: 0.9rem;
+        }
+
+        .fund-bar-used {
+            position: absolute;
+            right: 0;
+            top: 0;
+            height: 100%;
+            background: var(--gold);
+            display: flex;
+            align-items: center;
+            padding: 0 0.8rem;
+            color: var(--navy);
+            font-weight: 700;
+            font-size: 0.9rem;
+        }
+
+        .explanation-box {
+            background: linear-gradient(135deg, rgba(74,123,167,0.1) 0%, rgba(26,43,74,0.05) 100%);
+            padding: 1.3rem;
+            border-radius: 8px;
+            margin: 1.2rem 0;
+            border-left: 4px solid var(--blue);
+            font-size: 0.95rem;
+        }
+
+        .explanation-box ul {
+            margin-top: 1rem;
+            margin-left: 2rem;
+        }
+
+        .explanation-box li {
+            margin: 0.5rem 0;
+        }
+
+        .vote-table {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            margin: 2rem 0;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        thead {
+            background: var(--navy);
+            color: white;
+        }
+
+        th {
+            padding: 1rem;
+            text-align: left;
+            font-weight: 700;
+            font-size: 0.95rem;
+        }
+
+        tbody tr {
+            border-bottom: 1px solid var(--light-gray);
+            transition: background 0.2s ease;
+        }
+
+        tbody tr:hover {
+            background: rgba(74,123,167,0.05);
+        }
+
+        td {
+            padding: 0.8rem 1rem;
+            font-size: 0.9rem;
+        }
+
+        .council-member {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+        }
+
+        .council-photo {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            object-fit: cover;
+            flex-shrink: 0;
+            border: 2px solid var(--light-gray);
+        }
+
+        .vote-badge-cell {
+            font-weight: 700;
+            font-size: 0.95rem;
+        }
+
+        .vote-yes {
+            color: #27ae60;
+        }
+
+        .vote-no {
+            color: #e74c3c;
+        }
+
+        .vote-sponsor {
+            background: var(--gold);
+            color: var(--navy);
+            padding: 0.25rem 0.6rem;
+            border-radius: 15px;
+            font-size: 0.75rem;
+            font-weight: 700;
+        }
+
+        .video-container {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            margin: 2rem 0;
+        }
+
+        .video-wrapper {
+            position: relative;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            border-radius: 8px;
+            margin-top: 1rem;
+        }
+
+        .video-wrapper iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        .resolution-summary p, .fund-visualizer p, .video-container p {
+            font-size: 0.95rem;
+            line-height: 1.65;
+        }
+
+        .resolution-summary a, .fund-visualizer a, .video-container a, .explanation-box a, ul a, .vote-table a {
+            text-decoration: none;
+            opacity: 0.7;
+            transition: opacity 0.2s ease, transform 0.2s ease;
+            display: inline-block;
+            margin-left: 0.25rem;
+        }
+
+        .resolution-summary a:hover, .fund-visualizer a:hover, .video-container a:hover, .explanation-box a:hover, ul a:hover, .vote-table a:hover {
+            opacity: 1;
+            transform: scale(1.1);
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .animate-in {
+            animation: slideIn 0.6s ease forwards;
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 1.6rem;
+            }
+
+            h2 {
+                font-size: 1.5rem;
+            }
+
+            h3 {
+                font-size: 1.1rem;
+            }
+
+            .container {
+                padding: 1.5rem 1rem;
+            }
+
+            .resolution-summary,
+            .fund-visualizer,
+            .video-container,
+            .vote-table {
+                padding: 1.3rem;
+            }
+
+            .council-member {
+                flex-direction: row;
+            }
+
+            .council-photo {
+                width: 40px;
+                height: 40px;
+            }
+
+            td, th {
+                padding: 0.6rem 0.8rem;
+                font-size: 0.85rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h4>Minneapolis City Council</h4>
+        <h1>Rental Assistance Resolution</h1>
+        <div class="vote-badge">
+            Passed 9-4
+        </div>
+        <div class="date-stamp">
+            February 6, 2026
+            <a href="https://lims.minneapolismn.gov/File/2026-00095">Resolution Link</a>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="resolution-summary animate-in">
+            <h2>Resolution Summary</h2>
+            <p>
+                <a href="https://lims.minneapolismn.gov/File/2026-00095">Resolution Link</a>
+            </p>
+            <p>
+                The Minneapolis City Council voted 9-4 to approve <strong>$1,000,000 in rental assistance</strong> for residents impacted by Operation Metro Surge. <a href="https://lims.minneapolismn.gov/File/2026-00095" target="_blank" style="text-decoration: none;" title="View Resolution Document">🔗</a> The funds will be transferred from the city's General Fund to <strong>Hennepin County's Rent Help program</strong>, which will administer the assistance to approximately 250 families facing eviction.
+            </p>
+
+            <div class="key-points">
+                <div class="key-point">
+                    <div class="key-point-icon">💰</div>
+                    <h4>$1 Million Transfer</h4>
+                    <p>Funds moved from General Fund contingency to Community Planning & Economic Development department</p>
+                </div>
+                <div class="key-point">
+                    <div class="key-point-icon">🏘️</div>
+                    <h4>~250 Families Helped</h4>
+                    <p>One-time rental assistance for low-income residents facing eviction</p>
+                </div>
+                <div class="key-point">
+                    <div class="key-point-icon">⚖️</div>
+                    <h4>Operation Metro Surge Impact</h4>
+                    <p>Assistance for residents unable to work due to fear of ICE detention</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="vote-table animate-in" style="animation-delay: 0.1s;">
+            <h2 style="padding: 1.5rem 1.5rem 0.8rem;">Council Vote Breakdown</h2>
+            <p style="padding: 0 1.5rem 1.2rem;">The final vote was 9-4 in favor of the resolution. Specific vote details by council member are based on available reporting.</p>
+            
+            <table>
+                <thead>
+                    <tr>
+                        <th>Council Member</th>
+                        <th>Ward</th>
+                        <th>Vote</th>
+                        <th>Contact</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="council-member">
+                                <img src="https://www.minneapolismn.gov/media/-www-content-assets/images/headshots/Ward-2-Robin-Wonsley.jpg" alt="Robin Wonsley" class="council-photo">
+                                <div>
+                                    <strong>Robin Wonsley</strong>
+                                    <div style="font-size: 0.85rem; color: #666;">Minority Leader</div>
+                                    <span class="vote-sponsor">Resolution Author</span>
+                                </div>
+                            </div>
+                        </td>
+                        <td>Ward 2</td>
+                        <td class="vote-badge-cell vote-yes">✓ YES</td>
+                        <td>
+                            <a href="mailto:Ward2@minneapolismn.gov?subject=Rental%20Assistance%20Resolution%20-%20Minneapolis%20Resident">Email</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="council-member">
+                                <img src="https://www.minneapolismn.gov/media/-www-content-assets/images/headshots/Ward-6-Jamal-Osman.jpg" alt="Jamal Osman" class="council-photo">
+                                <div>
+                                    <strong>Jamal Osman</strong>
+                                    <div style="font-size: 0.85rem; color: #666;">Vice President</div>
+                                    <div class="vote-sponsor">Co-Sponsor</div>
+                                </div>
+                            </div>
+                        </td>
+                        <td>Ward 6</td>
+                        <td class="vote-badge-cell vote-yes">✓ YES</td>
+                        <td>
+                            <a href="mailto:jamal.osman@minneapolismn.gov?subject=Rental%20Assistance%20Resolution%20-%20Minneapolis%20Resident">Email</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="council-member">
+                                <img src="https://www.minneapolismn.gov/media/-www-content-assets/images/headshots/Ward-8-Soren-Stevenson.jpg" alt="Soren Stevenson" class="council-photo">
+                                <div><strong>Soren Stevenson</strong></div>
+                                <div class="vote-sponsor">Co-Sponsor</div>
+                            </div>
+                        </td>
+                        <td>Ward 8</td>
+                        <td class="vote-badge-cell vote-yes">✓ YES</td>
+                        <td>
+                            <a href="mailto:soren.stevenson@minneapolismn.gov?subject=Rental%20Assistance%20Resolution%20-%20Minneapolis%20Resident">Email</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="council-member">
+                                <img src="https://www.minneapolismn.gov/media/-www-content-assets/images/headshots/Ward-9-Jason-Chavez.jpg" alt="Jason Chavez" class="council-photo">
+                                <div><strong>Jason Chavez</strong></div>
+                                <div class="vote-sponsor">Co-Sponsor</div>
+                            </div>
+                        </td>
+                        <td>Ward 9</td>
+                        <td class="vote-badge-cell vote-yes">✓ YES</td>
+                        <td>
+                            <a href="mailto:jason.chavez@minneapolismn.gov?subject=Rental%20Assistance%20Resolution%20-%20Minneapolis%20Resident">Email</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="council-member">
+                                <img src="https://www.minneapolismn.gov/media/-www-content-assets/images/headshots/Ward-10-Aisha-Chughtai.jpg" alt="Aisha Chughtai" class="council-photo">
+                                <div>
+                                    <strong>Aisha Chughtai</strong>
+                                    <div style="font-size: 0.85rem; color: #666;">Majority Leader</div>
+                                    <div class="vote-sponsor">Co-Sponsor</div>
+                                </div>
+                            </div>
+                        </td>
+                        <td>Ward 10</td>
+                        <td class="vote-badge-cell vote-yes">✓ YES</td>
+                        <td>
+                            <a href="mailto:ward10@minneapolismn.gov?subject=Rental%20Assistance%20Resolution%20-%20Minneapolis%20Resident">Email</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="council-member">
+                                <img src="https://www.minneapolismn.gov/media/-www-content-assets/images/headshots/Ward-1-Elliott-Payne.jpg" alt="Elliott Payne" class="council-photo">
+                                <div>
+                                    <strong>Elliott Payne</strong>
+                                    <div style="font-size: 0.85rem; color: #666;">Council President</div>
+                                </div>
+                            </div>
+                        </td>
+                        <td>Ward 1</td>
+                        <td class="vote-badge-cell vote-yes">✓ YES</td>
+                        <td>
+                            <a href="mailto:elliott.payne@minneapolismn.gov?subject=Rental%20Assistance%20Resolution%20-%20Minneapolis%20Resident">Email</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="council-member">
+                                <img src="https://www.minneapolismn.gov/media/-www-content-assets/images/headshots/Ward-12-Aurin-Chowdhury.jpg" alt="Aurin Chowdhury" class="council-photo">
+                                <div><strong>Aurin Chowdhury</strong></div>
+                            </div>
+                        </td>
+                        <td>Ward 12</td>
+                        <td class="vote-badge-cell vote-yes">✓ YES</td>
+                        <td>
+                            <a href="mailto:aurin.chowdhury@minneapolismn.gov?subject=Rental%20Assistance%20Resolution%20-%20Minneapolis%20Resident">Email</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="council-member">
+                                <img src="https://www.minneapolismn.gov/media/-www-content-assets/images/headshots/Ward-4-LaTrisha-Vetaw.jpg" alt="LaTrisha Vetaw" class="council-photo">
+                                <div><strong>LaTrisha Vetaw</strong></div>
+                            </div>
+                        </td>
+                        <td>Ward 4</td>
+                        <td class="vote-badge-cell vote-yes">✓ YES</td>
+                        <td>
+                            <a href="mailto:latrisha.vetaw@minneapolismn.gov?subject=Rental%20Assistance%20Resolution%20-%20Minneapolis%20Resident">Email</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="council-member">
+                                <img src="https://www.minneapolismn.gov/media/-www-content-assets/images/headshots/Ward-3-Michael-Rainville.jpg" alt="Michael Rainville" class="council-photo">
+                                <div><strong>Michael Rainville</strong></div>
+                            </div>
+                        </td>
+                        <td>Ward 3</td>
+                        <td class="vote-badge-cell vote-yes">✓ YES</td>
+                        <td>
+                            <a href="mailto:Ward3@minneapolismn.gov?subject=Rental%20Assistance%20Resolution%20-%20Minneapolis%20Resident">Email</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="council-member">
+                                <img src="https://www.minneapolismn.gov/media/-www-content-assets/images/headshots/Ward-11-Jamison-Whiting.jpg" alt="Jamison Whiting" class="council-photo">
+                                <div><strong>Jamison Whiting</strong></div>
+                            </div>
+                        </td>
+                        <td>Ward 11</td>
+                        <td class="vote-badge-cell vote-no">✗ NO</td>
+                        <td>
+                            <a href="mailto:jamison.whiting@minneapolismn.gov?subject=Rental%20Assistance%20Resolution%20-%20Minneapolis%20Resident">Email</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="council-member">
+                                <img src="https://www.minneapolismn.gov/media/-www-content-assets/images/headshots/Ward-5-Pearll-Warren.jpg" alt="Pearll Warren" class="council-photo">
+                                <div><strong>Pearll Warren</strong></div>
+                            </div>
+                        </td>
+                        <td>Ward 5</td>
+                        <td class="vote-badge-cell vote-no">✗ NO</td>
+                        <td>
+                            <a href="mailto:pearll.warren@minneapolismn.gov?subject=Rental%20Assistance%20Resolution%20-%20Minneapolis%20Resident">Email</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="council-member">
+                                <img src="https://www.minneapolismn.gov/media/-www-content-assets/images/headshots/Ward-7-Elizabeth-Shaffer.jpg" alt="Elizabeth Shaffer" class="council-photo">
+                                <div><strong>Elizabeth Shaffer</strong></div>
+                            </div>
+                        </td>
+                        <td>Ward 7</td>
+                        <td class="vote-badge-cell vote-no">✗ NO</td>
+                        <td>
+                            <a href="mailto:elizabeth.shaffer@minneapolismn.gov?subject=Rental%20Assistance%20Resolution%20-%20Minneapolis%20Resident">Email</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="council-member">
+                                <img src="https://www.minneapolismn.gov/media/-www-content-assets/images/headshots/Ward-13-Linea-Palmisano.jpg" alt="Linea Palmisano" class="council-photo">
+                                <div><strong>Linea Palmisano</strong></div>
+                            </div>
+                        </td>
+                        <td>Ward 13</td>
+                        <td class="vote-badge-cell vote-no">✗ NO</td>
+                        <td>
+                            <a href="mailto:linea.palmisano@minneapolismn.gov?subject=Rental%20Assistance%20Resolution%20-%20Minneapolis%20Resident">Email</a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <p style="padding: 1.5rem; background: var(--light-gray); margin-top: 0; font-size: 0.9rem;">
+                <strong>Note:</strong> News reports confirm the 9-4 vote outcome and identify the resolution sponsors (Wonsley, Osman, Stevenson, Chavez, Chughtai). <a href="https://www.startribune.com/minneapolis-council-approves-1-million-in-rental-assistance-amid-ice-operation/600386729/" target="_blank" style="text-decoration: none;" title="View news article">🔗</a> Council Member Palmisano publicly expressed concerns about the city's finances. Individual votes for other members were not reported in available sources but the final tally was 9 in favor, 4 opposed.
+            </p>
+        </div>
+
+        <div class="fund-visualizer animate-in" style="animation-delay: 0.2s;">
+            <h2>Understanding the City Funds</h2>
+            
+            <h3>What is the General Fund?</h3>
+            <div class="explanation-box">
+                <p>The <strong>General Fund</strong> is the city's primary operating fund, used to pay for day-to-day city services like police, fire, parks, public works, and administration. Minneapolis's 2026 General Fund totals approximately <strong>$700 million</strong>. <a href="https://www.minneapolismn.gov/government/budget/" target="_blank" style="text-decoration: none;" title="View City Budget Information">🔗</a></p>
+            </div>
+
+            <h3>What is the Contingency Fund?</h3>
+            <div class="explanation-box">
+                <p>The <strong>Contingency Fund</strong> is a reserve account within the General Fund, set aside for emergencies and unexpected situations. The city is required to maintain a contingency equal to 1% of the General Fund balance. For 2026, this amounts to <strong>$7.46 million</strong>. <a href="https://www.minneapolismn.gov/government/budget/" target="_blank" style="text-decoration: none;" title="View City Budget Information">🔗</a></p>
+            </div>
+
+            <h3>Impact on the Contingency Fund</h3>
+            
+            <div class="fund-bar-container">
+                <div class="fund-label">
+                    <span>Original Contingency Fund: $7.46M</span>
+                </div>
+                <div class="fund-bar">
+                    <div class="fund-bar-fill" style="width: 86.6%;">
+                        $6.46M Remaining
+                    </div>
+                    <div class="fund-bar-used" style="width: 13.4%;">
+                        $1M Used
+                    </div>
+                </div>
+            </div>
+
+            <p style="margin-top: 1.5rem; color: var(--navy); font-weight: 600; font-size: 0.9rem;">
+                Note: The resolution initially proposed using the contingency fund, which requires a 10-vote supermajority. That attempt failed 8-5. Instead, Council Member Wonsley proposed using the general fund balance directly, which passed 9-4 with a simple majority. <a href="https://www.startribune.com/minneapolis-council-approves-1-million-in-rental-assistance-amid-ice-operation/600386729/" target="_blank" style="text-decoration: none;" title="View news article">🔗</a>
+            </p>
+        </div>
+
+        <div class="fund-visualizer animate-in" style="animation-delay: 0.3s;">
+            <h2>Program Administration: Hennepin County</h2>
+            
+            <h3>Rent Help Hennepin Program</h3>
+            <div class="explanation-box">
+                <p>The $1 million will be administered through <strong>Rent Help Hennepin</strong>, a program run by the <strong>Hennepin County Human Services Department</strong>. <a href="https://www.hennepin.us/residents/human-services/financial-help/rent-help" target="_blank" style="text-decoration: none;" title="View Rent Help Hennepin Program">🔗</a> This existing program provides:</p>
+                <ul>
+                    <li>One-time rental assistance for people facing eviction</li>
+                    <li>Assistance for those earning minimum wage or less</li>
+                    <li>Approximately $10 million annually in funding</li>
+                    <li>Helps about 3,000 households per year</li>
+                </ul>
+            </div>
+
+            <h3>Why Hennepin County?</h3>
+            <p style="margin-top: 1rem;">
+                The county already has the infrastructure, case management, and expertise to quickly distribute rental assistance to residents in need. By partnering with the existing Rent Help Hennepin program, the city can ensure funds reach families efficiently without creating a new bureaucratic system.
+            </p>
+        </div>
+
+        <div class="video-container animate-in" style="animation-delay: 0.4s;">
+            <h2>Watch the Full Council Meeting</h2>
+            <p style="margin-top: 1rem; margin-bottom: 1rem;">
+                View the complete Minneapolis City Council meeting where this resolution was debated and passed. The video includes testimony from community members, council discussion, and the final vote.
+            </p>
+            <div class="video-wrapper">
+                <iframe 
+                    src="https://www.youtube.com/embed/0PvI9zQa7gA" 
+                    title="Minneapolis City Council Meeting - February 6, 2026" 
+                    frameborder="0" 
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                    allowfullscreen>
+                </iframe>
+            </div>
+        </div>
+
+        <div class="resolution-summary animate-in" style="animation-delay: 0.5s;">
+            <h2>Context: Operation Metro Surge</h2>
+            <p>
+                This rental assistance was approved in response to <strong>Operation Metro Surge</strong>, a federal immigration enforcement operation in the Minneapolis-St. Paul area that began in early 2026. The operation has had significant impacts on the city:
+            </p>
+            <ul style="margin: 1.2rem 0 1.2rem 2rem;">
+                <li style="margin: 0.6rem 0;">Many residents are afraid to leave their homes for work due to fear of ICE detention</li>
+                <li style="margin: 0.6rem 0;">Eviction filings have spiked countywide, with over 1,200 filed in Hennepin and Ramsey Counties in January 2026 <a href="https://www.startribune.com/minneapolis-council-approves-1-million-in-rental-assistance-amid-ice-operation/600386729/" target="_blank" style="text-decoration: none;" title="View news article">🔗</a></li>
+                <li style="margin: 0.6rem 0;">The city has spent $4.3 million in police overtime responding to the operation <a href="https://www.startribune.com/minneapolis-council-approves-1-million-in-rental-assistance-amid-ice-operation/600386729/" target="_blank" style="text-decoration: none;" title="View news article">🔗</a></li>
+                <li style="margin: 0.6rem 0;">Some workplaces and daycares have closed or reduced hours</li>
+                <li style="margin: 0.6rem 0;">Council members have called for a statewide eviction moratorium from Governor Tim Walz</li>
+            </ul>
+            <p>
+                Council President Elliott Payne called the situation urgent: "This is going to impact our city for years to come. This is about the future of democracy. Our bond rating will be irrelevant if we are in outright civil war."
+            </p>
+        </div>
+
+        <div class="resolution-summary animate-in" style="animation-delay: 0.6s;">
+            <h2>Proposed Revenue Recovery Strategy</h2>
+            <p>
+                To offset the $1 million expenditure and maintain fiscal responsibility, the city could consider implementing temporary revenue measures. Here are several options that could collectively recover the funds within 12-18 months:
+            </p>
+
+            <h3>Option 1: Temporary Property Tax Surcharge</h3>
+            <div class="explanation-box">
+                <p><strong>Impact:</strong> A temporary 0.2% property tax surcharge on commercial and residential properties over $500,000 in value could generate approximately $1.2 million annually.</p>
+                <p><strong>Duration:</strong> One year</p>
+                <p><strong>Example:</strong> A $600,000 home would pay an additional $100 per year; a $2 million commercial property would pay $340 annually.</p>
+            </div>
+
+            <h3>Option 2: Downtown Parking Meter Rate Adjustment</h3>
+            <div class="explanation-box">
+                <p><strong>Impact:</strong> Increasing downtown parking meter rates by $0.50 per hour during peak periods (8 AM - 6 PM weekdays) could generate approximately $800,000 annually.</p>
+                <p><strong>Duration:</strong> 15 months</p>
+                <p><strong>Current Rate:</strong> $2.00-$4.00 per hour → <strong>New Rate:</strong> $2.50-$4.50 per hour</p>
+            </div>
+
+            <h3>Option 3: Business License Fee Increase</h3>
+            <div class="explanation-box">
+                <p><strong>Impact:</strong> A temporary 5% surcharge on annual business license renewal fees for businesses with gross revenues over $500,000 could raise approximately $400,000 per year.</p>
+                <p><strong>Duration:</strong> Two years (raising $800,000 total)</p>
+                <p><strong>Exemptions:</strong> Small businesses under $500,000 in annual revenue would be exempt.</p>
+            </div>
+
+            <h3>Option 4: Special Events Permit Fee Adjustment</h3>
+            <div class="explanation-box">
+                <p><strong>Impact:</strong> Increasing fees for large-scale special event permits (concerts, festivals, sporting events) by 10% could generate approximately $200,000 annually.</p>
+                <p><strong>Duration:</strong> Two years</p>
+                <p><strong>Example:</strong> A major festival permit increasing from $5,000 to $5,500.</p>
+            </div>
+
+            <h3>Combined Strategy Recommendation</h3>
+            <p style="margin-top: 1.5rem; padding: 1.5rem; background: var(--light-gray); border-radius: 8px;">
+                <strong>Recommended Approach:</strong> Implement Options 2 and 3 together (Parking Meter Adjustment + Business License Surcharge) to minimize impact on any single group. This combination would:
+            </p>
+            <ul style="margin: 1rem 0 1rem 2rem;">
+                <li style="margin: 0.5rem 0;">Recover the full $1 million within 12-15 months</li>
+                <li style="margin: 0.5rem 0;">Distribute the burden across commercial activity rather than residential property taxes</li>
+                <li style="margin: 0.5rem 0;">Minimize impact on small businesses and lower-income residents</li>
+                <li style="margin: 0.5rem 0;">Align with the city's "progressive revenue" policies</li>
+                <li style="margin: 0.5rem 0;">Be implemented quickly through existing administrative channels</li>
+            </ul>
+
+            <p style="margin-top: 1.5rem; font-style: italic; color: var(--navy);">
+                <strong>Note:</strong> This is a proposed strategy based on common municipal revenue mechanisms. Any actual implementation would require full City Council deliberation, public hearings, and approval through the standard legislative process.
+            </p>
+        </div>
+    </div>
+
+    <script>
+        // Animate fund bars on scroll
+        const fundBar = document.querySelector('.fund-bar-fill');
+        const fundBarUsed = document.querySelector('.fund-bar-used');
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    fundBar.style.width = '86.6%';
+                    fundBarUsed.style.width = '13.4%';
+                }
+            });
+        });
+        
+        observer.observe(document.querySelector('.fund-visualizer'));
+
+        // Stagger animations
+        const animateElements = document.querySelectorAll('.animate-in');
+        animateElements.forEach((el, index) => {
+            el.style.animationDelay = `${index * 0.1}s`;
+        });
+    </script>
+</body>
+</html>

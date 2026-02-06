@@ -1012,7 +1012,7 @@
         "link":"/mn_legislature.html"
     },
     {
-        "id":16,
+        "id":17,
         "title":"County Statistics",
         "description":"Map of counties and their economic statistics.",
         "subtitle":"",
@@ -1021,6 +1021,17 @@
         "type":"link",
         "image":"/img/flag.webp",
         "link":"/mn_county_stats.html"
+    },
+    {
+        "id":18,
+        "title":"Mpls Rental Assistance",
+        "description":"The Minneapolis City Council voted 9-4 to approve $1,000,000 in rental assistance for residents impacted by Operation Metro Surge.",
+        "subtitle":"",
+        "footer":"",
+        "category": "ICE Resource Guide",
+        "type":"link",
+        "image":"/img/city.jpg",
+        "link":"/rental_assistance.html"
     }
 ]
 

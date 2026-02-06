@@ -1,0 +1,914 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Distributed Cold Storage Calculator</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --ice-50: #f0f9ff;
+            --ice-100: #e0f2fe;
+            --ice-200: #bae6fd;
+            --ice-300: #7dd3fc;
+            --ice-500: #0ea5e9;
+            --ice-600: #0284c7;
+            --ice-700: #0369a1;
+            --ice-900: #0c4a6e;
+            --frost: #164e63;
+            --snow: #ffffff;
+            --slate-50: #f8fafc;
+            --slate-100: #f1f5f9;
+            --slate-200: #e2e8f0;
+            --slate-700: #334155;
+            --slate-800: #1e293b;
+            --slate-900: #0f172a;
+            --accent: #f59e0b;
+            --shadow: rgba(15, 23, 42, 0.1);
+        }
+
+        body {
+            font-family: 'Outfit', sans-serif;
+            background: linear-gradient(135deg, var(--ice-50) 0%, var(--slate-50) 100%);
+            color: var(--slate-900);
+            min-height: 100vh;
+            padding: 2rem 1rem;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            animation: fadeIn 0.8s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 3rem;
+            animation: slideDown 0.6s ease-out;
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        h1 {
+            font-size: 2.75rem;
+            font-weight: 700;
+            color: var(--frost);
+            margin-bottom: 0.5rem;
+            letter-spacing: -0.02em;
+            position: relative;
+            display: inline-block;
+        }
+
+        h1::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--ice-500), var(--accent));
+            border-radius: 2px;
+        }
+
+        .subtitle {
+            font-size: 1.1rem;
+            color: var(--slate-700);
+            font-weight: 300;
+            margin-top: 1.5rem;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        @media (max-width: 968px) {
+            .grid {
+                grid-template-columns: 1fr;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+        }
+
+        .card {
+            background: var(--snow);
+            border-radius: 16px;
+            padding: 2rem;
+            box-shadow: 0 4px 6px var(--shadow), 0 1px 3px rgba(15, 23, 42, 0.08);
+            border: 1px solid var(--ice-200);
+            transition: all 0.3s ease;
+            animation: cardEntry 0.6s ease-out backwards;
+        }
+
+        .card:nth-child(1) { animation-delay: 0.1s; }
+        .card:nth-child(2) { animation-delay: 0.2s; }
+        .card:nth-child(3) { animation-delay: 0.3s; }
+        .card:nth-child(4) { animation-delay: 0.4s; }
+
+        @keyframes cardEntry {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .card:hover {
+            box-shadow: 0 10px 15px var(--shadow), 0 4px 6px rgba(15, 23, 42, 0.05);
+            transform: translateY(-2px);
+        }
+
+        .card h2 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--frost);
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .card h2::before {
+            content: '';
+            width: 4px;
+            height: 24px;
+            background: linear-gradient(180deg, var(--ice-500), var(--accent));
+            border-radius: 2px;
+        }
+
+        .input-group {
+            margin-bottom: 1.75rem;
+        }
+
+        .input-group:last-child {
+            margin-bottom: 0;
+        }
+
+        label {
+            display: block;
+            font-weight: 500;
+            color: var(--slate-700);
+            margin-bottom: 0.5rem;
+            font-size: 0.95rem;
+        }
+
+        .input-wrapper {
+            position: relative;
+        }
+
+        input[type="range"] {
+            width: 100%;
+            height: 8px;
+            border-radius: 4px;
+            background: linear-gradient(90deg, var(--ice-200), var(--ice-300));
+            outline: none;
+            -webkit-appearance: none;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        input[type="range"]:hover {
+            background: linear-gradient(90deg, var(--ice-300), var(--ice-400));
+        }
+
+        input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            background: var(--ice-600);
+            cursor: pointer;
+            box-shadow: 0 2px 4px rgba(2, 132, 199, 0.3);
+            transition: all 0.2s ease;
+        }
+
+        input[type="range"]::-webkit-slider-thumb:hover {
+            background: var(--ice-700);
+            transform: scale(1.1);
+            box-shadow: 0 4px 8px rgba(2, 132, 199, 0.4);
+        }
+
+        input[type="range"]::-moz-range-thumb {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            background: var(--ice-600);
+            cursor: pointer;
+            border: none;
+            box-shadow: 0 2px 4px rgba(2, 132, 199, 0.3);
+            transition: all 0.2s ease;
+        }
+
+        input[type="range"]::-moz-range-thumb:hover {
+            background: var(--ice-700);
+            transform: scale(1.1);
+        }
+
+        input[type="number"] {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            border: 2px solid var(--ice-200);
+            border-radius: 8px;
+            font-size: 1rem;
+            font-family: 'JetBrains Mono', monospace;
+            background: var(--ice-50);
+            color: var(--slate-900);
+            transition: all 0.3s ease;
+        }
+
+        input[type="number"]:focus {
+            outline: none;
+            border-color: var(--ice-500);
+            background: var(--snow);
+            box-shadow: 0 0 0 3px rgba(14, 165, 233, 0.1);
+        }
+
+        .value-display {
+            display: inline-block;
+            margin-left: 0.75rem;
+            padding: 0.25rem 0.75rem;
+            background: var(--ice-100);
+            color: var(--ice-900);
+            border-radius: 6px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.9rem;
+            font-weight: 500;
+            border: 1px solid var(--ice-300);
+        }
+
+        .results {
+            background: linear-gradient(135deg, var(--frost) 0%, var(--ice-900) 100%);
+            color: var(--snow);
+            border: none;
+        }
+
+        .results h2 {
+            color: var(--ice-100);
+        }
+
+        .results h2::before {
+            background: linear-gradient(180deg, var(--accent), var(--ice-300));
+        }
+
+        .result-item {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 1.5rem;
+            border-radius: 12px;
+            margin-bottom: 1rem;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            transition: all 0.3s ease;
+        }
+
+        .result-item:hover {
+            background: rgba(255, 255, 255, 0.15);
+            transform: translateX(4px);
+        }
+
+        .result-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .result-label {
+            font-size: 0.9rem;
+            color: var(--ice-200);
+            margin-bottom: 0.5rem;
+            font-weight: 300;
+        }
+
+        .result-value {
+            font-size: 2rem;
+            font-weight: 700;
+            font-family: 'JetBrains Mono', monospace;
+            color: var(--snow);
+            letter-spacing: -0.02em;
+        }
+
+        .result-unit {
+            font-size: 1rem;
+            font-weight: 400;
+            color: var(--ice-300);
+            margin-left: 0.5rem;
+        }
+
+        .info-section {
+            grid-column: 1 / -1;
+            background: var(--snow);
+            padding: 2rem;
+            border-radius: 16px;
+            box-shadow: 0 4px 6px var(--shadow);
+            border: 1px solid var(--ice-200);
+        }
+
+        .info-section h2 {
+            font-size: 1.5rem;
+            color: var(--frost);
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .info-section h2::before {
+            content: 'ℹ';
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 32px;
+            height: 32px;
+            background: linear-gradient(135deg, var(--ice-500), var(--accent));
+            color: white;
+            border-radius: 50%;
+            font-size: 1.2rem;
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .info-item {
+            padding: 1rem;
+            background: var(--slate-50);
+            border-radius: 8px;
+            border-left: 4px solid var(--ice-500);
+            transition: all 0.3s ease;
+        }
+
+        .info-item:hover {
+            background: var(--ice-50);
+            border-left-color: var(--accent);
+        }
+
+        .info-item h3 {
+            font-size: 1.1rem;
+            color: var(--frost);
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+
+        .info-item p {
+            color: var(--slate-700);
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        .preset-buttons {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .preset-btn {
+            flex: 1;
+            padding: 0.75rem 1.5rem;
+            background: var(--ice-500);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-family: 'Outfit', sans-serif;
+            font-weight: 600;
+            font-size: 0.95rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 4px rgba(14, 165, 233, 0.3);
+        }
+
+        .preset-btn:hover {
+            background: var(--ice-600);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(14, 165, 233, 0.4);
+        }
+
+        .preset-btn:active {
+            transform: translateY(0);
+        }
+
+        .preset-btn.secondary {
+            background: var(--accent);
+            box-shadow: 0 2px 4px rgba(245, 158, 11, 0.3);
+        }
+
+        .preset-btn.secondary:hover {
+            background: #d97706;
+            box-shadow: 0 4px 8px rgba(245, 158, 11, 0.4);
+        }
+
+        .cost-highlight {
+            background: linear-gradient(135deg, var(--slate-800) 0%, var(--frost) 100%);
+            color: var(--snow);
+            border: 1px solid var(--ice-700);
+        }
+
+        .cost-highlight h2 {
+            color: var(--ice-100);
+        }
+
+        .cost-highlight h2::before {
+            background: linear-gradient(180deg, var(--accent), var(--ice-300));
+        }
+
+        .cost-highlight .result-item {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+        }
+
+        .cost-highlight .result-label {
+            color: var(--ice-200);
+        }
+
+        .cost-highlight .result-value {
+            color: var(--snow);
+        }
+
+        .cost-highlight .result-unit {
+            color: var(--ice-300);
+        }
+
+        .math-section {
+            background: var(--slate-50);
+            padding: 1.5rem;
+            border-radius: 8px;
+            border-left: 4px solid var(--ice-500);
+            margin-top: 1.5rem;
+        }
+
+        .math-section h3 {
+            font-size: 1.1rem;
+            color: var(--frost);
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .math-formula {
+            background: white;
+            padding: 1rem;
+            border-radius: 6px;
+            margin: 0.75rem 0;
+            border: 1px solid var(--ice-200);
+            overflow-x: auto;
+        }
+
+        .math-description {
+            color: var(--slate-700);
+            font-size: 0.9rem;
+            margin-top: 0.5rem;
+            font-style: italic;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Distributed Cold Storage Calculator</h1>
+            <p class="subtitle">Plan resilient food security infrastructure for metro regions</p>
+        </header>
+
+        <div class="grid">
+            <!-- Basic Parameters Card -->
+            <div class="card">
+                <h2>Basic Parameters</h2>
+                
+                <div class="input-group">
+                    <label for="population">
+                        Population
+                        <span class="value-display" id="populationValue">3,315,000</span>
+                    </label>
+                    <input type="range" id="population" min="100000" max="10000000" step="5000" value="3315000">
+                </div>
+
+                <div class="input-group">
+                    <label for="daysBuffer">
+                        Days of Buffer Storage
+                        <span class="value-display" id="daysBufferValue">90</span>
+                    </label>
+                    <input type="range" id="daysBuffer" min="7" max="365" step="1" value="90">
+                </div>
+
+                <div class="input-group">
+                    <label for="packingEfficiency">
+                        Packing Efficiency
+                        <span class="value-display" id="packingEfficiencyValue">0.75</span>
+                    </label>
+                    <input type="range" id="packingEfficiency" min="0.5" max="0.95" step="0.05" value="0.75">
+                </div>
+
+                <div class="input-group">
+                    <label for="unitCost">Unit Cost ($)</label>
+                    <input type="number" id="unitCost" min="5000" max="50000" step="1000" value="12000">
+                </div>
+
+                <div class="input-group">
+                    <label for="dailyOpCost">Daily Operating Cost per Unit ($)</label>
+                    <input type="number" id="dailyOpCost" min="1" max="100" step="1" value="8">
+                </div>
+            </div>
+
+            <!-- Storage Unit Dimensions Card -->
+            <div class="card">
+                <h2>Storage Unit Dimensions</h2>
+                
+                <div class="input-group">
+                    <label for="unitLength">
+                        Length (feet)
+                        <span class="value-display" id="unitLengthValue">20</span>
+                    </label>
+                    <input type="range" id="unitLength" min="10" max="50" step="1" value="20">
+                </div>
+
+                <div class="input-group">
+                    <label for="unitWidth">
+                        Width (feet)
+                        <span class="value-display" id="unitWidthValue">8</span>
+                    </label>
+                    <input type="range" id="unitWidth" min="6" max="12" step="0.5" value="8">
+                </div>
+
+                <div class="input-group">
+                    <label for="unitHeight">
+                        Height (feet)
+                        <span class="value-display" id="unitHeightValue">8.5</span>
+                    </label>
+                    <input type="range" id="unitHeight" min="6" max="12" step="0.5" value="8.5">
+                </div>
+
+                <div class="preset-buttons">
+                    <button class="preset-btn" onclick="setPreset('20ft')">20ft Reefer</button>
+                    <button class="preset-btn secondary" onclick="setPreset('40ft')">40ft HC Reefer</button>
+                </div>
+            </div>
+
+            <!-- Results Card -->
+            <div class="card results">
+                <h2>Storage Requirements</h2>
+                
+                <div class="result-item">
+                    <div class="result-label">Units Required</div>
+                    <div class="result-value" id="unitsRequired">-</div>
+                </div>
+
+                <div class="result-item">
+                    <div class="result-label">Units per 1,000 People</div>
+                    <div class="result-value" id="unitsPer1000">-</div>
+                </div>
+
+                <div class="result-item">
+                    <div class="result-label">Total Volume Needed</div>
+                    <div class="result-value" id="totalVolume">-<span class="result-unit">ft³</span></div>
+                </div>
+
+                <div class="result-item">
+                    <div class="result-label">Single Unit Capacity</div>
+                    <div class="result-value" id="unitCapacity">-<span class="result-unit">ft³</span></div>
+                </div>
+            </div>
+
+            <!-- Project Cost Card -->
+            <div class="card cost-highlight">
+                <h2>Project Cost Estimate</h2>
+                
+                <div class="result-item">
+                    <div class="result-label">Total Capital Cost (Equipment)</div>
+                    <div class="result-value" id="capitalCost">-<span class="result-unit"></span></div>
+                </div>
+
+                <div class="result-item">
+                    <div class="result-label">Annual Operating Cost</div>
+                    <div class="result-value" id="annualOpCost">-<span class="result-unit"></span></div>
+                </div>
+
+                <div class="result-item">
+                    <div class="result-label">Total 5-Year Cost</div>
+                    <div class="result-value" id="fiveYearCost">-<span class="result-unit"></span></div>
+                </div>
+
+                <div class="result-item">
+                    <div class="result-label">Cost per Capita (Capital Only)</div>
+                    <div class="result-value" id="costPerCapita">-<span class="result-unit"></span></div>
+                </div>
+
+                <div class="result-item">
+                    <div class="result-label">Annual Cost per Household (2.5 people)</div>
+                    <div class="result-value" id="costPerHousehold">-<span class="result-unit"></span></div>
+                </div>
+            </div>
+
+            <!-- Info Section -->
+            <div class="info-section">
+                <h2>Parameter Explanations</h2>
+                <div class="info-grid">
+                    <div class="info-item">
+                        <h3>Population</h3>
+                        <p>The total population of the metro area. Default is Minneapolis-St. Paul metro (3.3M people). This determines total food storage needs.</p>
+                    </div>
+                    
+                    <div class="info-item">
+                        <h3>Days of Buffer Storage</h3>
+                        <p>How many days of food supply to keep in reserve. 90 days (3 months) provides significant resilience for winter disruptions or supply chain issues.</p>
+                    </div>
+                    
+                    <div class="info-item">
+                        <h3>Packing Efficiency</h3>
+                        <p>The percentage of container volume that can actually be used for food storage. Typical value is 75% (0.75), accounting for pallets, air circulation, and access space.</p>
+                    </div>
+                    
+                    <div class="info-item">
+                        <h3>Unit Dimensions</h3>
+                        <p>The physical size of each storage container. Standard 20ft reefers are 20×8×8.5 ft. High-cube 40ft reefers are 40×8×9.5 ft.</p>
+                    </div>
+                    
+                    <div class="info-item">
+                        <h3>Unit Cost</h3>
+                        <p>The purchase cost per refrigerated container. Typical range: $8,000-$15,000 for used 20ft units, $10,000-$20,000 for used 40ft units. New units cost significantly more ($20,000-$40,000).</p>
+                    </div>
+
+                    <div class="info-item">
+                        <h3>Daily Operating Cost</h3>
+                        <p>The cost to run each unit per day, including electricity, maintenance, and monitoring. Typical range: $5-$15/day depending on electricity rates, climate, and unit efficiency.</p>
+                    </div>
+                    
+                    <div class="info-item">
+                        <h3>Model Assumptions</h3>
+                        <p>Based on 2,000 lbs/person/year consumption, 45% requiring refrigeration, 30 lbs/ft³ food density, and 40% warehouse efficiency for traditional storage.</p>
+                    </div>
+                    
+                    <div class="info-item">
+                        <h3>Use Case</h3>
+                        <p>This calculator helps plan distributed refrigerated storage networks using standard shipping containers (reefers) as modular cold storage units throughout a metro area.</p>
+                    </div>
+                </div>
+
+                <div class="math-section">
+                    <h3>Mathematical Model</h3>
+                    
+                    <div class="math-formula">
+                        <p><strong>Step 1: Calculate Total Food Storage Need</strong></p>
+                        $$L_{total} = P \times C_{annual} \times R_{cold}$$
+                        <div class="math-description">
+                            Where: P = Population, C<sub>annual</sub> = 2,000 lbs/person/year, R<sub>cold</sub> = 0.45 (45% needs refrigeration)
+                        </div>
+                    </div>
+
+                    <div class="math-formula">
+                        <p><strong>Step 2: Calculate Buffer Storage Amount</strong></p>
+                        $$L_{buffer} = L_{total} \times \frac{D_{buffer}}{365}$$
+                        <div class="math-description">
+                            Where: D<sub>buffer</sub> = Days of buffer storage (e.g., 90 days)
+                        </div>
+                    </div>
+
+                    <div class="math-formula">
+                        <p><strong>Step 3: Convert to Volume</strong></p>
+                        $$V_{food} = \frac{L_{buffer}}{\rho_{food}}$$
+                        <div class="math-description">
+                            Where: ρ<sub>food</sub> = 30 lbs/ft³ (food density)
+                        </div>
+                    </div>
+
+                    <div class="math-formula">
+                        <p><strong>Step 4: Calculate Total Warehouse Volume</strong></p>
+                        $$V_{gross} = \frac{V_{food}}{E_{warehouse}}$$
+                        <div class="math-description">
+                            Where: E<sub>warehouse</sub> = 0.40 (40% warehouse efficiency for traditional storage)
+                        </div>
+                    </div>
+
+                    <div class="math-formula">
+                        <p><strong>Step 5: Calculate Individual Unit Capacity</strong></p>
+                        $$V_{unit} = L_{unit} \times W_{unit} \times H_{unit} \times E_{packing}$$
+                        <div class="math-description">
+                            Where: L, W, H = Unit dimensions, E<sub>packing</sub> = Packing efficiency (typically 0.75)
+                        </div>
+                    </div>
+
+                    <div class="math-formula">
+                        <p><strong>Step 6: Calculate Number of Units Required</strong></p>
+                        $$N_{units} = \lceil \frac{V_{food}}{V_{unit}} \rceil$$
+                        <div class="math-description">
+                            Ceiling function ensures we round up to whole units
+                        </div>
+                    </div>
+
+                    <div class="math-formula">
+                        <p><strong>Step 7: Calculate Costs</strong></p>
+                        $$C_{capital} = N_{units} \times C_{unit}$$
+                        $$C_{annual} = N_{units} \times C_{daily} \times 365$$
+                        $$C_{5year} = C_{capital} + (5 \times C_{annual})$$
+                        <div class="math-description">
+                            Where: C<sub>unit</sub> = Cost per unit, C<sub>daily</sub> = Daily operating cost per unit
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Constants from the Python model
+        const ANNUAL_CONS_PER_PERSON = 2000;  // lbs
+        const COLD_RATIO = 0.45;              // 45% of food needs refrigeration
+        const FOOD_DENSITY = 30;              // lbs per cubic foot
+        const WAREHOUSE_EFFICIENCY = 0.40;    // Basic overhead for large scale
+
+        // Get all input elements
+        const inputs = {
+            population: document.getElementById('population'),
+            daysBuffer: document.getElementById('daysBuffer'),
+            packingEfficiency: document.getElementById('packingEfficiency'),
+            unitLength: document.getElementById('unitLength'),
+            unitWidth: document.getElementById('unitWidth'),
+            unitHeight: document.getElementById('unitHeight'),
+            unitCost: document.getElementById('unitCost'),
+            dailyOpCost: document.getElementById('dailyOpCost')
+        };
+
+        // Get all value display elements
+        const displays = {
+            population: document.getElementById('populationValue'),
+            daysBuffer: document.getElementById('daysBufferValue'),
+            packingEfficiency: document.getElementById('packingEfficiencyValue'),
+            unitLength: document.getElementById('unitLengthValue'),
+            unitWidth: document.getElementById('unitWidthValue'),
+            unitHeight: document.getElementById('unitHeightValue')
+        };
+
+        // Get result elements
+        const results = {
+            unitsRequired: document.getElementById('unitsRequired'),
+            unitsPer1000: document.getElementById('unitsPer1000'),
+            totalVolume: document.getElementById('totalVolume'),
+            unitCapacity: document.getElementById('unitCapacity'),
+            capitalCost: document.getElementById('capitalCost'),
+            annualOpCost: document.getElementById('annualOpCost'),
+            fiveYearCost: document.getElementById('fiveYearCost'),
+            costPerCapita: document.getElementById('costPerCapita'),
+            costPerHousehold: document.getElementById('costPerHousehold')
+        };
+
+        // Format number with commas
+        function formatNumber(num) {
+            return Math.round(num).toLocaleString();
+        }
+
+        // Format decimal number
+        function formatDecimal(num, decimals = 2) {
+            return num.toFixed(decimals);
+        }
+
+        // Calculate storage requirements
+        function calculate() {
+            const population = parseFloat(inputs.population.value);
+            const daysBuffer = parseFloat(inputs.daysBuffer.value);
+            const packingEfficiency = parseFloat(inputs.packingEfficiency.value);
+            const unitLength = parseFloat(inputs.unitLength.value);
+            const unitWidth = parseFloat(inputs.unitWidth.value);
+            const unitHeight = parseFloat(inputs.unitHeight.value);
+            const unitCost = parseFloat(inputs.unitCost.value);
+            const dailyOpCost = parseFloat(inputs.dailyOpCost.value);
+
+            // 1. Total Volume needed
+            const totalLbsYear = population * ANNUAL_CONS_PER_PERSON * COLD_RATIO;
+            const bufferRatio = daysBuffer / 365;
+            const lbsToStore = totalLbsYear * bufferRatio;
+            
+            // Required cubic feet of actual food
+            const requiredFoodVolume = lbsToStore / FOOD_DENSITY;
+            
+            // Total "Gross Warehouse Volume" needed
+            const totalVGross = requiredFoodVolume / WAREHOUSE_EFFICIENCY;
+            
+            // 2. Individual Unit Calculation
+            const vUnitExternal = unitLength * unitWidth * unitHeight;
+            const vUnitUsable = vUnitExternal * packingEfficiency;
+            
+            // 3. Number of Units
+            const numUnits = Math.ceil(requiredFoodVolume / vUnitUsable);
+            const unitsPer1000 = (numUnits / population) * 1000;
+
+            // 4. Cost Calculations
+            const capitalCost = numUnits * unitCost;
+            const annualOpCost = numUnits * dailyOpCost * 365;
+            const fiveYearCost = capitalCost + (5 * annualOpCost);
+            const costPerCapita = capitalCost / population;
+            const annualCostPerHousehold = (annualOpCost / population) * 2.5; // Average household size
+
+            // Update results with animation
+            Object.values(results).forEach(result => {
+                result.style.opacity = '0.5';
+            });
+
+            setTimeout(() => {
+                results.unitsRequired.textContent = formatNumber(numUnits);
+                results.unitsPer1000.textContent = formatDecimal(unitsPer1000, 2);
+                results.totalVolume.innerHTML = formatNumber(totalVGross) + '<span class="result-unit">ft³</span>';
+                results.unitCapacity.innerHTML = formatDecimal(vUnitUsable, 1) + '<span class="result-unit">ft³</span>';
+                
+                results.capitalCost.innerHTML = '$' + formatNumber(capitalCost);
+                results.annualOpCost.innerHTML = '$' + formatNumber(annualOpCost);
+                results.fiveYearCost.innerHTML = '$' + formatNumber(fiveYearCost);
+                results.costPerCapita.innerHTML = '$' + formatDecimal(costPerCapita, 2);
+                results.costPerHousehold.innerHTML = '$' + formatDecimal(annualCostPerHousehold, 2);
+                
+                Object.values(results).forEach(result => {
+                    result.style.opacity = '1';
+                });
+            }, 150);
+        }
+
+        // Update display values
+        function updateDisplays() {
+            displays.population.textContent = formatNumber(inputs.population.value);
+            displays.daysBuffer.textContent = inputs.daysBuffer.value;
+            displays.packingEfficiency.textContent = inputs.packingEfficiency.value;
+            displays.unitLength.textContent = inputs.unitLength.value;
+            displays.unitWidth.textContent = inputs.unitWidth.value;
+            displays.unitHeight.textContent = inputs.unitHeight.value;
+        }
+
+        // Set preset configurations
+        function setPreset(type) {
+            if (type === '20ft') {
+                inputs.unitLength.value = 20;
+                inputs.unitWidth.value = 8;
+                inputs.unitHeight.value = 8.5;
+                inputs.unitCost.value = 12000; // Typical used 20ft reefer cost
+            } else if (type === '40ft') {
+                inputs.unitLength.value = 40;
+                inputs.unitWidth.value = 8;
+                inputs.unitHeight.value = 9.5;
+                inputs.unitCost.value = 16000; // Typical used 40ft reefer cost
+            }
+            updateDisplays();
+            calculate();
+        }
+
+        // Add event listeners to all inputs
+        Object.values(inputs).forEach(input => {
+            input.addEventListener('input', () => {
+                updateDisplays();
+                calculate();
+            });
+        });
+
+        // Initialize and perform initial calculation
+        window.addEventListener('load', () => {
+            updateDisplays();
+            calculate();
+            
+            // Render KaTeX math formulas
+            renderMathInElement(document.body, {
+                delimiters: [
+                    {left: '$$', right: '$$', display: true},
+                    {left: '$', right: '$', display: false}
+                ],
+                throwOnError: false
+            });
+        });
+
+        // Add transition styles
+        Object.values(results).forEach(result => {
+            result.style.transition = 'opacity 0.3s ease';
+        });
+    </script>
+</body>
+</html>
