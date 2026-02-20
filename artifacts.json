@@ -1032,6 +1032,17 @@
         "type":"link",
         "image":"/img/city.jpg",
         "link":"/rental_assistance.html"
+    },
+    {
+        "id":19,
+        "title":"Mpls City Council Meeting Dashboard",
+        "description":"The Minneapolis City Council Dashboard summarizes what happened at a city council meeting.",
+        "subtitle":"",
+        "footer":"",
+        "category": "City Council Minneapolis",
+        "type":"link",
+        "image":"/img/city-council.jpg",
+        "link":"/city_council_meeting_summaries.html"
     }
 ]
 

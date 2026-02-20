@@ -1,0 +1,1139 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>MN Explained - Minneapolis City Council — Committee of the Whole</title>
+        <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+        <style>
+            :root {
+            --navy: #0c1a2e;
+            --navy-mid: #152338;
+            --navy-light: #1e3352;
+            --navy-hover: #253d5a;
+            --gold: #c9a84c;
+            --gold-light: #e8c96b;
+            --cream: #f5f0e8;
+            --red: #c0392b;
+            --green: #1a7a4a;
+            --amber: #d97706;
+            --blue-link: #60a5fa;
+            --text: #e8e4dc;
+            --text-dim: #8a9bb0;
+            --border: rgba(201,168,76,0.2);
+            --border-soft: rgba(255,255,255,0.06);
+            }
+            *{box-sizing:border-box;margin:0;padding:0}
+            body{background:var(--navy);color:var(--text);font-family:'IBM Plex Sans',sans-serif;font-size:14px;min-height:100vh}
+            /* ── HEADER ── */
+            .header{background:var(--navy-mid);border-bottom:2px solid var(--gold);padding:24px 36px 18px;position:relative;overflow:hidden}
+            .header::before{content:'';position:absolute;inset:0;background:repeating-linear-gradient(90deg,transparent,transparent 60px,rgba(201,168,76,0.025) 60px,rgba(201,168,76,0.025) 61px);pointer-events:none}
+            .header-inner{position:relative;display:flex;gap:20px;align-items:flex-start;flex-wrap:wrap}
+            .header-seal{width:52px;height:52px;border:2px solid var(--gold);border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'IBM Plex Mono',monospace;font-size:16px;color:var(--gold);font-weight:500;flex-shrink:0;letter-spacing:-1px;margin-top:4px}
+            .header-text{flex:1;min-width:200px}
+            .eyebrow{font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:.18em;color:var(--gold);text-transform:uppercase;margin-bottom:5px}
+            h1{font-family:'Playfair Display',serif;font-size:clamp(20px,3.5vw,32px);font-weight:900;color:var(--cream);line-height:1.1;letter-spacing:-.5px}
+            h1 span{color:var(--gold)}
+            .header-meta{display:flex;gap:20px;margin-top:10px;flex-wrap:wrap}
+            .meta-chip{display:flex;flex-direction:column;gap:1px}
+            .meta-label{font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:.1em;color:var(--text-dim);text-transform:uppercase}
+            .meta-value{font-size:13px;font-weight:500;color:var(--text)}
+            .header-links{display:flex;gap:8px;margin-top:10px;flex-wrap:wrap}
+            .hdr-link{display:inline-flex;align-items:center;gap:6px;font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--blue-link);border:1px solid rgba(96,165,250,0.3);padding:5px 10px;text-decoration:none;transition:all .15s}
+            .hdr-link:hover{background:rgba(96,165,250,0.1);border-color:var(--blue-link)}
+            .hdr-link svg{flex-shrink:0}
+            /* ── PAGINATION ── */
+            .meeting-nav{background:var(--navy-mid);border-bottom:1px solid var(--border);padding:10px 36px;display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+            .nav-btn{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.08em;text-transform:uppercase;padding:6px 14px;border:1px solid var(--border);background:transparent;color:var(--text-dim);cursor:pointer;transition:all .15s}
+            .nav-btn:hover:not(:disabled){border-color:var(--gold);color:var(--gold)}
+            .nav-btn:disabled{opacity:.3;cursor:not-allowed}
+            .nav-btn.active{background:var(--gold);border-color:var(--gold);color:var(--navy);font-weight:600}
+            .nav-label{font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--text-dim);letter-spacing:.08em}
+            .meeting-pills{display:flex;gap:6px;flex-wrap:wrap}
+            .meeting-pill{font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:.08em;padding:5px 10px;border:1px solid var(--border);background:transparent;color:var(--text-dim);cursor:pointer;transition:all .15s;text-transform:uppercase}
+            .meeting-pill:hover{border-color:var(--gold);color:var(--gold)}
+            .meeting-pill.active{background:rgba(201,168,76,0.15);border-color:var(--gold);color:var(--gold-light)}
+            /* ── BUDGET BAR ── */
+            .budget-bar{background:linear-gradient(90deg,rgba(26,35,56,0.9),var(--navy-mid));border-bottom:1px solid var(--border);padding:12px 36px;display:flex;gap:0;overflow-x:auto}
+            .budget-item{padding:8px 20px;border-right:1px solid var(--border);display:flex;flex-direction:column;gap:2px;flex-shrink:0}
+            .budget-item:first-child{padding-left:0}
+            .budget-item:last-child{border-right:none}
+            .b-label{font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:.1em;color:var(--text-dim);text-transform:uppercase}
+            .b-value{font-family:'Playfair Display',serif;font-size:18px;font-weight:700;color:var(--gold-light);line-height:1.1}
+            .b-sub{font-size:10px;color:var(--text-dim)}
+            .b-value.spending{color:#f87171}
+            .b-value.neutral{color:var(--text)}
+            /* ── STATS ROW ── */
+            .stats-row{display:flex;gap:0;background:var(--navy-mid);border-bottom:1px solid var(--border);padding:0 36px;overflow-x:auto}
+            .stat-cell{padding:12px 20px;border-right:1px solid var(--border);display:flex;flex-direction:column;gap:2px;flex-shrink:0}
+            .stat-cell:first-child{padding-left:0}
+            .stat-cell:last-child{border-right:none}
+            .sc-num{font-family:'Playfair Display',serif;font-size:22px;font-weight:700;color:var(--gold);line-height:1}
+            .sc-lbl{font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:.1em;color:var(--text-dim);text-transform:uppercase}
+            /* ── MAIN ── */
+            .main{padding:24px 36px}
+            /* ── SECTION HEADERS ── */
+            .section-hdr{display:flex;align-items:center;gap:10px;margin-bottom:14px}
+            .section-title{font-family:'Playfair Display',serif;font-size:18px;font-weight:700;color:var(--cream)}
+            .section-badge{background:var(--amber);color:var(--navy);font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:.1em;text-transform:uppercase;padding:3px 7px;font-weight:600}
+            .section-dim{font-size:11px;color:var(--text-dim);margin-left:4px}
+            /* ── HIGHLIGHT CARDS ── */
+            .highlight-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:12px;margin-bottom:28px}
+            .h-card{background:var(--navy-light);border:1px solid rgba(201,168,76,0.25);border-top:3px solid var(--amber);padding:14px;cursor:pointer;transition:background .2s,border-color .2s}
+            .h-card:hover{background:var(--navy-hover);border-color:var(--gold)}
+            .h-card-top{display:flex;justify-content:space-between;align-items:flex-start;gap:8px;margin-bottom:6px}
+            .h-item-num{font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--gold);letter-spacing:.1em}
+            .outcome-pill{font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:.07em;padding:3px 7px;text-transform:uppercase;font-weight:500;flex-shrink:0}
+            .p-passed{background:rgba(26,122,74,.2);color:#4ade80;border:1px solid rgba(74,222,128,.3)}
+            .p-denied{background:rgba(192,57,43,.2);color:#f87171;border:1px solid rgba(248,113,113,.3)}
+            .p-norec{background:rgba(138,155,176,.15);color:var(--text-dim);border:1px solid rgba(138,155,176,.3)}
+            .p-referred{background:rgba(201,168,76,.15);color:var(--gold);border:1px solid var(--border)}
+            .p-filed{background:rgba(138,155,176,.1);color:var(--text-dim);border:1px solid rgba(138,155,176,.2)}
+            .h-card-title{font-size:12.5px;font-weight:600;color:var(--cream);line-height:1.35;margin-bottom:5px}
+            .h-card-layman{font-size:11.5px;color:var(--text-dim);line-height:1.45;margin-bottom:8px;font-style:italic}
+            .vote-bar{display:flex;height:5px;overflow:hidden;margin-bottom:6px}
+            .vb-aye{background:var(--green)}
+            .vb-nay{background:var(--red)}
+            .vb-abs{background:var(--amber);opacity:.6}
+            .vote-line{display:flex;gap:12px;font-family:'IBM Plex Mono',monospace;font-size:10px}
+            .v-aye{color:#4ade80}.v-nay{color:#f87171}.v-abs{color:#fbbf24}
+            .h-opposed{margin-top:6px;font-size:11px;color:var(--text-dim)}
+            .h-opposed strong{color:#f87171}
+            .h-note{margin-top:4px;font-size:10.5px;color:var(--amber);font-style:italic}
+            /* ── DIVIDER ── */
+            hr.div{border:none;border-top:1px solid var(--border);margin:0 0 24px}
+            /* ── CONTROLS ── */
+            .controls-bar{background:var(--navy-mid);border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:12px 36px;display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-bottom:0}
+            .search-wrap{position:relative;flex:1;min-width:200px;max-width:380px}
+            .search-icon{position:absolute;left:10px;top:50%;transform:translateY(-50%);color:var(--text-dim);font-size:12px;pointer-events:none}
+            input[type=text]{width:100%;padding:8px 10px 8px 30px;background:var(--navy-light);border:1px solid var(--border);color:var(--text);font-family:'IBM Plex Sans',sans-serif;font-size:13px;outline:none;transition:border-color .2s}
+            input[type=text]:focus{border-color:var(--gold)}
+            input[type=text]::placeholder{color:var(--text-dim)}
+            select{padding:8px 28px 8px 10px;background:var(--navy-light);border:1px solid var(--border);color:var(--text);font-family:'IBM Plex Sans',sans-serif;font-size:12px;outline:none;cursor:pointer;appearance:none;-webkit-appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M0 0l5 6 5-6z' fill='%238a9bb0'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 9px center}
+            select:focus{border-color:var(--gold)}
+            .ctrl-label{font-family:'IBM Plex Mono',monospace;font-size:9px;color:var(--text-dim);letter-spacing:.1em;text-transform:uppercase}
+            /* ── MEMBER FILTER ── */
+            .member-filter{padding:10px 36px;background:var(--navy-mid);border-bottom:1px solid var(--border);display:flex;gap:6px;align-items:center;flex-wrap:wrap}
+            .mf-label{font-family:'IBM Plex Mono',monospace;font-size:9px;color:var(--text-dim);letter-spacing:.1em;text-transform:uppercase;flex-shrink:0}
+            .m-btn{font-family:'IBM Plex Mono',monospace;font-size:9px;padding:4px 8px;border:1px solid var(--border);background:transparent;color:var(--text-dim);cursor:pointer;letter-spacing:.05em;transition:all .15s;text-transform:uppercase}
+            .m-btn:hover{border-color:var(--gold);color:var(--gold)}
+            .m-btn.active{background:var(--gold);border-color:var(--gold);color:var(--navy);font-weight:600}
+            /* ── TABLE ── */
+            .table-section{padding:0 36px 36px}
+            .table-hdr{display:flex;align-items:center;gap:10px;padding:12px 0 10px}
+            .table-count{font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--text-dim);letter-spacing:.08em}
+            .table-wrap{overflow-x:auto;border:1px solid var(--border)}
+            table{width:100%;border-collapse:collapse;font-size:12.5px}
+            thead tr{background:var(--navy-mid);border-bottom:2px solid var(--gold)}
+            th{padding:10px 12px;text-align:left;font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);font-weight:500;white-space:nowrap;cursor:pointer;user-select:none}
+            th:hover{color:var(--gold-light)}
+            th.sorted::after{content:' ↕';opacity:.8}
+            tbody tr{border-bottom:1px solid var(--border-soft);transition:background .12s}
+            tbody tr:hover{background:rgba(255,255,255,.04)}
+            tbody tr.contested{background:rgba(217,119,6,.05)}
+            tbody tr.contested:hover{background:rgba(217,119,6,.1)}
+            tbody tr.highlighted-row td{animation:rowFlash 2s ease-out}
+            @keyframes rowFlash{0%{background:rgba(201,168,76,.25)}100%{background:transparent}}
+            td{padding:10px 12px;vertical-align:top;color:var(--text)}
+            td.mono{font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--text-dim);white-space:nowrap}
+            td.title-cell{max-width:260px}
+            .item-title{font-size:12.5px;font-weight:500;color:var(--cream);line-height:1.35;margin-bottom:3px}
+            .item-layman{font-size:11px;color:var(--text-dim);line-height:1.4;font-style:italic}
+            .item-note{font-size:10.5px;color:var(--amber);margin-top:3px;font-style:italic}
+            .contest-dot{display:inline-block;width:6px;height:6px;background:var(--amber);border-radius:50%;margin-right:5px;vertical-align:middle;flex-shrink:0}
+            .voter-grid{display:flex;flex-wrap:wrap;gap:3px;max-width:360px}
+            .v-chip{font-family:'IBM Plex Mono',monospace;font-size:9px;padding:2px 5px;white-space:nowrap}
+            .vc-aye{background:rgba(26,122,74,.25);color:#4ade80}
+            .vc-nay{background:rgba(192,57,43,.25);color:#f87171}
+            .vc-abs{background:rgba(217,119,6,.25);color:#fbbf24}
+            .vc-voice{background:rgba(138,155,176,.12);color:var(--text-dim)}
+            .expand-btn{font-family:'IBM Plex Mono',monospace;font-size:9px;color:var(--text-dim);background:transparent;border:1px solid var(--border);padding:2px 7px;cursor:pointer;margin-top:4px;letter-spacing:.06em;transition:all .15s}
+            .expand-btn:hover{border-color:var(--gold);color:var(--gold)}
+            .layman-row td{background:rgba(201,168,76,.04);border-bottom:1px solid var(--border)!important}
+            .layman-expanded{font-size:12px;color:var(--text-dim);line-height:1.55;padding:4px 0;font-style:italic}
+            /* ── FOOTER ── */
+            footer{padding:16px 36px;border-top:1px solid var(--border);font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--text-dim);letter-spacing:.07em;display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px}
+            @media(max-width:600px){
+            .header,.meeting-nav,.budget-bar,.stats-row,.controls-bar,.member-filter,.table-section,.main{padding-left:14px;padding-right:14px}
+            .budget-bar,.stats-row{gap:0}
+            }
+        </style>
+    </head>
+    <body>
+        <!-- ══ HEADER (populated by JS) ══ -->
+        <div class="header" id="pageHeader"></div>
+        <!-- ══ MEETING PAGINATION ══ -->
+        <div class="meeting-nav">
+            <span class="nav-label">Meetings:</span>
+            <div class="meeting-pills" id="meetingPills"></div>
+            <div style="margin-left:auto;display:flex;gap:6px">
+                <button class="nav-btn" id="prevBtn" onclick="navigateMeeting(-1)">← Prev</button>
+                <button class="nav-btn" id="nextBtn" onclick="navigateMeeting(1)">Next →</button>
+            </div>
+        </div>
+        <!-- ══ BUDGET BAR ══ -->
+        <div class="budget-bar" id="budgetBar"></div>
+        <!-- ══ STATS ROW ══ -->
+        <div class="stats-row" id="statsRow"></div>
+        <!-- ══ MAIN CONTENT ══ -->
+        <div class="main">
+            <!-- Contested highlights -->
+            <div id="contestedSection">
+                <div class="section-hdr">
+                    <span class="section-title">Contested Items</span>
+                    <span class="section-badge" id="contestBadge">0</span>
+                    <span class="section-dim">— Split or non-unanimous roll call votes</span>
+                </div>
+                <div class="highlight-grid" id="highlightGrid"></div>
+            </div>
+            <hr class="div">
+        </div>
+        <!-- ══ CONTROLS (below highlights) ══ -->
+        <div class="controls-bar">
+            <div class="search-wrap">
+                <span class="search-icon">⌕</span>
+                <input type="text" id="searchInput" placeholder="Search items, addresses, topics…">
+            </div>
+            <span class="ctrl-label">Outcome:</span>
+            <select id="outcomeFilter">
+                <option value="all">All</option>
+                <option value="passed">Passed</option>
+                <option value="denied">Denied</option>
+                <option value="noRec">No Recommendation</option>
+                <option value="referred">Referred</option>
+                <option value="voice">Voice Vote</option>
+                <option value="contested">Contested Only</option>
+            </select>
+            <span class="ctrl-label">Category:</span>
+            <select id="categoryFilter">
+                <option value="all">All Categories</option>
+                <option value="legal">Legal Settlements</option>
+                <option value="contract">Contracts</option>
+                <option value="land_use">Land Use</option>
+                <option value="license">Licenses</option>
+                <option value="appointments">Appointments</option>
+                <option value="resolution">Resolutions</option>
+                <option value="gift">Gift Acceptances</option>
+                <option value="bid">Bids</option>
+            </select>
+        </div>
+        <div class="member-filter" id="memberFilter"></div>
+        <!-- ══ TABLE ══ -->
+        <div class="table-section">
+            <div class="table-hdr">
+                <span class="section-title" style="font-size:16px">Full Meeting Record</span>
+                <span class="table-count" id="tableCount"></span>
+            </div>
+            <div class="table-wrap">
+                <table id="mainTable">
+                    <thead>
+                        <tr>
+                            <th onclick="sortTable('num')" data-col="num">#</th>
+                            <th onclick="sortTable('ref')" data-col="ref">Reference</th>
+                            <th onclick="sortTable('title')" data-col="title">Item</th>
+                            <th onclick="sortTable('category')" data-col="category">Category</th>
+                            <th onclick="sortTable('outcome')" data-col="outcome">Outcome</th>
+                            <th onclick="sortTable('vote')" data-col="vote">Vote</th>
+                            <th>Council Votes</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tableBody"></tbody>
+                </table>
+            </div>
+        </div>
+        <footer>
+            <span id="footerLeft">Minneapolis City Council — Committee of the Whole</span>
+            <span id="footerRight"></span>
+        </footer>
+        <script>
+            // ═══════════════════════════════════════════════════════════════════════════════
+            // DATA — MEETINGS ARRAY
+            // To add a new meeting, push another object into MEETINGS with the same shape.
+            // ═══════════════════════════════════════════════════════════════════════════════
+            const MEETINGS = [
+              {
+                id: "2026-02-17",
+                label: "Feb 17, 2026",
+                date: "February 17, 2026",
+                convened: "9:34 AM",
+                adjourned: "5:07 PM",
+                chair: "Aurin Chowdhury",
+                viceChair: "Aisha Chughtai",
+                clerk: "Amber Sinatra",
+                videoUrl: "https://www.youtube.com/watch?v=XgivKCvMwz8",
+                notesUrl: "https://lims.minneapolismn.gov/MarkedAgenda/Council/5840",
+                budget: {
+                  generalFund: 1820000000,       // 2026 adopted general fund (~$1.82B)
+                  contingency: 12400000,         // general fund contingency reserve
+                  totalItemsCommitted: 7631814,  // sum of specific dollar amounts approved this session
+                  note: "General fund and contingency figures reflect adopted 2026 budget. Session commitments reflect contracts/settlements approved at this meeting."
+                },
+                members: ["Chowdhury","Chughtai","Payne","Wonsley","Rainville","Vetaw","Warren","Osman","Shaffer","Stevenson","Chavez","Whiting","Palmisano"],
+                items: [
+                  {
+                    num:1, ref:"2026-00038",
+                    title:"Interim Use Permit: Tocali, LLC — Parking facility at 1901 Lake St E until Jan 27, 2031",
+                    layman:"The owner of a property on East Lake Street wants to use the land as a paid parking lot for about five years. The city approved this temporary arrangement with conditions attached.",
+                    category:"land_use", outcome:"passed", voteType:"roll_call",
+                    aye:["Chowdhury","Chughtai","Payne","Wonsley","Rainville","Vetaw","Warren","Osman","Shaffer","Stevenson","Chavez","Whiting","Palmisano"],
+                    nay:[], abstain:[], absent:[], movedBy:"Chavez", contested:false
+                  },
+                  {
+                    num:2, ref:"2026-00029",
+                    title:"Certificate of Appropriateness Appeal: Nicholas Bates — 201 Franklin Ave E, Washburn-Fair Oaks Historic District",
+                    layman:"A homeowner in a historic neighborhood replaced their siding and gutters without the required pre-approval. They appealed conditions placed on the retroactive approval, and the council sided with the homeowner, removing those conditions.",
+                    category:"land_use", outcome:"passed", voteType:"roll_call",
+                    aye:["Chowdhury","Chughtai","Payne","Wonsley","Rainville","Vetaw","Warren","Osman","Shaffer","Stevenson","Chavez","Whiting","Palmisano"],
+                    nay:[], abstain:[], absent:[], movedBy:"Chughtai", contested:false
+                  },
+                  {
+                    num:3, ref:"2026-00043",
+                    title:"Variance Appeal: Patrick Hargarten — Fence height at 3906 York Ave S",
+                    layman:"A homeowner wants a taller-than-allowed fence on the side of their corner lot. The Zoning Board said no; the homeowner appealed. The council sent it forward without taking a position, meaning it moves to the full council without a recommendation.",
+                    category:"land_use", outcome:"noRec", voteType:"roll_call",
+                    aye:["Chowdhury","Chughtai","Payne","Wonsley","Rainville","Vetaw","Warren","Osman","Shaffer","Stevenson","Chavez","Whiting","Palmisano"],
+                    nay:[], abstain:[], absent:[], movedBy:"Chowdhury", note:"Sent forward without recommendation", contested:false
+                  },
+                  {
+                    num:4, ref:"2026-00110",
+                    title:"Legal Settlement: Workers' Compensation — Grant Limke, $226,000",
+                    layman:"A city employee named Grant Limke was injured on the job. The city agreed to settle his workers' compensation claim for $226,000, paid to him and his attorney.",
+                    category:"legal", outcome:"passed", voteType:"roll_call",
+                    aye:["Chowdhury","Chughtai","Payne","Wonsley","Rainville","Vetaw","Warren","Osman","Shaffer","Stevenson","Chavez","Whiting","Palmisano"],
+                    nay:[], abstain:[], absent:[], movedBy:"Chowdhury", contested:false
+                  },
+                  {
+                    num:5, ref:"2026-00111",
+                    title:"Legal Settlement: Workers' Compensation — Matthew St. George, $165,000",
+                    layman:"Another city employee's workplace injury claim was settled for $165,000. Three council members voted against this settlement — it passed 10–3.",
+                    category:"legal", outcome:"passed", voteType:"roll_call",
+                    aye:["Chowdhury","Payne","Rainville","Vetaw","Warren","Osman","Shaffer","Stevenson","Whiting","Palmisano"],
+                    nay:["Chughtai","Wonsley","Chavez"], abstain:[], absent:[], movedBy:"Chowdhury", contested:true
+                  },
+                  {
+                    num:6, ref:"2026-00112",
+                    title:"Legal Settlement: Workers' Compensation — Robert Heiple, $125,000",
+                    layman:"A third workers' comp settlement, this one for $125,000. The same three members (Chughtai, Wonsley, Chavez) who opposed the St. George settlement voted against this one too — passed 10–3.",
+                    category:"legal", outcome:"passed", voteType:"roll_call",
+                    aye:["Chowdhury","Payne","Rainville","Vetaw","Warren","Osman","Shaffer","Stevenson","Whiting","Palmisano"],
+                    nay:["Chughtai","Wonsley","Chavez"], abstain:[], absent:[], movedBy:"Chowdhury", contested:true
+                  },
+                  {
+                    num:7, ref:"2026-00113",
+                    title:"Legal Settlement: Workers' Compensation — Cavis Adams, $125,000",
+                    layman:"A fourth workers' comp settlement for $125,000. This one passed on a voice vote, meaning no individual votes were recorded.",
+                    category:"legal", outcome:"passed", voteType:"voice",
+                    aye:[], nay:[], abstain:[], absent:[], movedBy:"Chowdhury", contested:false
+                  },
+                  {
+                    num:8, ref:"2026-00105",
+                    title:"Contract Amendment: Shaw Lundquist Associates — City Hall Council Chamber Security Upgrade, +$173,343 (total $481,060)",
+                    layman:"The city is upgrading security in the council chambers at City Hall. This vote added $173,343 to the existing contract to cover additional materials, labor, and equipment needed to finish the job.",
+                    category:"contract", outcome:"passed", voteType:"voice",
+                    aye:[], nay:[], abstain:[], absent:[], movedBy:"Chowdhury", contested:false
+                  },
+                  {
+                    num:9, ref:"2026-00120",
+                    title:"Contract Amendment: Minneapolis Public Schools — Election administration services, +$103,524 through Dec 31, 2026",
+                    layman:"The city pays Minneapolis Public Schools to help run elections (they share facilities, staff, etc.). This extends that agreement by one year for about $103,500.",
+                    category:"contract", outcome:"passed", voteType:"voice",
+                    aye:[], nay:[], abstain:[], absent:[], movedBy:"Chowdhury", contested:false
+                  },
+                  {
+                    num:10, ref:"2026-00127",
+                    title:"Contract Amendment: Morcon Construction — Hawthorne Office Buildout, +$31,814 (total $1,324,851)",
+                    layman:"Additional work was needed to finish building out the Hawthorne neighborhood office. This vote approved just over $31,000 more to complete the project.",
+                    category:"contract", outcome:"passed", voteType:"voice",
+                    aye:[], nay:[], abstain:[], absent:[], movedBy:"Chowdhury", contested:false
+                  },
+                  {
+                    num:11, ref:"2026-00158",
+                    title:"Gift Acceptance: Partnership for Participatory International Policy — Conference costs for CM Wonsley",
+                    layman:"Council Member Wonsley received a donation from an outside organization to cover the cost of attending a conference. The city council must formally accept such gifts — this vote did so.",
+                    category:"gift", outcome:"passed", voteType:"voice",
+                    aye:[], nay:[], abstain:[], absent:[], movedBy:"Chowdhury", contested:false
+                  },
+                  {
+                    num:12, ref:"2026-00101",
+                    title:"Liquor License: Arizona Taco Company, 3001 Hennepin Ave (Ward 10)",
+                    layman:"Arizona Taco Company applied for a new liquor license at their Hennepin Avenue location. The council approved it.",
+                    category:"license", outcome:"passed", voteType:"voice",
+                    aye:[], nay:[], abstain:[], absent:[], movedBy:"Chowdhury", contested:false
+                  },
+                  {
+                    num:13, ref:"2026-00102",
+                    title:"Liquor License Renewals: Acadia Cafe (329 Cedar Ave S) and Jasmine 26 Restaurant & Bar (8 26th St E)",
+                    layman:"Two existing bars/restaurants renewed their liquor licenses. Both are routine renewals that passed without debate.",
+                    category:"license", outcome:"passed", voteType:"voice",
+                    aye:[], nay:[], abstain:[], absent:[], movedBy:"Chowdhury", contested:false
+                  },
+                  {
+                    num:14, ref:"2026-00103",
+                    title:"Gambling License Renewals: American Legion Post 577, Wold-Chamberlain Post 99, Fridley Lions Club, The Aliveness Project, NE Minneapolis Lions, South Baseball Boosters",
+                    layman:"Six organizations — mostly veterans' groups, civic clubs, and a community nonprofit — renewed their gambling licenses (pull tabs, charitable gaming). All are routine renewals.",
+                    category:"license", outcome:"passed", voteType:"voice",
+                    aye:[], nay:[], abstain:[], absent:[], movedBy:"Chowdhury", contested:false
+                  },
+                  {
+                    num:15, ref:"2026-00104",
+                    title:"Heritage Preservation Commission Appointments: Kelly Mastin (Seat 6) and Marais Bjornberg (Seat 10) — through Dec 31, 2028",
+                    layman:"Two new members were appointed to the city commission that reviews changes to historic buildings and districts. Their terms run through the end of 2028.",
+                    category:"appointments", outcome:"passed", voteType:"voice",
+                    aye:[], nay:[], abstain:[], absent:[], movedBy:"Chowdhury", contested:false
+                  },
+                  {
+                    num:16, ref:"2026-00106",
+                    title:"Contract Amendment: Versacon, Inc. — Minneapolis Convention Center Mill City Kitchen Concessions Remodel, +$66,925 (total $643,925)",
+                    layman:"The city is remodeling a food concessions area inside the Minneapolis Convention Center. This adds about $67,000 to the contract to cover the full scope of the renovation.",
+                    category:"contract", outcome:"passed", voteType:"voice",
+                    aye:[], nay:[], abstain:[], absent:[], movedBy:"Chowdhury", contested:false
+                  },
+                  {
+                    num:17, ref:"2026-00107",
+                    title:"Contract Amendment: Meet Minneapolis — Convention Center marketing, +$500,000 for August 2026 Summer Slam event (total $79,075,211)",
+                    layman:"The city added $500,000 to Meet Minneapolis's contract to cover specific expenses tied to hosting a major event called Summer Slam at the Convention Center in August 2026.",
+                    category:"contract", outcome:"passed", voteType:"voice",
+                    aye:[], nay:[], abstain:[], absent:[], movedBy:"Chowdhury", contested:false
+                  },
+                  {
+                    num:18, ref:"2026-00109",
+                    title:"Gift Acceptance: Green Cities Accord — Peavey Plaza cement wall restoration, up to $91,239",
+                    layman:"A nonprofit called Green Minneapolis donated money to restore deteriorating cement walls at Peavey Plaza, the outdoor public space near Orchestra Hall. The council accepted the gift and authorized spending it on maintenance work.",
+                    category:"gift", outcome:"passed", voteType:"voice",
+                    aye:[], nay:[], abstain:[], absent:[], movedBy:"Chowdhury", contested:false
+                  },
+                  {
+                    num:19, ref:"2026-00114",
+                    title:"Comprehensive Plan Amendment: 1914 Washington Ave N — Corridor Mixed-Use to Production Mixed-Use",
+                    layman:"The future land use designation for a property on Washington Avenue North was changed from 'Corridor Mixed-Use' (retail, housing along a busy street) to 'Production Mixed-Use' (allows light industrial, manufacturing, or maker spaces). This reflects a shift toward job-creating uses.",
+                    category:"land_use", outcome:"passed", voteType:"voice",
+                    aye:[], nay:[], abstain:[], absent:[], movedBy:"Chowdhury", contested:false
+                  },
+                  {
+                    num:20, ref:"2026-00118",
+                    title:"Parkland Dedication Fee Waiver: 1500/1516/1600 Marshall St NE — 75% waiver for Silva JV Owner LLC; easement agreement with MPRB",
+                    layman:"When developers build in Minneapolis they typically pay a fee toward parks. This vote waived 75% of that fee for a development on Marshall Street NE, because the developer agreed to keep private land open to the public. An easement agreement was also authorized with the Park Board.",
+                    category:"land_use", outcome:"passed", voteType:"voice",
+                    aye:[], nay:[], abstain:[], absent:[], movedBy:"Chowdhury", contested:false
+                  },
+                  {
+                    num:21, ref:"2026-00140",
+                    title:"Two Percent Loan Program — Revised program guidelines (formerly Revolving Loan Fund)",
+                    layman:"The city updated rules for its small business lending program, which offers low-interest loans at 2% to help businesses in Minneapolis. The council also authorized a staff member to sign loan agreements on behalf of the city, rather than requiring full council approval each time.",
+                    category:"resolution", outcome:"passed", voteType:"roll_call",
+                    aye:["Chowdhury","Chughtai","Payne","Wonsley","Rainville","Vetaw","Warren","Osman","Shaffer","Stevenson","Chavez","Whiting","Palmisano"],
+                    nay:[], abstain:[], absent:[], movedBy:"Shaffer", contested:false
+                  },
+                  {
+                    num:22, ref:"2026-00138",
+                    title:"2025 Metro Council Livable Communities Grants — $4.85M total for five housing/transit projects",
+                    layman:"The Metropolitan Council awarded nearly $5 million in housing grants to five Minneapolis projects: the Zaria housing project near Blaisdell Ave, 1345 Central apartments, a transit-oriented project on Nicollet, the EPIC+R project on Plymouth Ave N, and the Flour Exchange building. The city accepted the grants and authorized agreements to distribute the funds.",
+                    category:"resolution", outcome:"passed", voteType:"voice",
+                    aye:[], nay:[], abstain:[], absent:[], movedBy:"Chowdhury", contested:false
+                  },
+                  {
+                    num:23, ref:"2026-00136",
+                    title:"Silva on the River — Second extension of Inclusionary Zoning zero-unit requirement to Feb 6, 2027",
+                    layman:"A housing development on Marshall St NE got a second extension on a requirement to include affordable units. The developer has until February 2027 to figure out how to incorporate affordable housing into the project.",
+                    category:"land_use", outcome:"passed", voteType:"voice",
+                    aye:[], nay:[], abstain:[], absent:[], movedBy:"Chowdhury", contested:false
+                  },
+                  {
+                    num:24, ref:"2026-00129",
+                    title:"The LOMA Project, 3246 Nicollet Ave — Additional $600,000 from Affordable Housing Trust Fund (total $2.86M)",
+                    layman:"An affordable housing project on Nicollet Avenue needed more funding. The city added $600,000 from its affordable housing fund, bringing the total city investment to $2.86 million.",
+                    category:"resolution", outcome:"passed", voteType:"voice",
+                    aye:[], nay:[], abstain:[], absent:[], movedBy:"Chowdhury", contested:false
+                  },
+                  {
+                    num:25, ref:"2026-00019",
+                    title:"Eviction Moratorium Ordinance — Referred to staff for further work",
+                    layman:"A proposed ordinance would let the city pause evictions during declared emergencies. Rather than voting on it now, the council sent it back to staff to do more work on the proposal.",
+                    category:"resolution", outcome:"referred", voteType:"voice",
+                    aye:[], nay:[], abstain:[], absent:[], movedBy:"Chowdhury", contested:false
+                  },
+                  {
+                    num:26, ref:"2026-00091",
+                    title:"Contract Amendment: Association for Nonsmokers of MN — Smoke-free housing outreach, +$11,896 (total $36,896)",
+                    layman:"The city pays a nonprofit to help landlords and tenants understand and implement smoke-free housing policies. This small contract increase allows them to continue that work and also assist with new tobacco point-of-sale restrictions.",
+                    category:"contract", outcome:"passed", voteType:"voice",
+                    aye:[], nay:[], abstain:[], absent:[], movedBy:"Chowdhury", contested:false
+                  },
+                  {
+                    num:27, ref:"2026-00135",
+                    title:"Contract Amendment: Association for Nonsmokers of MN — Online training for hemp edible retailers, +$24,704 (total $33,208)",
+                    layman:"The same nonprofit was hired to create an online certification course for stores in Minneapolis that sell low-potency hemp edibles (legal cannabis-adjacent products). Retailers must complete training to sell these products.",
+                    category:"contract", outcome:"passed", voteType:"voice",
+                    aye:[], nay:[], abstain:[], absent:[], movedBy:"Chowdhury", contested:false
+                  },
+                  {
+                    num:28, ref:"2026-00133",
+                    title:"Contract Amendment: DiRAD Technologies — 311 Interactive Voice Response system, +$70,000 (total $335,712)",
+                    layman:"When you call 311 (Minneapolis's non-emergency city services line), you interact with an automated phone system. This contract increase pays the vendor to expand and improve that system.",
+                    category:"contract", outcome:"passed", voteType:"voice",
+                    aye:[], nay:[], abstain:[], absent:[], movedBy:"Chowdhury", contested:false
+                  },
+                  {
+                    num:29, ref:"2026-00134",
+                    title:"Contract Amendment: Precision Landscape & Tree / Birch Tree Care — Tree and stump removal, annual amounts increased to $500,000 each",
+                    layman:"Two tree-removal companies that work for the city got their contract ceilings raised significantly — from $160,000 per year each to $500,000 per year. This reflects increased demand for tree removal work across the city.",
+                    category:"contract", outcome:"passed", voteType:"voice",
+                    aye:[], nay:[], abstain:[], absent:[], movedBy:"Chowdhury", contested:false
+                  },
+                  {
+                    num:30, ref:"2026-00137",
+                    title:"Gift Acceptance: US Biochar Initiative — Hotel and airfare for Jim Doten, Kansas City, Feb 21–23, 2026",
+                    layman:"A city employee who manages carbon sequestration programs received a travel stipend from a national biochar organization to attend their board meeting in Kansas City. The council formally accepted this gift.",
+                    category:"gift", outcome:"passed", voteType:"voice",
+                    aye:[], nay:[], abstain:[], absent:[], movedBy:"Chowdhury", contested:false
+                  },
+                  {
+                    num:31, ref:"2026-00142",
+                    title:"Gift Acceptance: NACCHO / BCHC — Travel for Health Commissioner Damon Chaplin, Washington DC, Feb 22–27",
+                    layman:"The city's Health Commissioner received a travel grant from two national public health organizations to attend leadership meetings in Washington D.C. The council formally accepted the donation.",
+                    category:"gift", outcome:"passed", voteType:"voice",
+                    aye:[], nay:[], abstain:[], absent:[], movedBy:"Chowdhury", contested:false
+                  },
+                  {
+                    num:32, ref:"2026-00159",
+                    title:"Gift Acceptance: National Immigration Law Center — Travel for Brian Walsh, NYU Wagner Convening, NYC, Feb 23–24",
+                    layman:"A city labor enforcement official received a travel grant from the National Immigration Law Center to attend a conference in New York on how cities and states enforce labor standards. The council accepted the gift.",
+                    category:"gift", outcome:"passed", voteType:"voice",
+                    aye:[], nay:[], abstain:[], absent:[], movedBy:"Chowdhury", contested:false
+                  },
+                  {
+                    num:33, ref:"2026-00143",
+                    title:"MN School-Based Health Centers Grant — $100,000 from MN Dept of Health for five clinic sites",
+                    layman:"The state gave Minneapolis $100,000 to support health education programs at five school-based health clinics — meaning clinics located inside Minneapolis schools. The council accepted the grant and authorized an agreement with the state.",
+                    category:"resolution", outcome:"passed", voteType:"voice",
+                    aye:[], nay:[], abstain:[], absent:[], movedBy:"Chowdhury", contested:false
+                  },
+                  {
+                    num:34, ref:"2026-00126",
+                    title:"Bid for Yard Maintenance Services — Metro Lawns LLC and Right Away Construction Corp., $150,000/year each",
+                    layman:"The city hired two landscaping contractors to maintain yards on properties where owners have failed to do so (often abandoned or code-violating properties). Each company can be paid up to $150,000 per year.",
+                    category:"bid", outcome:"passed", voteType:"voice",
+                    aye:[], nay:[], abstain:[], absent:[], movedBy:"Chowdhury", contested:false
+                  },
+                  {
+                    num:35, ref:"2026-00147",
+                    title:"2026 Street Resurfacing: Farview South Residential & 3rd St N — Cost estimate $7.15M; public hearing April 7",
+                    layman:"The city is planning to repave streets in the Farview Park neighborhood on the North Side, and along 3rd Street N. The estimated cost is about $7.1 million. Some of that will be billed to nearby property owners. A public hearing where residents can weigh in is set for April 7.",
+                    category:"resolution", outcome:"passed", voteType:"voice",
+                    aye:[], nay:[], abstain:[], absent:[], movedBy:"Chowdhury", note:"Public hearing: April 7, 2026", contested:false
+                  },
+                  {
+                    num:36, ref:"2026-00139",
+                    title:"Gift Acceptance: NASTT — Registration and lodging for Public Works staff at No-Dig Conference, Palm Springs, Mar 29–Apr 2",
+                    layman:"Public Works employees who work on underground pipes and infrastructure received a conference grant to attend a national 'trenchless technology' conference — methods that repair underground utilities without digging up the street.",
+                    category:"gift", outcome:"passed", voteType:"voice",
+                    aye:[], nay:[], abstain:[], absent:[], movedBy:"Chowdhury", contested:false
+                  },
+                  {
+                    num:37, ref:"2026-00141",
+                    title:"Highway Safety Improvement Program Grant — $737,900 for Broadway St NE and $671,723 for Lyndale Ave N",
+                    layman:"The city received about $1.4 million in federal safety money to improve dangerous intersections or corridors on Broadway St NE and Lyndale Ave N. These grants come through the state DOT and are aimed at reducing crashes.",
+                    category:"resolution", outcome:"passed", voteType:"voice",
+                    aye:[], nay:[], abstain:[], absent:[], movedBy:"Chowdhury", contested:false
+                  },
+                  {
+                    num:38, ref:"2026-00121",
+                    title:"Bid for Green Stormwater Infrastructure — Metro Blooms ($110K), Native Resource Preservation ($319,595), MN Native Landscapes ($44,502)",
+                    layman:"Three companies were hired to inspect and maintain green infrastructure that manages stormwater — things like rain gardens, bioswales, and permeable pavement installed across the city to reduce flooding and runoff.",
+                    category:"bid", outcome:"passed", voteType:"voice",
+                    aye:[], nay:[], abstain:[], absent:[], movedBy:"Chowdhury", contested:false
+                  },
+                  {
+                    num:39, ref:"2026-00123",
+                    title:"Bid for Lead Service Line Replacements Year 3 (Event 1 of 2) — Advanced Sewer and Water, Inc., $419,450",
+                    layman:"Minneapolis is in its third year of replacing old lead water pipes. This contract hires a contractor to replace lead service lines in a specific batch of homes, helping ensure residents have safe drinking water.",
+                    category:"bid", outcome:"passed", voteType:"voice",
+                    aye:[], nay:[], abstain:[], absent:[], movedBy:"Chowdhury", contested:false
+                  },
+                  {
+                    num:40, ref:"2026-00124",
+                    title:"Bid for Pillsbury Ave Bridge Reconstruction over Midtown Greenway — Lunda Construction, $5,346,311",
+                    layman:"The bridge carrying Pillsbury Avenue over the Midtown Greenway trail needs a full reconstruction. Lunda Construction won the contract at $5.3 million to rebuild it.",
+                    category:"bid", outcome:"passed", voteType:"voice",
+                    aye:[], nay:[], abstain:[], absent:[], movedBy:"Chowdhury", contested:false
+                  },
+                  {
+                    num:41, ref:"2026-00125",
+                    title:"Bid for Ready Mix Concrete — Cemstone Products Company, $3,337,391/year",
+                    layman:"The city uses enormous amounts of concrete for streets, curbs, and infrastructure. Cemstone Products Company won the contract to supply ready-mix concrete to the city for about $3.3 million per year.",
+                    category:"bid", outcome:"passed", voteType:"voice",
+                    aye:[], nay:[], abstain:[], absent:[], movedBy:"Chowdhury", contested:false
+                  },
+                  {
+                    num:42, ref:"2026-00128",
+                    title:"Contract Amendment: Zan Associates — Northside Greenway Phase 1 & 2 engineering and design, +$225,000 (total $1,578,889)",
+                    layman:"The Northside Greenway is a planned trail connecting North Minneapolis neighborhoods. This vote added $225,000 to the engineering contract to cover additional design work needed before construction can begin.",
+                    category:"contract", outcome:"passed", voteType:"voice",
+                    aye:[], nay:[], abstain:[], absent:[], movedBy:"Chowdhury", contested:false
+                  },
+                  {
+                    num:43, ref:"2026-00132",
+                    title:"Contract: Kimley-Horn and Associates — 7th St S Reconstruction Project engineering and design, $1,891,076",
+                    layman:"The city hired an engineering firm to design the full reconstruction of 7th Street South. This is the planning and design phase before any pavement is actually torn up.",
+                    category:"contract", outcome:"passed", voteType:"voice",
+                    aye:[], nay:[], abstain:[], absent:[], movedBy:"Chowdhury", contested:false
+                  },
+                  {
+                    num:44, ref:"2026-00130",
+                    title:"48th & Chicago Special Service District: Pavel Ushakov appointed to Seat 3",
+                    layman:"Special Service Districts are small business improvement districts where local property owners pay extra assessments for things like street cleaning, decorations, and promotions. Pavel Ushakov was appointed to the advisory board for the 48th & Chicago district.",
+                    category:"appointments", outcome:"passed", voteType:"voice",
+                    aye:[], nay:[], abstain:[], absent:[], movedBy:"Chowdhury", contested:false
+                  },
+                  {
+                    num:45, ref:"2026-00149",
+                    title:"50th & France Special Service District: Jennifer Shinners appointed to Seat 3 (residency waived)",
+                    layman:"Jennifer Shinners was appointed to the advisory board for the 50th & France business district. The council waived the usual requirement that board members live in the district.",
+                    category:"appointments", outcome:"passed", voteType:"voice",
+                    aye:[], nay:[], abstain:[], absent:[], movedBy:"Chowdhury", contested:false
+                  },
+                  {
+                    num:46, ref:"2026-00150",
+                    title:"54th & Lyndale Special Service District: Dan Campo (Seat 1) and Mat Bartel (Seat 2, residency waived) appointed",
+                    layman:"Two people were appointed to the advisory board for the 54th & Lyndale business district. Mat Bartel's residency requirement was waived.",
+                    category:"appointments", outcome:"passed", voteType:"voice",
+                    aye:[], nay:[], abstain:[], absent:[], movedBy:"Chowdhury", contested:false
+                  },
+                  {
+                    num:47, ref:"2026-00151",
+                    title:"Chicago-Lake Special Service District: Julie Ingebretsen appointed to Seat 1",
+                    layman:"Julie Ingebretsen was appointed to the advisory board for the Chicago-Lake business district near Lake Street.",
+                    category:"appointments", outcome:"passed", voteType:"voice",
+                    aye:[], nay:[], abstain:[], absent:[], movedBy:"Chowdhury", contested:false
+                  },
+                  {
+                    num:48, ref:"2026-00152",
+                    title:"Dinkytown Special Service District: Benjamin Reichert appointed to Seat 1",
+                    layman:"Benjamin Reichert was appointed to the advisory board for the Dinkytown business district near the U of M campus.",
+                    category:"appointments", outcome:"passed", voteType:"voice",
+                    aye:[], nay:[], abstain:[], absent:[], movedBy:"Chowdhury", contested:false
+                  },
+                  {
+                    num:49, ref:"2026-00153",
+                    title:"Stadium Village Special Service District: Seat 2 (Michael Berk) DENIED 8–4–1; Seat 3 (Amy Campbell) approved 12–0–1",
+                    layman:"Two appointments to the Stadium Village business district board (near TCF Bank Stadium) were voted on separately. The council voted to BLOCK Michael Berk's appointment to Seat 2 — an unusual denial. Amy Campbell's appointment to Seat 3 passed easily.",
+                    category:"appointments", outcome:"mixed", voteType:"roll_call",
+                    aye:["Chowdhury","Chughtai","Payne","Wonsley","Osman","Shaffer","Stevenson","Chavez"],
+                    nay:["Rainville","Vetaw","Warren","Palmisano"], abstain:["Whiting"], absent:[],
+                    movedBy:"Wonsley", note:"Seat 2 (Berk) denied 8–4–1 on motion to deny. Seat 3 (Campbell) approved 12–0–1.", contested:true
+                  },
+                  {
+                    num:50, ref:"2026-00154",
+                    title:"West Broadway Improvement SSD: Lisa Spicer Lankford appointed to Seat 4 (residency waived)",
+                    layman:"Lisa Spicer Lankford was appointed to the advisory board for the West Broadway business corridor in North Minneapolis. Her residency requirement was waived.",
+                    category:"appointments", outcome:"passed", voteType:"voice",
+                    aye:[], nay:[], abstain:[], absent:[], movedBy:"Chowdhury", contested:false
+                  },
+                  {
+                    num:51, ref:"2026-00155",
+                    title:"East Lake Special Service District: Matthew Lerner (Seat 1) and David Quisenberry (Seat 3) appointed (both residency waived)",
+                    layman:"Two people were appointed to the advisory board for the East Lake Street business district. Residency requirements were waived for both.",
+                    category:"appointments", outcome:"passed", voteType:"voice",
+                    aye:[], nay:[], abstain:[], absent:[], movedBy:"Chowdhury", contested:false
+                  },
+                  {
+                    num:52, ref:"2026-00079",
+                    title:"2026 Street Resurfacing: Whittier NE Residential — Public hearing rescheduled to April 7, 2026",
+                    layman:"A public hearing about repaving Whittier neighborhood streets was moved from late March to April 7, giving more time for planning and notice.",
+                    category:"resolution", outcome:"passed", voteType:"voice",
+                    aye:[], nay:[], abstain:[], absent:[], movedBy:"Chowdhury", contested:false
+                  },
+                  {
+                    num:53, ref:"2026-00081",
+                    title:"2026 Alley Reconstruction Project 1427A — Public hearing rescheduled to March 24, 2026",
+                    layman:"A public hearing about alley reconstruction was rescheduled to March 24, 2026.",
+                    category:"resolution", outcome:"passed", voteType:"voice",
+                    aye:[], nay:[], abstain:[], absent:[], movedBy:"Chowdhury", contested:false
+                  },
+                  {
+                    num:54, ref:"2026-00145",
+                    title:"Amy Moser Consulting — Blueprint Approved Institute Training; $129,000 budget transfer from Neighborhood Safety to CPED, effective March 1",
+                    layman:"The city is moving $129,000 from the Neighborhood Safety Department budget to the Planning & Economic Development Department to pay for organizational training and facilitation services run through the Blueprint Approved program. This essentially re-routes existing money to a different department.",
+                    category:"resolution", outcome:"passed", voteType:"voice",
+                    aye:[], nay:[], abstain:[], absent:[], movedBy:"Chowdhury", contested:false
+                  },
+                  {
+                    num:55, ref:"2026-00005",
+                    title:"City Council Meeting Calendar (2026–2029 Term) — 2027–2029 calendars adopted",
+                    layman:"The council officially scheduled all of its regular meeting dates through 2029 and directed the City Clerk to publish the calendar.",
+                    category:"resolution", outcome:"passed", voteType:"voice",
+                    aye:[], nay:[], abstain:[], absent:[], movedBy:"Chowdhury", contested:false
+                  },
+                  {
+                    num:56, ref:"2026-00008",
+                    title:"Council Member Appointments to Boards, Commissions & Committees (2026–2029 Term)",
+                    layman:"Council members serve on various external boards and internal committees. This resolution would formally assign them — but the committee sent it to the full council without a recommendation, meaning it needs further deliberation.",
+                    category:"appointments", outcome:"noRec", voteType:"voice",
+                    aye:[], nay:[], abstain:[], absent:[], movedBy:"Chowdhury", note:"Sent forward without recommendation", contested:false
+                  },
+                  {
+                    num:57, ref:"2026-00032",
+                    title:"Liquor License Renewals (Feb 3): The Depot Minneapolis and Canopy by Hilton — sent forward without recommendation after contested votes",
+                    layman:"Two downtown hotel bars (The Depot and Canopy by Hilton) came up for liquor license renewal. Several community members testified. A motion to refer the applications back to staff failed 6–7. The council ultimately sent both licenses forward without a recommendation — meaning the full council will decide without guidance from this committee. Two members (Chavez and Chowdhury) were the only ones who wanted to refer them back for more review.",
+                    category:"license", outcome:"noRec", voteType:"roll_call",
+                    aye:["Chughtai","Payne","Wonsley","Rainville","Vetaw","Warren","Osman","Shaffer","Stevenson","Whiting","Palmisano"],
+                    nay:["Chavez","Chowdhury"], abstain:[], absent:[],
+                    movedBy:"Osman", note:"Motion to refer to staff failed 6–7; final motion to send without recommendation passed 11–2", contested:true
+                  },
+                  {
+                    num:58, ref:"2026-00144",
+                    title:"Suspend Procurement Rules — Operation Metro Surge emergency; expires March 26, 2026",
+                    layman:"Operation Metro Surge was a large-scale federal immigration enforcement operation in Minneapolis. In response, the city declared this an emergency and temporarily suspended its normal purchasing/contracting rules so it could respond quickly. The suspension expires March 26, and the Finance Department must file a full report by April 1.",
+                    category:"resolution", outcome:"passed", voteType:"roll_call",
+                    aye:["Chowdhury","Chughtai","Payne","Wonsley","Rainville","Vetaw","Warren","Osman","Shaffer","Stevenson","Chavez","Whiting","Palmisano"],
+                    nay:[], abstain:[], absent:[], movedBy:"Chughtai", note:"Amended; expires March 26, Finance report due April 1", contested:false
+                  },
+                  {
+                    num:59, ref:"2026-00116",
+                    title:"Minneapolis Small Business Resiliency Fund — $7,000,000 from Downtown Assets Fund to support businesses impacted by Operation Metro Surge",
+                    layman:"In response to federal immigration raids (Operation Metro Surge) that hurt many small businesses in Minneapolis, the council voted to create a $7 million relief fund. The money comes from an existing Downtown Assets fund. Businesses harmed by the raids can apply for help. Two members (Rainville, Shaffer) voted against it.",
+                    category:"resolution", outcome:"passed", voteType:"roll_call",
+                    aye:["Chowdhury","Chughtai","Payne","Wonsley","Vetaw","Warren","Osman","Stevenson","Chavez","Whiting","Palmisano"],
+                    nay:["Rainville","Shaffer"], abstain:[], absent:[],
+                    movedBy:"Chavez", note:"Amount amended from $5M to $7M", contested:true
+                  },
+                  {
+                    num:60, ref:"2026-00122",
+                    title:"Support Small Businesses Resolution — Calls on all levels of government to fund businesses impacted by Operation Metro Surge",
+                    layman:"Beyond the city's own $7M fund, the council unanimously passed a resolution asking state and federal government to also step up and help Minneapolis small businesses hurt by Operation Metro Surge.",
+                    category:"resolution", outcome:"passed", voteType:"roll_call",
+                    aye:["Chowdhury","Chughtai","Payne","Wonsley","Rainville","Vetaw","Warren","Osman","Shaffer","Stevenson","Chavez","Whiting","Palmisano"],
+                    nay:[], abstain:[], absent:[], movedBy:"Chavez", contested:false
+                  },
+                  {
+                    num:61, ref:"2026-00119",
+                    title:"Opposing Immigration Enforcement Funding — Calls on Congress to oppose ICE funding and repeal the Laken Riley Act",
+                    layman:"The council passed a resolution opposing federal funding for immigration enforcement operations like the one that hit Minneapolis. It also calls on Congress to repeal the Laken Riley Act, a federal law that expands immigration detention. Four members voted against it and one abstained.",
+                    category:"resolution", outcome:"passed", voteType:"roll_call",
+                    aye:["Chowdhury","Chughtai","Payne","Wonsley","Osman","Stevenson","Chavez","Palmisano"],
+                    nay:["Rainville","Vetaw","Warren","Shaffer"], abstain:["Whiting"], absent:[],
+                    movedBy:"Chavez", contested:true
+                  },
+                  {
+                    num:62, ref:"2026-00157",
+                    title:"Electric and Gas Shutoff Moratorium — Resolution calling for an end to utility shutoffs",
+                    layman:"The full council unanimously called for a moratorium on electric and gas shutoffs — meaning utility companies should not cut off service to households, likely in response to economic hardship created by Operation Metro Surge and the broader crisis.",
+                    category:"resolution", outcome:"passed", voteType:"roll_call",
+                    aye:["Chowdhury","Chughtai","Payne","Wonsley","Rainville","Vetaw","Warren","Osman","Shaffer","Stevenson","Chavez","Whiting","Palmisano"],
+                    nay:[], abstain:[], absent:[], movedBy:"Chavez", contested:false
+                  },
+                  {
+                    num:63, ref:"2026-00148",
+                    title:"Denouncing Attack on Gender Affirming Care for Youth — Resolution opposing Trump Administration actions",
+                    layman:"The council unanimously passed a resolution formally denouncing federal actions that restrict or ban gender-affirming medical care for transgender youth.",
+                    category:"resolution", outcome:"passed", voteType:"roll_call",
+                    aye:["Chowdhury","Chughtai","Payne","Wonsley","Rainville","Vetaw","Warren","Osman","Shaffer","Stevenson","Chavez","Whiting","Palmisano"],
+                    nay:[], abstain:[], absent:[], movedBy:"Chavez", contested:false
+                  },
+                  {
+                    num:64, ref:"2026-00146",
+                    title:"New Appointed Position: City Auditor Dept — Director Special Review and Advisory Services; salary $135,084–$160,133",
+                    layman:"The city created a new senior staff position inside the City Auditor's office, focused on special reviews and advisory services. The salary range is $135,084 to $160,133.",
+                    category:"resolution", outcome:"passed", voteType:"voice",
+                    aye:[], nay:[], abstain:[], absent:[], movedBy:"Chowdhury", contested:false
+                  },
+                  {
+                    num:65, ref:"2026-00089",
+                    title:"Expired Ordinances and Directives — 2024–2025 Term items formally expired",
+                    layman:"Any unfinished ordinances or directives from the previous council term (2024–2025) were officially declared expired — cleaning up the legislative record at the start of the new council term.",
+                    category:"resolution", outcome:"passed", voteType:"voice",
+                    aye:[], nay:[], abstain:[], absent:[], movedBy:"Chowdhury", contested:false
+                  },
+                  {
+                    num:66, ref:"2026-00097",
+                    title:"Council Tracking Report: 2024–2025 Term — Final status report received and filed",
+                    layman:"The City Clerk presented a final report summarizing everything the council did (or didn't finish) during the 2024–2025 term. This was received for the record — no vote required.",
+                    category:"resolution", outcome:"filed", voteType:"voice",
+                    aye:[], nay:[], abstain:[], absent:[], movedBy:null, contested:false
+                  },
+                  {
+                    num:67, ref:"2026-00156",
+                    title:"El Cerrito, CA Solidarity Resolution — Received and filed",
+                    layman:"The city of El Cerrito, California passed a resolution expressing solidarity with Minneapolis in the aftermath of ICE-related shootings. Minneapolis received and filed it — acknowledging the message without taking action.",
+                    category:"resolution", outcome:"filed", voteType:"voice",
+                    aye:[], nay:[], abstain:[], absent:[], movedBy:null, contested:false
+                  },
+                  {
+                    num:68, ref:"2026-00179",
+                    title:"Data Practices — City policy on evidence of unlawful federal agent actions",
+                    layman:"The council approved a directive telling city departments how to handle information about federal agents acting unlawfully — essentially creating policy for documenting and preserving evidence if ICE or other federal officers overstep their legal authority in Minneapolis.",
+                    category:"resolution", outcome:"passed", voteType:"voice",
+                    aye:[], nay:[], abstain:[], absent:[], movedBy:"Chowdhury", contested:false
+                  },
+                  {
+                    num:69, ref:"2026-00165",
+                    title:"Lease Non-Disturbance and Consent Agreement: 1500 44th Ave N",
+                    layman:"For a property on 44th Avenue North, the city authorized a legal agreement with several parties (including a federal tax credit investor) that protects existing tenants' leases if there's ever a change in property ownership or financing.",
+                    category:"contract", outcome:"passed", voteType:"voice",
+                    aye:[], nay:[], abstain:[], absent:[], movedBy:"Chowdhury", contested:false
+                  }
+                ]
+              }
+              // ── ADD FUTURE MEETINGS HERE ──────────────────────────────────────────────────
+              // Copy the object shape above and push new meetings into this array.
+              // Each meeting needs: id, label, date, convened, adjourned, chair, viceChair,
+              // clerk, videoUrl, notesUrl, budget{}, members[], items[]
+              // ─────────────────────────────────────────────────────────────────────────────
+            ];
+            
+            // ═══════════════════════════════════════════════════════════════════════════════
+            // STATE
+            // ═══════════════════════════════════════════════════════════════════════════════
+            let currentMeetingIdx = 0;
+            let currentMember = "all";
+            let currentSort = { col: null, dir: 1 };
+            let currentSearch = "";
+            let currentOutcome = "all";
+            let currentCategory = "all";
+            let expandedItems = new Set();
+            
+            function meeting() { return MEETINGS[currentMeetingIdx]; }
+            
+            // ═══════════════════════════════════════════════════════════════════════════════
+            // HELPERS
+            // ═══════════════════════════════════════════════════════════════════════════════
+            const catLabel = { legal:"Legal",contract:"Contract",land_use:"Land Use",license:"License",
+              appointments:"Appointments",resolution:"Resolution",gift:"Gift",bid:"Bid" };
+            function fmtCurrency(n) {
+              if (n >= 1e9) return '$' + (n/1e9).toFixed(2) + 'B';
+              if (n >= 1e6) return '$' + (n/1e6).toFixed(2) + 'M';
+              if (n >= 1e3) return '$' + (n/1e3).toFixed(0) + 'K';
+              return '$' + n.toLocaleString();
+            }
+            function outcomePill(item) {
+              const map = { passed:"p-passed", denied:"p-denied", noRec:"p-norec", referred:"p-referred", filed:"p-filed", mixed:"p-passed" };
+              const labels = { passed:"Passed", denied:"Denied", noRec:"No Rec.", referred:"Referred", filed:"Filed", mixed:"Mixed" };
+              return `<span class="outcome-pill ${map[item.outcome]||'p-norec'}">${labels[item.outcome]||item.outcome}</span>`;
+            }
+            function voteScore(item) {
+              if (item.voteType === "voice") return "Voice";
+              const a = item.aye.length, n = item.nay.length, ab = item.abstain.length;
+              return `${a}–${n}${ab ? '–'+ab : ''}`;
+            }
+            
+            // ═══════════════════════════════════════════════════════════════════════════════
+            // RENDER — HEADER
+            // ═══════════════════════════════════════════════════════════════════════════════
+            function renderHeader() {
+              const m = meeting();
+              document.getElementById("pageHeader").innerHTML = `
+                <div class="header-inner">
+                  <div class="header-seal">MN</div>
+                  <div class="header-text">
+                    <div class="eyebrow">City of Minneapolis · Official Record</div>
+                    <h1>Committee of the <span>Whole</span></h1>
+                    <div class="header-meta">
+                      <div class="meta-chip"><span class="meta-label">Date</span><span class="meta-value">${m.date}</span></div>
+                      <div class="meta-chip"><span class="meta-label">Convened</span><span class="meta-value">${m.convened}</span></div>
+                      <div class="meta-chip"><span class="meta-label">Adjourned</span><span class="meta-value">${m.adjourned}</span></div>
+                      <div class="meta-chip"><span class="meta-label">Chair</span><span class="meta-value">${m.chair}</span></div>
+                      <div class="meta-chip"><span class="meta-label">Clerk</span><span class="meta-value">${m.clerk}</span></div>
+                    </div>
+                    <div class="header-links">
+                      ${m.videoUrl ? `<a class="hdr-link" href="${m.videoUrl}" target="_blank"><svg width="12" height="12" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>Watch Meeting Video</a>` : ''}
+                      ${m.notesUrl ? `<a class="hdr-link" href="${m.notesUrl}" target="_blank"><svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>Official Meeting Notes (LIMS)</a>` : ''}
+                    </div>
+                  </div>
+                </div>`;
+            }
+            
+            // ═══════════════════════════════════════════════════════════════════════════════
+            // RENDER — MEETING NAV
+            // ═══════════════════════════════════════════════════════════════════════════════
+            function renderNav() {
+              const pills = document.getElementById("meetingPills");
+              pills.innerHTML = MEETINGS.map((m, i) =>
+                `<button class="meeting-pill${i===currentMeetingIdx?' active':''}" onclick="switchMeeting(${i})">${m.label}</button>`
+              ).join('');
+              document.getElementById("prevBtn").disabled = currentMeetingIdx === 0;
+              document.getElementById("nextBtn").disabled = currentMeetingIdx === MEETINGS.length - 1;
+            }
+            
+            function switchMeeting(idx) {
+              currentMeetingIdx = idx;
+              currentMember = "all";
+              currentSearch = "";
+              currentOutcome = "all";
+              currentCategory = "all";
+              expandedItems.clear();
+              document.getElementById("searchInput").value = "";
+              document.getElementById("outcomeFilter").value = "all";
+              document.getElementById("categoryFilter").value = "all";
+              renderAll();
+            }
+            function navigateMeeting(dir) { switchMeeting(currentMeetingIdx + dir); }
+            
+            // ═══════════════════════════════════════════════════════════════════════════════
+            // RENDER — BUDGET
+            // ═══════════════════════════════════════════════════════════════════════════════
+            function renderBudget() {
+              const b = meeting().budget;
+              document.getElementById("budgetBar").innerHTML = `
+                <div class="budget-item">
+                  <span class="b-label">2026 General Fund</span>
+                  <span class="b-value">${fmtCurrency(b.generalFund)}</span>
+                  <span class="b-sub">Adopted city budget</span>
+                </div>
+                <div class="budget-item">
+                  <span class="b-label">Contingency Reserve</span>
+                  <span class="b-value neutral">${fmtCurrency(b.contingency)}</span>
+                  <span class="b-sub">Unallocated reserve</span>
+                </div>
+                <div class="budget-item">
+                  <span class="b-label">This Session — Committed</span>
+                  <span class="b-value spending">${fmtCurrency(b.totalItemsCommitted)}</span>
+                  <span class="b-sub">Contracts, settlements, grants</span>
+                </div>
+                <div class="budget-item" style="flex:1;max-width:380px">
+                  <span class="b-label">Note</span>
+                  <span class="b-sub" style="font-size:10px;line-height:1.5;color:var(--text-dim)">${b.note}</span>
+                </div>`;
+            }
+            
+            // ═══════════════════════════════════════════════════════════════════════════════
+            // RENDER — STATS
+            // ═══════════════════════════════════════════════════════════════════════════════
+            function renderStats() {
+              const items = meeting().items;
+              const total = items.length;
+              const passed = items.filter(i => i.outcome==="passed"||i.outcome==="mixed").length;
+              const denied = items.filter(i => i.outcome==="denied").length;
+              const noRec = items.filter(i => i.outcome==="noRec").length;
+              const contested = items.filter(i => i.contested).length;
+              const voice = items.filter(i => i.voteType==="voice").length;
+              document.getElementById("statsRow").innerHTML = `
+                <div class="stat-cell"><div class="sc-num">${total}</div><div class="sc-lbl">Items</div></div>
+                <div class="stat-cell"><div class="sc-num">${passed}</div><div class="sc-lbl">Passed</div></div>
+                <div class="stat-cell"><div class="sc-num" style="color:#f87171">${denied}</div><div class="sc-lbl">Denied</div></div>
+                <div class="stat-cell"><div class="sc-num" style="color:var(--text-dim)">${noRec}</div><div class="sc-lbl">No Rec.</div></div>
+                <div class="stat-cell"><div class="sc-num" style="color:#fbbf24">${contested}</div><div class="sc-lbl">Contested</div></div>
+                <div class="stat-cell"><div class="sc-num" style="color:var(--text-dim)">${voice}</div><div class="sc-lbl">Voice Votes</div></div>
+                <div class="stat-cell"><div class="sc-num">${meeting().members.length}</div><div class="sc-lbl">Members</div></div>`;
+            }
+            
+            // ═══════════════════════════════════════════════════════════════════════════════
+            // RENDER — HIGHLIGHTS
+            // ═══════════════════════════════════════════════════════════════════════════════
+            function renderHighlights() {
+              const contested = meeting().items.filter(i => i.contested);
+              document.getElementById("contestBadge").textContent = `${contested.length} items`;
+              document.getElementById("highlightGrid").innerHTML = contested.map(item => {
+                const a = item.aye.length, n = item.nay.length, ab = item.abstain.length;
+                const tot = a + n + ab || 13;
+                const ayePct = Math.round(a/tot*100), nayPct = Math.round(n/tot*100), absPct = Math.round(ab/tot*100);
+                return `<div class="h-card" onclick="scrollToRow(${item.num})">
+                  <div class="h-card-top">
+                    <span class="h-item-num">ITEM ${item.num} · ${item.ref}</span>
+                    ${outcomePill(item)}
+                  </div>
+                  <div class="h-card-title">${item.title}</div>
+                  <div class="h-card-layman">${item.layman}</div>
+                  <div class="vote-bar">
+                    <div class="vb-aye" style="width:${ayePct}%"></div>
+                    <div class="vb-nay" style="width:${nayPct}%"></div>
+                    <div class="vb-abs" style="width:${absPct}%"></div>
+                  </div>
+                  <div class="vote-line">
+                    <span class="v-aye">▲ ${a} Aye</span>
+                    <span class="v-nay">▼ ${n} Nay</span>
+                    ${ab ? `<span class="v-abs">◆ ${ab} Abstain</span>` : ''}
+                  </div>
+                  ${item.nay.length ? `<div class="h-opposed">Opposed: <strong>${item.nay.join(", ")}</strong>${item.abstain.length ? ` · Abstain: ${item.abstain.join(", ")}` : ''}</div>` : ''}
+                  ${item.note ? `<div class="h-note">${item.note}</div>` : ''}
+                </div>`;
+              }).join('');
+            }
+            
+            // ═══════════════════════════════════════════════════════════════════════════════
+            // RENDER — MEMBER FILTER
+            // ═══════════════════════════════════════════════════════════════════════════════
+            function renderMemberFilter() {
+              const mf = document.getElementById("memberFilter");
+              mf.innerHTML = `<span class="mf-label">Filter by member:</span>
+                <button class="m-btn${currentMember==='all'?' active':''}" onclick="setMember('all',this)">All</button>
+                ${meeting().members.map(m =>
+                  `<button class="m-btn${currentMember===m?' active':''}" onclick="setMember('${m}',this)">${m}</button>`
+                ).join('')}`;
+            }
+            
+            function setMember(m, btn) {
+              currentMember = m;
+              document.querySelectorAll(".m-btn").forEach(b => b.classList.remove("active"));
+              btn.classList.add("active");
+              renderTable();
+            }
+            
+            // ═══════════════════════════════════════════════════════════════════════════════
+            // TABLE FILTER + SORT
+            // ═══════════════════════════════════════════════════════════════════════════════
+            function getFiltered() {
+              let items = [...meeting().items];
+              if (currentSearch) {
+                const q = currentSearch.toLowerCase();
+                items = items.filter(i =>
+                  i.title.toLowerCase().includes(q) ||
+                  i.layman.toLowerCase().includes(q) ||
+                  i.ref.toLowerCase().includes(q) ||
+                  (catLabel[i.category]||'').toLowerCase().includes(q) ||
+                  i.aye.some(m => m.toLowerCase().includes(q)) ||
+                  i.nay.some(m => m.toLowerCase().includes(q)) ||
+                  (i.note||'').toLowerCase().includes(q)
+                );
+              }
+              if (currentOutcome !== "all") {
+                if (currentOutcome === "contested") items = items.filter(i => i.contested);
+                else if (currentOutcome === "voice") items = items.filter(i => i.voteType==="voice");
+                else items = items.filter(i => i.outcome === currentOutcome);
+              }
+              if (currentCategory !== "all") items = items.filter(i => i.category === currentCategory);
+              if (currentMember !== "all") {
+                items = items.filter(i =>
+                  i.aye.includes(currentMember) || i.nay.includes(currentMember) ||
+                  i.abstain.includes(currentMember) || i.voteType==="voice"
+                );
+              }
+              if (currentSort.col) {
+                items.sort((a,b) => {
+                  let va, vb;
+                  if (currentSort.col==="num") { va=a.num; vb=b.num; }
+                  else if (currentSort.col==="ref") { va=a.ref; vb=b.ref; }
+                  else if (currentSort.col==="title") { va=a.title; vb=b.title; }
+                  else if (currentSort.col==="category") { va=a.category; vb=b.category; }
+                  else if (currentSort.col==="outcome") { va=a.outcome; vb=b.outcome; }
+                  else if (currentSort.col==="vote") { va=voteScore(a); vb=voteScore(b); }
+                  if (va<vb) return -currentSort.dir;
+                  if (va>vb) return currentSort.dir;
+                  return 0;
+                });
+              }
+              return items;
+            }
+            
+            function sortTable(col) {
+              if (currentSort.col===col) currentSort.dir*=-1;
+              else { currentSort.col=col; currentSort.dir=1; }
+              document.querySelectorAll("th").forEach(th => th.classList.remove("sorted"));
+              const th = document.querySelector(`th[data-col="${col}"]`);
+              if (th) th.classList.add("sorted");
+              renderTable();
+            }
+            
+            // ═══════════════════════════════════════════════════════════════════════════════
+            // RENDER — TABLE
+            // ═══════════════════════════════════════════════════════════════════════════════
+            function renderTable() {
+              const items = getFiltered();
+              document.getElementById("tableCount").textContent = `Showing ${items.length} of ${meeting().items.length}`;
+              const tbody = document.getElementById("tableBody");
+              if (!items.length) {
+                tbody.innerHTML = `<tr><td colspan="7" style="text-align:center;color:var(--text-dim);padding:32px;font-style:italic">No items match current filters.</td></tr>`;
+                return;
+              }
+              tbody.innerHTML = items.map(item => {
+                const isVoice = item.voteType==="voice";
+                let voterHtml = "";
+                if (isVoice) {
+                  voterHtml = `<span class="v-chip vc-voice">Voice Vote</span>`;
+                } else if (currentMember !== "all") {
+                  const isAye = item.aye.includes(currentMember);
+                  const isNay = item.nay.includes(currentMember);
+                  const isAbs = item.abstain.includes(currentMember);
+                  if (isAye) voterHtml = `<span class="v-chip vc-aye">${currentMember}: AYE</span>`;
+                  else if (isNay) voterHtml = `<span class="v-chip vc-nay">${currentMember}: NAY</span>`;
+                  else if (isAbs) voterHtml = `<span class="v-chip vc-abs">${currentMember}: ABSTAIN</span>`;
+                  else voterHtml = `<span class="v-chip vc-voice">—</span>`;
+                } else {
+                  voterHtml = `<div class="voter-grid">
+                    ${item.aye.map(m=>`<span class="v-chip vc-aye">${m}</span>`).join('')}
+                    ${item.nay.map(m=>`<span class="v-chip vc-nay">${m}</span>`).join('')}
+                    ${item.abstain.map(m=>`<span class="v-chip vc-abs">${m}</span>`).join('')}
+                  </div>`;
+                }
+            
+                const isExpanded = expandedItems.has(item.num);
+                return `<tr id="row-${item.num}" class="${item.contested?'contested':''}">
+                  <td class="mono">${item.contested?'<span class="contest-dot"></span>':''}${item.num}</td>
+                  <td class="mono">${item.ref}</td>
+                  <td class="title-cell">
+                    <div class="item-title">${item.title}</div>
+                    ${isExpanded
+                      ? `<div class="item-layman">${item.layman}</div><button class="expand-btn" onclick="toggleExpand(${item.num})">▲ Less</button>`
+                      : `<button class="expand-btn" onclick="toggleExpand(${item.num})">▼ Plain English</button>`
+                    }
+                    ${item.note ? `<div class="item-note">${item.note}</div>` : ''}
+                  </td>
+                  <td><span style="font-size:11px;color:var(--text-dim);white-space:nowrap">${catLabel[item.category]||item.category}</span></td>
+                  <td>${outcomePill(item)}</td>
+                  <td><span style="font-family:'IBM Plex Mono',monospace;font-size:11px;white-space:nowrap">${voteScore(item)}</span></td>
+                  <td>${voterHtml}</td>
+                </tr>`;
+              }).join('');
+            }
+            
+            function toggleExpand(num) {
+              if (expandedItems.has(num)) expandedItems.delete(num);
+              else expandedItems.add(num);
+              renderTable();
+            }
+            
+            function scrollToRow(num) {
+              // clear contested filter so row is visible
+              currentOutcome = "all";
+              currentSearch = "";
+              document.getElementById("searchInput").value = "";
+              document.getElementById("outcomeFilter").value = "all";
+              renderTable();
+              setTimeout(() => {
+                const el = document.getElementById(`row-${num}`);
+                if (el) {
+                  el.scrollIntoView({ behavior: "smooth", block: "center" });
+                  el.classList.add("highlighted-row");
+                  setTimeout(() => el.classList.remove("highlighted-row"), 2200);
+                }
+              }, 80);
+            }
+            
+            // ═══════════════════════════════════════════════════════════════════════════════
+            // RENDER ALL
+            // ═══════════════════════════════════════════════════════════════════════════════
+            function renderAll() {
+              renderHeader();
+              renderNav();
+              renderBudget();
+              renderStats();
+              renderHighlights();
+              renderMemberFilter();
+              renderTable();
+              const m = meeting();
+              document.getElementById("footerLeft").textContent = `Minneapolis City Council — Committee of the Whole · ${m.date}`;
+              document.getElementById("footerRight").textContent = `Reported by ${m.clerk}`;
+            }
+            
+            // ═══════════════════════════════════════════════════════════════════════════════
+            // EVENT LISTENERS
+            // ═══════════════════════════════════════════════════════════════════════════════
+            document.getElementById("searchInput").addEventListener("input", function() {
+              currentSearch = this.value.trim();
+              renderTable();
+            });
+            document.getElementById("outcomeFilter").addEventListener("change", function() {
+              currentOutcome = this.value;
+              renderTable();
+            });
+            document.getElementById("categoryFilter").addEventListener("change", function() {
+              currentCategory = this.value;
+              renderTable();
+            });
+            
+            // ═══════════════════════════════════════════════════════════════════════════════
+            // INIT
+            // ═══════════════════════════════════════════════════════════════════════════════
+            renderAll();
+        </script>
+    </body>
+</html>
