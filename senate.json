@@ -14,6 +14,18 @@
       "twitter": null,
       "facebook": null,
       "instagram": null
+    },
+    "ballotpedia_url": "https://ballotpedia.org/Mark_Johnson_(Minnesota_Senate)",
+    "latest_election": {
+      "year": 2022,
+      "election_date": "November 8, 2022",
+      "election_type": "General Election",
+      "rep_votes": 27320,
+      "rep_vote_pct": "97.05%",
+      "opponent_name": null,
+      "opponent_votes": null,
+      "opponent_vote_pct": null,
+      "ran_unopposed": true
     }
   },
   {
@@ -31,6 +43,18 @@
       "twitter": null,
       "facebook": null,
       "instagram": null
+    },
+    "ballotpedia_url": "https://ballotpedia.org/Steve_Green_(Minnesota)",
+    "latest_election": {
+      "year": 2022,
+      "election_date": "November 8, 2022",
+      "election_type": "General Election",
+      "rep_votes": 20397,
+      "rep_vote_pct": "59.96%",
+      "opponent_name": "Leonard Alan Roy",
+      "opponent_votes": 13589,
+      "opponent_vote_pct": "39.95%",
+      "ran_unopposed": false
     }
   },
   {
@@ -48,6 +72,18 @@
       "twitter": null,
       "facebook": null,
       "instagram": null
+    },
+    "ballotpedia_url": "https://ballotpedia.org/Grant_Hauschild",
+    "latest_election": {
+      "year": 2022,
+      "election_date": "November 8, 2022",
+      "election_type": "General Election",
+      "rep_votes": 22052,
+      "rep_vote_pct": "50.77%",
+      "opponent_name": "Andrea Zupancich",
+      "opponent_votes": 21349,
+      "opponent_vote_pct": "49.15%",
+      "ran_unopposed": false
     }
   },
   {
@@ -65,6 +101,18 @@
       "twitter": null,
       "facebook": null,
       "instagram": null
+    },
+    "ballotpedia_url": "https://ballotpedia.org/Rob_Kupec",
+    "latest_election": {
+      "year": 2022,
+      "election_date": "November 8, 2022",
+      "election_type": "General Election",
+      "rep_votes": 15929,
+      "rep_vote_pct": "52.49%",
+      "opponent_name": "Dan Bohmer",
+      "opponent_votes": 14202,
+      "opponent_vote_pct": "46.80%",
+      "ran_unopposed": false
     }
   },
   {
@@ -82,6 +130,18 @@
       "twitter": null,
       "facebook": null,
       "instagram": null
+    },
+    "ballotpedia_url": "https://ballotpedia.org/Paul_Utke",
+    "latest_election": {
+      "year": 2022,
+      "election_date": "November 8, 2022",
+      "election_type": "General Election",
+      "rep_votes": 28731,
+      "rep_vote_pct": "72.83%",
+      "opponent_name": "A. John Peters",
+      "opponent_votes": 10687,
+      "opponent_vote_pct": "27.09%",
+      "ran_unopposed": false
     }
   },
   {
@@ -99,6 +159,19 @@
       "twitter": null,
       "facebook": null,
       "instagram": null
+    },
+    "ballotpedia_url": "https://ballotpedia.org/Keri_Heintzeman",
+    "latest_election": {
+      "year": 2025,
+      "election_date": "April 29, 2025",
+      "election_type": "Special Election",
+      "rep_votes": 12751,
+      "rep_vote_pct": "60.27%",
+      "opponent_name": "Denise Slipy",
+      "opponent_votes": 8376,
+      "opponent_vote_pct": "39.59%",
+      "ran_unopposed": false,
+      "note": "Replacing Justin Eichorn (R), who resigned March 20, 2025 following arrest"
     }
   },
   {
@@ -116,6 +189,18 @@
       "twitter": null,
       "facebook": null,
       "instagram": null
+    },
+    "ballotpedia_url": "https://ballotpedia.org/Robert_Farnsworth_(Minnesota)",
+    "latest_election": {
+      "year": 2022,
+      "election_date": "November 8, 2022",
+      "election_type": "General Election",
+      "rep_votes": 20797,
+      "rep_vote_pct": "53.05%",
+      "opponent_name": "Ben DeNucci",
+      "opponent_votes": 18056,
+      "opponent_vote_pct": "46.06%",
+      "ran_unopposed": false
     }
   },
   {
@@ -133,6 +218,18 @@
       "twitter": null,
       "facebook": null,
       "instagram": null
+    },
+    "ballotpedia_url": "https://ballotpedia.org/Jen_McEwen",
+    "latest_election": {
+      "year": 2022,
+      "election_date": "November 8, 2022",
+      "election_type": "General Election",
+      "rep_votes": 26518,
+      "rep_vote_pct": "71.53%",
+      "opponent_name": "Alex Moe",
+      "opponent_votes": 10481,
+      "opponent_vote_pct": "28.27%",
+      "ran_unopposed": false
     }
   },
   {
@@ -150,6 +247,18 @@
       "twitter": null,
       "facebook": null,
       "instagram": null
+    },
+    "ballotpedia_url": "https://ballotpedia.org/Jordan_Rasmusson",
+    "latest_election": {
+      "year": 2022,
+      "election_date": "November 8, 2022",
+      "election_type": "General Election",
+      "rep_votes": 25372,
+      "rep_vote_pct": "62.74%",
+      "opponent_name": "Cornel Walker",
+      "opponent_votes": 11560,
+      "opponent_vote_pct": "28.59%",
+      "ran_unopposed": false
     }
   },
   {
@@ -167,6 +276,18 @@
       "twitter": null,
       "facebook": null,
       "instagram": null
+    },
+    "ballotpedia_url": "https://ballotpedia.org/Nathan_Wesenberg",
+    "latest_election": {
+      "year": 2022,
+      "election_date": "November 8, 2022",
+      "election_type": "General Election",
+      "rep_votes": 28395,
+      "rep_vote_pct": "72.41%",
+      "opponent_name": "Suzanne M. Cekalla",
+      "opponent_votes": 10719,
+      "opponent_vote_pct": "27.33%",
+      "ran_unopposed": false
     }
   },
   {
@@ -184,6 +305,18 @@
       "twitter": null,
       "facebook": null,
       "instagram": null
+    },
+    "ballotpedia_url": "https://ballotpedia.org/Jason_Rarick",
+    "latest_election": {
+      "year": 2022,
+      "election_date": "November 8, 2022",
+      "election_type": "General Election",
+      "rep_votes": 22111,
+      "rep_vote_pct": "60.89%",
+      "opponent_name": "Michelle Boyechko",
+      "opponent_votes": 14152,
+      "opponent_vote_pct": "38.97%",
+      "ran_unopposed": false
     }
   },
   {
@@ -201,6 +334,18 @@
       "twitter": null,
       "facebook": null,
       "instagram": null
+    },
+    "ballotpedia_url": "https://ballotpedia.org/Torrey_Westrom",
+    "latest_election": {
+      "year": 2022,
+      "election_date": "November 8, 2022",
+      "election_type": "General Election",
+      "rep_votes": 26178,
+      "rep_vote_pct": "68.01%",
+      "opponent_name": "Kari Dorry",
+      "opponent_votes": 10813,
+      "opponent_vote_pct": "28.09%",
+      "ran_unopposed": false
     }
   },
   {
@@ -218,6 +363,18 @@
       "twitter": null,
       "facebook": null,
       "instagram": null
+    },
+    "ballotpedia_url": "https://ballotpedia.org/Jeff_Howe",
+    "latest_election": {
+      "year": 2022,
+      "election_date": "November 8, 2022",
+      "election_type": "General Election",
+      "rep_votes": 27295,
+      "rep_vote_pct": "70.03%",
+      "opponent_name": "Alissa Brickman",
+      "opponent_votes": 11647,
+      "opponent_vote_pct": "29.88%",
+      "ran_unopposed": false
     }
   },
   {
@@ -235,6 +392,18 @@
       "twitter": null,
       "facebook": null,
       "instagram": null
+    },
+    "ballotpedia_url": "https://ballotpedia.org/Aric_Putnam",
+    "latest_election": {
+      "year": 2022,
+      "election_date": "November 8, 2022",
+      "election_type": "General Election",
+      "rep_votes": 15350,
+      "rep_vote_pct": "52.29%",
+      "opponent_name": "Tama Theis",
+      "opponent_votes": 13969,
+      "opponent_vote_pct": "47.58%",
+      "ran_unopposed": false
     }
   },
   {
@@ -252,6 +421,18 @@
       "twitter": null,
       "facebook": null,
       "instagram": null
+    },
+    "ballotpedia_url": "https://ballotpedia.org/Gary_Dahms",
+    "latest_election": {
+      "year": 2022,
+      "election_date": "November 8, 2022",
+      "election_type": "General Election",
+      "rep_votes": 25780,
+      "rep_vote_pct": "71.18%",
+      "opponent_name": "Anita Gaul",
+      "opponent_votes": 10417,
+      "opponent_vote_pct": "28.76%",
+      "ran_unopposed": false
     }
   },
   {
@@ -269,6 +450,18 @@
       "twitter": null,
       "facebook": null,
       "instagram": null
+    },
+    "ballotpedia_url": "https://ballotpedia.org/Andrew_Lang_(Minnesota)",
+    "latest_election": {
+      "year": 2022,
+      "election_date": "November 8, 2022",
+      "election_type": "General Election",
+      "rep_votes": 24596,
+      "rep_vote_pct": "69.66%",
+      "opponent_name": "Fernando Alvarado",
+      "opponent_votes": 10690,
+      "opponent_vote_pct": "30.28%",
+      "ran_unopposed": false
     }
   },
   {
@@ -286,6 +479,18 @@
       "twitter": null,
       "facebook": null,
       "instagram": null
+    },
+    "ballotpedia_url": "https://ballotpedia.org/Glenn_Gruenhagen",
+    "latest_election": {
+      "year": 2022,
+      "election_date": "November 8, 2022",
+      "election_type": "General Election",
+      "rep_votes": 27810,
+      "rep_vote_pct": "70.17%",
+      "opponent_name": "Chad Tschimperle",
+      "opponent_votes": 11797,
+      "opponent_vote_pct": "29.77%",
+      "ran_unopposed": false
     }
   },
   {
@@ -303,6 +508,18 @@
       "twitter": null,
       "facebook": null,
       "instagram": null
+    },
+    "ballotpedia_url": "https://ballotpedia.org/Nick_Frentz",
+    "latest_election": {
+      "year": 2022,
+      "election_date": "November 8, 2022",
+      "election_type": "General Election",
+      "rep_votes": 19136,
+      "rep_vote_pct": "57.78%",
+      "opponent_name": "Mark Wright",
+      "opponent_votes": 13944,
+      "opponent_vote_pct": "42.10%",
+      "ran_unopposed": false
     }
   },
   {
@@ -320,6 +537,18 @@
       "twitter": null,
       "facebook": null,
       "instagram": null
+    },
+    "ballotpedia_url": "https://ballotpedia.org/John_Jasinski",
+    "latest_election": {
+      "year": 2022,
+      "election_date": "November 8, 2022",
+      "election_type": "General Election",
+      "rep_votes": 22450,
+      "rep_vote_pct": "65.29%",
+      "opponent_name": "Kate E. Falvey",
+      "opponent_votes": 11908,
+      "opponent_vote_pct": "34.63%",
+      "ran_unopposed": false
     }
   },
   {
@@ -337,6 +566,18 @@
       "twitter": null,
       "facebook": null,
       "instagram": null
+    },
+    "ballotpedia_url": "https://ballotpedia.org/Steve_Drazkowski",
+    "latest_election": {
+      "year": 2022,
+      "election_date": "November 8, 2022",
+      "election_type": "General Election",
+      "rep_votes": 25129,
+      "rep_vote_pct": "61.67%",
+      "opponent_name": "Bradley Robert Drenckhahn",
+      "opponent_votes": 15546,
+      "opponent_vote_pct": "38.15%",
+      "ran_unopposed": false
     }
   },
   {
@@ -354,6 +595,18 @@
       "twitter": null,
       "facebook": null,
       "instagram": null
+    },
+    "ballotpedia_url": "https://ballotpedia.org/Bill_Weber_(Minnesota)",
+    "latest_election": {
+      "year": 2022,
+      "election_date": "November 8, 2022",
+      "election_type": "General Election",
+      "rep_votes": 27829,
+      "rep_vote_pct": "97.80%",
+      "opponent_name": null,
+      "opponent_votes": null,
+      "opponent_vote_pct": null,
+      "ran_unopposed": true
     }
   },
   {
@@ -371,6 +624,18 @@
       "twitter": null,
       "facebook": null,
       "instagram": null
+    },
+    "ballotpedia_url": "https://ballotpedia.org/Rich_Draheim",
+    "latest_election": {
+      "year": 2022,
+      "election_date": "November 8, 2022",
+      "election_type": "General Election",
+      "rep_votes": 29799,
+      "rep_vote_pct": "96.87%",
+      "opponent_name": null,
+      "opponent_votes": null,
+      "opponent_vote_pct": null,
+      "ran_unopposed": true
     }
   },
   {
@@ -388,6 +653,18 @@
       "twitter": null,
       "facebook": null,
       "instagram": null
+    },
+    "ballotpedia_url": "https://ballotpedia.org/Gene_Dornink",
+    "latest_election": {
+      "year": 2022,
+      "election_date": "November 8, 2022",
+      "election_type": "General Election",
+      "rep_votes": 20273,
+      "rep_vote_pct": "60.71%",
+      "opponent_name": "Brandon Lawhead",
+      "opponent_votes": 13051,
+      "opponent_vote_pct": "39.09%",
+      "ran_unopposed": false
     }
   },
   {
@@ -405,6 +682,18 @@
       "twitter": null,
       "facebook": null,
       "instagram": null
+    },
+    "ballotpedia_url": "https://ballotpedia.org/Carla_Nelson",
+    "latest_election": {
+      "year": 2022,
+      "election_date": "November 8, 2022",
+      "election_type": "General Election",
+      "rep_votes": 20991,
+      "rep_vote_pct": "57.45%",
+      "opponent_name": "Aleta Borrud",
+      "opponent_votes": 15529,
+      "opponent_vote_pct": "42.50%",
+      "ran_unopposed": false
     }
   },
   {
@@ -422,6 +711,18 @@
       "twitter": null,
       "facebook": null,
       "instagram": null
+    },
+    "ballotpedia_url": "https://ballotpedia.org/Liz_Boldon",
+    "latest_election": {
+      "year": 2022,
+      "election_date": "November 8, 2022",
+      "election_type": "General Election",
+      "rep_votes": 19673,
+      "rep_vote_pct": "58.49%",
+      "opponent_name": "Ken Navitsky",
+      "opponent_votes": 13251,
+      "opponent_vote_pct": "39.40%",
+      "ran_unopposed": false
     }
   },
   {
@@ -439,6 +740,18 @@
       "twitter": null,
       "facebook": null,
       "instagram": null
+    },
+    "ballotpedia_url": "https://ballotpedia.org/Jeremy_Miller_(Minnesota)",
+    "latest_election": {
+      "year": 2022,
+      "election_date": "November 8, 2022",
+      "election_type": "General Election",
+      "rep_votes": 21444,
+      "rep_vote_pct": "58.28%",
+      "opponent_name": "Daniel Wilson",
+      "opponent_votes": 14280,
+      "opponent_vote_pct": "38.81%",
+      "ran_unopposed": false
     }
   },
   {
@@ -456,6 +769,18 @@
       "twitter": null,
       "facebook": null,
       "instagram": null
+    },
+    "ballotpedia_url": "https://ballotpedia.org/Andrew_Mathews",
+    "latest_election": {
+      "year": 2022,
+      "election_date": "November 8, 2022",
+      "election_type": "General Election",
+      "rep_votes": 26479,
+      "rep_vote_pct": "71.77%",
+      "opponent_name": "Emy Minzel",
+      "opponent_votes": 10397,
+      "opponent_vote_pct": "28.18%",
+      "ran_unopposed": false
     }
   },
   {
@@ -473,6 +798,18 @@
       "twitter": null,
       "facebook": null,
       "instagram": null
+    },
+    "ballotpedia_url": "https://ballotpedia.org/Mark_Koran",
+    "latest_election": {
+      "year": 2022,
+      "election_date": "November 8, 2022",
+      "election_type": "General Election",
+      "rep_votes": 26012,
+      "rep_vote_pct": "67.18%",
+      "opponent_name": "Victoria Ann Bird",
+      "opponent_votes": 12670,
+      "opponent_vote_pct": "32.72%",
+      "ran_unopposed": false
     }
   },
   {
@@ -490,6 +827,19 @@
       "twitter": null,
       "facebook": null,
       "instagram": null
+    },
+    "ballotpedia_url": "https://ballotpedia.org/Michael_Holmstrom_Jr.",
+    "latest_election": {
+      "year": 2025,
+      "election_date": "November 4, 2025",
+      "election_type": "Special Election",
+      "rep_votes": 12328,
+      "rep_vote_pct": "62.23%",
+      "opponent_name": "Louis McNutt",
+      "opponent_votes": 7459,
+      "opponent_vote_pct": "37.65%",
+      "ran_unopposed": false,
+      "note": "Replacing Bruce Anderson (R), who died July 21, 2025"
     }
   },
   {
@@ -507,6 +857,18 @@
       "twitter": null,
       "facebook": null,
       "instagram": null
+    },
+    "ballotpedia_url": "https://ballotpedia.org/Eric_Lucero",
+    "latest_election": {
+      "year": 2022,
+      "election_date": "November 8, 2022",
+      "election_type": "General Election",
+      "rep_votes": 26146,
+      "rep_vote_pct": "65.18%",
+      "opponent_name": "Diane Nguyen",
+      "opponent_votes": 13946,
+      "opponent_vote_pct": "34.77%",
+      "ran_unopposed": false
     }
   },
   {
@@ -524,6 +886,18 @@
       "twitter": null,
       "facebook": null,
       "instagram": null
+    },
+    "ballotpedia_url": "https://ballotpedia.org/Cal_Bahr",
+    "latest_election": {
+      "year": 2022,
+      "election_date": "November 8, 2022",
+      "election_type": "General Election",
+      "rep_votes": 25705,
+      "rep_vote_pct": "63.75%",
+      "opponent_name": "Jason Ruffalo",
+      "opponent_votes": 14585,
+      "opponent_vote_pct": "36.17%",
+      "ran_unopposed": false
     }
   },
   {
@@ -541,6 +915,18 @@
       "twitter": null,
       "facebook": null,
       "instagram": null
+    },
+    "ballotpedia_url": "https://ballotpedia.org/Michael_Kreun",
+    "latest_election": {
+      "year": 2022,
+      "election_date": "November 8, 2022",
+      "election_type": "General Election",
+      "rep_votes": 19684,
+      "rep_vote_pct": "52.95%",
+      "opponent_name": "Kate Luthner",
+      "opponent_votes": 17459,
+      "opponent_vote_pct": "46.96%",
+      "ran_unopposed": false
     }
   },
   {
@@ -558,6 +944,18 @@
       "twitter": null,
       "facebook": null,
       "instagram": null
+    },
+    "ballotpedia_url": "https://ballotpedia.org/Karin_Housley",
+    "latest_election": {
+      "year": 2022,
+      "election_date": "November 8, 2022",
+      "election_type": "General Election",
+      "rep_votes": 23091,
+      "rep_vote_pct": "52.80%",
+      "opponent_name": "Nancy McLean",
+      "opponent_votes": 20624,
+      "opponent_vote_pct": "47.16%",
+      "ran_unopposed": false
     }
   },
   {
@@ -575,6 +973,18 @@
       "twitter": null,
       "facebook": null,
       "instagram": null
+    },
+    "ballotpedia_url": "https://ballotpedia.org/John_Hoffman_(Minnesota)",
+    "latest_election": {
+      "year": 2022,
+      "election_date": "November 8, 2022",
+      "election_type": "General Election",
+      "rep_votes": 20925,
+      "rep_vote_pct": "54.87%",
+      "opponent_name": "Karen Attia",
+      "opponent_votes": 17181,
+      "opponent_vote_pct": "45.05%",
+      "ran_unopposed": false
     }
   },
   {
@@ -592,6 +1002,18 @@
       "twitter": null,
       "facebook": null,
       "instagram": null
+    },
+    "ballotpedia_url": "https://ballotpedia.org/Jim_Abeler",
+    "latest_election": {
+      "year": 2022,
+      "election_date": "November 8, 2022",
+      "election_type": "General Election",
+      "rep_votes": 17300,
+      "rep_vote_pct": "50.22%",
+      "opponent_name": "Kari Rehrauer",
+      "opponent_votes": 17114,
+      "opponent_vote_pct": "49.68%",
+      "ran_unopposed": false
     }
   },
   {
@@ -609,6 +1031,18 @@
       "twitter": null,
       "facebook": null,
       "instagram": null
+    },
+    "ballotpedia_url": "https://ballotpedia.org/Heather_Gustafson",
+    "latest_election": {
+      "year": 2022,
+      "election_date": "November 8, 2022",
+      "election_type": "General Election",
+      "rep_votes": 23348,
+      "rep_vote_pct": "52.81%",
+      "opponent_name": "Roger Chamberlain",
+      "opponent_votes": 20838,
+      "opponent_vote_pct": "47.13%",
+      "ran_unopposed": false
     }
   },
   {
@@ -626,6 +1060,18 @@
       "twitter": null,
       "facebook": null,
       "instagram": null
+    },
+    "ballotpedia_url": "https://ballotpedia.org/Warren_Limmer",
+    "latest_election": {
+      "year": 2022,
+      "election_date": "November 8, 2022",
+      "election_type": "General Election",
+      "rep_votes": 24463,
+      "rep_vote_pct": "54.88%",
+      "opponent_name": "Farhio Khalif",
+      "opponent_votes": 20077,
+      "opponent_vote_pct": "45.04%",
+      "ran_unopposed": false
     }
   },
   {
@@ -643,6 +1089,18 @@
       "twitter": null,
       "facebook": null,
       "instagram": null
+    },
+    "ballotpedia_url": "https://ballotpedia.org/Susan_Pha",
+    "latest_election": {
+      "year": 2022,
+      "election_date": "November 8, 2022",
+      "election_type": "General Election",
+      "rep_votes": 14116,
+      "rep_vote_pct": "63.91%",
+      "opponent_name": "Brad Kohler",
+      "opponent_votes": 6337,
+      "opponent_vote_pct": "28.69%",
+      "ran_unopposed": false
     }
   },
   {
@@ -660,6 +1118,18 @@
       "twitter": null,
       "facebook": null,
       "instagram": null
+    },
+    "ballotpedia_url": "https://ballotpedia.org/Mary_Kunesh",
+    "latest_election": {
+      "year": 2022,
+      "election_date": "November 8, 2022",
+      "election_type": "General Election",
+      "rep_votes": 20563,
+      "rep_vote_pct": "66.49%",
+      "opponent_name": "Pam Wolf",
+      "opponent_votes": 10327,
+      "opponent_vote_pct": "33.39%",
+      "ran_unopposed": false
     }
   },
   {
@@ -677,6 +1147,18 @@
       "twitter": null,
       "facebook": null,
       "instagram": null
+    },
+    "ballotpedia_url": "https://ballotpedia.org/John_Marty",
+    "latest_election": {
+      "year": 2022,
+      "election_date": "November 8, 2022",
+      "election_type": "General Election",
+      "rep_votes": 26490,
+      "rep_vote_pct": "64.76%",
+      "opponent_name": "Rachel Japuntich",
+      "opponent_votes": 14371,
+      "opponent_vote_pct": "35.13%",
+      "ran_unopposed": false
     }
   },
   {
@@ -694,6 +1176,18 @@
       "twitter": null,
       "facebook": null,
       "instagram": null
+    },
+    "ballotpedia_url": "https://ballotpedia.org/Judy_Seeberger",
+    "latest_election": {
+      "year": 2022,
+      "election_date": "November 8, 2022",
+      "election_type": "General Election",
+      "rep_votes": 21536,
+      "rep_vote_pct": "50.33%",
+      "opponent_name": "Tom Dippel",
+      "opponent_votes": 21215,
+      "opponent_vote_pct": "49.58%",
+      "ran_unopposed": false
     }
   },
   {
@@ -711,6 +1205,18 @@
       "twitter": null,
       "facebook": null,
       "instagram": null
+    },
+    "ballotpedia_url": "https://ballotpedia.org/Bonnie_Westlin",
+    "latest_election": {
+      "year": 2022,
+      "election_date": "November 8, 2022",
+      "election_type": "General Election",
+      "rep_votes": 23752,
+      "rep_vote_pct": "57.70%",
+      "opponent_name": "Paul Hillen",
+      "opponent_votes": 17395,
+      "opponent_vote_pct": "42.26%",
+      "ran_unopposed": false
     }
   },
   {
@@ -728,6 +1234,18 @@
       "twitter": null,
       "facebook": null,
       "instagram": null
+    },
+    "ballotpedia_url": "https://ballotpedia.org/Ann_Rest",
+    "latest_election": {
+      "year": 2022,
+      "election_date": "November 8, 2022",
+      "election_type": "General Election",
+      "rep_votes": 27350,
+      "rep_vote_pct": "77.29%",
+      "opponent_name": "Andrew Thomas Schuler (Legal Marijuana Now)",
+      "opponent_votes": 7686,
+      "opponent_vote_pct": "21.72%",
+      "ran_unopposed": false
     }
   },
   {
@@ -745,6 +1263,18 @@
       "twitter": null,
       "facebook": null,
       "instagram": null
+    },
+    "ballotpedia_url": "https://ballotpedia.org/Tou_Xiong",
+    "latest_election": {
+      "year": 2022,
+      "election_date": "November 8, 2022",
+      "election_type": "General Election",
+      "rep_votes": 19173,
+      "rep_vote_pct": "59.54%",
+      "opponent_name": "Paul Babin",
+      "opponent_votes": 12984,
+      "opponent_vote_pct": "40.32%",
+      "ran_unopposed": false
     }
   },
   {
@@ -762,6 +1292,19 @@
       "twitter": null,
       "facebook": null,
       "instagram": null
+    },
+    "ballotpedia_url": "https://ballotpedia.org/Ann_Johnson_Stewart",
+    "latest_election": {
+      "year": 2024,
+      "election_date": "November 5, 2024",
+      "election_type": "Special Election",
+      "rep_votes": 29754,
+      "rep_vote_pct": "52.43%",
+      "opponent_name": "Kathleen Fowke",
+      "opponent_votes": 26913,
+      "opponent_vote_pct": "47.47%",
+      "ran_unopposed": false,
+      "note": "Replacing Kelly Morrison (D), who resigned June 6, 2024 to run for Congress"
     }
   },
   {
@@ -779,6 +1322,18 @@
       "twitter": null,
       "facebook": null,
       "instagram": null
+    },
+    "ballotpedia_url": "https://ballotpedia.org/Ron_Latz",
+    "latest_election": {
+      "year": 2022,
+      "election_date": "November 8, 2022",
+      "election_type": "General Election",
+      "rep_votes": 31027,
+      "rep_vote_pct": "97.26%",
+      "opponent_name": null,
+      "opponent_votes": null,
+      "opponent_vote_pct": null,
+      "ran_unopposed": true
     }
   },
   {
@@ -796,6 +1351,19 @@
       "twitter": null,
       "facebook": null,
       "instagram": null
+    },
+    "ballotpedia_url": "https://ballotpedia.org/Amanda_Hemmingsen-Jaeger",
+    "latest_election": {
+      "year": 2025,
+      "election_date": "November 4, 2025",
+      "election_type": "Special Election",
+      "rep_votes": 13527,
+      "rep_vote_pct": "61.69%",
+      "opponent_name": "Dwight Dorau",
+      "opponent_votes": 8383,
+      "opponent_vote_pct": "38.23%",
+      "ran_unopposed": false,
+      "note": "Replacing Nicole Mitchell (D), who resigned after burglary conviction"
     }
   },
   {
@@ -813,6 +1381,18 @@
       "twitter": null,
       "facebook": null,
       "instagram": null
+    },
+    "ballotpedia_url": "https://ballotpedia.org/Julia_Coleman_(Minnesota)",
+    "latest_election": {
+      "year": 2022,
+      "election_date": "November 8, 2022",
+      "election_type": "General Election",
+      "rep_votes": 23306,
+      "rep_vote_pct": "54.34%",
+      "opponent_name": "Dan Kessler",
+      "opponent_votes": 19564,
+      "opponent_vote_pct": "45.61%",
+      "ran_unopposed": false
     }
   },
   {
@@ -830,6 +1410,18 @@
       "twitter": null,
       "facebook": null,
       "instagram": null
+    },
+    "ballotpedia_url": "https://ballotpedia.org/Steve_Cwodzinski",
+    "latest_election": {
+      "year": 2022,
+      "election_date": "November 8, 2022",
+      "election_type": "General Election",
+      "rep_votes": 26448,
+      "rep_vote_pct": "62.28%",
+      "opponent_name": "Marla Helseth",
+      "opponent_votes": 15998,
+      "opponent_vote_pct": "37.67%",
+      "ran_unopposed": false
     }
   },
   {
@@ -847,6 +1439,18 @@
       "twitter": null,
       "facebook": null,
       "instagram": null
+    },
+    "ballotpedia_url": "https://ballotpedia.org/Alice_Mann_(Minnesota)",
+    "latest_election": {
+      "year": 2022,
+      "election_date": "November 8, 2022",
+      "election_type": "General Election",
+      "rep_votes": 28575,
+      "rep_vote_pct": "63.42%",
+      "opponent_name": "Doug Fulton",
+      "opponent_votes": 16457,
+      "opponent_vote_pct": "36.53%",
+      "ran_unopposed": false
     }
   },
   {
@@ -864,6 +1468,18 @@
       "twitter": null,
       "facebook": null,
       "instagram": null
+    },
+    "ballotpedia_url": "https://ballotpedia.org/Melissa_Halvorson_Wiklund",
+    "latest_election": {
+      "year": 2022,
+      "election_date": "November 8, 2022",
+      "election_type": "General Election",
+      "rep_votes": 23141,
+      "rep_vote_pct": "69.64%",
+      "opponent_name": "Frank Pafko",
+      "opponent_votes": 10049,
+      "opponent_vote_pct": "30.24%",
+      "ran_unopposed": false
     }
   },
   {
@@ -881,6 +1497,18 @@
       "twitter": null,
       "facebook": null,
       "instagram": null
+    },
+    "ballotpedia_url": "https://ballotpedia.org/Jim_Carlson_(Minnesota)",
+    "latest_election": {
+      "year": 2022,
+      "election_date": "November 8, 2022",
+      "election_type": "General Election",
+      "rep_votes": 26004,
+      "rep_vote_pct": "63.22%",
+      "opponent_name": "Stephen Lowell",
+      "opponent_votes": 15068,
+      "opponent_vote_pct": "36.63%",
+      "ran_unopposed": false
     }
   },
   {
@@ -898,6 +1526,18 @@
       "twitter": null,
       "facebook": null,
       "instagram": null
+    },
+    "ballotpedia_url": "https://ballotpedia.org/Matt_Klein",
+    "latest_election": {
+      "year": 2022,
+      "election_date": "November 8, 2022",
+      "election_type": "General Election",
+      "rep_votes": 21501,
+      "rep_vote_pct": "58.24%",
+      "opponent_name": "Chris Rausch",
+      "opponent_votes": 15373,
+      "opponent_vote_pct": "41.64%",
+      "ran_unopposed": false
     }
   },
   {
@@ -915,6 +1555,18 @@
       "twitter": null,
       "facebook": null,
       "instagram": null
+    },
+    "ballotpedia_url": "https://ballotpedia.org/Eric_Pratt",
+    "latest_election": {
+      "year": 2022,
+      "election_date": "November 8, 2022",
+      "election_type": "General Election",
+      "rep_votes": 20632,
+      "rep_vote_pct": "56.59%",
+      "opponent_name": "Alicia Donahue",
+      "opponent_votes": 15753,
+      "opponent_vote_pct": "43.21%",
+      "ran_unopposed": false
     }
   },
   {
@@ -932,6 +1584,18 @@
       "twitter": null,
       "facebook": null,
       "instagram": null
+    },
+    "ballotpedia_url": "https://ballotpedia.org/Lindsey_Port",
+    "latest_election": {
+      "year": 2022,
+      "election_date": "November 8, 2022",
+      "election_type": "General Election",
+      "rep_votes": 18996,
+      "rep_vote_pct": "55.30%",
+      "opponent_name": "Pam Myhra",
+      "opponent_votes": 15316,
+      "opponent_vote_pct": "44.59%",
+      "ran_unopposed": false
     }
   },
   {
@@ -949,6 +1613,18 @@
       "twitter": null,
       "facebook": null,
       "instagram": null
+    },
+    "ballotpedia_url": "https://ballotpedia.org/Erin_Maye_Quade",
+    "latest_election": {
+      "year": 2022,
+      "election_date": "November 8, 2022",
+      "election_type": "General Election",
+      "rep_votes": 22281,
+      "rep_vote_pct": "56.66%",
+      "opponent_name": "Jim Bean",
+      "opponent_votes": 17007,
+      "opponent_vote_pct": "43.25%",
+      "ran_unopposed": false
     }
   },
   {
@@ -966,6 +1642,18 @@
       "twitter": null,
       "facebook": null,
       "instagram": null
+    },
+    "ballotpedia_url": "https://ballotpedia.org/Zach_Duckworth",
+    "latest_election": {
+      "year": 2022,
+      "election_date": "November 8, 2022",
+      "election_type": "General Election",
+      "rep_votes": 24258,
+      "rep_vote_pct": "58.61%",
+      "opponent_name": "Jackie Craig",
+      "opponent_votes": 17106,
+      "opponent_vote_pct": "41.33%",
+      "ran_unopposed": false
     }
   },
   {
@@ -983,6 +1671,18 @@
       "twitter": null,
       "facebook": null,
       "instagram": null
+    },
+    "ballotpedia_url": "https://ballotpedia.org/Bill_Lieske",
+    "latest_election": {
+      "year": 2022,
+      "election_date": "November 8, 2022",
+      "election_type": "General Election",
+      "rep_votes": 21125,
+      "rep_vote_pct": "52.79%",
+      "opponent_name": "Clarice Grabau",
+      "opponent_votes": 18854,
+      "opponent_vote_pct": "47.11%",
+      "ran_unopposed": false
     }
   },
   {
@@ -1000,6 +1700,18 @@
       "twitter": null,
       "facebook": null,
       "instagram": null
+    },
+    "ballotpedia_url": "https://ballotpedia.org/Bobby_Joe_Champion",
+    "latest_election": {
+      "year": 2022,
+      "election_date": "November 8, 2022",
+      "election_type": "General Election",
+      "rep_votes": 22806,
+      "rep_vote_pct": "98.28%",
+      "opponent_name": null,
+      "opponent_votes": null,
+      "opponent_vote_pct": null,
+      "ran_unopposed": true
     }
   },
   {
@@ -1017,6 +1729,19 @@
       "twitter": null,
       "facebook": null,
       "instagram": null
+    },
+    "ballotpedia_url": "https://ballotpedia.org/Doron_Clark",
+    "latest_election": {
+      "year": 2025,
+      "election_date": "January 28, 2025",
+      "election_type": "Special Election",
+      "rep_votes": 7783,
+      "rep_vote_pct": "90.91%",
+      "opponent_name": "Abigail Wolters",
+      "opponent_votes": 746,
+      "opponent_vote_pct": "8.71%",
+      "ran_unopposed": false,
+      "note": "Replacing Kari Dziedzic (D), who died December 27, 2024"
     }
   },
   {
@@ -1034,6 +1759,18 @@
       "twitter": null,
       "facebook": null,
       "instagram": null
+    },
+    "ballotpedia_url": "https://ballotpedia.org/Scott_Dibble",
+    "latest_election": {
+      "year": 2022,
+      "election_date": "November 8, 2022",
+      "election_type": "General Election",
+      "rep_votes": 37366,
+      "rep_vote_pct": "98.71%",
+      "opponent_name": null,
+      "opponent_votes": null,
+      "opponent_vote_pct": null,
+      "ran_unopposed": true
     }
   },
   {
@@ -1051,6 +1788,18 @@
       "twitter": null,
       "facebook": null,
       "instagram": null
+    },
+    "ballotpedia_url": "https://ballotpedia.org/Omar_Fateh",
+    "latest_election": {
+      "year": 2022,
+      "election_date": "November 8, 2022",
+      "election_type": "General Election",
+      "rep_votes": 24271,
+      "rep_vote_pct": "90.28%",
+      "opponent_name": "Andrew Schmitz",
+      "opponent_votes": 2528,
+      "opponent_vote_pct": "9.40%",
+      "ran_unopposed": false
     }
   },
   {
@@ -1068,6 +1817,18 @@
       "twitter": null,
       "facebook": null,
       "instagram": null
+    },
+    "ballotpedia_url": "https://ballotpedia.org/Zaynab_Mohamed",
+    "latest_election": {
+      "year": 2022,
+      "election_date": "November 8, 2022",
+      "election_type": "General Election",
+      "rep_votes": 39063,
+      "rep_vote_pct": "85.63%",
+      "opponent_name": "Shawn Holster",
+      "opponent_votes": 6449,
+      "opponent_vote_pct": "14.14%",
+      "ran_unopposed": false
     }
   },
   {
@@ -1085,6 +1846,18 @@
       "twitter": null,
       "facebook": null,
       "instagram": null
+    },
+    "ballotpedia_url": "https://ballotpedia.org/Erin_Murphy_(Minnesota)",
+    "latest_election": {
+      "year": 2022,
+      "election_date": "November 8, 2022",
+      "election_type": "General Election",
+      "rep_votes": 36686,
+      "rep_vote_pct": "84.19%",
+      "opponent_name": "Robert Bushard",
+      "opponent_votes": 6823,
+      "opponent_vote_pct": "15.66%",
+      "ran_unopposed": false
     }
   },
   {
@@ -1102,6 +1875,18 @@
       "twitter": null,
       "facebook": null,
       "instagram": null
+    },
+    "ballotpedia_url": "https://ballotpedia.org/Sandra_Pappas",
+    "latest_election": {
+      "year": 2022,
+      "election_date": "November 8, 2022",
+      "election_type": "General Election",
+      "rep_votes": 20228,
+      "rep_vote_pct": "80.12%",
+      "opponent_name": "Paul Holmgren",
+      "opponent_votes": 4960,
+      "opponent_vote_pct": "19.65%",
+      "ran_unopposed": false
     }
   },
   {
@@ -1119,6 +1904,18 @@
       "twitter": null,
       "facebook": null,
       "instagram": null
+    },
+    "ballotpedia_url": "https://ballotpedia.org/Clare_Oumou_Verbeten",
+    "latest_election": {
+      "year": 2022,
+      "election_date": "November 8, 2022",
+      "election_type": "General Election",
+      "rep_votes": 23987,
+      "rep_vote_pct": "78.41%",
+      "opponent_name": "Mikki M Murray",
+      "opponent_votes": 5522,
+      "opponent_vote_pct": "18.05%",
+      "ran_unopposed": false
     }
   },
   {
@@ -1136,6 +1933,18 @@
       "twitter": null,
       "facebook": null,
       "instagram": null
+    },
+    "ballotpedia_url": "https://ballotpedia.org/Foung_Hawj",
+    "latest_election": {
+      "year": 2022,
+      "election_date": "November 8, 2022",
+      "election_type": "General Election",
+      "rep_votes": 14692,
+      "rep_vote_pct": "96.59%",
+      "opponent_name": null,
+      "opponent_votes": null,
+      "opponent_vote_pct": null,
+      "ran_unopposed": true
     }
   }
 ]

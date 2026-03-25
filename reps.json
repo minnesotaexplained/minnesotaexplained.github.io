@@ -9,7 +9,19 @@
     "term_expires": "2026",
     "image_url": "https://www.house.mn.gov/hinfo/memberimgls94/01A.gif",
     "government_email": "rep.john.burkel@house.mn.gov",
-    "government_phone": "651-296-9635"
+    "government_phone": "651-296-9635",
+    "ballotpedia_url": "https://ballotpedia.org/John_Burkel",
+    "latest_election": {
+      "year": 2024,
+      "election_date": "November 5, 2024",
+      "election_type": "General Election",
+      "rep_votes": 17420,
+      "rep_vote_pct": "76.07%",
+      "opponent_name": "James Sceville",
+      "opponent_votes": 5466,
+      "opponent_vote_pct": "23.87%",
+      "ran_unopposed": false
+    }
   },
   {
     "name": "Steve Gander",
@@ -21,7 +33,19 @@
     "term_expires": "2026",
     "image_url": "https://www.house.mn.gov/hinfo/memberimgls94/01B.gif",
     "government_email": "rep.steve.gander@house.mn.gov",
-    "government_phone": "651-296-5091"
+    "government_phone": "651-296-5091",
+    "ballotpedia_url": "https://ballotpedia.org/Steve_Gander",
+    "latest_election": {
+      "year": 2024,
+      "election_date": "November 5, 2024",
+      "election_type": "General Election",
+      "rep_votes": 13939,
+      "rep_vote_pct": "67.20%",
+      "opponent_name": "Mike Christopherson",
+      "opponent_votes": 6791,
+      "opponent_vote_pct": "32.74%",
+      "ran_unopposed": false
+    }
   },
   {
     "name": "Bidal Duran",
@@ -33,7 +57,19 @@
     "term_expires": "2026",
     "image_url": "https://www.house.mn.gov/hinfo/memberimgls94/02A.gif",
     "government_email": "rep.bidal.duran@house.mn.gov",
-    "government_phone": "651-296-4265"
+    "government_phone": "651-296-4265",
+    "ballotpedia_url": "https://ballotpedia.org/Bidal_Duran",
+    "latest_election": {
+      "year": 2024,
+      "election_date": "November 5, 2024",
+      "election_type": "General Election",
+      "rep_votes": 11518,
+      "rep_vote_pct": "51.86%",
+      "opponent_name": "Reed Olson",
+      "opponent_votes": 10667,
+      "opponent_vote_pct": "48.03%",
+      "ran_unopposed": false
+    }
   },
   {
     "name": "Matt Bliss",
@@ -45,7 +81,19 @@
     "term_expires": "2026",
     "image_url": "https://www.house.mn.gov/hinfo/memberimgls94/02B.gif",
     "government_email": "rep.matt.bliss@house.mn.gov",
-    "government_phone": "651-296-5516"
+    "government_phone": "651-296-5516",
+    "ballotpedia_url": "https://ballotpedia.org/Matt_Bliss",
+    "latest_election": {
+      "year": 2024,
+      "election_date": "November 5, 2024",
+      "election_type": "General Election",
+      "rep_votes": 14372,
+      "rep_vote_pct": "63.73%",
+      "opponent_name": "Michael Reyes",
+      "opponent_votes": 8168,
+      "opponent_vote_pct": "36.22%",
+      "ran_unopposed": false
+    }
   },
   {
     "name": "Roger Skraba",
@@ -57,7 +105,19 @@
     "term_expires": "2026",
     "image_url": "https://www.house.mn.gov/hinfo/memberimgls94/03A.gif",
     "government_email": "rep.roger.skraba@house.mn.gov",
-    "government_phone": "651-296-2190"
+    "government_phone": "651-296-2190",
+    "ballotpedia_url": "https://ballotpedia.org/Roger_Skraba",
+    "latest_election": {
+      "year": 2024,
+      "election_date": "November 5, 2024",
+      "election_type": "General Election",
+      "rep_votes": 14443,
+      "rep_vote_pct": "55.54%",
+      "opponent_name": "Harley Droba",
+      "opponent_votes": 10779,
+      "opponent_vote_pct": "41.45%",
+      "ran_unopposed": false
+    }
   },
   {
     "name": "Natalie Zeleznikar",
@@ -69,7 +129,19 @@
     "term_expires": "2026",
     "image_url": "https://www.house.mn.gov/hinfo/memberimgls94/03B.gif",
     "government_email": "rep.natalie.zeleznikar@house.mn.gov",
-    "government_phone": "651-296-2676"
+    "government_phone": "651-296-2676",
+    "ballotpedia_url": "https://ballotpedia.org/Natalie_Zeleznikar",
+    "latest_election": {
+      "year": 2024,
+      "election_date": "November 5, 2024",
+      "election_type": "General Election",
+      "rep_votes": 13480,
+      "rep_vote_pct": "50.25%",
+      "opponent_name": "Mark Munger",
+      "opponent_votes": 13321,
+      "opponent_vote_pct": "49.65%",
+      "ran_unopposed": false
+    }
   },
   {
     "name": "Heather Keeler",
@@ -81,7 +153,19 @@
     "term_expires": "2026",
     "image_url": "https://www.house.mn.gov/hinfo/memberimgls94/04A.gif",
     "government_email": "rep.heather.keeler@house.mn.gov",
-    "government_phone": "651-296-5515"
+    "government_phone": "651-296-5515",
+    "ballotpedia_url": "https://ballotpedia.org/Heather_Keeler",
+    "latest_election": {
+      "year": 2024,
+      "election_date": "November 5, 2024",
+      "election_type": "General Election",
+      "rep_votes": 11072,
+      "rep_vote_pct": "58.50%",
+      "opponent_name": "Joshua Zincke",
+      "opponent_votes": 7822,
+      "opponent_vote_pct": "41.33%",
+      "ran_unopposed": false
+    }
   },
   {
     "name": "Jim Joy",
@@ -93,7 +177,19 @@
     "term_expires": "2026",
     "image_url": "https://www.house.mn.gov/hinfo/memberimgls94/04B.gif",
     "government_email": "rep.jim.joy@house.mn.gov",
-    "government_phone": "651-296-6829"
+    "government_phone": "651-296-6829",
+    "ballotpedia_url": "https://ballotpedia.org/Jim_Joy",
+    "latest_election": {
+      "year": 2024,
+      "election_date": "November 5, 2024",
+      "election_type": "General Election",
+      "rep_votes": 15273,
+      "rep_vote_pct": "66.41%",
+      "opponent_name": "Thaddeus Laugisch",
+      "opponent_votes": 7709,
+      "opponent_vote_pct": "33.52%",
+      "ran_unopposed": false
+    }
   },
   {
     "name": "Krista Knudsen",
@@ -105,7 +201,19 @@
     "term_expires": "2026",
     "image_url": "https://www.house.mn.gov/hinfo/memberimgls94/05A.gif",
     "government_email": "rep.krista.knudsen@house.mn.gov",
-    "government_phone": "651-296-9918"
+    "government_phone": "651-296-9918",
+    "ballotpedia_url": "https://ballotpedia.org/Krista_Knudsen",
+    "latest_election": {
+      "year": 2024,
+      "election_date": "November 5, 2024",
+      "election_type": "General Election",
+      "rep_votes": 18855,
+      "rep_vote_pct": "71.34%",
+      "opponent_name": "Brian Hobson",
+      "opponent_votes": 7551,
+      "opponent_vote_pct": "28.57%",
+      "ran_unopposed": false
+    }
   },
   {
     "name": "Mike Wiener",
@@ -117,7 +225,19 @@
     "term_expires": "2026",
     "image_url": "https://www.house.mn.gov/hinfo/memberimgls94/05B.gif",
     "government_email": "rep.mike.wiener@house.mn.gov",
-    "government_phone": "651-296-4293"
+    "government_phone": "651-296-4293",
+    "ballotpedia_url": "https://ballotpedia.org/Mike_Wiener",
+    "latest_election": {
+      "year": 2024,
+      "election_date": "November 5, 2024",
+      "election_type": "General Election",
+      "rep_votes": 17604,
+      "rep_vote_pct": "75.38%",
+      "opponent_name": "Gregg Hendrickson",
+      "opponent_votes": 5729,
+      "opponent_vote_pct": "24.53%",
+      "ran_unopposed": false
+    }
   },
   {
     "name": "Ben Davis",
@@ -129,7 +249,19 @@
     "term_expires": "2026",
     "image_url": "https://www.house.mn.gov/hinfo/memberimgls94/06A.gif",
     "government_email": "rep.ben.davis@house.mn.gov",
-    "government_phone": "651-296-0172"
+    "government_phone": "651-296-0172",
+    "ballotpedia_url": "https://ballotpedia.org/Ben_Davis_(Minnesota)",
+    "latest_election": {
+      "year": 2024,
+      "election_date": "November 5, 2024",
+      "election_type": "General Election",
+      "rep_votes": 17765,
+      "rep_vote_pct": "66.04%",
+      "opponent_name": "Earl Butenhoff",
+      "opponent_votes": 9116,
+      "opponent_vote_pct": "33.89%",
+      "ran_unopposed": false
+    }
   },
   {
     "name": "Josh Heintzeman",
@@ -141,7 +273,19 @@
     "term_expires": "2026",
     "image_url": "https://www.house.mn.gov/hinfo/memberimgls94/06B.gif",
     "government_email": "rep.josh.heintzeman@house.mn.gov",
-    "government_phone": "651-296-4333"
+    "government_phone": "651-296-4333",
+    "ballotpedia_url": "https://ballotpedia.org/Josh_Heintzeman",
+    "latest_election": {
+      "year": 2024,
+      "election_date": "November 5, 2024",
+      "election_type": "General Election",
+      "rep_votes": 15744,
+      "rep_vote_pct": "63.40%",
+      "opponent_name": "Emily LeClaire",
+      "opponent_votes": 8209,
+      "opponent_vote_pct": "33.06%",
+      "ran_unopposed": false
+    }
   },
   {
     "name": "Spencer Igo",
@@ -153,7 +297,19 @@
     "term_expires": "2026",
     "image_url": "https://www.house.mn.gov/hinfo/memberimgls94/07A.gif",
     "government_email": "rep.spencer.igo@house.mn.gov",
-    "government_phone": "651-296-4936"
+    "government_phone": "651-296-4936",
+    "ballotpedia_url": "https://ballotpedia.org/Spencer_Igo",
+    "latest_election": {
+      "year": 2024,
+      "election_date": "November 5, 2024",
+      "election_type": "General Election",
+      "rep_votes": 14422,
+      "rep_vote_pct": "60.31%",
+      "opponent_name": "Aron Schnaser",
+      "opponent_votes": 9467,
+      "opponent_vote_pct": "39.59%",
+      "ran_unopposed": false
+    }
   },
   {
     "name": "Cal Warwas",
@@ -165,7 +321,19 @@
     "term_expires": "2026",
     "image_url": "https://www.house.mn.gov/hinfo/memberimgls94/07B.gif",
     "government_email": "rep.cal.warwas@house.mn.gov",
-    "government_phone": "651-296-0170"
+    "government_phone": "651-296-0170",
+    "ballotpedia_url": "https://ballotpedia.org/Cal_Warwas",
+    "latest_election": {
+      "year": 2024,
+      "election_date": "November 5, 2024",
+      "election_type": "General Election",
+      "rep_votes": 13781,
+      "rep_vote_pct": "56.34%",
+      "opponent_name": "Lorrie Janatopoulos",
+      "opponent_votes": 10655,
+      "opponent_vote_pct": "43.56%",
+      "ran_unopposed": false
+    }
   },
   {
     "name": "Pete Johnson",
@@ -177,7 +345,19 @@
     "term_expires": "2026",
     "image_url": "https://www.house.mn.gov/hinfo/memberimgls94/08A.gif",
     "government_email": "rep.pete.johnson@house.mn.gov",
-    "government_phone": "651-296-4246"
+    "government_phone": "651-296-4246",
+    "ballotpedia_url": "https://ballotpedia.org/Pete_Johnson",
+    "latest_election": {
+      "year": 2024,
+      "election_date": "November 5, 2024",
+      "election_type": "General Election",
+      "rep_votes": 15006,
+      "rep_vote_pct": "68.22%",
+      "opponent_name": "Mark McGrew",
+      "opponent_votes": 6962,
+      "opponent_vote_pct": "31.65%",
+      "ran_unopposed": false
+    }
   },
   {
     "name": "Liish Kozlowski",
@@ -189,7 +369,19 @@
     "term_expires": "2026",
     "image_url": "https://www.house.mn.gov/hinfo/memberimgls94/08B.gif",
     "government_email": "rep.liish.kozlowski@house.mn.gov",
-    "government_phone": "651-296-2228"
+    "government_phone": "651-296-2228",
+    "ballotpedia_url": "https://ballotpedia.org/Alicia_Kozlowski",
+    "latest_election": {
+      "year": 2024,
+      "election_date": "November 5, 2024",
+      "election_type": "General Election",
+      "rep_votes": 17440,
+      "rep_vote_pct": "68.53%",
+      "opponent_name": "Shawn Savela",
+      "opponent_votes": 7954,
+      "opponent_vote_pct": "31.25%",
+      "ran_unopposed": false
+    }
   },
   {
     "name": "Jeff Backer",
@@ -201,7 +393,19 @@
     "term_expires": "2026",
     "image_url": "https://www.house.mn.gov/hinfo/memberimgls94/09A.gif",
     "government_email": "rep.jeff.backer@house.mn.gov",
-    "government_phone": "651-296-4929"
+    "government_phone": "651-296-4929",
+    "ballotpedia_url": "https://ballotpedia.org/Jeff_Backer",
+    "latest_election": {
+      "year": 2024,
+      "election_date": "November 5, 2024",
+      "election_type": "General Election",
+      "rep_votes": 15587,
+      "rep_vote_pct": "68.76%",
+      "opponent_name": "Michael Ziomko",
+      "opponent_votes": 7042,
+      "opponent_vote_pct": "31.06%",
+      "ran_unopposed": false
+    }
   },
   {
     "name": "Tom Murphy",
@@ -213,7 +417,19 @@
     "term_expires": "2026",
     "image_url": "https://www.house.mn.gov/hinfo/memberimgls94/09B.gif",
     "government_email": "rep.tom.murphy@house.mn.gov",
-    "government_phone": "651-296-4946"
+    "government_phone": "651-296-4946",
+    "ballotpedia_url": "https://ballotpedia.org/Tom_Murphy_(Minnesota)",
+    "latest_election": {
+      "year": 2024,
+      "election_date": "November 5, 2024",
+      "election_type": "General Election",
+      "rep_votes": 19366,
+      "rep_vote_pct": "71.61%",
+      "opponent_name": "Jason Satter",
+      "opponent_votes": 7661,
+      "opponent_vote_pct": "28.33%",
+      "ran_unopposed": false
+    }
   },
   {
     "name": "Ron Kresha",
@@ -225,7 +441,19 @@
     "term_expires": "2026",
     "image_url": "https://www.house.mn.gov/hinfo/memberimgls94/10A.gif",
     "government_email": "rep.ron.kresha@house.mn.gov",
-    "government_phone": "651-296-4247"
+    "government_phone": "651-296-4247",
+    "ballotpedia_url": "https://ballotpedia.org/Ron_Kresha",
+    "latest_election": {
+      "year": 2024,
+      "election_date": "November 5, 2024",
+      "election_type": "General Election",
+      "rep_votes": 17957,
+      "rep_vote_pct": "71.12%",
+      "opponent_name": "Julia Samsal Hipp",
+      "opponent_votes": 7159,
+      "opponent_vote_pct": "28.35%",
+      "ran_unopposed": false
+    }
   },
   {
     "name": "Isaac Schultz",
@@ -237,7 +465,19 @@
     "term_expires": "2026",
     "image_url": "https://www.house.mn.gov/hinfo/memberimgls94/10B.gif",
     "government_email": "rep.isaac.schultz@house.mn.gov",
-    "government_phone": "651-296-6746"
+    "government_phone": "651-296-6746",
+    "ballotpedia_url": "https://ballotpedia.org/Isaac_Schultz",
+    "latest_election": {
+      "year": 2024,
+      "election_date": "November 5, 2024",
+      "election_type": "General Election",
+      "rep_votes": 19959,
+      "rep_vote_pct": "79.64%",
+      "opponent_name": "JoEllen Burns",
+      "opponent_votes": 5079,
+      "opponent_vote_pct": "20.27%",
+      "ran_unopposed": false
+    }
   },
   {
     "name": "Jeff Dotseth",
@@ -249,7 +489,19 @@
     "term_expires": "2026",
     "image_url": "https://www.house.mn.gov/hinfo/memberimgls94/11A.gif",
     "government_email": "rep.jeff.dotseth@house.mn.gov",
-    "government_phone": "651-296-4308"
+    "government_phone": "651-296-4308",
+    "ballotpedia_url": "https://ballotpedia.org/Jeff_Dotseth",
+    "latest_election": {
+      "year": 2024,
+      "election_date": "November 5, 2024",
+      "election_type": "General Election",
+      "rep_votes": 12252,
+      "rep_vote_pct": "51.19%",
+      "opponent_name": "Pete Radosevich",
+      "opponent_votes": 11588,
+      "opponent_vote_pct": "48.41%",
+      "ran_unopposed": false
+    }
   },
   {
     "name": "Nathan Nelson",
@@ -261,7 +513,19 @@
     "term_expires": "2026",
     "image_url": "https://www.house.mn.gov/hinfo/memberimgls94/11B.gif",
     "government_email": "rep.nathan.nelson@house.mn.gov",
-    "government_phone": "651-296-0518"
+    "government_phone": "651-296-0518",
+    "ballotpedia_url": "https://ballotpedia.org/Nathan_Nelson",
+    "latest_election": {
+      "year": 2024,
+      "election_date": "November 5, 2024",
+      "election_type": "General Election",
+      "rep_votes": 16047,
+      "rep_vote_pct": "68.62%",
+      "opponent_name": "Eric Olson",
+      "opponent_votes": 7320,
+      "opponent_vote_pct": "31.30%",
+      "ran_unopposed": false
+    }
   },
   {
     "name": "Paul Anderson",
@@ -273,7 +537,19 @@
     "term_expires": "2026",
     "image_url": "https://www.house.mn.gov/hinfo/memberimgls94/12A.gif",
     "government_email": "rep.paul.anderson@house.mn.gov",
-    "government_phone": "651-296-4317"
+    "government_phone": "651-296-4317",
+    "ballotpedia_url": "https://ballotpedia.org/Paul_Anderson_(Minnesota)",
+    "latest_election": {
+      "year": 2024,
+      "election_date": "November 5, 2024",
+      "election_type": "General Election",
+      "rep_votes": 17110,
+      "rep_vote_pct": "73.80%",
+      "opponent_name": "Becky K. Parker",
+      "opponent_votes": 6058,
+      "opponent_vote_pct": "26.13%",
+      "ran_unopposed": false
+    }
   },
   {
     "name": "Mary Franson",
@@ -285,7 +561,19 @@
     "term_expires": "2026",
     "image_url": "https://www.house.mn.gov/hinfo/memberimgls94/12B.gif",
     "government_email": "rep.mary.franson@house.mn.gov",
-    "government_phone": "651-296-3201"
+    "government_phone": "651-296-3201",
+    "ballotpedia_url": "https://ballotpedia.org/Mary_Franson",
+    "latest_election": {
+      "year": 2024,
+      "election_date": "November 5, 2024",
+      "election_type": "General Election",
+      "rep_votes": 18571,
+      "rep_vote_pct": "76.73%",
+      "opponent_name": "Judd Hoff",
+      "opponent_votes": 4946,
+      "opponent_vote_pct": "20.44%",
+      "ran_unopposed": false
+    }
   },
   {
     "name": "Lisa Demuth",
@@ -297,7 +585,19 @@
     "term_expires": "2026",
     "image_url": "https://www.house.mn.gov/hinfo/memberimgls94/13A.gif",
     "government_email": "rep.lisa.demuth@house.mn.gov",
-    "government_phone": "651-296-4373"
+    "government_phone": "651-296-4373",
+    "ballotpedia_url": "https://ballotpedia.org/Lisa_Demuth",
+    "latest_election": {
+      "year": 2024,
+      "election_date": "November 5, 2024",
+      "election_type": "General Election",
+      "rep_votes": 19215,
+      "rep_vote_pct": "75.30%",
+      "opponent_name": "Cindy Aho",
+      "opponent_votes": 6282,
+      "opponent_vote_pct": "24.62%",
+      "ran_unopposed": false
+    }
   },
   {
     "name": "Tim O'Driscoll",
@@ -309,7 +609,19 @@
     "term_expires": "2026",
     "image_url": "https://www.house.mn.gov/hinfo/memberimgls94/13B.gif",
     "government_email": "rep.tim.odriscoll@house.mn.gov",
-    "government_phone": "651-296-7808"
+    "government_phone": "651-296-7808",
+    "ballotpedia_url": "https://ballotpedia.org/Tim_O%27Driscoll",
+    "latest_election": {
+      "year": 2024,
+      "election_date": "November 5, 2024",
+      "election_type": "General Election",
+      "rep_votes": 16467,
+      "rep_vote_pct": "68.63%",
+      "opponent_name": "Dusty Bolstad",
+      "opponent_votes": 7505,
+      "opponent_vote_pct": "31.28%",
+      "ran_unopposed": false
+    }
   },
   {
     "name": "Bernie Perryman",
@@ -321,7 +633,19 @@
     "term_expires": "2026",
     "image_url": "https://www.house.mn.gov/hinfo/memberimgls94/14A.gif",
     "government_email": "rep.bernie.perryman@house.mn.gov",
-    "government_phone": "651-296-6316"
+    "government_phone": "651-296-6316",
+    "ballotpedia_url": "https://ballotpedia.org/Bernie_Perryman",
+    "latest_election": {
+      "year": 2024,
+      "election_date": "November 5, 2024",
+      "election_type": "General Election",
+      "rep_votes": 10967,
+      "rep_vote_pct": "56.31%",
+      "opponent_name": "Abdi Daisane",
+      "opponent_votes": 8463,
+      "opponent_vote_pct": "43.46%",
+      "ran_unopposed": false
+    }
   },
   {
     "name": "Dan Wolgamott",
@@ -333,7 +657,19 @@
     "term_expires": "2026",
     "image_url": "https://www.house.mn.gov/hinfo/memberimgls94/14B.gif",
     "government_email": "rep.dan.wolgamott@house.mn.gov",
-    "government_phone": "651-296-6612"
+    "government_phone": "651-296-6612",
+    "ballotpedia_url": "https://ballotpedia.org/Dan_Wolgamott",
+    "latest_election": {
+      "year": 2024,
+      "election_date": "November 5, 2024",
+      "election_type": "General Election",
+      "rep_votes": 10005,
+      "rep_vote_pct": "50.36%",
+      "opponent_name": "Sue Ek",
+      "opponent_votes": 9814,
+      "opponent_vote_pct": "49.40%",
+      "ran_unopposed": false
+    }
   },
   {
     "name": "Chris Swedzinski",
@@ -345,7 +681,19 @@
     "term_expires": "2026",
     "image_url": "https://www.house.mn.gov/hinfo/memberimgls94/15A.gif",
     "government_email": "rep.chris.swedzinski@house.mn.gov",
-    "government_phone": "651-296-5374"
+    "government_phone": "651-296-5374",
+    "ballotpedia_url": "https://ballotpedia.org/Chris_Swedzinski",
+    "latest_election": {
+      "year": 2024,
+      "election_date": "November 5, 2024",
+      "election_type": "General Election",
+      "rep_votes": 16111,
+      "rep_vote_pct": "71.68%",
+      "opponent_name": "Anthony M Studemann",
+      "opponent_votes": 6347,
+      "opponent_vote_pct": "28.24%",
+      "ran_unopposed": false
+    }
   },
   {
     "name": "Paul Torkelson",
@@ -357,7 +705,19 @@
     "term_expires": "2026",
     "image_url": "https://www.house.mn.gov/hinfo/memberimgls94/15B.gif",
     "government_email": "rep.paul.torkelson@house.mn.gov",
-    "government_phone": "651-296-9303"
+    "government_phone": "651-296-9303",
+    "ballotpedia_url": "https://ballotpedia.org/Paul_Torkelson",
+    "latest_election": {
+      "year": 2024,
+      "election_date": "November 5, 2024",
+      "election_type": "General Election",
+      "rep_votes": 16814,
+      "rep_vote_pct": "72.65%",
+      "opponent_name": "Tom Kuster",
+      "opponent_votes": 6315,
+      "opponent_vote_pct": "27.29%",
+      "ran_unopposed": false
+    }
   },
   {
     "name": "Scott Van Binsbergen",
@@ -369,7 +729,19 @@
     "term_expires": "2026",
     "image_url": "https://www.house.mn.gov/hinfo/memberimgls94/16A.gif",
     "government_email": "rep.scott.vanbinsbergen@house.mn.gov",
-    "government_phone": "651-296-4344"
+    "government_phone": "651-296-4344",
+    "ballotpedia_url": "https://ballotpedia.org/Scott_Van_Binsbergen",
+    "latest_election": {
+      "year": 2024,
+      "election_date": "November 5, 2024",
+      "election_type": "General Election",
+      "rep_votes": 16039,
+      "rep_vote_pct": "71.60%",
+      "opponent_name": "Kathy Hegstad",
+      "opponent_votes": 6338,
+      "opponent_vote_pct": "28.29%",
+      "ran_unopposed": false
+    }
   },
   {
     "name": "Dave Baker",
@@ -381,7 +753,19 @@
     "term_expires": "2026",
     "image_url": "https://www.house.mn.gov/hinfo/memberimgls94/16B.gif",
     "government_email": "rep.dave.baker@house.mn.gov",
-    "government_phone": "651-296-6206"
+    "government_phone": "651-296-6206",
+    "ballotpedia_url": "https://ballotpedia.org/Dave_Baker_(Minnesota)",
+    "latest_election": {
+      "year": 2024,
+      "election_date": "November 5, 2024",
+      "election_type": "General Election",
+      "rep_votes": 16847,
+      "rep_vote_pct": "76.10%",
+      "opponent_name": "Josiah Ampian",
+      "opponent_votes": 5271,
+      "opponent_vote_pct": "23.81%",
+      "ran_unopposed": false
+    }
   },
   {
     "name": "Dawn Gillman",
@@ -393,7 +777,19 @@
     "term_expires": "2026",
     "image_url": "https://www.house.mn.gov/hinfo/memberimgls94/17A.gif",
     "government_email": "rep.dawn.gillman@house.mn.gov",
-    "government_phone": "651-296-4228"
+    "government_phone": "651-296-4228",
+    "ballotpedia_url": "https://ballotpedia.org/Dawn_Gillman",
+    "latest_election": {
+      "year": 2024,
+      "election_date": "November 5, 2024",
+      "election_type": "General Election",
+      "rep_votes": 17053,
+      "rep_vote_pct": "71.03%",
+      "opponent_name": "Chad Tschimperle",
+      "opponent_votes": 6930,
+      "opponent_vote_pct": "28.87%",
+      "ran_unopposed": false
+    }
   },
   {
     "name": "Bobbie Harder",
@@ -405,7 +801,19 @@
     "term_expires": "2026",
     "image_url": "https://www.house.mn.gov/hinfo/memberimgls94/17B.gif",
     "government_email": "rep.bobbie.harder@house.mn.gov",
-    "government_phone": "651-296-4229"
+    "government_phone": "651-296-4229",
+    "ballotpedia_url": "https://ballotpedia.org/Bobbie_Harder",
+    "latest_election": {
+      "year": 2024,
+      "election_date": "November 5, 2024",
+      "election_type": "General Election",
+      "rep_votes": 17424,
+      "rep_vote_pct": "70.03%",
+      "opponent_name": "Jennifer Nuesse",
+      "opponent_votes": 7431,
+      "opponent_vote_pct": "29.87%",
+      "ran_unopposed": false
+    }
   },
   {
     "name": "Erica Schwartz",
@@ -417,7 +825,19 @@
     "term_expires": "2026",
     "image_url": "https://www.house.mn.gov/hinfo/memberimgls94/18A.gif",
     "government_email": "rep.erica.schwartz@house.mn.gov",
-    "government_phone": "651-296-8634"
+    "government_phone": "651-296-8634",
+    "ballotpedia_url": "https://ballotpedia.org/Erica_Schwartz",
+    "latest_election": {
+      "year": 2024,
+      "election_date": "November 5, 2024",
+      "election_type": "General Election",
+      "rep_votes": 12282,
+      "rep_vote_pct": "51.60%",
+      "opponent_name": "Jeff Brand",
+      "opponent_votes": 11480,
+      "opponent_vote_pct": "48.23%",
+      "ran_unopposed": false
+    }
   },
   {
     "name": "Luke Frederick",
@@ -429,7 +849,19 @@
     "term_expires": "2026",
     "image_url": "https://www.house.mn.gov/hinfo/memberimgls94/18B.gif",
     "government_email": "rep.luke.frederick@house.mn.gov",
-    "government_phone": "651-296-3248"
+    "government_phone": "651-296-3248",
+    "ballotpedia_url": "https://ballotpedia.org/Luke_Frederick",
+    "latest_election": {
+      "year": 2024,
+      "election_date": "November 5, 2024",
+      "election_type": "General Election",
+      "rep_votes": 10892,
+      "rep_vote_pct": "55.64%",
+      "opponent_name": "Dar Vosburg",
+      "opponent_votes": 8650,
+      "opponent_vote_pct": "44.18%",
+      "ran_unopposed": false
+    }
   },
   {
     "name": "Keith Allen",
@@ -441,7 +873,19 @@
     "term_expires": "2026",
     "image_url": "https://www.house.mn.gov/hinfo/memberimgls94/19A.gif",
     "government_email": "rep.keith.allen@house.mn.gov",
-    "government_phone": "651-296-8237"
+    "government_phone": "651-296-8237",
+    "ballotpedia_url": "https://ballotpedia.org/Keith_Allen_(Minnesota)",
+    "latest_election": {
+      "year": 2024,
+      "election_date": "November 5, 2024",
+      "election_type": "General Election",
+      "rep_votes": 13366,
+      "rep_vote_pct": "64.59%",
+      "opponent_name": "Jessica Navarro",
+      "opponent_votes": 7311,
+      "opponent_vote_pct": "35.33%",
+      "ran_unopposed": false
+    }
   },
   {
     "name": "Tom Sexton",
@@ -453,7 +897,19 @@
     "term_expires": "2026",
     "image_url": "https://www.house.mn.gov/hinfo/memberimgls94/19B.gif",
     "government_email": "rep.tom.sexton@house.mn.gov",
-    "government_phone": "651-296-5368"
+    "government_phone": "651-296-5368",
+    "ballotpedia_url": "https://ballotpedia.org/Tom_Sexton",
+    "latest_election": {
+      "year": 2024,
+      "election_date": "November 5, 2024",
+      "election_type": "General Election",
+      "rep_votes": 14620,
+      "rep_vote_pct": "66.03%",
+      "opponent_name": "Edelgard Fernandez Mejia",
+      "opponent_votes": 7495,
+      "opponent_vote_pct": "33.85%",
+      "ran_unopposed": false
+    }
   },
   {
     "name": "Pam Altendorf",
@@ -465,7 +921,19 @@
     "term_expires": "2026",
     "image_url": "https://www.house.mn.gov/hinfo/memberimgls94/20A.gif",
     "government_email": "rep.pam.altendorf@house.mn.gov",
-    "government_phone": "651-296-8635"
+    "government_phone": "651-296-8635",
+    "ballotpedia_url": "https://ballotpedia.org/Pam_Altendorf",
+    "latest_election": {
+      "year": 2024,
+      "election_date": "November 5, 2024",
+      "election_type": "General Election",
+      "rep_votes": 14333,
+      "rep_vote_pct": "57.60%",
+      "opponent_name": "Heather Arndt",
+      "opponent_votes": 10535,
+      "opponent_vote_pct": "42.34%",
+      "ran_unopposed": false
+    }
   },
   {
     "name": "Steven Jacob",
@@ -477,7 +945,19 @@
     "term_expires": "2026",
     "image_url": "https://www.house.mn.gov/hinfo/memberimgls94/20B.gif",
     "government_email": "rep.steven.jacob@house.mn.gov",
-    "government_phone": "651-296-2273"
+    "government_phone": "651-296-2273",
+    "ballotpedia_url": "https://ballotpedia.org/Steven_Jacob",
+    "latest_election": {
+      "year": 2024,
+      "election_date": "November 5, 2024",
+      "election_type": "General Election",
+      "rep_votes": 16854,
+      "rep_vote_pct": "66.85%",
+      "opponent_name": "Michael Hutchinson",
+      "opponent_votes": 8333,
+      "opponent_vote_pct": "33.05%",
+      "ran_unopposed": false
+    }
   },
   {
     "name": "Joe Schomacker",
@@ -489,7 +969,19 @@
     "term_expires": "2026",
     "image_url": "https://www.house.mn.gov/hinfo/memberimgls94/21A.gif",
     "government_email": "rep.joe.schomacker@house.mn.gov",
-    "government_phone": "651-296-5505"
+    "government_phone": "651-296-5505",
+    "ballotpedia_url": "https://ballotpedia.org/Joe_Schomacker",
+    "latest_election": {
+      "year": 2024,
+      "election_date": "November 5, 2024",
+      "election_type": "General Election",
+      "rep_votes": 18669,
+      "rep_vote_pct": "83.89%",
+      "opponent_name": "Creedence Matthew Petroff (Independence-Alliance)",
+      "opponent_votes": 3517,
+      "opponent_vote_pct": "15.80%",
+      "ran_unopposed": false
+    }
   },
   {
     "name": "Marj Fogelman",
@@ -501,7 +993,19 @@
     "term_expires": "2026",
     "image_url": "https://www.house.mn.gov/hinfo/memberimgls94/21B.gif",
     "government_email": "rep.marj.fogelman@house.mn.gov",
-    "government_phone": "651-296-5373"
+    "government_phone": "651-296-5373",
+    "ballotpedia_url": "https://ballotpedia.org/Marj_Fogelman",
+    "latest_election": {
+      "year": 2024,
+      "election_date": "November 5, 2024",
+      "election_type": "General Election",
+      "rep_votes": 11983,
+      "rep_vote_pct": "66.30%",
+      "opponent_name": "Jon Wilson",
+      "opponent_votes": 6078,
+      "opponent_vote_pct": "33.63%",
+      "ran_unopposed": false
+    }
   },
   {
     "name": "Bjorn Olson",
@@ -513,7 +1017,19 @@
     "term_expires": "2026",
     "image_url": "https://www.house.mn.gov/hinfo/memberimgls94/22A.gif",
     "government_email": "rep.bjorn.olson@house.mn.gov",
-    "government_phone": "651-296-3240"
+    "government_phone": "651-296-3240",
+    "ballotpedia_url": "https://ballotpedia.org/Bjorn_Olson",
+    "latest_election": {
+      "year": 2024,
+      "election_date": "November 5, 2024",
+      "election_type": "General Election",
+      "rep_votes": 15699,
+      "rep_vote_pct": "69.42%",
+      "opponent_name": "Marisa Ulmen",
+      "opponent_votes": 6896,
+      "opponent_vote_pct": "30.49%",
+      "ran_unopposed": false
+    }
   },
   {
     "name": "Terry Stier",
@@ -525,7 +1041,19 @@
     "term_expires": "2026",
     "image_url": "https://www.house.mn.gov/hinfo/memberimgls94/22B.gif",
     "government_email": "rep.terry.stier@house.mn.gov",
-    "government_phone": "651-296-7065"
+    "government_phone": "651-296-7065",
+    "ballotpedia_url": "https://ballotpedia.org/Terry_Stier",
+    "latest_election": {
+      "year": 2024,
+      "election_date": "November 5, 2024",
+      "election_type": "General Election",
+      "rep_votes": 17053,
+      "rep_vote_pct": "68.74%",
+      "opponent_name": "Sara Nett-Torgrimson",
+      "opponent_votes": 7740,
+      "opponent_vote_pct": "31.20%",
+      "ran_unopposed": false
+    }
   },
   {
     "name": "Peggy Bennett",
@@ -537,7 +1065,19 @@
     "term_expires": "2026",
     "image_url": "https://www.house.mn.gov/hinfo/memberimgls94/23A.gif",
     "government_email": "rep.peggy.bennett@house.mn.gov",
-    "government_phone": "651-296-8216"
+    "government_phone": "651-296-8216",
+    "ballotpedia_url": "https://ballotpedia.org/Peggy_Bennett",
+    "latest_election": {
+      "year": 2024,
+      "election_date": "November 5, 2024",
+      "election_type": "General Election",
+      "rep_votes": 15554,
+      "rep_vote_pct": "67.75%",
+      "opponent_name": "Joe Staloch",
+      "opponent_votes": 7379,
+      "opponent_vote_pct": "32.14%",
+      "ran_unopposed": false
+    }
   },
   {
     "name": "Patricia Mueller",
@@ -549,7 +1089,19 @@
     "term_expires": "2026",
     "image_url": "https://www.house.mn.gov/hinfo/memberimgls94/23B.gif",
     "government_email": "rep.patricia.mueller@house.mn.gov",
-    "government_phone": "651-296-4193"
+    "government_phone": "651-296-4193",
+    "ballotpedia_url": "https://ballotpedia.org/Patricia_Mueller",
+    "latest_election": {
+      "year": 2024,
+      "election_date": "November 5, 2024",
+      "election_type": "General Election",
+      "rep_votes": 11465,
+      "rep_vote_pct": "58.34%",
+      "opponent_name": "Joseph Pacovsky",
+      "opponent_votes": 8174,
+      "opponent_vote_pct": "41.60%",
+      "ran_unopposed": false
+    }
   },
   {
     "name": "Duane Quam",
@@ -561,7 +1113,19 @@
     "term_expires": "2026",
     "image_url": "https://www.house.mn.gov/hinfo/memberimgls94/24A.gif",
     "government_email": "rep.duane.quam@house.mn.gov",
-    "government_phone": "651-296-9236"
+    "government_phone": "651-296-9236",
+    "ballotpedia_url": "https://ballotpedia.org/Duane_Quam",
+    "latest_election": {
+      "year": 2024,
+      "election_date": "November 5, 2024",
+      "election_type": "General Election",
+      "rep_votes": 15661,
+      "rep_vote_pct": "63.40%",
+      "opponent_name": "Heather Holmes",
+      "opponent_votes": 9019,
+      "opponent_vote_pct": "36.51%",
+      "ran_unopposed": false
+    }
   },
   {
     "name": "Tina Liebling",
@@ -573,7 +1137,19 @@
     "term_expires": "2026",
     "image_url": "https://www.house.mn.gov/hinfo/memberimgls94/24B.gif",
     "government_email": "rep.tina.liebling@house.mn.gov",
-    "government_phone": "651-296-0573"
+    "government_phone": "651-296-0573",
+    "ballotpedia_url": "https://ballotpedia.org/Tina_Liebling",
+    "latest_election": {
+      "year": 2024,
+      "election_date": "November 5, 2024",
+      "election_type": "General Election",
+      "rep_votes": 12863,
+      "rep_vote_pct": "57.80%",
+      "opponent_name": "Dan Sepeda",
+      "opponent_votes": 9369,
+      "opponent_vote_pct": "42.10%",
+      "ran_unopposed": false
+    }
   },
   {
     "name": "Kim Hicks",
@@ -585,7 +1161,19 @@
     "term_expires": "2026",
     "image_url": "https://www.house.mn.gov/hinfo/memberimgls94/25A.gif",
     "government_email": "rep.kim.hicks@house.mn.gov",
-    "government_phone": "651-296-4378"
+    "government_phone": "651-296-4378",
+    "ballotpedia_url": "https://ballotpedia.org/Kim_Hicks",
+    "latest_election": {
+      "year": 2024,
+      "election_date": "November 5, 2024",
+      "election_type": "General Election",
+      "rep_votes": 13085,
+      "rep_vote_pct": "55.98%",
+      "opponent_name": "Ken Navitsky",
+      "opponent_votes": 10260,
+      "opponent_vote_pct": "43.89%",
+      "ran_unopposed": false
+    }
   },
   {
     "name": "Andy Smith",
@@ -597,7 +1185,19 @@
     "term_expires": "2026",
     "image_url": "https://www.house.mn.gov/hinfo/memberimgls94/25B.gif",
     "government_email": "rep.andy.smith@house.mn.gov",
-    "government_phone": "651-296-9249"
+    "government_phone": "651-296-9249",
+    "ballotpedia_url": "https://ballotpedia.org/Andy_Smith_(Minnesota)",
+    "latest_election": {
+      "year": 2024,
+      "election_date": "November 5, 2024",
+      "election_type": "General Election",
+      "rep_votes": 12847,
+      "rep_vote_pct": "64.01%",
+      "opponent_name": "Wes Lund",
+      "opponent_votes": 7184,
+      "opponent_vote_pct": "35.79%",
+      "ran_unopposed": false
+    }
   },
   {
     "name": "Aaron Repinski",
@@ -609,7 +1209,19 @@
     "term_expires": "2026",
     "image_url": "https://www.house.mn.gov/hinfo/memberimgls94/26A.gif",
     "government_email": "rep.aaron.repinski@house.mn.gov",
-    "government_phone": "651-296-8637"
+    "government_phone": "651-296-8637",
+    "ballotpedia_url": "https://ballotpedia.org/Aaron_Repinski",
+    "latest_election": {
+      "year": 2024,
+      "election_date": "November 5, 2024",
+      "election_type": "General Election",
+      "rep_votes": 12240,
+      "rep_vote_pct": "52.74%",
+      "opponent_name": "Sarah Kruger",
+      "opponent_votes": 10916,
+      "opponent_vote_pct": "47.04%",
+      "ran_unopposed": false
+    }
   },
   {
     "name": "Greg Davids",
@@ -621,7 +1233,19 @@
     "term_expires": "2026",
     "image_url": "https://www.house.mn.gov/hinfo/memberimgls94/26B.gif",
     "government_email": "rep.greg.davids@house.mn.gov",
-    "government_phone": "651-296-9278"
+    "government_phone": "651-296-9278",
+    "ballotpedia_url": "https://ballotpedia.org/Greg_Davids",
+    "latest_election": {
+      "year": 2024,
+      "election_date": "November 5, 2024",
+      "election_type": "General Election",
+      "rep_votes": 15714,
+      "rep_vote_pct": "63.32%",
+      "opponent_name": "Allie Wolf",
+      "opponent_votes": 9044,
+      "opponent_vote_pct": "36.44%",
+      "ran_unopposed": false
+    }
   },
   {
     "name": "Shane Mekeland",
@@ -633,7 +1257,19 @@
     "term_expires": "2026",
     "image_url": "https://www.house.mn.gov/hinfo/memberimgls94/27A.gif",
     "government_email": "rep.shane.mekeland@house.mn.gov",
-    "government_phone": "651-296-2451"
+    "government_phone": "651-296-2451",
+    "ballotpedia_url": "https://ballotpedia.org/Shane_Mekeland",
+    "latest_election": {
+      "year": 2024,
+      "election_date": "November 5, 2024",
+      "election_type": "General Election",
+      "rep_votes": 17597,
+      "rep_vote_pct": "71.38%",
+      "opponent_name": "Kathryn A. Geary",
+      "opponent_votes": 7026,
+      "opponent_vote_pct": "28.50%",
+      "ran_unopposed": false
+    }
   },
   {
     "name": "Bryan Lawrence",
@@ -645,7 +1281,19 @@
     "term_expires": "2026",
     "image_url": "https://www.house.mn.gov/hinfo/memberimgls94/27B.gif",
     "government_email": "rep.bryan.lawrence@house.mn.gov",
-    "government_phone": "651-296-5364"
+    "government_phone": "651-296-5364",
+    "ballotpedia_url": "https://ballotpedia.org/Bryan_Lawrence",
+    "latest_election": {
+      "year": 2024,
+      "election_date": "November 5, 2024",
+      "election_type": "General Election",
+      "rep_votes": 18229,
+      "rep_vote_pct": "74.09%",
+      "opponent_name": "Andrew Scouten",
+      "opponent_votes": 6338,
+      "opponent_vote_pct": "25.76%",
+      "ran_unopposed": false
+    }
   },
   {
     "name": "Jimmy Gordon",
@@ -657,7 +1305,19 @@
     "term_expires": "2026",
     "image_url": "https://www.house.mn.gov/hinfo/memberimgls94/28A.gif",
     "government_email": "rep.jimmy.gordon@house.mn.gov",
-    "government_phone": "651-296-4346"
+    "government_phone": "651-296-4346",
+    "ballotpedia_url": "https://ballotpedia.org/James_Gordon_(Minnesota)",
+    "latest_election": {
+      "year": 2024,
+      "election_date": "November 5, 2024",
+      "election_type": "General Election",
+      "rep_votes": 17550,
+      "rep_vote_pct": "68.11%",
+      "opponent_name": "Tim Dummer",
+      "opponent_votes": 8163,
+      "opponent_vote_pct": "31.68%",
+      "ran_unopposed": false
+    }
   },
   {
     "name": "Max Rymer",
@@ -669,7 +1329,19 @@
     "term_expires": "2026",
     "image_url": "https://www.house.mn.gov/hinfo/memberimgls94/28B.gif",
     "government_email": "rep.max.rymer@house.mn.gov",
-    "government_phone": "651-296-5377"
+    "government_phone": "651-296-5377",
+    "ballotpedia_url": "https://ballotpedia.org/Max_Rymer",
+    "latest_election": {
+      "year": 2024,
+      "election_date": "November 5, 2024",
+      "election_type": "General Election",
+      "rep_votes": 16768,
+      "rep_vote_pct": "65.06%",
+      "opponent_name": "Mary J Murphy",
+      "opponent_votes": 8983,
+      "opponent_vote_pct": "34.85%",
+      "ran_unopposed": false
+    }
   },
   {
     "name": "Joe McDonald",
@@ -681,7 +1353,19 @@
     "term_expires": "2026",
     "image_url": "https://www.house.mn.gov/hinfo/memberimgls94/29A.gif",
     "government_email": "rep.joe.mcdonald@house.mn.gov",
-    "government_phone": "651-296-4336"
+    "government_phone": "651-296-4336",
+    "ballotpedia_url": "https://ballotpedia.org/Joe_McDonald",
+    "latest_election": {
+      "year": 2024,
+      "election_date": "November 5, 2024",
+      "election_type": "General Election",
+      "rep_votes": 18788,
+      "rep_vote_pct": "70.74%",
+      "opponent_name": "Chris Brazelton",
+      "opponent_votes": 7750,
+      "opponent_vote_pct": "29.18%",
+      "ran_unopposed": false
+    }
   },
   {
     "name": "Marion Rarick",
@@ -693,7 +1377,19 @@
     "term_expires": "2026",
     "image_url": "https://www.house.mn.gov/hinfo/memberimgls94/29B.gif",
     "government_email": "rep.marion.rarick@house.mn.gov",
-    "government_phone": "651-296-5063"
+    "government_phone": "651-296-5063",
+    "ballotpedia_url": "https://ballotpedia.org/Marion_Rarick",
+    "latest_election": {
+      "year": 2024,
+      "election_date": "November 5, 2024",
+      "election_type": "General Election",
+      "rep_votes": 15741,
+      "rep_vote_pct": "66.46%",
+      "opponent_name": "Colton Kratky",
+      "opponent_votes": 7909,
+      "opponent_vote_pct": "33.39%",
+      "ran_unopposed": false
+    }
   },
   {
     "name": "Walter Hudson",
@@ -705,7 +1401,19 @@
     "term_expires": "2026",
     "image_url": "https://www.house.mn.gov/hinfo/memberimgls94/30A.gif",
     "government_email": "rep.walter.hudson@house.mn.gov",
-    "government_phone": "651-296-1534"
+    "government_phone": "651-296-1534",
+    "ballotpedia_url": "https://ballotpedia.org/Walter_Hudson",
+    "latest_election": {
+      "year": 2024,
+      "election_date": "November 5, 2024",
+      "election_type": "General Election",
+      "rep_votes": 16763,
+      "rep_vote_pct": "62.74%",
+      "opponent_name": "Sonja Buckmeier",
+      "opponent_votes": 9936,
+      "opponent_vote_pct": "37.19%",
+      "ran_unopposed": false
+    }
   },
   {
     "name": "Paul Novotny",
@@ -717,7 +1425,19 @@
     "term_expires": "2026",
     "image_url": "https://www.house.mn.gov/hinfo/memberimgls94/30B.gif",
     "government_email": "rep.paul.novotny@house.mn.gov",
-    "government_phone": "651-296-4237"
+    "government_phone": "651-296-4237",
+    "ballotpedia_url": "https://ballotpedia.org/Paul_Novotny",
+    "latest_election": {
+      "year": 2024,
+      "election_date": "November 5, 2024",
+      "election_type": "General Election",
+      "rep_votes": 17075,
+      "rep_vote_pct": "65.87%",
+      "opponent_name": "Paul Bolin",
+      "opponent_votes": 8825,
+      "opponent_vote_pct": "34.04%",
+      "ran_unopposed": false
+    }
   },
   {
     "name": "Harry Niska",
@@ -729,7 +1449,19 @@
     "term_expires": "2026",
     "image_url": "https://www.house.mn.gov/hinfo/memberimgls94/31A.gif",
     "government_email": "rep.harry.niska@house.mn.gov",
-    "government_phone": "651-296-2439"
+    "government_phone": "651-296-2439",
+    "ballotpedia_url": "https://ballotpedia.org/Harry_Niska",
+    "latest_election": {
+      "year": 2024,
+      "election_date": "November 5, 2024",
+      "election_type": "General Election",
+      "rep_votes": 15461,
+      "rep_vote_pct": "61.11%",
+      "opponent_name": "Dara Grimmer",
+      "opponent_votes": 9802,
+      "opponent_vote_pct": "38.74%",
+      "ran_unopposed": false
+    }
   },
   {
     "name": "Peggy Scott",
@@ -741,7 +1473,19 @@
     "term_expires": "2026",
     "image_url": "https://www.house.mn.gov/hinfo/memberimgls94/31B.gif",
     "government_email": "rep.peggy.scott@house.mn.gov",
-    "government_phone": "651-296-4231"
+    "government_phone": "651-296-4231",
+    "ballotpedia_url": "https://ballotpedia.org/Peggy_Scott",
+    "latest_election": {
+      "year": 2024,
+      "election_date": "November 5, 2024",
+      "election_type": "General Election",
+      "rep_votes": 18727,
+      "rep_vote_pct": "70.49%",
+      "opponent_name": "Gadisa Berkessa",
+      "opponent_votes": 7799,
+      "opponent_vote_pct": "29.36%",
+      "ran_unopposed": false
+    }
   },
   {
     "name": "Nolan West",
@@ -753,7 +1497,19 @@
     "term_expires": "2026",
     "image_url": "https://www.house.mn.gov/hinfo/memberimgls94/32A.gif",
     "government_email": "rep.nolan.west@house.mn.gov",
-    "government_phone": "651-296-4226"
+    "government_phone": "651-296-4226",
+    "ballotpedia_url": "https://ballotpedia.org/Nolan_West",
+    "latest_election": {
+      "year": 2024,
+      "election_date": "November 5, 2024",
+      "election_type": "General Election",
+      "rep_votes": 14816,
+      "rep_vote_pct": "58.15%",
+      "opponent_name": "Ashton Ramsammy",
+      "opponent_votes": 10620,
+      "opponent_vote_pct": "41.68%",
+      "ran_unopposed": false
+    }
   },
   {
     "name": "Matt Norris",
@@ -765,7 +1521,19 @@
     "term_expires": "2026",
     "image_url": "https://www.house.mn.gov/hinfo/memberimgls94/32B.gif",
     "government_email": "rep.matt.norris@house.mn.gov",
-    "government_phone": "651-296-2907"
+    "government_phone": "651-296-2907",
+    "ballotpedia_url": "https://ballotpedia.org/Matt_Norris",
+    "latest_election": {
+      "year": 2024,
+      "election_date": "November 5, 2024",
+      "election_type": "General Election",
+      "rep_votes": 12030,
+      "rep_vote_pct": "50.77%",
+      "opponent_name": "Alex Moe",
+      "opponent_votes": 11620,
+      "opponent_vote_pct": "49.04%",
+      "ran_unopposed": false
+    }
   },
   {
     "name": "Patti Anderson",
@@ -777,7 +1545,19 @@
     "term_expires": "2026",
     "image_url": "https://www.house.mn.gov/hinfo/memberimgls94/33A.gif",
     "government_email": "rep.patti.anderson@house.mn.gov",
-    "government_phone": "651-296-3018"
+    "government_phone": "651-296-3018",
+    "ballotpedia_url": "https://ballotpedia.org/Patti_Anderson",
+    "latest_election": {
+      "year": 2024,
+      "election_date": "November 5, 2024",
+      "election_type": "General Election",
+      "rep_votes": 15262,
+      "rep_vote_pct": "58.01%",
+      "opponent_name": "Jake Ross",
+      "opponent_votes": 11020,
+      "opponent_vote_pct": "41.89%",
+      "ran_unopposed": false
+    }
   },
   {
     "name": "Josiah Hill",
@@ -789,7 +1569,19 @@
     "term_expires": "2026",
     "image_url": "https://www.house.mn.gov/hinfo/memberimgls94/33B.gif",
     "government_email": "rep.josiah.hill@house.mn.gov",
-    "government_phone": "651-296-4124"
+    "government_phone": "651-296-4124",
+    "ballotpedia_url": "https://ballotpedia.org/Josiah_Hill",
+    "latest_election": {
+      "year": 2024,
+      "election_date": "November 5, 2024",
+      "election_type": "General Election",
+      "rep_votes": 13631,
+      "rep_vote_pct": "51.30%",
+      "opponent_name": "Jessica L. Johnson",
+      "opponent_votes": 12913,
+      "opponent_vote_pct": "48.60%",
+      "ran_unopposed": false
+    }
   },
   {
     "name": "Danny Nadeau",
@@ -801,7 +1593,19 @@
     "term_expires": "2026",
     "image_url": "https://www.house.mn.gov/hinfo/memberimgls94/34A.gif",
     "government_email": "rep.danny.nadeau@house.mn.gov",
-    "government_phone": "651-296-4315"
+    "government_phone": "651-296-4315",
+    "ballotpedia_url": "https://ballotpedia.org/Danny_Nadeau",
+    "latest_election": {
+      "year": 2024,
+      "election_date": "November 5, 2024",
+      "election_type": "General Election",
+      "rep_votes": 15261,
+      "rep_vote_pct": "53.48%",
+      "opponent_name": "Brian Raines",
+      "opponent_votes": 13240,
+      "opponent_vote_pct": "46.40%",
+      "ran_unopposed": false
+    }
   },
   {
     "name": "Xp Lee",
@@ -813,7 +1617,19 @@
     "term_expires": "2026",
     "image_url": "https://www.house.mn.gov/hinfo/memberimgls94/34B.gif",
     "government_email": "rep.xp.lee@house.mn.gov",
-    "government_phone": "651-296-4280"
+    "government_phone": "651-296-4280",
+    "ballotpedia_url": "https://ballotpedia.org/Xp_Lee",
+    "latest_election": {
+      "year": 2025,
+      "election_date": "September 16, 2025",
+      "election_type": "Special Election",
+      "rep_votes": 4331,
+      "rep_vote_pct": "60.82%",
+      "opponent_name": "Ruth Bittner",
+      "opponent_votes": 2785,
+      "opponent_vote_pct": "39.11%",
+      "ran_unopposed": false
+    }
   },
   {
     "name": "Zack Stephenson",
@@ -825,7 +1641,19 @@
     "term_expires": "2026",
     "image_url": "https://www.house.mn.gov/hinfo/memberimgls94/35A.gif",
     "government_email": "rep.zack.stephenson@house.mn.gov",
-    "government_phone": "651-296-5513"
+    "government_phone": "651-296-5513",
+    "ballotpedia_url": "https://ballotpedia.org/Zack_Stephenson",
+    "latest_election": {
+      "year": 2024,
+      "election_date": "November 5, 2024",
+      "election_type": "General Election",
+      "rep_votes": 11822,
+      "rep_vote_pct": "51.83%",
+      "opponent_name": "Josh Jungling",
+      "opponent_votes": 10950,
+      "opponent_vote_pct": "48.01%",
+      "ran_unopposed": false
+    }
   },
   {
     "name": "Kari Rehrauer",
@@ -837,7 +1665,19 @@
     "term_expires": "2026",
     "image_url": "https://www.house.mn.gov/hinfo/memberimgls94/35B.gif",
     "government_email": "rep.kari.rehrauer@house.mn.gov",
-    "government_phone": "651-296-1729"
+    "government_phone": "651-296-1729",
+    "ballotpedia_url": "https://ballotpedia.org/Kari_Rehrauer",
+    "latest_election": {
+      "year": 2024,
+      "election_date": "November 5, 2024",
+      "election_type": "General Election",
+      "rep_votes": 11560,
+      "rep_vote_pct": "50.51%",
+      "opponent_name": "Steve Pape",
+      "opponent_votes": 11280,
+      "opponent_vote_pct": "49.29%",
+      "ran_unopposed": false
+    }
   },
   {
     "name": "Elliott Engen",
@@ -849,7 +1689,19 @@
     "term_expires": "2026",
     "image_url": "https://www.house.mn.gov/hinfo/memberimgls94/36A.gif",
     "government_email": "rep.elliott.engen@house.mn.gov",
-    "government_phone": "651-296-2365"
+    "government_phone": "651-296-2365",
+    "ballotpedia_url": "https://ballotpedia.org/Elliott_Engen",
+    "latest_election": {
+      "year": 2024,
+      "election_date": "November 5, 2024",
+      "election_type": "General Election",
+      "rep_votes": 14998,
+      "rep_vote_pct": "54.06%",
+      "opponent_name": "Janelle Calhoun",
+      "opponent_votes": 12714,
+      "opponent_vote_pct": "45.83%",
+      "ran_unopposed": false
+    }
   },
   {
     "name": "Brion Curran",
@@ -861,7 +1713,19 @@
     "term_expires": "2026",
     "image_url": "https://www.house.mn.gov/hinfo/memberimgls94/36B.gif",
     "government_email": "rep.brion.curran@house.mn.gov",
-    "government_phone": "651-296-4342"
+    "government_phone": "651-296-4342",
+    "ballotpedia_url": "https://ballotpedia.org/Brion_Curran",
+    "latest_election": {
+      "year": 2024,
+      "election_date": "November 5, 2024",
+      "election_type": "General Election",
+      "rep_votes": 12977,
+      "rep_vote_pct": "51.57%",
+      "opponent_name": "Patty Bradway",
+      "opponent_votes": 12152,
+      "opponent_vote_pct": "48.29%",
+      "ran_unopposed": false
+    }
   },
   {
     "name": "Kristin Robbins",
@@ -873,7 +1737,19 @@
     "term_expires": "2026",
     "image_url": "https://www.house.mn.gov/hinfo/memberimgls94/37A.gif",
     "government_email": "rep.kristin.robbins@house.mn.gov",
-    "government_phone": "651-296-7806"
+    "government_phone": "651-296-7806",
+    "ballotpedia_url": "https://ballotpedia.org/Kristin_Robbins",
+    "latest_election": {
+      "year": 2024,
+      "election_date": "November 5, 2024",
+      "election_type": "General Election",
+      "rep_votes": 15817,
+      "rep_vote_pct": "57.12%",
+      "opponent_name": "Laurie Wolfe",
+      "opponent_votes": 11851,
+      "opponent_vote_pct": "42.80%",
+      "ran_unopposed": false
+    }
   },
   {
     "name": "Kristin Bahner",
@@ -885,7 +1761,19 @@
     "term_expires": "2026",
     "image_url": "https://www.house.mn.gov/hinfo/memberimgls94/37B.gif",
     "government_email": "rep.kristin.bahner@house.mn.gov",
-    "government_phone": "651-296-5502"
+    "government_phone": "651-296-5502",
+    "ballotpedia_url": "https://ballotpedia.org/Kristin_Bahner",
+    "latest_election": {
+      "year": 2024,
+      "election_date": "November 5, 2024",
+      "election_type": "General Election",
+      "rep_votes": 14726,
+      "rep_vote_pct": "55.39%",
+      "opponent_name": "John R. Bristol",
+      "opponent_votes": 11841,
+      "opponent_vote_pct": "44.54%",
+      "ran_unopposed": false
+    }
   },
   {
     "name": "Huldah Momanyi-Hiltsley",
@@ -897,7 +1785,19 @@
     "term_expires": "2026",
     "image_url": "https://www.house.mn.gov/hinfo/memberimgls94/38A.gif",
     "government_email": "rep.huldah.momanyi-hiltsley@house.mn.gov",
-    "government_phone": "651-296-3751"
+    "government_phone": "651-296-3751",
+    "ballotpedia_url": "https://ballotpedia.org/Huldah_Hiltsley",
+    "latest_election": {
+      "year": 2024,
+      "election_date": "November 5, 2024",
+      "election_type": "General Election",
+      "rep_votes": 10030,
+      "rep_vote_pct": "64.78%",
+      "opponent_name": "Brad Olson",
+      "opponent_votes": 5410,
+      "opponent_vote_pct": "34.94%",
+      "ran_unopposed": false
+    }
   },
   {
     "name": "Samantha Vang",
@@ -909,7 +1809,19 @@
     "term_expires": "2026",
     "image_url": "https://www.house.mn.gov/hinfo/memberimgls94/38B.gif",
     "government_email": "rep.samantha.vang@house.mn.gov",
-    "government_phone": "651-296-3709"
+    "government_phone": "651-296-3709",
+    "ballotpedia_url": "https://ballotpedia.org/Samantha_Vang",
+    "latest_election": {
+      "year": 2024,
+      "election_date": "November 5, 2024",
+      "election_type": "General Election",
+      "rep_votes": 11078,
+      "rep_vote_pct": "74.25%",
+      "opponent_name": "Robert Marvin",
+      "opponent_votes": 3793,
+      "opponent_vote_pct": "25.42%",
+      "ran_unopposed": false
+    }
   },
   {
     "name": "Erin Koegel",
@@ -921,7 +1833,19 @@
     "term_expires": "2026",
     "image_url": "https://www.house.mn.gov/hinfo/memberimgls94/39A.gif",
     "government_email": "rep.erin.koegel@house.mn.gov",
-    "government_phone": "651-296-5369"
+    "government_phone": "651-296-5369",
+    "ballotpedia_url": "https://ballotpedia.org/Erin_Koegel",
+    "latest_election": {
+      "year": 2024,
+      "election_date": "November 5, 2024",
+      "election_type": "General Election",
+      "rep_votes": 11751,
+      "rep_vote_pct": "63.33%",
+      "opponent_name": "Rod Sylvester",
+      "opponent_votes": 6749,
+      "opponent_vote_pct": "36.37%",
+      "ran_unopposed": false
+    }
   },
   {
     "name": "Sandra Feist",
@@ -933,7 +1857,19 @@
     "term_expires": "2026",
     "image_url": "https://www.house.mn.gov/hinfo/memberimgls94/39B.gif",
     "government_email": "rep.sandra.feist@house.mn.gov",
-    "government_phone": "651-296-4331"
+    "government_phone": "651-296-4331",
+    "ballotpedia_url": "https://ballotpedia.org/Sandra_Feist",
+    "latest_election": {
+      "year": 2024,
+      "election_date": "November 5, 2024",
+      "election_type": "General Election",
+      "rep_votes": 14427,
+      "rep_vote_pct": "70.91%",
+      "opponent_name": "Kt Jacobs",
+      "opponent_votes": 5875,
+      "opponent_vote_pct": "28.88%",
+      "ran_unopposed": false
+    }
   },
   {
     "name": "Kelly Moller",
@@ -945,7 +1881,19 @@
     "term_expires": "2026",
     "image_url": "https://www.house.mn.gov/hinfo/memberimgls94/40A.gif",
     "government_email": "rep.kelly.moller@house.mn.gov",
-    "government_phone": "651-296-0141"
+    "government_phone": "651-296-0141",
+    "ballotpedia_url": "https://ballotpedia.org/Kelly_Moller",
+    "latest_election": {
+      "year": 2024,
+      "election_date": "November 5, 2024",
+      "election_type": "General Election",
+      "rep_votes": 16869,
+      "rep_vote_pct": "95.87%",
+      "opponent_name": null,
+      "opponent_votes": null,
+      "opponent_vote_pct": null,
+      "ran_unopposed": true
+    }
   },
   {
     "name": "David Gottfried",
@@ -957,7 +1905,19 @@
     "term_expires": "2026",
     "image_url": "https://www.house.mn.gov/hinfo/memberimgls94/40B.gif",
     "government_email": "rep.david.gottfried@house.mn.gov",
-    "government_phone": "651-296-7153"
+    "government_phone": "651-296-7153",
+    "ballotpedia_url": "https://ballotpedia.org/David_Gottfried",
+    "latest_election": {
+      "year": 2025,
+      "election_date": "March 11, 2025",
+      "election_type": "Special Election",
+      "rep_votes": 9348,
+      "rep_vote_pct": "70.15%",
+      "opponent_name": "Paul Wikstrom",
+      "opponent_votes": 3975,
+      "opponent_vote_pct": "29.85%",
+      "ran_unopposed": false
+    }
   },
   {
     "name": "Wayne Johnson",
@@ -969,7 +1929,19 @@
     "term_expires": "2026",
     "image_url": "https://www.house.mn.gov/hinfo/memberimgls94/41A.gif",
     "government_email": "rep.wayne.johnson@house.mn.gov",
-    "government_phone": "651-296-4244"
+    "government_phone": "651-296-4244",
+    "ballotpedia_url": "https://ballotpedia.org/Wayne_Johnson_(Minnesota)",
+    "latest_election": {
+      "year": 2024,
+      "election_date": "November 5, 2024",
+      "election_type": "General Election",
+      "rep_votes": 15167,
+      "rep_vote_pct": "50.49%",
+      "opponent_name": "Lucia Wroblewski",
+      "opponent_votes": 14840,
+      "opponent_vote_pct": "49.40%",
+      "ran_unopposed": false
+    }
   },
   {
     "name": "Tom Dippel",
@@ -981,7 +1953,19 @@
     "term_expires": "2026",
     "image_url": "https://www.house.mn.gov/hinfo/memberimgls94/41B.gif",
     "government_email": "rep.tom.dippel@house.mn.gov",
-    "government_phone": "651-296-3135"
+    "government_phone": "651-296-3135",
+    "ballotpedia_url": "https://ballotpedia.org/Tom_Dippel",
+    "latest_election": {
+      "year": 2024,
+      "election_date": "November 5, 2024",
+      "election_type": "General Election",
+      "rep_votes": 12529,
+      "rep_vote_pct": "50.94%",
+      "opponent_name": "Jen Fox",
+      "opponent_votes": 12019,
+      "opponent_vote_pct": "48.86%",
+      "ran_unopposed": false
+    }
   },
   {
     "name": "Ned Carroll",
@@ -993,7 +1977,19 @@
     "term_expires": "2026",
     "image_url": "https://www.house.mn.gov/hinfo/memberimgls94/42A.gif",
     "government_email": "rep.ned.carroll@house.mn.gov",
-    "government_phone": "651-296-5510"
+    "government_phone": "651-296-5510",
+    "ballotpedia_url": "https://ballotpedia.org/Ned_Carroll",
+    "latest_election": {
+      "year": 2024,
+      "election_date": "November 5, 2024",
+      "election_type": "General Election",
+      "rep_votes": 14288,
+      "rep_vote_pct": "57.30%",
+      "opponent_name": "Kathy Burkett",
+      "opponent_votes": 10617,
+      "opponent_vote_pct": "42.58%",
+      "ran_unopposed": false
+    }
   },
   {
     "name": "Ginny Klevorn",
@@ -1005,7 +2001,19 @@
     "term_expires": "2026",
     "image_url": "https://www.house.mn.gov/hinfo/memberimgls94/42B.gif",
     "government_email": "rep.ginny.klevorn@house.mn.gov",
-    "government_phone": "651-296-5511"
+    "government_phone": "651-296-5511",
+    "ballotpedia_url": "https://ballotpedia.org/Ginny_Klevorn",
+    "latest_election": {
+      "year": 2024,
+      "election_date": "November 5, 2024",
+      "election_type": "General Election",
+      "rep_votes": 15561,
+      "rep_vote_pct": "63.91%",
+      "opponent_name": "Perry Nouis",
+      "opponent_votes": 8757,
+      "opponent_vote_pct": "35.96%",
+      "ran_unopposed": false
+    }
   },
   {
     "name": "Cedrick Frazier",
@@ -1017,7 +2025,19 @@
     "term_expires": "2026",
     "image_url": "https://www.house.mn.gov/hinfo/memberimgls94/43A.gif",
     "government_email": "rep.cedrick.frazier@house.mn.gov",
-    "government_phone": "651-296-4255"
+    "government_phone": "651-296-4255",
+    "ballotpedia_url": "https://ballotpedia.org/Cedrick_Frazier",
+    "latest_election": {
+      "year": 2024,
+      "election_date": "November 5, 2024",
+      "election_type": "General Election",
+      "rep_votes": 13845,
+      "rep_vote_pct": "66.33%",
+      "opponent_name": "Todd Hesemann",
+      "opponent_votes": 6999,
+      "opponent_vote_pct": "33.53%",
+      "ran_unopposed": false
+    }
   },
   {
     "name": "Mike Freiberg",
@@ -1029,7 +2049,19 @@
     "term_expires": "2026",
     "image_url": "https://www.house.mn.gov/hinfo/memberimgls94/43B.gif",
     "government_email": "rep.mike.freiberg@house.mn.gov",
-    "government_phone": "651-296-4176"
+    "government_phone": "651-296-4176",
+    "ballotpedia_url": "https://ballotpedia.org/Mike_Freiberg",
+    "latest_election": {
+      "year": 2024,
+      "election_date": "November 5, 2024",
+      "election_type": "General Election",
+      "rep_votes": 19023,
+      "rep_vote_pct": "75.19%",
+      "opponent_name": "Steve Merriman",
+      "opponent_votes": 6232,
+      "opponent_vote_pct": "24.63%",
+      "ran_unopposed": false
+    }
   },
   {
     "name": "Peter Fischer",
@@ -1041,7 +2073,19 @@
     "term_expires": "2026",
     "image_url": "https://www.house.mn.gov/hinfo/memberimgls94/44A.gif",
     "government_email": "rep.peter.fischer@house.mn.gov",
-    "government_phone": "651-296-5363"
+    "government_phone": "651-296-5363",
+    "ballotpedia_url": "https://ballotpedia.org/Peter_Fischer",
+    "latest_election": {
+      "year": 2024,
+      "election_date": "November 5, 2024",
+      "election_type": "General Election",
+      "rep_votes": 12085,
+      "rep_vote_pct": "62.37%",
+      "opponent_name": "Karla J. Nelson",
+      "opponent_votes": 7255,
+      "opponent_vote_pct": "37.45%",
+      "ran_unopposed": false
+    }
   },
   {
     "name": "Leon Lillie",
@@ -1053,7 +2097,19 @@
     "term_expires": "2026",
     "image_url": "https://www.house.mn.gov/hinfo/memberimgls94/44B.gif",
     "government_email": "rep.leon.lillie@house.mn.gov",
-    "government_phone": "651-296-1188"
+    "government_phone": "651-296-1188",
+    "ballotpedia_url": "https://ballotpedia.org/Leon_Lillie",
+    "latest_election": {
+      "year": 2024,
+      "election_date": "November 5, 2024",
+      "election_type": "General Election",
+      "rep_votes": 12369,
+      "rep_vote_pct": "56.35%",
+      "opponent_name": "Bill Dahn",
+      "opponent_votes": 8254,
+      "opponent_vote_pct": "37.60%",
+      "ran_unopposed": false
+    }
   },
   {
     "name": "Andrew Myers",
@@ -1065,7 +2121,19 @@
     "term_expires": "2026",
     "image_url": "https://www.house.mn.gov/hinfo/memberimgls94/45A.gif",
     "government_email": "rep.andrew.myers@house.mn.gov",
-    "government_phone": "651-296-9188"
+    "government_phone": "651-296-9188",
+    "ballotpedia_url": "https://ballotpedia.org/Andrew_Myers_(Minnesota)",
+    "latest_election": {
+      "year": 2024,
+      "election_date": "November 5, 2024",
+      "election_type": "General Election",
+      "rep_votes": 15897,
+      "rep_vote_pct": "55.02%",
+      "opponent_name": "Tracey Breazeale",
+      "opponent_votes": 12972,
+      "opponent_vote_pct": "44.89%",
+      "ran_unopposed": false
+    }
   },
   {
     "name": "Patty Acomb",
@@ -1077,7 +2145,19 @@
     "term_expires": "2026",
     "image_url": "https://www.house.mn.gov/hinfo/memberimgls94/45B.gif",
     "government_email": "rep.patty.acomb@house.mn.gov",
-    "government_phone": "651-296-9934"
+    "government_phone": "651-296-9934",
+    "ballotpedia_url": "https://ballotpedia.org/Patty_Acomb",
+    "latest_election": {
+      "year": 2024,
+      "election_date": "November 5, 2024",
+      "election_type": "General Election",
+      "rep_votes": 19625,
+      "rep_vote_pct": "95.18%",
+      "opponent_name": null,
+      "opponent_votes": null,
+      "opponent_vote_pct": null,
+      "ran_unopposed": true
+    }
   },
   {
     "name": "Larry Kraft",
@@ -1089,7 +2169,19 @@
     "term_expires": "2026",
     "image_url": "https://www.house.mn.gov/hinfo/memberimgls94/46A.gif",
     "government_email": "rep.larry.kraft@house.mn.gov",
-    "government_phone": "651-296-7026"
+    "government_phone": "651-296-7026",
+    "ballotpedia_url": "https://ballotpedia.org/Larry_Kraft",
+    "latest_election": {
+      "year": 2024,
+      "election_date": "November 5, 2024",
+      "election_type": "General Election",
+      "rep_votes": 18627,
+      "rep_vote_pct": "75.02%",
+      "opponent_name": "John Nagel",
+      "opponent_votes": 6168,
+      "opponent_vote_pct": "24.84%",
+      "ran_unopposed": false
+    }
   },
   {
     "name": "Cheryl Youakim",
@@ -1101,7 +2193,19 @@
     "term_expires": "2026",
     "image_url": "https://www.house.mn.gov/hinfo/memberimgls94/46B.gif",
     "government_email": "rep.cheryl.youakim@house.mn.gov",
-    "government_phone": "651-296-9889"
+    "government_phone": "651-296-9889",
+    "ballotpedia_url": "https://ballotpedia.org/Cheryl_Youakim",
+    "latest_election": {
+      "year": 2024,
+      "election_date": "November 5, 2024",
+      "election_type": "General Election",
+      "rep_votes": 16510,
+      "rep_vote_pct": "67.62%",
+      "opponent_name": "Kim Rich",
+      "opponent_votes": 7863,
+      "opponent_vote_pct": "32.21%",
+      "ran_unopposed": false
+    }
   },
   {
     "name": "Amanda Hemmingsen-Jaeger",
@@ -1113,7 +2217,19 @@
     "term_expires": "2026",
     "image_url": "https://www.house.mn.gov/hinfo/memberimgls94/47A.gif",
     "government_email": "rep.amanda.hemmingsen-jaeger@house.mn.gov",
-    "government_phone": "651-296-7807"
+    "government_phone": "651-296-7807",
+    "ballotpedia_url": "https://ballotpedia.org/Amanda_Hemmingsen-Jaeger",
+    "latest_election": {
+      "year": 2024,
+      "election_date": "November 5, 2024",
+      "election_type": "General Election",
+      "rep_votes": 14106,
+      "rep_vote_pct": "60.62%",
+      "opponent_name": "Teresa Whitson",
+      "opponent_votes": 9143,
+      "opponent_vote_pct": "39.29%",
+      "ran_unopposed": false
+    }
   },
   {
     "name": "Ethan Cha",
@@ -1125,7 +2241,19 @@
     "term_expires": "2026",
     "image_url": "https://www.house.mn.gov/hinfo/memberimgls94/47B.gif",
     "government_email": "rep.ethan.cha@house.mn.gov",
-    "government_phone": "651-296-1147"
+    "government_phone": "651-296-1147",
+    "ballotpedia_url": "https://ballotpedia.org/Ethan_Cha",
+    "latest_election": {
+      "year": 2024,
+      "election_date": "November 5, 2024",
+      "election_type": "General Election",
+      "rep_votes": 14202,
+      "rep_vote_pct": "54.41%",
+      "opponent_name": "Dwight Dorau",
+      "opponent_votes": 11867,
+      "opponent_vote_pct": "45.46%",
+      "ran_unopposed": false
+    }
   },
   {
     "name": "Jim Nash",
@@ -1137,7 +2265,19 @@
     "term_expires": "2026",
     "image_url": "https://www.house.mn.gov/hinfo/memberimgls94/48A.gif",
     "government_email": "rep.jim.nash@house.mn.gov",
-    "government_phone": "651-296-4282"
+    "government_phone": "651-296-4282",
+    "ballotpedia_url": "https://ballotpedia.org/Jim_Nash_(Minnesota)",
+    "latest_election": {
+      "year": 2024,
+      "election_date": "November 5, 2024",
+      "election_type": "General Election",
+      "rep_votes": 16818,
+      "rep_vote_pct": "60.41%",
+      "opponent_name": "Nathan Kells",
+      "opponent_votes": 11000,
+      "opponent_vote_pct": "39.51%",
+      "ran_unopposed": false
+    }
   },
   {
     "name": "Lucy Rehm",
@@ -1149,7 +2289,19 @@
     "term_expires": "2026",
     "image_url": "https://www.house.mn.gov/hinfo/memberimgls94/48B.gif",
     "government_email": "rep.lucy.rehm@house.mn.gov",
-    "government_phone": "651-296-5066"
+    "government_phone": "651-296-5066",
+    "ballotpedia_url": "https://ballotpedia.org/Lucille_Rehm",
+    "latest_election": {
+      "year": 2024,
+      "election_date": "November 5, 2024",
+      "election_type": "General Election",
+      "rep_votes": 12953,
+      "rep_vote_pct": "50.39%",
+      "opponent_name": "Caleb Steffenhagen",
+      "opponent_votes": 12728,
+      "opponent_vote_pct": "49.52%",
+      "ran_unopposed": false
+    }
   },
   {
     "name": "Alex Falconer",
@@ -1161,7 +2313,19 @@
     "term_expires": "2026",
     "image_url": "https://www.house.mn.gov/hinfo/memberimgls94/49A.gif",
     "government_email": "rep.alex.falconer@house.mn.gov",
-    "government_phone": "651-296-3964"
+    "government_phone": "651-296-3964",
+    "ballotpedia_url": "https://ballotpedia.org/Alex_Falconer",
+    "latest_election": {
+      "year": 2024,
+      "election_date": "November 5, 2024",
+      "election_type": "General Election",
+      "rep_votes": 16104,
+      "rep_vote_pct": "60.81%",
+      "opponent_name": "Stacy L. Bettison",
+      "opponent_votes": 10342,
+      "opponent_vote_pct": "39.05%",
+      "ran_unopposed": false
+    }
   },
   {
     "name": "Carlie Kotyza-Witthuhn",
@@ -1173,7 +2337,19 @@
     "term_expires": "2026",
     "image_url": "https://www.house.mn.gov/hinfo/memberimgls94/49B.gif",
     "government_email": "rep.carlie.kotyza-witthuhn@house.mn.gov",
-    "government_phone": "651-296-7449"
+    "government_phone": "651-296-7449",
+    "ballotpedia_url": "https://ballotpedia.org/Carlie_Kotyza-Witthuhn",
+    "latest_election": {
+      "year": 2024,
+      "election_date": "November 5, 2024",
+      "election_type": "General Election",
+      "rep_votes": 13529,
+      "rep_vote_pct": "57.11%",
+      "opponent_name": "Wendi Russo",
+      "opponent_votes": 10138,
+      "opponent_vote_pct": "42.80%",
+      "ran_unopposed": false
+    }
   },
   {
     "name": "Julie Greene",
@@ -1185,7 +2361,19 @@
     "term_expires": "2026",
     "image_url": "https://www.house.mn.gov/hinfo/memberimgls94/50A.gif",
     "government_email": "rep.julie.greene@house.mn.gov",
-    "government_phone": "651-296-4363"
+    "government_phone": "651-296-4363",
+    "ballotpedia_url": "https://ballotpedia.org/Julie_Greene",
+    "latest_election": {
+      "year": 2024,
+      "election_date": "November 5, 2024",
+      "election_type": "General Election",
+      "rep_votes": 16766,
+      "rep_vote_pct": "64.57%",
+      "opponent_name": "Owen Michaelson",
+      "opponent_votes": 9161,
+      "opponent_vote_pct": "35.28%",
+      "ran_unopposed": false
+    }
   },
   {
     "name": "Steve Elkins",
@@ -1197,7 +2385,19 @@
     "term_expires": "2026",
     "image_url": "https://www.house.mn.gov/hinfo/memberimgls94/50B.gif",
     "government_email": "rep.steve.elkins@house.mn.gov",
-    "government_phone": "651-296-7803"
+    "government_phone": "651-296-7803",
+    "ballotpedia_url": "https://ballotpedia.org/Steve_Elkins",
+    "latest_election": {
+      "year": 2024,
+      "election_date": "November 5, 2024",
+      "election_type": "General Election",
+      "rep_votes": 16524,
+      "rep_vote_pct": "63.18%",
+      "opponent_name": "Bob Gust",
+      "opponent_votes": 9596,
+      "opponent_vote_pct": "36.69%",
+      "ran_unopposed": false
+    }
   },
   {
     "name": "Michael Howard",
@@ -1209,7 +2409,19 @@
     "term_expires": "2026",
     "image_url": "https://www.house.mn.gov/hinfo/memberimgls94/51A.gif",
     "government_email": "rep.michael.howard@house.mn.gov",
-    "government_phone": "651-296-7158"
+    "government_phone": "651-296-7158",
+    "ballotpedia_url": "https://ballotpedia.org/Michael_Howard_(Minnesota)",
+    "latest_election": {
+      "year": 2024,
+      "election_date": "November 5, 2024",
+      "election_type": "General Election",
+      "rep_votes": 15440,
+      "rep_vote_pct": "73.44%",
+      "opponent_name": "Jeffrey Thompson",
+      "opponent_votes": 5533,
+      "opponent_vote_pct": "26.32%",
+      "ran_unopposed": false
+    }
   },
   {
     "name": "Nathan Coulter",
@@ -1221,7 +2433,19 @@
     "term_expires": "2026",
     "image_url": "https://www.house.mn.gov/hinfo/memberimgls94/51B.gif",
     "government_email": "rep.nathan.coulter@house.mn.gov",
-    "government_phone": "651-296-4218"
+    "government_phone": "651-296-4218",
+    "ballotpedia_url": "https://ballotpedia.org/Nathan_Coulter",
+    "latest_election": {
+      "year": 2024,
+      "election_date": "November 5, 2024",
+      "election_type": "General Election",
+      "rep_votes": 13244,
+      "rep_vote_pct": "64.08%",
+      "opponent_name": "Lion Dale Johnson",
+      "opponent_votes": 7373,
+      "opponent_vote_pct": "35.67%",
+      "ran_unopposed": false
+    }
   },
   {
     "name": "Liz Reyer",
@@ -1233,7 +2457,19 @@
     "term_expires": "2026",
     "image_url": "https://www.house.mn.gov/hinfo/memberimgls94/52A.gif",
     "government_email": "rep.liz.reyer@house.mn.gov",
-    "government_phone": "651-296-4128"
+    "government_phone": "651-296-4128",
+    "ballotpedia_url": "https://ballotpedia.org/Liz_Reyer",
+    "latest_election": {
+      "year": 2024,
+      "election_date": "November 5, 2024",
+      "election_type": "General Election",
+      "rep_votes": 13784,
+      "rep_vote_pct": "60.88%",
+      "opponent_name": "Diane Anderson",
+      "opponent_votes": 8833,
+      "opponent_vote_pct": "39.01%",
+      "ran_unopposed": false
+    }
   },
   {
     "name": "Bianca Virnig",
@@ -1245,7 +2481,19 @@
     "term_expires": "2026",
     "image_url": "https://www.house.mn.gov/hinfo/memberimgls94/52B.gif",
     "government_email": "rep.bianca.virnig@house.mn.gov",
-    "government_phone": "651-296-4192"
+    "government_phone": "651-296-4192",
+    "ballotpedia_url": "https://ballotpedia.org/Bianca_Ward_Virnig",
+    "latest_election": {
+      "year": 2024,
+      "election_date": "November 5, 2024",
+      "election_type": "General Election",
+      "rep_votes": 15857,
+      "rep_vote_pct": "60.57%",
+      "opponent_name": "Douglas Willetts",
+      "opponent_votes": 10291,
+      "opponent_vote_pct": "39.31%",
+      "ran_unopposed": false
+    }
   },
   {
     "name": "Mary Frances Clardy",
@@ -1257,7 +2505,19 @@
     "term_expires": "2026",
     "image_url": "https://www.house.mn.gov/hinfo/memberimgls94/53A.gif",
     "government_email": "rep.mary.frances.clardy@house.mn.gov",
-    "government_phone": "651-296-3533"
+    "government_phone": "651-296-3533",
+    "ballotpedia_url": "https://ballotpedia.org/Mary_Frances_Clardy",
+    "latest_election": {
+      "year": 2024,
+      "election_date": "November 5, 2024",
+      "election_type": "General Election",
+      "rep_votes": 14011,
+      "rep_vote_pct": "57.73%",
+      "opponent_name": "Nathan Herschbach",
+      "opponent_votes": 10226,
+      "opponent_vote_pct": "42.14%",
+      "ran_unopposed": false
+    }
   },
   {
     "name": "Rick Hansen",
@@ -1269,7 +2529,19 @@
     "term_expires": "2026",
     "image_url": "https://www.house.mn.gov/hinfo/memberimgls94/53B.gif",
     "government_email": "rep.rick.hansen@house.mn.gov",
-    "government_phone": "651-296-6828"
+    "government_phone": "651-296-6828",
+    "ballotpedia_url": "https://ballotpedia.org/Rick_Hansen_(Minnesota)",
+    "latest_election": {
+      "year": 2024,
+      "election_date": "November 5, 2024",
+      "election_type": "General Election",
+      "rep_votes": 13203,
+      "rep_vote_pct": "59.37%",
+      "opponent_name": "Aaron M. Brooksby",
+      "opponent_votes": 9002,
+      "opponent_vote_pct": "40.48%",
+      "ran_unopposed": false
+    }
   },
   {
     "name": "Brad Tabke",
@@ -1281,7 +2553,19 @@
     "term_expires": "2026",
     "image_url": "https://www.house.mn.gov/hinfo/memberimgls94/54A.gif",
     "government_email": "rep.brad.tabke@house.mn.gov",
-    "government_phone": "651-296-8872"
+    "government_phone": "651-296-8872",
+    "ballotpedia_url": "https://ballotpedia.org/Brad_Tabke",
+    "latest_election": {
+      "year": 2024,
+      "election_date": "November 5, 2024",
+      "election_type": "General Election",
+      "rep_votes": 10979,
+      "rep_vote_pct": "49.95%",
+      "opponent_name": "Aaron Paul",
+      "opponent_votes": 10965,
+      "opponent_vote_pct": "49.89%",
+      "ran_unopposed": false
+    }
   },
   {
     "name": "Ben Bakeberg",
@@ -1293,7 +2577,19 @@
     "term_expires": "2026",
     "image_url": "https://www.house.mn.gov/hinfo/memberimgls94/54B.gif",
     "government_email": "rep.ben.bakeberg@house.mn.gov",
-    "government_phone": "651-296-5185"
+    "government_phone": "651-296-5185",
+    "ballotpedia_url": "https://ballotpedia.org/Ben_Bakeberg",
+    "latest_election": {
+      "year": 2024,
+      "election_date": "November 5, 2024",
+      "election_type": "General Election",
+      "rep_votes": 15807,
+      "rep_vote_pct": "61.94%",
+      "opponent_name": "Jean Lee",
+      "opponent_votes": 9696,
+      "opponent_vote_pct": "37.99%",
+      "ran_unopposed": false
+    }
   },
   {
     "name": "Jessica Hanson",
@@ -1305,7 +2601,19 @@
     "term_expires": "2026",
     "image_url": "https://www.house.mn.gov/hinfo/memberimgls94/55A.gif",
     "government_email": "rep.jessica.hanson@house.mn.gov",
-    "government_phone": "651-296-4212"
+    "government_phone": "651-296-4212",
+    "ballotpedia_url": "https://ballotpedia.org/Jessica_Hanson",
+    "latest_election": {
+      "year": 2024,
+      "election_date": "November 5, 2024",
+      "election_type": "General Election",
+      "rep_votes": 12114,
+      "rep_vote_pct": "53.33%",
+      "opponent_name": "Gabriela Kroetch",
+      "opponent_votes": 10576,
+      "opponent_vote_pct": "46.56%",
+      "ran_unopposed": false
+    }
   },
   {
     "name": "Kaela Berg",
@@ -1317,7 +2625,19 @@
     "term_expires": "2026",
     "image_url": "https://www.house.mn.gov/hinfo/memberimgls94/55B.gif",
     "government_email": "rep.kaela.berg@house.mn.gov",
-    "government_phone": "651-296-5387"
+    "government_phone": "651-296-5387",
+    "ballotpedia_url": "https://ballotpedia.org/Kaela_Berg",
+    "latest_election": {
+      "year": 2024,
+      "election_date": "November 5, 2024",
+      "election_type": "General Election",
+      "rep_votes": 11616,
+      "rep_vote_pct": "59.24%",
+      "opponent_name": "Van Holston",
+      "opponent_votes": 7968,
+      "opponent_vote_pct": "40.64%",
+      "ran_unopposed": false
+    }
   },
   {
     "name": "Robert Bierman",
@@ -1329,7 +2649,19 @@
     "term_expires": "2026",
     "image_url": "https://www.house.mn.gov/hinfo/memberimgls94/56A.gif",
     "government_email": "rep.robert.bierman@house.mn.gov",
-    "government_phone": "651-296-5506"
+    "government_phone": "651-296-5506",
+    "ballotpedia_url": "https://ballotpedia.org/Robert_Bierman",
+    "latest_election": {
+      "year": 2024,
+      "election_date": "November 5, 2024",
+      "election_type": "General Election",
+      "rep_votes": 13750,
+      "rep_vote_pct": "61.22%",
+      "opponent_name": "Angela Zorn",
+      "opponent_votes": 8687,
+      "opponent_vote_pct": "38.68%",
+      "ran_unopposed": false
+    }
   },
   {
     "name": "John Huot",
@@ -1341,7 +2673,19 @@
     "term_expires": "2026",
     "image_url": "https://www.house.mn.gov/hinfo/memberimgls94/56B.gif",
     "government_email": "rep.john.huot@house.mn.gov",
-    "government_phone": "651-296-4306"
+    "government_phone": "651-296-4306",
+    "ballotpedia_url": "https://ballotpedia.org/John_Huot",
+    "latest_election": {
+      "year": 2024,
+      "election_date": "November 5, 2024",
+      "election_type": "General Election",
+      "rep_votes": 14736,
+      "rep_vote_pct": "55.97%",
+      "opponent_name": "Angeline Anderson",
+      "opponent_votes": 11575,
+      "opponent_vote_pct": "43.96%",
+      "ran_unopposed": false
+    }
   },
   {
     "name": "Jon Koznick",
@@ -1353,7 +2697,19 @@
     "term_expires": "2026",
     "image_url": "https://www.house.mn.gov/hinfo/memberimgls94/57A.gif",
     "government_email": "rep.jon.koznick@house.mn.gov",
-    "government_phone": "651-296-6926"
+    "government_phone": "651-296-6926",
+    "ballotpedia_url": "https://ballotpedia.org/Jon_Koznick",
+    "latest_election": {
+      "year": 2024,
+      "election_date": "November 5, 2024",
+      "election_type": "General Election",
+      "rep_votes": 16479,
+      "rep_vote_pct": "62.55%",
+      "opponent_name": "Veda Kanitz",
+      "opponent_votes": 9848,
+      "opponent_vote_pct": "37.38%",
+      "ran_unopposed": false
+    }
   },
   {
     "name": "Jeff Witte",
@@ -1365,7 +2721,19 @@
     "term_expires": "2026",
     "image_url": "https://www.house.mn.gov/hinfo/memberimgls94/57B.gif",
     "government_email": "rep.jeff.witte@house.mn.gov",
-    "government_phone": "651-296-4240"
+    "government_phone": "651-296-4240",
+    "ballotpedia_url": "https://ballotpedia.org/Jeff_Witte_(Minnesota)",
+    "latest_election": {
+      "year": 2024,
+      "election_date": "November 5, 2024",
+      "election_type": "General Election",
+      "rep_votes": 13781,
+      "rep_vote_pct": "52.35%",
+      "opponent_name": "Brian Cohn",
+      "opponent_votes": 12520,
+      "opponent_vote_pct": "47.56%",
+      "ran_unopposed": false
+    }
   },
   {
     "name": "Kristi Pursell",
@@ -1377,7 +2745,19 @@
     "term_expires": "2026",
     "image_url": "https://www.house.mn.gov/hinfo/memberimgls94/58A.gif",
     "government_email": "rep.kristi.pursell@house.mn.gov",
-    "government_phone": "651-296-0171"
+    "government_phone": "651-296-0171",
+    "ballotpedia_url": "https://ballotpedia.org/Kristi_Pursell",
+    "latest_election": {
+      "year": 2024,
+      "election_date": "November 5, 2024",
+      "election_type": "General Election",
+      "rep_votes": 13325,
+      "rep_vote_pct": "52.43%",
+      "opponent_name": "Rita Hillmann Olson",
+      "opponent_votes": 12067,
+      "opponent_vote_pct": "47.48%",
+      "ran_unopposed": false
+    }
   },
   {
     "name": "Drew Roach",
@@ -1389,7 +2769,19 @@
     "term_expires": "2026",
     "image_url": "https://www.house.mn.gov/hinfo/memberimgls94/58B.gif",
     "government_email": "rep.drew.roach@house.mn.gov",
-    "government_phone": "651-296-1069"
+    "government_phone": "651-296-1069",
+    "ballotpedia_url": "https://ballotpedia.org/Drew_Roach",
+    "latest_election": {
+      "year": 2024,
+      "election_date": "November 5, 2024",
+      "election_type": "General Election",
+      "rep_votes": 14886,
+      "rep_vote_pct": "59.84%",
+      "opponent_name": "Ian English",
+      "opponent_votes": 9962,
+      "opponent_vote_pct": "40.05%",
+      "ran_unopposed": false
+    }
   },
   {
     "name": "Fue Lee",
@@ -1401,7 +2793,19 @@
     "term_expires": "2026",
     "image_url": "https://www.house.mn.gov/hinfo/memberimgls94/59A.gif",
     "government_email": "rep.fue.lee@house.mn.gov",
-    "government_phone": "651-296-4262"
+    "government_phone": "651-296-4262",
+    "ballotpedia_url": "https://ballotpedia.org/Fue_Lee",
+    "latest_election": {
+      "year": 2024,
+      "election_date": "November 5, 2024",
+      "election_type": "General Election",
+      "rep_votes": 11672,
+      "rep_vote_pct": "97.93%",
+      "opponent_name": null,
+      "opponent_votes": null,
+      "opponent_vote_pct": null,
+      "ran_unopposed": true
+    }
   },
   {
     "name": "Esther Agbaje",
@@ -1413,7 +2817,19 @@
     "term_expires": "2026",
     "image_url": "https://www.house.mn.gov/hinfo/memberimgls94/59B.gif",
     "government_email": "rep.esther.agbaje@house.mn.gov",
-    "government_phone": "651-296-8659"
+    "government_phone": "651-296-8659",
+    "ballotpedia_url": "https://ballotpedia.org/Esther_Agbaje",
+    "latest_election": {
+      "year": 2024,
+      "election_date": "November 5, 2024",
+      "election_type": "General Election",
+      "rep_votes": 16791,
+      "rep_vote_pct": "82.34%",
+      "opponent_name": "Kenneth Smoron",
+      "opponent_votes": 3549,
+      "opponent_vote_pct": "17.40%",
+      "ran_unopposed": false
+    }
   },
   {
     "name": "Sydney Jordan",
@@ -1425,7 +2841,19 @@
     "term_expires": "2026",
     "image_url": "https://www.house.mn.gov/hinfo/memberimgls94/60A.gif",
     "government_email": "rep.sydney.jordan@house.mn.gov",
-    "government_phone": "651-296-4219"
+    "government_phone": "651-296-4219",
+    "ballotpedia_url": "https://ballotpedia.org/Sydney_Jordan",
+    "latest_election": {
+      "year": 2024,
+      "election_date": "November 5, 2024",
+      "election_type": "General Election",
+      "rep_votes": 19684,
+      "rep_vote_pct": "84.59%",
+      "opponent_name": "Mary Holmberg",
+      "opponent_votes": 3535,
+      "opponent_vote_pct": "15.19%",
+      "ran_unopposed": false
+    }
   },
   {
     "name": "Mohamud Noor",
@@ -1437,7 +2865,19 @@
     "term_expires": "2026",
     "image_url": "https://www.house.mn.gov/hinfo/memberimgls94/60B.gif",
     "government_email": "rep.mohamud.noor@house.mn.gov",
-    "government_phone": "651-296-4257"
+    "government_phone": "651-296-4257",
+    "ballotpedia_url": "https://ballotpedia.org/Mohamud_Noor",
+    "latest_election": {
+      "year": 2024,
+      "election_date": "November 5, 2024",
+      "election_type": "General Election",
+      "rep_votes": 9993,
+      "rep_vote_pct": "82.70%",
+      "opponent_name": "Abigail Wolters",
+      "opponent_votes": 2041,
+      "opponent_vote_pct": "16.89%",
+      "ran_unopposed": false
+    }
   },
   {
     "name": "Katie Jones",
@@ -1449,7 +2889,19 @@
     "term_expires": "2026",
     "image_url": "https://www.house.mn.gov/hinfo/memberimgls94/61A.gif",
     "government_email": "rep.katie.jones@house.mn.gov",
-    "government_phone": "651-296-9281"
+    "government_phone": "651-296-9281",
+    "ballotpedia_url": "https://ballotpedia.org/Katie_Jones_(Minnesota)",
+    "latest_election": {
+      "year": 2024,
+      "election_date": "November 5, 2024",
+      "election_type": "General Election",
+      "rep_votes": 18234,
+      "rep_vote_pct": "83.92%",
+      "opponent_name": "Toya López (Green Party)",
+      "opponent_votes": 3284,
+      "opponent_vote_pct": "15.11%",
+      "ran_unopposed": false
+    }
   },
   {
     "name": "Jamie Long",
@@ -1461,7 +2913,19 @@
     "term_expires": "2026",
     "image_url": "https://www.house.mn.gov/hinfo/memberimgls94/61B.gif",
     "government_email": "rep.jamie.long@house.mn.gov",
-    "government_phone": "651-296-5375"
+    "government_phone": "651-296-5375",
+    "ballotpedia_url": "https://ballotpedia.org/Jamie_Long",
+    "latest_election": {
+      "year": 2024,
+      "election_date": "November 5, 2024",
+      "election_type": "General Election",
+      "rep_votes": 23864,
+      "rep_vote_pct": "89.09%",
+      "opponent_name": "Bob Carney Jr.",
+      "opponent_votes": 2861,
+      "opponent_vote_pct": "10.68%",
+      "ran_unopposed": false
+    }
   },
   {
     "name": "Aisha Gomez",
@@ -1473,7 +2937,19 @@
     "term_expires": "2026",
     "image_url": "https://www.house.mn.gov/hinfo/memberimgls94/62A.gif",
     "government_email": "rep.aisha.gomez@house.mn.gov",
-    "government_phone": "651-296-7152"
+    "government_phone": "651-296-7152",
+    "ballotpedia_url": "https://ballotpedia.org/Aisha_Gomez",
+    "latest_election": {
+      "year": 2024,
+      "election_date": "November 5, 2024",
+      "election_type": "General Election",
+      "rep_votes": 13349,
+      "rep_vote_pct": "90.07%",
+      "opponent_name": "Alexandra Hoffman Novick",
+      "opponent_votes": 1434,
+      "opponent_vote_pct": "9.68%",
+      "ran_unopposed": false
+    }
   },
   {
     "name": "Anquam Mahamoud",
@@ -1485,7 +2961,19 @@
     "term_expires": "2026",
     "image_url": "https://www.house.mn.gov/hinfo/memberimgls94/62B.gif",
     "government_email": "rep.anquam.mahamoud@house.mn.gov",
-    "government_phone": "651-296-0294"
+    "government_phone": "651-296-0294",
+    "ballotpedia_url": "https://ballotpedia.org/Anquam_Mahamoud",
+    "latest_election": {
+      "year": 2024,
+      "election_date": "November 5, 2024",
+      "election_type": "General Election",
+      "rep_votes": 14747,
+      "rep_vote_pct": "87.23%",
+      "opponent_name": "Bob Sullentrop",
+      "opponent_votes": 2093,
+      "opponent_vote_pct": "12.38%",
+      "ran_unopposed": false
+    }
   },
   {
     "name": "Samantha Sencer-Mura",
@@ -1497,7 +2985,19 @@
     "term_expires": "2026",
     "image_url": "https://www.house.mn.gov/hinfo/memberimgls94/63A.gif",
     "government_email": "rep.samantha.sencer-mura@house.mn.gov",
-    "government_phone": "651-296-0173"
+    "government_phone": "651-296-0173",
+    "ballotpedia_url": "https://ballotpedia.org/Samantha_Sencer-Mura",
+    "latest_election": {
+      "year": 2024,
+      "election_date": "November 5, 2024",
+      "election_type": "General Election",
+      "rep_votes": 20289,
+      "rep_vote_pct": "98.76%",
+      "opponent_name": null,
+      "opponent_votes": null,
+      "opponent_vote_pct": null,
+      "ran_unopposed": true
+    }
   },
   {
     "name": "Emma Greenman",
@@ -1509,7 +3009,19 @@
     "term_expires": "2026",
     "image_url": "https://www.house.mn.gov/hinfo/memberimgls94/63B.gif",
     "government_email": "rep.emma.greenman@house.mn.gov",
-    "government_phone": "651-296-4200"
+    "government_phone": "651-296-4200",
+    "ballotpedia_url": "https://ballotpedia.org/Emma_Greenman",
+    "latest_election": {
+      "year": 2024,
+      "election_date": "November 5, 2024",
+      "election_type": "General Election",
+      "rep_votes": 22790,
+      "rep_vote_pct": "85.27%",
+      "opponent_name": "Diane Napper",
+      "opponent_votes": 3878,
+      "opponent_vote_pct": "14.51%",
+      "ran_unopposed": false
+    }
   },
   {
     "name": "Kaohly Vang Her",
@@ -1521,7 +3033,19 @@
     "term_expires": "2026",
     "image_url": "https://www.house.mn.gov/hinfo/memberimgls94/64A.gif",
     "government_email": "rep.kaohly.her@house.mn.gov",
-    "government_phone": "651-296-8799"
+    "government_phone": "651-296-8799",
+    "ballotpedia_url": "https://ballotpedia.org/Kaohly_Her",
+    "latest_election": {
+      "year": 2024,
+      "election_date": "November 5, 2024",
+      "election_type": "General Election",
+      "rep_votes": 20441,
+      "rep_vote_pct": "83.17%",
+      "opponent_name": "Dan Walsh",
+      "opponent_votes": 4080,
+      "opponent_vote_pct": "16.60%",
+      "ran_unopposed": false
+    }
   },
   {
     "name": "Dave Pinto",
@@ -1533,7 +3057,19 @@
     "term_expires": "2026",
     "image_url": "https://www.house.mn.gov/hinfo/memberimgls94/64B.gif",
     "government_email": "rep.dave.pinto@house.mn.gov",
-    "government_phone": "651-296-4199"
+    "government_phone": "651-296-4199",
+    "ballotpedia_url": "https://ballotpedia.org/Dave_Pinto",
+    "latest_election": {
+      "year": 2024,
+      "election_date": "November 5, 2024",
+      "election_type": "General Election",
+      "rep_votes": 20922,
+      "rep_vote_pct": "80.10%",
+      "opponent_name": "Peter Donahue",
+      "opponent_votes": 5152,
+      "opponent_vote_pct": "19.72%",
+      "ran_unopposed": false
+    }
   },
   {
     "name": "Samakab Hussein",
@@ -1545,10 +3081,22 @@
     "term_expires": "2026",
     "image_url": "https://www.house.mn.gov/hinfo/memberimgls94/65A.gif",
     "government_email": "rep.samakab.hussein@house.mn.gov",
-    "government_phone": "651-296-5158"
+    "government_phone": "651-296-5158",
+    "ballotpedia_url": "https://ballotpedia.org/Samakab_Hussein",
+    "latest_election": {
+      "year": 2024,
+      "election_date": "November 5, 2024",
+      "election_type": "General Election",
+      "rep_votes": 10068,
+      "rep_vote_pct": "97.07%",
+      "opponent_name": null,
+      "opponent_votes": null,
+      "opponent_vote_pct": null,
+      "ran_unopposed": true
+    }
   },
   {
-    "name": "Mar\u00eda Isa P\u00e9rez-Vega",
+    "name": "María Isa Pérez-Vega",
     "district_name": "District 65B",
     "district_location": "Dakota, Ramsey Counties",
     "district_population": "44,521",
@@ -1557,7 +3105,19 @@
     "term_expires": "2026",
     "image_url": "https://www.house.mn.gov/hinfo/memberimgls94/65B.gif",
     "government_email": "rep.maria.isa.perez-vega@house.mn.gov",
-    "government_phone": "651-296-9714"
+    "government_phone": "651-296-9714",
+    "ballotpedia_url": "https://ballotpedia.org/Maria_Isa_P%C3%A9rez-Vega",
+    "latest_election": {
+      "year": 2024,
+      "election_date": "November 5, 2024",
+      "election_type": "General Election",
+      "rep_votes": 15100,
+      "rep_vote_pct": "76.51%",
+      "opponent_name": "Mike Hilborn",
+      "opponent_votes": 4572,
+      "opponent_vote_pct": "23.17%",
+      "ran_unopposed": false
+    }
   },
   {
     "name": "Leigh Finke",
@@ -1569,7 +3129,19 @@
     "term_expires": "2026",
     "image_url": "https://www.house.mn.gov/hinfo/memberimgls94/66A.gif",
     "government_email": "rep.leigh.finke@house.mn.gov",
-    "government_phone": "651-296-3824"
+    "government_phone": "651-296-3824",
+    "ballotpedia_url": "https://ballotpedia.org/Leigh_Finke",
+    "latest_election": {
+      "year": 2024,
+      "election_date": "November 5, 2024",
+      "election_type": "General Election",
+      "rep_votes": 18166,
+      "rep_vote_pct": "80.99%",
+      "opponent_name": "Fadil Jama",
+      "opponent_votes": 4180,
+      "opponent_vote_pct": "18.64%",
+      "ran_unopposed": false
+    }
   },
   {
     "name": "Athena Hollins",
@@ -1581,7 +3153,19 @@
     "term_expires": "2026",
     "image_url": "https://www.house.mn.gov/hinfo/memberimgls94/66B.gif",
     "government_email": "rep.athena.hollins@house.mn.gov",
-    "government_phone": "651-296-4224"
+    "government_phone": "651-296-4224",
+    "ballotpedia_url": "https://ballotpedia.org/Athena_Hollins",
+    "latest_election": {
+      "year": 2024,
+      "election_date": "November 5, 2024",
+      "election_type": "General Election",
+      "rep_votes": 10864,
+      "rep_vote_pct": "76.12%",
+      "opponent_name": "Greg Copeland",
+      "opponent_votes": 3370,
+      "opponent_vote_pct": "23.61%",
+      "ran_unopposed": false
+    }
   },
   {
     "name": "Liz Lee",
@@ -1593,7 +3177,19 @@
     "term_expires": "2026",
     "image_url": "https://www.house.mn.gov/hinfo/memberimgls94/67A.gif",
     "government_email": "rep.liz.lee@house.mn.gov",
-    "government_phone": "651-296-4277"
+    "government_phone": "651-296-4277",
+    "ballotpedia_url": "https://ballotpedia.org/Liz_Lee",
+    "latest_election": {
+      "year": 2024,
+      "election_date": "November 5, 2024",
+      "election_type": "General Election",
+      "rep_votes": 9133,
+      "rep_vote_pct": "73.96%",
+      "opponent_name": "Scott Hesselgrave",
+      "opponent_votes": 3178,
+      "opponent_vote_pct": "25.74%",
+      "ran_unopposed": false
+    }
   },
   {
     "name": "Jay Xiong",
@@ -1605,6 +3201,18 @@
     "term_expires": "2026",
     "image_url": "https://www.house.mn.gov/hinfo/memberimgls94/67B.gif",
     "government_email": "rep.jay.xiong@house.mn.gov",
-    "government_phone": "651-296-4201"
+    "government_phone": "651-296-4201",
+    "ballotpedia_url": "https://ballotpedia.org/Jay_Xiong",
+    "latest_election": {
+      "year": 2024,
+      "election_date": "November 5, 2024",
+      "election_type": "General Election",
+      "rep_votes": 10610,
+      "rep_vote_pct": "74.70%",
+      "opponent_name": "Sharon Anderson",
+      "opponent_votes": 3538,
+      "opponent_vote_pct": "24.91%",
+      "ran_unopposed": false
+    }
   }
 ]

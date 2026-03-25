@@ -1,0 +1,206 @@
+[
+  {
+    "name": "2026-2027 Biennial State Budget",
+    "bill_id": "HF 1 (Special Session)",
+    "description": "A comprehensive $66 billion budget that maintained funding for universal school meals and paid leave while increasing investments in rural EMS and housing.",
+    "passed_date": "June 11, 2025",
+    "author": "Rep. Liz Olson / Sen. John Marty",
+    "vote_counts": {
+      "house": "68-66",
+      "senate": "34-33"
+    },
+    "link": "https://www.revisor.mn.gov/bills/bill.php?b=House&f=HF1&ssn=1&y=2025"
+  },
+  {
+    "name": "Infrastructure & Water Bonding Bill",
+    "bill_id": "HF 5242",
+    "description": "A $700 million capital investment package focused heavily on local water/sewer infrastructure ($176M) and road/bridge repairs ($78M).",
+    "passed_date": "June 11, 2025",
+    "author": "Rep. Fue Lee / Sen. Sandra Pappas",
+    "vote_counts": {
+      "house": "81-53",
+      "senate": "45-22"
+    },
+    "link": "https://www.revisor.mn.gov/bills/bill.php?b=House&f=HF5242&ssn=94&y=2025"
+  },
+  {
+    "name": "Emergency Medical Services (EMS) Relief",
+    "bill_id": "HF 4738",
+    "description": "Established the new Office of Emergency Management Services and provided $27.5 million in emergency aid to struggling rural ambulance services.",
+    "passed_date": "May 23, 2025",
+    "author": "Rep. John Huot / Sen. Judy Seeberger",
+    "vote_counts": {
+      "house": "119-11",
+      "senate": "66-0"
+    },
+    "link": "https://www.revisor.mn.gov/bills/bill.php?b=House&f=HF4738&ssn=94&y=2025"
+  },
+  {
+    "name": "Worker Protection Policy Update",
+    "bill_id": "SF 3045",
+    "description": "Updated the 'Earned Sick and Safe Time' laws and mandated 15-minute paid rest breaks for every 4 hours worked.",
+    "passed_date": "May 19, 2025",
+    "author": "Rep. Kristina Murphy / Sen. Erin Murphy",
+    "vote_counts": {
+      "house": "67-67 (Passed via Tie-Break/Agreement)",
+      "senate": "34-33"
+    },
+    "link": "https://www.revisor.mn.gov/bills/bill.php?b=Senate&f=SF3045&ssn=94&y=2025"
+  },
+  {
+    "name": "Medical Malpractice Statute Reform",
+    "bill_id": "SF 3489",
+    "description": "Decreased the statute of limitations for medical malpractice claims to align Minnesota with neighboring states' standards.",
+    "passed_date": "May 15, 2025",
+    "author": "Rep. Kelly Moller / Sen. Ron Latz",
+    "vote_counts": {
+      "house": "72-62",
+      "senate": "38-29"
+    },
+    "link": "https://www.revisor.mn.gov/bills/bill.php?b=Senate&f=SF3489&ssn=94&y=2025"
+  },
+  {
+    "name": "Protect Reproductive Options (PRO) Act",
+    "bill_id": "HF 1",
+    "description": "Codified the fundamental right to reproductive freedom, including abortion and contraception, into Minnesota state law.",
+    "passed_date": "January 31, 2023",
+    "author": "Rep. Carlie Kotyza-Witthuhn / Sen. Jennifer McEwen",
+    "vote_counts": {
+      "house": "69-65",
+      "senate": "34-33"
+    },
+    "link": "https://www.revisor.mn.gov/bills/bill.php?b=House&f=HF1&ssn=93&y=2023"
+  },
+  {
+    "name": "Universal Free School Meals",
+    "bill_id": "HF 5",
+    "description": "Provides state-funded breakfast and lunch to all K-12 students in Minnesota, regardless of family income.",
+    "passed_date": "March 17, 2023",
+    "author": "Rep. Sydney Jordan / Sen. Heather Gustafson",
+    "vote_counts": {
+      "house": "70-58",
+      "senate": "38-26"
+    },
+    "link": "https://www.revisor.mn.gov/bills/bill.php?b=House&f=HF5&ssn=93&y=2023"
+  },
+  {
+    "name": "100% Clean Energy by 2040",
+    "bill_id": "HF 7",
+    "description": "Requires Minnesota utilities to transition to 100% carbon-free electricity by the year 2040.",
+    "passed_date": "February 7, 2023",
+    "author": "Rep. Jamie Long / Sen. Nick Frentz",
+    "vote_counts": {
+      "house": "70-60",
+      "senate": "34-33"
+    },
+    "link": "https://www.revisor.mn.gov/bills/bill.php?b=House&f=HF7&ssn=93&y=2023"
+  },
+  {
+    "name": "Restore the Vote Act",
+    "bill_id": "HF 28",
+    "description": "Restored voting rights to individuals convicted of a felony immediately upon their release from incarceration, rather than waiting until the end of parole.",
+    "passed_date": "March 3, 2023",
+    "author": "Rep. Cedrick Frazier / Sen. Bobby Joe Champion",
+    "vote_counts": {
+      "house": "71-59",
+      "senate": "35-30"
+    },
+    "link": "https://www.revisor.mn.gov/bills/bill.php?b=House&f=HF28&ssn=93&y=2023"
+  },
+  {
+    "name": "Trans Refuge Act",
+    "bill_id": "HF 146",
+    "description": "Protects individuals seeking or providing gender-affirming healthcare in Minnesota from legal action or subpoenas from other states.",
+    "passed_date": "April 27, 2023",
+    "author": "Rep. Leigh Finke / Sen. Erin Maye Quade",
+    "vote_counts": {
+      "house": "68-62",
+      "senate": "34-30"
+    },
+    "link": "https://www.revisor.mn.gov/bills/bill.php?b=House&f=HF146&ssn=93&y=2023"
+  },
+  {
+    "name": "Paid Family and Medical Leave",
+    "bill_id": "HF 2",
+    "description": "Established a statewide insurance program providing up to 12 weeks of paid leave for serious health conditions or caring for a new child or family member.",
+    "passed_date": "May 25, 2023",
+    "author": "Rep. Ruth Richardson / Sen. Alice Mann",
+    "vote_counts": {
+      "house": "71-60",
+      "senate": "34-33"
+    },
+    "link": "https://www.revisor.mn.gov/bills/bill.php?b=House&f=HF2&ssn=93&y=2023"
+  },
+  {
+    "name": "Minnesota Voting Rights Act",
+    "bill_id": "HF 4772",
+    "description": "Strengthens protections against voter suppression and vote dilution at the state level following federal court rollbacks of the 1965 Voting Rights Act.",
+    "passed_date": "May 19, 2024",
+    "author": "Rep. Emma Greenman / Sen. Bobby Joe Champion",
+    "vote_counts": {
+      "house": "69-62",
+      "senate": "34-33"
+    },
+    "link": "https://www.revisor.mn.gov/bills/bill.php?b=House&f=HF4772&ssn=93&y=2024"
+  },
+  {
+    "name": "Grain Indemnity Fund Establishment",
+    "bill_id": "HF 2446 (Agriculture Omnibus)",
+    "description": "Created a state-backed $10 million fund to protect farmers from financial loss if a grain elevator goes bankrupt. This ensures farmers are paid for their crops even if the buyer fails.",
+    "passed_date": "May 22, 2023",
+    "author": "Rep. Samantha Vang / Sen. Aric Putnam",
+    "vote_counts": {
+      "house": "70-62",
+      "senate": "34-33"
+    },
+    "link": "https://www.revisor.mn.gov/bills/bill.php?b=House&f=2446&ssn=93&y=2023"
+  },
+  {
+    "name": "Emergency Medical Services (EMS) Rural Aid",
+    "bill_id": "HF 4738",
+    "description": "Allocated $24 million in emergency one-time aid to volunteer and rural ambulance services facing budget shortfalls, plus $6 million for rural life-support pilot programs.",
+    "passed_date": "May 24, 2024",
+    "author": "Rep. John Huot / Sen. Judy Seeberger",
+    "vote_counts": {
+      "house": "122-10",
+      "senate": "67-0"
+    },
+    "link": "https://www.revisor.mn.gov/bills/bill.php?b=House&f=4738&ssn=93&y=2024"
+  },
+  {
+    "name": "Border-to-Border Broadband Expansion",
+    "bill_id": "HF 2313",
+    "description": "Appropriated $100M+ to expand high-speed internet to unserved rural areas, increasing the state's cost-share to 90% for the most remote 'low-density' locations.",
+    "passed_date": "May 24, 2023",
+    "author": "Rep. Kristi Pursell / Sen. Aric Putnam",
+    "vote_counts": {
+      "house": "126-2",
+      "senate": "66-0"
+    },
+    "link": "https://www.revisor.mn.gov/bills/bill.php?b=House&f=2313&ssn=93&y=2023"
+  },
+  {
+    "name": "Soil Health Financial Assistance Program",
+    "bill_id": "SF 1955 (Ag/Env Omnibus)",
+    "description": "Provides grants of up to $50,000 for farmers to purchase or retrofit specialized equipment (like no-till drills) that improves soil health and reduces long-term fertilizer costs.",
+    "passed_date": "May 19, 2023",
+    "author": "Rep. Samantha Vang / Sen. Aric Putnam",
+    "vote_counts": {
+      "house": "70-62",
+      "senate": "34-33"
+    },
+    "link": "https://www.revisor.mn.gov/bills/bill.php?b=Senate&f=1955&ssn=93&y=2023"
+  },
+  {
+    "name": "Beginning Farmer Down Payment Assistance",
+    "bill_id": "HF 2446 (Provision)",
+    "description": "Increased funding for a program providing up to $15,000 in direct grants to help new farmers, veterans, and emerging farmers buy their first parcel of farmland.",
+    "passed_date": "May 22, 2023",
+    "author": "Rep. Samantha Vang / Sen. Aric Putnam",
+    "vote_counts": {
+      "house": "70-62",
+      "senate": "34-33"
+    },
+    "link": "https://www.revisor.mn.gov/bills/bill.php?b=House&f=2446&ssn=93&y=2023"
+  }
+]
