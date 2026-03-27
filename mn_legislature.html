@@ -1151,6 +1151,168 @@
             border: 1px solid #e5e7eb;
             margin-top: 6px;
         }
+
+        /* Election Timeline */
+        .timeline-section {
+            padding: 0 30px 40px 30px;
+            margin-bottom: 10px;
+        }
+
+        .timeline-title {
+            text-align: center;
+            font-size: 1em;
+            font-weight: 600;
+            color: #555;
+            margin-bottom: 56px;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+        }
+
+        .timeline-scroll {
+            overflow-x: auto;
+            padding-bottom: 8px;
+        }
+
+        .timeline-canvas {
+            position: relative;
+            width: 100%;
+            min-width: 900px;
+            height: 160px;
+            margin: 0 auto;
+        }
+
+        /* the horizontal track */
+        .tl-track {
+            position: absolute;
+            top: 50%;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: #e0e0e0;
+            transform: translateY(-50%);
+        }
+
+        /* past portion overlay */
+        .tl-track-past {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100%;
+            background: #d0d0d0;
+        }
+
+        /* milestone dots */
+        .tl-dot {
+            position: absolute;
+            top: 50%;
+            width: 11px;
+            height: 11px;
+            border-radius: 50%;
+            background: #4a6fa5;
+            border: 2px solid #fff;
+            box-shadow: 0 0 0 2px #4a6fa5;
+            transform: translate(-50%, -50%);
+            cursor: default;
+        }
+
+        .tl-dot.past {
+            background: #bbb;
+            box-shadow: 0 0 0 2px #bbb;
+        }
+
+        /* today marker */
+        .tl-today {
+            position: absolute;
+            top: 50%;
+            width: 13px;
+            height: 13px;
+            border-radius: 50%;
+            background: #e53e3e;
+            border: 2px solid #fff;
+            box-shadow: 0 0 0 2px #e53e3e;
+            transform: translate(-50%, -50%);
+            z-index: 5;
+        }
+
+        .tl-today-label {
+            position: absolute;
+            top: 50%;
+            transform: translate(-50%, 14px);
+            font-size: 0.68em;
+            font-weight: 700;
+            color: #e53e3e;
+            white-space: nowrap;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+        }
+
+        /* milestone labels (above the line by default) */
+        .tl-label {
+            position: absolute;
+            top: 50%;
+            transform: translateX(-50%);
+            margin-top: -54px;
+            text-align: center;
+            width: 100px;
+            font-size: 0.72em;
+            line-height: 1.3;
+            color: #444;
+        }
+
+        /* labels placed below the line (odd-indexed milestones) */
+        .tl-label.below {
+            margin-top: 32px;
+        }
+
+        .tl-label.past {
+            color: #bbb;
+        }
+
+        .tl-label-date {
+            display: block;
+            font-size: 0.85em;
+            color: #999;
+            margin-top: 2px;
+        }
+
+        .tl-label.past .tl-label-date {
+            color: #ccc;
+        }
+
+        /* connector from label to dot */
+        .tl-connector {
+            position: absolute;
+            width: 1px;
+            background: #ddd;
+            top: 50%;
+        }
+
+        .tl-connector.past {
+            background: #e0e0e0;
+        }
+
+        /* month ticks (below the line) */
+        .tl-month-tick {
+            position: absolute;
+            top: 50%;
+            transform: translateX(-50%);
+        }
+
+        .tl-month-tick-line {
+            width: 1px;
+            height: 8px;
+            background: #ccc;
+            margin: 0 auto;
+            margin-top: 1px;
+        }
+
+        .tl-month-label {
+            font-size: 0.65em;
+            color: #bbb;
+            text-align: center;
+            margin-top: 3px;
+            white-space: nowrap;
+        }
     </style>
 </head>
 <body>
@@ -1165,7 +1327,6 @@
         <div class="page-tabs">
             <button class="page-tab-btn active" data-section="legislature">Legislature</button>
             <button class="page-tab-btn" data-section="contested">Contested Races</button>
-            <button class="page-tab-btn" data-section="targets">Targets</button>
             <button class="page-tab-btn" data-section="strategy">Strategy 2026</button>
         </div>
 
@@ -1225,10 +1386,8 @@
                     </table>
                 </div>
             </div>
+            <div id="section-targets"></div>
         </div>
-
-        <!-- Targets Tab -->
-        <div class="page-section" id="section-targets"></div>
 
         <!-- Strategy 2026 Tab -->
         <div class="page-section" id="section-strategy"></div>
@@ -2188,6 +2347,12 @@
             document.getElementById('section-strategy').innerHTML = `
                 <div class="">
                     <h2 class="chamber-title">Strategy 2026</h2>
+                    <div class="timeline-section">
+                        <div class="timeline-title">Road to November 2026</div>
+                        <div class="timeline-scroll">
+                            <div class="timeline-canvas" id="tl-canvas"></div>
+                        </div>
+                    </div>
                     <div class="playbook-qa-grid">
                         ${buildPlaybook()}
                         <div class="playbook-wrapper">
@@ -2226,6 +2391,116 @@
                         </table>
                     </div>
                 </div>`;
+        }
+
+        function buildTimeline() {
+            const canvas = document.getElementById('tl-canvas');
+            if (!canvas) return;
+
+            const milestones = [
+                { date: new Date(2026, 1, 3),  label: 'Precinct\nCaucus' },
+                { date: new Date(2026, 2, 10), label: 'Township\nElections' },
+                { date: new Date(2026, 5, 26), label: 'Early Voting\nBegins (Primary)' },
+                { date: new Date(2026, 6, 21), label: 'Primary Reg.\nDeadline' },
+                { date: new Date(2026, 7, 10), label: 'Early Voting\nEnds (Primary)' },
+                { date: new Date(2026, 7, 11), label: 'Primary\nElection' },
+                { date: new Date(2026, 8, 18), label: 'Early Voting\nBegins (General)' },
+                { date: new Date(2026, 9, 13), label: 'General Reg.\nDeadline' },
+                { date: new Date(2026, 10, 2), label: 'Early Voting\nEnds (General)' },
+                { date: new Date(2026, 10, 3), label: 'General\nElection Day' },
+            ];
+
+            const today = new Date();
+            today.setHours(0, 0, 0, 0);
+
+            // Timeline spans from Jan 1 2026 to Nov 30 2026
+            const tStart = new Date(2026, 0, 1).getTime();
+            const tEnd   = new Date(2026, 10, 30).getTime();
+            const tRange = tEnd - tStart;
+
+            const PAD = 60; // px padding each side
+            const W = canvas.offsetWidth || 1200;
+            const usable = W - PAD;
+
+            const toX = (d) => PAD + (d.getTime() - tStart) / tRange * usable;
+
+            // Track
+            const track = document.createElement('div');
+            track.className = 'tl-track';
+            canvas.appendChild(track);
+
+            // Past overlay on track
+            const todayX = Math.min(Math.max(toX(today), PAD), PAD + usable);
+            const pastPct = ((todayX - PAD) / usable * 100).toFixed(2);
+            const pastBar = document.createElement('div');
+            pastBar.className = 'tl-track-past';
+            pastBar.style.width = pastPct + '%';
+            track.appendChild(pastBar);
+
+            // Month ticks
+            for (let m = 0; m <= 10; m++) {
+                const d = new Date(2026, m, 1);
+                const x = toX(d);
+                const tick = document.createElement('div');
+                tick.className = 'tl-month-tick';
+                tick.style.left = x + 'px';
+                tick.innerHTML = `<div class="tl-month-tick-line"></div><div class="tl-month-label">${d.toLocaleString('default',{month:'short'})}</div>`;
+                canvas.appendChild(tick);
+            }
+
+            // Milestones – alternate labels above (even) and below (odd) to avoid overlap
+            const LABEL_H = 44; // px from center to bottom of label area (above line)
+
+            milestones.forEach((ms, i) => {
+                const x = toX(ms.date);
+                const isPast = ms.date < today;
+                const cls = isPast ? ' past' : '';
+                const isBelow = i % 2 === 1;
+                const belowCls = isBelow ? ' below' : '';
+
+                // Connector line between label and dot
+                const conn = document.createElement('div');
+                conn.className = 'tl-connector' + cls;
+                conn.style.left = x + 'px';
+                if (isBelow) {
+                    conn.style.height = '26px';
+                    conn.style.marginTop = '4px';
+                } else {
+                    conn.style.height = (LABEL_H - 6) + 'px';
+                    conn.style.marginTop = -(LABEL_H - 6) + 'px';
+                }
+                conn.style.top = '50%';
+                canvas.appendChild(conn);
+
+                // Dot
+                const dot = document.createElement('div');
+                dot.className = 'tl-dot' + cls;
+                dot.style.left = x + 'px';
+                canvas.appendChild(dot);
+
+                // Label
+                const label = document.createElement('div');
+                label.className = 'tl-label' + cls + belowCls;
+                label.style.left = x + 'px';
+                const [line1, line2] = ms.label.split('\n');
+                const dateStr = ms.date.toLocaleDateString('default', { month: 'short', day: 'numeric' });
+                label.innerHTML = `${line1}${line2 ? '<br>' + line2 : ''}<span class="tl-label-date">${dateStr}</span>`;
+                canvas.appendChild(label);
+            });
+
+            // Today marker
+            if (today >= new Date(2026, 0, 1) && today <= new Date(2026, 10, 30)) {
+                const todayDot = document.createElement('div');
+                todayDot.className = 'tl-today';
+                todayDot.style.left = todayX + 'px';
+                canvas.appendChild(todayDot);
+
+                const todayLbl = document.createElement('div');
+                todayLbl.className = 'tl-today-label';
+                todayLbl.style.left = todayX + 'px';
+                todayLbl.textContent = 'Today';
+                canvas.appendChild(todayLbl);
+            }
         }
 
         function buildContestedTable(reps, senators) {
@@ -2289,6 +2564,7 @@
         ]).then(([reps, senators, accomplishments]) => {
             buildContestedTable(reps, senators);
             buildStrategySection(reps, senators, accomplishments);
+            buildTimeline();
         });
     </script>
 </body>
