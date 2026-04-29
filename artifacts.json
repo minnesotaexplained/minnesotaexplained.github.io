@@ -1,1053 +1,1223 @@
 [
     {
-        "id":1,
-        "title":"Your Guide to Minnesota State Agencies",
-        "description":"Learn where to find information and stay informed about state government.",
-        "subtitle":"About Minnesota Government",
-        "footer":"",
-        "category": "Learn",
-        "type":"link",
-        "image":"/img/flag.webp",
-        "link":"/onboard.html"
-    },
-    {
-        "id":2,
-        "title":"Minneapolis City Government",
-        "description":"Learn about the city branches of government and their responsibilities.",
-        "subtitle":"",
-        "footer":"",
-        "category": "Minneapolis Government",
-        "type":"link",
-        "image":"/img/city.jpg",
-        "link":"/mplsgov.html"
-    },
-    {
-        "id":3,
-        "title":"Minnesota State Departments",
-        "description":"Explore each of Minnesota's state government departments.",
-        "subtitle":"State Departments - Commissioners, Descriptions, and Employee Counts (FY 2023)",
-        "footer":"Data sourced from Minnesota Secretary of State's 2025 State Agencies document and FY 2023 Workforce Planning Report",
-        "category": "State Government",
-        "columns":[
-            {
-                "header":"#",
-                "field":"index",
-                "width":"3%",
-                "type":"index"
-            },
-            {
-                "header":"Department",
-                "field":"department",
-                "width":"14%",
-                "type":"department-link",
-                "sortable":true
-            },
-            {
-                "header":"Commissioner",
-                "field":"commissioner",
-                "width":"11%",
-                "type":"text"
-            },
-            {
-                "header":"Commissioner Powers",
-                "field":"commissioner_powers",
-                "width":"20%",
-                "type":"text"
-            },
-            {
-                "header":"Employees",
-                "field":"employees",
-                "width":"8%",
-                "type":"number"
-            },
-            {
-                "header":"Website",
-                "field":"url",
-                "width":"14%",
-                "type":"link"
-            }
-        ],
-        "image":"/img/congress.webp",
-        "data":[
-            {
-                "department":"Department of Administration",
-                "commissioner":"Tamar Gronvall",
-                "description":"The department manages and administers centralized operations of state agencies, including procurement of goods and services, travel and fleet services, building construction and maintenance, real estate leasing and management, and facilities and maintenance services. Provides a broad range of business management, administrative and professional services and resources to state agencies, local governments and the public.",
-                "commissioner_powers":"Manages and administers centralized operations of state agencies; procurement of goods and services; building construction and maintenance; real estate leasing and management; facilities and maintenance services; oversight of state buildings and properties; administers grants management and data practices; enforces data practices act and open meeting law.",
-                "employees":524,
-                "url":"https://mn.gov/admin"
-            },
-            {
-                "department":"Department of Agriculture",
-                "commissioner":"Thom Petersen",
-                "description":"The department encourages and promotes agricultural industries, assists in the marketing of farm products, and exercises regulatory powers to ensure the continued high quality of Minnesota agricultural production. Enhances Minnesotans' quality of life by ensuring the integrity of the food supply, the health of the environment, and the strength of the agricultural economy.",
-                "commissioner_powers":"Encourages and promotes agricultural industries; assists in marketing of farm products; exercises regulatory powers to ensure high quality of agricultural production; inspects food manufacturers, dairy farms, feed mills; regulates pesticides and fertilizers; licenses applicators; protects crops and plant species from pests and diseases; certifies nursery stock and seed industries.",
-                "employees":548,
-                "url":"https://mda.state.mn.us"
-            },
-            {
-                "department":"Department of Children, Youth and Families",
-                "commissioner":"Tikki Brown",
-                "description":"The department administers programs that provide critical supports for children, youth, and families across Minnesota. Works to advance equitable outcomes for children, youth, and families through transformative, partnership-driven policies, programs and practices. Functions include child safety and permanency, early childhood programs, economic opportunity and youth services, and family wellbeing.",
-                "commissioner_powers":"Administers and supervises publicly funded economic self-sufficiency programs and children's services; oversees child protection services, out-of-home care; provides financial help for adoption and foster care; administers child care and early learning programs; oversees antipoverty programs and youth crime prevention; administers Minnesota Family Investment Program, food assistance, and child support programs.",
-                "employees":null,
-                "url":"https://dcyf.mn.gov"
-            },
-            {
-                "department":"Department of Commerce",
-                "commissioner":"Grace Arnold (Interim)",
-                "description":"The department regulates financial service industries in Minnesota including insurance, state-chartered banks, credit unions, securities, and real estate. Also enforces Public Utilities Commission rules and orders, regulates natural gas and electric public utilities, energy conservation standards, and administers energy information programs, low-income home energy assistance and weatherization.",
-                "commissioner_powers":"Regulates financial service industries including insurance, banks, credit unions, securities, and real estate; licenses franchises, collection agencies, currency exchanges; enforces Public Utilities Commission rules; regulates natural gas and electric utilities; administers energy conservation standards, low-income home energy assistance and weatherization programs; manages unclaimed property and Petrofund programs; conducts criminal investigations of insurance fraud.",
-                "employees":390,
-                "url":"https://mn.gov/commerce"
-            },
-            {
-                "department":"Department of Corrections",
-                "commissioner":"Paul Schnell",
-                "description":"The commissioner has the power and duties to accept persons committed by the courts for care, custody, and rehabilitation and for the administration of the state correctional facilities. Operates 10 correctional facilities across Minnesota providing facility safety and security, organizational and regulatory services, health, recovery, and programs, reintegration and restorative services, and education programming.",
-                "commissioner_powers":"Accepts persons committed by courts for care, custody, and rehabilitation; administers state correctional facilities; provides facility safety and security; administers medical, mental health, and substance use disorder treatment; provides sex offender treatment; oversees field services and community supervision; manages hearings and release; administers victim services; operates Challenge Incarceration Programs.",
-                "employees":4082,
-                "url":"https://mn.gov/doc"
-            },
-            {
-                "department":"Department of Education",
-                "commissioner":"Willie Jett",
-                "description":"The Minnesota Department of Education serves approximately 870,000 pre-K to grade 12 students and their families, all of Minnesota's school districts and charter schools, educators, school staff, adult learners participating in adult basic education, young children and their families participating in early learning programs, as well as Minnesota's state libraries. Mission is ensuring every child receives a quality education, no matter their race or zip code.",
-                "commissioner_powers":"Increases the capacity of Minnesota communities to improve the well-being of children and families; serves pre-K to grade 12 students and families; oversees school districts and charter schools; licenses and supports educators; administers adult basic education programs; manages early learning programs; oversees state libraries; distributes education funding; ensures educational equity and compliance with education laws.",
-                "employees":441,
-                "url":"https://education.state.mn.us"
-            },
-            {
-                "department":"Department of Employment and Economic Development",
-                "commissioner":"Matt Varilek",
-                "description":"The department is the state's principal economic development agency, with programs promoting business recruitment, expansion, and retention; workforce development; international trade; and community development. Mission is to empower the growth of the Minnesota economy, for everyone. Includes divisions for economic development, workforce development, and workforce services.",
-                "commissioner_powers":"Principal economic development agency authority; promotes business recruitment, expansion, and retention; workforce development programs; international trade promotion; community development; administers broadband development, business finance, community finance; operates Minnesota Trade Office; manages unemployment insurance; disability determination services; vocational rehabilitation services; State Services for the Blind.",
-                "employees":1446,
-                "url":"https://mn.gov/deed"
-            },
-            {
-                "department":"Department of Health",
-                "commissioner":"Brooke Cunningham",
-                "description":"The department is responsible for the development and maintenance of an organized system of programs to protect, maintain, and improve the health of citizens. Identifies public health problems through collection and analysis of health data; provides services to prevent and control infectious and chronic disease; promotes healthy behaviors; establishes and enforces standards for health care facilities and for environmental health hazards.",
-                "commissioner_powers":"Responsible for development and maintenance of organized system of programs to protect, maintain, and improve health of citizens; identifies public health problems through data collection and analysis; prevents and controls infectious and chronic disease; promotes healthy behaviors; establishes and enforces standards for health care facilities and environmental health hazards; monitors health care delivery system; administers office of health facilities complaints; advises governor and legislature on public health matters.",
-                "employees":1896,
-                "url":"https://www.health.state.mn.us"
-            },
-            {
-                "department":"Department of Human Rights",
-                "commissioner":"Rebecca Lucero",
-                "description":"The department enforces one of the strongest civil rights laws in the country, the Minnesota Human Rights Act, which prohibits discrimination. Vision is to create a world where everyone can lead lives full of dignity and joy. Mission is to make Minnesota discrimination free. Tasks include investigating, mediating, conciliating, litigating, and monitoring discrimination cases.",
-                "commissioner_powers":"Enforces the Minnesota Human Rights Act which prohibits discrimination; investigates discrimination cases; mediates and conciliates discrimination complaints; litigates civil rights violations; monitors compliance with civil rights laws; issues and monitors Workforce and Equal Pay Certificates; has authority to conduct hearings and issue orders; can assess damages and civil penalties for violations.",
-                "employees":null,
-                "url":"https://mn.gov/mdhr"
-            },
-            {
-                "department":"Department of Human Services",
-                "commissioner":"Shireen Gandhi (Temporary)",
-                "description":"The Minnesota Department of Human Services helps provide essential services to Minnesota's most vulnerable residents. Working with counties, tribes and nonprofits, helps people meet their basic needs so they can live in dignity and achieve their highest potential. Administers publicly funded health care programs, economic self-sufficiency programs, and community-based services to persons with disabilities.",
-                "commissioner_powers":"Administers and supervises publicly funded health care programs including Medical Assistance (Medicaid) and MinnesotaCare; manages economic self-sufficiency programs; oversees community-based services for persons with disabilities; administers behavioral health programs for mental illness and substance use disorders; manages aging and disability services; operates Direct Care and Treatment facilities including psychiatric hospitals and substance abuse treatment facilities; administers homelessness prevention and housing programs.",
-                "employees":7360,
-                "url":"https://mn.gov/dhs"
-            },
-            {
-                "department":"Department of Labor and Industry",
-                "commissioner":"Nicole Blissenbach",
-                "description":"The department administers laws relating to workers' compensation, occupational safety and health, wages, child labor, construction codes and licensing, standards for dual training, youth skills training and combative sports. Ensures widespread compliance with all state laws and established construction codes for all of Minnesota's work and living environments through education, licensing and penalty citations.",
-                "commissioner_powers":"Administers laws relating to workers' compensation, occupational safety and health, wages, child labor, construction codes and licensing; enforces employment laws governing breaks, minimum wage, overtime, prevailing wage, earned sick and safe time, wage theft; conducts workplace inspections and investigations through Minnesota OSHA; regulates apprenticeship programs; licenses construction industry; enforces combative sports laws; administers nursing home workforce standards; resolves workers' compensation disputes.",
-                "employees":468,
-                "url":"https://doli.mn.gov"
-            },
-            {
-                "department":"Department of Military Affairs",
-                "commissioner":"Shawn Manke (Adjutant General)",
-                "description":"The adjutant general is the chief of staff to the commander-in-chief and the administrative head of the military department with responsibility for the military forces and reservations of the state. Serves as the civilian leadership for the Minnesota National Guard. Minnesota Guardsmen serve at 65 facilities in 58 communities throughout the state.",
-                "commissioner_powers":"Chief of staff to the commander-in-chief (Governor); administrative head of military department; responsible for military forces and reservations of the state; provides personnel and units that are trained, equipped, and supported by facilities to meet all federal and state missions; serves civilian leadership for Minnesota National Guard; provides forces to state during domestic emergencies to protect life and property and preserve peace, order, and public safety; manages Camp Ripley Training Center and Arden Hills Army Training Site.",
-                "employees":493,
-                "url":"https://minnesotanationalguard.ng.mil"
-            },
-            {
-                "department":"Department of Natural Resources",
-                "commissioner":"Sarah Strommen",
-                "description":"The department manages the state's natural resources, including its public lands and waters. Mission is to work with Minnesotans to conserve and manage the state's natural resources, to provide outdoor recreation opportunities, and to provide for commercial uses of natural resources in a way that creates a sustainable quality of life. Includes divisions for ecological and water resources, enforcement, fish and wildlife, forestry, lands and minerals, operations services, and parks and trails.",
-                "commissioner_powers":"Has charge and control of all public lands, parks, timber, waters, minerals, and wild animals of the state; authority over use, sale, leasing, or other disposition thereof; manages conservation and protection of natural resources; provides outdoor recreation opportunities; enforces conservation laws; manages fish and wildlife populations; administers hunting and fishing licenses and recreational vehicle registration; regulates forestry operations; manages state parks and trails; oversees mining regulation and reclamation; can acquire land by condemnation with landowner consent.",
-                "employees":2936,
-                "url":"https://mndnr.gov"
-            },
-            {
-                "department":"Department of Public Safety",
-                "commissioner":"Bob Jacobson",
-                "description":"The department coordinates and directs the functions and services of the state relating to the safety and convenience of its citizens. Develops and operates programs in the areas of law enforcement, traffic safety, alcohol and gambling, fire safety, driver and vehicle licensing, emergency management and public safety information. Operating divisions include Bureau of Criminal Apprehension, State Patrol, Homeland Security and Emergency Management, and Driver and Vehicle Services.",
-                "commissioner_powers":"Coordinates and directs functions and services relating to safety and convenience of citizens; administers driver and vehicle licensing programs including driver's license testing, motor vehicle titling and registration; conducts criminal investigations through Bureau of Criminal Apprehension; enforces alcohol and gambling laws; regulates liquor manufacturing and licensing; conducts fire and life safety inspections; coordinates hazardous materials response; manages emergency communications and 911 program; administers homeland security and emergency management; provides State Patrol law enforcement; oversees pipeline safety; administers grants for crime victims and traffic safety programs.",
-                "employees":2061,
-                "url":"https://dps.mn.gov"
-            },
-            {
-                "department":"Department of Revenue",
-                "commissioner":"Paul Marquart",
-                "description":"The department supervises the administration of Minnesota tax laws. Provides customers with information, education, and services they need to meet their obligations, processes returns and payments, audits to resolve discrepancies and discourages tax evasion. Administers over 30 taxes with annual tax collections of approximately $33 billion. This money funds school aids, property tax relief, local government aids, individual assistance programs, and other state programs.",
-                "commissioner_powers":"Supervises administration of Minnesota tax laws; administers over 30 different taxes including individual income tax, corporate franchise tax, sales and use tax, property tax, and special taxes; processes tax returns and payments; conducts audits to resolve discrepancies; enforces tax laws and prosecutes tax evasion; issues tax policy guidance; conducts criminal investigations of tax fraud; manages property tax administration; provides taxpayer education and assistance; recommends improvements to revenue system.",
-                "employees":1384,
-                "url":"https://revenue.state.mn.us"
-            },
-            {
-                "department":"Department of Transportation",
-                "commissioner":"Nancy Daubenberger",
-                "description":"The Minnesota Department of Transportation manages a statewide transportation system that includes aeronautics, highways, motor carriers, ports, public transit, and railroads. Mission is to plan, build, operate, and maintain a safe, accessible, efficient and reliable multimodal transportation system that connects people to destinations and markets throughout the state, regionally and around the world.",
-                "commissioner_powers":"Principal agency for developing, implementing, administering, consolidating, and coordinating state transportation policies, plans and programs; manages statewide transportation system including aeronautics, highways, motor carriers, ports, public transit, and railroads; plans, builds, operates, and maintains state highways; manages construction projects; administers state aid funds to counties, cities, and townships for road systems; regulates commercial vehicle operations; oversees bridge construction and maintenance; manages 8 transportation districts statewide.",
-                "employees":5184,
-                "url":"https://dot.state.mn.us"
-            },
-            {
-                "department":"Department of Veterans Affairs",
-                "commissioner":"Brad Lindsay",
-                "description":"The department was established to furnish services and benefits to Veterans and their families. Mission is to serve Minnesota Veterans and their families through quality healthcare in an environment of trust, dignity, and sharing. Minnesota Veterans Homes are located around the state in eight cities. Assists Minnesota's 287,000 Veterans and their dependents to obtain benefits and services.",
-                "commissioner_powers":"Furnishes services and benefits to Veterans and their families; operates Minnesota Veterans Homes in eight locations providing healthcare services; assists Veterans in obtaining federal VA benefits; advocates for Veterans seeking benefits; administers claims and outreach services; provides financial, dental and optical assistance; enforces veterans preference in state employment; manages state veterans cemeteries; administers ending veteran homelessness initiatives; oversees LinkVet support services; manages higher education veterans programs and GI Bill approvals.",
-                "employees":1289,
-                "url":"https://MinnesotaVeteran.org"
-            },
-            {
-                "department":"Housing Finance Agency",
-                "commissioner":"Jennifer Leimaile Ho",
-                "description":"The Agency facilitates the construction, acquisition, improvement, and rehabilitation of housing for low- and moderate-income Minnesotans by providing affordable financing and related assistance. As the state's mission-driven financial institution, it helps Minnesotans buy and fix up their homes and provides resources to invest in communities and families.",
-                "commissioner_powers":"Facilitates construction, acquisition, improvement, and rehabilitation of housing for low- and moderate-income Minnesotans; provides affordable financing and related assistance; issues bonds and provides loans for housing development; finances affordable rental housing development and preservation; provides first-time homebuyer assistance; administers housing stability programs; manages foreclosure prevention programs; provides resources for manufactured housing and local government housing programs; governed by board consisting of state auditor and six members appointed by governor.",
-                "employees":296,
-                "url":"https://mnhousing.gov"
-            },
-            {
-                "department":"Iron Range Resources and Rehabilitation Board",
-                "commissioner":"Ida Rukavina",
-                "description":"IRRRB is a development agency whose mission is to promote and invest in business, community and workforce development for the betterment of northeastern Minnesota. Provides funding, including low or no-interest loans, grants and loan guarantees, for businesses relocating or expanding in the region. Administers mineland reclamation programs, and owns and operates Giants Ridge in Biwabik.",
-                "commissioner_powers":"Promotes and invests in business, community and workforce development for northeastern Minnesota; provides low or no-interest loans, grants and loan guarantees for business development; administers mineland reclamation programs; owns and operates Giants Ridge recreation facility; provides funding for local government, education institutions and nonprofits promoting workforce development; administers programs funded by taconite production tax; supports economic development in the Iron Range region.",
-                "employees":null,
-                "url":"https://mn.gov/IRRRB"
-            },
-            {
-                "department":"Minnesota Management and Budget",
-                "commissioner":"Erin Campbell",
-                "description":"The agency oversees human resources, labor relations, and overall finance and management of the state. Divisions include Accounting Services, Budget Services, Communications, Debt Management, Economic Analysis, Employee Insurance, Enterprise Employee Resources, Internal Controls and Accountability, and Planning and Policy Division which coordinates cross-agency planning.",
-                "commissioner_powers":"State's controller and chief accounting and financial officer; oversees human resources, labor relations, and overall finance and management of state; prepares biennial budget; manages state accounting, banking, and payroll systems; sets statewide budget policies; administers employee insurance programs; manages debt issuance; produces revenue and economic forecasts; establishes human resources policies for executive branch; conducts labor relations and contract negotiations; coordinates internal controls and internal auditing; manages Children's Cabinet and Health Cabinet.",
-                "employees":289,
-                "url":"https://mn.gov/mmb"
-            },
-            {
-                "department":"Minnesota Pollution Control Agency",
-                "commissioner":"Katrina Kessler",
-                "description":"The agency administers the laws relating to preservation of the environment and protection of the public health consistent with the economic welfare of the state. Mission is to help Minnesotans protect the environment and human health. Measures the quality of the state's environment, develops rules that protect human health and the environment. Focuses on developing strategies to reduce pollution and health disparities in communities most at risk.",
-                "commissioner_powers":"Administers laws relating to preservation of environment and protection of public health; measures quality of state's environment; develops rules that protect human health and environment; issues air and water permits; regulates hazardous waste; enforces air quality, water quality, and hazardous waste regulations; oversees cleanup of contaminated sites; manages solid waste and wastewater programs; monitors surface and groundwater quality; regulates feedlot operations; establishes environmental standards; conducts risk assessments; chairs Governor's Climate Change Subcabinet.",
-                "employees":883,
-                "url":"https://pca.state.mn.us"
-            },
-            {
-                "department":"Department of Information Technology Services (MN.IT)",
-                "commissioner":"Tarek Tomes",
-                "description":"The chief information officer is responsible for providing or entering into managed services contracts for the provision, improvement, and development of information technology systems and services to state agencies. Provides all information technology services for the executive branch including standard IT services, applications and IT projects. Sets state IT standards and policies, and provides oversight for IT purchasing and investments.",
-                "commissioner_powers":"State chief information officer; responsible for providing IT systems and services to state agencies; provides oversight, leadership, and direction for information and telecommunications technology policy for executive branch; manages delivery, accessibility, and security of executive branch IT systems; sets state IT standards and policies; provides oversight for IT purchasing and investments; manages program portfolio management, risk management and cybersecurity; partners with agencies on strategic IT investments; ensures efficient delivery of government services through technology.",
-                "employees":2534,
-                "url":"https://mn.gov/mnit"
-            },
-            {
-                "department":"Bureau of Mediation Services",
-                "commissioner":"Johnny Villarreal",
-                "description":"The mission of the Bureau is to promote stable and constructive relationships between labor and management. Accomplished through three main program areas: mediation, representation, and labor-management cooperation. These programs assist parties in resolving collective bargaining contract and grievance disputes; resolving questions of labor representation and bargaining unit structure.",
-                "commissioner_powers":"Promotes stable and constructive relationships between labor and management; provides mediation services for collective bargaining contract and grievance disputes; conducts representation hearings to resolve questions of labor representation and bargaining unit structure; facilitates and trains joint labor-management committees; develops and maintains rosters of labor arbitrators; assists in resolving labor disputes; provides training on labor relations.",
-                "employees":null,
-                "url":"https://mn.gov/bms"
-            },
-            {
-                "department":"Office of Higher Education",
-                "commissioner":"Dennis Olson (Director)",
-                "description":"The office performs several statewide services that support access to post-secondary education, including student financial aid. Advances the promise of higher education to all Minnesotans. Provides financial aid programs including State Grant, State Work Study, SELF Loan, and North Star Promise programs. Administers interstate reciprocity agreements and manages the Minnesota Statewide Longitudinal Education Data System (SLEDS).",
-                "commissioner_powers":"Performs statewide services that support access to post-secondary education; administers student financial aid programs including State Grant program, State Work Study, SELF Loan, and North Star Promise; administers interstate reciprocity agreements with neighboring states; manages Minnesota College Savings Plan; registers private and out-of-state public degree granting institutions; licenses private non-degree institutions; manages Minnesota Statewide Longitudinal Education Data System (SLEDS); governs SLEDS through Minnesota P-20 Education Partnership; administers Direct Admissions program; oversees Minitex library resource sharing; provides research and reports on higher education.",
-                "employees":null,
-                "url":"https://www.ohe.state.mn.us"
-            }
+        "id": 1,
+        "title": "Your Guide to Minnesota State Agencies",
+        "description": "Learn where to find information and stay informed about state government.",
+        "subtitle": "About Minnesota Government",
+        "footer": "",
+        "type": "link",
+        "image": "/img/flag.webp",
+        "link": "/onboard.html",
+        "categories": [
+            "Learn"
         ]
     },
     {
-        "id":4,
-        "title":"Department of Children, Youth and Family Programs",
-        "description":"Browse comprehensive programs and services supporting Minnesota's children, youth, and families.",
-        "subtitle":"Department of Children, Youth, and Family (DCYF) Programs",
-        "category": "Resources and Services",
-        "footer":"Data sourced from DCYF official program directory",
-        "image":"/img/dcyf.jpg",
-        "columns":[
+        "id": 2,
+        "title": "Minneapolis City Government",
+        "description": "Learn about the city branches of government and their responsibilities.",
+        "subtitle": "",
+        "footer": "",
+        "type": "link",
+        "image": "/img/city.jpg",
+        "link": "/mplsgov.html",
+        "categories": [
+            "Minneapolis Government"
+        ]
+    },
+    {
+        "id": 3,
+        "title": "Minnesota State Departments",
+        "description": "Explore each of Minnesota's state government departments.",
+        "subtitle": "State Departments - Commissioners, Descriptions, and Employee Counts (FY 2023)",
+        "footer": "Data sourced from Minnesota Secretary of State's 2025 State Agencies document and FY 2023 Workforce Planning Report",
+        "columns": [
             {
-                "header":"#",
-                "field":"index",
-                "width":"3%",
-                "type":"index"
+                "header": "#",
+                "field": "index",
+                "width": "3%",
+                "type": "index"
             },
             {
-                "header":"Program",
-                "field":"title",
-                "width":"25%",
-                "type":"program-link",
-                "sortable":true
+                "header": "Department",
+                "field": "department",
+                "width": "14%",
+                "type": "department-link",
+                "sortable": true
             },
             {
-                "header":"Description",
-                "field":"description",
-                "width":"50%",
-                "type":"text"
+                "header": "Commissioner",
+                "field": "commissioner",
+                "width": "11%",
+                "type": "text"
             },
             {
-                "header":"Categories",
-                "field":"categories",
-                "width":"25%",
-                "type":"categories",
-                "filterable":true
+                "header": "Commissioner Powers",
+                "field": "commissioner_powers",
+                "width": "20%",
+                "type": "text"
             },
             {
-                "header":"Link",
-                "field":"link",
-                "width":"5%",
-                "type":"link"
+                "header": "Employees",
+                "field": "employees",
+                "width": "8%",
+                "type": "number"
+            },
+            {
+                "header": "Website",
+                "field": "url",
+                "width": "14%",
+                "type": "link"
             }
         ],
-        "data":[
-                    {
-                        "title": "Access to Technology Grants",
-                        "description": "Access to Technology Grants are available twice per year and help licensed child care businesses access technology to improve business management efficiency.",
-                        "link": "https://dcyf.mn.gov/programs-directory/access-technology-grants",
-                        "categories": [
-                            "Child Care and Early Learning"
-                        ]
-                    },
-                    {
-                        "title": "Achieve",
-                        "description": "Achieve supports career development for individuals, trainers, Relationship Based Professional Development (RBPD) specialists, and course writers in the child care and early childhood education workforce.",
-                        "link": "https://dcyf.mn.gov/programs-directory/achieve",
-                        "categories": [
-                            "Child Care and Early Learning"
-                        ]
-                    },
-                    {
-                        "title": "Child Care Access Grants",
-                        "description": "Child Care Access Grantees can help families experiencing homelessness or housing instability apply for and maintain their child care assistance.",
-                        "link": "https://dcyf.mn.gov/programs-directory/child-care-access-grants",
-                        "categories": [
-                            "Child Care and Early Learning"
-                        ]
-                    },
-                    {
-                        "title": "Child Care Assistance Program",
-                        "description": "Minnesota's Child Care Assistance Program (CCAP) can help make quality child care affordable for families with low incomes.",
-                        "link": "https://dcyf.mn.gov/programs-directory/child-care-assistance-program",
-                        "categories": [
-                            "Child Care and Early Learning"
-                        ]
-                    },
-                    {
-                        "title": "Child Care Services Regional Grants",
-                        "description": "Child Care Aware Regional Grants are available on a competitive basis, helping child care programs improve the safety and quality of their programs.",
-                        "link": "https://dcyf.mn.gov/programs-directory/child-care-services-regional-grants",
-                        "categories": [
-                            "Child Care and Early Learning"
-                        ]
-                    },
-                    {
-                        "title": "Child Care Wayfinder",
-                        "description": "Child Care Wayfinder is your one-stop navigation network for starting and growing child care programs in Minnesota. Wayfinder offers personalized support and resources to help you succeed.",
-                        "link": "https://dcyf.mn.gov/programs-directory/child-care-wayfinder",
-                        "categories": [
-                            "Child Care and Early Learning"
-                        ]
-                    },
-                    {
-                        "title": "Child Development Associate (CDA) Awards",
-                        "description": "Child Development Associate (CDA) Awards help early educators pay for the required training, application, and renewal of the nationally recognized Child Development Associate® (CDA) Credential™.",
-                        "link": "https://dcyf.mn.gov/programs-directory/child-development-associate-cda-awards",
-                        "categories": [
-                            "Child Care and Early Learning"
-                        ]
-                    },
-                    {
-                        "title": "Develop",
-                        "description": "Develop, Minnesota's Quality Improvement and Registry, offers professional development and quality improvement tools to support early learning and school-age care.",
-                        "link": "https://dcyf.mn.gov/programs-directory/develop",
-                        "categories": [
-                            "Child Care and Early Learning"
-                        ]
-                    },
-                    {
-                        "title": "Diversionary Work Program (DWP)",
-                        "description": "The Diversionary Work Program (DWP) is a four-month program that helps Minnesota caregivers find jobs. The goal is to help caregivers quickly find work so that they do not need to go on the Minnesota Family Investment Program (MFIP). Caregivers get help paying for housing and other bills, along with employment services to help them find full-time work.",
-                        "link": "https://dcyf.mn.gov/programs-directory/diversionary-work-program-dwp",
-                        "categories": [
-                            "Income Support"
-                        ]
-                    },
-                    {
-                        "title": "Eager-to-Learn",
-                        "description": "Through Eager-to-Learn, Child Care Aware of Minnesota offers high-quality, online training to help early educators meet requirements and expand their knowledge.",
-                        "link": "https://dcyf.mn.gov/programs-directory/eager-learn",
-                        "categories": [
-                            "Child Care and Early Learning"
-                        ]
-                    },
-                    {
-                        "title": "Early Childhood Family Education (ECFE)",
-                        "description": "Early Childhood Family Education (ECFE) offers caregivers of young children a space to connect with other families and participate in activities that support both parenting and children's learning and development.",
-                        "link": "https://dcyf.mn.gov/programs-directory/early-childhood-family-education-ecfe",
-                        "categories": [
-                            "Child Care and Early Learning"
-                        ]
-                    },
-                    {
-                        "title": "Early Childhood Screening",
-                        "description": "Early Childhood Screening is a no-cost check of how a child is growing, moving, talking, seeing, hearing and behaving. Screening seeks to answer the question \"Does this child need a closer look?\"",
-                        "link": "https://dcyf.mn.gov/programs-directory/early-childhood-screening",
-                        "categories": [
-                            "Child Care and Early Learning"
-                        ]
-                    },
-                    {
-                        "title": "Early Childhood Special Education (ECSE)",
-                        "description": "Early childhood special education services help infants, toddlers and young children with disabilities or developmental delays from birth to kindergarten enrollment.",
-                        "link": "https://dcyf.mn.gov/programs-directory/early-childhood-special-education-ecse",
-                        "categories": [
-                            "Child Care and Early Learning"
-                        ]
-                    },
-                    {
-                        "title": "Early Learning Scholarships",
-                        "description": "Early Learning Scholarships increase access to high-quality early childhood programs for children ages birth to 4 years old with the highest needs. Scholarships can be used at Parent Aware-rated programs.",
-                        "link": "https://dcyf.mn.gov/programs-directory/early-learning-scholarships",
-                        "categories": [
-                            "Child Care and Early Learning"
-                        ]
-                    },
-                    {
-                        "title": "Electronic Benefit Transfer (EBT) Card",
-                        "description": "Minnesota offers benefits loaded on an Electronic Benefit Transfer (EBT) card, which looks and works like a debit card. The card can be used at point-of-sale machines for cash or food purchases, or at ATMs for cash only.",
-                        "link": "https://dcyf.mn.gov/ebt-card",
-                        "categories": [
-                            "Income Support",
-                            "Food Support"
-                        ]
-                    },
-                    {
-                        "title": "Emergency Assistance",
-                        "description": "Families with low incomes experiencing household emergencies such as evictions, foreclosures, utility shutoffs, or other household emergencies may qualify for this cash-grant program.",
-                        "link": "https://dcyf.mn.gov/programs-directory/emergency-assistance",
-                        "categories": [
-                            "Income Support"
-                        ]
-                    },
-                    {
-                        "title": "Empower to Educate",
-                        "description": "Empower to Educate helps current and aspiring early childhood educators begin, advance, and sustain their child care careers through personalized support, training, and financial incentives.",
-                        "link": "https://dcyf.mn.gov/programs-directory/empower-educate",
-                        "categories": [
-                            "Child Care and Early Learning"
-                        ]
-                    },
-                    {
-                        "title": "Family, Friend and Neighbor Minnesota",
-                        "description": "Family, Friend and Neighbor (FFN) caregivers are home-based caregivers working outside of the formal child care system. FFN Minnesota is here to connect FFN caregivers with local FFN navigators who can provide ongoing support while they care for children. That support comes in many forms: one-on-one meetings with local navigators, training, resource kits and so much more.",
-                        "link": "https://dcyf.mn.gov/ffn",
-                        "categories": [
-                            "Child Care and Early Learning"
-                        ]
-                    },
-                    {
-                        "title": "Foreign Credential Evaluation Scholarships",
-                        "description": "Foreign Credential Evaluation Scholarships help early childhood educators who have completed their high school or higher education coursework outside of the United States pay for the evaluation of educational transcripts.",
-                        "link": "https://dcyf.mn.gov/programs-directory/foreign-credential-evaluation-scholarships",
-                        "categories": [
-                            "Child Care and Early Learning"
-                        ]
-                    },
-                    {
-                        "title": "Great Start Compensation Legal Nonlicensed One-Time Payments",
-                        "description": "The Great Start Compensation Support Payment Program supports the child care and early education workforce by increasing compensation and benefits for this vital workforce. This program created Legal Nonlicensed One-Time Payments, which provide one-time payments of $500 to legal nonlicensed providers registered with the Child Care Assistance Program (CCAP) to cover registration and startup costs.",
-                        "link": "https://dcyf.mn.gov/programs-directory/great-start-compensation-legal-nonlicensed-one-time-payments",
-                        "categories": [
-                            "Child Care and Early Learning"
-                        ]
-                    },
-                    {
-                        "title": "Great Start Compensation Support Payment Program",
-                        "description": "The Great Start Compensation Support Payment Program supports the child care and early education workforce by increasing compensation and benefits for this vital workforce. The program issues monthly payments to eligible child care and early educators to fund increases in compensation and benefits.",
-                        "link": "https://dcyf.mn.gov/programs-directory/great-start-compensation-support-payment-program",
-                        "categories": [
-                            "Child Care and Early Learning"
-                        ]
-                    },
-                    {
-                        "title": "Head Start and Early Head Start",
-                        "description": "Head Start and Early Head Start programs promote school readiness of children ages birth to 5 from low-income families by supporting the development of the whole child.",
-                        "link": "https://dcyf.mn.gov/programs-directory/head-start-and-early-head-start",
-                        "categories": [
-                            "Child Care and Early Learning"
-                        ]
-                    },
-                    {
-                        "title": "Help Me Connect",
-                        "description": "Help Me Connect is an online navigator connecting expectant families, families with young children, and those working with families to programs and services that support healthy child development and family well-being.",
-                        "link": "https://dcyf.mn.gov/programs-directory/help-me-connect",
-                        "categories": [
-                            "Child Care and Early Learning",
-                            "Child Safety",
-                            "Food Support",
-                            "Family Resources",
-                            "Emergency Assistance"
-                        ]
-                    },
-                    {
-                        "title": "Help Me Grow Minnesota",
-                        "description": "Help Me Grow Minnesota connects families with early intervention and preschool special education services through their school district or cooperative.",
-                        "link": "https://dcyf.mn.gov/programs-directory/help-me-grow-minnesota",
-                        "categories": [
-                            "Child Care and Early Learning"
-                        ]
-                    },
-                    {
-                        "title": "Minnesota Family Investment Program (MFIP)",
-                        "description": "The Minnesota Family Investment Program (MFIP) helps families with children meet their basic needs, while helping parents move to financial stability through work. Caregivers are expected to work and are supported with both cash and food assistance.",
-                        "link": "https://dcyf.mn.gov/programs-directory/minnesota-family-investment-program-mfip",
-                        "categories": [
-                            "Income Support"
-                        ]
-                    },
-                    {
-                        "title": "Minnesota Food Assistance Program (MFAP)",
-                        "description": "The Minnesota Food Assistance Program (MFAP) provides state-funded food assistance to legal noncitizens age 50 or older who do not qualify for the Supplemental Nutrition Assistance Program (SNAP) because of their citizenship status.",
-                        "link": "https://dcyf.mn.gov/programs-directory/minnesota-food-assistance-program-mfap",
-                        "categories": [
-                            "Food Support"
-                        ]
-                    },
-                    {
-                        "title": "Minnesota Tribal Resources for Early Childhood Care",
-                        "description": "The Minnesota Tribal Resources for Early Childhood Care (MNTRECC) provides technical assistance and support to Tribal child care programs throughout the state of Minnesota.",
-                        "link": "https://dcyf.mn.gov/programs-directory/minnesota-tribal-resources-early-childhood-care",
-                        "categories": [
-                            "Child Care and Early Learning"
-                        ]
-                    },
-                    {
-                        "title": "Parent Aware",
-                        "description": "Parent Aware offers free tools and resources for families and child care programs. It can help you find child care, options for affording care, and tools and tips to find the right program for your child. Additionally, Parent Aware helps program continuously improve their quality through Star Ratings and resources.",
-                        "link": "https://dcyf.mn.gov/programs-directory/parent-aware",
-                        "categories": [
-                            "Child Care and Early Learning"
-                        ]
-                    },
-                    {
-                        "title": "REETAIN Bonuses",
-                        "description": "Financial bonuses are available through the REETAIN (Retaining Early Educators Through Attaining Incentives Now) program, aiming to keep strong, well-trained early educators in the field.",
-                        "link": "https://dcyf.mn.gov/programs-directory/reetain-bonuses",
-                        "categories": [
-                            "Child Care and Early Learning"
-                        ]
-                    },
-                    {
-                        "title": "STAY (Successful Transition to Adulthood for Youth)",
-                        "description": "The STAY (Successful Transition to Adulthood for Youth) Program offers independent living services to eligible youth ages 14 up to age 23, who are currently or were formerly in foster care.",
-                        "link": "https://dcyf.mn.gov/programs-directory/stay-successful-transition-adulthood-youth",
-                        "categories": [
-                            "Employment Support",
-                            "Youth Services",
-                            "Foster Care"
-                        ]
-                    },
-                    {
-                        "title": "SUN Bucks",
-                        "description": "SUN Bucks is an income-based food support program that provides families with $120 per eligible school-aged child to buy groceries when school is out for the summer.",
-                        "link": "https://dcyf.mn.gov/sun-bucks",
-                        "categories": [
-                            "Food Support"
-                        ]
-                    },
-                    {
-                        "title": "School-based Preschool Programs",
-                        "description": "​School-based early learning programs for 3- and 4-year-olds are designed to help children learn, grow, and develop, providing them with the skills and abilities for a successful transition to kindergarten and beyond.",
-                        "link": "https://dcyf.mn.gov/programs-directory/school-based-preschool-programs",
-                        "categories": [
-                            "Child Care and Early Learning"
-                        ]
-                    },
-                    {
-                        "title": "Supplemental Nutrition Assistance Program (SNAP)",
-                        "description": "The Supplemental Nutrition Assistance Program (SNAP), formerly known as Food Stamps, helps Minnesotans with low incomes, including temporary low incomes, get the food they need for nutritious and well-balanced meals.",
-                        "link": "https://dcyf.mn.gov/snap",
-                        "categories": [
-                            "Food Support"
-                        ]
-                    },
-                    {
-                        "title": "Supplemental Nutrition Assistance Program Employment and Training (SNAP E&T)",
-                        "description": "The Supplemental Nutrition Assistance Program Employment and Training (SNAP E&T) program helps SNAP recipients improve their employment opportunities by offering individualized career planning, short-term training for in-demand jobs, support with job searching, and financial assistance to overcome employment barriers.",
-                        "link": "https://dcyf.mn.gov/snap-employment-and-training",
-                        "categories": [
-                            "Income Support",
-                            "Food Support"
-                        ]
-                    },
-                    {
-                        "title": "TEACH Scholarships",
-                        "description": "Individuals working in the child care workforce may be eligible for higher education scholarships through the TEACH Early Childhood Minnesota program.",
-                        "link": "https://dcyf.mn.gov/programs-directory/teach-scholarships",
-                        "categories": [
-                            "Child Care and Early Learning"
-                        ]
-                    },
-                    {
-                        "title": "Treasury Offset Program",
-                        "description": "The Federal Treasury Offset Program (TOP) collects federal income to repay past due (delinquent) debts owed to federal government agencies. The department uses TOP to collect overpayments to the state's Supplemental Nutrition Assistance Program (SNAP) and the food portion of the Minnesota Family Investment Program (MFIP).",
-                        "link": "https://dcyf.mn.gov/programs-directory/treasury-offset-program",
-                        "categories": [
-                            "Food Support",
-                            "Income Support"
-                        ]
-                    },
-                    {
-                        "title": "What families who receive SNAP should know when they claim the Minnesota Child Tax Credit",
-                        "description": "Households with children may qualify for a Child Tax Credit of up to $1,750 per qualifying child when they file their taxes this year.",
-                        "link": "https://dcyf.mn.gov/snap-ctc",
-                        "categories": [
-                            "Food Support"
-                        ]
-                    },
-                    {
-                        "title": "Whole Family Approach",
-                        "description": "In order to better coordinate and resource the systems that service children, youth, and families, the Department of Children, Youth, and Families is taking a Whole Family Approach to our work. A Whole Family Approach is an approach to practice, program and policy decision making that recognizes and addresses the needs of children and the adults in their lives simultaneously. This approach recognizes that families come in all different shapes and sizes and that families define themselves.",
-                        "link": "https://dcyf.mn.gov/whole-family-approach",
-                        "categories": [
-                            "Child Care and Early Learning",
-                            "Family Resources",
-                            "Income Support"
-                        ]
-                    }
+        "image": "/img/congress.webp",
+        "data": [
+            {
+                "department": "Department of Administration",
+                "commissioner": "Tamar Gronvall",
+                "description": "The department manages and administers centralized operations of state agencies, including procurement of goods and services, travel and fleet services, building construction and maintenance, real estate leasing and management, and facilities and maintenance services. Provides a broad range of business management, administrative and professional services and resources to state agencies, local governments and the public.",
+                "commissioner_powers": "Manages and administers centralized operations of state agencies; procurement of goods and services; building construction and maintenance; real estate leasing and management; facilities and maintenance services; oversight of state buildings and properties; administers grants management and data practices; enforces data practices act and open meeting law.",
+                "employees": 524,
+                "url": "https://mn.gov/admin"
+            },
+            {
+                "department": "Department of Agriculture",
+                "commissioner": "Thom Petersen",
+                "description": "The department encourages and promotes agricultural industries, assists in the marketing of farm products, and exercises regulatory powers to ensure the continued high quality of Minnesota agricultural production. Enhances Minnesotans' quality of life by ensuring the integrity of the food supply, the health of the environment, and the strength of the agricultural economy.",
+                "commissioner_powers": "Encourages and promotes agricultural industries; assists in marketing of farm products; exercises regulatory powers to ensure high quality of agricultural production; inspects food manufacturers, dairy farms, feed mills; regulates pesticides and fertilizers; licenses applicators; protects crops and plant species from pests and diseases; certifies nursery stock and seed industries.",
+                "employees": 548,
+                "url": "https://mda.state.mn.us"
+            },
+            {
+                "department": "Department of Children, Youth and Families",
+                "commissioner": "Tikki Brown",
+                "description": "The department administers programs that provide critical supports for children, youth, and families across Minnesota. Works to advance equitable outcomes for children, youth, and families through transformative, partnership-driven policies, programs and practices. Functions include child safety and permanency, early childhood programs, economic opportunity and youth services, and family wellbeing.",
+                "commissioner_powers": "Administers and supervises publicly funded economic self-sufficiency programs and children's services; oversees child protection services, out-of-home care; provides financial help for adoption and foster care; administers child care and early learning programs; oversees antipoverty programs and youth crime prevention; administers Minnesota Family Investment Program, food assistance, and child support programs.",
+                "employees": null,
+                "url": "https://dcyf.mn.gov"
+            },
+            {
+                "department": "Department of Commerce",
+                "commissioner": "Grace Arnold (Interim)",
+                "description": "The department regulates financial service industries in Minnesota including insurance, state-chartered banks, credit unions, securities, and real estate. Also enforces Public Utilities Commission rules and orders, regulates natural gas and electric public utilities, energy conservation standards, and administers energy information programs, low-income home energy assistance and weatherization.",
+                "commissioner_powers": "Regulates financial service industries including insurance, banks, credit unions, securities, and real estate; licenses franchises, collection agencies, currency exchanges; enforces Public Utilities Commission rules; regulates natural gas and electric utilities; administers energy conservation standards, low-income home energy assistance and weatherization programs; manages unclaimed property and Petrofund programs; conducts criminal investigations of insurance fraud.",
+                "employees": 390,
+                "url": "https://mn.gov/commerce"
+            },
+            {
+                "department": "Department of Corrections",
+                "commissioner": "Paul Schnell",
+                "description": "The commissioner has the power and duties to accept persons committed by the courts for care, custody, and rehabilitation and for the administration of the state correctional facilities. Operates 10 correctional facilities across Minnesota providing facility safety and security, organizational and regulatory services, health, recovery, and programs, reintegration and restorative services, and education programming.",
+                "commissioner_powers": "Accepts persons committed by courts for care, custody, and rehabilitation; administers state correctional facilities; provides facility safety and security; administers medical, mental health, and substance use disorder treatment; provides sex offender treatment; oversees field services and community supervision; manages hearings and release; administers victim services; operates Challenge Incarceration Programs.",
+                "employees": 4082,
+                "url": "https://mn.gov/doc"
+            },
+            {
+                "department": "Department of Education",
+                "commissioner": "Willie Jett",
+                "description": "The Minnesota Department of Education serves approximately 870,000 pre-K to grade 12 students and their families, all of Minnesota's school districts and charter schools, educators, school staff, adult learners participating in adult basic education, young children and their families participating in early learning programs, as well as Minnesota's state libraries. Mission is ensuring every child receives a quality education, no matter their race or zip code.",
+                "commissioner_powers": "Increases the capacity of Minnesota communities to improve the well-being of children and families; serves pre-K to grade 12 students and families; oversees school districts and charter schools; licenses and supports educators; administers adult basic education programs; manages early learning programs; oversees state libraries; distributes education funding; ensures educational equity and compliance with education laws.",
+                "employees": 441,
+                "url": "https://education.state.mn.us"
+            },
+            {
+                "department": "Department of Employment and Economic Development",
+                "commissioner": "Matt Varilek",
+                "description": "The department is the state's principal economic development agency, with programs promoting business recruitment, expansion, and retention; workforce development; international trade; and community development. Mission is to empower the growth of the Minnesota economy, for everyone. Includes divisions for economic development, workforce development, and workforce services.",
+                "commissioner_powers": "Principal economic development agency authority; promotes business recruitment, expansion, and retention; workforce development programs; international trade promotion; community development; administers broadband development, business finance, community finance; operates Minnesota Trade Office; manages unemployment insurance; disability determination services; vocational rehabilitation services; State Services for the Blind.",
+                "employees": 1446,
+                "url": "https://mn.gov/deed"
+            },
+            {
+                "department": "Department of Health",
+                "commissioner": "Brooke Cunningham",
+                "description": "The department is responsible for the development and maintenance of an organized system of programs to protect, maintain, and improve the health of citizens. Identifies public health problems through collection and analysis of health data; provides services to prevent and control infectious and chronic disease; promotes healthy behaviors; establishes and enforces standards for health care facilities and for environmental health hazards.",
+                "commissioner_powers": "Responsible for development and maintenance of organized system of programs to protect, maintain, and improve health of citizens; identifies public health problems through data collection and analysis; prevents and controls infectious and chronic disease; promotes healthy behaviors; establishes and enforces standards for health care facilities and environmental health hazards; monitors health care delivery system; administers office of health facilities complaints; advises governor and legislature on public health matters.",
+                "employees": 1896,
+                "url": "https://www.health.state.mn.us"
+            },
+            {
+                "department": "Department of Human Rights",
+                "commissioner": "Rebecca Lucero",
+                "description": "The department enforces one of the strongest civil rights laws in the country, the Minnesota Human Rights Act, which prohibits discrimination. Vision is to create a world where everyone can lead lives full of dignity and joy. Mission is to make Minnesota discrimination free. Tasks include investigating, mediating, conciliating, litigating, and monitoring discrimination cases.",
+                "commissioner_powers": "Enforces the Minnesota Human Rights Act which prohibits discrimination; investigates discrimination cases; mediates and conciliates discrimination complaints; litigates civil rights violations; monitors compliance with civil rights laws; issues and monitors Workforce and Equal Pay Certificates; has authority to conduct hearings and issue orders; can assess damages and civil penalties for violations.",
+                "employees": null,
+                "url": "https://mn.gov/mdhr"
+            },
+            {
+                "department": "Department of Human Services",
+                "commissioner": "Shireen Gandhi (Temporary)",
+                "description": "The Minnesota Department of Human Services helps provide essential services to Minnesota's most vulnerable residents. Working with counties, tribes and nonprofits, helps people meet their basic needs so they can live in dignity and achieve their highest potential. Administers publicly funded health care programs, economic self-sufficiency programs, and community-based services to persons with disabilities.",
+                "commissioner_powers": "Administers and supervises publicly funded health care programs including Medical Assistance (Medicaid) and MinnesotaCare; manages economic self-sufficiency programs; oversees community-based services for persons with disabilities; administers behavioral health programs for mental illness and substance use disorders; manages aging and disability services; operates Direct Care and Treatment facilities including psychiatric hospitals and substance abuse treatment facilities; administers homelessness prevention and housing programs.",
+                "employees": 7360,
+                "url": "https://mn.gov/dhs"
+            },
+            {
+                "department": "Department of Labor and Industry",
+                "commissioner": "Nicole Blissenbach",
+                "description": "The department administers laws relating to workers' compensation, occupational safety and health, wages, child labor, construction codes and licensing, standards for dual training, youth skills training and combative sports. Ensures widespread compliance with all state laws and established construction codes for all of Minnesota's work and living environments through education, licensing and penalty citations.",
+                "commissioner_powers": "Administers laws relating to workers' compensation, occupational safety and health, wages, child labor, construction codes and licensing; enforces employment laws governing breaks, minimum wage, overtime, prevailing wage, earned sick and safe time, wage theft; conducts workplace inspections and investigations through Minnesota OSHA; regulates apprenticeship programs; licenses construction industry; enforces combative sports laws; administers nursing home workforce standards; resolves workers' compensation disputes.",
+                "employees": 468,
+                "url": "https://doli.mn.gov"
+            },
+            {
+                "department": "Department of Military Affairs",
+                "commissioner": "Shawn Manke (Adjutant General)",
+                "description": "The adjutant general is the chief of staff to the commander-in-chief and the administrative head of the military department with responsibility for the military forces and reservations of the state. Serves as the civilian leadership for the Minnesota National Guard. Minnesota Guardsmen serve at 65 facilities in 58 communities throughout the state.",
+                "commissioner_powers": "Chief of staff to the commander-in-chief (Governor); administrative head of military department; responsible for military forces and reservations of the state; provides personnel and units that are trained, equipped, and supported by facilities to meet all federal and state missions; serves civilian leadership for Minnesota National Guard; provides forces to state during domestic emergencies to protect life and property and preserve peace, order, and public safety; manages Camp Ripley Training Center and Arden Hills Army Training Site.",
+                "employees": 493,
+                "url": "https://minnesotanationalguard.ng.mil"
+            },
+            {
+                "department": "Department of Natural Resources",
+                "commissioner": "Sarah Strommen",
+                "description": "The department manages the state's natural resources, including its public lands and waters. Mission is to work with Minnesotans to conserve and manage the state's natural resources, to provide outdoor recreation opportunities, and to provide for commercial uses of natural resources in a way that creates a sustainable quality of life. Includes divisions for ecological and water resources, enforcement, fish and wildlife, forestry, lands and minerals, operations services, and parks and trails.",
+                "commissioner_powers": "Has charge and control of all public lands, parks, timber, waters, minerals, and wild animals of the state; authority over use, sale, leasing, or other disposition thereof; manages conservation and protection of natural resources; provides outdoor recreation opportunities; enforces conservation laws; manages fish and wildlife populations; administers hunting and fishing licenses and recreational vehicle registration; regulates forestry operations; manages state parks and trails; oversees mining regulation and reclamation; can acquire land by condemnation with landowner consent.",
+                "employees": 2936,
+                "url": "https://mndnr.gov"
+            },
+            {
+                "department": "Department of Public Safety",
+                "commissioner": "Bob Jacobson",
+                "description": "The department coordinates and directs the functions and services of the state relating to the safety and convenience of its citizens. Develops and operates programs in the areas of law enforcement, traffic safety, alcohol and gambling, fire safety, driver and vehicle licensing, emergency management and public safety information. Operating divisions include Bureau of Criminal Apprehension, State Patrol, Homeland Security and Emergency Management, and Driver and Vehicle Services.",
+                "commissioner_powers": "Coordinates and directs functions and services relating to safety and convenience of citizens; administers driver and vehicle licensing programs including driver's license testing, motor vehicle titling and registration; conducts criminal investigations through Bureau of Criminal Apprehension; enforces alcohol and gambling laws; regulates liquor manufacturing and licensing; conducts fire and life safety inspections; coordinates hazardous materials response; manages emergency communications and 911 program; administers homeland security and emergency management; provides State Patrol law enforcement; oversees pipeline safety; administers grants for crime victims and traffic safety programs.",
+                "employees": 2061,
+                "url": "https://dps.mn.gov"
+            },
+            {
+                "department": "Department of Revenue",
+                "commissioner": "Paul Marquart",
+                "description": "The department supervises the administration of Minnesota tax laws. Provides customers with information, education, and services they need to meet their obligations, processes returns and payments, audits to resolve discrepancies and discourages tax evasion. Administers over 30 taxes with annual tax collections of approximately $33 billion. This money funds school aids, property tax relief, local government aids, individual assistance programs, and other state programs.",
+                "commissioner_powers": "Supervises administration of Minnesota tax laws; administers over 30 different taxes including individual income tax, corporate franchise tax, sales and use tax, property tax, and special taxes; processes tax returns and payments; conducts audits to resolve discrepancies; enforces tax laws and prosecutes tax evasion; issues tax policy guidance; conducts criminal investigations of tax fraud; manages property tax administration; provides taxpayer education and assistance; recommends improvements to revenue system.",
+                "employees": 1384,
+                "url": "https://revenue.state.mn.us"
+            },
+            {
+                "department": "Department of Transportation",
+                "commissioner": "Nancy Daubenberger",
+                "description": "The Minnesota Department of Transportation manages a statewide transportation system that includes aeronautics, highways, motor carriers, ports, public transit, and railroads. Mission is to plan, build, operate, and maintain a safe, accessible, efficient and reliable multimodal transportation system that connects people to destinations and markets throughout the state, regionally and around the world.",
+                "commissioner_powers": "Principal agency for developing, implementing, administering, consolidating, and coordinating state transportation policies, plans and programs; manages statewide transportation system including aeronautics, highways, motor carriers, ports, public transit, and railroads; plans, builds, operates, and maintains state highways; manages construction projects; administers state aid funds to counties, cities, and townships for road systems; regulates commercial vehicle operations; oversees bridge construction and maintenance; manages 8 transportation districts statewide.",
+                "employees": 5184,
+                "url": "https://dot.state.mn.us"
+            },
+            {
+                "department": "Department of Veterans Affairs",
+                "commissioner": "Brad Lindsay",
+                "description": "The department was established to furnish services and benefits to Veterans and their families. Mission is to serve Minnesota Veterans and their families through quality healthcare in an environment of trust, dignity, and sharing. Minnesota Veterans Homes are located around the state in eight cities. Assists Minnesota's 287,000 Veterans and their dependents to obtain benefits and services.",
+                "commissioner_powers": "Furnishes services and benefits to Veterans and their families; operates Minnesota Veterans Homes in eight locations providing healthcare services; assists Veterans in obtaining federal VA benefits; advocates for Veterans seeking benefits; administers claims and outreach services; provides financial, dental and optical assistance; enforces veterans preference in state employment; manages state veterans cemeteries; administers ending veteran homelessness initiatives; oversees LinkVet support services; manages higher education veterans programs and GI Bill approvals.",
+                "employees": 1289,
+                "url": "https://MinnesotaVeteran.org"
+            },
+            {
+                "department": "Housing Finance Agency",
+                "commissioner": "Jennifer Leimaile Ho",
+                "description": "The Agency facilitates the construction, acquisition, improvement, and rehabilitation of housing for low- and moderate-income Minnesotans by providing affordable financing and related assistance. As the state's mission-driven financial institution, it helps Minnesotans buy and fix up their homes and provides resources to invest in communities and families.",
+                "commissioner_powers": "Facilitates construction, acquisition, improvement, and rehabilitation of housing for low- and moderate-income Minnesotans; provides affordable financing and related assistance; issues bonds and provides loans for housing development; finances affordable rental housing development and preservation; provides first-time homebuyer assistance; administers housing stability programs; manages foreclosure prevention programs; provides resources for manufactured housing and local government housing programs; governed by board consisting of state auditor and six members appointed by governor.",
+                "employees": 296,
+                "url": "https://mnhousing.gov"
+            },
+            {
+                "department": "Iron Range Resources and Rehabilitation Board",
+                "commissioner": "Ida Rukavina",
+                "description": "IRRRB is a development agency whose mission is to promote and invest in business, community and workforce development for the betterment of northeastern Minnesota. Provides funding, including low or no-interest loans, grants and loan guarantees, for businesses relocating or expanding in the region. Administers mineland reclamation programs, and owns and operates Giants Ridge in Biwabik.",
+                "commissioner_powers": "Promotes and invests in business, community and workforce development for northeastern Minnesota; provides low or no-interest loans, grants and loan guarantees for business development; administers mineland reclamation programs; owns and operates Giants Ridge recreation facility; provides funding for local government, education institutions and nonprofits promoting workforce development; administers programs funded by taconite production tax; supports economic development in the Iron Range region.",
+                "employees": null,
+                "url": "https://mn.gov/IRRRB"
+            },
+            {
+                "department": "Minnesota Management and Budget",
+                "commissioner": "Erin Campbell",
+                "description": "The agency oversees human resources, labor relations, and overall finance and management of the state. Divisions include Accounting Services, Budget Services, Communications, Debt Management, Economic Analysis, Employee Insurance, Enterprise Employee Resources, Internal Controls and Accountability, and Planning and Policy Division which coordinates cross-agency planning.",
+                "commissioner_powers": "State's controller and chief accounting and financial officer; oversees human resources, labor relations, and overall finance and management of state; prepares biennial budget; manages state accounting, banking, and payroll systems; sets statewide budget policies; administers employee insurance programs; manages debt issuance; produces revenue and economic forecasts; establishes human resources policies for executive branch; conducts labor relations and contract negotiations; coordinates internal controls and internal auditing; manages Children's Cabinet and Health Cabinet.",
+                "employees": 289,
+                "url": "https://mn.gov/mmb"
+            },
+            {
+                "department": "Minnesota Pollution Control Agency",
+                "commissioner": "Katrina Kessler",
+                "description": "The agency administers the laws relating to preservation of the environment and protection of the public health consistent with the economic welfare of the state. Mission is to help Minnesotans protect the environment and human health. Measures the quality of the state's environment, develops rules that protect human health and the environment. Focuses on developing strategies to reduce pollution and health disparities in communities most at risk.",
+                "commissioner_powers": "Administers laws relating to preservation of environment and protection of public health; measures quality of state's environment; develops rules that protect human health and environment; issues air and water permits; regulates hazardous waste; enforces air quality, water quality, and hazardous waste regulations; oversees cleanup of contaminated sites; manages solid waste and wastewater programs; monitors surface and groundwater quality; regulates feedlot operations; establishes environmental standards; conducts risk assessments; chairs Governor's Climate Change Subcabinet.",
+                "employees": 883,
+                "url": "https://pca.state.mn.us"
+            },
+            {
+                "department": "Department of Information Technology Services (MN.IT)",
+                "commissioner": "Tarek Tomes",
+                "description": "The chief information officer is responsible for providing or entering into managed services contracts for the provision, improvement, and development of information technology systems and services to state agencies. Provides all information technology services for the executive branch including standard IT services, applications and IT projects. Sets state IT standards and policies, and provides oversight for IT purchasing and investments.",
+                "commissioner_powers": "State chief information officer; responsible for providing IT systems and services to state agencies; provides oversight, leadership, and direction for information and telecommunications technology policy for executive branch; manages delivery, accessibility, and security of executive branch IT systems; sets state IT standards and policies; provides oversight for IT purchasing and investments; manages program portfolio management, risk management and cybersecurity; partners with agencies on strategic IT investments; ensures efficient delivery of government services through technology.",
+                "employees": 2534,
+                "url": "https://mn.gov/mnit"
+            },
+            {
+                "department": "Bureau of Mediation Services",
+                "commissioner": "Johnny Villarreal",
+                "description": "The mission of the Bureau is to promote stable and constructive relationships between labor and management. Accomplished through three main program areas: mediation, representation, and labor-management cooperation. These programs assist parties in resolving collective bargaining contract and grievance disputes; resolving questions of labor representation and bargaining unit structure.",
+                "commissioner_powers": "Promotes stable and constructive relationships between labor and management; provides mediation services for collective bargaining contract and grievance disputes; conducts representation hearings to resolve questions of labor representation and bargaining unit structure; facilitates and trains joint labor-management committees; develops and maintains rosters of labor arbitrators; assists in resolving labor disputes; provides training on labor relations.",
+                "employees": null,
+                "url": "https://mn.gov/bms"
+            },
+            {
+                "department": "Office of Higher Education",
+                "commissioner": "Dennis Olson (Director)",
+                "description": "The office performs several statewide services that support access to post-secondary education, including student financial aid. Advances the promise of higher education to all Minnesotans. Provides financial aid programs including State Grant, State Work Study, SELF Loan, and North Star Promise programs. Administers interstate reciprocity agreements and manages the Minnesota Statewide Longitudinal Education Data System (SLEDS).",
+                "commissioner_powers": "Performs statewide services that support access to post-secondary education; administers student financial aid programs including State Grant program, State Work Study, SELF Loan, and North Star Promise; administers interstate reciprocity agreements with neighboring states; manages Minnesota College Savings Plan; registers private and out-of-state public degree granting institutions; licenses private non-degree institutions; manages Minnesota Statewide Longitudinal Education Data System (SLEDS); governs SLEDS through Minnesota P-20 Education Partnership; administers Direct Admissions program; oversees Minitex library resource sharing; provides research and reports on higher education.",
+                "employees": null,
+                "url": "https://www.ohe.state.mn.us"
+            }
+        ],
+        "categories": [
+            "State Government"
+        ]
+    },
+    {
+        "id": 4,
+        "title": "Department of Children, Youth and Family Programs",
+        "description": "Browse comprehensive programs and services supporting Minnesota's children, youth, and families.",
+        "subtitle": "Department of Children, Youth, and Family (DCYF) Programs",
+        "footer": "Data sourced from DCYF official program directory",
+        "image": "/img/dcyf.jpg",
+        "columns": [
+            {
+                "header": "#",
+                "field": "index",
+                "width": "3%",
+                "type": "index"
+            },
+            {
+                "header": "Program",
+                "field": "title",
+                "width": "25%",
+                "type": "program-link",
+                "sortable": true
+            },
+            {
+                "header": "Description",
+                "field": "description",
+                "width": "50%",
+                "type": "text"
+            },
+            {
+                "header": "Categories",
+                "field": "categories",
+                "width": "25%",
+                "type": "categories",
+                "filterable": true
+            },
+            {
+                "header": "Link",
+                "field": "link",
+                "width": "5%",
+                "type": "link"
+            }
+        ],
+        "data": [
+            {
+                "title": "Access to Technology Grants",
+                "description": "Access to Technology Grants are available twice per year and help licensed child care businesses access technology to improve business management efficiency.",
+                "link": "https://dcyf.mn.gov/programs-directory/access-technology-grants",
+                "categories": [
+                    "Child Care and Early Learning"
                 ]
-    },
-    {
-        "id":5,
-        "title":"About Minnesota Government",
-        "description":"Learn about the structure and history of Minnesota's government.",
-        "subtitle":"About Minnesota Government",
-        "footer":"Sample text content - Last updated January 2026",
-        "category": "Learn",
-        "type":"text",
-        "src":"./test.html",
-        "image":"/img/capitol.jpeg",
-        "data":""
-    },
-    {
-        "id":6,
-        "title":"Progressive Legislative Ideas",
-        "description":"Legislative bills that could redistribute wealth in Minnesota.",
-        "category": "Learn",
-        "subtitle":"",
-        "footer":"",
-        "image":"/img/constitution.webp",
-        "columns":[
-            {
-                "header":"#",
-                "field":"index",
-                "width":"3%",
-                "type":"index"
             },
             {
-                "header":"Bill Title",
-                "field":"title",
-                "width":"10%",
-                "type":"title",
-                "sortable":true
+                "title": "Achieve",
+                "description": "Achieve supports career development for individuals, trainers, Relationship Based Professional Development (RBPD) specialists, and course writers in the child care and early childhood education workforce.",
+                "link": "https://dcyf.mn.gov/programs-directory/achieve",
+                "categories": [
+                    "Child Care and Early Learning"
+                ]
             },
             {
-                "header":"Description",
-                "field":"description",
-                "width":"20%",
-                "type":"text"
+                "title": "Child Care Access Grants",
+                "description": "Child Care Access Grantees can help families experiencing homelessness or housing instability apply for and maintain their child care assistance.",
+                "link": "https://dcyf.mn.gov/programs-directory/child-care-access-grants",
+                "categories": [
+                    "Child Care and Early Learning"
+                ]
             },
             {
-                "header":"Text",
-                "field":"text",
-                "width":"50%",
-                "type":"text"
+                "title": "Child Care Assistance Program",
+                "description": "Minnesota's Child Care Assistance Program (CCAP) can help make quality child care affordable for families with low incomes.",
+                "link": "https://dcyf.mn.gov/programs-directory/child-care-assistance-program",
+                "categories": [
+                    "Child Care and Early Learning"
+                ]
             },
             {
-                "header":"Categories",
-                "field":"categories",
-                "width":"10%",
-                "type":"categories",
-                "filterable":true
+                "title": "Child Care Services Regional Grants",
+                "description": "Child Care Aware Regional Grants are available on a competitive basis, helping child care programs improve the safety and quality of their programs.",
+                "link": "https://dcyf.mn.gov/programs-directory/child-care-services-regional-grants",
+                "categories": [
+                    "Child Care and Early Learning"
+                ]
+            },
+            {
+                "title": "Child Care Wayfinder",
+                "description": "Child Care Wayfinder is your one-stop navigation network for starting and growing child care programs in Minnesota. Wayfinder offers personalized support and resources to help you succeed.",
+                "link": "https://dcyf.mn.gov/programs-directory/child-care-wayfinder",
+                "categories": [
+                    "Child Care and Early Learning"
+                ]
+            },
+            {
+                "title": "Child Development Associate (CDA) Awards",
+                "description": "Child Development Associate (CDA) Awards help early educators pay for the required training, application, and renewal of the nationally recognized Child Development Associate\u00ae (CDA) Credential\u2122.",
+                "link": "https://dcyf.mn.gov/programs-directory/child-development-associate-cda-awards",
+                "categories": [
+                    "Child Care and Early Learning"
+                ]
+            },
+            {
+                "title": "Develop",
+                "description": "Develop, Minnesota's Quality Improvement and Registry, offers professional development and quality improvement tools to support early learning and school-age care.",
+                "link": "https://dcyf.mn.gov/programs-directory/develop",
+                "categories": [
+                    "Child Care and Early Learning"
+                ]
+            },
+            {
+                "title": "Diversionary Work Program (DWP)",
+                "description": "The Diversionary Work Program (DWP) is a four-month program that helps Minnesota caregivers find jobs. The goal is to help caregivers quickly find work so that they do not need to go on the Minnesota Family Investment Program (MFIP). Caregivers get help paying for housing and other bills, along with employment services to help them find full-time work.",
+                "link": "https://dcyf.mn.gov/programs-directory/diversionary-work-program-dwp",
+                "categories": [
+                    "Income Support"
+                ]
+            },
+            {
+                "title": "Eager-to-Learn",
+                "description": "Through Eager-to-Learn, Child Care Aware of Minnesota offers high-quality, online training to help early educators meet requirements and expand their knowledge.",
+                "link": "https://dcyf.mn.gov/programs-directory/eager-learn",
+                "categories": [
+                    "Child Care and Early Learning"
+                ]
+            },
+            {
+                "title": "Early Childhood Family Education (ECFE)",
+                "description": "Early Childhood Family Education (ECFE) offers caregivers of young children a space to connect with other families and participate in activities that support both parenting and children's learning and development.",
+                "link": "https://dcyf.mn.gov/programs-directory/early-childhood-family-education-ecfe",
+                "categories": [
+                    "Child Care and Early Learning"
+                ]
+            },
+            {
+                "title": "Early Childhood Screening",
+                "description": "Early Childhood Screening is a no-cost check of how a child is growing, moving, talking, seeing, hearing and behaving. Screening seeks to answer the question \"Does this child need a closer look?\"",
+                "link": "https://dcyf.mn.gov/programs-directory/early-childhood-screening",
+                "categories": [
+                    "Child Care and Early Learning"
+                ]
+            },
+            {
+                "title": "Early Childhood Special Education (ECSE)",
+                "description": "Early childhood special education services help infants, toddlers and young children with disabilities or developmental delays from birth to kindergarten enrollment.",
+                "link": "https://dcyf.mn.gov/programs-directory/early-childhood-special-education-ecse",
+                "categories": [
+                    "Child Care and Early Learning"
+                ]
+            },
+            {
+                "title": "Early Learning Scholarships",
+                "description": "Early Learning Scholarships increase access to high-quality early childhood programs for children ages birth to 4 years old with the highest needs. Scholarships can be used at Parent Aware-rated programs.",
+                "link": "https://dcyf.mn.gov/programs-directory/early-learning-scholarships",
+                "categories": [
+                    "Child Care and Early Learning"
+                ]
+            },
+            {
+                "title": "Electronic Benefit Transfer (EBT) Card",
+                "description": "Minnesota offers benefits loaded on an Electronic Benefit Transfer (EBT) card, which looks and works like a debit card. The card can be used at point-of-sale machines for cash or food purchases, or at ATMs for cash only.",
+                "link": "https://dcyf.mn.gov/ebt-card",
+                "categories": [
+                    "Income Support",
+                    "Food Support"
+                ]
+            },
+            {
+                "title": "Emergency Assistance",
+                "description": "Families with low incomes experiencing household emergencies such as evictions, foreclosures, utility shutoffs, or other household emergencies may qualify for this cash-grant program.",
+                "link": "https://dcyf.mn.gov/programs-directory/emergency-assistance",
+                "categories": [
+                    "Income Support"
+                ]
+            },
+            {
+                "title": "Empower to Educate",
+                "description": "Empower to Educate helps current and aspiring early childhood educators begin, advance, and sustain their child care careers through personalized support, training, and financial incentives.",
+                "link": "https://dcyf.mn.gov/programs-directory/empower-educate",
+                "categories": [
+                    "Child Care and Early Learning"
+                ]
+            },
+            {
+                "title": "Family, Friend and Neighbor Minnesota",
+                "description": "Family, Friend and Neighbor (FFN) caregivers are home-based caregivers working outside of the formal child care system. FFN Minnesota is here to connect FFN caregivers with local FFN navigators who can provide ongoing support while they care for children. That support comes in many forms: one-on-one meetings with local navigators, training, resource kits and so much more.",
+                "link": "https://dcyf.mn.gov/ffn",
+                "categories": [
+                    "Child Care and Early Learning"
+                ]
+            },
+            {
+                "title": "Foreign Credential Evaluation Scholarships",
+                "description": "Foreign Credential Evaluation Scholarships help early childhood educators who have completed their high school or higher education coursework outside of the United States pay for the evaluation of educational transcripts.",
+                "link": "https://dcyf.mn.gov/programs-directory/foreign-credential-evaluation-scholarships",
+                "categories": [
+                    "Child Care and Early Learning"
+                ]
+            },
+            {
+                "title": "Great Start Compensation Legal Nonlicensed One-Time Payments",
+                "description": "The Great Start Compensation Support Payment Program supports the child care and early education workforce by increasing compensation and benefits for this vital workforce. This program created Legal Nonlicensed One-Time Payments, which provide one-time payments of $500 to legal nonlicensed providers registered with the Child Care Assistance Program (CCAP) to cover registration and startup costs.",
+                "link": "https://dcyf.mn.gov/programs-directory/great-start-compensation-legal-nonlicensed-one-time-payments",
+                "categories": [
+                    "Child Care and Early Learning"
+                ]
+            },
+            {
+                "title": "Great Start Compensation Support Payment Program",
+                "description": "The Great Start Compensation Support Payment Program supports the child care and early education workforce by increasing compensation and benefits for this vital workforce. The program issues monthly payments to eligible child care and early educators to fund increases in compensation and benefits.",
+                "link": "https://dcyf.mn.gov/programs-directory/great-start-compensation-support-payment-program",
+                "categories": [
+                    "Child Care and Early Learning"
+                ]
+            },
+            {
+                "title": "Head Start and Early Head Start",
+                "description": "Head Start and Early Head Start programs promote school readiness of children ages birth to 5 from low-income families by supporting the development of the whole child.",
+                "link": "https://dcyf.mn.gov/programs-directory/head-start-and-early-head-start",
+                "categories": [
+                    "Child Care and Early Learning"
+                ]
+            },
+            {
+                "title": "Help Me Connect",
+                "description": "Help Me Connect is an online navigator connecting expectant families, families with young children, and those working with families to programs and services that support healthy child development and family well-being.",
+                "link": "https://dcyf.mn.gov/programs-directory/help-me-connect",
+                "categories": [
+                    "Child Care and Early Learning",
+                    "Child Safety",
+                    "Food Support",
+                    "Family Resources",
+                    "Emergency Assistance"
+                ]
+            },
+            {
+                "title": "Help Me Grow Minnesota",
+                "description": "Help Me Grow Minnesota connects families with early intervention and preschool special education services through their school district or cooperative.",
+                "link": "https://dcyf.mn.gov/programs-directory/help-me-grow-minnesota",
+                "categories": [
+                    "Child Care and Early Learning"
+                ]
+            },
+            {
+                "title": "Minnesota Family Investment Program (MFIP)",
+                "description": "The Minnesota Family Investment Program (MFIP) helps families with children meet their basic needs, while helping parents move to financial stability through work. Caregivers are expected to work and are supported with both cash and food assistance.",
+                "link": "https://dcyf.mn.gov/programs-directory/minnesota-family-investment-program-mfip",
+                "categories": [
+                    "Income Support"
+                ]
+            },
+            {
+                "title": "Minnesota Food Assistance Program (MFAP)",
+                "description": "The Minnesota Food Assistance Program (MFAP) provides state-funded food assistance to legal noncitizens age 50 or older who do not qualify for the Supplemental Nutrition Assistance Program (SNAP) because of their citizenship status.",
+                "link": "https://dcyf.mn.gov/programs-directory/minnesota-food-assistance-program-mfap",
+                "categories": [
+                    "Food Support"
+                ]
+            },
+            {
+                "title": "Minnesota Tribal Resources for Early Childhood Care",
+                "description": "The Minnesota Tribal Resources for Early Childhood Care (MNTRECC) provides technical assistance and support to Tribal child care programs throughout the state of Minnesota.",
+                "link": "https://dcyf.mn.gov/programs-directory/minnesota-tribal-resources-early-childhood-care",
+                "categories": [
+                    "Child Care and Early Learning"
+                ]
+            },
+            {
+                "title": "Parent Aware",
+                "description": "Parent Aware offers free tools and resources for families and child care programs. It can help you find child care, options for affording care, and tools and tips to find the right program for your child. Additionally, Parent Aware helps program continuously improve their quality through Star Ratings and resources.",
+                "link": "https://dcyf.mn.gov/programs-directory/parent-aware",
+                "categories": [
+                    "Child Care and Early Learning"
+                ]
+            },
+            {
+                "title": "REETAIN Bonuses",
+                "description": "Financial bonuses are available through the REETAIN (Retaining Early Educators Through Attaining Incentives Now) program, aiming to keep strong, well-trained early educators in the field.",
+                "link": "https://dcyf.mn.gov/programs-directory/reetain-bonuses",
+                "categories": [
+                    "Child Care and Early Learning"
+                ]
+            },
+            {
+                "title": "STAY (Successful Transition to Adulthood for Youth)",
+                "description": "The STAY (Successful Transition to Adulthood for Youth) Program offers independent living services to eligible youth ages 14 up to age 23, who are currently or were formerly in foster care.",
+                "link": "https://dcyf.mn.gov/programs-directory/stay-successful-transition-adulthood-youth",
+                "categories": [
+                    "Employment Support",
+                    "Youth Services",
+                    "Foster Care"
+                ]
+            },
+            {
+                "title": "SUN Bucks",
+                "description": "SUN Bucks is an income-based food support program that provides families with $120 per eligible school-aged child to buy groceries when school is out for the summer.",
+                "link": "https://dcyf.mn.gov/sun-bucks",
+                "categories": [
+                    "Food Support"
+                ]
+            },
+            {
+                "title": "School-based Preschool Programs",
+                "description": "\u200bSchool-based early learning programs for 3- and 4-year-olds are designed to help children learn, grow, and develop, providing them with the skills and abilities for a successful transition to kindergarten and beyond.",
+                "link": "https://dcyf.mn.gov/programs-directory/school-based-preschool-programs",
+                "categories": [
+                    "Child Care and Early Learning"
+                ]
+            },
+            {
+                "title": "Supplemental Nutrition Assistance Program (SNAP)",
+                "description": "The Supplemental Nutrition Assistance Program (SNAP), formerly known as Food Stamps, helps Minnesotans with low incomes, including temporary low incomes, get the food they need for nutritious and well-balanced meals.",
+                "link": "https://dcyf.mn.gov/snap",
+                "categories": [
+                    "Food Support"
+                ]
+            },
+            {
+                "title": "Supplemental Nutrition Assistance Program Employment and Training (SNAP E&T)",
+                "description": "The Supplemental Nutrition Assistance Program Employment and Training (SNAP E&T) program helps SNAP recipients improve their employment opportunities by offering individualized career planning, short-term training for in-demand jobs, support with job searching, and financial assistance to overcome employment barriers.",
+                "link": "https://dcyf.mn.gov/snap-employment-and-training",
+                "categories": [
+                    "Income Support",
+                    "Food Support"
+                ]
+            },
+            {
+                "title": "TEACH Scholarships",
+                "description": "Individuals working in the child care workforce may be eligible for higher education scholarships through the TEACH Early Childhood Minnesota program.",
+                "link": "https://dcyf.mn.gov/programs-directory/teach-scholarships",
+                "categories": [
+                    "Child Care and Early Learning"
+                ]
+            },
+            {
+                "title": "Treasury Offset Program",
+                "description": "The Federal Treasury Offset Program (TOP) collects federal income to repay past due (delinquent) debts owed to federal government agencies. The department uses TOP to collect overpayments to the state's Supplemental Nutrition Assistance Program (SNAP) and the food portion of the Minnesota Family Investment Program (MFIP).",
+                "link": "https://dcyf.mn.gov/programs-directory/treasury-offset-program",
+                "categories": [
+                    "Food Support",
+                    "Income Support"
+                ]
+            },
+            {
+                "title": "What families who receive SNAP should know when they claim the Minnesota Child Tax Credit",
+                "description": "Households with children may qualify for a Child Tax Credit of up to $1,750 per qualifying child when they file their taxes this year.",
+                "link": "https://dcyf.mn.gov/snap-ctc",
+                "categories": [
+                    "Food Support"
+                ]
+            },
+            {
+                "title": "Whole Family Approach",
+                "description": "In order to better coordinate and resource the systems that service children, youth, and families, the Department of Children, Youth, and Families is taking a Whole Family Approach to our work. A Whole Family Approach is an approach to practice, program and policy decision making that recognizes and addresses the needs of children and the adults in their lives simultaneously. This approach recognizes that families come in all different shapes and sizes and that families define themselves.",
+                "link": "https://dcyf.mn.gov/whole-family-approach",
+                "categories": [
+                    "Child Care and Early Learning",
+                    "Family Resources",
+                    "Income Support"
+                ]
             }
         ],
-        "data":[
+        "categories": [
+            "Resources and Services"
+        ]
+    },
+    {
+        "id": 5,
+        "title": "About Minnesota Government",
+        "description": "Learn about the structure and history of Minnesota's government.",
+        "subtitle": "About Minnesota Government",
+        "footer": "Sample text content - Last updated January 2026",
+        "type": "text",
+        "src": "./test.html",
+        "image": "/img/capitol.jpeg",
+        "data": "",
+        "categories": [
+            "Learn"
+        ]
+    },
+    {
+        "id": 6,
+        "title": "Progressive Legislative Ideas",
+        "description": "Legislative bills that could redistribute wealth in Minnesota.",
+        "subtitle": "",
+        "footer": "",
+        "image": "/img/constitution.webp",
+        "columns": [
             {
-                "title":"Minnesota Basic Income Grant Program Act",
-                "categories":[
+                "header": "#",
+                "field": "index",
+                "width": "3%",
+                "type": "index"
+            },
+            {
+                "header": "Bill Title",
+                "field": "title",
+                "width": "10%",
+                "type": "title",
+                "sortable": true
+            },
+            {
+                "header": "Description",
+                "field": "description",
+                "width": "20%",
+                "type": "text"
+            },
+            {
+                "header": "Text",
+                "field": "text",
+                "width": "50%",
+                "type": "text"
+            },
+            {
+                "header": "Categories",
+                "field": "categories",
+                "width": "10%",
+                "type": "categories",
+                "filterable": true
+            }
+        ],
+        "data": [
+            {
+                "title": "Minnesota Basic Income Grant Program Act",
+                "categories": [
                     "Direct Assistance",
                     "Anti-Poverty",
                     "Human Services"
                 ],
-                "description":"Establishes a statewide competitive grant program to provide monthly cash payments of $350 to $1,200 to low-income residents to disrupt poverty and build community wealth.",
-                "text":"A bill for an act relating to human services; establishing a Minnesota basic income grant program; requiring a report; appropriating money. BE IT ENACTED BY THE LEGISLATURE OF THE STATE OF MINNESOTA: Section 1. MINNESOTA BASIC INCOME GRANT PROGRAM. Subdivision 1. Establishment. The commissioner of human services must establish a competitive grant program for local government entities, Minnesota's Tribal Nations, or nonprofit organizations to provide regular cash payments to eligible recipients in order to disrupt poverty, build wealth, advance equity, and support a recipient's basic needs. Subd. 4. Use of grant money. Grantees must use grant money to: (1) design and implement a basic income grant program; (2) provide a monthly payment between $350 to $1,200 to eligible recipients for a period of 12 to 24 months; and (3) collect data on the economic status of recipients. Subd. 5. Eligible recipients. Persons eligible to receive monthly payments must be receiving public benefits or have a household income less than or equal to 300 percent of the federal poverty guidelines."
+                "description": "Establishes a statewide competitive grant program to provide monthly cash payments of $350 to $1,200 to low-income residents to disrupt poverty and build community wealth.",
+                "text": "A bill for an act relating to human services; establishing a Minnesota basic income grant program; requiring a report; appropriating money. BE IT ENACTED BY THE LEGISLATURE OF THE STATE OF MINNESOTA: Section 1. MINNESOTA BASIC INCOME GRANT PROGRAM. Subdivision 1. Establishment. The commissioner of human services must establish a competitive grant program for local government entities, Minnesota's Tribal Nations, or nonprofit organizations to provide regular cash payments to eligible recipients in order to disrupt poverty, build wealth, advance equity, and support a recipient's basic needs. Subd. 4. Use of grant money. Grantees must use grant money to: (1) design and implement a basic income grant program; (2) provide a monthly payment between $350 to $1,200 to eligible recipients for a period of 12 to 24 months; and (3) collect data on the economic status of recipients. Subd. 5. Eligible recipients. Persons eligible to receive monthly payments must be receiving public benefits or have a household income less than or equal to 300 percent of the federal poverty guidelines."
             },
             {
-                "title":"Corporate Franchise Tax Rate Contingency Act",
-                "categories":[
+                "title": "Corporate Franchise Tax Rate Contingency Act",
+                "categories": [
                     "Corporate Taxation",
                     "Fiscal Policy",
                     "Revenue Neutrality"
                 ],
-                "description":"Adjusts the state corporate tax rate upward if federal corporate taxes are reduced, ensuring that large corporations continue to contribute a fair share to the state's general fund.",
-                "text":"A bill for an act relating to taxation; corporate franchise; providing for a contingent increase in the tax rate; amending Minnesota Statutes 2024, section 290.06, subdivision 1. BE IT ENACTED BY THE LEGISLATURE OF THE STATE OF MINNESOTA: Section 1. Minnesota Statutes 2024, section 290.06, subdivision 1, is amended to read: Subdivision 1. Computation, corporations. (a) For taxable years beginning after December 31, 2024, the franchise tax imposed upon corporations shall be computed by applying to their taxable income the rate greater of: (1) 9.8 percent; or (2) the rate calculated under paragraph (c). (b) Pursuant to enactment of federal legislation decreasing the corporate franchise tax rate, the commissioner must calculate the percentage decrease and increase Minnesota's tax rate by a corresponding percentage, rounded to the nearest twentieth of a percent."
+                "description": "Adjusts the state corporate tax rate upward if federal corporate taxes are reduced, ensuring that large corporations continue to contribute a fair share to the state's general fund.",
+                "text": "A bill for an act relating to taxation; corporate franchise; providing for a contingent increase in the tax rate; amending Minnesota Statutes 2024, section 290.06, subdivision 1. BE IT ENACTED BY THE LEGISLATURE OF THE STATE OF MINNESOTA: Section 1. Minnesota Statutes 2024, section 290.06, subdivision 1, is amended to read: Subdivision 1. Computation, corporations. (a) For taxable years beginning after December 31, 2024, the franchise tax imposed upon corporations shall be computed by applying to their taxable income the rate greater of: (1) 9.8 percent; or (2) the rate calculated under paragraph (c). (b) Pursuant to enactment of federal legislation decreasing the corporate franchise tax rate, the commissioner must calculate the percentage decrease and increase Minnesota's tax rate by a corresponding percentage, rounded to the nearest twentieth of a percent."
             },
             {
-                "title":"Expanded Corporate Tax Compliance & Enforcement Initiative",
-                "categories":[
+                "title": "Expanded Corporate Tax Compliance & Enforcement Initiative",
+                "categories": [
                     "Enforcement & Oversight",
                     "Corporate Reform",
                     "Government Operations"
                 ],
-                "description":"Allocates funding to the Department of Revenue to specifically target and collect unpaid tax liabilities from corporations with over $25 million in Minnesota sales.",
-                "text":"A bill for an act relating to taxation; appropriating money for an expanded corporate tax compliance initiative. BE IT ENACTED BY THE LEGISLATURE OF THE STATE OF MINNESOTA: Section 1. APPROPRIATION; EXPANDED CORPORATE TAX COMPLIANCE INITIATIVE. Subdivision 1. Appropriation. $10,000,000 in fiscal year 2026 is appropriated from the general fund to the commissioner of revenue to develop and implement an expanded corporate tax compliance initiative. Subd. 2. Requirements. The initiative must prioritize compliance and enforcement activities among corporations reporting $25,000,000 or more in Minnesota sales or gross receipts for a taxable year to ensure the identification and collection of tax liabilities from corporations that currently do not accurately report taxable income."
+                "description": "Allocates funding to the Department of Revenue to specifically target and collect unpaid tax liabilities from corporations with over $25 million in Minnesota sales.",
+                "text": "A bill for an act relating to taxation; appropriating money for an expanded corporate tax compliance initiative. BE IT ENACTED BY THE LEGISLATURE OF THE STATE OF MINNESOTA: Section 1. APPROPRIATION; EXPANDED CORPORATE TAX COMPLIANCE INITIATIVE. Subdivision 1. Appropriation. $10,000,000 in fiscal year 2026 is appropriated from the general fund to the commissioner of revenue to develop and implement an expanded corporate tax compliance initiative. Subd. 2. Requirements. The initiative must prioritize compliance and enforcement activities among corporations reporting $25,000,000 or more in Minnesota sales or gross receipts for a taxable year to ensure the identification and collection of tax liabilities from corporations that currently do not accurately report taxable income."
             },
             {
-                "title":"Net Investment Income Tax Act",
-                "categories":[
+                "title": "Net Investment Income Tax Act",
+                "categories": [
                     "Wealth & Capital Taxation",
                     "Individual Income Tax",
                     "Equity"
                 ],
-                "description":"Imposes a 1% tax on net investment income exceeding $1 million for individuals and trusts, redirecting capital gains and dividend wealth into the state treasury.",
-                "text":"A bill for an act relating to taxation; individual income; imposing a tax on net investment income. BE IT ENACTED BY THE LEGISLATURE OF THE STATE OF MINNESOTA: Section 1. NET INVESTMENT INCOME TAX. (a) A tax is imposed on the net investment income of individuals, estates, and trusts for the taxable year. (b) The tax is equal to one percent of the taxpayer's net investment income in excess of $1,000,000. (c) 'Net investment income' has the meaning given in section 1411(c) of the Internal Revenue Code. (d) This section is effective for taxable years beginning after December 31, 2023."
+                "description": "Imposes a 1% tax on net investment income exceeding $1 million for individuals and trusts, redirecting capital gains and dividend wealth into the state treasury.",
+                "text": "A bill for an act relating to taxation; individual income; imposing a tax on net investment income. BE IT ENACTED BY THE LEGISLATURE OF THE STATE OF MINNESOTA: Section 1. NET INVESTMENT INCOME TAX. (a) A tax is imposed on the net investment income of individuals, estates, and trusts for the taxable year. (b) The tax is equal to one percent of the taxpayer's net investment income in excess of $1,000,000. (c) 'Net investment income' has the meaning given in section 1411(c) of the Internal Revenue Code. (d) This section is effective for taxable years beginning after December 31, 2023."
             }
+        ],
+        "categories": [
+            "Learn"
         ]
     },
     {
-        "id":7,
-        "title":"A Freshman in Congress - Representative Katie Jones",
-        "description":"A review on Representative Katie Jones work for MN 61A",
-        "subtitle":"About Minnesota Government",
-        "category": "Elected Officials",
-        "footer":"",
-        "type":"link",
-        "image":"/img/katie.jpg",
-        "link":"/katiejones.html"
+        "id": 7,
+        "title": "A Freshman in Congress - Representative Katie Jones",
+        "description": "A review on Representative Katie Jones work for MN 61A",
+        "subtitle": "About Minnesota Government",
+        "footer": "",
+        "type": "link",
+        "image": "/img/katie.jpg",
+        "link": "/katiejones.html",
+        "categories": [
+            "Elected Officials"
+        ]
     },
     {
-        "id":8,
-        "title":"City Council Member Katie Cashman",
-        "description":"A dashboard of the council member's work.",
-        "subtitle":"About Minnesota Government",
-        "category": "Elected Officials",
-        "footer":"",
-        "type":"link",
-        "image":"/img/cashman.jpg",
-        "link":"/cashman.html"
+        "id": 8,
+        "title": "City Council Member Katie Cashman",
+        "description": "A dashboard of the council member's work.",
+        "subtitle": "About Minnesota Government",
+        "footer": "",
+        "type": "link",
+        "image": "/img/cashman.jpg",
+        "link": "/cashman.html",
+        "categories": [
+            "Elected Officials"
+        ]
     },
     {
-        "id":9,
-        "title":"Shelters, Services, Clinics",
-        "description":"This data represents a comprehensive directory of the nonprofit safety net in Minneapolis, specifically curated for individuals and families experiencing housing instability.",
-        "subtitle":"",
-        "category": "Resources and Services",
-        "footer":"",
-        "map":true,
-        "image":"/img/shelters.jpg",
-        "columns":[
+        "id": 9,
+        "title": "Shelters, Services, Clinics",
+        "description": "This data represents a comprehensive directory of the nonprofit safety net in Minneapolis, specifically curated for individuals and families experiencing housing instability.",
+        "subtitle": "",
+        "footer": "",
+        "map": true,
+        "image": "/img/shelters.jpg",
+        "columns": [
             {
-                "header":"#",
-                "field":"index",
-                "width":"3%",
-                "type":"index"
+                "header": "#",
+                "field": "index",
+                "width": "3%",
+                "type": "index"
             },
             {
-                "header":"Title",
-                "field":"title",
-                "width":"10%",
-                "type":"title",
-                "sortable":true
+                "header": "Title",
+                "field": "title",
+                "width": "10%",
+                "type": "title",
+                "sortable": true
             },
             {
-                "header":"Description",
-                "field":"description",
-                "width":"20%",
-                "type":"text"
+                "header": "Description",
+                "field": "description",
+                "width": "20%",
+                "type": "text"
             },
             {
-                "header":"Address",
-                "field":"address",
-                "width":"5%",
-                "type":"text"
+                "header": "Address",
+                "field": "address",
+                "width": "5%",
+                "type": "text"
             },
             {
-                "header":"Services",
-                "field":"services",
-                "width":"10%",
-                "type":"categories",
-                "filterable":true
+                "header": "Services",
+                "field": "services",
+                "width": "10%",
+                "type": "categories",
+                "filterable": true
             },
             {
-                "header":"Website",
-                "field":"link",
-                "width":"5%",
-                "type":"link"
+                "header": "Website",
+                "field": "link",
+                "width": "5%",
+                "type": "link"
             }
         ],
-        "data":[
-              {
+        "data": [
+            {
                 "title": "Agate Housing & Services",
                 "category": "Emergency Shelter & Outreach",
-                "description": "Formed by the merger of St. Stephen’s and House of Charity; focuses on ending homelessness through street outreach and housing-first models.",
+                "description": "Formed by the merger of St. Stephen\u2019s and House of Charity; focuses on ending homelessness through street outreach and housing-first models.",
                 "address": "2309 Nicollet Ave, Minneapolis, MN 55404",
-                "coordinates": [44.9600, -93.2778],
-                "services": ["Street outreach", "Emergency shelter for men/couples", "Food shelf", "Public showers", "Permanent supportive housing"],
+                "coordinates": [
+                    44.96,
+                    -93.2778
+                ],
+                "services": [
+                    "Street outreach",
+                    "Emergency shelter for men/couples",
+                    "Food shelf",
+                    "Public showers",
+                    "Permanent supportive housing"
+                ],
                 "link": "https://agatemn.org"
-              },
-              {
+            },
+            {
                 "title": "AICDC Homeward Bound",
                 "category": "Culturally Specific Shelter",
                 "description": "The American Indian Community Development Corporation provides culturally specific shelter and services for Native American individuals.",
                 "address": "2012 Cedar Ave, Minneapolis, MN 55404",
-                "coordinates": [44.9631, -93.2472],
-                "services": ["Emergency shelter for single adults", "Culturally specific case management", "Health referrals", "Sober living support"],
+                "coordinates": [
+                    44.9631,
+                    -93.2472
+                ],
+                "services": [
+                    "Emergency shelter for single adults",
+                    "Culturally specific case management",
+                    "Health referrals",
+                    "Sober living support"
+                ],
                 "link": "https://aicdc-mn.org"
-              },
-              {
+            },
+            {
                 "title": "Avivo Village",
                 "category": "Emergency Shelter & Health",
                 "description": "An indoor 'tiny house' shelter community specifically designed to move people from unsheltered encampments into safe, private dwellings.",
                 "address": "1251 Washington Ave N, Minneapolis, MN 55401",
-                "coordinates": [44.9926, -93.2783],
-                "services": ["Low-barrier tiny house shelter", "Mental health services", "Addiction recovery", "Career education", "Housing case management"],
+                "coordinates": [
+                    44.9926,
+                    -93.2783
+                ],
+                "services": [
+                    "Low-barrier tiny house shelter",
+                    "Mental health services",
+                    "Addiction recovery",
+                    "Career education",
+                    "Housing case management"
+                ],
                 "link": "https://avivomn.org"
-              },
-              {
+            },
+            {
                 "title": "Catholic Charities: Higher Ground & Opportunity Center",
                 "category": "General Shelter & Day Services",
                 "description": "A massive service hub providing both overnight shelter and daytime resources like showers, laundry, and housing case management.",
                 "address": "165 Glenwood Avenue North, Minneapolis, MN 55405",
-                "coordinates": [44.9814, -93.2809],
-                "services": ["Overnight shelter", "Day center", "Pay-for-stay housing", "Showers and laundry", "Employment assistance"],
+                "coordinates": [
+                    44.9814,
+                    -93.2809
+                ],
+                "services": [
+                    "Overnight shelter",
+                    "Day center",
+                    "Pay-for-stay housing",
+                    "Showers and laundry",
+                    "Employment assistance"
+                ],
                 "link": "https://cctwincities.org"
-              },
-              {
+            },
+            {
                 "title": "Community Emergency Service (CES)",
                 "category": "Food Shelf",
                 "description": "A choice-based food shelf providing fresh, nutritious food and home-delivery services for those with mobility issues.",
                 "address": "1900 11th Ave S, Minneapolis, MN 55404",
-                "coordinates": [44.9634, -93.2604],
-                "services": ["Food market", "Home-delivered meals", "Pet food shelf", "Crisis financial help"],
+                "coordinates": [
+                    44.9634,
+                    -93.2604
+                ],
+                "services": [
+                    "Food market",
+                    "Home-delivered meals",
+                    "Pet food shelf",
+                    "Crisis financial help"
+                ],
                 "link": "https://cesmn.org"
-              },
-              {
+            },
+            {
                 "title": "Groveland Food Shelf",
                 "category": "Food Shelf",
                 "description": "Non-profit providing emergency groceries and hygiene items to the Stevens Square neighborhood and students.",
                 "address": "1900 Nicollet Ave, Minneapolis, MN 55403",
-                "coordinates": [44.9639, -93.2779],
-                "services": ["Emergency groceries", "Personal hygiene items", "Mobile outreach"],
+                "coordinates": [
+                    44.9639,
+                    -93.2779
+                ],
+                "services": [
+                    "Emergency groceries",
+                    "Personal hygiene items",
+                    "Mobile outreach"
+                ],
                 "link": "https://www.grovelandfoodshelf.org"
-              },
-              {
+            },
+            {
                 "title": "Hennepin County Health Care for the Homeless",
                 "category": "Medical Clinic",
                 "description": "Specialized medical team operating clinics within Minneapolis shelters to remove barriers to care.",
                 "address": "525 Portland Ave S, Minneapolis, MN 55415",
-                "coordinates": [44.9748, -93.2641],
-                "services": ["Primary care", "Mental health therapy", "Substance use disorder support", "Medication refills"],
+                "coordinates": [
+                    44.9748,
+                    -93.2641
+                ],
+                "services": [
+                    "Primary care",
+                    "Mental health therapy",
+                    "Substance use disorder support",
+                    "Medication refills"
+                ],
                 "link": "https://www.hennepin.us/residents/health-medical/health-care-for-the-homeless"
-              },
-              {
+            },
+            {
                 "title": "NorthPoint Health & Wellness Center",
                 "category": "Integrated Health & Food",
                 "description": "Multi-specialty center integrating primary medical care with human services and a food shelf.",
                 "address": "1313 Penn Ave N, Minneapolis, MN 55411",
-                "coordinates": [44.9922, -93.3008],
-                "services": ["Medical and dental care", "Full-service food shelf", "Behavioral health", "WIC services"],
+                "coordinates": [
+                    44.9922,
+                    -93.3008
+                ],
+                "services": [
+                    "Medical and dental care",
+                    "Full-service food shelf",
+                    "Behavioral health",
+                    "WIC services"
+                ],
                 "link": "https://www.northpointhealth.org"
-              },
-              {
-                "title": "Our Saviour’s Housing",
+            },
+            {
+                "title": "Our Saviour\u2019s Housing",
                 "category": "Emergency & Transitional Shelter",
                 "description": "Provides emergency shelter and transitional housing for single adults, specifically focusing on those with mental health or chemical health needs.",
                 "address": "2219 Chicago Ave S, Minneapolis, MN 55404",
-                "coordinates": [44.9610, -93.2625],
-                "services": ["Emergency shelter", "Transitional housing", "Permanent supportive housing"],
+                "coordinates": [
+                    44.961,
+                    -93.2625
+                ],
+                "services": [
+                    "Emergency shelter",
+                    "Transitional housing",
+                    "Permanent supportive housing"
+                ],
                 "link": "https://oscs-mn.org"
-              },
-              {
+            },
+            {
                 "title": "People Serving People",
                 "category": "Family Services",
                 "description": "The largest family-focused shelter in Minnesota, providing comprehensive wrap-around services for families and children.",
                 "address": "614 South 3rd Street, Minneapolis, MN 55415",
-                "coordinates": [44.9765, -93.2618],
-                "services": ["Family emergency shelter", "Early learning center", "K-12 tutoring", "On-site medical clinic", "Financial literacy"],
+                "coordinates": [
+                    44.9765,
+                    -93.2618
+                ],
+                "services": [
+                    "Family emergency shelter",
+                    "Early learning center",
+                    "K-12 tutoring",
+                    "On-site medical clinic",
+                    "Financial literacy"
+                ],
                 "link": "https://www.peopleservingpeople.org"
-              },
-              {
+            },
+            {
                 "title": "Phillips Neighborhood Clinic",
                 "category": "Medical Clinic",
                 "description": "Free, student-run clinic providing health care services to those without insurance.",
                 "address": "2742 15th Ave S, Minneapolis, MN 55407",
-                "coordinates": [44.9529, -93.2536],
-                "services": ["Free primary care", "Mental health counseling", "Physical therapy", "Lab work"],
+                "coordinates": [
+                    44.9529,
+                    -93.2536
+                ],
+                "services": [
+                    "Free primary care",
+                    "Mental health counseling",
+                    "Physical therapy",
+                    "Lab work"
+                ],
                 "link": "https://sites.google.com/view/phillipsneighborhoodclinic"
-              },
-              {
+            },
+            {
                 "title": "Sharing & Caring Hands",
                 "category": "Comprehensive Emergency Services",
                 "description": "Provides a massive range of immediate safety-net services including food, medical care, and family shelter.",
                 "address": "525 N 7th St, Minneapolis, MN 55405",
-                "coordinates": [44.9839, -93.2789],
-                "services": ["Free medical/dental clinic", "Mary's Place family shelter", "Daily hot meals", "Vouchers for beds/shoes"],
+                "coordinates": [
+                    44.9839,
+                    -93.2789
+                ],
+                "services": [
+                    "Free medical/dental clinic",
+                    "Mary's Place family shelter",
+                    "Daily hot meals",
+                    "Vouchers for beds/shoes"
+                ],
                 "link": "https://sharingandcaringhands.org"
-              },
-              {
+            },
+            {
                 "title": "Simpson Housing Services",
                 "category": "General Shelter & Supportive Housing",
                 "description": "Provides individual advocacy and a range of housing programs from emergency shelter to permanent supportive homes.",
                 "address": "128 W 33rd St, Minneapolis, MN 55408",
-                "coordinates": [44.9427, -93.2798],
-                "services": ["Adult shelter", "Family supportive housing", "Children and youth programs", "Housing advocacy"],
+                "coordinates": [
+                    44.9427,
+                    -93.2798
+                ],
+                "services": [
+                    "Adult shelter",
+                    "Family supportive housing",
+                    "Children and youth programs",
+                    "Housing advocacy"
+                ],
                 "link": "https://www.simpsonhousing.org"
-              },
-              {
+            },
+            {
                 "title": "The Bridge for Youth",
                 "category": "Youth Services",
-                "description": "Focused on youth ages 10–17, providing crisis intervention and emergency housing.",
+                "description": "Focused on youth ages 10\u201317, providing crisis intervention and emergency housing.",
                 "address": "1111 West 22nd St, Minneapolis, MN 55405",
-                "coordinates": [44.9613, -93.2932],
-                "services": ["Youth emergency shelter", "24/7 crisis hotline", "Family reunification", "Transitional living"],
+                "coordinates": [
+                    44.9613,
+                    -93.2932
+                ],
+                "services": [
+                    "Youth emergency shelter",
+                    "24/7 crisis hotline",
+                    "Family reunification",
+                    "Transitional living"
+                ],
                 "link": "https://bridgeforyouth.org"
-              },
-              {
+            },
+            {
                 "title": "The Link",
                 "category": "Youth Services",
                 "description": "Supports youth experiencing homelessness, sexual exploitation, or juvenile justice system involvement.",
                 "address": "1210 Glenwood Ave, Minneapolis, MN 55405",
-                "coordinates": [44.9814, -93.3004],
-                "services": ["Emergency youth housing", "Safe Harbor services", "Rental assistance"],
+                "coordinates": [
+                    44.9814,
+                    -93.3004
+                ],
+                "services": [
+                    "Emergency youth housing",
+                    "Safe Harbor services",
+                    "Rental assistance"
+                ],
                 "link": "https://thelinkmn.org"
-              },
-              {
+            },
+            {
                 "title": "The Salvation Army: Harbor Light Center",
                 "category": "Emergency Shelter & Medical",
                 "description": "One of the largest homeless outreach facilities in Minnesota, offering emergency shelter and specialized recovery programs.",
                 "address": "1010 Currie Ave, Minneapolis, MN 55403",
-                "coordinates": [44.9806, -93.2806],
-                "services": ["Emergency housing", "Sober living programs", "Daily hot meals", "On-site medical clinic"],
+                "coordinates": [
+                    44.9806,
+                    -93.2806
+                ],
+                "services": [
+                    "Emergency housing",
+                    "Sober living programs",
+                    "Daily hot meals",
+                    "On-site medical clinic"
+                ],
                 "link": "https://centralusa.salvationarmy.org/northern/harborlightcenter"
-              },
-              {
+            },
+            {
                 "title": "YouthLink",
                 "category": "Youth Services",
-                "description": "A service hub for youth ages 16–24, connecting them to housing, education, and health care.",
+                "description": "A service hub for youth ages 16\u201324, connecting them to housing, education, and health care.",
                 "address": "41 North 12th St, Minneapolis, MN 55403",
-                "coordinates": [44.9801, -93.2785],
-                "services": ["Drop-in resource center", "Housing referrals", "Mental health care", "GED/Employment help"],
+                "coordinates": [
+                    44.9801,
+                    -93.2785
+                ],
+                "services": [
+                    "Drop-in resource center",
+                    "Housing referrals",
+                    "Mental health care",
+                    "GED/Employment help"
+                ],
                 "link": "https://www.youthlinkmn.org"
-              }
+            }
+        ],
+        "categories": [
+            "Resources and Services"
         ]
     },
     {
-        "id":11,
-        "title":"ICE Legal Resource Guide",
-        "description":"Comprehensive Legal Support and Resources for Immigration Matters.",
-        "subtitle":"About Minnesota Government",
-        "footer":"",
-        "category": "ICE Resource Guide",
-        "type":"link",
-        "image":"/img/legal.webp",
-        "link":"/ice_legal.html"
-    },{
-        "id":14,
-        "title":"Delegation of Parental Authority (DOPA)",
-        "description":"Delegation of Parental Authority (DOPA) form generator.",
-        "subtitle":"",
-        "footer":"",
-        "category": "ICE Resource Guide",
-        "type":"link",
-        "image":"/img/dopa.png",
-        "link":"/dopa_multi.html"
-    },{
-        "id":15,
-        "title":"HELP Referral Form (Adult Representation Services)",
-        "description":"If a family has been contacted by child protection and would like to talk to an attorney as soon as possible regarding their rights, use this form!",
-        "subtitle":"",
-        "footer":"",
-        "category": "ICE Resource Guide",
-        "type":"link",
-        "image":"/img/cps.png",
-        "link":"/help-ars.html"
+        "id": 11,
+        "title": "ICE Legal Resource Guide",
+        "description": "Comprehensive Legal Support and Resources for Immigration Matters.",
+        "subtitle": "About Minnesota Government",
+        "footer": "",
+        "type": "link",
+        "image": "/img/legal.webp",
+        "link": "/ice_legal.html",
+        "categories": [
+            "ICE Resource Guide"
+        ]
     },
     {
-        "id":12,
-        "title":"Immigration Lawyers (Local) Legal Resource Guide",
-        "description":"Comprehensive Legal Support and Resources for Immigration Matters.",
-        "subtitle":"",
-        "footer":"",
-        "category": "ICE Resource Guide",
-        "type":"link",
-        "image":"/img/court.jpg",
-        "link":"/immigration_lawyers.html"
+        "id": 14,
+        "title": "Delegation of Parental Authority (DOPA)",
+        "description": "Delegation of Parental Authority (DOPA) form generator.",
+        "subtitle": "",
+        "footer": "",
+        "type": "link",
+        "image": "/img/dopa.png",
+        "link": "/dopa_multi.html",
+        "categories": [
+            "ICE Resource Guide"
+        ]
     },
     {
-        "id":13,
-        "title":"List of Organizations and Families to Support",
-        "description":"Help individuals, families and orgs affected by ICE in Mpls.",
-        "subtitle":"",
-        "footer":"",
-        "category": "ICE Resource Guide",
-        "type":"link",
-        "image":"/img/mutualaid.png",
-        "link":"https://linktr.ee/mplsmutualaid"
+        "id": 15,
+        "title": "HELP Referral Form (Adult Representation Services)",
+        "description": "If a family has been contacted by child protection and would like to talk to an attorney as soon as possible regarding their rights, use this form!",
+        "subtitle": "",
+        "footer": "",
+        "type": "link",
+        "image": "/img/cps.png",
+        "link": "/help-ars.html",
+        "categories": [
+            "ICE Resource Guide"
+        ]
     },
     {
-        "id":16,
-        "title":"MN Congressional Map and Contact",
-        "description":"Detailed map of all representatives and senators.",
-        "subtitle":"",
-        "footer":"",
-        "category": "State Government",
-        "type":"link",
-        "image":"/img/calls.jpg",
-        "link":"/mn_legislature.html"
+        "id": 12,
+        "title": "Immigration Lawyers (Local) Legal Resource Guide",
+        "description": "Comprehensive Legal Support and Resources for Immigration Matters.",
+        "subtitle": "",
+        "footer": "",
+        "type": "link",
+        "image": "/img/court.jpg",
+        "link": "/immigration_lawyers.html",
+        "categories": [
+            "ICE Resource Guide"
+        ]
     },
     {
-        "id":17,
-        "title":"County Statistics",
-        "description":"Map of counties and their economic statistics.",
-        "subtitle":"",
-        "footer":"",
-        "category": "State Statistics",
-        "type":"link",
-        "image":"/img/flag.webp",
-        "link":"/mn_county_stats.html"
+        "id": 13,
+        "title": "List of Organizations and Families to Support",
+        "description": "Help individuals, families and orgs affected by ICE in Mpls.",
+        "subtitle": "",
+        "footer": "",
+        "type": "link",
+        "image": "/img/mutualaid.png",
+        "link": "https://linktr.ee/mplsmutualaid",
+        "categories": [
+            "ICE Resource Guide"
+        ]
     },
     {
-        "id":18,
-        "title":"Mpls Rental Assistance",
-        "description":"The Minneapolis City Council voted 9-4 to approve $1,000,000 in rental assistance for residents impacted by Operation Metro Surge.",
-        "subtitle":"",
-        "footer":"",
-        "category": "ICE Resource Guide",
-        "type":"link",
-        "image":"/img/city.jpg",
-        "link":"/rental_assistance.html"
+        "id": 16,
+        "title": "MN Congressional Map and Contact",
+        "description": "Detailed map of all representatives and senators.",
+        "subtitle": "",
+        "footer": "",
+        "type": "link",
+        "image": "/img/calls.jpg",
+        "link": "/mn_legislature.html",
+        "categories": [
+            "State Government",
+            "Spotlight"
+        ]
     },
     {
-        "id":19,
-        "title":"Mpls City Council Meeting Dashboard",
-        "description":"The Minneapolis City Council Dashboard summarizes what happened at a city council meeting.",
-        "subtitle":"",
-        "footer":"",
-        "category": "City Council Minneapolis",
-        "type":"link",
-        "image":"/img/city-council.jpg",
-        "link":"/city_council_meeting_summaries.html"
+        "id": 17,
+        "title": "County Statistics",
+        "description": "Map of counties and their economic statistics.",
+        "subtitle": "",
+        "footer": "",
+        "type": "link",
+        "image": "/img/flag.webp",
+        "link": "/mn_county_stats.html",
+        "categories": [
+            "State Statistics"
+        ]
+    },
+    {
+        "id": 18,
+        "title": "Mpls Rental Assistance",
+        "description": "The Minneapolis City Council voted 9-4 to approve $1,000,000 in rental assistance for residents impacted by Operation Metro Surge.",
+        "subtitle": "",
+        "footer": "",
+        "type": "link",
+        "image": "/img/city.jpg",
+        "link": "/rental_assistance.html",
+        "categories": [
+            "ICE Resource Guide"
+        ]
+    },
+    {
+        "id": 19,
+        "title": "Mpls City Council Meeting Dashboard",
+        "description": "The Minneapolis City Council Dashboard summarizes what happened at a city council meeting.",
+        "subtitle": "",
+        "footer": "",
+        "type": "link",
+        "image": "/img/city-council.jpg",
+        "link": "/city_council_meeting_summaries.html",
+        "categories": [
+            "City Council Minneapolis"
+        ]
     }
 ]
-
-
-
-
-
-

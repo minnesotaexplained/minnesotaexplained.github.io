@@ -1313,6 +1313,33 @@
             margin-top: 3px;
             white-space: nowrap;
         }
+        /* Activity tab */
+        .activity-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.88em;
+        }
+        .activity-table th {
+            padding: 10px 14px;
+            text-align: left;
+            font-size: 0.78em;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: #888;
+            border-bottom: 1px solid #e5e7eb;
+            white-space: nowrap;
+        }
+        .activity-table td {
+            padding: 10px 14px;
+            border-bottom: 1px solid #f3f4f6;
+            vertical-align: top;
+        }
+        .activity-table tr:last-child td { border-bottom: none; }
+        .activity-table tbody tr:hover td { background: #fafafa; }
+        .activity-date { color: #888; font-size: 0.85em; white-space: nowrap; }
+        #activity-loading { padding: 24px 14px; color: #888; font-size: 0.9em; }
+        #activity-error { padding: 24px 14px; color: #dc3545; font-size: 0.9em; }
     </style>
 </head>
 <body>
@@ -1409,6 +1436,7 @@
             <div class="modal-tabs">
                 <button class="tab-btn active" data-tab="info">Member Info</button>
                 <button class="tab-btn" data-tab="contact">Contact</button>
+                <button class="tab-btn" data-tab="activity" id="activity-tab-btn" style="display:none;">Activity</button>
             </div>
 
             <!-- Info Tab -->
@@ -1450,6 +1478,23 @@
                 <div class="modal-footer" style="gap:8px;">
                     <a id="modal-ballotpedia" class="modal-link" href="" target="_blank" style="background:#6c757d;">Ballotpedia</a>
                     <a id="modal-link" class="modal-link" href="" target="_blank">View Full Profile</a>
+                </div>
+            </div>
+
+            <!-- Activity Tab -->
+            <div class="tab-content" id="tab-activity">
+                <div class="modal-body">
+                    <div id="activity-loading">Loading activity feed&hellip;</div>
+                    <div id="activity-error" style="display:none;"></div>
+                    <table class="activity-table" id="activity-table" style="display:none;">
+                        <thead>
+                            <tr>
+                                <th>Date</th>
+                                <th>Title</th>
+                            </tr>
+                        </thead>
+                        <tbody id="activity-tbody"></tbody>
+                    </table>
                 </div>
             </div>
 
@@ -1883,6 +1928,16 @@
             document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
             document.querySelector('.tab-btn[data-tab="info"]').classList.add('active');
             document.getElementById('tab-info').classList.add('active');
+
+            // Show activity tab only for representatives (who have a legid)
+            const activityBtn = document.getElementById('activity-tab-btn');
+            if (member.legid) {
+                activityBtn.style.display = '';
+                currentActivityLegId = member.legid;
+            } else {
+                activityBtn.style.display = 'none';
+                currentActivityLegId = null;
+            }
             
             // Handle social media links
             const socialContainer = document.getElementById('modal-social');
@@ -1952,8 +2007,64 @@
                 document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
                 btn.classList.add('active');
                 document.getElementById('tab-' + btn.dataset.tab).classList.add('active');
+                if (btn.dataset.tab === 'activity' && currentActivityLegId) {
+                    loadActivityFeed(currentActivityLegId);
+                }
             });
         });
+
+        let currentActivityLegId = null;
+        const activityCache = {};
+
+        async function loadActivityFeed(legid) {
+            if (activityCache[legid]) {
+                renderActivityItems(activityCache[legid]);
+                return;
+            }
+            document.getElementById('activity-loading').style.display = 'block';
+            document.getElementById('activity-error').style.display = 'none';
+            document.getElementById('activity-table').style.display = 'none';
+
+            const rssUrl = `https://www.house.mn.gov/rss/press.asp?memid=${legid}`;
+            const proxyUrl = `https://rmaitra-cors-proxy-8ff64f217b6a.herokuapp.com/proxy?url=${encodeURIComponent(rssUrl)}`;
+            try {
+                const resp = await fetch(proxyUrl);
+                if (!resp.ok) throw new Error('Network error');
+                const text = await resp.text();
+                const parser = new DOMParser();
+                const xml = parser.parseFromString(text, 'text/xml');
+                const items = Array.from(xml.querySelectorAll('item')).map(item => ({
+                    title: item.querySelector('title')?.textContent || '',
+                    link: item.querySelector('link')?.textContent || '',
+                    pubDate: item.querySelector('pubDate')?.textContent || '',
+                }));
+                activityCache[legid] = items;
+                renderActivityItems(items);
+            } catch (e) {
+                document.getElementById('activity-loading').style.display = 'none';
+                document.getElementById('activity-error').style.display = 'block';
+                document.getElementById('activity-error').textContent = 'Could not load activity feed.';
+            }
+        }
+
+        function renderActivityItems(items) {
+            document.getElementById('activity-loading').style.display = 'none';
+            document.getElementById('activity-error').style.display = 'none';
+            const tbody = document.getElementById('activity-tbody');
+            tbody.innerHTML = '';
+            if (items.length === 0) {
+                document.getElementById('activity-error').style.display = 'block';
+                document.getElementById('activity-error').textContent = 'No activity found.';
+                return;
+            }
+            items.forEach(item => {
+                const date = item.pubDate ? new Date(item.pubDate).toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' }) : '';
+                const tr = document.createElement('tr');
+                tr.innerHTML = `<td class="activity-date">${date}</td><td><a href="${item.link}" target="_blank" rel="noopener">${item.title}</a></td>`;
+                tbody.appendChild(tr);
+            });
+            document.getElementById('activity-table').style.display = 'table';
+        }
 
         // Page-level tab switching
         document.querySelectorAll('.page-tab-btn').forEach(btn => {
@@ -2353,6 +2464,23 @@
                             <div class="timeline-canvas" id="tl-canvas"></div>
                         </div>
                     </div>
+
+                    <h3 class="chamber-title" style="margin-top:48px; font-size:1.3em;">Legislative Accomplishments</h3>
+                    <p class="chamber-subtitle">Bills passed during the current DFL legislative majority.</p>
+                    <div class="accomplishments-wrapper">
+                        <table class="accomplishments-table">
+                            <thead>
+                                <tr>
+                                    <th>Bill</th>
+                                    <th>Description</th>
+                                    <th>Passed</th>
+                                    <th>Author</th>
+                                </tr>
+                            </thead>
+                            <tbody>${accomplishmentRows}</tbody>
+                        </table>
+                    </div>
+
                     <div class="playbook-qa-grid">
                         ${buildPlaybook()}
                         <div class="playbook-wrapper">
@@ -2373,22 +2501,6 @@
                                 </table>
                             </div>
                         </div>
-                    </div>
-
-                    <h3 class="chamber-title" style="margin-top:48px; font-size:1.3em;">Legislative Accomplishments</h3>
-                    <p class="chamber-subtitle">Bills passed during the current DFL legislative majority.</p>
-                    <div class="accomplishments-wrapper">
-                        <table class="accomplishments-table">
-                            <thead>
-                                <tr>
-                                    <th>Bill</th>
-                                    <th>Description</th>
-                                    <th>Passed</th>
-                                    <th>Author</th>
-                                </tr>
-                            </thead>
-                            <tbody>${accomplishmentRows}</tbody>
-                        </table>
                     </div>
                 </div>`;
         }

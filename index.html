@@ -13,48 +13,50 @@
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
     <meta name="google-site-verification" content="QJgYg12fs3Q0Q4L8bHh53IVJeNSGZcuZo7ic4oECQEw" />
     <style>
+        /* "Light" mode — semi-dark slate */
         :root {
-            --bg-primary: white;
-            --bg-secondary: #f8f9fa;
-            --bg-tertiary: #f7fafc;
-            --text-primary: #2d3748;
-            --text-secondary: #555;
-            --text-tertiary: #666;
-            --text-quaternary: #6c757d;
-            --border-primary: #e0e0e0;
-            --border-secondary: #e2e8f0;
-            --border-tertiary: #e9ecef;
-            --accent-primary: #2a5298;
+            --bg-primary: #1e2433;
+            --bg-secondary: #252d3d;
+            --bg-tertiary: #2a3347;
+            --text-primary: #dce4f0;
+            --text-secondary: #90a4be;
+            --text-tertiary: #6b82a0;
+            --text-quaternary: #56708a;
+            --border-primary: #2e3d55;
+            --border-secondary: #2e3d55;
+            --border-tertiary: #2e3d55;
+            --accent-primary: #5b9bd5;
             --accent-secondary: #1e3c72;
             --accent-tertiary: #667eea;
-            --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.1);
-            --shadow-md: 0 2px 8px rgba(0, 0, 0, 0.1);
-            --shadow-lg: 0 4px 16px rgba(42, 82, 152, 0.15);
-            --hover-bg: #f8f9ff;
-            --table-hover: #f7fafc;
-            --home-image:url("/img/mx-blue.png");
+            --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.25);
+            --shadow-md: 0 2px 8px rgba(0, 0, 0, 0.25);
+            --shadow-lg: 0 4px 16px rgba(0, 0, 0, 0.35);
+            --hover-bg: #253045;
+            --table-hover: #253045;
+            --home-image: url("/img/mx-white.png");
         }
 
+        /* Dark mode — deeper charcoal */
         [data-theme="dark"] {
-            --bg-primary: #1a202c;
-            --bg-secondary: #2d3748;
-            --bg-tertiary: #2d3748;
+            --bg-primary: #0f1117;
+            --bg-secondary: #161b27;
+            --bg-tertiary: #1a2030;
             --text-primary: #e2e8f0;
-            --text-secondary: #cbd5e0;
-            --text-tertiary: #a0aec0;
-            --text-quaternary: #718096;
-            --border-primary: #4a5568;
-            --border-secondary: #4a5568;
-            --border-tertiary: #4a5568;
+            --text-secondary: #8898aa;
+            --text-tertiary: #637080;
+            --text-quaternary: #4a5568;
+            --border-primary: #1e2a3a;
+            --border-secondary: #1e2a3a;
+            --border-tertiary: #1e2a3a;
             --accent-primary: #4299e1;
-            --accent-secondary: #63b3ed;
+            --accent-secondary: #2b6cb0;
             --accent-tertiary: #667eea;
-            --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.3);
-            --shadow-md: 0 2px 8px rgba(0, 0, 0, 0.3);
-            --shadow-lg: 0 4px 16px rgba(0, 0, 0, 0.4);
-            --hover-bg: #2d3748;
-            --table-hover: #2d3748;
-            --home-image:url("/img/mx-white.png");
+            --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.4);
+            --shadow-md: 0 2px 8px rgba(0, 0, 0, 0.4);
+            --shadow-lg: 0 4px 16px rgba(0, 0, 0, 0.6);
+            --hover-bg: #161b27;
+            --table-hover: #161b27;
+            --home-image: url("/img/mx-white.png");
         }
 
         * {
@@ -91,6 +93,11 @@
             gap: 20px;
         }
 
+        [data-theme="dark"] .navbar {
+            background: #0a0d14;
+            border-bottom: 1px solid #1e2a3a;
+        }
+
         .back-button {
             background: rgba(255, 255, 255, 0.2);
             border: 1px solid rgba(255, 255, 255, 0.3);
@@ -125,7 +132,7 @@
         }
 
         .navbar-title {
-            font-size: 1.8em;
+            font-size: 1.3em;
             font-weight: 700;
             margin: 0 0 5px 0;
         }
@@ -688,6 +695,61 @@
             }
         }
 
+        .nav-tabs-bar {
+            position: sticky;
+            top: 0;
+            z-index: 50;
+            background: var(--bg-primary);
+            border-bottom: 2px solid var(--border-primary);
+            display: flex;
+            overflow-x: auto;
+            scrollbar-width: none;
+            padding: 0 1rem;
+            box-shadow: var(--shadow-sm);
+        }
+        .nav-tabs-bar::-webkit-scrollbar { display: none; }
+        .nav-tab {
+            background: none;
+            border: none;
+            border-bottom: 3px solid transparent;
+            margin-bottom: -2px;
+            padding: 12px 16px;
+            font-size: 0.82em;
+            font-weight: 600;
+            color: var(--text-secondary);
+            cursor: pointer;
+            white-space: nowrap;
+            transition: color 0.15s, border-color 0.15s;
+        }
+        .nav-tab:hover {
+            color: var(--accent-primary);
+        }
+        .nav-tab.active {
+            color: var(--accent-primary);
+            border-bottom-color: var(--accent-primary);
+        }
+
+        .about-section {
+            max-width: 680px;
+            margin: 60px auto 80px auto;
+            padding: 0 2rem;
+            border-top: 1px solid var(--border-primary);
+            padding-top: 48px;
+        }
+        .about-section h2 {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin: 0 0 16px 0;
+        }
+        .about-section p {
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+            line-height: 1.75;
+            margin: 0 0 14px 0;
+        }
+        .about-section p:last-child { margin-bottom: 0; }
+
         @media only screen and (max-width: 767px) {
             /* YOUR MOBILE-SPECIFIC CSS RULES HERE */
             .desktop {
@@ -757,7 +819,7 @@
 
         // Dark Mode Functions
         function initDarkMode() {
-            const savedTheme = localStorage.getItem('theme') || 'light';
+            const savedTheme = localStorage.getItem('theme') || 'dark';
             document.documentElement.setAttribute('data-theme', savedTheme);
         }
 
@@ -841,7 +903,7 @@
                 }
             },
             template: `
-                <div class="category-section">
+                <div class="category-section" :id="sectionId">
                     <h2 class="category-title">{{ category }}</h2>
                     <div class="cards-grid" v-if="filteredItems.length > 0">
                         <div 
@@ -864,7 +926,10 @@
             `,
             computed: {
                 filteredItems() {
-                    return this.items.filter(item => item.category === this.category);
+                    return this.items.filter(item => item.categories && item.categories.includes(this.category));
+                },
+                sectionId() {
+                    return 'cat-' + this.category.toLowerCase().replace(/[^a-z0-9]+/g, '-');
                 }
             },
             methods: {
@@ -939,7 +1004,7 @@
                             const popupContent = `
                                 <h4>${item.title || 'Location'}</h4>
                                 <p>${item.description || ''}</p>
-                                ${item.category ? `<span style="background: var(--accent); padding: 0.25rem 0.5rem; font-weight: 700; font-size: 0.75rem;">${item.category}</span>` : ''}
+                                ${item.categories && item.categories.length ? `<span style="background: var(--accent); padding: 0.25rem 0.5rem; font-weight: 700; font-size: 0.75rem;">${item.categories[0]}</span>` : ''}
                             `;
                             marker.bindPopup(popupContent);
                             
@@ -968,28 +1033,62 @@
                 Channel,
                 MapComponent
             },
-            data() {
-                categories = [...new Set(ITEMS.map(obj => obj.category))];
-                categories.sort();
-                categories = moveToFront(categories, "ICE Resource Guide");
-                return {
-                    items: ITEMS,
-                    categories: categories
-                }
-            },
             template: `
-                <div class="cards-container">
-                    <div id="intro" style="margin-bottom:50px">
-                        <img id="homeImg" src="" height="40px" />
-                        <p class="card-description">Minnesota Explained is a free guide to Minnesota state and Minneapolis city resources meant for residents.</p>
-                    </div>
-                    <div id="categoriesContainer">
-                        <div v-for="cat in categories">
-                            <channel :items="items" :category="cat"></channel>
+                <div>
+                    <nav class="nav-tabs-bar">
+                        <button
+                            v-for="cat in categories"
+                            :key="cat"
+                            class="nav-tab"
+                            :class="{ active: activeTab === cat }"
+                            @click="scrollToCategory(cat)"
+                        >{{ cat }}</button>
+                    </nav>
+                    <div class="cards-container">
+                        <div id="intro" style="margin-bottom:50px">
+                            <img id="homeImg" src="" height="40px" />
+                            <p class="card-description">Minnesota Explained is a free guide to Minnesota state and Minneapolis city resources meant for residents.</p>
+                        </div>
+                        <div id="categoriesContainer">
+                            <div v-for="cat in categories">
+                                <channel :items="items" :category="cat"></channel>
+                            </div>
                         </div>
                     </div>
+                    <div class="about-section">
+                        <h2>About Minnesota Explained</h2>
+                        <p>Minnesota Explained is built and maintained by Raj Maitra, a South Minneapolis native and longtime resident. Raj grew up navigating the same city systems, agencies, and services that this site tries to make sense of — and built this project out of a conviction that government information should be easy to find, easy to understand, and free for everyone.</p>
+                        <p>The mission is simple: bring transparency to local and state government in Minnesota by making public information genuinely accessible. Too much of what government does is technically public but practically hidden — buried in PDFs, scattered across agency websites, or written in language that assumes you already know how things work. This site is an attempt to fix that.</p>
+                        <p>All of the tools and source code behind Minnesota Explained are open source. If you want to contribute, report an issue, or build something on top of the data, everything is available on GitHub.</p>
+                    </div>
                 </div>
-            `
+            `,
+            data() {
+                const categories = [
+                    "Spotlight",
+                    "ICE Resource Guide",
+                    "Learn",
+                    "State Government",
+                    "State Statistics",
+                    "Minneapolis Government",
+                    "City Council Minneapolis",
+                    "Elected Officials",
+                    "Resources and Services",
+                ];
+                return {
+                    items: ITEMS,
+                    categories: categories,
+                    activeTab: null
+                }
+            },
+            methods: {
+                scrollToCategory(cat) {
+                    this.activeTab = cat;
+                    const id = 'cat-' + cat.toLowerCase().replace(/[^a-z0-9]+/g, '-');
+                    const el = document.getElementById(id);
+                    if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            }
         };
 
         // Table Component
