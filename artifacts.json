@@ -1209,15 +1209,15 @@
     },
     {
         "id": 19,
-        "title": "Mpls City Council Meeting Dashboard",
-        "description": "The Minneapolis City Council Dashboard summarizes what happened at a city council meeting.",
+        "title": "Mpls City Council Voting Dashboard",
+        "description": "Follow how your city council is voting.",
         "subtitle": "",
         "footer": "",
         "type": "link",
         "image": "/img/city-council.jpg",
-        "link": "/city_council_meeting_summaries.html",
+        "link": "/city_council/index.html",
         "categories": [
-            "City Council Minneapolis"
+            "City Council Minneapolis", "Spotlight"
         ]
     }
 ]

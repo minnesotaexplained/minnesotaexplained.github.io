@@ -1,0 +1,1207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Minneapolis City Council · Voting Dashboard</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:        #0a0a0b;
+      --surface:   #111114;
+      --surface-2: #1a1a1f;
+      --surface-3: #242429;
+      --border:    rgba(255,255,255,0.07);
+      --border-2:  rgba(255,255,255,0.04);
+      --text:      #f0f0f5;
+      --text-2:    #8e8e99;
+      --text-3:    #444450;
+      --green:     #30d158;
+      --green-dim: rgba(48,209,88,0.12);
+      --red:       #ff453a;
+      --red-dim:   rgba(255,69,58,0.12);
+      --blue:      #0a84ff;
+      --blue-dim:  rgba(10,132,255,0.12);
+      --amber:     #ffd60a;
+      --amber-dim: rgba(255,214,10,0.12);
+      --radius:    10px;
+      --radius-sm: 6px;
+      --header-bg: rgba(17,17,20,0.88);
+    }
+
+    :root[data-theme="light"] {
+      --bg:        #1a1b25;
+      --surface:   #22232f;
+      --surface-2: #2b2c3a;
+      --surface-3: #343546;
+      --border:    rgba(255,255,255,0.10);
+      --border-2:  rgba(255,255,255,0.06);
+      --text:      #dde0f2;
+      --text-2:    #7e86a8;
+      --text-3:    #4a5270;
+      --header-bg: rgba(26,27,37,0.90);
+    }
+
+    html, body { height: 100%; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", system-ui, sans-serif;
+      font-size: 13px;
+      display: flex;
+      flex-direction: column;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ─── Container ─── */
+    .wrap, .container { max-width: 1480px; margin: 0 auto; padding: 0 28px; width: 100%; }
+
+    /* ─── Header ─── */
+    .page-header {
+      flex-shrink: 0;
+      background: var(--header-bg);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
+      padding: 0;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .mx-logo {
+      font-size: 0.8rem;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      color: var(--text);
+      text-decoration: none;
+      background: var(--surface-3);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      padding: 3px 7px;
+      flex-shrink: 0;
+      transition: background .15s;
+    }
+    .mx-logo:hover { background: var(--surface-2); }
+
+    .theme-toggle {
+      margin-left: auto;
+      background: transparent;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      color: var(--text-2);
+      width: 28px;
+      height: 28px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: background .15s, color .15s, border-color .15s;
+      flex-shrink: 0;
+    }
+    .theme-toggle:hover { background: var(--surface-2); color: var(--text); border-color: rgba(255,255,255,0.15); }
+    .theme-toggle svg { width: 14px; height: 14px; }
+    .header-inner {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      padding: 14px 28px;
+      max-width: 1480px;
+      margin: 0 auto;
+    }
+    .header-top {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .header-top h1 {
+      font-size: 0.95rem;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+      color: var(--text);
+    }
+    .header-top h1 span {
+      color: var(--text-2);
+      font-weight: 400;
+      margin-left: 6px;
+    }
+    .header-badge {
+      background: var(--surface-3);
+      border: 1px solid var(--border);
+      border-radius: 100px;
+      color: var(--text-2);
+      font-size: 0.68rem;
+      font-weight: 500;
+      padding: 2px 9px;
+      letter-spacing: 0.02em;
+    }
+
+    .controls {
+      display: flex;
+      gap: 6px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .ctrl-input {
+      background: var(--surface-2);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      color: var(--text);
+      padding: 5px 10px 5px 30px;
+      font-size: 0.78rem;
+      width: 220px;
+      outline: none;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%238e8e99' stroke-width='2'%3E%3Ccircle cx='11' cy='11' r='8'/%3E%3Cpath d='m21 21-4.35-4.35'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: 9px center;
+      transition: border-color .15s;
+    }
+    .ctrl-input:focus { border-color: var(--blue); }
+    .ctrl-input::placeholder { color: var(--text-3); }
+
+    .ctrl-select {
+      background: var(--surface-2);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      color: var(--text);
+      padding: 5px 8px;
+      font-size: 0.78rem;
+      outline: none;
+      cursor: pointer;
+      transition: border-color .15s;
+      appearance: none;
+      padding-right: 24px;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='10' viewBox='0 0 24 24' fill='none' stroke='%238e8e99' stroke-width='2.5'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 7px center;
+    }
+    .ctrl-select:focus { border-color: var(--blue); }
+
+    .ctrl-divider { width: 1px; height: 18px; background: var(--border); flex-shrink: 0; margin: 0 2px; }
+
+    .qf-pill {
+      background: transparent;
+      border: 1px solid var(--border);
+      border-radius: 100px;
+      color: var(--text-2);
+      padding: 4px 11px;
+      font-size: 0.72rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all .15s;
+      white-space: nowrap;
+      letter-spacing: 0.01em;
+    }
+    .qf-pill:hover { border-color: rgba(255,255,255,0.2); color: var(--text); }
+    .qf-pill.on { background: var(--blue-dim); border-color: var(--blue); color: var(--blue); }
+
+    /* export dropdown */
+    .export-dropdown { position: relative; }
+    .export-btn {
+      background: var(--surface-2);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      color: var(--text-2);
+      padding: 5px 10px;
+      font-size: 0.78rem;
+      font-family: inherit;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      white-space: nowrap;
+      transition: border-color .15s, color .15s;
+    }
+    .export-btn:hover { border-color: rgba(255,255,255,0.15); color: var(--text); }
+    .export-btn svg { width: 10px; height: 10px; transition: transform .15s; }
+    .export-dropdown.open .export-btn svg { transform: rotate(180deg); }
+    .export-menu {
+      display: none;
+      position: absolute;
+      top: calc(100% + 5px);
+      left: 0;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 4px;
+      min-width: 200px;
+      z-index: 500;
+      box-shadow: 0 12px 32px rgba(0,0,0,0.5);
+    }
+    .export-dropdown.open .export-menu { display: block; }
+    .export-item {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      padding: 6px 9px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 0.78rem;
+      color: var(--text);
+      transition: background .1s;
+    }
+    .export-item:hover { background: var(--surface-2); }
+    .export-item img { width: 24px; height: 24px; border-radius: 50%; object-fit: cover; flex-shrink: 0; }
+
+    .count-chip {
+      margin-left: auto;
+      background: var(--surface-2);
+      border: 1px solid var(--border);
+      border-radius: 100px;
+      color: var(--text-2);
+      font-size: 0.7rem;
+      font-weight: 500;
+      padding: 3px 10px;
+    }
+
+    /* ─── Stats panel ─── */
+    .stats-panel {
+      flex-shrink: 0;
+      padding: 16px 0 14px;
+      border-bottom: 1px solid var(--border);
+    }
+    .stats-inner {
+      max-width: 1480px;
+      margin: 0 auto;
+      padding: 0 28px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .metric-row {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 8px;
+    }
+    @media (max-width: 1000px) { .metric-row { grid-template-columns: repeat(3, 1fr); } }
+    @media (max-width: 600px)  { .metric-row { grid-template-columns: repeat(2, 1fr); } }
+
+    .metric-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 12px 14px;
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+    }
+    .m-value {
+      font-size: 1.5rem;
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      line-height: 1;
+    }
+    .m-label {
+      font-size: 0.67rem;
+      color: var(--text-2);
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      margin-top: 2px;
+    }
+    .c-green { color: var(--green); }
+    .c-red   { color: var(--red); }
+    .c-blue  { color: var(--blue); }
+    .c-amber { color: var(--amber); }
+
+    /* ─── Charts ─── */
+    .charts-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+    }
+    @media (max-width: 700px) { .charts-row { grid-template-columns: 1fr; } }
+
+    .chart-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 12px 14px;
+    }
+    .chart-label {
+      font-size: 0.67rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--text-2);
+      margin-bottom: 6px;
+    }
+    .chart-legend { display: flex; gap: 10px; margin-bottom: 10px; }
+    .legend-dot { width: 7px; height: 7px; border-radius: 50%; display: inline-block; margin-right: 4px; flex-shrink: 0; }
+    .legend-item { font-size: 0.65rem; color: var(--text-2); display: flex; align-items: center; }
+
+    /* grouped bar chart */
+    .month-bars { display: flex; gap: 5px; align-items: flex-end; }
+    .month-group {
+      flex: 1; display: flex; flex-direction: column;
+      align-items: center; gap: 3px; cursor: pointer;
+    }
+    .month-group:hover .bar-pair { opacity: .72; }
+    .month-group.active .bar-pair { outline: 2px solid var(--blue); border-radius: 3px; }
+    .bar-pair { display: flex; gap: 2px; align-items: flex-end; width: 100%; }
+    .bar-col { flex: 1; border-radius: 2px 2px 0 0; transition: height .3s; min-height: 0; }
+    .bar-col-res { background: var(--green); opacity: .85; }
+    .bar-col-ord { background: var(--blue);  opacity: .85; }
+    .bar-month  { font-size: 0.6rem; color: var(--text-2); }
+
+    /* member activity rows */
+    .stat-rows { display: flex; flex-direction: column; gap: 4px; }
+    .chart-card-scroll { display: flex; flex-direction: column; height:200px; }
+    .chart-card-scroll .stat-rows { flex: 1; overflow-y: auto; min-height: 0; }
+    .member-act-row { display: flex; align-items: center; gap: 8px; border-radius: 5px; padding: 3px 4px; cursor: pointer; transition: background .12s; }
+    .member-act-row:hover { background: var(--surface-2); }
+    .member-act-row.active { background: var(--blue-dim); }
+    .member-act-name { font-size: 0.71rem; width: 108px; flex-shrink: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; color: var(--text); }
+    .member-act-bars { flex: 1; display: flex; flex-direction: column; gap: 3px; }
+    .member-act-bar { display: flex; align-items: center; gap: 5px; }
+    .member-act-track { flex: 1; background: var(--surface-3); border-radius: 100px; height: 4px; }
+    .member-act-fill { height: 4px; border-radius: 100px; transition: width .3s; }
+    .fill-blue { background: var(--blue); opacity: .8; }
+    .fill-red  { background: var(--red);  opacity: .7; }
+    .member-act-num { font-size: 0.64rem; color: var(--text-2); width: 22px; text-align: right; flex-shrink: 0; }
+
+    /* ─── Table section ─── */
+    .table-section {
+      display: flex;
+      flex-direction: column;
+      padding-bottom: 24px;
+    }
+    .table-wrap {
+      max-height: 600px;
+      overflow: auto;
+    }
+
+    table {
+      border-collapse: collapse;
+      width: max-content;
+    }
+
+    thead { position: sticky; top: 0; z-index: 40; }
+    thead tr th {
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+      padding: 0;
+    }
+
+    .th-meta {
+      padding: 10px 14px;
+      font-size: 0.67rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--text-2);
+      text-align: left;
+      white-space: nowrap;
+      min-width: 110px;
+    }
+    .th-meta.th-subject { min-width: 260px; }
+    .th-meta.th-desc    { min-width: 290px; }
+    .th-meta.th-author  { min-width: 120px; }
+
+    .th-member {
+      width: 66px; min-width: 66px;
+      text-align: center;
+      padding: 8px 4px 6px;
+      cursor: pointer;
+      transition: background .15s;
+      border-left: 1px solid var(--border-2);
+    }
+    .th-member:first-of-type { border-left: 1px solid var(--border); }
+    .th-member:hover { background: var(--surface-2); }
+    .th-member.active { background: var(--blue-dim); }
+
+    .member-photo {
+      width: 34px; height: 34px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 1.5px solid var(--border);
+      display: block;
+      margin: 0 auto 4px;
+      transition: border-color .15s;
+    }
+    .th-member.active .member-photo { border-color: var(--blue); }
+    .member-name { font-size: 0.57rem; font-weight: 500; color: var(--text); line-height: 1.2; }
+    .member-ward { font-size: 0.54rem; color: var(--text-3); display: block; margin-top: 1px; }
+
+    tbody tr {
+      border-bottom: 1px solid var(--border-2);
+      transition: background .08s;
+    }
+    tbody tr:hover { background: var(--surface-2); }
+    tbody tr.row-contested { background: rgba(255,69,58,0.03); }
+    tbody tr.row-contested:hover { background: rgba(255,69,58,0.07); }
+
+    td {
+      padding: 11px 14px;
+      vertical-align: middle;
+    }
+
+    .td-date  { white-space: nowrap; font-size: 0.75rem; color: var(--text-2); font-variant-numeric: tabular-nums; }
+    .td-file a { color: var(--blue); text-decoration: none; font-size: 0.74rem; white-space: nowrap; font-weight: 500; }
+    .td-file a:hover { text-decoration: underline; }
+    .td-subject { max-width: 260px; font-size: 0.8rem; line-height: 1.4; color: var(--text); }
+    .td-desc    { font-size: 0.73rem; color: var(--text-2); line-height: 1.4; }
+
+    .result-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 0.67rem;
+      font-weight: 600;
+      padding: 3px 8px;
+      border-radius: 100px;
+      letter-spacing: 0.03em;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+    .result-pill::before { content: ''; width: 5px; height: 5px; border-radius: 50%; flex-shrink: 0; }
+    .result-passed { background: var(--green-dim); color: var(--green); }
+    .result-passed::before { background: var(--green); }
+    .result-failed { background: var(--red-dim); color: var(--red); }
+    .result-failed::before { background: var(--red); }
+
+    .split-tag {
+      display: inline-block;
+      margin-left: 6px;
+      font-size: 0.62rem;
+      font-weight: 600;
+      color: var(--red);
+      background: var(--red-dim);
+      padding: 1px 6px;
+      border-radius: 100px;
+      vertical-align: middle;
+    }
+
+    .td-author { font-size: 0.74rem; white-space: nowrap; color: var(--blue); cursor: pointer; font-weight: 500; }
+    .td-author:hover { text-decoration: underline; }
+    .td-author.no-author { color: var(--text-3); cursor: default; }
+    .td-author.no-author:hover { text-decoration: none; }
+
+    /* vote cells */
+    .td-vote {
+      width: 66px; min-width: 66px;
+      text-align: center;
+      padding: 11px 4px;
+      border-left: 1px solid var(--border-2);
+    }
+    .td-vote.cell-aye     { background: rgba(48,209,88,0.07); }
+    .td-vote.cell-nay     { background: rgba(255,69,58,0.09); }
+    .td-vote.cell-abstain { background: rgba(255,214,10,0.06); }
+    .vote-pill {
+      display: inline-block;
+      padding: 2px 7px;
+      border-radius: 100px;
+      font-size: 0.63rem;
+      font-weight: 700;
+      letter-spacing: 0.03em;
+    }
+    .vote-aye     { background: var(--green-dim); color: var(--green); }
+    .vote-nay     { background: var(--red-dim);   color: var(--red); }
+    .vote-absent  { color: var(--text-3); }
+    .vote-abstain { background: var(--amber-dim); color: var(--amber); }
+
+    /* ─── Pagination ─── */
+    .pagination {
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 4px;
+      padding: 10px 28px;
+      background: var(--surface);
+      border-top: 1px solid var(--border);
+    }
+    .pag-btn {
+      background: transparent;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      color: var(--text-2);
+      padding: 4px 10px;
+      font-size: 0.75rem;
+      cursor: pointer;
+      transition: all .15s;
+    }
+    .pag-btn:hover:not(:disabled) { background: var(--surface-2); color: var(--text); border-color: rgba(255,255,255,0.15); }
+    .pag-btn:disabled { opacity: .25; cursor: default; }
+    .pag-btn.active { background: var(--blue); border-color: var(--blue); color: #fff; }
+    .pag-info { font-size: 0.75rem; color: var(--text-2); padding: 0 8px; }
+
+    .state-msg { text-align: center; padding: 5rem 1rem; color: var(--text-2); font-size: 0.88rem; }
+  </style>
+</head>
+<body>
+
+<!-- ─── Header ─── -->
+<header class="page-header">
+  <div class="header-inner">
+    <div class="header-top">
+      <a href="/" class="mx-logo">MX</a>
+      <h1>Minneapolis City Council <span>Voting Dashboard</span></h1>
+      <span class="header-badge">2026</span>
+      <button class="theme-toggle" id="theme-toggle" title="Toggle light/dark mode">
+        <svg id="theme-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+        </svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- ─── Stats ─── -->
+<section class="stats-panel">
+  <div class="stats-inner">
+    <div class="metric-row" id="metric-row"></div>
+    <div class="charts-row">
+      <div class="chart-card">
+        <div class="chart-label">Resolutions &amp; Ordinances per Month</div>
+        <div class="chart-legend">
+          <span class="legend-item"><span class="legend-dot" style="background:var(--green)"></span>Resolutions</span>
+          <span class="legend-item"><span class="legend-dot" style="background:var(--blue)"></span>Ordinances</span>
+        </div>
+        <div class="month-bars" id="month-bars"></div>
+      </div>
+      <div class="chart-card chart-card-scroll">
+        <div class="chart-label">Member Activity — click to filter</div>
+        <div class="chart-legend">
+          <span class="legend-item"><span class="legend-dot" style="background:var(--blue)"></span>Authored</span>
+          <span class="legend-item"><span class="legend-dot" style="background:var(--red)"></span>Dissent</span>
+        </div>
+        <div class="stat-rows" id="member-activity"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── Table ─── -->
+<div class="container">
+  <div class="table-section">
+    <div class="controls" style="padding: 16px 0 10px;">
+      <input type="text" class="ctrl-input" id="search" placeholder="Search issues, files, members…" />
+      <select class="ctrl-select" id="filter-result">
+        <option value="">All outcomes</option>
+        <option value="Passed">Passed</option>
+        <option value="Failed">Failed</option>
+      </select>
+      <select class="ctrl-select" id="filter-member-vote">
+        <option value="">All vote types</option>
+        <option value="Aye">Aye</option>
+        <option value="Nay">Nay</option>
+        <option value="Absent">Absent</option>
+        <option value="Abstain">Abstain</option>
+      </select>
+      <select class="ctrl-select" id="filter-month">
+        <option value="">All months</option>
+      </select>
+      <select class="ctrl-select" id="filter-author">
+        <option value="">All authors</option>
+      </select>
+      <div class="ctrl-divider"></div>
+      <button class="qf-pill" id="qf-contested">Non-unanimous</button>
+      <button class="qf-pill" id="qf-close">Close votes</button>
+      <button class="qf-pill" id="qf-failed">Failed</button>
+      <div class="export-dropdown" id="export-dropdown">
+        <button class="export-btn" id="export-btn">
+          Export Dissent
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="m6 9 6 6 6-6"/></svg>
+        </button>
+        <div class="export-menu" id="export-menu"></div>
+      </div>
+      <span class="count-chip" id="count-label"></span>
+    </div>
+    <div class="table-wrap" id="table-wrap">
+      <div class="state-msg" id="loading-msg">Loading voting records…</div>
+    </div>
+    <div class="pagination" id="pagination" style="display:none"></div>
+  </div>
+</div>
+
+<script>
+// ── theme toggle ──────────────────────────────────────────────
+const MOON_SVG = `<circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>`;
+const CRESCENT_SVG = `<path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>`;
+(function initTheme() {
+  const saved = localStorage.getItem('cc-theme') || 'dark';
+  if (saved === 'light') document.documentElement.dataset.theme = 'light';
+})();
+document.addEventListener('DOMContentLoaded', () => {
+  const btn  = document.getElementById('theme-toggle');
+  const icon = document.getElementById('theme-icon');
+  function syncIcon() {
+    const isLight = document.documentElement.dataset.theme === 'light';
+    icon.innerHTML = isLight ? CRESCENT_SVG : MOON_SVG;
+    btn.title = isLight ? 'Switch to dark mode' : 'Switch to light mode';
+  }
+  syncIcon();
+  btn.addEventListener('click', () => {
+    const isLight = document.documentElement.dataset.theme === 'light';
+    document.documentElement.dataset.theme = isLight ? '' : 'light';
+    localStorage.setItem('cc-theme', isLight ? 'dark' : 'light');
+    syncIcon();
+  });
+});
+
+const MEMBERS = [
+  { name: "Elliott Payne",     ward: 1,  img: "https://www.minneapolismn.gov/media/-www-content-assets/images/headshots/Ward-1-Elliott-Payne.jpg" },
+  { name: "Robin Wonsley",     ward: 2,  img: "https://www.minneapolismn.gov/media/-www-content-assets/images/headshots/Ward-2-Robin-Wonsley.jpg" },
+  { name: "Michael Rainville", ward: 3,  img: "https://www.minneapolismn.gov/media/-www-content-assets/images/headshots/Ward-3-Michael-Rainville.jpg" },
+  { name: "LaTrisha Vetaw",    ward: 4,  img: "https://www.minneapolismn.gov/media/-www-content-assets/images/headshots/Ward-4-LaTrisha-Vetaw.jpg" },
+  { name: "Pearll Warren",     ward: 5,  img: "https://www.minneapolismn.gov/media/-www-content-assets/images/headshots/Ward-5-Pearll-Warren.jpg" },
+  { name: "Jamal Osman",       ward: 6,  img: "https://www.minneapolismn.gov/media/-www-content-assets/images/headshots/Ward-6-Jamal-Osman.jpg" },
+  { name: "Elizabeth Shaffer", ward: 7,  img: "https://www.minneapolismn.gov/media/-www-content-assets/images/headshots/Ward-7-Elizabeth-Shaffer.jpg" },
+  { name: "Soren Stevenson",   ward: 8,  img: "https://www.minneapolismn.gov/media/-www-content-assets/images/headshots/Ward-8-Soren-Stevenson.jpg" },
+  { name: "Jason Chavez",      ward: 9,  img: "https://www.minneapolismn.gov/media/-www-content-assets/images/headshots/Ward-9-Jason-Chavez.jpg" },
+  { name: "Aisha Chughtai",    ward: 10, img: "https://www.minneapolismn.gov/media/-www-content-assets/images/headshots/Ward-10-Aisha-Chughtai.jpg" },
+  { name: "Jamison Whiting",   ward: 11, img: "https://www.minneapolismn.gov/media/-www-content-assets/images/headshots/Ward-11-Jamison-Whiting.jpg" },
+  { name: "Aurin Chowdhury",   ward: 12, img: "https://www.minneapolismn.gov/media/-www-content-assets/images/headshots/Ward-12-Aurin-Chowdhury.jpg" },
+  { name: "Linea Palmisano",   ward: 13, img: "https://www.minneapolismn.gov/media/-www-content-assets/images/headshots/Ward-13-Linea-Palmisano.jpg" },
+];
+
+const PAGE_SIZE = 50;
+let allIssues = [], filtered = [], currentPage = 1;
+let activeMember = null, quickFilter = null, activeMonth = null, activeAuthor = null;
+
+// ── helpers ───────────────────────────────────────────────────
+
+function voteClass(v) {
+  return { Aye:'vote-aye', Nay:'vote-nay', Absent:'vote-absent', Abstain:'vote-abstain' }[v] || '';
+}
+function cellClass(v) {
+  return { Aye:'cell-aye', Nay:'cell-nay', Abstain:'cell-abstain' }[v] || '';
+}
+function formatDate(iso) {
+  return new Date(iso).toLocaleDateString('en-US', { month:'short', day:'numeric', year:'numeric' });
+}
+function getMargin(votes) {
+  const a = Object.values(votes).filter(v=>v==='Aye').length;
+  const n = Object.values(votes).filter(v=>v==='Nay').length;
+  return Math.min(a, n);
+}
+function isUnanimous(votes) {
+  const cast = Object.values(votes).filter(v=>v==='Aye'||v==='Nay');
+  return cast.length === 0 || new Set(cast).size === 1;
+}
+
+// ── stats ─────────────────────────────────────────────────────
+
+function buildStats(issues) {
+  const total     = issues.length;
+  const unanimous = issues.filter(i => isUnanimous(i.Votes)).length;
+  const contested = total - unanimous;
+  const passed    = issues.filter(i => i.VoteResult === 'Passed').length;
+  const unanRate  = ((unanimous / total) * 100).toFixed(1);
+  const resPassed = issues.filter(i => i.FileType === 'Resolution' && i.VoteResult === 'Passed').length;
+  const ordPassed = issues.filter(i => i.FileType === 'Ordinance'  && i.VoteResult === 'Passed').length;
+  const close76   = issues.filter(i => getMargin(i.Votes) >= 6).length;
+
+  document.getElementById('metric-row').innerHTML = `
+    <div class="metric-card"><div class="m-value c-blue">${resPassed}</div><div class="m-label">Resolutions passed</div></div>
+    <div class="metric-card"><div class="m-value c-blue">${ordPassed}</div><div class="m-label">Ordinances passed</div></div>
+    <div class="metric-card"><div class="m-value c-green">${unanRate}%</div><div class="m-label">Unanimous</div></div>
+    <div class="metric-card"><div class="m-value c-amber">${contested}</div><div class="m-label">Contested</div></div>
+    <div class="metric-card"><div class="m-value c-red">${close76}</div><div class="m-label">Close votes (7–6)</div></div>`;
+
+  // grouped bar chart — resolutions & ordinances per month
+  const monthMap = {};
+  issues.forEach(i => {
+    const m = i.MeetingDate.slice(0,7);
+    if (!monthMap[m]) monthMap[m] = { res:0, ord:0 };
+    if (i.FileType === 'Resolution') monthMap[m].res++;
+    else if (i.FileType === 'Ordinance') monthMap[m].ord++;
+  });
+  const months = Object.entries(monthMap).sort((a,b) => a[0].localeCompare(b[0]));
+  const maxVal = Math.max(...months.map(([,d]) => Math.max(d.res, d.ord)), 1);
+  const BAR_H = 52;
+  document.getElementById('month-bars').innerHTML = months.map(([m, d]) => {
+    const hRes = Math.round((d.res / maxVal) * BAR_H);
+    const hOrd = Math.round((d.ord / maxVal) * BAR_H);
+    const [yr, mo] = m.split('-');
+    const lbl = new Date(+yr, +mo-1, 1).toLocaleDateString('en-US', { month:'short' });
+    const tip = `${lbl}: ${d.res} Resolutions, ${d.ord} Ordinances`;
+    return `<div class="month-group${m===activeMonth?' active':''}" data-month="${m}" title="${tip}">
+      <div class="bar-pair" style="height:${BAR_H}px">
+        <div class="bar-col bar-col-res" style="height:${hRes}px"></div>
+        <div class="bar-col bar-col-ord" style="height:${hOrd}px"></div>
+      </div>
+      <div class="bar-month">${lbl}</div>
+    </div>`;
+  }).join('');
+  document.querySelectorAll('.month-group').forEach(el => {
+    el.addEventListener('click', () => {
+      const m = el.dataset.month;
+      activeMonth = activeMonth === m ? null : m;
+      document.getElementById('filter-month').value = activeMonth || '';
+      buildStats(allIssues); applyFilters();
+    });
+  });
+
+  // merged member activity — authored (blue) + dissent (red)
+  const dissentMap = Object.fromEntries(MEMBERS.map(m => [m.name, 0]));
+  issues.forEach(issue => {
+    const a = Object.values(issue.Votes).filter(v=>v==='Aye').length;
+    const n = Object.values(issue.Votes).filter(v=>v==='Nay').length;
+    if (!a || !n) return;
+    const maj = a > n ? 'Aye' : 'Nay';
+    Object.entries(issue.Votes).forEach(([name, vote]) => {
+      if ((vote==='Aye'||vote==='Nay') && vote!==maj) dissentMap[name]++;
+    });
+  });
+  const authorMap = Object.fromEntries(MEMBERS.map(m => [m.name, 0]));
+  issues.forEach(i => { if (i.AuthorName && i.AuthorName in authorMap) authorMap[i.AuthorName]++; });
+  const maxAuthor  = Math.max(...Object.values(authorMap), 1);
+  const maxDissent = Math.max(...Object.values(dissentMap), 1);
+  const memberList = MEMBERS
+    .map(m => ({ name: m.name, authored: authorMap[m.name]||0, dissent: dissentMap[m.name]||0 }))
+    .sort((a,b) => b.authored - a.authored);
+
+  document.getElementById('member-activity').innerHTML = memberList.map(({ name, authored, dissent }) =>
+    `<div class="member-act-row${name===activeAuthor?' active':''}" data-author="${name}">
+      <div class="member-act-name" title="${name}">${name}</div>
+      <div class="member-act-bars">
+        <div class="member-act-bar">
+          <div class="member-act-track"><div class="member-act-fill fill-blue" style="width:${Math.round((authored/maxAuthor)*100)}%"></div></div>
+          <div class="member-act-num">${authored}</div>
+        </div>
+        <div class="member-act-bar">
+          <div class="member-act-track"><div class="member-act-fill fill-red" style="width:${Math.round((dissent/maxDissent)*100)}%"></div></div>
+          <div class="member-act-num">${dissent}</div>
+        </div>
+      </div>
+    </div>`
+  ).join('');
+  document.querySelectorAll('#member-activity .member-act-row').forEach(el => {
+    el.addEventListener('click', () => {
+      const name = el.dataset.author;
+      activeAuthor = activeAuthor === name ? null : name;
+      document.getElementById('filter-author').value = activeAuthor || '';
+      buildStats(allIssues); applyFilters();
+    });
+  });
+}
+
+// ── table ─────────────────────────────────────────────────────
+
+function buildTable() {
+  const wrap  = document.getElementById('table-wrap');
+  const start = (currentPage - 1) * PAGE_SIZE;
+  const page  = filtered.slice(start, start + PAGE_SIZE);
+
+  if (filtered.length === 0) {
+    wrap.innerHTML = '<div class="state-msg">No matching issues found.</div>';
+    document.getElementById('pagination').style.display = 'none';
+    return;
+  }
+
+  const memberHeaders = MEMBERS.map(m =>
+    `<th class="th-member${activeMember===m.name?' active':''}" data-member="${m.name}" title="${m.name} — Ward ${m.ward}">
+      <img src="${m.img}" alt="${m.name}" class="member-photo" />
+      <div class="member-name">${m.name.split(' ')[0]}</div>
+      <span class="member-ward">W${m.ward}</span>
+    </th>`
+  ).join('');
+
+  const rows = page.map(issue => {
+    const margin    = getMargin(issue.Votes);
+    const contested = margin > 0;
+    const ayes = Object.values(issue.Votes).filter(v=>v==='Aye').length;
+    const nays = Object.values(issue.Votes).filter(v=>v==='Nay').length;
+
+    const votes = MEMBERS.map(m => {
+      const v = issue.Votes[m.name] || null;
+      return `<td class="td-vote ${cellClass(v)}">${v ? `<span class="vote-pill ${voteClass(v)}">${v}</span>` : ''}</td>`;
+    }).join('');
+
+    const authorCell = issue.AuthorName
+      ? `<span class="td-author" data-author="${issue.AuthorName}">${issue.AuthorName}</span>`
+      : `<span class="td-author no-author">—</span>`;
+
+    return `<tr class="${contested?'row-contested':''}">
+      <td class="td-file"><a href="${issue.FileURL}" target="_blank">${issue.FileNumber}</a></td>
+      <td class="td-subject">
+        <b>${issue.Subject}${contested?`<span class="split-tag">${ayes}–${nays}</span>`:''}</b>
+        <span class="td-desc">${issue.ItemDescription}</span>
+
+        <div>${formatDate(issue.MeetingDate)}</div>
+        <br>
+        ${authorCell}
+      </td>
+      <td><span class="result-pill result-${issue.VoteResult.toLowerCase()}">${issue.VoteResult}</span></td>
+      
+      ${votes}
+    </tr>`;
+  }).join('');
+
+  wrap.innerHTML = `
+    <table>
+      <thead><tr>
+        <th class="th-meta">File #</th>
+        <th class="th-meta th-subject">Subject / Description</th>
+        <th class="th-meta">Result</th>
+        ${memberHeaders}
+      </tr></thead>
+      <tbody>${rows}</tbody>
+    </table>`;
+
+  wrap.querySelectorAll('.th-member').forEach(th => {
+    th.addEventListener('click', () => {
+      activeMember = activeMember === th.dataset.member ? null : th.dataset.member;
+      applyFilters();
+    });
+  });
+  wrap.querySelectorAll('.td-author[data-author]').forEach(td => {
+    td.addEventListener('click', () => {
+      const name = td.dataset.author;
+      activeAuthor = activeAuthor === name ? null : name;
+      document.getElementById('filter-author').value = activeAuthor || '';
+      buildStats(allIssues); applyFilters();
+    });
+  });
+
+  buildPagination();
+}
+
+// ── pagination ────────────────────────────────────────────────
+
+function buildPagination() {
+  const pag = document.getElementById('pagination');
+  const totalPages = Math.ceil(filtered.length / PAGE_SIZE);
+  if (totalPages <= 1) { pag.style.display = 'none'; return; }
+  pag.style.display = 'flex';
+
+  let pages = [];
+  if (totalPages <= 7) {
+    pages = Array.from({ length: totalPages }, (_, i) => i+1);
+  } else {
+    pages = [1];
+    const lo = Math.max(2, currentPage-2), hi = Math.min(totalPages-1, currentPage+2);
+    if (lo > 2) pages.push('…');
+    for (let i = lo; i <= hi; i++) pages.push(i);
+    if (hi < totalPages-1) pages.push('…');
+    pages.push(totalPages);
+  }
+
+  const info = `${(currentPage-1)*PAGE_SIZE+1}–${Math.min(currentPage*PAGE_SIZE, filtered.length)} of ${filtered.length}`;
+  pag.innerHTML = `
+    <button class="pag-btn" id="prev-btn" ${currentPage===1?'disabled':''}>← Prev</button>
+    ${pages.map(p => p==='…'
+      ? `<span class="pag-info">…</span>`
+      : `<button class="pag-btn${p===currentPage?' active':''}" data-page="${p}">${p}</button>`
+    ).join('')}
+    <button class="pag-btn" id="next-btn" ${currentPage===totalPages?'disabled':''}>Next →</button>
+    <span class="pag-info">${info}</span>`;
+
+  pag.querySelector('#prev-btn').addEventListener('click', () => { currentPage--; buildTable(); scrollTop(); });
+  pag.querySelector('#next-btn').addEventListener('click', () => { currentPage++; buildTable(); scrollTop(); });
+  pag.querySelectorAll('[data-page]').forEach(btn => {
+    btn.addEventListener('click', () => { currentPage = +btn.dataset.page; buildTable(); scrollTop(); });
+  });
+}
+
+function scrollTop() { document.getElementById('table-wrap').scrollTop = 0; }
+
+// ── filtering ─────────────────────────────────────────────────
+
+function applyFilters() {
+  const search     = document.getElementById('search').value.trim().toLowerCase();
+  const result     = document.getElementById('filter-result').value;
+  const memberVote = document.getElementById('filter-member-vote').value;
+  const month      = document.getElementById('filter-month').value;
+  const authorSel  = document.getElementById('filter-author').value;
+  if (authorSel !== (activeAuthor||'')) activeAuthor = authorSel || null;
+
+  filtered = allIssues.filter(issue => {
+    if (result && issue.VoteResult !== result) return false;
+    if (month  && !issue.MeetingDate.startsWith(month)) return false;
+    if (activeAuthor && issue.AuthorName !== activeAuthor) return false;
+    if (quickFilter === 'contested' && isUnanimous(issue.Votes)) return false;
+    if (quickFilter === 'close'     && getMargin(issue.Votes) < 4) return false;
+    if (quickFilter === 'failed'    && issue.VoteResult !== 'Failed') return false;
+    if (search) {
+      const hay = `${issue.Subject} ${issue.ItemDescription} ${issue.FileNumber} ${issue.AuthorName||''}`.toLowerCase();
+      if (!hay.includes(search)) return false;
+    }
+    if (activeMember && memberVote) {
+      if ((issue.Votes[activeMember]||null) !== memberVote) return false;
+    } else if (!activeMember && memberVote) {
+      if (!Object.values(issue.Votes).includes(memberVote)) return false;
+    }
+    return true;
+  });
+
+  currentPage = 1;
+  document.getElementById('count-label').textContent = `${filtered.length.toLocaleString()} issues`;
+  buildTable();
+}
+
+// ── init ──────────────────────────────────────────────────────
+
+function populateMonthFilter(issues) {
+  const months = [...new Set(issues.map(i => i.MeetingDate.slice(0,7)))].sort().reverse();
+  const sel = document.getElementById('filter-month');
+  months.forEach(m => {
+    const [yr, mo] = m.split('-');
+    const label = new Date(+yr, +mo-1, 1).toLocaleDateString('en-US', { month:'long', year:'numeric' });
+    sel.innerHTML += `<option value="${m}">${label}</option>`;
+  });
+}
+
+function populateAuthorFilter(issues) {
+  const counts = {};
+  issues.forEach(i => { if (i.AuthorName) counts[i.AuthorName] = (counts[i.AuthorName]||0)+1; });
+  const sel = document.getElementById('filter-author');
+  Object.entries(counts).sort((a,b) => b[1]-a[1]).forEach(([name, count]) => {
+    sel.innerHTML += `<option value="${name}">${name} (${count})</option>`;
+  });
+}
+
+['contested','close','failed'].forEach(key => {
+  document.getElementById(`qf-${key}`).addEventListener('click', function() {
+    quickFilter = quickFilter === key ? null : key;
+    document.querySelectorAll('.qf-pill').forEach(b => b.classList.remove('on'));
+    if (quickFilter) this.classList.add('on');
+    applyFilters();
+  });
+});
+
+// ── export dissent report ─────────────────────────────────────
+
+function getMemberDissent(memberName, issues) {
+  return issues.filter(issue => {
+    const vote = issue.Votes[memberName];
+    if (!vote || vote === 'Absent') return false;
+    const ayes = Object.values(issue.Votes).filter(v => v === 'Aye').length;
+    const nays = Object.values(issue.Votes).filter(v => v === 'Nay').length;
+    if (!ayes || !nays) return false;
+    const maj = ayes > nays ? 'Aye' : 'Nay';
+    return (vote === 'Aye' || vote === 'Nay') && vote !== maj;
+  }).sort((a, b) => b.MeetingDate.localeCompare(a.MeetingDate));
+}
+
+function generateReport(member) {
+  const issues    = allIssues;
+  const dissent   = getMemberDissent(member.name, issues);
+  const authored  = issues.filter(i => i.AuthorName === member.name).length;
+  const totalContested = issues.filter(i => {
+    const a = Object.values(i.Votes).filter(v=>v==='Aye').length;
+    const n = Object.values(i.Votes).filter(v=>v==='Nay').length;
+    return a > 0 && n > 0;
+  }).length;
+
+  const fmtDate = iso => new Date(iso).toLocaleDateString('en-US', { month:'short', day:'numeric', year:'numeric' });
+
+  const rows = dissent.map(issue => {
+    const vote = issue.Votes[member.name];
+    const ayes = Object.values(issue.Votes).filter(v=>v==='Aye').length;
+    const nays = Object.values(issue.Votes).filter(v=>v==='Nay').length;
+    const voteColor = vote === 'Nay' ? '#c0392b' : '#27ae60';
+    return `<tr>
+      <td>${fmtDate(issue.MeetingDate)}</td>
+      <td><a href="${issue.FileURL}" target="_blank" style="color:#1a56db;text-decoration:none">${issue.FileNumber}</a></td>
+      <td><span style="font-weight:600">${issue.Subject || ''}</span>${issue.ItemDescription ? `<br><span style="color:#6b7280;font-size:10.5px;line-height:1.4">${issue.ItemDescription}</span>` : ''}</td>
+      <td style="color:${issue.VoteResult==='Passed'?'#1a7a3c':'#c0392b'};font-weight:600">${issue.VoteResult || ''}</td>
+      <td style="text-align:center">${ayes}–${nays}</td>
+      <td style="text-align:center;background:${voteColor}18;color:${voteColor};font-weight:700;border-radius:4px">${vote}</td>
+    </tr>`;
+  }).join('');
+
+  const html = `<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <title>Dissent Report — ${member.name}</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif;
+      font-size: 12px;
+      color: #1a1a1a;
+      background: white;
+      padding: 48px 56px;
+      max-width: 960px;
+      margin: 0 auto;
+    }
+    .report-header { text-align: center; margin-bottom: 32px; }
+    .member-photo {
+      width: 100px; height: 100px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 3px solid #e5e7eb;
+      display: block;
+      margin: 0 auto 14px;
+    }
+    .member-name { font-size: 1.5rem; font-weight: 700; color: #111; letter-spacing: -0.02em; }
+    .member-ward { font-size: 0.85rem; color: #6b7280; margin-top: 3px; }
+    .report-meta { font-size: 0.75rem; color: #9ca3af; margin-top: 6px; }
+    .divider { border: none; border-top: 1px solid #e5e7eb; margin: 24px 0; }
+    .stats-row {
+      display: flex;
+      gap: 0;
+      border: 1px solid #e5e7eb;
+      border-radius: 10px;
+      overflow: hidden;
+      margin-bottom: 32px;
+    }
+    .stat-box {
+      flex: 1;
+      padding: 16px 20px;
+      border-right: 1px solid #e5e7eb;
+      text-align: center;
+    }
+    .stat-box:last-child { border-right: none; }
+    .stat-val { font-size: 2rem; font-weight: 700; letter-spacing: -0.03em; color: #111; line-height: 1; }
+    .stat-lbl { font-size: 0.68rem; color: #6b7280; font-weight: 500; text-transform: uppercase; letter-spacing: 0.06em; margin-top: 4px; }
+    .stat-val.red { color: #c0392b; }
+    .section-title {
+      font-size: 0.72rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.07em;
+      color: #6b7280;
+      margin-bottom: 10px;
+    }
+    table { width: 100%; border-collapse: collapse; font-size: 11.5px; }
+    thead th {
+      background: #f9fafb;
+      border-bottom: 1px solid #e5e7eb;
+      border-top: 1px solid #e5e7eb;
+      padding: 8px 10px;
+      text-align: left;
+      font-size: 0.67rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: #6b7280;
+      white-space: nowrap;
+    }
+    tbody td {
+      padding: 8px 10px;
+      border-bottom: 1px solid #f3f4f6;
+      vertical-align: top;
+      line-height: 1.4;
+    }
+    tbody tr:last-child td { border-bottom: none; }
+    tbody tr:hover td { background: #fafafa; }
+    .col-vote { text-align: center; width: 52px; }
+    .col-tally { text-align: center; width: 52px; white-space: nowrap; color: #6b7280; }
+    .col-date  { white-space: nowrap; width: 92px; color: #374151; }
+    .col-file  { white-space: nowrap; width: 100px; }
+    .col-result { white-space: nowrap; width: 68px; }
+    .footer {
+      margin-top: 40px;
+      padding-top: 16px;
+      border-top: 1px solid #e5e7eb;
+      font-size: 0.7rem;
+      color: #9ca3af;
+      display: flex;
+      justify-content: space-between;
+    }
+    @media print {
+      body { padding: 0; }
+      @page { margin: 18mm 16mm; size: letter; }
+      a { color: inherit !important; }
+    }
+  </style>
+</head>
+<body>
+  <div class="report-header">
+    <img class="member-photo" src="${member.img}" alt="${member.name}" />
+    <div class="member-name">${member.name}</div>
+    <div class="member-ward">Ward ${member.ward} · Minneapolis City Council</div>
+    <div class="report-meta">Dissent Report · 2026 Legislative Session</div>
+  </div>
+
+  <div class="stats-row">
+    <div class="stat-box">
+      <div class="stat-val red">${dissent.length}</div>
+      <div class="stat-lbl">Times Dissented</div>
+    </div>
+    <div class="stat-box">
+      <div class="stat-val">${authored}</div>
+      <div class="stat-lbl">Resolutions Authored</div>
+    </div>
+    <div class="stat-box">
+      <div class="stat-val">${totalContested}</div>
+      <div class="stat-lbl">Contested Votes (Total)</div>
+    </div>
+    <div class="stat-box">
+      <div class="stat-val">${totalContested > 0 ? ((dissent.length / totalContested) * 100).toFixed(1) : 0}%</div>
+      <div class="stat-lbl">Dissent Rate</div>
+    </div>
+  </div>
+
+  <div class="section-title">Issues voted against the majority</div>
+  <table>
+    <thead>
+      <tr>
+        <th class="col-date">Date</th>
+        <th class="col-file">File #</th>
+        <th>Subject</th>
+        <th class="col-result">Outcome</th>
+        <th class="col-tally">Tally</th>
+        <th class="col-vote">Vote</th>
+      </tr>
+    </thead>
+    <tbody>${rows || '<tr><td colspan="6" style="text-align:center;padding:24px;color:#9ca3af">No dissent votes recorded</td></tr>'}</tbody>
+  </table>
+
+  <div class="footer">
+    <span>Minnesota Explained · minneapolismn.gov/lims</span>
+    <span>Generated ${new Date().toLocaleDateString('en-US', { month:'long', day:'numeric', year:'numeric' })}</span>
+  </div>
+</body>
+</html>`;
+
+  const blob = new Blob([html], { type: 'text/html' });
+  const url  = URL.createObjectURL(blob);
+  window.open(url, '_blank');
+}
+
+// dropdown toggle
+document.addEventListener('DOMContentLoaded', () => {
+  const dropdown = document.getElementById('export-dropdown');
+  const menu     = document.getElementById('export-menu');
+
+  menu.innerHTML = MEMBERS.map(m =>
+    `<div class="export-item" data-name="${m.name}">
+      <img src="${m.img}" alt="${m.name}" />
+      ${m.name}
+    </div>`
+  ).join('');
+
+  document.getElementById('export-btn').addEventListener('click', e => {
+    e.stopPropagation();
+    dropdown.classList.toggle('open');
+  });
+  document.addEventListener('click', () => dropdown.classList.remove('open'));
+
+  menu.addEventListener('click', e => {
+    const item = e.target.closest('.export-item');
+    if (!item) return;
+    const member = MEMBERS.find(m => m.name === item.dataset.name);
+    if (member) generateReport(member);
+    dropdown.classList.remove('open');
+  });
+});
+
+fetch('issues_by_vote_2026.json')
+  .then(r => r.json())
+  .then(data => {
+    allIssues = data;
+    populateMonthFilter(data);
+    populateAuthorFilter(data);
+    buildStats(data);
+    document.getElementById('loading-msg')?.remove();
+    ['search','filter-result','filter-member-vote','filter-month','filter-author'].forEach(id => {
+      document.getElementById(id).addEventListener('input', applyFilters);
+    });
+    applyFilters();
+  })
+  .catch(() => {
+    document.getElementById('loading-msg').textContent =
+      'Failed to load data — make sure issues_by_vote_2026.json is in the same directory.';
+  });
+</script>
+</body>
+</html>
