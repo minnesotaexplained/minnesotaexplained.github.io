@@ -1219,5 +1219,19 @@
         "categories": [
             "City Council Minneapolis", "Spotlight"
         ]
+    },
+    {
+        "id": 20,
+        "title": "MN Law Librarian",
+        "description": "AI Interpretor for Minnesota Laws, MN Supreme Court Opinions, MN Court of Appeals, US Supreme Court Opinions.",
+        "subtitle": "",
+        "footer": "",
+        "type": "link",
+        "image": "/img/law-lib.png",
+        "link": "https://mn-law-librarian-2b2430b839a2.herokuapp.com/",
+        "categories": [
+            "State Government",
+            "Spotlight"
+        ]
     }
 ]
