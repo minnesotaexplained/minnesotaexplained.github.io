@@ -1,5 +1,49 @@
 [
   {
+    "FileNumber": "2026-00625",
+    "Subject": "Lyndale Avenue (CSAH 22) Reconstruction Project: Project concept layout",
+    "ItemDescription": "Passage of Resolution designating the project location and improvements proposed to be made for Hennepin County&rsquo;s Lyndale Avenue (CSAH 22) Reconstruction Project.",
+    "MeetingDate": "2026-07-09T13:30:00",
+    "MeetingBody": "Climate & Infrastructure Committee",
+    "VoteResult": "Passed",
+    "FileURL": "https://lims.minneapolismn.gov/file/2026-00625",
+    "Votes": {
+      "Aisha Chughtai": "Absent",
+      "Aurin Chowdhury": "Aye",
+      "LaTrisha Vetaw": "Aye",
+      "Linea Palmisano": "Aye",
+      "Pearll Warren": "Absent",
+      "Robin Wonsley": "Absent",
+      "Soren Stevenson": "Aye"
+    },
+    "AuthorId": null,
+    "AuthorName": null,
+    "FileType": null,
+    "SubCategory": null
+  },
+  {
+    "FileNumber": "2026-00736",
+    "Subject": "Appointment of City Assessor",
+    "ItemDescription": "Considering the Mayor&#39;s nomination of Rebecca Malmquist to the appointed position of City Assessor for a term ending January 2030.",
+    "MeetingDate": "2026-07-06T13:30:00",
+    "MeetingBody": "Enterprise & Labor Relations Committee",
+    "VoteResult": "Passed",
+    "FileURL": "https://lims.minneapolismn.gov/file/2026-00736",
+    "Votes": {
+      "Aisha Chughtai": "Absent",
+      "Elizabeth Shaffer": "Aye",
+      "Jamison Whiting": "Aye",
+      "Jason Chavez": "Aye",
+      "LaTrisha Vetaw": "Aye",
+      "Linea Palmisano": "Aye",
+      "Soren Stevenson": "Aye"
+    },
+    "AuthorId": null,
+    "AuthorName": null,
+    "FileType": null,
+    "SubCategory": null
+  },
+  {
     "FileNumber": "2026-00802",
     "Subject": "Minneapolis Public Housing Authority (MPHA)'s use of City funds",
     "ItemDescription": "Passage of Resolution requesting the Audit Committee to request that the City Auditor undertake an independent audit of the Minneapolis Public Housing Authority&rsquo;s (MPHA) use of City funds.",
