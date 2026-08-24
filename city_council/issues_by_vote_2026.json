@@ -1,5 +1,49 @@
 [
   {
+    "FileNumber": "2026-00871",
+    "Subject": "Pet ownership restrictions ordinance",
+    "ItemDescription": "Passage of Ordinanceamending Title 4, Chapter 66 of the Minneapolis Code of Ordinances relating to Animal Care and Control: Dangerous and Potentially Dangerous Animals, removing conditions and restrictions on pet ownership solely due to a prior conviction for certain felonies.",
+    "MeetingDate": "2026-08-19T13:30:00",
+    "MeetingBody": "Public Health, Safety & Equity",
+    "VoteResult": "Passed",
+    "FileURL": "https://lims.minneapolismn.gov/file/2026-00871",
+    "Votes": {
+      "Elliott Payne": "Aye",
+      "Jamison Whiting": "Aye",
+      "Jason Chavez": "Aye",
+      "LaTrisha Vetaw": "Aye",
+      "Michael Rainville": "Aye",
+      "Robin Wonsley": "Absent",
+      "Soren Stevenson": "Aye"
+    },
+    "AuthorId": 5692,
+    "AuthorName": "Robin Wonsley",
+    "FileType": "Ordinance",
+    "SubCategory": "Code Amendment"
+  },
+  {
+    "FileNumber": "2026-00806",
+    "Subject": "Dress code posting requirement ordinance",
+    "ItemDescription": "Passage of Ordinanceamending Title 14, Chapter 360 of the Minneapolis Code of Ordinances relating to Liquor and Beer: In General, requiring any licensed premises that requires a dress code for entry to post said dress code.",
+    "MeetingDate": "2026-08-18T13:30:00",
+    "MeetingBody": "Business, Housing & Zoning Committee",
+    "VoteResult": "Passed",
+    "FileURL": "https://lims.minneapolismn.gov/file/2026-00806",
+    "Votes": {
+      "Aisha Chughtai": "Aye",
+      "Aurin Chowdhury": "Aye",
+      "Elizabeth Shaffer": "Aye",
+      "Jamal Osman": "Aye",
+      "Jason Chavez": "Aye",
+      "Michael Rainville": "Aye",
+      "Pearll Warren": "Aye"
+    },
+    "AuthorId": 5698,
+    "AuthorName": "Jason Chavez",
+    "FileType": "Ordinance",
+    "SubCategory": "Code Amendment"
+  },
+  {
     "FileNumber": "2026-00967",
     "Subject": "2026 Black and POC LGBTQ+ Pride honorary resolution",
     "ItemDescription": "Passage of Resolution honoring Minnesota people of color LGBTQ+ Pride and Twin Cities Black Pride 2026.",
@@ -2936,7 +2980,7 @@
   {
     "FileNumber": "2026-00864",
     "Subject": "Event center license ordinance",
-    "ItemDescription": "Passage of Ordinanceamending Title 13 of the Minneapolis Code of Ordinances relating to Licenses and Business Regulations, amending, repealing and adding provisions related to rental halls and places of entertainment to create an event center license allowing for the hosting of both public and private events:\n\n\n\tChapter 266 Rental Halls\n\tChapter 267 Amusements",
+    "ItemDescription": "Passage of Ordinanceamending Title 13, Chapter 266of the Minneapolis Code of Ordinances relating to Licenses and Business Regulations: Rental Halls, amending, repealing and adding provisions related to rental halls and places of entertainment to create an event center license allowing for the hosting of both public and private events.",
     "MeetingDate": "2026-07-30T09:30:00",
     "MeetingBody": "City Council",
     "VoteResult": "Passed",
