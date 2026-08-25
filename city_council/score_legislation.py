@@ -10,7 +10,7 @@ default) so the source data file is never modified.
 
 Usage:
     python3 score_legislation.py                      # local Ollama, llama3.1:8b
-    python3 score_legislation.py --server remote       # remote Ollama (see REMOTE_URL)
+    python3 score_legislation.py --server remote  --model qwen2.5:7b-instruct     # remote Ollama (see REMOTE_URL)
     python3 score_legislation.py --ollama-url http://some-host:11434
     python3 score_legislation.py --model qwen2.5:14b --limit 20   # quick test run
     python3 score_legislation.py --force                # rescore everything
@@ -32,14 +32,14 @@ import requests
 # Mirrors DEFAULT_CONFIG.ollamaHost in ../../loonLlm/server.js. Edit these (or use
 # --ollama-url) if your remote box's address changes.
 LOCAL_URL = "http://localhost:11434"
-REMOTE_URL = "http://192.168.68.64:11434"
+REMOTE_URL = "http://192.168.68.66:11434"
 
 SCRIPT_DIR = Path(__file__).resolve().parent
-DEFAULT_MODEL = "llama3.1:8b"
+DEFAULT_MODEL = "qwen3:8b"
 DEFAULT_INPUT = SCRIPT_DIR / "issues_by_vote_2026.json"
 DEFAULT_OUTPUT = SCRIPT_DIR / "issue_ideology_scores_2026.json"
 
-REQUEST_TIMEOUT = 120  # seconds per item
+REQUEST_TIMEOUT = 300  # seconds per item — large/slow models + the few-shot prompt need headroom
 MAX_RETRIES = 3
 RETRY_BACKOFF = 5  # seconds; multiplied by attempt number
 FLUSH_EVERY = 10  # write progress to disk after this many newly-scored items
@@ -82,6 +82,152 @@ commentary before or after it:
 or closely paraphrased from the item text that justify the score>], "rationale": \
 "<one concise sentence explaining the score, written for a general audience>"}
 """
+
+# Few-shot anchor examples fed as prior chat turns before the real item, so a small
+# model has concrete reference points instead of only abstract rubric text. Most are
+# real items from this dataset with hand-verified scores; a few are marked SYNTHETIC —
+# invented, realistically-worded examples used only to calibrate the conservative end
+# of the scale, which this (progressive-majority) council's real record has very few
+# clean examples of.
+#
+# Several of these specifically correct a failure mode found in earlier runs: models
+# defaulting to "restricts/revokes something commercial => conservative," which is
+# backwards per this rubric (LOOSENING restrictions favors business/conservative;
+# TIGHTENING them for a stated public-interest reason is neutral-to-progressive, not
+# conservative). Marked FIX below.
+FEWSHOT_EXAMPLES = [
+    {
+        "subject": "Immigration status of renters ordinance",
+        "description": "Passage of Ordinance amending Title 12, Chapter 244 of the Minneapolis Code of "
+                        "Ordinances relating to Housing: Maintenance Code, prohibiting inquiries into "
+                        "immigration status during the rental screening process and creating protections for "
+                        "tenants against retaliation based on immigration status.",
+        "file_type": "Ordinance",
+        "score": 5,
+        "keywords": ["prohibiting inquiries into immigration status", "tenant protections", "retaliation protection"],
+        "rationale": "Creates a sweeping new civil-rights protection for tenants, barring landlords from asking "
+                      "about immigration status and protecting against retaliation.",
+    },
+    {
+        "subject": "Tenant protections ordinance",
+        "description": "Passage of Ordinance amending Title 12 of the Minneapolis Code of Ordinances relating "
+                        "to Housing, creating a new Chapter 246 entitled Tenant Protections and adding thereto "
+                        "provisions creating a right of first refusal and/or opportunity to purchase for tenants "
+                        "and qualified developers to the sale of rental housing.",
+        "file_type": "Ordinance",
+        "score": 4,
+        "keywords": ["right of first refusal", "opportunity to purchase", "tenant protections"],
+        "rationale": "Creates a new structural right letting tenants (or partners) buy their building before "
+                      "it's sold to a third party — a sweeping expansion of tenant power, not a minor tweak.",
+    },
+    {
+        "subject": "Solar On Public Buildings Program Grant for Solar Array Installation on Fire Station #1",
+        "description": "Accepting a grant from Minnesota Department of Commerce, in the amount of $52,504.32, "
+                        "for installing an on-site solar array on Fire Station #1 to support the City's "
+                        "renewable energy generation goals as outlined in the 2023 Climate Equity Plan.",
+        "file_type": "Resolution",
+        "score": 1,
+        "keywords": ["renewable energy", "solar array", "Climate Equity Plan"],
+        "rationale": "A real environmental/climate action, but small in scope — one grant-funded solar "
+                      "installation on a single fire station, not a citywide policy change. Magnitude tracks "
+                      "how sweeping the action is, not how appealing the topic sounds.",
+    },
+    {
+        "subject": "Minnesota Department of Public Safety grant for bomb disposal equipment and training",
+        "description": "Accepting a grant from the Minnesota Department of Public Safety, Homeland Security and "
+                        "Emergency Management, in the amount of $183,959, for specialized bomb disposal services, "
+                        "equipment, and training.",
+        "file_type": "Resolution",
+        "score": 0,
+        "keywords": ["grant acceptance", "appropriation of funds", "equipment and training"],
+        "rationale": "A routine grant acceptance and fund appropriation. It involves the Police Department, but "
+                      "accepting external grant funding for equipment is standard administrative housekeeping, "
+                      "not a policy stance on policing — topic alone doesn't justify a nonzero score.",
+    },
+    {
+        "subject": "2026 Black and POC LGBTQ+ Pride honorary resolution",
+        "description": "Passage of Resolution honoring Minnesota people of color LGBTQ+ Pride and Twin Cities "
+                        "Black Pride 2026.",
+        "file_type": "Resolution",
+        "score": 0,
+        "keywords": ["honoring", "resolution", "ceremonial"],
+        "rationale": "A ceremonial recognition with no funding, regulatory, or enforcement action attached. The "
+                      "topic reads as politically coded, but the ACTION taken is purely honorary — score 0 "
+                      "regardless of subject matter.",
+    },
+    {
+        # FIX: earlier runs scored this -1 with the reasoning "limits business development,
+        # favoring property owners" — backwards, since restricting a use doesn't favor the
+        # owner, it constrains them.
+        "subject": "Moratorium on data center uses",
+        "description": "Passage of Ordinance amending Title 21 of the Minneapolis Code of Ordinances relating to "
+                        "Interim Ordinances, adding a new Chapter 597 providing for a moratorium on the "
+                        "establishment, re-establishment, or expansion of data center uses.",
+        "file_type": "Ordinance",
+        "score": 0,
+        "keywords": ["interim ordinance", "moratorium", "pending study"],
+        "rationale": "An interim ordinance pausing new data center development while the city studies land-use "
+                      "and environmental impacts. This restricts a commercial use, but restricting something for "
+                      "a study/environmental reason is not deregulation favoring business — that would require "
+                      "loosening restrictions, not tightening them. Score as a temporary procedural pause, not a "
+                      "sweeping stance in either direction.",
+    },
+    {
+        # FIX: earlier runs scored license revocations -1 as "restricts commercial activity."
+        # A case-specific enforcement action against one business isn't a policy stance.
+        "subject": "Exclusive Tobacco Dealer license revocation: University Tobacco and Vape, 2501 University "
+                    "AVE NE, Minneapolis, MN, (Ward 1) submitted by Super Tobacco 1 LLC",
+        "description": "University Tobacco and Vape, 2501 UNIVERSITY AVE NE Minneapolis, MN, (Ward 1) submitted "
+                        "by Super Tobacco 1 LLC, BLGeneral, LIC407968",
+        "file_type": None,
+        "score": 0,
+        "keywords": ["license revocation", "single business", "enforcement action"],
+        "rationale": "A case-specific enforcement action against one named business — not a new ordinance or "
+                      "policy change. Revoking one company's license for cause doesn't reflect a citywide "
+                      "ideological stance on business or tobacco/vape regulation generally.",
+    },
+    {
+        # FIX: a fee waiver sounds business-friendly, but this one applies an existing
+        # program's standard terms rather than changing policy — still 0, not conservative.
+        "subject": "Parkland Dedication Fee Waiver: Malcolm Yards Project",
+        "description": "Passage of Resolution granting a waiver of park dedication fee requirements associated "
+                        "with the Malcolm Yards Market LLC and Malcolm Yards Housing Project, LP development in "
+                        "exchange for land interests in and in close proximity to the District property for "
+                        "parkland located within the Grand Rounds Missing Link Regional Trail to satisfy all "
+                        "Park Dedication Ordinance requirements for the entire district.",
+        "file_type": "Resolution",
+        "score": 0,
+        "keywords": ["fee waiver", "land dedication", "existing ordinance terms"],
+        "rationale": "Waives a cash park-dedication fee in exchange for land/easement dedication of equivalent "
+                      "value — applying the existing Park Dedication Ordinance's standard fee-in-lieu-of-land "
+                      "option, not a new policy favoring developers.",
+    },
+    {
+        # SYNTHETIC — illustrative only, not an actual filed item. Calibrates the
+        # conservative end of the scale, which this dataset has few real examples of.
+        "subject": "Inclusionary zoning affordable-unit requirement reduction ordinance",
+        "description": "Passage of an Ordinance amending the Unified Housing Policy to reduce the minimum share "
+                        "of affordable units required in developments of 20 units or more from 20% to 10%, at "
+                        "the request of area developers citing project feasibility concerns.",
+        "file_type": "Ordinance",
+        "score": -2,
+        "keywords": ["reducing affordable-unit requirement", "developer feasibility", "Unified Housing Policy"],
+        "rationale": "Rolls back an existing affordable-housing mandate on developers — loosening a land-use "
+                      "requirement in favor of business, the core conservative-leaning pattern in this rubric.",
+    },
+    {
+        # SYNTHETIC — illustrative only, not an actual filed item. Mirrors the +5 tenant
+        # example above to calibrate a sweeping rollback at the negative end.
+        "subject": "Rent stabilization ordinance repeal",
+        "description": "Passage of an Ordinance repealing Chapter 244A of the Minneapolis Code of Ordinances in "
+                        "its entirety, eliminating all citywide rent increase limits enacted in 2024.",
+        "file_type": "Ordinance",
+        "score": -5,
+        "keywords": ["repealing rent stabilization", "eliminating rent increase limits"],
+        "rationale": "Completely repeals an existing citywide rent-control law — a sweeping rollback of a "
+                      "tenant protection, the mirror image of the +5 example above.",
+    },
+]
 
 
 def server_url(args: argparse.Namespace) -> str:
@@ -157,15 +303,30 @@ def normalize_result(parsed: dict) -> dict:
     return {"score": score, "keywords": keywords, "rationale": rationale}
 
 
+def build_fewshot_messages() -> list:
+    messages = []
+    for ex in FEWSHOT_EXAMPLES:
+        messages.append({"role": "user", "content": build_prompt(ex["subject"], ex["description"], ex["file_type"])})
+        messages.append({"role": "assistant", "content": json.dumps({
+            "score": ex["score"], "keywords": ex["keywords"], "rationale": ex["rationale"],
+        })})
+    return messages
+
+
 def score_text(base_url: str, model: str, subject: str, description: str, file_type: str) -> dict:
     payload = {
         "model": model,
         "messages": [
             {"role": "system", "content": RUBRIC},
+            *build_fewshot_messages(),
             {"role": "user", "content": build_prompt(subject, description, file_type)},
         ],
         "format": "json",
         "stream": False,
+        # disable extended chain-of-thought on reasoning-capable models (qwen3.5, glm) —
+        # otherwise they can burn the whole num_predict budget on <think> tokens and
+        # return empty content. No-op on non-thinking models (verified harmless).
+        "think": False,
         "options": {"temperature": 0.1, "num_predict": 400},
     }
 
