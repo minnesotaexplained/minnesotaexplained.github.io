@@ -4,6 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Minneapolis City Council · Voting Dashboard</title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -327,6 +328,78 @@
     .c-red   { color: var(--red); }
     .c-blue  { color: var(--blue); }
     .c-amber { color: var(--amber); }
+    .c-muted { color: var(--text-2); }
+
+    /* ─── Leaderboard cards ─── */
+    .leader-row {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 8px;
+    }
+    @media (max-width: 1000px) { .leader-row { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 600px)  { .leader-row { grid-template-columns: 1fr; } }
+
+    .leader-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 10px 12px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .leader-photo {
+      width: 38px; height: 38px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 1.5px solid var(--border);
+      flex-shrink: 0;
+    }
+    .leader-info { min-width: 0; flex: 1; }
+    .leader-label {
+      font-size: 0.6rem;
+      color: var(--text-2);
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    .leader-name {
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: var(--text);
+      margin-top: 2px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+    .leader-value {
+      font-size: 1.4rem;
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      line-height: 1;
+      flex-shrink: 0;
+    }
+
+    /* ─── Ward map ─── */
+    .ward-map { height: 460px; border-radius: 8px; overflow: hidden; background: #0a0a0b; }
+    .leaflet-container { background: #0a0a0b; font-family: inherit; }
+    .leaflet-control-attribution { background: rgba(10,10,11,0.75) !important; color: #8e8e99 !important; }
+    .leaflet-control-attribution a { color: #b8b8c2 !important; }
+    .leaflet-bar a { background: #1a1a1f !important; color: #dcdce0 !important; border-color: rgba(255,255,255,0.1) !important; }
+    .leaflet-bar a:hover { background: #242429 !important; }
+    .ward-marker {
+      width: 34px; height: 34px;
+      border-radius: 50%;
+      overflow: hidden;
+      border: 2px solid rgba(255,255,255,0.85);
+      box-shadow: 0 1px 5px rgba(0,0,0,0.7);
+      cursor: pointer;
+      background: #1a1a1f;
+      transition: border-color .15s, transform .15s;
+    }
+    .ward-marker:hover { border-color: var(--blue); transform: scale(1.08); }
+    .ward-marker img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .ward-tooltip { font-size: 0.72rem; font-weight: 600; }
 
     /* ─── Charts ─── */
     .charts-row {
@@ -334,7 +407,7 @@
       grid-template-columns: 1fr 1fr;
       gap: 8px;
     }
-    @media (max-width: 700px) { .charts-row { grid-template-columns: 1fr; } }
+    @media (max-width: 900px) { .charts-row { grid-template-columns: 1fr; } }
 
     .chart-card {
       background: var(--surface);
@@ -354,36 +427,46 @@
     .legend-dot { width: 7px; height: 7px; border-radius: 50%; display: inline-block; margin-right: 4px; flex-shrink: 0; }
     .legend-item { font-size: 0.65rem; color: var(--text-2); display: flex; align-items: center; }
 
-    /* grouped bar chart */
-    .month-bars { display: flex; gap: 5px; align-items: flex-end; }
-    .month-group {
-      flex: 1; display: flex; flex-direction: column;
-      align-items: center; gap: 3px; cursor: pointer;
-    }
-    .month-group:hover .bar-pair { opacity: .72; }
-    .month-group.active .bar-pair { outline: 2px solid var(--blue); border-radius: 3px; }
-    .bar-pair { display: flex; gap: 2px; align-items: flex-end; width: 100%; }
-    .bar-col { flex: 1; border-radius: 2px 2px 0 0; transition: height .3s; min-height: 0; }
-    .bar-col-res { background: var(--green); opacity: .85; }
-    .bar-col-ord { background: var(--blue);  opacity: .85; }
-    .bar-month  { font-size: 0.6rem; color: var(--text-2); }
-
-    /* member activity rows */
-    .stat-rows { display: flex; flex-direction: column; gap: 4px; }
+    /* member activity cards */
     .chart-card-scroll { display: flex; flex-direction: column; }
-    .chart-card-scroll .stat-rows { flex: 1; overflow-y: auto; min-height: 0; }
-    .member-act-row { display: flex; align-items: center; gap: 8px; border-radius: 5px; padding: 3px 4px; cursor: pointer; transition: background .12s; }
-    .member-act-row:hover { background: var(--surface-2); }
-    .member-act-row.active { background: var(--blue-dim); }
-    .member-act-name { font-size: 0.71rem; width: 108px; flex-shrink: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; color: var(--text); }
-    .member-act-bars { flex: 1; display: flex; flex-direction: column; gap: 3px; }
-    .member-act-bar { display: flex; align-items: center; gap: 5px; }
-    .member-act-track { flex: 1; background: var(--surface-3); border-radius: 100px; height: 4px; }
-    .member-act-fill { height: 4px; border-radius: 100px; transition: width .3s; }
-    .fill-blue  { background: var(--blue);  opacity: .8; }
-    .fill-red   { background: var(--red);   opacity: .7; }
-    .fill-amber { background: var(--amber); opacity: .8; }
-    .member-act-num { font-size: 0.64rem; color: var(--text-2); width: 22px; text-align: right; flex-shrink: 0; }
+    .member-cards-grid {
+      flex: 1; overflow-y: auto; min-height: 0;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(104px, 1fr));
+      gap: 6px;
+      align-content: start;
+    }
+    .member-card {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      gap: 3px;
+      border-radius: 8px;
+      border: 1px solid transparent;
+      padding: 9px 6px 8px;
+      cursor: pointer;
+      transition: background .12s, border-color .12s;
+    }
+    .member-card:hover { background: var(--surface-2); }
+    .member-card.active { background: var(--blue-dim); border-color: var(--blue); }
+    .member-card-photo {
+      width: 40px; height: 40px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 1.5px solid var(--border);
+      transition: border-color .15s;
+    }
+    .member-card.active .member-card-photo { border-color: var(--blue); }
+    .member-card-name { font-size: 0.66rem; font-weight: 600; color: var(--text); line-height: 1.2; }
+    .member-card-ward { font-size: 0.57rem; color: var(--text-3); margin-top: -1px; }
+    .member-card-stats { display: flex; gap: 8px; margin-top: 3px; }
+    .mc-stat { display: flex; flex-direction: column; align-items: center; min-width: 20px; }
+    .mc-stat .mc-num { font-size: 0.74rem; font-weight: 700; line-height: 1; }
+    .mc-stat .mc-lbl { font-size: 0.5rem; color: var(--text-2); text-transform: uppercase; letter-spacing: 0.03em; margin-top: 2px; }
+    .mc-blue  .mc-num { color: var(--blue); }
+    .mc-red   .mc-num { color: var(--red); }
+    .mc-amber .mc-num { color: var(--amber); }
 
     /* ─── Meeting videos ─── */
     .chart-label-row { display: flex; align-items: center; justify-content: space-between; margin-bottom: 6px; }
@@ -631,6 +714,40 @@
     .tab-btn.active { color: var(--text); border-bottom-color: var(--blue); }
 
     .tab-panel.hidden { display: none; }
+
+    /* ─── Data Breakdown tab ─── */
+    .db-section { margin-bottom: 20px; }
+    .db-heading { font-size: 0.95rem; font-weight: 700; color: var(--text); margin-bottom: 8px; letter-spacing: -0.01em; }
+    .db-sub { font-size: 0.66rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.06em; color: var(--text-2); margin: 16px 0 6px; }
+    .db-prose { font-size: 0.8rem; line-height: 1.65; color: var(--text-2); margin-bottom: 10px; }
+    .db-prose:last-child { margin-bottom: 0; }
+    .db-prose code { background: var(--surface-2); padding: 1px 5px; border-radius: 4px; font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 0.85em; color: var(--text); }
+
+    .code-block {
+      background: var(--surface-2);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      padding: 12px 14px;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      font-size: 0.72rem;
+      line-height: 1.55;
+      overflow-x: auto;
+      white-space: pre;
+      color: var(--text);
+      margin-bottom: 12px;
+    }
+
+    .db-table-wrap { overflow-x: auto; margin-bottom: 10px; }
+    .db-table { width: 100%; border-collapse: collapse; font-size: 0.76rem; }
+    .db-table th, .db-table td { padding: 6px 12px; border-bottom: 1px solid var(--border-2); text-align: left; }
+    .db-table th { color: var(--text-2); font-weight: 600; text-transform: uppercase; font-size: 0.62rem; letter-spacing: 0.05em; border-bottom: 1px solid var(--border); white-space: nowrap; }
+    .db-table td.num { text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; }
+    .db-table td.desc { color: var(--text-2); }
+    .db-table td code { background: var(--surface-3); padding: 1px 5px; border-radius: 4px; font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 0.82em; color: var(--text); white-space: nowrap; }
+    .db-table tr:last-child td { border-bottom: none; }
+
+    .db-stat-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-bottom: 14px; }
+    @media (max-width: 700px) { .db-stat-row { grid-template-columns: 1fr; } }
   </style>
 </head>
 <body>
@@ -656,6 +773,7 @@
   <div class="tab-nav-inner">
     <button class="tab-btn active" data-tab="dashboard">Dashboard</button>
     <button class="tab-btn" data-tab="voting">Voting Record</button>
+    <button class="tab-btn" data-tab="data-breakdown">Data Breakdown</button>
   </div>
 </nav>
 
@@ -663,6 +781,7 @@
 <section class="stats-panel tab-panel" id="tab-dashboard">
   <div class="stats-inner">
     <div class="metric-row" id="metric-row"></div>
+    <div class="leader-row" id="leader-row"></div>
     <div class="chart-card">
       <div class="chart-label-row">
         <div class="chart-label">Latest Council Meeting Videos</div>
@@ -673,22 +792,18 @@
       </div>
     </div>
     <div class="charts-row">
-      <div class="chart-card" style="height:400px;">
-        <div class="chart-label">Resolutions &amp; Ordinances per Month</div>
-        <div class="chart-legend">
-          <span class="legend-item"><span class="legend-dot" style="background:var(--green)"></span>Resolutions</span>
-          <span class="legend-item"><span class="legend-dot" style="background:var(--blue)"></span>Ordinances</span>
-        </div>
-        <div class="month-bars" id="month-bars"></div>
-      </div>
-      <div class="chart-card chart-card-scroll" style="height:400px;">
+      <div class="chart-card chart-card-scroll" style="height:500px;">
         <div class="chart-label">Member Activity — click to filter</div>
         <div class="chart-legend">
           <span class="legend-item"><span class="legend-dot" style="background:var(--blue)"></span>Authored</span>
           <span class="legend-item"><span class="legend-dot" style="background:var(--red)"></span>Dissent</span>
           <span class="legend-item"><span class="legend-dot" style="background:var(--amber)"></span>Absent (per Issue)</span>
         </div>
-        <div class="stat-rows" id="member-activity"></div>
+        <div class="member-cards-grid" id="member-activity"></div>
+      </div>
+      <div class="chart-card">
+        <div class="chart-label">Council Wards — click a member to filter</div>
+        <div id="ward-map" class="ward-map"></div>
       </div>
     </div>
   </div>
@@ -737,6 +852,174 @@
   </div>
 </div>
 
+<!-- ─── Data Breakdown ─── -->
+<div class="container tab-panel hidden" id="tab-data-breakdown" style="padding-top:16px; padding-bottom:32px;">
+
+  <div class="chart-card db-section">
+    <div class="db-heading">What's in the data</div>
+    <div class="db-prose">
+      Every number on this dashboard is derived from <code>issues_by_vote_2026.json</code>, fetched fresh when the
+      page loads. <strong>Each row in that file is one recorded vote action on a file at a specific meeting
+      body</strong> — not one unique piece of legislation. The same <code>FileNumber</code> commonly appears more
+      than once: once when a committee votes to recommend it, and again when the full City Council votes on it
+      (sometimes more than once, across readings). That's the whole reason the Dashboard tab's headline "issues"
+      count is so much bigger than the number of distinct files actually considered this session.
+    </div>
+    <div class="db-stat-row" id="db-uniqueness-stats"></div>
+
+    <div class="db-sub">Shape of one row (live — the first row in the currently loaded data)</div>
+    <div class="code-block" id="db-sample-json"></div>
+
+    <div class="db-sub">Field glossary</div>
+    <div class="db-table-wrap">
+      <table class="db-table">
+        <thead><tr><th>Field</th><th>Meaning</th></tr></thead>
+        <tbody>
+          <tr><td><code>FileNumber</code></td><td class="desc">The legislative file's ID, e.g. <code>2026-00871</code>. Not unique per row — see above.</td></tr>
+          <tr><td><code>Subject</code></td><td class="desc">Short title — shown in the table and used for search.</td></tr>
+          <tr><td><code>ItemDescription</code></td><td class="desc">The full action text — what's actually being voted on.</td></tr>
+          <tr><td><code>MeetingDate</code></td><td class="desc">ISO timestamp of the meeting this vote happened at.</td></tr>
+          <tr><td><code>MeetingBody</code></td><td class="desc">Which body voted: City Council, a standing committee, or Committee of the Whole.</td></tr>
+          <tr><td><code>VoteResult</code></td><td class="desc"><code>"Passed"</code> or <code>"Failed"</code> — the outcome of this specific vote action.</td></tr>
+          <tr><td><code>FileType</code></td><td class="desc"><code>"Resolution"</code>, <code>"Ordinance"</code>, <code>"Action"</code>, or missing — drives the "passed" KPI cards.</td></tr>
+          <tr><td><code>SubCategory</code></td><td class="desc">Finer classification. Not currently surfaced anywhere on the dashboard.</td></tr>
+          <tr><td><code>AuthorId</code> / <code>AuthorName</code></td><td class="desc">The sponsoring member, when the file has one — most rows don't.</td></tr>
+          <tr><td><code>FileURL</code></td><td class="desc">Link to the official record on minneapolismn.gov.</td></tr>
+          <tr><td><code>Votes</code></td><td class="desc">Object mapping each of the 13 members' names to <code>"Aye"</code>, <code>"Nay"</code>, <code>"Absent"</code>, or <code>"Abstain"</code>.</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="chart-card db-section">
+    <div class="db-heading">Row counts — FileType, VoteResult, MeetingBody</div>
+    <div class="db-prose">
+      These breakdowns are why headline numbers don't sum the way you'd expect. "Resolutions passed," for example, is
+      a filtered count — <code>FileType === 'Resolution' && VoteResult === 'Passed'</code> — not a fraction of every
+      row. All figures below are computed live from the currently loaded dataset.
+    </div>
+    <div class="charts-row">
+      <div>
+        <div class="db-sub">By FileType</div>
+        <div class="db-table-wrap"><table class="db-table" id="db-filetype-table"></table></div>
+      </div>
+      <div>
+        <div class="db-sub">By VoteResult</div>
+        <div class="db-table-wrap"><table class="db-table" id="db-voteresult-table"></table></div>
+      </div>
+    </div>
+    <div class="db-sub">By MeetingBody</div>
+    <div class="db-table-wrap"><table class="db-table" id="db-meetingbody-table"></table></div>
+  </div>
+
+  <div class="chart-card db-section">
+    <div class="db-heading">Dashboard metric cards</div>
+    <div class="db-prose">All five cards on the Dashboard tab run against the <strong>full, unfiltered</strong> dataset — they don't change when you filter the Voting Record table.</div>
+    <div class="db-table-wrap">
+      <table class="db-table">
+        <thead><tr><th>Card</th><th>Formula</th><th>Meaning</th></tr></thead>
+        <tbody>
+          <tr><td>Resolutions passed</td><td><code>FileType==='Resolution' && VoteResult==='Passed'</code></td><td class="desc">Row count. Every Resolution row happened to pass this session.</td></tr>
+          <tr><td>Ordinances passed</td><td><code>FileType==='Ordinance' && VoteResult==='Passed'</code></td><td class="desc">Row count. One Ordinance failed and isn't counted here.</td></tr>
+          <tr><td>Unanimous Votes</td><td><code>unanimous rows / total rows × 100</code></td><td class="desc">A row is "unanimous" if every member who cast an Aye/Nay voted the same way. Absent/Abstain members don't break unanimity.</td></tr>
+          <tr><td>Contested</td><td><code>total rows − unanimous rows</code></td><td class="desc">Any row with at least one dissenting Aye/Nay vote.</td></tr>
+          <tr><td>Close votes (7–6)</td><td><code>min(ayes, nays) ≥ 6</code></td><td class="desc">The minority side had 6+ votes — the tightest possible splits on a 13-member council.</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="db-sub">The two helper functions everything above is built on</div>
+    <div class="code-block">function isUnanimous(votes) {
+  const cast = Object.values(votes).filter(v => v === 'Aye' || v === 'Nay');
+  return cast.length === 0 || new Set(cast).size === 1;
+}
+
+function getMargin(votes) {
+  const a = Object.values(votes).filter(v => v === 'Aye').length;
+  const n = Object.values(votes).filter(v => v === 'Nay').length;
+  return Math.min(a, n);   // size of the minority side</div>
+    <div class="db-prose">
+      <strong>Heads up:</strong> the "Close votes" quick-filter pill on the Voting Record tab uses a
+      <em>different</em> threshold than the KPI card above — the card requires a margin ≥ 6 (7–6 or tighter), while
+      the pill uses margin ≥ 4 (as loose as 9–4). That's deliberate, not a bug, but it's why the two counts won't match.
+    </div>
+  </div>
+
+  <div class="chart-card db-section">
+    <div class="db-heading">Member leaderboard &amp; activity cards</div>
+    <div class="db-prose">Three per-member tallies feed both the "Most/Least" leaderboard cards and the Member Activity grid on the Dashboard tab.</div>
+    <div class="db-table-wrap">
+      <table class="db-table">
+        <thead><tr><th>Tally</th><th>Definition</th></tr></thead>
+        <tbody>
+          <tr><td>Authored</td><td class="desc">Rows where <code>AuthorName</code> equals this member. Most rows have no author recorded at all.</td></tr>
+          <tr><td>Dissent</td><td class="desc">Rows where the member cast Aye/Nay against whichever side had more votes, restricted to rows where both an Aye and a Nay were cast (unanimous rows can't produce a dissent). Absent/Abstain never counts.</td></tr>
+          <tr><td>Absent</td><td class="desc">Rows where the member's recorded vote is exactly <code>"Absent"</code>.</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="code-block">// dissent: cast Aye/Nay opposite the majority, only on rows where both sides exist
+issues.forEach(issue => {
+  const ayes = count of 'Aye' in issue.Votes;
+  const nays = count of 'Nay' in issue.Votes;
+  if (!ayes || !nays) return;                 // skip unanimous rows — nothing to dissent from
+  const majority = ayes > nays ? 'Aye' : 'Nay';
+  for (const [member, vote] of Object.entries(issue.Votes)) {
+    if ((vote === 'Aye' || vote === 'Nay') && vote !== majority) dissentCount[member]++;
+  }
+});</div>
+    <div class="db-prose">The four leaderboard cards (Most Authored, Most Dissents, Least Authored, Most Absent) take the max/min of these same three tallies across all 13 members — same underlying numbers as the Member Activity cards, just surfaced as a highlight.</div>
+  </div>
+
+  <div class="chart-card db-section">
+    <div class="db-heading">Council Wards map</div>
+    <div class="db-prose">
+      Ward boundary polygons come from Minneapolis's official open data portal — the <code>City Council Wards</code>
+      ArcGIS FeatureServer, adopted March 2022 — saved locally as <code>ward_boundaries_2026.geojson</code> so the
+      dashboard doesn't depend on that service staying up. Each ward polygon's <code>BDNUM</code> property is
+      matched to a member's <code>ward</code> number to place their photo marker.
+    </div>
+    <div class="db-prose">
+      The marker isn't placed at the polygon's bounding-box center — that can land outside an irregularly-shaped
+      ward. Instead each marker sits at the ward's true area-weighted centroid:
+    </div>
+    <div class="code-block">function ringCentroid(ring) {           // ring = [[lng,lat], [lng,lat], ...]
+  let x = 0, y = 0, area = 0;
+  for (let i = 0; i < ring.length - 1; i++) {
+    const [x0, y0] = ring[i], [x1, y1] = ring[i + 1];
+    const cross = x0 * y1 - x1 * y0;
+    area += cross;
+    x += (x0 + x1) * cross;
+    y += (y0 + y1) * cross;
+  }
+  area *= 0.5;
+  return [x / (6 * area), y / (6 * area)];
+}</div>
+    <div class="db-prose">The basemap is CARTO's dark tile set (<code>dark_all</code>) via Leaflet — no API key required, chosen to match the dashboard's dark theme rather than for any data reason.</div>
+  </div>
+
+  <div class="chart-card db-section">
+    <div class="db-heading">Voting Record table &amp; Export Dissent</div>
+    <div class="db-prose">The table on the Voting Record tab shows every row with no deduplication — one column per member. Quick filters:</div>
+    <div class="db-table-wrap">
+      <table class="db-table">
+        <thead><tr><th>Filter</th><th>Definition</th></tr></thead>
+        <tbody>
+          <tr><td>Non-unanimous</td><td class="desc">Same as "Contested" above — at least one dissenting Aye/Nay vote.</td></tr>
+          <tr><td>Close votes</td><td class="desc"><code>min(ayes, nays) ≥ 4</code> — looser than the KPI card of the same name (≥ 6). See the note above.</td></tr>
+          <tr><td>Failed</td><td class="desc"><code>VoteResult === 'Failed'</code> — just 1 row in the current dataset.</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="db-prose">
+      <strong>Export Dissent</strong> (per member) uses the same dissent definition as the Member Activity cards —
+      Aye/Nay against the majority on a contested row — and lists every matching row, most recent first, alongside
+      that member's Authored count and their dissent rate against every contested row they could have dissented on.
+    </div>
+  </div>
+
+</div>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
 <script>
 // ── theme toggle ──────────────────────────────────────────────
 // Icons represent the current mode; cycle: dark → light → white → dark
@@ -779,8 +1062,9 @@ document.addEventListener('DOMContentLoaded', () => {
     btn.addEventListener('click', () => {
       const tab = btn.dataset.tab;
       document.querySelectorAll('.tab-btn').forEach(b => b.classList.toggle('active', b === btn));
-      document.getElementById('tab-dashboard').classList.toggle('hidden', tab !== 'dashboard');
-      document.getElementById('tab-voting').classList.toggle('hidden', tab !== 'voting');
+      document.querySelectorAll('.tab-panel').forEach(panel => {
+        panel.classList.toggle('hidden', panel.id !== `tab-${tab}`);
+      });
     });
   });
 });
@@ -803,7 +1087,7 @@ const MEMBERS = [
 
 const PAGE_SIZE = 50;
 let allIssues = [], filtered = [], currentPage = 1;
-let activeMember = null, quickFilter = null, activeMonth = null, activeAuthor = null;
+let activeMember = null, quickFilter = null, activeAuthor = null;
 
 // ── meeting videos (YouTube playlist via CORS proxy) ───────────
 
@@ -877,6 +1161,68 @@ async function loadVideos() {
 
 loadVideos();
 
+// ── ward map (Leaflet + dark CARTO basemap + member photo markers) ──
+
+// area-weighted centroid of a GeoJSON linear ring [ [lng,lat], ... ]
+function ringCentroid(ring) {
+  let x = 0, y = 0, area = 0;
+  for (let i = 0; i < ring.length - 1; i++) {
+    const [x0, y0] = ring[i], [x1, y1] = ring[i + 1];
+    const cross = x0 * y1 - x1 * y0;
+    area += cross;
+    x += (x0 + x1) * cross;
+    y += (y0 + y1) * cross;
+  }
+  area *= 0.5;
+  if (area === 0) return ring[0];
+  return [x / (6 * area), y / (6 * area)];
+}
+
+function loadWardMap() {
+  const map = L.map('ward-map', { scrollWheelZoom: false }).setView([44.9778, -93.2650], 11);
+
+  L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
+    subdomains: 'abcd',
+    maxZoom: 19,
+    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions" target="_blank" rel="noopener">CARTO</a>',
+  }).addTo(map);
+
+  fetch('ward_boundaries_2026.geojson')
+    .then(r => r.json())
+    .then(geo => {
+      const wardLayer = L.geoJSON(geo, {
+        style: () => ({ color: '#0a84ff', weight: 1.5, opacity: 0.5, fillColor: '#0a84ff', fillOpacity: 0.07 }),
+      }).addTo(map);
+      map.fitBounds(wardLayer.getBounds(), { padding: [12, 12] });
+
+      geo.features.forEach(f => {
+        const ward = +f.properties.BDNUM;
+        const member = MEMBERS.find(m => m.ward === ward);
+        if (!member) return;
+        const [lng, lat] = ringCentroid(f.geometry.coordinates[0]);
+        const icon = L.divIcon({
+          className: '',
+          html: `<div class="ward-marker"><img src="${member.img}" alt="${member.name}" /></div>`,
+          iconSize: [34, 34],
+          iconAnchor: [17, 17],
+        });
+        const marker = L.marker([lat, lng], { icon }).addTo(map);
+        marker.bindTooltip(`${member.name} — Ward ${ward}`, { className: 'ward-tooltip', direction: 'top', offset: [0, -14] });
+        marker.on('click', () => {
+          activeAuthor = activeAuthor === member.name ? null : member.name;
+          document.getElementById('filter-author').value = activeAuthor || '';
+          buildStats(allIssues); applyFilters();
+        });
+      });
+    })
+    .catch(() => {
+      document.getElementById('ward-map').innerHTML =
+        '<div class="state-msg" style="padding:2rem 1rem;">Could not load ward boundaries.</div>';
+    });
+}
+
+loadWardMap();
+
 // ── helpers ───────────────────────────────────────────────────
 
 function voteClass(v) {
@@ -913,43 +1259,9 @@ function buildStats(issues) {
   document.getElementById('metric-row').innerHTML = `
     <div class="metric-card"><div class="m-value c-blue">${resPassed}</div><div class="m-label">Resolutions passed</div></div>
     <div class="metric-card"><div class="m-value c-blue">${ordPassed}</div><div class="m-label">Ordinances passed</div></div>
-    <div class="metric-card"><div class="m-value c-green">${unanRate}%</div><div class="m-label">Unanimous</div></div>
+    <div class="metric-card"><div class="m-value c-green">${unanRate}%</div><div class="m-label">Unanimous Votes</div></div>
     <div class="metric-card"><div class="m-value c-amber">${contested}</div><div class="m-label">Contested</div></div>
     <div class="metric-card"><div class="m-value c-red">${close76}</div><div class="m-label">Close votes (7–6)</div></div>`;
-
-  // grouped bar chart — resolutions & ordinances per month
-  const monthMap = {};
-  issues.forEach(i => {
-    const m = i.MeetingDate.slice(0,7);
-    if (!monthMap[m]) monthMap[m] = { res:0, ord:0 };
-    if (i.FileType === 'Resolution') monthMap[m].res++;
-    else if (i.FileType === 'Ordinance') monthMap[m].ord++;
-  });
-  const months = Object.entries(monthMap).sort((a,b) => a[0].localeCompare(b[0]));
-  const maxVal = Math.max(...months.map(([,d]) => Math.max(d.res, d.ord)), 1);
-  const BAR_H = 300;
-  document.getElementById('month-bars').innerHTML = months.map(([m, d]) => {
-    const hRes = Math.round((d.res / maxVal) * BAR_H);
-    const hOrd = Math.round((d.ord / maxVal) * BAR_H);
-    const [yr, mo] = m.split('-');
-    const lbl = new Date(+yr, +mo-1, 1).toLocaleDateString('en-US', { month:'short' });
-    const tip = `${lbl}: ${d.res} Resolutions, ${d.ord} Ordinances`;
-    return `<div class="month-group${m===activeMonth?' active':''}" data-month="${m}" title="${tip}">
-      <div class="bar-pair" style="height:${BAR_H}px">
-        <div class="bar-col bar-col-res" style="height:${hRes}px"></div>
-        <div class="bar-col bar-col-ord" style="height:${hOrd}px"></div>
-      </div>
-      <div class="bar-month">${lbl}</div>
-    </div>`;
-  }).join('');
-  document.querySelectorAll('.month-group').forEach(el => {
-    el.addEventListener('click', () => {
-      const m = el.dataset.month;
-      activeMonth = activeMonth === m ? null : m;
-      document.getElementById('filter-month').value = activeMonth || '';
-      buildStats(allIssues); applyFilters();
-    });
-  });
 
   // merged member activity — authored (blue) + dissent (red) + absent (amber)
   const dissentMap = Object.fromEntries(MEMBERS.map(m => [m.name, 0]));
@@ -970,33 +1282,47 @@ function buildStats(issues) {
       if (vote === 'Absent' && name in absentMap) absentMap[name]++;
     });
   });
-  const maxAuthor  = Math.max(...Object.values(authorMap), 1);
-  const maxDissent = Math.max(...Object.values(dissentMap), 1);
-  const maxAbsent  = Math.max(...Object.values(absentMap), 1);
   const memberList = MEMBERS
-    .map(m => ({ name: m.name, authored: authorMap[m.name]||0, dissent: dissentMap[m.name]||0, absent: absentMap[m.name]||0 }))
+    .map(m => ({ name: m.name, ward: m.ward, img: m.img, authored: authorMap[m.name]||0, dissent: dissentMap[m.name]||0, absent: absentMap[m.name]||0 }))
     .sort((a,b) => b.authored - a.authored);
 
-  document.getElementById('member-activity').innerHTML = memberList.map(({ name, authored, dissent, absent }) =>
-    `<div class="member-act-row${name===activeAuthor?' active':''}" data-author="${name}">
-      <div class="member-act-name" title="${name}">${name}</div>
-      <div class="member-act-bars">
-        <div class="member-act-bar">
-          <div class="member-act-track"><div class="member-act-fill fill-blue" style="width:${Math.round((authored/maxAuthor)*100)}%"></div></div>
-          <div class="member-act-num">${authored}</div>
-        </div>
-        <div class="member-act-bar">
-          <div class="member-act-track"><div class="member-act-fill fill-red" style="width:${Math.round((dissent/maxDissent)*100)}%"></div></div>
-          <div class="member-act-num">${dissent}</div>
-        </div>
-        <div class="member-act-bar">
-          <div class="member-act-track"><div class="member-act-fill fill-amber" style="width:${Math.round((absent/maxAbsent)*100)}%"></div></div>
-          <div class="member-act-num">${absent}</div>
-        </div>
+  // leaderboard cards — most/least authored, most dissents, most absent
+  const mostAuthored  = memberList.reduce((a,b) => b.authored > a.authored ? b : a);
+  const leastAuthored = memberList.reduce((a,b) => b.authored < a.authored ? b : a);
+  const mostDissent   = memberList.reduce((a,b) => b.dissent  > a.dissent  ? b : a);
+  const mostAbsent    = memberList.reduce((a,b) => b.absent   > a.absent   ? b : a);
+
+  const leaders = [
+    { label: 'Most Authored',  cls: 'c-blue',  value: mostAuthored.authored,  member: mostAuthored },
+    { label: 'Most Dissents',  cls: 'c-red',   value: mostDissent.dissent,    member: mostDissent },
+    { label: 'Least Authored', cls: 'c-muted', value: leastAuthored.authored, member: leastAuthored },
+    { label: 'Most Absent',    cls: 'c-amber', value: mostAbsent.absent,      member: mostAbsent },
+  ];
+
+  document.getElementById('leader-row').innerHTML = leaders.map(({ label, cls, value, member }) =>
+    `<div class="leader-card">
+      <img class="leader-photo" src="${member.img}" alt="${member.name}" loading="lazy" />
+      <div class="leader-info">
+        <div class="leader-label">${label}</div>
+        <div class="leader-name" title="${member.name}">${member.name}</div>
+      </div>
+      <div class="leader-value ${cls}">${value}</div>
+    </div>`
+  ).join('');
+
+  document.getElementById('member-activity').innerHTML = memberList.map(({ name, ward, img, authored, dissent, absent }) =>
+    `<div class="member-card${name===activeAuthor?' active':''}" data-author="${name}" title="${name} — Ward ${ward}">
+      <img class="member-card-photo" src="${img}" alt="${name}" loading="lazy" />
+      <div class="member-card-name">${name}</div>
+      <div class="member-card-ward">Ward ${ward}</div>
+      <div class="member-card-stats">
+        <div class="mc-stat mc-blue"><span class="mc-num">${authored}</span><span class="mc-lbl">Auth</span></div>
+        <div class="mc-stat mc-red"><span class="mc-num">${dissent}</span><span class="mc-lbl">Diss</span></div>
+        <div class="mc-stat mc-amber"><span class="mc-num">${absent}</span><span class="mc-lbl">Abs</span></div>
       </div>
     </div>`
   ).join('');
-  document.querySelectorAll('#member-activity .member-act-row').forEach(el => {
+  document.querySelectorAll('#member-activity .member-card').forEach(el => {
     el.addEventListener('click', () => {
       const name = el.dataset.author;
       activeAuthor = activeAuthor === name ? null : name;
@@ -1004,6 +1330,42 @@ function buildStats(issues) {
       buildStats(allIssues); applyFilters();
     });
   });
+}
+
+// ── data breakdown tab ───────────────────────────────────────────
+
+function buildDataBreakdown(issues) {
+  const totalRows = issues.length;
+  const uniqueFileNumbers = new Set(issues.map(i => i.FileNumber)).size;
+  const uniqueTexts = new Set(issues.map(i => `${i.Subject} ${i.ItemDescription}`)).size;
+
+  document.getElementById('db-uniqueness-stats').innerHTML = `
+    <div class="metric-card"><div class="m-value c-blue">${totalRows.toLocaleString()}</div><div class="m-label">Total rows</div></div>
+    <div class="metric-card"><div class="m-value c-green">${uniqueFileNumbers.toLocaleString()}</div><div class="m-label">Unique FileNumbers</div></div>
+    <div class="metric-card"><div class="m-value c-amber">${uniqueTexts.toLocaleString()}</div><div class="m-label">Unique Subject+Description</div></div>`;
+
+  document.getElementById('db-sample-json').textContent = JSON.stringify(issues[0], null, 2);
+
+  const countBy = (key) => {
+    const counts = {};
+    issues.forEach(i => {
+      const v = i[key] || '(missing)';
+      counts[v] = (counts[v] || 0) + 1;
+    });
+    return Object.entries(counts).sort((a, b) => b[1] - a[1]);
+  };
+
+  const renderCountTable = (id, colLabel, rows) => {
+    document.getElementById(id).innerHTML = `
+      <thead><tr><th>${colLabel}</th><th class="num">Rows</th><th class="num">%</th></tr></thead>
+      <tbody>${rows.map(([k, v]) =>
+        `<tr><td>${k}</td><td class="num">${v.toLocaleString()}</td><td class="num">${((v / totalRows) * 100).toFixed(1)}%</td></tr>`
+      ).join('')}</tbody>`;
+  };
+
+  renderCountTable('db-filetype-table', 'FileType', countBy('FileType'));
+  renderCountTable('db-voteresult-table', 'VoteResult', countBy('VoteResult'));
+  renderCountTable('db-meetingbody-table', 'MeetingBody', countBy('MeetingBody'));
 }
 
 // ── table ─────────────────────────────────────────────────────
@@ -1417,6 +1779,7 @@ fetch('issues_by_vote_2026.json')
     populateMonthFilter(data);
     populateAuthorFilter(data);
     buildStats(data);
+    buildDataBreakdown(data);
     document.getElementById('loading-msg')?.remove();
     ['search','filter-result','filter-member-vote','filter-month','filter-author'].forEach(id => {
       document.getElementById(id).addEventListener('input', applyFilters);

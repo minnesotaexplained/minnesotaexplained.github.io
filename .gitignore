@@ -4,3 +4,4 @@ node_modules/
 districts/
 package*
 **/.env
+__pycache__
