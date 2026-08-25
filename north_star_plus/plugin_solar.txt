@@ -1,0 +1,31 @@
+﻿
+
+
+1.1 	A bill for an act
+1.2 	relating to energy; regulating the installation and operation of a plug-in solar 
+1.3 	photovoltaic device;proposing coding for new law in Minnesota Statutes, chapter 
+1.4 	216B.
+1.5 	BE IT ENACTED BY THE LEGISLATURE OF THE STATE OF MINNESOTA:
+
+1.6 	Section 1. [216B.2429] PLUG-IN SOLAR PHOTOVOLTAIC DEVICE.
+1.7 		Subdivision 1.Definitions. (a) "Energy storage system" has the meaning given in section 
+1.8 	216B.2422, subdivision 1.
+1.9 	(b) "Photovoltaic device" has the meaning given in section 216C.06, subdivision 16.
+1.10 	(c) "Plug-in solar photovoltaic device" means a portable photovoltaic device that:
+1.11 	(1) is intended primarily to offset a portion of a customer's electricity consumption;
+1.12 	(2) has a maximum power output of 1,200 watts;
+1.13 	(3) is capable of being connected with an on-site energy storage system; and
+1.14 	(4) is listed or certified as compliant with the requirements for interactive plug-in 
+1.15 	photovoltaic equipment and systems by a testing laboratory that is recognized under the 
+1.16 	federal Occupational Health and Safety Agency's Nationally Recognized Testing Laboratory 
+1.17 	program to certify photovoltaic equipment and systems.
+1.18 		Subd. 2.Exemptions. (a) A plug-in solar photovoltaic device is exempt from:
+1.19 	(1) a requirement to enter an interconnection agreement with an electric utility;
+1.20 	(2) the net metering provisions under section 216B.164; and
+2.1 	(3) a fee, condition, approval, or reporting requirement that an electric utility imposes 
+2.2 	with respect to the plug-in solar photovoltaic device's installation or operation.
+2.3 	(b) An electric utility is not liable for damage or injury caused by a plug-in solar 
+2.4 	photovoltaic device.
+
+2.5 	EFFECTIVE DATE. This section is effective the day following final enactment.
+

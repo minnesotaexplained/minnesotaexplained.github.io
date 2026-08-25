@@ -1,0 +1,733 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>North Star Plus — Legislative Proposals</title>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script src="https://unpkg.com/marked@15/marked.min.js"></script>
+    <style>
+        /* "Light" mode — semi-dark slate */
+        :root {
+            --bg-primary: #1e2433;
+            --bg-secondary: #252d3d;
+            --bg-tertiary: #2a3347;
+            --text-primary: #dce4f0;
+            --text-secondary: #90a4be;
+            --text-tertiary: #6b82a0;
+            --text-quaternary: #56708a;
+            --border-primary: #2e3d55;
+            --border-secondary: #2e3d55;
+            --border-tertiary: #2e3d55;
+            --accent-primary: #5b9bd5;
+            --accent-secondary: #1e3c72;
+            --accent-tertiary: #667eea;
+            --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.25);
+            --shadow-md: 0 2px 8px rgba(0, 0, 0, 0.25);
+            --shadow-lg: 0 4px 16px rgba(0, 0, 0, 0.35);
+            --hover-bg: #253045;
+            --table-hover: #253045;
+            --diff-add-bg: rgba(46, 160, 67, 0.18);
+            --diff-add-text: #4fae63;
+            --diff-del-bg: rgba(248, 81, 73, 0.18);
+            --diff-del-text: #d9534f;
+        }
+
+        /* Dark mode — deeper charcoal */
+        [data-theme="dark"] {
+            --bg-primary: #0f1117;
+            --bg-secondary: #161b27;
+            --bg-tertiary: #1a2030;
+            --text-primary: #e2e8f0;
+            --text-secondary: #8898aa;
+            --text-tertiary: #637080;
+            --text-quaternary: #4a5568;
+            --border-primary: #1e2a3a;
+            --border-secondary: #1e2a3a;
+            --border-tertiary: #1e2a3a;
+            --accent-primary: #4299e1;
+            --accent-secondary: #2b6cb0;
+            --accent-tertiary: #667eea;
+            --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.4);
+            --shadow-md: 0 2px 8px rgba(0, 0, 0, 0.4);
+            --shadow-lg: 0 4px 16px rgba(0, 0, 0, 0.6);
+            --hover-bg: #161b27;
+            --table-hover: #161b27;
+            --diff-add-bg: rgba(46, 160, 67, 0.15);
+            --diff-add-text: #56d364;
+            --diff-del-bg: rgba(248, 81, 73, 0.15);
+            --diff-del-text: #ff7b72;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            min-height: 100vh;
+            margin: 0;
+            padding: 0;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        .navbar {
+            background: linear-gradient(135deg, var(--accent-secondary) 0%, var(--accent-primary) 100%);
+            color: white;
+            padding: 20px 40px;
+            box-shadow: var(--shadow-md);
+            top: 0;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        [data-theme="dark"] .navbar {
+            background: #0a0d14;
+            border-bottom: 1px solid #1e2a3a;
+        }
+
+        .mx-logo {
+            font-size: 0.8rem;
+            font-weight: 800;
+            letter-spacing: -0.02em;
+            color: white;
+            text-decoration: none;
+            background: rgba(255, 255, 255, 0.15);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 6px;
+            padding: 5px 9px;
+            flex-shrink: 0;
+            transition: background 0.15s ease;
+        }
+
+        .mx-logo:hover {
+            background: rgba(255, 255, 255, 0.3);
+        }
+
+        .back-button {
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border-primary);
+            color: var(--accent-primary);
+            padding: 8px 16px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 500;
+            transition: all 0.2s ease;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .back-button:hover {
+            background: var(--hover-bg);
+            border-color: var(--accent-primary);
+        }
+
+        .navbar-content {
+            flex: 1;
+        }
+
+        .navbar-title {
+            font-size: 1.3em;
+            font-weight: 700;
+            margin: 0 0 5px 0;
+        }
+
+        .navbar-subtitle {
+            font-size: 1em;
+            opacity: 0.9;
+            margin: 0;
+        }
+
+        /* Dark Mode Toggle */
+        .dark-mode-toggle {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-left: auto;
+        }
+
+        .toggle-switch {
+            position: relative;
+            width: 60px;
+            height: 30px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 15px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            flex-shrink: 0;
+        }
+
+        .toggle-switch:hover {
+            background: rgba(255, 255, 255, 0.3);
+        }
+
+        .toggle-slider {
+            position: absolute;
+            top: 3px;
+            left: 3px;
+            width: 22px;
+            height: 22px;
+            background: white;
+            border-radius: 50%;
+            transition: transform 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+        }
+
+        .toggle-slider::before {
+            content: '☀️';
+        }
+
+        [data-theme="dark"] .toggle-slider {
+            transform: translateX(30px);
+        }
+
+        [data-theme="dark"] .toggle-slider::before {
+            content: '🌙';
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 20px auto;
+            padding: 0 30px 60px;
+        }
+
+        .page-intro {
+            margin-bottom: 24px;
+        }
+
+        .page-intro h1 {
+            font-size: 1.6rem;
+            margin: 0 0 6px 0;
+            color: var(--text-primary);
+        }
+
+        .page-intro p {
+            color: var(--text-secondary);
+            margin: 0;
+            line-height: 1.6;
+        }
+
+        /* Table */
+        .table-wrapper {
+            overflow-x: auto;
+            border: 1px solid var(--border-primary);
+            border-radius: 8px;
+            box-shadow: var(--shadow-md);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 14px;
+            background: var(--bg-secondary);
+        }
+
+        thead {
+            background: var(--bg-tertiary);
+        }
+
+        th {
+            padding: 14px 15px;
+            text-align: left;
+            font-weight: 600;
+            color: var(--text-primary);
+            border-bottom: 2px solid var(--accent-tertiary);
+            text-transform: uppercase;
+            font-size: 11px;
+            letter-spacing: 0.5px;
+            white-space: nowrap;
+        }
+
+        td {
+            padding: 14px 15px;
+            border-bottom: 1px solid var(--border-tertiary);
+            vertical-align: top;
+        }
+
+        tbody tr {
+            cursor: pointer;
+            transition: background 0.15s ease;
+        }
+
+        tbody tr:hover {
+            background: var(--table-hover);
+        }
+
+        tbody tr:last-child td {
+            border-bottom: none;
+        }
+
+        .proposal-title {
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .proposal-bill {
+            color: var(--text-tertiary);
+            font-size: 12px;
+            margin-top: 2px;
+        }
+
+        .status-badge {
+            display: inline-block;
+            padding: 3px 10px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: 600;
+            background: var(--bg-tertiary);
+            color: var(--text-secondary);
+            border: 1px solid var(--border-secondary);
+            white-space: nowrap;
+        }
+
+        .category-tag {
+            display: inline-block;
+            background: var(--bg-tertiary);
+            color: var(--accent-tertiary);
+            padding: 3px 10px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: 500;
+            border: 1px solid var(--border-secondary);
+            white-space: nowrap;
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 3rem 2rem;
+            color: var(--text-tertiary);
+        }
+
+        /* Detail panel */
+        .detail-header {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: baseline;
+            gap: 12px;
+            margin: 20px 0 6px 0;
+        }
+
+        .detail-header h2 {
+            margin: 0;
+            font-size: 1.5rem;
+            color: var(--text-primary);
+        }
+
+        .detail-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            align-items: center;
+            margin-bottom: 24px;
+            color: var(--text-tertiary);
+            font-size: 13px;
+        }
+
+        .detail-meta .dot {
+            opacity: 0.5;
+        }
+
+        .detail-section {
+            margin-bottom: 32px;
+        }
+
+        .detail-section h3 {
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: var(--text-tertiary);
+            margin: 0 0 14px 0;
+            font-weight: 600;
+        }
+
+        .prose {
+            color: var(--text-secondary);
+            line-height: 1.75;
+        }
+
+        .prose h1, .prose h2, .prose h3 {
+            color: var(--text-primary);
+            margin-top: 1.4rem;
+            margin-bottom: 0.6rem;
+        }
+
+        .prose h1:first-child, .prose h2:first-child, .prose h3:first-child {
+            margin-top: 0;
+        }
+
+        .prose p {
+            margin: 0 0 1rem 0;
+        }
+
+        .prose ul, .prose ol {
+            margin: 0 0 1rem 0;
+            padding-left: 1.5rem;
+        }
+
+        .prose li {
+            margin-bottom: 0.4rem;
+        }
+
+        .prose strong {
+            color: var(--text-primary);
+        }
+
+        .prose a {
+            color: var(--accent-primary);
+        }
+
+        /* GitHub-style diff rendering for the legislative-changes markdown */
+        .diff-box {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-primary);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .diff-box-header {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            padding: 10px 18px;
+            background: var(--bg-tertiary);
+            border-bottom: 1px solid var(--border-primary);
+            font-size: 12px;
+            color: var(--text-tertiary);
+        }
+
+        .diff-legend {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .diff-legend .swatch {
+            width: 10px;
+            height: 10px;
+            border-radius: 2px;
+            display: inline-block;
+        }
+
+        .diff-legend .swatch.add {
+            background: var(--diff-add-text);
+        }
+
+        .diff-legend .swatch.del {
+            background: var(--diff-del-text);
+        }
+
+        .diff-content {
+            padding: 18px 24px;
+            font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
+            font-size: 13.5px;
+            line-height: 1.85;
+            color: var(--text-secondary);
+        }
+
+        .diff-content h1, .diff-content h2, .diff-content h3 {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            color: var(--text-primary);
+            font-size: 0.95rem;
+            margin: 1.4rem 0 0.6rem 0;
+        }
+
+        .diff-content h1:first-child, .diff-content h2:first-child, .diff-content h3:first-child {
+            margin-top: 0;
+        }
+
+        .diff-content p {
+            margin: 0 0 1rem 0;
+        }
+
+        .diff-content del {
+            background: var(--diff-del-bg);
+            color: var(--diff-del-text);
+            text-decoration: line-through;
+            text-decoration-thickness: 1px;
+            padding: 1px 3px;
+            border-radius: 3px;
+        }
+
+        .diff-content ins {
+            background: var(--diff-add-bg);
+            color: var(--diff-add-text);
+            text-decoration: none;
+            padding: 1px 3px;
+            border-radius: 3px;
+        }
+
+        .loading, .error {
+            text-align: center;
+            padding: 4rem 2rem;
+            color: var(--text-tertiary);
+        }
+
+        .loading-spinner {
+            width: 40px;
+            height: 40px;
+            border: 4px solid var(--border-primary);
+            border-top: 4px solid var(--accent-primary);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 1rem;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            color: var(--text-quaternary);
+            font-size: 13px;
+            border-top: 1px solid var(--border-tertiary);
+        }
+
+        @media (max-width: 768px) {
+            .navbar {
+                padding: 15px 20px;
+            }
+
+            .navbar-title {
+                font-size: 1.15em;
+            }
+
+            .navbar-subtitle {
+                font-size: 0.85em;
+            }
+
+            .container {
+                padding: 0 16px 40px;
+            }
+
+            table {
+                font-size: 13px;
+            }
+
+            th, td {
+                padding: 10px;
+            }
+
+            .col-optional {
+                display: none;
+            }
+
+            .diff-content {
+                padding: 14px 16px;
+                font-size: 12.5px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <nav class="navbar">
+            <a href="../index.html" class="mx-logo">MX</a>
+            <div class="navbar-content">
+                <h1 class="navbar-title">North Star Plus</h1>
+                <p class="navbar-subtitle">Minnesota Explained - Endorsed Legislative Proposals</p>
+            </div>
+            <div class="dark-mode-toggle">
+                <div class="toggle-switch" @click="toggleDarkMode">
+                    <div class="toggle-slider"></div>
+                </div>
+            </div>
+        </nav>
+
+        <div class="container">
+            <div v-if="loading" class="loading">
+                <div class="loading-spinner"></div>
+                <p>Loading proposals…</p>
+            </div>
+
+            <div v-else-if="error" class="error">
+                <p>Could not load proposals.json — {{ error }}</p>
+            </div>
+
+            <template v-else>
+                <div v-if="view === 'list'">
+                    <div class="page-intro">
+                        <h1>Legislation we'd like to see pass</h1>
+                        <p>We at Minnesota Explained endorse the following legislative proposals. Each contain the legislative language, implications and references.</p>
+                    </div>
+
+                    <div class="table-wrapper">
+                        <table v-if="proposals.length > 0">
+                            <thead>
+                                <tr>
+                                    <th>Title</th>
+                                    <th class="col-optional">Category</th>
+                                    <th>Status</th>
+                                    <th class="col-optional">Sponsor</th>
+                                    <th class="col-optional">Date</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr
+                                    v-for="p in proposals"
+                                    :key="p.id"
+                                    @click="selectProposal(p.id)"
+                                >
+                                    <td>
+                                        <div class="proposal-title">{{ p.title }}</div>
+                                        <div class="proposal-bill" v-if="p.bill">{{ p.bill }}</div>
+                                    </td>
+                                    <td class="col-optional">
+                                        <span class="category-tag" v-if="p.category">{{ p.category }}</span>
+                                    </td>
+                                    <td>
+                                        <span class="status-badge" v-if="p.status">{{ p.status }}</span>
+                                    </td>
+                                    <td class="col-optional">{{ p.sponsor || '—' }}</td>
+                                    <td class="col-optional">{{ formatDate(p.date) }}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <div v-else class="empty-state">No proposals available.</div>
+                    </div>
+                </div>
+
+                <div class="detail-panel" v-else-if="selectedProposal">
+                    <button class="back-button" @click="backToList">← Back to proposals</button>
+
+                    <div class="detail-header">
+                        <h2>{{ selectedProposal.title }}</h2>
+                        <span class="status-badge" v-if="selectedProposal.status">{{ selectedProposal.status }}</span>
+                    </div>
+                    <div class="detail-meta">
+                        <span v-if="selectedProposal.bill">{{ selectedProposal.bill }}</span>
+                        <span class="dot" v-if="selectedProposal.bill && selectedProposal.category">·</span>
+                        <span v-if="selectedProposal.category">{{ selectedProposal.category }}</span>
+                        <span class="dot" v-if="selectedProposal.sponsor">·</span>
+                        <span v-if="selectedProposal.sponsor">{{ selectedProposal.sponsor }}</span>
+                        <span class="dot" v-if="selectedProposal.date">·</span>
+                        <span v-if="selectedProposal.date">{{ formatDate(selectedProposal.date) }}</span>
+                    </div>
+
+                    <div class="detail-section" v-if="selectedProposal.description">
+                        <h3>Summary</h3>
+                        <div class="prose" v-html="renderMarkdown(selectedProposal.description)"></div>
+                    </div>
+
+                    <div class="detail-section" v-if="selectedProposal.changes">
+                        <h3>Proposed Statutory Changes</h3>
+                        <div class="diff-box">
+                            <div class="diff-box-header">
+                                <div class="diff-legend"><span class="swatch del"></span> removed</div>
+                                <div class="diff-legend"><span class="swatch add"></span> added</div>
+                            </div>
+                            <div class="diff-content" v-html="renderMarkdown(selectedProposal.changes)"></div>
+                        </div>
+                    </div>
+                </div>
+            </template>
+        </div>
+
+        <footer>Minnesota Explained — North Star Plus</footer>
+    </div>
+
+    <script>
+        const { createApp } = Vue;
+
+        // Register an inline "++added text++" extension so markdown can express
+        // insertions the same way "~~removed text~~" (GFM strikethrough) expresses deletions.
+        marked.use({
+            extensions: [{
+                name: 'ins',
+                level: 'inline',
+                start(src) {
+                    return src.match(/\+\+/)?.index;
+                },
+                tokenizer(src) {
+                    const match = /^\+\+([^\n]+?)\+\+/.exec(src);
+                    if (match) {
+                        return {
+                            type: 'ins',
+                            raw: match[0],
+                            tokens: this.lexer.inlineTokens(match[1].trim())
+                        };
+                    }
+                },
+                renderer(token) {
+                    return `<ins>${this.parser.parseInline(token.tokens)}</ins>`;
+                }
+            }]
+        });
+
+        function initDarkMode() {
+            const savedTheme = localStorage.getItem('theme') || 'dark';
+            document.documentElement.setAttribute('data-theme', savedTheme);
+        }
+        initDarkMode();
+
+        createApp({
+            data() {
+                return {
+                    proposals: [],
+                    selectedId: null,
+                    view: 'list',
+                    loading: true,
+                    error: null
+                };
+            },
+            computed: {
+                selectedProposal() {
+                    return this.proposals.find(p => p.id === this.selectedId) || null;
+                }
+            },
+            async created() {
+                try {
+                    const response = await fetch('./proposals.json');
+                    if (!response.ok) {
+                        throw new Error(`HTTP ${response.status}`);
+                    }
+                    this.proposals = await response.json();
+                } catch (err) {
+                    this.error = err.message;
+                    console.error('Error loading proposals.json:', err);
+                } finally {
+                    this.loading = false;
+                }
+            },
+            methods: {
+                selectProposal(id) {
+                    this.selectedId = id;
+                    this.view = 'detail';
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                },
+                backToList() {
+                    this.view = 'list';
+                    this.selectedId = null;
+                },
+                renderMarkdown(md) {
+                    return marked.parse(md || '');
+                },
+                formatDate(dateStr) {
+                    if (!dateStr) return '—';
+                    const d = new Date(dateStr + 'T00:00:00');
+                    if (isNaN(d)) return dateStr;
+                    return d.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' });
+                },
+                toggleDarkMode() {
+                    const current = document.documentElement.getAttribute('data-theme');
+                    const next = current === 'dark' ? 'light' : 'dark';
+                    document.documentElement.setAttribute('data-theme', next);
+                    localStorage.setItem('theme', next);
+                }
+            }
+        }).mount('#app');
+    </script>
+</body>
+</html>
