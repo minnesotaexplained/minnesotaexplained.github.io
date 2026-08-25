@@ -468,6 +468,24 @@
     .mc-red   .mc-num { color: var(--red); }
     .mc-amber .mc-num { color: var(--amber); }
 
+    /* ─── Members tab ─── */
+    .member-picker {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(104px, 1fr));
+      gap: 6px;
+      margin-bottom: 20px;
+    }
+    .member-profile { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 20px; }
+    .member-profile-header { display: flex; align-items: center; gap: 16px; margin-bottom: 18px; }
+    .member-profile-photo { width: 76px; height: 76px; border-radius: 50%; object-fit: cover; border: 2px solid var(--border); }
+    .member-profile-name { font-size: 1.15rem; font-weight: 700; color: var(--text); letter-spacing: -0.01em; }
+    .member-profile-ward { font-size: 0.78rem; color: var(--text-2); margin-top: 2px; }
+    .member-stat-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; margin-bottom: 18px; }
+    @media (max-width: 700px) { .member-stat-row { grid-template-columns: repeat(2, 1fr); } }
+    .member-subtabs { display: flex; gap: 4px; border-bottom: 1px solid var(--border); margin-bottom: 12px; }
+    .member-subtabs .tab-btn { padding: 8px 4px; }
+    .member-empty { padding: 3rem 1rem; text-align: center; color: var(--text-2); font-size: 0.85rem; }
+
     /* ─── Meeting videos ─── */
     .chart-label-row { display: flex; align-items: center; justify-content: space-between; margin-bottom: 6px; }
     .chart-label-row .chart-label { margin-bottom: 0; }
@@ -774,6 +792,7 @@
     <button class="tab-btn active" data-tab="dashboard">Dashboard</button>
     <button class="tab-btn" data-tab="voting">Voting Record</button>
     <button class="tab-btn" data-tab="data-breakdown">Data Breakdown</button>
+    <button class="tab-btn" data-tab="members">Members</button>
   </div>
 </nav>
 
@@ -1017,6 +1036,12 @@ issues.forEach(issue => {
     </div>
   </div>
 
+</div>
+
+<!-- ─── Members ─── -->
+<div class="container tab-panel hidden" id="tab-members" style="padding-top:16px; padding-bottom:32px;">
+  <div class="member-picker" id="member-picker"></div>
+  <div id="member-detail"></div>
 </div>
 
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
@@ -1566,15 +1591,126 @@ function getMemberDissent(memberName, issues) {
   }).sort((a, b) => b.MeetingDate.localeCompare(a.MeetingDate));
 }
 
-function generateReport(member) {
-  const issues    = allIssues;
-  const dissent   = getMemberDissent(member.name, issues);
-  const authored  = issues.filter(i => i.AuthorName === member.name).length;
-  const totalContested = issues.filter(i => {
+function totalContestedCount(issues) {
+  return issues.filter(i => {
     const a = Object.values(i.Votes).filter(v=>v==='Aye').length;
     const n = Object.values(i.Votes).filter(v=>v==='Nay').length;
     return a > 0 && n > 0;
   }).length;
+}
+
+// ── Members tab ──────────────────────────────────────────────
+
+let memberInfo = {};   // name -> { ward, firstElectedYear, tookOfficeYear, note, source }
+let activeMemberTab = null;
+
+function buildMemberPicker() {
+  document.getElementById('member-picker').innerHTML = MEMBERS.map(m =>
+    `<div class="member-card" data-member="${m.name}" title="${m.name} — Ward ${m.ward}">
+      <img class="member-card-photo" src="${m.img}" alt="${m.name}" loading="lazy" />
+      <div class="member-card-name">${m.name}</div>
+      <div class="member-card-ward">Ward ${m.ward}</div>
+    </div>`
+  ).join('');
+  document.querySelectorAll('#member-picker .member-card').forEach(el => {
+    el.addEventListener('click', () => {
+      const m = MEMBERS.find(x => x.name === el.dataset.member);
+      if (m) renderMemberDetail(m);
+    });
+  });
+}
+
+function renderMemberDetail(member) {
+  document.querySelectorAll('#member-picker .member-card').forEach(el => {
+    el.classList.toggle('active', el.dataset.member === member.name);
+  });
+
+  const issues   = allIssues;
+  const authored = issues.filter(i => i.AuthorName === member.name)
+    .sort((a, b) => b.MeetingDate.localeCompare(a.MeetingDate));
+  const dissent  = getMemberDissent(member.name, issues);
+  const absent   = issues.filter(i => (i.Votes[member.name] || null) === 'Absent').length;
+  const contested = totalContestedCount(issues);
+  const dissentRate = contested ? (dissent.length / contested) * 100 : 0;
+  const info = memberInfo[member.name];
+  const yearsInOffice = info ? new Date().getFullYear() - info.tookOfficeYear : null;
+
+  activeMemberTab = 'authored';
+
+  document.getElementById('member-detail').innerHTML = `
+    <div class="member-profile">
+      <div class="member-profile-header">
+        <img class="member-profile-photo" src="${member.img}" alt="${member.name}" />
+        <div>
+          <div class="member-profile-name">${member.name}</div>
+          <div class="member-profile-ward">Ward ${member.ward} · Minneapolis City Council</div>
+        </div>
+      </div>
+      <div class="member-stat-row">
+        <div class="metric-card"><div class="m-value c-blue">${authored.length}</div><div class="m-label">Resolutions Authored</div></div>
+        <div class="metric-card"><div class="m-value c-red">${dissentRate.toFixed(1)}%</div><div class="m-label">Dissent Rate</div></div>
+        <div class="metric-card"><div class="m-value c-amber">${absent}</div><div class="m-label">Absences</div></div>
+        <div class="metric-card"><div class="m-value c-green">${yearsInOffice ?? '—'}</div><div class="m-label">Years in Office</div></div>
+      </div>
+      <nav class="member-subtabs">
+        <button class="tab-btn active" data-subtab="authored">Authored (${authored.length})</button>
+        <button class="tab-btn" data-subtab="dissented">Dissented (${dissent.length})</button>
+      </nav>
+      <div id="member-subtab-content"></div>
+    </div>`;
+
+  renderMemberSubtab(authored, dissent, member.name);
+
+  document.querySelectorAll('#member-detail .member-subtabs .tab-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      activeMemberTab = btn.dataset.subtab;
+      document.querySelectorAll('#member-detail .member-subtabs .tab-btn').forEach(b => b.classList.toggle('active', b === btn));
+      renderMemberSubtab(authored, dissent, member.name);
+    });
+  });
+}
+
+function renderMemberSubtab(authored, dissent, memberName) {
+  const target = document.getElementById('member-subtab-content');
+  const fmtDate = iso => new Date(iso).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+
+  if (activeMemberTab === 'authored') {
+    target.innerHTML = !authored.length ? '<div class="member-empty">No authored items on record.</div>' : `
+      <div class="db-table-wrap"><table class="db-table">
+        <thead><tr><th>File #</th><th>Subject</th><th>Date</th><th>Result</th></tr></thead>
+        <tbody>${authored.map(i => `<tr>
+          <td><a href="${i.FileURL}" target="_blank" style="color:var(--blue);text-decoration:none;white-space:nowrap;">${i.FileNumber}</a></td>
+          <td class="desc">${i.Subject}</td>
+          <td style="white-space:nowrap;">${fmtDate(i.MeetingDate)}</td>
+          <td><span class="result-pill result-${i.VoteResult.toLowerCase()}">${i.VoteResult}</span></td>
+        </tr>`).join('')}</tbody>
+      </table></div>`;
+  } else {
+    target.innerHTML = !dissent.length ? '<div class="member-empty">No dissents on record.</div>' : `
+      <div class="db-table-wrap"><table class="db-table">
+        <thead><tr><th>File #</th><th>Subject</th><th>Date</th><th>Result</th><th class="num">Tally</th><th>Vote</th></tr></thead>
+        <tbody>${dissent.map(i => {
+          const ayes = Object.values(i.Votes).filter(v=>v==='Aye').length;
+          const nays = Object.values(i.Votes).filter(v=>v==='Nay').length;
+          const vote = i.Votes[memberName] || '';
+          return `<tr>
+            <td><a href="${i.FileURL}" target="_blank" style="color:var(--blue);text-decoration:none;white-space:nowrap;">${i.FileNumber}</a></td>
+            <td class="desc">${i.Subject}</td>
+            <td style="white-space:nowrap;">${fmtDate(i.MeetingDate)}</td>
+            <td><span class="result-pill result-${i.VoteResult.toLowerCase()}">${i.VoteResult}</span></td>
+            <td class="num">${ayes}–${nays}</td>
+            <td><span class="vote-pill ${voteClass(vote)}">${vote}</span></td>
+          </tr>`;
+        }).join('')}</tbody>
+      </table></div>`;
+  }
+}
+
+function generateReport(member) {
+  const issues    = allIssues;
+  const dissent   = getMemberDissent(member.name, issues);
+  const authored  = issues.filter(i => i.AuthorName === member.name).length;
+  const totalContested = totalContestedCount(issues);
 
   const fmtDate = iso => new Date(iso).toLocaleDateString('en-US', { month:'short', day:'numeric', year:'numeric' });
 
@@ -1772,14 +1908,20 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 });
 
-fetch('issues_by_vote_2026.json')
-  .then(r => r.json())
-  .then(data => {
+Promise.all([
+  fetch('issues_by_vote_2026.json').then(r => r.json()),
+  fetch('member_info_2026.json').then(r => r.ok ? r.json() : {}).catch(() => ({})),
+])
+  .then(([data, info]) => {
     allIssues = data;
+    memberInfo = info;
     populateMonthFilter(data);
     populateAuthorFilter(data);
     buildStats(data);
     buildDataBreakdown(data);
+    buildMemberPicker();
+    document.getElementById('member-detail').innerHTML =
+      '<div class="member-empty">Select a member above to see their voting record.</div>';
     document.getElementById('loading-msg')?.remove();
     ['search','filter-result','filter-member-vote','filter-month','filter-author'].forEach(id => {
       document.getElementById(id).addEventListener('input', applyFilters);
