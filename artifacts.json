@@ -1233,5 +1233,18 @@
             "State Government",
             "Spotlight"
         ]
+    },
+    {
+        "id": 21,
+        "title": "North Star +",
+        "description": "List of MN Explained Approved legislative ideas or proposals.",
+        "subtitle": "",
+        "footer": "",
+        "type": "link",
+        "image": "/img/flag.webp",
+        "link": "/north_star_plus/index.html",
+        "categories": [
+            "State Government"
+        ]
     }
 ]
