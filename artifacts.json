@@ -1246,5 +1246,18 @@
         "categories": [
             "State Government"
         ]
+    },
+    {
+	"id":22,
+	"title":"Mpls Zoning: Food Deserts and Housing",
+	"description":"Current zoning ordinances, and potential changes",
+	"subtitle":"",
+	"footer":"",
+	"type":"link",
+	"image":"",
+	"link":"/city_zoning/index.html",
+	"categories":[
+	    "Minneapolis Government"
+	]
     }
 ]
