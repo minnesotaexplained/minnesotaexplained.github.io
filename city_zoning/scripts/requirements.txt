@@ -1,0 +1,4 @@
+openpyxl
+pdfplumber
+shapely
+pyproj

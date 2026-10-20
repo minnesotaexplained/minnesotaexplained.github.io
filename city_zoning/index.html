@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Minneapolis Zoning Code</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #000;
+    --bg-2: #0d0d0d;
+    --bg-3: #161616;
+    --text: #e0e0e0;
+    --text-2: #aaa;
+    --text-3: #777;
+    --border: #1e1e1e;
+    --border-2: #2a2a2a;
+    --accent: #4a9eff;
+    --accent-soft: rgba(74, 158, 255, 0.14);
+    --mark: rgba(255, 210, 74, 0.35);
+    --p-bg: rgba(72, 187, 120, 0.22);   --p-fg: #7ee2a8;
+    --c-bg: rgba(237, 170, 60, 0.22);   --c-fg: #f3c06b;
+    --x-bg: rgba(160, 160, 160, 0.14);  --x-fg: #bbb;
+  }
+  @media (prefers-color-scheme: light) {
+    :root:not([data-theme="dark"]) {
+      --bg: #fafaf8; --bg-2: #fff; --bg-3: #f1f1ee;
+      --text: #1d1d1b; --text-2: #55554f; --text-3: #8a8a84;
+      --border: #e4e4df; --border-2: #d6d6cf;
+      --accent: #1f6fd1; --accent-soft: rgba(31, 111, 209, 0.10);
+      --mark: rgba(255, 196, 0, 0.35);
+      --p-bg: #dcf3e5; --p-fg: #1c6b3e;
+      --c-bg: #fbecd2; --c-fg: #8a5a0b;
+      --x-bg: #eeeeea; --x-fg: #55554f;
+    }
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; height: 100%; }
+  body { height: 100vh; height: 100dvh; }
+  body {
+    font-family: 'Space Grotesk', system-ui, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    display: grid;
+    grid-template-columns: 340px minmax(0, 1fr);
+    grid-template-rows: auto minmax(0, 1fr);
+    grid-template-areas: "top top" "side main";
+  }
+  a { color: var(--accent); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+
+  /* top bar */
+  header {
+    grid-area: top;
+    display: flex; align-items: center; gap: 14px;
+    padding: 14px 20px;
+    border-bottom: 1px solid var(--border);
+    background: var(--bg);
+  }
+  header h1 { font-size: 1.05rem; font-weight: 700; margin: 0; letter-spacing: 0.01em; }
+  header h1 span { color: var(--text-3); font-weight: 500; }
+  #menuBtn {
+    display: none; background: none; border: 1px solid var(--border-2); color: var(--text);
+    border-radius: 6px; padding: 5px 10px; font: inherit; cursor: pointer;
+  }
+
+  /* sidebar */
+  aside {
+    grid-area: side;
+    border-right: 1px solid var(--border);
+    background: var(--bg-2);
+    display: flex; flex-direction: column;
+    min-height: 0;
+  }
+  .search { padding: 14px; border-bottom: 1px solid var(--border); }
+  .search input {
+    width: 100%; padding: 9px 12px; border-radius: 8px;
+    border: 1px solid var(--border-2); background: var(--bg); color: var(--text);
+    font: inherit; font-size: 0.95rem;
+  }
+  .search input:focus { outline: none; border-color: var(--accent); }
+  .search .hint { font-size: 0.75rem; color: var(--text-3); margin-top: 6px; }
+  #nav { overflow-y: auto; flex: 1; padding: 8px 0 40px; font-size: 0.88rem; }
+  .tree details > summary {
+    list-style: none; cursor: pointer; padding: 5px 14px; color: var(--text);
+    display: flex; gap: 6px; align-items: baseline;
+  }
+  .tree details > summary::-webkit-details-marker { display: none; }
+  .tree details > summary::before {
+    content: "▸"; color: var(--text-3); font-size: 0.75rem; width: 10px; flex: none;
+    transition: transform 0.12s;
+  }
+  .tree details[open] > summary::before { transform: rotate(90deg); }
+  .tree summary:hover, .tree a.sec:hover { background: var(--bg-3); text-decoration: none; }
+  .tree .ch > summary { font-weight: 600; }
+  .tree .art > summary { color: var(--text-2); padding-left: 28px; }
+  .tree a.sec {
+    display: flex; gap: 8px; padding: 4px 14px 4px 46px; color: var(--text-2);
+  }
+  .tree .ch > a.sec { padding-left: 30px; }
+  .tree a.sec .num { color: var(--text-3); flex: none; min-width: 58px; font-variant-numeric: tabular-nums; }
+  .tree a.sec.active, .tree summary.active { background: var(--accent-soft); color: var(--text); }
+  .tree a.sec.empty { opacity: 0.45; }
+  .tree .lbl { flex: none; color: var(--text-3); }
+
+  .results { padding: 4px 0; }
+  .results .count { padding: 6px 14px 10px; color: var(--text-3); font-size: 0.8rem; }
+  .results a {
+    display: block; padding: 8px 14px; color: var(--text); border-bottom: 1px solid var(--border);
+  }
+  .results a:hover { background: var(--bg-3); text-decoration: none; }
+  .results .rt { font-weight: 600; font-size: 0.86rem; }
+  .results .rt .num { color: var(--accent); margin-right: 6px; }
+  .results .snip { color: var(--text-2); font-size: 0.8rem; margin-top: 3px; line-height: 1.4; }
+  mark { background: var(--mark); color: inherit; border-radius: 2px; padding: 0 1px; }
+
+  /* main */
+  main { grid-area: main; overflow-y: auto; min-height: 0; }
+  .doc { max-width: 900px; padding: 32px 40px 80px; }
+  .crumbs { font-size: 0.82rem; color: var(--text-3); margin-bottom: 14px; }
+  .crumbs a { color: var(--text-2); }
+  .crumbs .sep { margin: 0 6px; }
+  h2.title { font-size: 1.7rem; line-height: 1.2; margin: 0 0 6px; font-weight: 700; }
+  h2.title .num { color: var(--accent); margin-right: 10px; }
+  .meta { color: var(--text-3); font-size: 0.82rem; margin-bottom: 26px; display: flex; gap: 16px; flex-wrap: wrap; }
+  .body { font-family: 'Source Serif 4', Georgia, serif; font-size: 1.06rem; line-height: 1.65; }
+  .body p { margin: 0 0 0.85em; }
+  .body p.l1 { margin-left: 0; }
+  .body p.l2 { margin-left: 1.6em; }
+  .body p.l3 { margin-left: 3.2em; }
+  .body p.l4 { margin-left: 4.8em; }
+  .body p.hist { font-family: 'Space Grotesk', sans-serif; font-size: 0.8rem; color: var(--text-3); margin-top: 1.4em; }
+  .body p.note { font-size: 0.92rem; color: var(--text-2); }
+  .empty-note { color: var(--text-3); font-style: italic; }
+
+  .children { list-style: none; padding: 0; margin: 10px 0 0; border-top: 1px solid var(--border); }
+  .children li { border-bottom: 1px solid var(--border); }
+  .children a { display: flex; gap: 14px; padding: 10px 4px; color: var(--text); }
+  .children a:hover { background: var(--bg-3); text-decoration: none; }
+  .children .num { color: var(--accent); min-width: 80px; font-variant-numeric: tabular-nums; }
+  .children .kind { color: var(--text-3); margin-left: auto; font-size: 0.8rem; }
+
+  .pager { display: flex; justify-content: space-between; gap: 12px; margin-top: 40px; padding-top: 18px; border-top: 1px solid var(--border); font-size: 0.9rem; }
+  .pager a { max-width: 48%; }
+  .pager .lbl { display: block; color: var(--text-3); font-size: 0.75rem; }
+
+  /* tables */
+  figure.tbl { margin: 1.4em 0 1.8em; font-family: 'Space Grotesk', sans-serif; }
+  figure.tbl figcaption { font-weight: 600; font-size: 0.92rem; margin-bottom: 8px; }
+  figure.tbl figcaption .tn { color: var(--accent); margin-right: 6px; }
+  .tbl-wrap { overflow: auto; max-height: 80vh; border: 1px solid var(--border-2); border-radius: 8px; }
+  table { border-collapse: collapse; font-size: 0.84rem; width: 100%; }
+  th, td { border: 1px solid var(--border); padding: 6px 9px; text-align: left; vertical-align: top; line-height: 1.4; }
+  thead th { background: var(--bg-3); position: sticky; top: 0; z-index: 1; font-weight: 600; }
+  thead tr:nth-child(2) th { top: 30px; }
+  td.group { background: var(--bg-3); font-weight: 700; letter-spacing: 0.03em; font-size: 0.78rem; }
+  .use td.code { text-align: center; white-space: nowrap; font-weight: 600; min-width: 42px; }
+  .use td.code.p { background: var(--p-bg); color: var(--p-fg); }
+  .use td.code.c { background: var(--c-bg); color: var(--c-fg); }
+  .use th.d { text-align: center; }
+  .use td:first-child { min-width: 220px; }
+  .legend { display: flex; gap: 14px; flex-wrap: wrap; font-size: 0.8rem; color: var(--text-2); margin: 8px 0 0; }
+  .legend span b { display: inline-block; padding: 1px 6px; border-radius: 4px; margin-right: 4px; }
+  .legend .p b { background: var(--p-bg); color: var(--p-fg); }
+  .legend .c b { background: var(--c-bg); color: var(--c-fg); }
+
+  .welcome h2 { font-size: 2rem; margin: 0 0 10px; }
+  .welcome p { color: var(--text-2); line-height: 1.6; max-width: 640px; }
+  .quick { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 10px; margin-top: 26px; }
+  .quick a { border: 1px solid var(--border-2); border-radius: 10px; padding: 14px; color: var(--text); background: var(--bg-2); }
+  .quick a:hover { border-color: var(--accent); text-decoration: none; }
+  .quick .num { color: var(--accent); font-size: 0.82rem; display: block; margin-bottom: 4px; }
+  #loading { padding: 40px; color: var(--text-3); }
+
+  @media (max-width: 820px) {
+    body { grid-template-columns: minmax(0, 1fr); grid-template-areas: "top" "main"; }
+    header h1 span { display: none; }
+    header { padding: 12px 16px; }
+    #menuBtn { display: inline-block; }
+    aside {
+      position: fixed; top: 57px; left: 0; bottom: 0; width: min(88vw, 360px); z-index: 10;
+      transform: translateX(-100%); transition: transform 0.18s; box-shadow: 0 8px 32px rgba(0,0,0,0.5);
+    }
+    body.nav-open aside { transform: none; }
+    .doc { padding: 22px 16px 60px; }
+    h2.title { font-size: 1.35rem; }
+  }
+
+  /* shared section tabs */
+  header nav.tabs { margin-left: auto; display: flex; align-items: center; gap: 4px; font-size: 0.9rem; }
+  header nav.tabs a { color: var(--text-2); padding: 6px 11px; border-radius: 7px; white-space: nowrap; }
+  header nav.tabs a:hover { background: var(--bg-3); text-decoration: none; color: var(--text); }
+  header nav.tabs a.active { background: var(--accent-soft); color: var(--text); font-weight: 600; }
+  header nav.tabs a.site { margin-left: 10px; padding-left: 14px; border-left: 1px solid var(--border-2); border-radius: 0; }
+  header nav.tabs .short { display: none; }
+  @media (max-width: 860px) {
+    header nav.tabs a.site { display: none; }
+    header nav.tabs a { padding: 6px 8px; }
+    header nav.tabs .full { display: none; }
+    header nav.tabs .short { display: inline; }
+  }
+  @media (max-width: 560px) {
+    header h1 { display: none; }
+    header nav.tabs { margin-left: 0; flex: 1; justify-content: space-between; }
+  }
+</style>
+</head>
+<body>
+<header>
+  <button id="menuBtn" aria-label="Show sections">☰</button>
+  <h1>Minneapolis Zoning Code <span>· Title 20</span></h1>
+  <nav class="tabs">
+    <a href="index.html" class="active" aria-current="page"><span class="full">Zoning code</span><span class="short">Code</span></a>
+    <a href="map.html"><span class="full">Zoning map</span><span class="short">Map</span></a>
+    <a href="sim.html"><span class="full">Simulator</span><span class="short">Sim</span></a>
+    <a href="legislation.html"><span class="full">Proposed ordinances</span><span class="short">Ordinances</span></a>
+    <a class="site" href="../">Minnesota Explained</a>
+  </nav>
+</header>
+<aside>
+  <div class="search">
+    <input id="q" type="search" placeholder="Search sections, e.g. accessory dwelling" autocomplete="off">
+    <div class="hint">Searches titles and full text · press / to focus</div>
+  </div>
+  <div id="nav"></div>
+</aside>
+<main id="main"><div id="loading">Loading zoning code…</div></main>
+
+<script>
+(() => {
+  const $ = (s) => document.querySelector(s);
+  const esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+
+  let root, all = [], sections = [], byKey = new Map(), tableHome = new Map(), parentOf = new Map();
+
+  const keyOf = (n) => (n.type === "section" ? n.number : n.id);
+  const label = (n) => {
+    if (n.type === "chapter") return `Chapter ${n.number}`;
+    if (n.type === "article") return `Article ${n.number}`;
+    if (n.type === "title") return `Title ${n.number}`;
+    return n.number;
+  };
+  const titleCase = (s) =>
+    s && s === s.toUpperCase()
+      ? s.toLowerCase().replace(/\b([a-z])/g, (m) => m.toUpperCase()).replace(/\b(And|Or|Of|The|In|For|To|A)\b/g, (m) => m.toLowerCase()).replace(/^./, (m) => m.toUpperCase())
+      : s;
+  const isEmpty = (n) => !n.text && !(n.tables && n.tables.length);
+
+  function index(n, parent) {
+    all.push(n);
+    if (parent) parentOf.set(n, parent);
+    byKey.set(keyOf(n), n);
+    if (n.type === "section") sections.push(n);
+    (n.tables || []).forEach((t) => tableHome.set(t.number, n));
+    (n.children || []).forEach((c) => index(c, n));
+  }
+
+  /* ---------- links inside text ---------- */
+  function linkify(html) {
+    // section references: "section 545.20", "Section 525.210(d)", "sections 540.110 and 540.130"
+    html = html.replace(/\b(5[2-6]\d\.\d{2,4})(?=[\s(),.;:]|$)/g, (m, num) =>
+      byKey.has(num) ? `<a href="#${num}">${num}</a>` : m);
+    html = html.replace(/\bTable (5[2-6]\d-\d+)\b/g, (m, num) => {
+      const home = tableHome.get(num);
+      return home ? `<a href="#${home.number}~t${num}">${m}</a>` : m;
+    });
+    html = html.replace(/\b(Chapter) (5[2-6]\d)\b/g, (m, w, num) => {
+      const ch = root.children.find((c) => c.number === num);
+      return ch ? `<a href="#${ch.id}">${m}</a>` : m;
+    });
+    return html;
+  }
+
+  /* ---------- tables ---------- */
+  const CODE = /^(\d+)?([PC])(\*)?$/;
+  function renderTable(t) {
+    const isUse = t.number === "545-1";
+    const hr = t.header_rows || 1;
+    const head = t.rows.slice(0, hr), body = t.rows.slice(hr);
+    let h = `<figure class="tbl ${isUse ? "use" : ""}" id="t${esc(t.number)}"><figcaption><span class="tn">Table ${esc(t.number)}</span>${esc(t.caption)}</figcaption><div class="tbl-wrap"><table><thead>`;
+    if (isUse) {
+      // the second header row holds the district codes; skip the "Zoning Districts" super-row
+      const codes = head[head.length - 1];
+      h += "<tr>" + codes.map((c, i) => `<th class="${i > 0 && i < codes.length - 1 ? "d" : ""}">${esc(c)}</th>`).join("") + "</tr>";
+    } else {
+      head.forEach((r) => (h += "<tr>" + r.map((c) => `<th>${esc(c)}</th>`).join("") + "</tr>"));
+    }
+    h += "</thead><tbody>";
+    for (const r of body) {
+      const nonEmpty = r.filter((c) => c).length;
+      if (nonEmpty === 1 && r[0] && r.length > 1) {
+        h += `<tr><td class="group" colspan="${r.length}">${linkify(esc(r[0]))}</td></tr>`;
+        continue;
+      }
+      h += "<tr>" + r.map((c, i) => {
+        if (isUse && i > 0) {
+          const m = c.match(CODE);
+          const cls = m ? (m[2] === "P" ? "p" : "c") : "";
+          return `<td class="code ${cls}" ${m ? `title="${useTip(m)}"` : ""}>${esc(c)}</td>`;
+        }
+        return `<td>${linkify(esc(c))}</td>`;
+      }).join("") + "</tr>";
+    }
+    h += "</tbody></table></div>";
+    if (isUse) {
+      h += `<div class="legend"><span class="p"><b>P</b>Permitted</span><span class="c"><b>C</b>Conditional use permit</span>
+        <span><b>10P</b>number = max. % / size limit, see <a href="#545.20">545.20</a></span>
+        <span><b>*</b>see <a href="#545.20">545.20</a></span><span><b>+</b>specific use standards apply</span><span><b>X</b>general use standards apply</span></div>`;
+    }
+    return h + "</figure>";
+  }
+  function useTip(m) {
+    const kind = m[2] === "P" ? "Permitted" : "Conditional use permit";
+    return kind + (m[1] ? ` (limited: ${m[1]}, see 545.20)` : "") + (m[3] ? " (with conditions, see 545.20)" : "");
+  }
+
+  /* ---------- text ---------- */
+  function paraClass(p) {
+    if (/^\(Ord\. No\.|^\(Code \d{4}|^\(\d{2}-\d{2}-\d{2}\)/.test(p)) return "hist";
+    if (/^\([a-z]{1,2}\)\s/.test(p) && !/^\((i|ii|iii|iv|v|vi|vii|viii|ix|x)\)\s/.test(p)) return "l1";
+    if (/^\(\d+\)\s/.test(p)) return "l2";
+    if (/^[a-z]{1,2}\.\s/.test(p)) return "l3";
+    if (/^(\d+\)|\((i|ii|iii|iv|v|vi|vii|viii|ix|x)\))\s/.test(p)) return "l4";
+    if (/^Footnotes:|^Editor's note|^Cross reference|^\*/.test(p)) return "note";
+    return "";
+  }
+  function renderBody(n) {
+    const tables = new Map((n.tables || []).map((t) => [t.number, t]));
+    const used = new Set();
+    let h = "";
+    for (const p of (n.text || "").split("\n\n")) {
+      if (!p.trim()) continue;
+      const tm = p.match(/^\[Table (5[2-6]\d-\d+): .*\(see tables\)\]$/);
+      if (tm && tables.has(tm[1])) {
+        h += renderTable(tables.get(tm[1]));
+        used.add(tm[1]);
+        continue;
+      }
+      const text = p.replace(/^Footnotes:\s*--- \((\d+)\) ---\s*/, "Footnote $1 — ");
+      h += `<p class="${paraClass(text)}">${linkify(esc(text))}</p>`;
+    }
+    for (const [num, t] of tables) if (!used.has(num)) h += renderTable(t);
+    return h;
+  }
+
+  /* ---------- views ---------- */
+  function crumbs(n) {
+    const chain = [];
+    for (let p = parentOf.get(n); p; p = parentOf.get(p)) chain.unshift(p);
+    return chain
+      .map((p) => (p.type === "title" ? `<a href="#">Title 20</a>` : `<a href="#${keyOf(p)}">${esc(label(p))}</a>`))
+      .join('<span class="sep">›</span>');
+  }
+
+  function show(n, tableAnchor) {
+    const main = $("#main");
+    const kids = n.children || [];
+    let h = `<div class="doc"><div class="crumbs">${crumbs(n)}</div>`;
+    h += `<h2 class="title"><span class="num">${esc(n.type === "section" ? "§ " + n.number : label(n))}</span>${esc(titleCase(n.title))}</h2>`;
+    const meta = [];
+    if (n.url) meta.push(`<a href="${esc(n.url)}" target="_blank" rel="noopener">View on Municode ↗</a>`);
+    if (n.text_source === "pdf") meta.push("Text from Municode Supplement No. 72 PDF");
+    if (n.tables && n.tables.length) meta.push(`${n.tables.length} table${n.tables.length > 1 ? "s" : ""}`);
+    h += `<div class="meta">${meta.map((m) => `<span>${m}</span>`).join("")}</div>`;
+    h += `<div class="body">${renderBody(n)}</div>`;
+    if (n.type === "section" && isEmpty(n)) h += `<p class="empty-note">This section has no text in the code${/Reserved/i.test(n.title) ? " (reserved)" : ""}.</p>`;
+    if (kids.length) {
+      h += `<ul class="children">` + kids.map((c) =>
+        `<li><a href="#${esc(keyOf(c))}"><span class="num">${esc(c.type === "section" ? c.number : label(c))}</span><span>${esc(titleCase(c.title))}</span>${c.type !== "section" ? `<span class="kind">${(c.children || []).length} sections</span>` : ""}</a></li>`).join("") + "</ul>";
+    }
+    if (n.type === "section") {
+      const i = sections.indexOf(n);
+      const prev = sections[i - 1], next = sections[i + 1];
+      h += `<div class="pager">${prev ? `<a href="#${prev.number}"><span class="lbl">← Previous</span>${prev.number} ${esc(prev.title)}</a>` : "<span></span>"}${next ? `<a href="#${next.number}" style="text-align:right"><span class="lbl">Next →</span>${next.number} ${esc(next.title)}</a>` : ""}</div>`;
+    }
+    main.innerHTML = h + "</div>";
+    if (tableAnchor) {
+      const el = document.getElementById("t" + tableAnchor);
+      if (el) { el.scrollIntoView(); return; }
+    }
+    main.scrollTop = 0;
+  }
+
+  function showHome() {
+    const picks = ["545.100", "565.10", "540.110", "540.410", "555.220", "530.20", "525.230", "550.790"]
+      .map((k) => byKey.get(k)).filter(Boolean);
+    let h = `<div class="doc welcome"><h2>Minneapolis Zoning Code</h2>
+      <p>Title 20 of the Minneapolis Code of Ordinances: ${sections.length} sections across ${root.children.length} chapters, with all ${tableHome.size} tables. Pick a chapter on the left, or search for a word or section number.</p>
+      <div class="quick">${picks.map((n) => `<a href="#${n.number}"><span class="num">§ ${n.number}</span>${esc(n.title)}</a>`).join("")}</div>
+      <ul class="children" style="margin-top:34px">${root.children.map((c) =>
+        `<li><a href="#${esc(c.id)}"><span class="num">Chapter ${esc(c.number)}</span><span>${esc(titleCase(c.title))}</span></a></li>`).join("")}</ul></div>`;
+    $("#main").innerHTML = h;
+    $("#main").scrollTop = 0;
+  }
+
+  /* ---------- sidebar ---------- */
+  function buildTree() {
+    const secLink = (s) => `<a class="sec${isEmpty(s) ? " empty" : ""}" href="#${s.number}" data-k="${s.number}"><span class="num">${s.number}</span><span>${esc(s.title)}</span></a>`;
+    let h = '<div class="tree">';
+    for (const ch of root.children) {
+      h += `<details class="ch" data-k="${ch.id}"><summary data-k="${ch.id}"><span class="lbl">${ch.number}</span>${esc(titleCase(ch.title))}</summary>`;
+      for (const c of ch.children || []) {
+        if (c.type === "article") {
+          h += `<details class="art" data-k="${c.id}"><summary data-k="${c.id}"><span class="lbl">${esc(c.number)}</span>${esc(titleCase(c.title))}</summary>${(c.children || []).map(secLink).join("")}</details>`;
+        } else h += secLink(c);
+      }
+      h += "</details>";
+    }
+    return h + "</div>";
+  }
+  let treeHTML = "";
+  function showTree() { $("#nav").innerHTML = treeHTML; markActive(); }
+
+  function markActive() {
+    const k = currentKey();
+    document.querySelectorAll("#nav .active").forEach((e) => e.classList.remove("active"));
+    if (!k) return;
+    const el = document.querySelector(`#nav [data-k="${CSS.escape(k)}"]:not(details)`);
+    if (!el) return;
+    el.classList.add("active");
+    for (let p = el.parentElement; p && p.id !== "nav"; p = p.parentElement) if (p.tagName === "DETAILS") p.open = true;
+    const r = el.getBoundingClientRect(), nr = $("#nav").getBoundingClientRect();
+    if (r.top < nr.top || r.bottom > nr.bottom) el.scrollIntoView({ block: "center" });
+  }
+
+  // clicking a chapter/article summary opens it and shows its page
+  document.addEventListener("click", (e) => {
+    const s = e.target.closest("#nav summary");
+    if (s) {
+      const k = s.dataset.k;
+      if (location.hash.slice(1) !== k) { location.hash = k; if (s.parentElement.open) e.preventDefault(); }
+    }
+    if (e.target.closest("#nav a")) document.body.classList.remove("nav-open");
+  });
+
+  /* ---------- search ---------- */
+  function search(q) {
+    const terms = q.toLowerCase().split(/\s+/).filter(Boolean);
+    if (!terms.length) return showTree();
+    const direct = byKey.get(q.trim().replace(/^§\s*/, ""));
+    const hits = [];
+    for (const n of sections) {
+      const title = (n.number + " " + n.title).toLowerCase();
+      const body = (n.text + " " + (n.tables || []).map((t) => t.caption + " " + t.rows.flat().join(" ")).join(" ")).toLowerCase();
+      let score = 0, ok = true;
+      for (const t of terms) {
+        const inTitle = title.includes(t), inBody = body.includes(t);
+        if (!inTitle && !inBody) { ok = false; break; }
+        score += (inTitle ? 10 : 0) + (inBody ? 1 + Math.min(5, body.split(t).length - 1) * 0.2 : 0);
+      }
+      if (ok) hits.push({ n, score, body });
+    }
+    hits.sort((a, b) => b.score - a.score);
+    const re = new RegExp("(" + terms.map((t) => t.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")).join("|") + ")", "gi");
+    const hl = (s) => esc(s).replace(re, "<mark>$1</mark>");
+    let h = `<div class="results"><div class="count">${hits.length} section${hits.length === 1 ? "" : "s"}</div>`;
+    if (direct && direct.type === "section") hits.unshift({ n: direct, body: "" });
+    for (const { n } of hits.slice(0, 150)) {
+      const text = n.text.replace(/\[Table [^\]]+\]/g, "");
+      const pos = text.toLowerCase().indexOf(terms[0]);
+      const snip = pos >= 0 ? (pos > 60 ? "…" : "") + text.slice(Math.max(0, pos - 60), pos + 120) + "…" : text.slice(0, 140);
+      h += `<a href="#${n.number}"><div class="rt"><span class="num">${n.number}</span>${hl(n.title)}</div><div class="snip">${hl(snip)}</div></a>`;
+    }
+    $("#nav").innerHTML = h + "</div>";
+  }
+  let timer;
+  $("#q").addEventListener("input", (e) => { clearTimeout(timer); timer = setTimeout(() => search(e.target.value), 120); });
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "/" && document.activeElement !== $("#q")) { e.preventDefault(); $("#q").focus(); }
+    if (e.key === "Escape" && document.activeElement === $("#q")) { $("#q").value = ""; showTree(); }
+  });
+  $("#menuBtn").addEventListener("click", () => document.body.classList.toggle("nav-open"));
+
+  /* ---------- routing ---------- */
+  function currentKey() {
+    const k = decodeURIComponent(location.hash.slice(1)).split("~")[0];
+    if (k.startsWith("tbl:")) { const h = tableHome.get(k.slice(4)); return h ? h.number : k; }
+    return k;
+  }
+  function route() {
+    let [k, anchor] = decodeURIComponent(location.hash.slice(1)).split("~");
+    if (k && k.startsWith("tbl:")) {  // #tbl:540-2 opens the section holding that table
+      const home = tableHome.get(k.slice(4));
+      if (home) { anchor = "t" + k.slice(4); k = home.number; }
+    }
+    const n = k && byKey.get(k);
+    if (n && n !== root) show(n, anchor && anchor.startsWith("t") ? anchor.slice(1) : null);
+    else showHome();
+    if (!$("#q").value) markActive();
+  }
+  window.addEventListener("hashchange", route);
+
+  fetch("title20.json")
+    .then((r) => { if (!r.ok) throw new Error(r.status); return r.json(); })
+    .then((data) => {
+      root = data.title;
+      index(root, null);
+      treeHTML = buildTree();
+      showTree();
+      route();
+    })
+    .catch((err) => {
+      $("#main").innerHTML = `<div class="doc"><p>Couldn't load <code>title20.json</code> (${esc(err.message)}). If you opened this file directly, serve the folder instead, e.g. <code>python3 -m http.server</code>.</p></div>`;
+    });
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,5 @@
+# Municode PDF is over GitHub's 100 MB file limit; keep it local (needed only for scripts/build.sh)
+ordinances.pdf
+
+# Python cache
+__pycache__/

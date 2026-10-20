@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Grocery Access Simulator</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
+<style>
+  :root {
+    --bg: #000; --bg-2: #0d0d0d; --bg-3: #161616;
+    --text: #e0e0e0; --text-2: #aaa; --text-3: #777;
+    --border: #1e1e1e; --border-2: #2a2a2a;
+    --accent: #4a9eff; --accent-soft: rgba(74, 158, 255, 0.14);
+    --full: #3987e5; --small: #199e70; --added: #9085e9; --good: #4ec9b0; --bad: #f39a63;
+  }
+  @media (prefers-color-scheme: light) {
+    :root:not([data-theme="dark"]) {
+      --bg: #fafaf8; --bg-2: #fff; --bg-3: #f1f1ee;
+      --text: #1d1d1b; --text-2: #55554f; --text-3: #8a8a84;
+      --border: #e4e4df; --border-2: #d6d6cf;
+      --accent: #1f6fd1; --accent-soft: rgba(31, 111, 209, 0.10);
+      --full: #2a78d6; --small: #1baf7a; --added: #6250d6; --good: #0f8a72; --bad: #b9501f;
+    }
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; height: 100%; }
+  body {
+    font-family: 'Space Grotesk', system-ui, sans-serif; background: var(--bg); color: var(--text);
+    display: grid; grid-template-columns: minmax(0, 1fr) 460px; grid-template-rows: auto minmax(0, 1fr);
+    grid-template-areas: "top top" "map panel"; height: 100vh; height: 100dvh;
+  }
+  a { color: var(--accent); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  header { grid-area: top; display: flex; align-items: center; gap: 16px; padding: 14px 20px; border-bottom: 1px solid var(--border); }
+  header h1 { font-size: 1.05rem; margin: 0; font-weight: 700; white-space: nowrap; }
+
+  .map-wrap { position: relative; grid-area: map; min-height: 0; }
+  #map { position: absolute; inset: 0; background: var(--bg-3); }
+  #map.adding { cursor: crosshair; }
+  .leaflet-container { font-family: inherit; }
+  .mapbar { position: absolute; z-index: 500; top: 12px; left: 56px; display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
+  .mapbar label.chip { display: flex; gap: 6px; align-items: center; background: var(--bg-2); border: 1px solid var(--border-2); border-radius: 8px; padding: 7px 10px; font-size: 0.82rem; color: var(--text-2); cursor: pointer; box-shadow: 0 2px 8px rgba(0,0,0,0.25); }
+  .modehint { position: absolute; z-index: 500; top: 56px; left: 56px; background: var(--added); color: #fff; border-radius: 8px; padding: 6px 10px; font-size: 0.8rem; display: none; box-shadow: 0 2px 8px rgba(0,0,0,0.25); }
+  .legend { position: absolute; z-index: 500; bottom: 22px; left: 12px; background: var(--bg-2); border: 1px solid var(--border-2); border-radius: 8px; padding: 9px 12px; font-size: 0.76rem; box-shadow: 0 2px 8px rgba(0,0,0,0.25); }
+  .legend .ttl { font-weight: 600; margin-bottom: 5px; }
+  .legend .row { display: flex; align-items: center; gap: 7px; margin: 3px 0; color: var(--text-2); }
+  .sw { width: 14px; height: 12px; border-radius: 3px; flex: none; display: inline-block; }
+  .dot { width: 10px; height: 10px; border-radius: 50%; flex: none; display: inline-block; border: 2px solid var(--bg-2); box-sizing: content-box; }
+  .leaflet-popup-content-wrapper, .leaflet-popup-tip { background: var(--bg-2); color: var(--text); }
+  .leaflet-popup-content { font-size: 0.82rem; line-height: 1.5; margin: 12px 14px; min-width: 230px; }
+  .leaflet-popup-content h4 { margin: 0 0 4px; font-size: 0.95rem; }
+  .leaflet-popup-content table { border-collapse: collapse; width: 100%; margin-top: 6px; }
+  .leaflet-popup-content td { padding: 3px 0; vertical-align: top; }
+  .leaflet-popup-content td + td { text-align: right; font-variant-numeric: tabular-nums; padding-left: 10px; }
+  .leaflet-popup-content .warn { color: var(--bad); margin-top: 6px; }
+  .pbtn { margin-top: 8px; font: inherit; font-size: 0.8rem; padding: 5px 10px; border-radius: 7px; border: 1px solid var(--border-2); background: var(--bg); color: var(--text); cursor: pointer; }
+
+  #panel { grid-area: panel; border-left: 1px solid var(--border); background: var(--bg-2); overflow-y: auto; padding: 20px 22px 60px; }
+  .simpick { display: flex; align-items: center; gap: 10px; margin-bottom: 16px; }
+  .simpick select { flex: 1; min-width: 0; }
+  .simpick label { font-size: 0.76rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--text-3); font-weight: 600; white-space: nowrap; }
+  .today { display: flex; gap: 10px; margin-bottom: 18px; }
+  .today div { flex: 1; background: var(--bg); border: 1px solid var(--border-2); border-radius: 10px; padding: 10px 12px; }
+  .today b { display: block; font-size: 1.2rem; font-variant-numeric: tabular-nums; }
+  .today span { font-size: 0.74rem; color: var(--text-2); }
+  #panel h2 { margin: 0 0 4px; font-size: 1.3rem; }
+  #panel h3 { font-size: 0.76rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--text-3); margin: 24px 0 10px; font-weight: 600; }
+  .lede { font-size: 0.86rem; color: var(--text-2); line-height: 1.55; margin: 6px 0 0; }
+  .q { font-size: 0.86rem; color: var(--text-2); margin: 14px 0 6px; }
+  .seg { display: flex; border: 1px solid var(--border-2); border-radius: 8px; overflow: hidden; background: var(--bg); }
+  .seg button { flex: 1; background: none; border: none; color: var(--text-2); font: inherit; font-size: 0.84rem; padding: 8px 6px; cursor: pointer; white-space: nowrap; }
+  .seg button.on { background: var(--accent-soft); color: var(--text); font-weight: 600; }
+  .mapbar .seg { box-shadow: 0 2px 8px rgba(0,0,0,0.25); }
+  select { width: 100%; background: var(--bg); color: var(--text); border: 1px solid var(--border-2); border-radius: 8px; font: inherit; font-size: 0.86rem; padding: 8px 10px; }
+  .btnrow { display: flex; gap: 8px; margin-top: 12px; }
+  .btn { font: inherit; font-size: 0.84rem; padding: 8px 12px; border-radius: 8px; border: 1px solid var(--border-2); background: var(--bg); color: var(--text); cursor: pointer; }
+  .btn.primary { border-color: var(--added); color: var(--text); background: color-mix(in srgb, var(--added) 16%, transparent); font-weight: 600; flex: 1; }
+  .changes { margin-top: 12px; font-size: 0.82rem; }
+  .changes .chg { display: flex; align-items: center; gap: 8px; padding: 6px 0; border-bottom: 1px solid var(--border); }
+  .changes .chg span.t { flex: 1; color: var(--text-2); }
+  .changes .chg button { background: none; border: none; color: var(--text-3); cursor: pointer; font-size: 1rem; padding: 0 4px; }
+  .headline { margin-top: 22px; padding: 14px 16px; border-radius: 12px; background: var(--accent-soft); border: 1px solid var(--accent); font-size: 0.95rem; line-height: 1.55; }
+  table.cmp { width: 100%; border-collapse: collapse; font-size: 0.84rem; margin-top: 4px; }
+  table.cmp th, table.cmp td { padding: 8px 6px; border-bottom: 1px solid var(--border); text-align: right; font-variant-numeric: tabular-nums; }
+  table.cmp th:first-child, table.cmp td:first-child { text-align: left; color: var(--text-2); font-weight: 400; }
+  table.cmp th { font-size: 0.78rem; color: var(--text-3); }
+  table.cmp tr.big td { font-size: 1rem; font-weight: 700; }
+  td.better { color: var(--good); } td.worse { color: var(--bad); }
+  table.t { width: 100%; border-collapse: collapse; font-size: 0.8rem; }
+  table.t th, table.t td { padding: 6px 4px; border-bottom: 1px solid var(--border); text-align: right; font-variant-numeric: tabular-nums; }
+  table.t th:first-child, table.t td:first-child { text-align: left; }
+  table.t th { color: var(--text-3); font-weight: 600; font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.04em; }
+  table.t tr.hood { cursor: pointer; }
+  table.t tr.hood:hover td { background: var(--bg-3); }
+  .linkbtn { background: none; border: none; color: var(--accent); font: inherit; font-size: 0.8rem; cursor: pointer; padding: 8px 0; }
+  .note { font-size: 0.76rem; color: var(--text-3); line-height: 1.55; }
+  details.box { border: 1px solid var(--border-2); border-radius: 10px; padding: 10px 12px; margin-top: 14px; background: var(--bg); }
+  details.box summary { cursor: pointer; font-weight: 600; font-size: 0.86rem; }
+  details.box p, details.box li { font-size: 0.8rem; color: var(--text-2); line-height: 1.55; }
+  details.box .grid { display: grid; grid-template-columns: 1fr 110px; gap: 6px 10px; align-items: center; margin-top: 10px; font-size: 0.8rem; color: var(--text-2); }
+  details.box input { width: 100%; background: var(--bg-2); color: var(--text); border: 1px solid var(--border-2); border-radius: 6px; font: inherit; font-size: 0.82rem; padding: 4px 6px; text-align: right; }
+
+  /* shared section tabs */
+  header nav.tabs { margin-left: auto; display: flex; align-items: center; gap: 4px; font-size: 0.9rem; }
+  header nav.tabs a { color: var(--text-2); padding: 6px 11px; border-radius: 7px; white-space: nowrap; }
+  header nav.tabs a:hover { background: var(--bg-3); text-decoration: none; color: var(--text); }
+  header nav.tabs a.active { background: var(--accent-soft); color: var(--text); font-weight: 600; }
+  header nav.tabs a.site { margin-left: 10px; padding-left: 14px; border-left: 1px solid var(--border-2); border-radius: 0; }
+  header nav.tabs .short { display: none; }
+  @media (max-width: 860px) {
+    body { grid-template-columns: minmax(0, 1fr); grid-template-rows: auto 50vh minmax(0, 1fr); grid-template-areas: "top" "map" "panel"; }
+    #panel { border-left: none; border-top: 1px solid var(--border); padding: 18px 16px 50px; }
+    header { padding: 12px 16px; }
+    header nav.tabs a.site { display: none; }
+    header nav.tabs a { padding: 6px 8px; }
+    header nav.tabs .full { display: none; }
+    header nav.tabs .short { display: inline; }
+    .legend { display: none; }
+    .mapbar label.chip { display: none; }
+    .seg button { white-space: normal; line-height: 1.25; }
+    .today { flex-wrap: wrap; }
+    .today div { min-width: 0; }
+    .btnrow { flex-wrap: wrap; }
+  }
+  @media (max-width: 560px) {
+    header h1 { display: none; }
+    header nav.tabs { margin-left: 0; flex: 1; justify-content: space-between; }
+  }
+</style>
+</head>
+<body>
+<header>
+  <h1>Grocery Access Simulator</h1>
+  <nav class="tabs">
+    <a href="index.html"><span class="full">Zoning code</span><span class="short">Code</span></a>
+    <a href="map.html"><span class="full">Zoning map</span><span class="short">Map</span></a>
+    <a href="sim.html" class="active" aria-current="page"><span class="full">Simulator</span><span class="short">Sim</span></a>
+    <a href="legislation.html"><span class="full">Proposed ordinances</span><span class="short">Ordinances</span></a>
+    <a class="site" href="../">Minnesota Explained</a>
+  </nav>
+</header>
+<div class="map-wrap">
+  <div id="map"></div>
+  <div class="mapbar">
+    <div class="seg" id="viewSeg"><button data-v="dist" class="on">Map: distance</button><button data-v="change">Map: change</button></div>
+    <label class="chip"><input type="checkbox" id="zoneChk"> Where zoning allows a grocery</label>
+  </div>
+  <div class="modehint" id="modehint"></div>
+  <div class="legend" id="legend"></div>
+</div>
+<aside id="panel"><p class="note">Loading stores and homes…</p></aside>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+<script>
+(() => {
+  const $ = (s) => document.querySelector(s);
+  const esc = (s) => String(s ?? "").replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+  const fmt = (n) => Math.round(n).toLocaleString();
+  const mi = (d) => (d < 0.1 ? d.toFixed(2) : d.toFixed(1)) + " mi";
+  const big = (n) => { const a = Math.abs(n); return a >= 1e6 ? (n / 1e6).toFixed(a >= 1e7 ? 0 : 1) + "M" : a >= 1e3 ? Math.round(n / 1e3) + "K" : String(Math.round(n)); };
+  const money = (n) => "$" + big(n);
+  const signed = (n, f = big) => (n > 0 ? "+" : n < 0 ? "−" : "") + f(Math.abs(n));
+  const css = (v) => getComputedStyle(document.documentElement).getPropertyValue(v).trim();
+
+  const POPULATION = 430324;
+  // Miles per degree near Minneapolis (44.98° N). Distance is measured along the street grid:
+  // east-west miles + north-south miles, which fits Minneapolis's mostly square blocks.
+  const KX = 69.17 * Math.cos((44.98 * Math.PI) / 180), KY = 69.0;
+  const grid = (x1, y1, x2, y2) => Math.abs(x1 - x2) + Math.abs(y1 - y2);
+
+  /* ---------- editable assumptions ---------- */
+  const A = { pph: 1.86, trips: 1.5, w1: 55, w2: 35, w3: 15, w4: 5, cost: 0.70, co2: 0.40, walk: 3, drive: 18 };
+  const LABELS = {
+    pph: ["People per home", 0.01], trips: ["Grocery trips per household per week", 0.1],
+    w1: ["% who walk/bike when store is under ¼ mi", 1], w2: ["… ¼ to ½ mi", 1], w3: ["… ½ to 1 mi", 1], w4: ["… over 1 mi", 1],
+    cost: ["Driving cost ($ per mile)", 0.01], co2: ["CO₂ per car mile (kg)", 0.01], walk: ["Walking speed (mph)", 0.1], drive: ["Driving speed incl. parking (mph)", 1],
+  };
+  const walkShare = (d) => (d <= 0.25 ? A.w1 : d <= 0.5 ? A.w2 : d <= 1 ? A.w3 : A.w4) / 100;
+
+  /* ---------- state ---------- */
+  const S = { tiers: "full", desert: 1, mode: "look", view: "dist", added: [], closed: new Set(), showAllHoods: false };
+  let D, N, CX, CY, H, HOOD, hoodNames, stores, sites, zoneFeats = [], okZones;
+  let R = {}; // R.base, R.scn: { d: Float32Array, who: Int32Array }
+
+  /* ---------- map ---------- */
+  const dark = matchMedia("(prefers-color-scheme: dark)").matches;
+  const map = L.map("map", { preferCanvas: true, maxZoom: 18 }).setView([44.97, -93.265], 12);
+  window.simMap = map;
+  const canvasStyle = dark ? "Dark_Gray" : "Light_Gray";
+  L.tileLayer(`https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_${canvasStyle}_Base/MapServer/tile/{z}/{y}/{x}`, {
+    attribution: "Basemap &copy; Esri, HERE, Garmin, &copy; OpenStreetMap contributors · Stores: City of Minneapolis food inspections, OpenStreetMap · Homes &amp; zoning: City of Minneapolis", maxNativeZoom: 16, maxZoom: 18,
+  }).addTo(map);
+  map.createPane("labels"); map.getPane("labels").style.zIndex = 650; map.getPane("labels").style.pointerEvents = "none";
+  L.tileLayer(`https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_${canvasStyle}_Reference/MapServer/tile/{z}/{y}/{x}`, { pane: "labels", maxNativeZoom: 16, maxZoom: 18 }).addTo(map);
+  map.createPane("stores"); map.getPane("stores").style.zIndex = 450;
+  const renderer = L.canvas({ padding: 0.3 });
+  const storeRenderer = L.canvas({ padding: 0.3, pane: "stores" });
+  const storeLayer = L.layerGroup().addTo(map);
+  let cellRects = [], zoneLayer = null;
+
+  // Distance bands (one-way miles). Single-hue ramp, near = light, far = dark (reversed for dark mode).
+  const BANDS = [0.25, 0.5, 1, 1.5];
+  const BAND_LABELS = ["Under ¼ mi", "¼–½ mi", "½–1 mi", "1–1½ mi", "Over 1½ mi"];
+  const RAMP = dark ? ["#8e3a14", "#b9501f", "#e0692f", "#f39a63", "#f9c39f"] : ["#f09a66", "#e97a3f", "#d45a24", "#a6411a", "#73290c"];
+  const band = (d) => { let k = 0; while (k < BANDS.length && d > BANDS[k]) k++; return k; };
+  // "Change" view: miles saved per household per year, one-hue blue ramp.
+  const CH_STEPS = [1, 25, 50, 100, 200];
+  const CH_RAMP = dark ? ["#184f95", "#256abf", "#3987e5", "#6da7ec", "#9ec5f4"] : ["#86b6ef", "#5598e7", "#2a78d6", "#1c5cab", "#104281"];
+  const NEUTRAL = dark ? "#3a3a38" : "#cfcfca";
+
+  const storeColor = (s) => (s.t === "full" ? css("--full") : css("--small"));
+
+  /* ---------- core calculation ---------- */
+  function activeStores(scenario) {
+    const out = [];
+    stores.forEach((s, i) => {
+      if (S.tiers === "full" && s.t !== "full") return;
+      if (scenario && S.closed.has(i)) return;
+      out.push({ x: s.lng * KX, y: s.lat * KY, ref: i });
+    });
+    if (scenario) S.added.forEach((a, k) => out.push({ x: a.lng * KX, y: a.lat * KY, ref: -1 - k }));
+    return out;
+  }
+  function nearest(list) {
+    const d = new Float32Array(N), who = new Int32Array(N);
+    for (let i = 0; i < N; i++) {
+      let best = Infinity, w = -9999;
+      for (const s of list) { const v = grid(CX[i], CY[i], s.x, s.y); if (v < best) { best = v; w = s.ref; } }
+      d[i] = best; who[i] = w;
+    }
+    return { d, who };
+  }
+  function metrics(r) {
+    const k = A.trips * 52 * 2; // round-trip miles per mile of distance per household per year
+    const m = { homes: 0, desert: 0, sumd: 0, trip: 0, car: 0, walkmi: 0, hours: 0, hood: hoodNames.map(() => ({ h: 0, des: 0, sd: 0 })) };
+    for (let i = 0; i < N; i++) {
+      const h = H[i], d = r.d[i], w = walkShare(d), miles = h * k * d;
+      m.homes += h; m.sumd += h * d; m.trip += miles; m.car += miles * (1 - w); m.walkmi += miles * w;
+      m.hours += miles * (w / A.walk + (1 - w) / A.drive);
+      const hd = m.hood[HOOD[i]]; hd.h += h; hd.sd += h * d;
+      if (d > S.desert) { m.desert += h; hd.des += h; }
+    }
+    m.avg = m.sumd / m.homes;
+    return m;
+  }
+  function recompute(baseToo) {
+    if (baseToo || !R.base) R.base = nearest(activeStores(false));
+    R.scn = nearest(activeStores(true));
+    R.mb = metrics(R.base); R.ms = metrics(R.scn);
+  }
+  const changed = () => S.added.length > 0 || S.closed.size > 0;
+
+  // Best legal site for one more full grocery store: the site that cuts the most car miles.
+  function suggest() {
+    const k = A.trips * 104, cur = R.scn.d, carNow = new Float32Array(N);
+    for (let i = 0; i < N; i++) carNow[i] = H[i] * k * cur[i] * (1 - walkShare(cur[i]));
+    let best = -1, bestV = 0;
+    for (let j = 0; j < sites.lat.length; j++) {
+      const sx = sites.lng[j] * KX, sy = sites.lat[j] * KY;
+      let v = 0;
+      for (let i = 0; i < N; i++) {
+        const dn = grid(CX[i], CY[i], sx, sy);
+        if (dn < cur[i]) v += carNow[i] - H[i] * k * dn * (1 - walkShare(dn));
+      }
+      if (v > bestV) { bestV = v; best = j; }
+    }
+    if (best < 0) return;
+    addStore(sites.lat[best], sites.lng[best], true);
+    map.flyTo([sites.lat[best], sites.lng[best]], Math.max(map.getZoom(), 13), { duration: 0.6 });
+  }
+
+  /* ---------- zoning lookup ---------- */
+  function inRing(x, y, ring) {
+    let inside = false;
+    for (let i = 0, j = ring.length - 1; i < ring.length; j = i++) {
+      const [xi, yi] = ring[i], [xj, yj] = ring[j];
+      if ((yi > y) !== (yj > y) && x < ((xj - xi) * (y - yi)) / (yj - yi) + xi) inside = !inside;
+    }
+    return inside;
+  }
+  function zoneAt(lat, lng) {
+    for (const f of zoneFeats) {
+      const [x0, y0, x1, y1] = f.bbox;
+      if (lng < x0 || lng > x1 || lat < y0 || lat > y1) continue;
+      for (const poly of f.polys) if (inRing(lng, lat, poly[0]) && !poly.slice(1).some((h) => inRing(lng, lat, h))) return f.z;
+    }
+    return null;
+  }
+  function zoneNote(z) {
+    if (!z) return { ok: false, text: "Outside the zoning map (street, park or water)." };
+    if (!(z in okZones)) return { ok: false, text: `${z} doesn't allow a grocery store (Table 545-1). It would take a rezoning, or a store of up to 5,000 sq ft in an older commercial building (545.40).` };
+    const cap = okZones[z];
+    return { ok: true, text: cap ? `${z} allows a grocery store up to ${cap},000 sq ft (Table 545-1).` : `${z} allows a grocery store of any size (Table 545-1).` };
+  }
+
+  /* ---------- actions ---------- */
+  function addStore(lat, lng, suggested) {
+    const z = zoneAt(lat, lng);
+    S.added.push({ lat, lng, z, suggested, name: `New store ${S.added.length + 1}` });
+    update();
+  }
+  function toggleClosed(i) {
+    S.closed.has(i) ? S.closed.delete(i) : S.closed.add(i);
+    map.closePopup();
+    update();
+  }
+
+  /* ---------- drawing ---------- */
+  function drawCells() {
+    const view = S.view, k = A.trips * 104;
+    for (let i = 0; i < N; i++) {
+      let col;
+      if (view === "dist") col = RAMP[band(R.scn.d[i])];
+      else {
+        const before = R.base.d[i], after = R.scn.d[i];
+        const saved = k * (before - after); // miles per household per year
+        if (Math.abs(saved) < 1) col = NEUTRAL;
+        else if (saved < 0) col = css("--bad");
+        else { let c = CH_RAMP[0]; CH_STEPS.forEach((s, j) => { if (saved >= s) c = CH_RAMP[j]; }); col = c; }
+      }
+      cellRects[i].setStyle({ fillColor: col });
+    }
+  }
+  function drawStores() {
+    storeLayer.clearLayers();
+    const z = map.getZoom(), rFull = z >= 14 ? 8 : z >= 12 ? 6 : 4.5, rSmall = z >= 14 ? 5 : z >= 12 ? 3.5 : 2.5;
+    const ring = css("--bg-2");
+    const mk = (lat, lng, opts, onClick) => {
+      const m = L.circleMarker([lat, lng], { renderer: storeRenderer, color: ring, weight: 2, opacity: 1, fillOpacity: 1, ...opts });
+      m.on("click", (e) => { L.DomEvent.stopPropagation(e); lastMarkerClick = Date.now(); onClick(e); });
+      return m.addTo(storeLayer);
+    };
+    stores.forEach((s, i) => {
+      if (S.tiers === "full" && s.t !== "full") return;
+      const closed = S.closed.has(i);
+      const r = s.t === "full" ? rFull : rSmall;
+      mk(s.lat, s.lng, closed
+        ? { radius: r, fillColor: ring, color: css("--text-3"), weight: 2, dashArray: "2 2" }
+        : { radius: r, fillColor: storeColor(s), fillOpacity: s.in ? 1 : 0.6 },
+        () => (S.mode === "close" ? toggleClosed(i) : storePopup(i)));
+    });
+    S.added.forEach((a, k) => mk(a.lat, a.lng, { radius: rFull + 1, fillColor: css("--added") }, () => addedPopup(k)));
+  }
+  function legend() {
+    const dot = (c, label, extra = "") => `<div class="row"><span class="dot" style="background:${c};${extra}"></span>${label}</div>`;
+    const cells = S.view === "dist"
+      ? `<div class="ttl">Street distance to nearest ${S.tiers === "full" ? "full grocery" : "grocery or market"}</div>` +
+        BAND_LABELS.map((l, k) => `<div class="row"><span class="sw" style="background:${RAMP[k]}"></span>${l}</div>`).join("")
+      : `<div class="ttl">Grocery miles saved per household / yr</div>` +
+        CH_STEPS.map((s, k) => `<div class="row"><span class="sw" style="background:${CH_RAMP[k]}"></span>${k === CH_STEPS.length - 1 ? `${s}+` : `${s}–${CH_STEPS[k + 1]}`}</div>`).join("") +
+        `<div class="row"><span class="sw" style="background:${NEUTRAL}"></span>No change</div><div class="row"><span class="sw" style="background:${css("--bad")}"></span>Farther (store closed)</div>`;
+    $("#legend").innerHTML = cells + `<div style="height:6px"></div>` +
+      dot(css("--full"), "Full grocery store") + (S.tiers === "all" ? dot(css("--small"), "Small market") : "") +
+      dot(css("--added"), "Store you added") + (S.closed.size ? dot(css("--bg-2"), "Closed (simulated)", `border:2px dashed ${css("--text-3")}`) : "") +
+      `<div class="row" style="opacity:.75">Faded = outside the city</div>`;
+  }
+  let lastMarkerClick = 0;
+  map.on("zoomend", () => { if (stores) drawStores(); });
+
+  /* ---------- popups ---------- */
+  const servedBy = (ref) => { let h = 0; for (let i = 0; i < N; i++) if (R.scn.who[i] === ref) h += H[i]; return h; };
+  const storeName = (ref) => (ref >= 0 ? stores[ref].name : S.added[-1 - ref].name);
+  function storePopup(i) {
+    const s = stores[i], closed = S.closed.has(i), served = closed ? 0 : servedBy(i);
+    L.popup({ autoPanPaddingTopLeft: [20, 70] }).setLatLng([s.lat, s.lng]).setContent(
+      `<h4>${esc(s.name)}</h4><div style="opacity:.75">${esc(s.addr)}<br>${s.t === "full" ? "Full grocery store" : "Small market"} · ${s.in ? "Minneapolis" : "outside the city"} · ${esc(s.src)}</div>
+       ${closed ? `<p><b>Closed in this scenario.</b></p>` : `<p>Nearest grocery for about <b>${fmt(served * A.pph)} people</b> in Minneapolis (${fmt(served)} homes).</p>`}
+       <button class="pbtn" data-close="${i}">${closed ? "Reopen this store" : "Simulate closing it"}</button>`).openOn(map);
+  }
+  function addedPopup(k) {
+    const a = S.added[k], z = zoneNote(a.z), served = servedBy(-1 - k);
+    L.popup({ autoPanPaddingTopLeft: [20, 70] }).setLatLng([a.lat, a.lng]).setContent(
+      `<h4>${esc(a.name)}${a.suggested ? " (suggested)" : ""}</h4>
+       <p>Nearest grocery for about <b>${fmt(served * A.pph)} people</b> (${fmt(served)} homes).</p>
+       <div class="${z.ok ? "" : "warn"}">${esc(z.text)}</div>
+       <button class="pbtn" data-remove="${k}">Remove this store</button>`).openOn(map);
+  }
+  function cellPopup(i, latlng) {
+    const d = R.scn.d[i], ref = R.scn.who[i], w = walkShare(d), yearMi = A.trips * 104 * d;
+    const before = R.base.d[i];
+    L.popup({ autoPanPaddingTopLeft: [20, 70] }).setLatLng(latlng).setContent(
+      `<h4>${esc(hoodNames[HOOD[i]])}</h4><div style="opacity:.75">This 500 ft square: ${fmt(H[i])} homes, about ${fmt(H[i] * A.pph)} people</div>
+       <table><tr><td>Nearest ${S.tiers === "full" ? "full grocery" : "grocery or market"}</td><td>${esc(storeName(ref))}</td></tr>
+       <tr><td>Street distance</td><td>${mi(d)}${Math.abs(before - d) > 0.01 ? ` <span style="opacity:.7">(was ${mi(before)})</span>` : ""}</td></tr>
+       <tr><td>Grocery travel per household</td><td>${fmt(yearMi)} mi/yr</td></tr>
+       <tr><td>Likely trips on foot or bike</td><td>${Math.round(w * 100)}%</td></tr>
+       <tr><td>Grocery desert?</td><td>${d > S.desert ? `<b style="color:${css("--bad")}">Yes</b> (over ${S.desert} mi)` : "No"}</td></tr></table>`).openOn(map);
+  }
+  function nearestCell(latlng) {
+    const x = latlng.lng * KX, y = latlng.lat * KY;
+    let best = -1, bd = 0.08; // within ~400 ft of a square's center
+    for (let i = 0; i < N; i++) { const v = Math.max(Math.abs(CX[i] - x), Math.abs(CY[i] - y)); if (v < bd) { bd = v; best = i; } }
+    return best;
+  }
+  map.on("click", (e) => {
+    if (Date.now() - lastMarkerClick < 300) return;
+    if (S.mode === "add") { addStore(e.latlng.lat, e.latlng.lng, false); return; }
+    if (S.mode === "look") { const i = nearestCell(e.latlng); if (i >= 0) cellPopup(i, e.latlng); }
+  });
+  map.getContainer().addEventListener("click", (e) => {
+    const c = e.target.closest("[data-close]"), r = e.target.closest("[data-remove]");
+    if (c) toggleClosed(+c.dataset.close);
+    if (r) { S.added.splice(+r.dataset.remove, 1); map.closePopup(); update(); }
+  });
+
+  /* ---------- panel ---------- */
+  function panel() {
+    const inFull = stores.filter((s) => s.in && s.t === "full").length, inSmall = stores.filter((s) => s.in && s.t === "small").length;
+    return `
+      <div class="simpick"><label for="simType">Simulation</label><select id="simType">
+        <option value="sim.html">Housing growth: current code vs Bill A</option>
+        <option value="sim-grocery.html" selected>Grocery access: deserts and miles traveled</option></select></div>
+      <div class="today" id="today"></div>
+      <h2>Getting groceries</h2>
+      <p class="lede">Each square is a 500 ft block of homes, shaded by street distance to the nearest store. Minneapolis has ${inFull} full grocery stores and ${inSmall} smaller markets inside the city; stores just past the city line count too. Add or close stores to see who gains or loses access.</p>
+      <div class="q">What counts as a grocery store?</div>
+      <div class="seg" id="tierSeg"><button data-v="full" class="${S.tiers === "full" ? "on" : ""}">Full supermarkets</button><button data-v="all" class="${S.tiers === "all" ? "on" : ""}">Also small markets</button></div>
+      <div class="q">A grocery desert is farther than…</div>
+      <div class="seg" id="desertSeg">${[[0.5, "½ mile"], [1, "1 mile (USDA, cities)"], [1.5, "1½ miles"]].map(([v, l]) => `<button data-v="${v}" class="${v === S.desert ? "on" : ""}">${l}</button>`).join("")}</div>
+      <div class="q">Click the map to…</div>
+      <div class="seg" id="modeSeg"><button data-v="look" class="${S.mode === "look" ? "on" : ""}">See details</button><button data-v="add" class="${S.mode === "add" ? "on" : ""}">Add a store</button><button data-v="close" class="${S.mode === "close" ? "on" : ""}">Close a store</button></div>
+      <div class="btnrow"><button class="btn primary" id="suggest">Suggest the best spot for a new store</button><button class="btn" id="reset">Reset</button></div>
+      <div class="note" style="margin-top:6px">Suggestions only use sites where zoning allows a grocery store and pick the one that cuts the most driving.</div>
+      <div class="changes" id="changes"></div>
+      <div id="results"></div>
+      <h3>Neighborhoods</h3>
+      <div id="hoods"></div>
+      <details class="box"><summary>Assumptions (editable)</summary>
+        <div class="grid">${Object.entries(LABELS).map(([k, [l, step]]) => `<label for="a-${k}">${l}</label><input id="a-${k}" type="number" step="${step}" value="${A[k]}" data-a="${k}">`).join("")}</div>
+      </details>
+      <details class="box"><summary>How this works</summary>
+        <p><b>Distance</b> is measured along the street grid (blocks east–west plus blocks north–south) from each block's homes to the nearest store. Rivers, freeways and rail lines that force detours aren't modeled, so some trips are longer than shown.</p>
+        <p><b>Miles traveled</b> = homes × ${A.trips} grocery trips a week × 52 weeks × 2 (there and back) × distance. This assumes each household uses its nearest store. Many people shop farther away by choice, so treat these as the <i>minimum</i> miles. The share of trips made on foot or by bike falls with distance; the rest are counted as car trips (some are really bus trips). About 1 in 6 Minneapolis households has no car, so far-away stores weigh hardest on them.</p>
+        <p><b>Grocery desert</b>: the USDA counts city residents as having low access when they live more than 1 mile from a supermarket; ½ mile is a stricter version often used for people without cars.</p>
+        <p><b>Stores</b>: Inside Minneapolis, stores come from City food-inspection records for licensed grocery stores and meat markets inspected since July 2024, which drops stores that have closed. Full supermarkets are chains, co-ops and large independents (Cub, Lunds &amp; Byerlys, Kowalski's, Aldi, Target, Whole Foods, Trader Joe's, Fresh Thyme, the Seward, Wedge, Linden Hills and Eastside co-ops, United Noodles, Shuang Hur, Holy Land, Good Grocer). Small markets are other licensed grocers and ethnic markets, sorted by name, so the list is approximate. Convenience stores, gas stations, pharmacies, warehouse clubs, delivery depots and farmers markets are left out. Stores within 3 miles outside the city come from OpenStreetMap and may be slightly out of date.</p>
+        <p><b>Where a store can go</b>: Table 545-1 permits grocery stores in CM2–CM4 and DT1–DT2; up to 20,000 sq ft in CM1 and RM1–RM3; up to 40,000 sq ft in PR1–PR2; not in the UN districts. Tables 540-10 to 540-14 already offer extra height for buildings that include a grocery store with fresh produce.</p>
+        <p><b>People</b> = homes × ${A.pph} (Minneapolis's ${fmt(POPULATION)} residents ÷ assessor home count). Data built ${esc(D.built)}.</p>
+      </details>`;
+  }
+
+  function today() {
+    const b = R.mb, s = R.ms, ch = changed();
+    const card = (val, was, label) => `<div><b>${val}</b><span>${label}${ch && was !== val ? ` <span style="opacity:.7">(today ${was})</span>` : ""}</span></div>`;
+    $("#today").innerHTML =
+      card(big(s.desert * A.pph), big(b.desert * A.pph), `people in grocery deserts`) +
+      card(mi(s.avg), mi(b.avg), "average distance") +
+      card(big(s.car) + " mi", big(b.car) + " mi", "driven for groceries a year");
+  }
+
+  function results() {
+    const b = R.mb, s = R.ms, ch = changed(), ppl = A.pph, hh = b.homes;
+    const pct = (x) => Math.round((100 * x) / b.homes);
+    let head = `<b>${fmt(b.desert * ppl)} people (${pct(b.desert)}%)</b> live more than ${S.desert} mile${S.desert === 1 ? "" : "s"} from ${S.tiers === "full" ? "a full grocery store" : "any grocery store or market"}. Getting groceries, households travel at least <b>${big(b.trip)} miles a year</b>, about <b>${big(b.car)} by car</b>.`;
+    if (ch) {
+      const dp = (b.desert - s.desert) * ppl, dc = b.car - s.car;
+      head = `With your changes, <b>${fmt(Math.abs(dp))} ${dp >= 0 ? "fewer" : "more"} people</b> live in a grocery desert (${fmt(s.desert * ppl)} instead of ${fmt(b.desert * ppl)}), and households drive <b>${big(Math.abs(dc))} ${dc >= 0 ? "fewer" : "more"} miles a year</b> for groceries (${money(Math.abs(dc * A.cost))} ${dc >= 0 ? "saved" : "extra"}, ${fmt(Math.abs(dc * A.co2) / 1000)} tonnes of CO₂).`;
+    }
+    const row = (label, f, bv, sv, lowerIsBetter = true, cls = "") => {
+      const diff = sv - bv, good = lowerIsBetter ? diff < 0 : diff > 0;
+      return `<tr class="${cls}"><td>${label}</td><td>${f(bv)}</td>${ch ? `<td>${f(sv)}</td><td class="${Math.abs(diff) < 1e-9 ? "" : good ? "better" : "worse"}">${Math.abs(diff) < 1e-9 ? "–" : signed(diff, f)}</td>` : ""}</tr>`;
+    };
+    const pf = (x) => fmt(x * ppl);
+    $("#results").innerHTML = `<div class="headline">${head}</div>
+      <h3>Grocery travel per year</h3>
+      <table class="cmp"><tr><th></th><th>Today</th>${ch ? "<th>Your scenario</th><th>Change</th>" : ""}</tr>
+      ${row(`People in deserts (over ${S.desert} mi)`, pf, b.desert, s.desert, true, "big")}
+      ${row("Average distance to a store", mi, b.avg, s.avg)}
+      ${row("Total miles traveled", big, b.trip, s.trip)}
+      ${row("… by car", big, b.car, s.car)}
+      ${row("… on foot or bike", big, b.walkmi, s.walkmi, false)}
+      ${row("Miles per household", (x) => fmt(x / hh), b.trip, s.trip)}
+      ${row("Driving cost", money, b.car * A.cost, s.car * A.cost)}
+      ${row("CO₂ from driving (tonnes)", (x) => fmt(x / 1000), b.car * A.co2, s.car * A.co2)}
+      ${row("Hours spent traveling", big, b.hours, s.hours)}
+      </table>`;
+    $("#changes").innerHTML = S.added.map((a, k) => `<div class="chg"><span class="dot" style="background:${css("--added")}"></span><span class="t">${esc(a.name)}${a.suggested ? " (suggested)" : ""} · ${a.z ? esc(a.z) : "no zone"}${zoneNote(a.z).ok ? "" : ` <span style="color:${css("--bad")}">· zoning doesn't allow</span>`}</span><button data-rm="${k}" title="Remove">×</button></div>`).join("") +
+      [...S.closed].map((i) => `<div class="chg"><span class="dot" style="background:${css("--bg-2")};border:2px dashed ${css("--text-3")}"></span><span class="t">Closed: ${esc(stores[i].name)}, ${esc(stores[i].addr)}</span><button data-reopen="${i}" title="Reopen">×</button></div>`).join("");
+    document.querySelectorAll("[data-rm]").forEach((b) => (b.onclick = () => { S.added.splice(+b.dataset.rm, 1); update(); }));
+    document.querySelectorAll("[data-reopen]").forEach((b) => (b.onclick = () => toggleClosed(+b.dataset.reopen)));
+  }
+
+  function hoodTable() {
+    const b = R.mb.hood, s = R.ms.hood, ch = changed();
+    const rows = hoodNames.map((n, k) => ({ n, k, h: b[k].h, des: b[k].des, sdes: s[k].des, avg: b[k].sd / (b[k].h || 1), savg: s[k].sd / (s[k].h || 1) })).filter((r) => r.h > 0);
+    rows.sort((x, y) => (ch ? y.des - y.sdes - (x.des - x.sdes) || y.sdes - x.sdes : 0) || y.des - x.des || y.avg - x.avg);
+    const shown = S.showAllHoods ? rows : rows.slice(0, 12);
+    $("#hoods").innerHTML = `<table class="t"><tr><th>Neighborhood</th><th>People</th><th>Avg dist.</th><th>In desert</th>${ch ? "<th>Change</th>" : ""}</tr>` +
+      shown.map((r) => {
+        const d = (r.sdes - r.des) * A.pph;
+        return `<tr class="hood" data-k="${r.k}"><td>${esc(r.n)}</td><td>${fmt(r.h * A.pph)}</td><td>${mi(ch ? r.savg : r.avg)}</td><td>${Math.round((100 * (ch ? r.sdes : r.des)) / r.h)}%</td>${ch ? `<td class="${d < 0 ? "better" : d > 0 ? "worse" : ""}">${Math.abs(d) < 1 ? "–" : signed(d, fmt)}</td>` : ""}</tr>`;
+      }).join("") + `</table>
+      <button class="linkbtn" id="moreHoods">${S.showAllHoods ? "Show fewer" : `Show all ${rows.length} neighborhoods`}</button>
+      <div class="note">Sorted by people in grocery deserts${ch ? ", biggest change first" : ""}. Click a row to zoom there.</div>`;
+    $("#moreHoods").onclick = () => { S.showAllHoods = !S.showAllHoods; hoodTable(); };
+    document.querySelectorAll("tr.hood").forEach((tr) => (tr.onclick = () => {
+      const k = +tr.dataset.k, pts = [];
+      for (let i = 0; i < N; i++) if (HOOD[i] === k) pts.push([D.cells.lat[i], D.cells.lng[i]]);
+      if (pts.length) map.fitBounds(L.latLngBounds(pts).pad(0.3));
+    }));
+  }
+
+  function update(baseToo) {
+    recompute(baseToo);
+    drawCells(); drawStores(); legend(); today(); results(); hoodTable();
+  }
+
+  function bind() {
+    $("#simType").onchange = (e) => (location.href = e.target.value);
+    const segs = (id, key, cast, after) => document.querySelectorAll(`#${id} button`).forEach((b) => (b.onclick = () => {
+      S[key] = cast(b.dataset.v);
+      document.querySelectorAll(`#${id} button`).forEach((x) => x.classList.toggle("on", x === b));
+      after();
+    }));
+    segs("tierSeg", "tiers", String, () => { S.closed = new Set([...S.closed].filter((i) => S.tiers === "all" || stores[i].t === "full")); update(true); });
+    segs("desertSeg", "desert", Number, () => update());
+    segs("modeSeg", "mode", String, setMode);
+    $("#suggest").onclick = () => { const b = $("#suggest"); b.disabled = true; b.textContent = "Searching…"; setTimeout(() => { suggest(); b.disabled = false; b.textContent = "Suggest another spot"; }, 20); };
+    $("#reset").onclick = () => { S.added = []; S.closed = new Set(); $("#suggest").textContent = "Suggest the best spot for a new store"; map.closePopup(); update(); };
+    document.querySelectorAll("input[data-a]").forEach((inp) => (inp.onchange = () => {
+      const v = parseFloat(inp.value);
+      if (!isFinite(v) || v < 0) { inp.value = A[inp.dataset.a]; return; }
+      A[inp.dataset.a] = v; update();
+    }));
+  }
+  function setMode() {
+    $("#map").classList.toggle("adding", S.mode === "add");
+    const hint = $("#modehint");
+    hint.style.display = S.mode === "look" ? "none" : "block";
+    hint.textContent = S.mode === "add" ? "Click anywhere to place a new grocery store" : "Click a store to close it (click again to reopen)";
+    map.closePopup();
+  }
+  document.querySelectorAll("#viewSeg button").forEach((b) => (b.onclick = () => {
+    S.view = b.dataset.v;
+    document.querySelectorAll("#viewSeg button").forEach((x) => x.classList.toggle("on", x === b));
+    drawCells(); legend();
+  }));
+  $("#zoneChk").onchange = (e) => {
+    if (!zoneLayer) return;
+    e.target.checked ? zoneLayer.addTo(map) : zoneLayer.remove();
+  };
+
+  Promise.all(["grocery.json", "neighborhoods.geojson", "zoning.geojson"].map((f) => fetch("map_data/" + f).then((r) => { if (!r.ok) throw new Error(f + " " + r.status); return r.json(); })))
+    .then(([g, hoods, zoning]) => {
+      D = g; N = g.cells.h.length; H = g.cells.h; HOOD = g.cells.hood; hoodNames = g.hoods; stores = g.stores; sites = g.sites; okZones = g.grocery_ok;
+      CX = Float64Array.from(g.cells.lng, (v) => v * KX); CY = Float64Array.from(g.cells.lat, (v) => v * KY);
+      A.pph = Math.round((100 * POPULATION) / g.homes) / 100;
+
+      // zoning polygons, for the click-to-add check and the "where allowed" overlay
+      for (const f of zoning.features) {
+        const polys = f.geometry.type === "Polygon" ? [f.geometry.coordinates] : f.geometry.coordinates;
+        let x0 = 180, y0 = 90, x1 = -180, y1 = -90;
+        for (const p of polys) for (const [x, y] of p[0]) { x0 = Math.min(x0, x); x1 = Math.max(x1, x); y0 = Math.min(y0, y); y1 = Math.max(y1, y); }
+        zoneFeats.push({ z: f.properties.z, polys, bbox: [x0, y0, x1, y1] });
+      }
+      zoneLayer = L.geoJSON({ type: "FeatureCollection", features: zoning.features.filter((f) => f.properties.z in okZones) },
+        { renderer, interactive: false, style: { color: css("--added"), weight: 1, opacity: 0.9, fillColor: css("--added"), fillOpacity: 0.12 } });
+
+      // 500 ft squares
+      const dLat = g.grid_ft / 2 / 364000, dLng = g.grid_ft / 2 / (364000 * Math.cos((44.98 * Math.PI) / 180));
+      for (let i = 0; i < N; i++) {
+        const la = g.cells.glat[i], ln = g.cells.glng[i];
+        cellRects.push(L.rectangle([[la - dLat, ln - dLng], [la + dLat, ln + dLng]], { renderer, stroke: false, fillOpacity: 0.72, interactive: false }).addTo(map));
+      }
+      const hl = L.geoJSON(hoods, { renderer, interactive: false, style: { fill: false, color: dark ? "#bbb" : "#555", weight: 0.7, opacity: 0.45 } }).addTo(map);
+      map.fitBounds(hl.getBounds(), { padding: [10, 10] });
+
+      $("#panel").innerHTML = panel();
+      bind();
+      update(true);
+    })
+    .catch((err) => { console.error(err); $("#panel").innerHTML = `<p class="note">Couldn't load data (${esc(err.message)}). Serve this folder with a local web server, e.g. <code>python3 -m http.server</code>.</p>`; });
+})();
+</script>
+</body>
+</html>

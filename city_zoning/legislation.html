@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Proposed Zoning Ordinances</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #000; --bg-2: #0d0d0d; --bg-3: #161616;
+    --text: #e0e0e0; --text-2: #aaa; --text-3: #777;
+    --border: #1e1e1e; --border-2: #2a2a2a;
+    --accent: #4a9eff; --accent-soft: rgba(74, 158, 255, 0.14);
+    --ins-bg: rgba(72, 187, 120, 0.16); --ins-fg: #8ee6b2;
+    --del-fg: #f08a8a;
+  }
+  @media (prefers-color-scheme: light) {
+    :root:not([data-theme="dark"]) {
+      --bg: #fafaf8; --bg-2: #fff; --bg-3: #f1f1ee;
+      --text: #1d1d1b; --text-2: #55554f; --text-3: #8a8a84;
+      --border: #e4e4df; --border-2: #d6d6cf;
+      --accent: #1f6fd1; --accent-soft: rgba(31, 111, 209, 0.10);
+      --ins-bg: #ddf3e6; --ins-fg: #165a33;
+      --del-fg: #a3271f;
+    }
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; height: 100%; }
+  body {
+    font-family: 'Space Grotesk', system-ui, sans-serif;
+    background: var(--bg); color: var(--text);
+    display: grid; grid-template-columns: 290px minmax(0, 1fr); grid-template-rows: auto minmax(0, 1fr);
+    grid-template-areas: "top top" "side main";
+    height: 100vh; height: 100dvh;
+  }
+  a { color: var(--accent); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  header {
+    grid-area: top; display: flex; align-items: center; gap: 16px;
+    padding: 14px 20px; border-bottom: 1px solid var(--border);
+  }
+  header h1 { font-size: 1.05rem; margin: 0; font-weight: 700; }
+  header h1 span { color: var(--text-3); font-weight: 500; }
+  #menuBtn { display: none; background: none; border: 1px solid var(--border-2); color: var(--text); border-radius: 6px; padding: 5px 10px; font: inherit; cursor: pointer; }
+
+  aside { grid-area: side; border-right: 1px solid var(--border); background: var(--bg-2); overflow-y: auto; padding: 18px 0 40px; font-size: 0.88rem; }
+  aside .lbl { padding: 0 18px 8px; color: var(--text-3); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.08em; }
+  aside a { display: block; padding: 6px 18px; color: var(--text-2); border-left: 2px solid transparent; }
+  aside a:hover { background: var(--bg-3); text-decoration: none; }
+  aside a.sub { padding-left: 32px; font-size: 0.82rem; color: var(--text-3); }
+  aside a.active { color: var(--text); border-left-color: var(--accent); background: var(--accent-soft); }
+
+  main { grid-area: main; overflow-y: auto; min-height: 0; scroll-behavior: smooth; }
+  .doc { max-width: 920px; padding: 36px 44px 100px; }
+  .doc h1 { font-size: 2rem; line-height: 1.15; margin: 0 0 14px; }
+  .doc h2 { font-size: 1.45rem; margin: 56px 0 10px; padding-top: 18px; border-top: 1px solid var(--border); scroll-margin-top: 10px; }
+  .doc h3 { font-size: 1.05rem; margin: 30px 0 8px; color: var(--text); scroll-margin-top: 10px; }
+  .doc p, .doc li { font-family: 'Source Serif 4', Georgia, serif; font-size: 1.04rem; line-height: 1.65; }
+  .doc p { margin: 0 0 0.9em; }
+  .doc ul, .doc ol { padding-left: 1.4em; margin: 0 0 1em; }
+  .doc li { margin-bottom: 0.4em; }
+  .doc strong { font-weight: 600; }
+  .doc hr { border: none; margin: 0; }
+  .doc code { font-size: 0.88em; background: var(--bg-3); padding: 1px 5px; border-radius: 4px; }
+  .doc em { color: var(--text-2); }
+  ins { text-decoration: underline; text-decoration-thickness: 1.5px; text-underline-offset: 3px; background: var(--ins-bg); color: var(--ins-fg); border-radius: 2px; padding: 0 2px; }
+  del { color: var(--del-fg); text-decoration-thickness: 1.5px; }
+  .doc p:has(> ins:only-child) { border-left: 3px solid var(--ins-fg); padding-left: 12px; }
+
+  .tbl-wrap { overflow-x: auto; margin: 1em 0 1.4em; border: 1px solid var(--border-2); border-radius: 8px; }
+  table { border-collapse: collapse; width: 100%; font-size: 0.86rem; }
+  th, td { border: 1px solid var(--border); padding: 7px 10px; text-align: left; vertical-align: top; line-height: 1.45; }
+  th { background: var(--bg-3); font-weight: 600; }
+
+  .legend { display: flex; gap: 18px; flex-wrap: wrap; font-size: 0.82rem; color: var(--text-2); margin: 6px 0 22px; padding: 10px 14px; border: 1px solid var(--border-2); border-radius: 8px; background: var(--bg-2); }
+  #loading { padding: 40px; color: var(--text-3); }
+
+  @media (max-width: 860px) {
+    body { grid-template-columns: minmax(0, 1fr); grid-template-areas: "top" "main"; }
+    #menuBtn { display: inline-block; }
+    header h1 span { display: none; }
+    header { padding: 12px 16px; }
+    aside { position: fixed; top: 57px; left: 0; bottom: 0; width: min(85vw, 320px); z-index: 10; transform: translateX(-100%); transition: transform 0.18s; }
+    body.nav-open aside { transform: none; }
+    .doc { padding: 22px 16px 70px; }
+    .doc h1 { font-size: 1.5rem; }
+  }
+
+  /* shared section tabs */
+  header nav.tabs { margin-left: auto; display: flex; align-items: center; gap: 4px; font-size: 0.9rem; }
+  header nav.tabs a { color: var(--text-2); padding: 6px 11px; border-radius: 7px; white-space: nowrap; }
+  header nav.tabs a:hover { background: var(--bg-3); text-decoration: none; color: var(--text); }
+  header nav.tabs a.active { background: var(--accent-soft); color: var(--text); font-weight: 600; }
+  header nav.tabs a.site { margin-left: 10px; padding-left: 14px; border-left: 1px solid var(--border-2); border-radius: 0; }
+  header nav.tabs .short { display: none; }
+  @media (max-width: 860px) {
+    header nav.tabs a.site { display: none; }
+    header nav.tabs a { padding: 6px 8px; }
+    header nav.tabs .full { display: none; }
+    header nav.tabs .short { display: inline; }
+  }
+  @media (max-width: 560px) {
+    header h1 { display: none; }
+    header nav.tabs { margin-left: 0; flex: 1; justify-content: space-between; }
+  }
+</style>
+</head>
+<body>
+<header>
+  <button id="menuBtn" aria-label="Contents">☰</button>
+  <h1>Proposed Ordinances <span>· Draft for review</span></h1>
+  <nav class="tabs">
+    <a href="index.html"><span class="full">Zoning code</span><span class="short">Code</span></a>
+    <a href="map.html"><span class="full">Zoning map</span><span class="short">Map</span></a>
+    <a href="sim.html"><span class="full">Simulator</span><span class="short">Sim</span></a>
+    <a href="legislation.html" class="active" aria-current="page"><span class="full">Proposed ordinances</span><span class="short">Ordinances</span></a>
+    <a class="site" href="../">Minnesota Explained</a>
+  </nav>
+</header>
+<aside><div class="lbl">Contents</div><div id="toc"></div></aside>
+<main id="main"><div id="loading">Loading draft…</div></main>
+
+<script src="https://cdn.jsdelivr.net/npm/marked@12.0.2/marked.min.js"></script>
+<script>
+(() => {
+  const main = document.getElementById("main");
+  const slug = (s) => s.toLowerCase().replace(/<[^>]+>/g, "").replace(/[^\w\s-]/g, "").trim().replace(/\s+/g, "-");
+
+  // Link section numbers (e.g. 545.40, 540.230(b)) and tables (Table 540-2) to the zoning browser.
+  function linkify(root, newSections) {
+    const walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT, {
+      acceptNode: (n) => (n.parentElement.closest("a, code, h1, h2, ins") ? NodeFilter.FILTER_REJECT : NodeFilter.FILTER_ACCEPT),
+    });
+    const nodes = [];
+    while (walker.nextNode()) nodes.push(walker.currentNode);
+    const re = /\b(Table (5[2-6]\d-\d+)|5[2-6]\d\.\d{2,4})\b/g;
+    for (const node of nodes) {
+      const text = node.nodeValue;
+      if (!re.test(text)) continue;
+      re.lastIndex = 0;
+      const frag = document.createDocumentFragment();
+      let last = 0, m;
+      while ((m = re.exec(text))) {
+        frag.append(text.slice(last, m.index));
+        if (newSections.has(m[0])) {  // proposed new section: nothing to link to yet
+          frag.append(m[0]);
+          last = m.index + m[0].length;
+          continue;
+        }
+        const a = document.createElement("a");
+        a.textContent = m[0];
+        // tables open the zoning browser search; sections open directly
+        a.href = m[2] ? `index.html#tbl:${m[2]}` : `index.html#${m[0]}`;
+        a.target = "_blank";
+        frag.append(a);
+        last = m.index + m[0].length;
+      }
+      frag.append(text.slice(last));
+      node.replaceWith(frag);
+    }
+  }
+
+  function buildToc(doc) {
+    const toc = document.getElementById("toc");
+    const items = [];
+    doc.querySelectorAll("h2, h3").forEach((h) => {
+      h.id = h.id || slug(h.textContent);
+      if (h.tagName === "H2") items.push(`<a href="#${h.id}" data-id="${h.id}">${h.textContent}</a>`);
+    });
+    toc.innerHTML = items.join("");
+    const links = [...toc.querySelectorAll("a")];
+    const heads = [...doc.querySelectorAll("h2")];
+    main.addEventListener("scroll", () => {
+      let cur = heads[0];
+      for (const h of heads) if (h.getBoundingClientRect().top < 120) cur = h;
+      links.forEach((a) => a.classList.toggle("active", a.dataset.id === cur.id));
+    });
+    toc.addEventListener("click", (e) => { if (e.target.closest("a")) document.body.classList.remove("nav-open"); });
+  }
+
+  document.getElementById("menuBtn").addEventListener("click", () => document.body.classList.toggle("nav-open"));
+
+  fetch("proposed_ordinances.md")
+    .then((r) => { if (!r.ok) throw new Error(r.status); return r.text(); })
+    .then((md) => {
+      const doc = document.createElement("div");
+      doc.className = "doc";
+      doc.innerHTML = marked.parse(md, { gfm: true });
+      // wrap tables so wide ones scroll on small screens
+      doc.querySelectorAll("table").forEach((t) => {
+        const w = document.createElement("div");
+        w.className = "tbl-wrap";
+        t.replaceWith(w);
+        w.append(t);
+      });
+      // legend after the "How to read" paragraph
+      const howTo = [...doc.querySelectorAll("p")].find((p) => p.textContent.startsWith("How to read"));
+      if (howTo) {
+        const lg = document.createElement("div");
+        lg.className = "legend";
+        lg.innerHTML = "<span><del>struck text</del> deleted</span><span><ins>underlined text</ins> added</span><span>Section numbers open the current code in a new tab</span>";
+        howTo.after(lg);
+      }
+      // sections created by these drafts (e.g. "<ins>**555.250. ...") don't exist in the code yet
+      const newSections = new Set([...md.matchAll(/<ins>\*\*(5[2-6]\d\.\d+)\./g)].map((m) => m[1]));
+      linkify(doc, newSections);
+      main.innerHTML = "";
+      main.append(doc);
+      buildToc(doc);
+      if (location.hash) document.getElementById(decodeURIComponent(location.hash.slice(1)))?.scrollIntoView({ behavior: "instant" });
+    })
+    .catch((err) => {
+      main.innerHTML = `<div class="doc"><p>Couldn't load <code>proposed_ordinances.md</code> (${err.message}). Serve this folder with a local web server, e.g. <code>python3 -m http.server</code>.</p></div>`;
+    });
+})();
+</script>
+</body>
+</html>

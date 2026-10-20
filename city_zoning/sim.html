@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Housing Simulator</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
+<style>
+  :root {
+    --bg: #000; --bg-2: #0d0d0d; --bg-3: #161616;
+    --text: #e0e0e0; --text-2: #aaa; --text-3: #777;
+    --border: #1e1e1e; --border-2: #2a2a2a;
+    --accent: #4a9eff; --accent-soft: rgba(74, 158, 255, 0.14);
+    --cur: #f2b84b; --bill: #4ec9b0; --warn: #f3c06b;
+  }
+  @media (prefers-color-scheme: light) {
+    :root:not([data-theme="dark"]) {
+      --bg: #fafaf8; --bg-2: #fff; --bg-3: #f1f1ee;
+      --text: #1d1d1b; --text-2: #55554f; --text-3: #8a8a84;
+      --border: #e4e4df; --border-2: #d6d6cf;
+      --accent: #1f6fd1; --accent-soft: rgba(31, 111, 209, 0.10);
+      --cur: #b97a06; --bill: #0f8a72; --warn: #8a5a0b;
+    }
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; height: 100%; }
+  body {
+    font-family: 'Space Grotesk', system-ui, sans-serif; background: var(--bg); color: var(--text);
+    display: grid; grid-template-columns: minmax(0, 1fr) 460px; grid-template-rows: auto minmax(0, 1fr);
+    grid-template-areas: "top top" "map panel"; height: 100vh; height: 100dvh;
+  }
+  a { color: var(--accent); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  header { grid-area: top; display: flex; align-items: center; gap: 16px; padding: 14px 20px; border-bottom: 1px solid var(--border); }
+  header h1 { font-size: 1.05rem; margin: 0; font-weight: 700; white-space: nowrap; }
+
+  .map-wrap { position: relative; grid-area: map; min-height: 0; }
+  #map { position: absolute; inset: 0; background: var(--bg-3); }
+  .leaflet-container { font-family: inherit; }
+  .mapbar { position: absolute; z-index: 500; top: 12px; left: 56px; display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
+  .legend { position: absolute; z-index: 500; bottom: 22px; left: 12px; background: var(--bg-2); border: 1px solid var(--border-2); border-radius: 8px; padding: 9px 12px; font-size: 0.76rem; box-shadow: 0 2px 8px rgba(0,0,0,0.25); }
+  .legend .ttl { font-weight: 600; margin-bottom: 5px; }
+  .legend .row { display: flex; align-items: center; gap: 7px; margin: 3px 0; color: var(--text-2); }
+  .sw { width: 14px; height: 12px; border-radius: 3px; flex: none; display: inline-block; }
+  .dot { width: 10px; height: 10px; border-radius: 50%; flex: none; display: inline-block; }
+  .leaflet-popup-content-wrapper, .leaflet-popup-tip { background: var(--bg-2); color: var(--text); }
+  .leaflet-popup-content { font-size: 0.82rem; line-height: 1.5; margin: 12px 14px; min-width: 230px; }
+  .leaflet-popup-content h4 { margin: 0 0 4px; font-size: 0.95rem; }
+  .leaflet-popup-content table { border-collapse: collapse; width: 100%; margin-top: 6px; }
+  .leaflet-popup-content td { padding: 3px 0; vertical-align: top; }
+  .leaflet-popup-content td + td { text-align: right; font-variant-numeric: tabular-nums; padding-left: 10px; }
+
+  #panel { grid-area: panel; border-left: 1px solid var(--border); background: var(--bg-2); overflow-y: auto; padding: 20px 22px 60px; }
+  .simpick { display: flex; align-items: center; gap: 10px; margin-bottom: 16px; }
+  .simpick select { flex: 1; min-width: 0; }
+  .simpick label { font-size: 0.76rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--text-3); font-weight: 600; white-space: nowrap; }
+  .today { display: flex; gap: 10px; margin-bottom: 18px; }
+  .today div { flex: 1; background: var(--bg); border: 1px solid var(--border-2); border-radius: 10px; padding: 10px 12px; }
+  .today b { display: block; font-size: 1.25rem; font-variant-numeric: tabular-nums; }
+  .today span { font-size: 0.74rem; color: var(--text-2); }
+  #panel h2 { margin: 0 0 4px; font-size: 1.3rem; }
+  #panel h3 { font-size: 0.76rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--text-3); margin: 24px 0 10px; font-weight: 600; }
+  .q { font-size: 0.86rem; color: var(--text-2); margin: 14px 0 6px; }
+  .seg { display: flex; border: 1px solid var(--border-2); border-radius: 8px; overflow: hidden; background: var(--bg); }
+  .seg button { flex: 1; background: none; border: none; color: var(--text-2); font: inherit; font-size: 0.84rem; padding: 8px 6px; cursor: pointer; white-space: nowrap; }
+  .seg button.on { background: var(--accent-soft); color: var(--text); font-weight: 600; }
+  .mapbar .seg { box-shadow: 0 2px 8px rgba(0,0,0,0.25); }
+  .goal-note { font-size: 0.8rem; color: var(--text-3); margin-top: 6px; }
+  select { width: 100%; background: var(--bg); color: var(--text); border: 1px solid var(--border-2); border-radius: 8px; font: inherit; font-size: 0.86rem; padding: 8px 10px; }
+  label.check { display: flex; gap: 8px; align-items: flex-start; font-size: 0.84rem; color: var(--text-2); margin-top: 12px; cursor: pointer; line-height: 1.45; }
+  label.check input { margin-top: 3px; }
+  .headline { margin-top: 22px; padding: 14px 16px; border-radius: 12px; background: var(--accent-soft); border: 1px solid var(--accent); font-size: 0.95rem; line-height: 1.55; }
+  .headline b { font-weight: 700; }
+  table.cmp { width: 100%; border-collapse: collapse; font-size: 0.84rem; margin-top: 4px; }
+  table.cmp th, table.cmp td { padding: 8px 6px; border-bottom: 1px solid var(--border); text-align: right; font-variant-numeric: tabular-nums; }
+  table.cmp th:first-child, table.cmp td:first-child { text-align: left; color: var(--text-2); font-weight: 400; }
+  table.cmp th { font-size: 0.78rem; }
+  table.cmp th.cur { color: var(--cur); } table.cmp th.bill { color: var(--bill); }
+  table.cmp tr.big td { font-size: 1rem; font-weight: 700; }
+  table.cmp td.better { color: var(--bill); }
+  table.t { width: 100%; border-collapse: collapse; font-size: 0.8rem; }
+  table.t th, table.t td { padding: 6px 4px; border-bottom: 1px solid var(--border); text-align: right; font-variant-numeric: tabular-nums; }
+  table.t th:first-child, table.t td:first-child { text-align: left; }
+  table.t th { color: var(--text-3); font-weight: 600; font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.04em; }
+  table.t td.up { color: var(--bill); }
+  .note { font-size: 0.76rem; color: var(--text-3); line-height: 1.55; }
+  details.box { border: 1px solid var(--border-2); border-radius: 10px; padding: 10px 12px; margin-top: 14px; background: var(--bg); }
+  details.box summary { cursor: pointer; font-weight: 600; font-size: 0.86rem; }
+  details.box .grid { display: grid; grid-template-columns: 1fr 110px; gap: 6px 10px; align-items: center; margin-top: 10px; font-size: 0.8rem; color: var(--text-2); }
+  details.box input { width: 100%; background: var(--bg-2); color: var(--text); border: 1px solid var(--border-2); border-radius: 6px; font: inherit; font-size: 0.82rem; padding: 4px 6px; text-align: right; }
+  .reroll { margin-top: 12px; font: inherit; font-size: 0.82rem; padding: 7px 12px; border-radius: 8px; border: 1px solid var(--border-2); background: var(--bg); color: var(--text); cursor: pointer; }
+
+  /* shared section tabs */
+  header nav.tabs { margin-left: auto; display: flex; align-items: center; gap: 4px; font-size: 0.9rem; }
+  header nav.tabs a { color: var(--text-2); padding: 6px 11px; border-radius: 7px; white-space: nowrap; }
+  header nav.tabs a:hover { background: var(--bg-3); text-decoration: none; color: var(--text); }
+  header nav.tabs a.active { background: var(--accent-soft); color: var(--text); font-weight: 600; }
+  header nav.tabs a.site { margin-left: 10px; padding-left: 14px; border-left: 1px solid var(--border-2); border-radius: 0; }
+  header nav.tabs .short { display: none; }
+  @media (max-width: 860px) {
+    body { grid-template-columns: minmax(0, 1fr); grid-template-rows: auto 50vh minmax(0, 1fr); grid-template-areas: "top" "map" "panel"; }
+    #panel { border-left: none; border-top: 1px solid var(--border); padding: 18px 16px 50px; }
+    header { padding: 12px 16px; }
+    header nav.tabs a.site { display: none; }
+    header nav.tabs a { padding: 6px 8px; }
+    header nav.tabs .full { display: none; }
+    header nav.tabs .short { display: inline; }
+    .legend { display: none; }
+  }
+  @media (max-width: 560px) {
+    header h1 { display: none; }
+    header nav.tabs { margin-left: 0; flex: 1; justify-content: space-between; }
+  }
+</style>
+</head>
+<body>
+<header>
+  <h1>Housing Simulator</h1>
+  <nav class="tabs">
+    <a href="index.html"><span class="full">Zoning code</span><span class="short">Code</span></a>
+    <a href="map.html"><span class="full">Zoning map</span><span class="short">Map</span></a>
+    <a href="sim.html" class="active" aria-current="page"><span class="full">Simulator</span><span class="short">Sim</span></a>
+    <a href="legislation.html"><span class="full">Proposed ordinances</span><span class="short">Ordinances</span></a>
+    <a class="site" href="../">Minnesota Explained</a>
+  </nav>
+</header>
+<div class="map-wrap">
+  <div id="map"></div>
+  <div class="mapbar"><div class="seg" id="showSeg"><button data-v="current" class="on">Map: current code</button><button data-v="bill" id="showBill">Map: with Bill A</button></div></div>
+  <div class="legend" id="legend"></div>
+</div>
+<aside id="panel"><p class="note">Loading lots…</p></aside>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+<script>
+(() => {
+  const $ = (s) => document.querySelector(s);
+  const esc = (s) => String(s ?? "").replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+  const fmt = (n) => Math.round(n).toLocaleString();
+  const money = (n) => {
+    const a = Math.abs(n);
+    if (a >= 1e9) return "$" + (n / 1e9).toFixed(1) + "B";
+    if (a >= 1e6) return "$" + Math.round(n / 1e6) + "M";
+    if (a >= 1e3) return "$" + Math.round(n / 1e3) + "K";
+    return "$" + Math.round(n);
+  };
+  const css = (v) => getComputedStyle(document.documentElement).getPropertyValue(v).trim();
+
+  const POPULATION = 430324;
+
+  /* ---------- editable cost assumptions ---------- */
+  const A = { acq: 1.05, demo: 40000, adu_sf: 650, adu_psf: 375, conv_unit: 140000, tri_psf: 300, mf_psf: 285, soft: 25, fees: 9000, unit_gsf: 1000, pph: 1.86 };
+  const LABELS = {
+    pph: ["People per home", 0.01], acq: ["Purchase price × assessed value", 0.05], demo: ["Demolition & site prep ($)", 1000],
+    tri_psf: ["New triplex ($/sq ft)", 5], mf_psf: ["New 4+ home building ($/sq ft)", 5], unit_gsf: ["Sq ft per home in 4+ buildings", 50],
+    adu_sf: ["ADU size (sq ft)", 25], adu_psf: ["ADU ($/sq ft)", 5], conv_unit: ["Conversion, per added home ($)", 5000],
+    soft: ["Soft costs (% of construction)", 1], fees: ["Public fees per new home ($)", 500],
+  };
+
+  /* ---------- zoning rules ---------- */
+  const UNRM = new Set(["UN1", "UN2", "UN3", "RM1", "RM2", "RM3"]);
+  const INTERIOR = new Set(["BFI1", "BFI2", "BFI3"]);
+  let rules, stats, C, N, hoodNames, hoodStats;
+
+  // rule: "current" or "bill"; S.smallLots adds a 5,000 sq ft minimum lot for 4+ homes to Bill A
+  function limits(zone, bf, rule) {
+    const z = rules.zones[zone], b = rules.builtform[bf];
+    const k = UNRM.has(zone) ? 0 : 1;
+    const L = { allow13: z.allows_1_3, allowMF: !!z.allows_mf, far13: b.far13[k], farMF: b.farMF[k], cap: Infinity, minLot: b.mf_lot[0] };
+    if (rule === "bill" && INTERIOR.has(bf)) {
+      L.far13 = Math.max(L.far13, 1.1);
+      if (bf === "BFI1") { L.farMF = Math.max(L.farMF, 1.1); L.cap = 6; }
+      if (bf === "BFI2" && k === 0) L.farMF = Math.max(L.farMF, 1.1);
+      if (zone === "UN1") { L.allowMF = true; L.cap = 6; }
+      if (S.smallLots) L.minLot = Math.min(L.minLot, 5000);
+    }
+    return L;
+  }
+
+  // Best project for one lot under a rule: the most added homes, cheapest on ties.
+  function best(i, rule) {
+    const zone = C.zones[C.z[i]], bf = C.builtform[C.b[i]], lot = C.lot[i], t = C.t[i];
+    const e = t === 0 ? 1 : t === 1 ? 2 : 0;
+    const L = limits(zone, bf, rule);
+    const soft = 1 + A.soft / 100;
+    const opts = [];
+    if (L.allow13 && (e === 1 || e === 2)) opts.push({ kind: "adu", after: e + 1, cost: A.adu_sf * A.adu_psf * soft + A.fees });
+    if (L.allow13 && e === 1 && C.sf[i] >= 1600) {
+      const after = C.sf[i] >= 2400 ? 3 : 2;
+      opts.push({ kind: "conv", after, cost: (after - e) * (A.conv_unit * soft + A.fees) });
+    }
+    const build = (kind, after, gsf, psf) => ({ kind, after, gsf, cost: C.tv[i] * 1000 * A.acq + (e > 0 ? A.demo : 0) + gsf * psf * soft + Math.max(0, after - e) * A.fees });
+    if (L.allow13 && e < 3) opts.push(build("tri", 3, Math.max(2500, Math.round(lot * L.far13)), A.tri_psf));
+    if (L.allowMF && lot >= L.minLot) {
+      const units = Math.min(L.cap, Math.floor((lot * L.farMF) / A.unit_gsf));
+      if (units >= 4) opts.push(build("multi", units, units * A.unit_gsf, A.mf_psf));
+    }
+    let top = null;
+    for (const o of opts) {
+      o.net = o.after - e; o.e = e;
+      if (o.net <= 0) continue;
+      if (!top || o.net > top.net || (o.net === top.net && o.cost < top.cost)) top = o;
+    }
+    return top;
+  }
+  const KIND = { adu: "Add an ADU", conv: "Convert house to 2–3 homes", tri: "Replace with a triplex", multi: "Replace with a 4–6+ home building" };
+
+  /* ---------- seeded random + lot order ---------- */
+  function mulberry32(a) { return () => { a |= 0; a = (a + 0x6d2b79f5) | 0; let t = Math.imul(a ^ (a >>> 15), 1 | a); t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t; return ((t ^ (t >>> 14)) >>> 0) / 4294967296; }; }
+
+  function orderLots() {
+    const rnd = mulberry32(S.seed);
+    const keys = new Float64Array(N);
+    if (S.where === "likely") {
+      // land worth more than the building, older homes, bigger lots and vacant lots go first (with randomness)
+      for (let i = 0; i < N; i++) {
+        const age = C.yb[i] ? Math.min(1, Math.max(0.2, (2026 - C.yb[i]) / 100)) : 0.6;
+        const w = Math.pow(C.land[i] / 100 + 0.05, 2) * age * Math.min(2, C.lot[i] / 5000) * (C.t[i] === 2 ? 3 : 1);
+        keys[i] = Math.pow(rnd(), 1 / Math.max(w, 1e-6));
+      }
+    } else {
+      // spread: each neighborhood redevelops the same share of its lots
+      const byHood = new Map();
+      for (let i = 0; i < N; i++) { if (!byHood.has(C.h[i])) byHood.set(C.h[i], []); byHood.get(C.h[i]).push(i); }
+      for (const arr of byHood.values()) {
+        arr.map((i) => [rnd(), i]).sort((a, b) => a[0] - b[0]).forEach(([, i], rank) => (keys[i] = 1 - (rank + rnd()) / arr.length));
+      }
+    }
+    return Array.from({ length: N }, (_, i) => i).sort((a, b) => keys[b] - keys[a]);
+  }
+
+  /* ---------- state ---------- */
+  const S = { people: 50000, where: "likely", pace: 300, smallLots: false, show: "current", seed: 1 };
+  let R = null; // results for both rules
+
+  function simulate() {
+    const order = orderLots();
+    const goalHomes = Math.ceil(S.people / A.pph);
+    const out = {};
+    for (const rule of ["current", "bill"]) {
+      const picks = [];
+      let homes = 0, cost = 0, ceiling = 0, ceilingPeopleDone = false;
+      const byHood = new Float64Array(hoodNames.length);
+      for (const i of order) {
+        const o = best(i, rule);
+        if (!o) continue;
+        ceiling += o.net;
+        if (homes < goalHomes) { picks.push([i, o]); homes += o.net; cost += o.cost; byHood[C.h[i]] += o.net; }
+      }
+      out[rule] = { picks, homes, cost, ceiling, byHood, reached: homes >= goalHomes, lots: picks.length };
+    }
+    out.goalHomes = goalHomes;
+    R = out;
+  }
+
+  /* ---------- map ---------- */
+  const dark = matchMedia("(prefers-color-scheme: dark)").matches;
+  const map = L.map("map", { preferCanvas: true, maxZoom: 18 }).setView([44.97, -93.265], 12);
+  window.simMap = map;
+  const canvasStyle = dark ? "Dark_Gray" : "Light_Gray";
+  L.tileLayer(`https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_${canvasStyle}_Base/MapServer/tile/{z}/{y}/{x}`, {
+    attribution: "Basemap &copy; Esri, HERE, Garmin, &copy; OpenStreetMap contributors · Parcels &amp; zoning: City of Minneapolis", maxNativeZoom: 16, maxZoom: 18,
+  }).addTo(map);
+  map.createPane("labels"); map.getPane("labels").style.zIndex = 650; map.getPane("labels").style.pointerEvents = "none";
+  L.tileLayer(`https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_${canvasStyle}_Reference/MapServer/tile/{z}/{y}/{x}`, { pane: "labels", maxNativeZoom: 16, maxZoom: 18 }).addTo(map);
+  const renderer = L.canvas({ padding: 0.3 });
+  const dotLayer = L.layerGroup().addTo(map);
+  let hoodLayer;
+
+  const STEPS = [0, 2, 5, 10, 20, 40];
+  const RAMP = dark ? ["#1b2a33", "#1d4a5c", "#1f6b7d", "#2a9a9a", "#4ec9b0", "#a6f0d8"] : ["#eef6f4", "#cdeae3", "#9fd8ca", "#5fbfa9", "#2a9a85", "#0f6b5a"];
+  const pctColor = (p) => { let c = RAMP[0]; STEPS.forEach((s, k) => { if (p >= s) c = RAMP[k]; }); return c; };
+
+  function hoodPct(name, rule) {
+    const h = hoodNames.indexOf(name), s = hoodStats[name];
+    if (h < 0 || !s.existing_units) return 0;
+    return (100 * R[rule].byHood[h]) / s.existing_units;
+  }
+
+  function drawMap() {
+    if (!R) return;
+    hoodLayer.setStyle((f) => ({ fillColor: pctColor(hoodPct(f.properties.n, S.show)), fillOpacity: 0.62, color: dark ? "#fff" : "#333", weight: 0.8, opacity: 0.5 }));
+    dotLayer.clearLayers();
+    const r = map.getZoom() >= 15 ? 5 : map.getZoom() >= 13 ? 3 : 1.8;
+    const col = dark ? "#ffffff" : "#1d1d1b"; // neutral so dots stand out on the shading
+    for (const [i, o] of R[S.show].picks) {
+      const m = L.circleMarker([C.y[i] / 1e5, C.x[i] / 1e5], { renderer, radius: r, stroke: false, fillColor: col, fillOpacity: 0.75 });
+      m.on("click", () => lotPopup(i));
+      m.addTo(dotLayer);
+    }
+    $("#legend").innerHTML = `<div class="ttl">Population growth by neighborhood</div>` +
+      STEPS.map((s, k) => `<div class="row"><span class="sw" style="background:${RAMP[k]}"></span>${k === STEPS.length - 1 ? `${s}%+` : `${s}–${STEPS[k + 1]}%`}</div>`).join("") +
+      `<div class="row" style="margin-top:6px"><span class="dot" style="background:${col}"></span>Lot that redevelops</div>`;
+  }
+  map.on("zoomend", drawMap);
+
+  function lotPopup(i) {
+    const what = ["House (1 home)", "Duplex (2 homes)", "Vacant lot"][C.t[i]];
+    const row = (rule, label) => {
+      const o = best(i, rule);
+      return `<tr><td><b style="color:${css(rule === "current" ? "--cur" : "--bill")}">${label}</b><br>${o ? `${KIND[o.kind]}: ${o.e} → ${o.after} homes` : "No added homes allowed"}</td><td>${o ? money(o.cost) : ""}</td></tr>`;
+    };
+    L.popup({ maxWidth: 330, autoPanPaddingTopLeft: [20, 70] }).setLatLng([C.y[i] / 1e5, C.x[i] / 1e5]).setContent(
+      `<h4>${what}</h4><div style="opacity:.75">${esc(hoodNames[C.h[i]])} · ${C.zones[C.z[i]]} · ${esc(rules.builtform[C.builtform[C.b[i]]].name)}<br>Lot ${fmt(C.lot[i])} sq ft · assessed ${money(C.tv[i] * 1000)}${C.yb[i] ? ` · built ${C.yb[i]}` : ""}</div>
+       <table>${row("current", "Current code")}${row("bill", S.smallLots ? "Bill A + 5,000 sq ft lots" : "Bill A")}</table>`).openOn(map);
+  }
+
+  function hoodPopup(e, name) {
+    const s = hoodStats[name], pop = s.existing_units * A.pph, area = s.area_sqmi || 1;
+    const line = (rule, label) => {
+      const add = R[rule].byHood[hoodNames.indexOf(name)] * A.pph;
+      return `<tr><td style="color:${css(rule === "current" ? "--cur" : "--bill")}">${label}</td><td>+${fmt(add)} people<br>${fmt((pop + add) / area)}/sq mi</td></tr>`;
+    };
+    L.popup({ autoPanPaddingTopLeft: [20, 70] }).setLatLng(e.latlng).setContent(
+      `<h4>${esc(name)}</h4><div style="opacity:.75">${s.area_sqmi} sq mi · about ${fmt(pop)} people today (${fmt(pop / area)} per sq mi)</div>
+       <table>${line("current", "Current code")}${line("bill", "Bill A")}</table>`).openOn(map);
+  }
+
+  /* ---------- panel ---------- */
+  function panel() {
+    const existing = stats.citywide.existing_units;
+    return `
+      <div class="simpick"><label for="simType">Simulation</label><select id="simType">
+        <option value="sim.html" selected>Housing growth: current code vs Bill A</option>
+        <option value="sim-grocery.html">Grocery access: deserts and miles traveled</option></select></div>
+      <div class="today"><div><b>${fmt(POPULATION)}</b><span>people in Minneapolis</span></div><div><b>${fmt(existing)}</b><span>homes today</span></div></div>
+      <h2>House more people</h2>
+      <div class="q">How many more people should the city have room for?</div>
+      <div class="seg" id="peopleSeg">${[10000, 25000, 50000, 100000].map((p) => `<button data-v="${p}" class="${p === S.people ? "on" : ""}">+${p / 1000}K</button>`).join("")}</div>
+      <div class="goal-note" id="goalNote"></div>
+      <div class="q">Where does redevelopment happen?</div>
+      <div class="seg" id="whereSeg"><button data-v="likely" class="${S.where === "likely" ? "on" : ""}">Where it's most likely</button><button data-v="spread" class="${S.where === "spread" ? "on" : ""}">Spread across all neighborhoods</button></div>
+      <div class="q">How fast can the city build?</div>
+      <select id="pace">${[[150, "About today's pace (~150 small projects a year)"], [300, "Twice today's pace (300 a year)"], [750, "Ambitious (750 a year)"], [1500, "All-out (1,500 a year)"]].map(([v, l]) => `<option value="${v}" ${v === S.pace ? "selected" : ""}>${l}</option>`).join("")}</select>
+      <label class="check"><input type="checkbox" id="smallLots" ${S.smallLots ? "checked" : ""}> Also let Bill A build 4–6 homes on standard 5,000 sq ft lots (today 4+ home buildings need 7,500–9,000 sq ft in Interior 1–2)</label>
+      <div id="results"></div>
+      <button class="reroll" id="reroll">Re-roll which lots redevelop</button>
+      <details class="box"><summary>Cost and people assumptions</summary><div class="grid">
+        ${Object.entries(LABELS).map(([k, [l, step]]) => `<span>${l}</span><input type="number" step="${step}" data-a="${k}" value="${A[k]}">`).join("")}
+      </div><p class="note">People per home starts at ${fmt(POPULATION)} residents ÷ ${fmt(existing)} homes. Costs are rough 2026 Twin Cities planning estimates; purchase uses the 2026 assessed value.</p></details>
+      ${how()}`;
+  }
+
+  function results() {
+    const c = R.current, b = R.bill, existing = stats.citywide.existing_units;
+    const billName = S.smallLots ? "Bill A + small lots" : "Bill A";
+    $("#goalNote").textContent = `= about ${fmt(R.goalHomes)} new homes at ${A.pph} people per home`;
+    const cell = (cv, bv, f, lowerBetter) => {
+      const better = lowerBetter ? bv < cv * 0.995 : bv > cv * 1.005;
+      return `<td>${f(cv)}</td><td class="${better ? "better" : ""}">${f(bv)}</td>`;
+    };
+    const yrs = (r) => r.lots / S.pace;
+    const yfmt = (y) => (y < 1 ? "<1 yr" : `${y.toFixed(y < 10 ? 1 : 0)} yrs`);
+    const status = (r) => (r.reached ? "" : " ⚠");
+    let head;
+    if (!c.reached && !b.reached) head = `Neither set of rules can house <b>${fmt(S.people)}</b> more people on houses and small lots alone. Current code tops out at <b>+${fmt(c.ceiling * A.pph)}</b> people, ${billName} at <b>+${fmt(b.ceiling * A.pph)}</b>.`;
+    else if (!c.reached) head = `Current code can't get there: it tops out at <b>+${fmt(c.ceiling * A.pph)}</b> people. <b>${billName}</b> houses <b>${fmt(S.people)}</b> more people by redeveloping <b>${fmt(b.lots)}</b> lots.`;
+    else {
+      const saved = c.lots - b.lots;
+      const dy = yrs(c) - yrs(b);
+      const faster = dy < 1 ? "less than a year faster" : `about <b>${dy.toFixed(dy < 10 ? 1 : 0)} years</b> faster`;
+      head = saved > 0
+        ? `To house <b>${fmt(S.people)}</b> more people, current code needs <b>${fmt(c.lots)}</b> lots to redevelop. <b>${billName}</b> needs <b>${fmt(b.lots)}</b>: ${fmt(saved)} fewer lots (${Math.round((100 * saved) / c.lots)}%), ${faster}.`
+        : `${billName} changes little here: both need about <b>${fmt(c.lots)}</b> lots.`;
+      const cpc = c.cost / (c.homes || 1), cpb = b.cost / (b.homes || 1);
+      if (!S.smallLots && cpb > cpc * 1.05)
+        head += `<br><span style="font-size:.86rem">But each new home costs more (${money(cpb)} vs ${money(cpc)}). On lots under 7,500–9,000 sq ft, Bill A as drafted lets triplexes get bigger rather than adding homes. Tick the 5,000 sq ft lot option to see the difference.</span>`;
+    }
+    $("#results").innerHTML = `
+      <div class="headline">${head}</div>
+      <h3>Side by side</h3>
+      <table class="cmp">
+        <tr><th></th><th class="cur">Current code</th><th class="bill">${billName}</th></tr>
+        <tr class="big"><td>Lots that redevelop</td>${cell(c.lots, b.lots, (v) => fmt(v) + "", true)}</tr>
+        <tr><td>Share of eligible lots</td>${cell(c.lots, b.lots, (v) => ((100 * v) / N).toFixed(1) + "%", true)}</tr>
+        <tr><td>New homes</td>${cell(c.homes, b.homes, (v) => fmt(v))}</tr>
+        <tr class="big"><td>People housed</td>${cell(c.homes * A.pph, b.homes * A.pph, (v) => "+" + fmt(v))}</tr>
+        <tr><td>City population</td>${cell(POPULATION + c.homes * A.pph, POPULATION + b.homes * A.pph, (v) => fmt(v))}</tr>
+        <tr><td>Homes per redeveloped lot</td>${cell(c.homes / (c.lots || 1), b.homes / (b.lots || 1), (v) => v.toFixed(1))}</tr>
+        <tr><td>Total cost</td>${cell(c.cost, b.cost, money, true)}</tr>
+        <tr><td>Cost per new home</td>${cell(c.cost / (c.homes || 1), b.cost / (b.homes || 1), money, true)}</tr>
+        <tr class="big"><td>Years to build</td>${cell(yrs(c), yrs(b), yfmt, true)}</tr>
+        <tr><td>Most homes these lots could add</td>${cell(c.ceiling, b.ceiling, (v) => "+" + fmt(v))}</tr>
+        <tr><td>…people that could house</td>${cell(c.ceiling * A.pph, b.ceiling * A.pph, (v) => "+" + fmt(v))}</tr>
+      </table>
+      <p class="note">"Most homes these lots could add" is the zoning ceiling if every eligible house, duplex and vacant lot were rebuilt to the limit. Years assume ${fmt(S.pace)} projects finish each year.${c.reached && b.reached ? "" : " ⚠ Goal not reached under that column's rules."}</p>
+      <h3>Density change by neighborhood</h3>
+      ${hoodTable()}`;
+    void existing;
+  }
+
+  function hoodTable() {
+    const rows = hoodNames.map((n, h) => {
+      const s = hoodStats[n], pop = s.existing_units * A.pph, area = s.area_sqmi || 1;
+      return { n, now: pop / area, cur: (pop + R.current.byHood[h] * A.pph) / area, bill: (pop + R.bill.byHood[h] * A.pph) / area, add: R.bill.byHood[h] * A.pph };
+    }).filter((r) => r.add > 0).sort((a, b) => b.add - a.add).slice(0, 15);
+    return `<table class="t"><tr><th>Neighborhood</th><th>People / sq mi today</th><th style="color:var(--cur)">Current code</th><th style="color:var(--bill)">${S.smallLots ? "Bill A + small lots" : "Bill A"}</th></tr>
+      ${rows.map((r) => `<tr><td>${esc(r.n)}</td><td>${fmt(r.now)}</td><td>${fmt(r.cur)}</td><td class="up">${fmt(r.bill)}</td></tr>`).join("")}</table>
+      <p class="note">Top 15 neighborhoods by people added under ${S.smallLots ? "Bill A + small lots" : "Bill A"}. Click a neighborhood on the map for its numbers; switch the map between rules at the top left.</p>`;
+  }
+
+  function how() {
+    return `<details class="box"><summary>How this works</summary><div class="note" style="margin-top:8px">
+      <p><b>Same lots, two rulebooks.</b> The simulator lines up ${fmt(N)} taxable houses, duplexes and vacant residential lots (City Assessor 2026) in the order they'd likely redevelop, or evenly across neighborhoods. It walks down that same list twice, once with current zoning and once with Bill A, until the new homes reach your goal. Each lot gets the project that adds the most homes its rules allow.</p>
+      <p><b>What a lot can become:</b> an ADU (only with a house or duplex), a conversion of a large house into 2–3 homes, a new triplex sized to the floor area limit, or a new 4+ home building where the district and lot size allow it, with homes = lot area × floor area ratio ÷ ${fmt(A.unit_gsf)} sq ft. Bill A raises floor area to 1.1 for 3–6 home buildings in Interior districts and allows 4–6 homes in UN1, but keeps today's 7,500–9,000 sq ft minimum lots for 4+ homes unless you tick the small-lot option.</p>
+      <p><b>People</b> = new homes × ${A.pph} people per home (today's ratio). <b>Density</b> = neighborhood population ÷ land area, using assessor home counts to estimate each neighborhood's current population.</p>
+      <p>This is a scenario tool, not a forecast of what owners will do. Apartments on commercial corridors, which add most new homes in practice, aren't included.</p>
+    </div></details>`;
+  }
+
+  function update() {
+    simulate(); results(); drawMap();
+    $("#showBill").textContent = S.smallLots ? "Map: Bill A + small lots" : "Map: with Bill A";
+  }
+
+  function bind() {
+    const segs = (id, key, cast) => document.querySelectorAll(`#${id} button`).forEach((b) => (b.onclick = () => {
+      S[key] = cast(b.dataset.v);
+      document.querySelectorAll(`#${id} button`).forEach((x) => x.classList.toggle("on", x === b));
+      update();
+    }));
+    $("#simType").onchange = (e) => (location.href = e.target.value);
+    segs("peopleSeg", "people", Number);
+    segs("whereSeg", "where", String);
+    $("#pace").onchange = (e) => { S.pace = +e.target.value; results(); };
+    $("#smallLots").onchange = (e) => { S.smallLots = e.target.checked; update(); };
+    $("#reroll").onclick = () => { S.seed = (S.seed * 48271) % 2147483647 || 7; update(); };
+    document.querySelectorAll("input[data-a]").forEach((inp) => (inp.onchange = () => {
+      const v = parseFloat(inp.value);
+      if (!isFinite(v) || v <= 0) { inp.value = A[inp.dataset.a]; return; }
+      A[inp.dataset.a] = v; update();
+    }));
+  }
+  document.querySelectorAll("#showSeg button").forEach((b) => (b.onclick = () => {
+    S.show = b.dataset.v;
+    document.querySelectorAll("#showSeg button").forEach((x) => x.classList.toggle("on", x === b));
+    drawMap();
+  }));
+
+  Promise.all(["candidates.json", "stats.json", "neighborhoods.geojson"].map((f) => fetch("map_data/" + f).then((r) => { if (!r.ok) throw new Error(f + " " + r.status); return r.json(); })))
+    .then(([cand, st, hoods]) => {
+      C = cand; N = cand.n; stats = st; rules = st.rules; hoodNames = cand.hoods; hoodStats = st.neighborhoods;
+      A.pph = Math.round((100 * POPULATION) / st.citywide.existing_units) / 100;
+      hoodLayer = L.geoJSON(hoods, { renderer, style: { fillOpacity: 0, color: "#888", weight: 0.8 }, onEachFeature: (f, l) => l.on("click", (e) => hoodPopup(e, f.properties.n)) }).addTo(map);
+      map.fitBounds(hoodLayer.getBounds(), { padding: [10, 10] });
+      $("#panel").innerHTML = panel();
+      bind();
+      update();
+    })
+    .catch((err) => { $("#panel").innerHTML = `<p class="note">Couldn't load data (${esc(err.message)}). Serve this folder with a local web server, e.g. <code>python3 -m http.server</code>.</p>`; });
+})();
+</script>
+</body>
+</html>

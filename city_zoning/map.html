@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Minneapolis Zoning Map</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
+<style>
+  :root {
+    --bg: #000; --bg-2: #0d0d0d; --bg-3: #161616;
+    --text: #e0e0e0; --text-2: #aaa; --text-3: #777;
+    --border: #1e1e1e; --border-2: #2a2a2a;
+    --accent: #4a9eff; --accent-soft: rgba(74, 158, 255, 0.14);
+    --good: #7ee2a8; --warn: #f3c06b;
+  }
+  @media (prefers-color-scheme: light) {
+    :root:not([data-theme="dark"]) {
+      --bg: #fafaf8; --bg-2: #fff; --bg-3: #f1f1ee;
+      --text: #1d1d1b; --text-2: #55554f; --text-3: #8a8a84;
+      --border: #e4e4df; --border-2: #d6d6cf;
+      --accent: #1f6fd1; --accent-soft: rgba(31, 111, 209, 0.10);
+      --good: #1c6b3e; --warn: #8a5a0b;
+    }
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; height: 100%; }
+  body {
+    font-family: 'Space Grotesk', system-ui, sans-serif; background: var(--bg); color: var(--text);
+    display: grid; grid-template-columns: minmax(0, 1fr) 420px; grid-template-rows: auto minmax(0, 1fr);
+    grid-template-areas: "top top" "map panel"; height: 100vh; height: 100dvh;
+  }
+  a { color: var(--accent); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  header { grid-area: top; display: flex; align-items: center; gap: 16px; padding: 14px 20px; border-bottom: 1px solid var(--border); }
+  header h1 { font-size: 1.05rem; margin: 0; font-weight: 700; white-space: nowrap; }
+
+  #map { grid-area: map; background: var(--bg-3); }
+  .leaflet-container { font-family: inherit; }
+  .controls {
+    position: absolute; z-index: 500; top: 12px; left: 56px; display: flex; gap: 8px; flex-wrap: wrap;
+  }
+  .seg { display: flex; background: var(--bg-2); border: 1px solid var(--border-2); border-radius: 8px; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.25); }
+  .seg button { background: none; border: none; color: var(--text-2); font: inherit; font-size: 0.84rem; padding: 7px 12px; cursor: pointer; }
+  .seg button.on { background: var(--accent-soft); color: var(--text); font-weight: 600; }
+  select.hood {
+    background: var(--bg-2); color: var(--text); border: 1px solid var(--border-2); border-radius: 8px;
+    font: inherit; font-size: 0.84rem; padding: 7px 10px; box-shadow: 0 2px 8px rgba(0,0,0,0.25); max-width: 220px;
+  }
+  .legend {
+    position: absolute; z-index: 500; bottom: 22px; left: 12px; background: var(--bg-2); border: 1px solid var(--border-2);
+    border-radius: 8px; padding: 10px 12px; font-size: 0.76rem; max-height: 46vh; overflow-y: auto; box-shadow: 0 2px 8px rgba(0,0,0,0.25);
+  }
+  .legend .row { display: flex; align-items: center; gap: 7px; margin: 3px 0; color: var(--text-2); }
+  .legend .sw { width: 14px; height: 14px; border-radius: 3px; flex: none; border: 1px solid rgba(0,0,0,0.15); }
+  .legend .ttl { font-weight: 600; color: var(--text); margin-bottom: 5px; }
+  .map-wrap { position: relative; grid-area: map; min-height: 0; }
+  .map-wrap #map { position: absolute; inset: 0; }
+  .leaflet-tooltip.hood-tip { background: var(--bg-2); color: var(--text); border: 1px solid var(--border-2); font-family: inherit; font-size: 0.8rem; box-shadow: none; }
+  .leaflet-tooltip.hood-tip::before { display: none; }
+
+  #panel { grid-area: panel; border-left: 1px solid var(--border); background: var(--bg-2); overflow-y: auto; padding: 22px 22px 60px; }
+  #panel h2 { margin: 0 0 4px; font-size: 1.5rem; line-height: 1.2; }
+  #panel .sub { color: var(--text-3); font-size: 0.84rem; margin-bottom: 18px; }
+  #panel h3 { font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--text-3); margin: 26px 0 10px; font-weight: 600; }
+  .stats { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  .stat { background: var(--bg); border: 1px solid var(--border-2); border-radius: 10px; padding: 12px; }
+  .stat .v { font-size: 1.45rem; font-weight: 700; font-variant-numeric: tabular-nums; }
+  .stat .l { font-size: 0.76rem; color: var(--text-2); margin-top: 2px; line-height: 1.35; }
+  .stat.wide { grid-column: span 2; }
+  .meter { height: 8px; border-radius: 4px; background: var(--bg-3); overflow: hidden; margin-top: 8px; }
+  .meter > div { height: 100%; background: var(--warn); }
+  .bar { display: flex; height: 18px; border-radius: 5px; overflow: hidden; border: 1px solid var(--border-2); }
+  .bar div { height: 100%; }
+  .mix { list-style: none; padding: 0; margin: 10px 0 0; font-size: 0.84rem; }
+  .mix li { display: flex; align-items: center; gap: 8px; padding: 3px 0; color: var(--text-2); }
+  .mix li b { color: var(--text); font-weight: 600; min-width: 46px; }
+  .mix li .pct { margin-left: auto; font-variant-numeric: tabular-nums; }
+  .mix .sw { width: 12px; height: 12px; border-radius: 3px; flex: none; }
+  .combo { border: 1px solid var(--border-2); border-radius: 10px; padding: 13px 14px; margin-bottom: 10px; background: var(--bg); }
+  .combo .hd { display: flex; align-items: baseline; gap: 8px; flex-wrap: wrap; }
+  .combo .hd .t { font-weight: 700; }
+  .combo .hd .n { margin-left: auto; color: var(--text-3); font-size: 0.78rem; }
+  .chip { display: inline-block; font-size: 0.72rem; font-weight: 600; padding: 1px 7px; border-radius: 4px; color: #1d1d1b; }
+  .combo p { margin: 8px 0 0; font-size: 0.84rem; color: var(--text-2); line-height: 1.5; }
+  .combo dl { display: grid; grid-template-columns: auto 1fr; gap: 3px 12px; margin: 10px 0 0; font-size: 0.82rem; }
+  .combo dt { color: var(--text-3); }
+  .combo dd { margin: 0; }
+  .combo .cap { margin-top: 10px; padding-top: 9px; border-top: 1px solid var(--border); font-size: 0.82rem; color: var(--text-2); }
+  .combo .cap b { color: var(--text); }
+  .here { background: var(--accent-soft); border: 1px solid var(--accent); border-radius: 10px; padding: 11px 13px; font-size: 0.86rem; margin-bottom: 4px; }
+  .note { font-size: 0.78rem; color: var(--text-3); line-height: 1.55; }
+  details.how { margin-top: 26px; font-size: 0.82rem; color: var(--text-2); }
+  details.how summary { cursor: pointer; color: var(--text); font-weight: 600; }
+  details.how li { margin: 6px 0; line-height: 1.5; }
+  .intro p { color: var(--text-2); line-height: 1.6; font-size: 0.92rem; }
+
+  @media (max-width: 860px) {
+    body { grid-template-columns: minmax(0, 1fr); grid-template-rows: auto 55vh minmax(0, 1fr); grid-template-areas: "top" "map" "panel"; }
+    header { padding: 12px 16px; }
+    #panel { border-left: none; border-top: 1px solid var(--border); padding: 18px 16px 50px; }
+    .controls { left: 52px; right: 10px; }
+    .legend { display: none; }
+  }
+
+  /* shared section tabs */
+  header nav.tabs { margin-left: auto; display: flex; align-items: center; gap: 4px; font-size: 0.9rem; }
+  header nav.tabs a { color: var(--text-2); padding: 6px 11px; border-radius: 7px; white-space: nowrap; }
+  header nav.tabs a:hover { background: var(--bg-3); text-decoration: none; color: var(--text); }
+  header nav.tabs a.active { background: var(--accent-soft); color: var(--text); font-weight: 600; }
+  header nav.tabs a.site { margin-left: 10px; padding-left: 14px; border-left: 1px solid var(--border-2); border-radius: 0; }
+  header nav.tabs .short { display: none; }
+  @media (max-width: 860px) {
+    header nav.tabs a.site { display: none; }
+    header nav.tabs a { padding: 6px 8px; }
+    header nav.tabs .full { display: none; }
+    header nav.tabs .short { display: inline; }
+  }
+  @media (max-width: 560px) {
+    header h1 { display: none; }
+    header nav.tabs { margin-left: 0; flex: 1; justify-content: space-between; }
+  }
+</style>
+</head>
+<body>
+<header>
+  <h1>Minneapolis Zoning Map</h1>
+  <nav class="tabs">
+    <a href="index.html"><span class="full">Zoning code</span><span class="short">Code</span></a>
+    <a href="map.html" class="active" aria-current="page"><span class="full">Zoning map</span><span class="short">Map</span></a>
+    <a href="sim.html"><span class="full">Simulator</span><span class="short">Sim</span></a>
+    <a href="legislation.html"><span class="full">Proposed ordinances</span><span class="short">Ordinances</span></a>
+    <a class="site" href="../">Minnesota Explained</a>
+  </nav>
+</header>
+<div class="map-wrap">
+  <div id="map"></div>
+  <div class="controls">
+    <div class="seg" id="modeSeg">
+      <button data-mode="zone" class="on">Primary zoning</button>
+      <button data-mode="bf">Built form (size)</button>
+    </div>
+    <select class="hood" id="hoodSel"><option value="">Choose a neighborhood…</option></select>
+  </div>
+  <div class="legend" id="legend"></div>
+</div>
+<aside id="panel"><div class="note">Loading map data…</div></aside>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+<script>
+(() => {
+  const $ = (s) => document.querySelector(s);
+  const esc = (s) => String(s ?? "").replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+  const fmt = (n) => Math.round(n).toLocaleString();
+
+  const ZONE_COLORS = {
+    UN1: "#f6e8a6", UN2: "#f2cf63", UN3: "#d9a520",
+    RM1: "#d8b48a", RM2: "#b8865a", RM3: "#8e5a33",
+    CM1: "#f7b49a", CM2: "#f28a6b", CM3: "#e0553f", CM4: "#a8322a",
+    DT1: "#8fc5e8", DT2: "#5a97cf", PR1: "#d9a6e0", PR2: "#b46fc6", TR1: "#b5b5b5",
+  };
+  const BF_COLORS = {
+    BFI1: "#e3efdc", BFI2: "#c4e0b8", BFI3: "#9ccb8c",
+    BFC3: "#fde0a0", BFC4: "#fbbf62", BFC6: "#f39b33",
+    BFT10: "#e7663f", BFT15: "#d0473c", BFT20: "#b03040", BFT30A: "#8c1d48", BFT30B: "#74164a", BFC50: "#4a0f3f",
+    BFPA: "#5fae6a", BFPR: "#a99bd0",
+  };
+  const ZONE_ORDER = Object.keys(ZONE_COLORS), BF_ORDER = Object.keys(BF_COLORS);
+  const UNRM = new Set(["UN1", "UN2", "UN3", "RM1", "RM2", "RM3"]);
+
+  let data, rules, mode = "zone", selected = null, hoodLayer, zoneLayer, bfLayer, zoneGJ, bfGJ, hoodGJ;
+  const hoodByName = new Map();
+
+  /* ---------- map ---------- */
+  const map = L.map("map", { zoomControl: true, preferCanvas: true, maxZoom: 16 }).setView([44.97, -93.265], 12);
+  const dark = matchMedia("(prefers-color-scheme: dark)").matches;
+  const canvas = dark ? "Dark_Gray" : "Light_Gray";
+  L.tileLayer(`https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_${canvas}_Base/MapServer/tile/{z}/{y}/{x}`, {
+    attribution: 'Basemap &copy; Esri, HERE, Garmin, &copy; OpenStreetMap contributors · Zoning &amp; parcels: City of Minneapolis',
+    maxZoom: 16,
+  }).addTo(map);
+  map.createPane("labels"); map.getPane("labels").style.zIndex = 650; map.getPane("labels").style.pointerEvents = "none";
+  L.tileLayer(`https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_${canvas}_Reference/MapServer/tile/{z}/{y}/{x}`, { pane: "labels", maxZoom: 16 }).addTo(map);
+
+  /* ---------- zoning math (mirrors scripts/build_map.py) ---------- */
+  function homesOnLot(zone, bf, lot) {
+    const z = rules.zones[zone], b = rules.builtform[bf];
+    if (!z || !b) return 0;
+    const k = UNRM.has(zone) ? 0 : 1;
+    let best = z.allows_1_3 ? 3 : 0;
+    if (z.allows_mf && lot >= b.mf_lot[0]) best = Math.max(best, Math.floor((lot * b.farMF[k]) / rules.assumptions.avg_unit_gsf));
+    return best;
+  }
+
+  /* ---------- point in polygon (for "at this spot") ---------- */
+  function inRing(pt, ring) {
+    let inside = false;
+    for (let i = 0, j = ring.length - 1; i < ring.length; j = i++) {
+      const [xi, yi] = ring[i], [xj, yj] = ring[j];
+      if (yi > pt[1] !== yj > pt[1] && pt[0] < ((xj - xi) * (pt[1] - yi)) / (yj - yi) + xi) inside = !inside;
+    }
+    return inside;
+  }
+  function inGeom(pt, g) {
+    const polys = g.type === "Polygon" ? [g.coordinates] : g.type === "MultiPolygon" ? g.coordinates : [];
+    return polys.some((p) => inRing(pt, p[0]) && !p.slice(1).some((h) => inRing(pt, h)));
+  }
+  function lookup(gj, key, latlng) {
+    const pt = [latlng.lng, latlng.lat];
+    const f = gj.features.find((f) => inGeom(pt, f.geometry));
+    return f ? f.properties[key] : null;
+  }
+
+  /* ---------- layers ---------- */
+  function styleFill(color) { return { fillColor: color || "#999", fillOpacity: dark ? 0.78 : 0.62, color: color || "#999", weight: 0.3, opacity: 0.7 }; }
+  function hoodStyle(f) {
+    const on = selected && f.properties.n === selected;
+    return { fill: true, fillOpacity: on ? 0.0 : 0.0, fillColor: "#000", color: on ? "#4a9eff" : (dark ? "#ffffff" : "#222"), weight: on ? 3.5 : 1.1, opacity: on ? 1 : 0.55 };
+  }
+
+  function setMode(m) {
+    mode = m;
+    document.querySelectorAll("#modeSeg button").forEach((b) => b.classList.toggle("on", b.dataset.mode === m));
+    if (m === "zone") { map.removeLayer(bfLayer); zoneLayer.addTo(map); } else { map.removeLayer(zoneLayer); bfLayer.addTo(map); }
+    hoodLayer.bringToFront();
+    drawLegend();
+  }
+  function drawLegend() {
+    const isZone = mode === "zone";
+    const order = isZone ? ZONE_ORDER : BF_ORDER, colors = isZone ? ZONE_COLORS : BF_COLORS;
+    const name = (c) => (isZone ? rules.zones[c]?.name : rules.builtform[c]?.name) || c;
+    $("#legend").innerHTML = `<div class="ttl">${isZone ? "Primary zoning district" : "Built form overlay"}</div>` +
+      order.map((c) => `<div class="row"><span class="sw" style="background:${colors[c]}"></span>${isZone ? `<b style="color:var(--text);min-width:30px">${c}</b>` : ""}${esc(name(c))}</div>`).join("");
+  }
+  document.querySelectorAll("#modeSeg button").forEach((b) => b.addEventListener("click", () => setMode(b.dataset.mode)));
+
+  /* ---------- panel ---------- */
+  function zoneChip(code) { return `<span class="chip" style="background:${ZONE_COLORS[code] || "#ccc"}">${code}</span>`; }
+  function bfChip(code) {
+    const c = BF_COLORS[code] || "#ccc";
+    const darkChip = ["BFT15", "BFT20", "BFT30A", "BFT30B", "BFC50", "BFT10"].includes(code);
+    return `<span class="chip" style="background:${c};color:${darkChip ? "#fff" : "#1d1d1b"}">${esc(rules.builtform[code]?.name || code)}</span>`;
+  }
+
+  function housingLine(zone, bf) {
+    const z = rules.zones[zone], b = rules.builtform[bf];
+    const parts = [];
+    if (z.allows_1_3) parts.push("houses, duplexes and triplexes (1–3 homes per lot)");
+    if (z.allows_mf) parts.push(`apartment buildings of 4+ homes${z.allows_mf === "C" ? " (conditional use permit)" : ""} on lots of at least ${fmt(b.mf_lot[0])} sq ft`);
+    if (!parts.length) return "New housing is not allowed in this district.";
+    return "Allows " + parts.join("; ") + ".";
+  }
+
+  function floorLine(z, b, k) {
+    const f13 = b.far13[k], fmf = b.farMF[k];
+    if (!z.allows_1_3 || !z.allows_mf || f13 === fmf) return `${z.allows_1_3 && !z.allows_mf ? f13 : fmf}× the lot area`;
+    return `${f13}× the lot area for 1–3 homes; ${fmf}× for 4+ homes`;
+  }
+
+  function comboCard(c) {
+    const z = rules.zones[c.zone], b = rules.builtform[c.bf];
+    if (!z || !b) return "";
+    const k = UNRM.has(c.zone) ? 0 : 1;
+    const typical = homesOnLot(c.zone, c.bf, 5000), big = homesOnLot(c.zone, c.bf, 10000);
+    const far13 = b.far13[k], farMF = b.farMF[k];
+    return `<div class="combo">
+      <div class="hd">${zoneChip(c.zone)} <span class="t">${esc(z.name)}</span> ${bfChip(c.bf)}<span class="n">${fmt(c.lots)} lots</span></div>
+      <p>${esc(z.purpose)} ${housingLine(c.zone, c.bf)}</p>
+      <dl>
+        <dt>Max height</dt><dd>${esc(b.height)}</dd>
+        <dt>Max floor area</dt><dd>${floorLine(z, b, k)}</dd>
+        <dt>Lot coverage</dt><dd>up to ${b.cov[k]}% of the lot</dd>
+        ${b.front && UNRM.has(c.zone) ? `<dt>Front yard</dt><dd>${b.front} ft minimum</dd>` : ""}
+        <dt>Parking</dt><dd>No minimum required (maximums apply)</dd>
+        <dt>5,000 sq ft lot</dt><dd><b>up to ${typical} home${typical === 1 ? "" : "s"}</b></dd>
+        <dt>10,000 sq ft lot</dt><dd><b>up to ${big} home${big === 1 ? "" : "s"}</b></dd>
+      </dl>
+      <div class="cap">Here today: <b>${fmt(c.existing)}</b> homes · zoning allows up to about <b>${fmt(c.capacity)}</b>${c.lots_cap3 ? ` · ${fmt(c.lots_cap3)} lots capped at 3 homes` : ""}</div>
+      <div class="note" style="margin-top:6px">Code: <a href="index.html#${z.section || "530.20"}" target="_blank">${z.section ? "§ " + z.section : "district purposes"}</a> · <a href="index.html#540.110" target="_blank">floor area</a> · <a href="index.html#540.410" target="_blank">height</a> · <a href="index.html#545.100" target="_blank">use table</a></div>
+    </div>`;
+  }
+
+  function mixBlock(items, colors, nameOf) {
+    return `<div class="bar">${items.map((i) => `<div style="width:${i.pct}%;background:${colors[i.code] || "#999"}" title="${esc(nameOf(i.code))} ${i.pct}%"></div>`).join("")}</div>
+      <ul class="mix">${items.slice(0, 8).map((i) => `<li><span class="sw" style="background:${colors[i.code] || "#999"}"></span><b>${i.code.replace(/^BF/, "")}</b>${esc(nameOf(i.code))}<span class="pct">${i.pct}%</span></li>`).join("")}</ul>`;
+  }
+
+  function showHood(name, latlng) {
+    const s = data.neighborhoods[name];
+    if (!s) return;
+    selected = name;
+    hoodLayer.setStyle(hoodStyle);
+    $("#hoodSel").value = name;
+    history.replaceState(null, "", "#" + encodeURIComponent(name));
+    const capPct = s.lots ? Math.round((100 * s.lots_cap3) / s.lots) : 0;
+    const ratio = s.existing_units ? (s.zoned_capacity / s.existing_units).toFixed(1) : "—";
+    let here = "";
+    if (latlng) {
+      const z = lookup(zoneGJ, "z", latlng), b = lookup(bfGJ, "b", latlng);
+      if (z || b) {
+        const n = z && b ? homesOnLot(z, b, 5000) : null;
+        here = `<div class="here"><b>Where you clicked:</b> ${z ? zoneChip(z) + " " + esc(rules.zones[z]?.name || z) : "no zoning district (street or water)"}${b ? " · " + bfChip(b) : ""}${n !== null ? `<br>A typical 5,000 sq ft lot here allows up to <b>${n}</b> home${n === 1 ? "" : "s"}.` : ""}</div>`;
+      }
+    }
+    $("#panel").innerHTML = `
+      <h2>${esc(name)}</h2>
+      <div class="sub">${s.area_sqmi} sq mi · ${fmt(s.lots)} privately owned lots${s.exempt_lots ? ` · ${fmt(s.exempt_lots)} public/tax-exempt` : ""}</div>
+      ${here}
+      <h3>Housing and zoning limits</h3>
+      <div class="stats">
+        <div class="stat"><div class="v">${fmt(s.existing_units)}</div><div class="l">homes here today (assessor records)</div></div>
+        <div class="stat"><div class="v">${fmt(s.zoned_capacity)}</div><div class="l">most homes zoning allows if every lot were rebuilt to the limit (${ratio}× today)</div></div>
+        <div class="stat wide"><div class="v">${capPct}%</div><div class="l">of lots are limited to <b>3 homes or fewer</b> by zoning (${fmt(s.lots_cap3)} of ${fmt(s.lots)}). ${fmt(s.lots_mf)} lots allow apartment buildings. ${fmt(s.single_family)} lots have a single-family house today.</div><div class="meter"><div style="width:${capPct}%"></div></div></div>
+      </div>
+      <h3>Primary zoning (what can be built)</h3>
+      ${mixBlock(s.zones, ZONE_COLORS, (c) => rules.zones[c]?.name || c)}
+      <h3>Built form (how big)</h3>
+      ${mixBlock(s.builtform, BF_COLORS, (c) => rules.builtform[c]?.name || c)}
+      <h3>Zones in this neighborhood</h3>
+      ${s.combos.filter((c) => c.lots > 0).map(comboCard).join("") || '<p class="note">No privately owned lots.</p>'}
+      ${howTo()}`;
+    $("#panel").scrollTop = 0;
+  }
+
+  function howTo() {
+    return `<details class="how"><summary>How these numbers are estimated</summary><ul>
+      <li><b>Homes today</b> come from the City Assessor's 2026 parcel records. Single-family, duplex and triplex parcels count as 1–3 homes, condos and co-ops as one each, and apartments use the recorded unit count.</li>
+      <li><b>Most homes zoning allows</b> is a ceiling, not a forecast. For every privately owned lot it takes the larger of: 3 homes (where 1–3 unit buildings are allowed), or the lot's maximum floor area (lot area × floor area ratio, Table 540-2) divided by ${fmt(rules.assumptions.avg_unit_gsf)} sq ft per home, where apartments are allowed and the lot meets the minimum size (Table 540-16). Buildings already above the limit keep their homes.</li>
+      <li>It assumes commercial and mixed-use buildings are entirely housing, and ignores height, setbacks, parking, premiums and market demand. Public, school, church and other tax-exempt land is held at today's count.</li>
+      <li>Zoning: City of Minneapolis primary zoning and built form layers (updated Oct 16, 2026). Rules: Minneapolis Code of Ordinances, Title 20.</li>
+    </ul></details>`;
+  }
+
+  function showIntro() {
+    const c = data.citywide;
+    const capPct = Math.round((100 * c.lots_cap3) / c.lots);
+    $("#panel").innerHTML = `<div class="intro">
+      <h2>Minneapolis</h2>
+      <p>Click any neighborhood to see its zoning districts, what each one allows, and how much housing current zoning permits. Use the buttons on the map to switch between <b>primary zoning</b> (what uses are allowed) and <b>built form</b> (how tall and how large buildings can be).</p>
+      <div class="stats">
+        <div class="stat"><div class="v">${fmt(c.existing_units)}</div><div class="l">homes citywide today</div></div>
+        <div class="stat"><div class="v">${fmt(c.zoned_capacity)}</div><div class="l">zoning ceiling if every lot were rebuilt to the limit</div></div>
+        <div class="stat wide"><div class="v">${capPct}%</div><div class="l">of privately owned lots are limited to 3 homes or fewer (${fmt(c.lots_cap3)} of ${fmt(c.lots)})</div><div class="meter"><div style="width:${capPct}%"></div></div></div>
+      </div>
+      ${howTo()}</div>`;
+  }
+
+  /* ---------- load ---------- */
+  Promise.all(["stats.json", "zoning.geojson", "builtform.geojson", "neighborhoods.geojson"].map((f) => fetch("map_data/" + f).then((r) => { if (!r.ok) throw new Error(f + " " + r.status); return r.json(); })))
+    .then(([stats, zgj, bgj, hgj]) => {
+      data = stats; rules = stats.rules; zoneGJ = zgj; bfGJ = bgj; hoodGJ = hgj;
+      zoneLayer = L.geoJSON(zgj, { style: (f) => styleFill(ZONE_COLORS[f.properties.z]), interactive: false });
+      bfLayer = L.geoJSON(bgj, { style: (f) => styleFill(BF_COLORS[f.properties.b]), interactive: false });
+      hoodLayer = L.geoJSON(hgj, {
+        style: hoodStyle,
+        onEachFeature: (f, layer) => {
+          hoodByName.set(f.properties.n, layer);
+          layer.bindTooltip(f.properties.n, { sticky: true, className: "hood-tip", direction: "top", offset: [0, -6] });
+          layer.on("click", (e) => showHood(f.properties.n, e.latlng));
+          layer.on("mouseover", () => { if (f.properties.n !== selected) layer.setStyle({ weight: 2.2, opacity: 0.9 }); });
+          layer.on("mouseout", () => layer.setStyle(hoodStyle(f)));
+        },
+      }).addTo(map);
+      zoneLayer.addTo(map);
+      hoodLayer.bringToFront();
+      map.fitBounds(hoodLayer.getBounds(), { padding: [10, 10] });
+      const names = Object.keys(stats.neighborhoods).sort();
+      $("#hoodSel").innerHTML += names.map((n) => `<option>${esc(n)}</option>`).join("");
+      $("#hoodSel").addEventListener("change", (e) => {
+        const n = e.target.value;
+        if (!n) return;
+        map.fitBounds(hoodByName.get(n).getBounds(), { padding: [30, 30] });
+        showHood(n);
+      });
+      drawLegend();
+      const start = decodeURIComponent(location.hash.slice(1));
+      if (start && stats.neighborhoods[start]) { map.fitBounds(hoodByName.get(start).getBounds(), { padding: [30, 30] }); showHood(start); }
+      else showIntro();
+    })
+    .catch((err) => { $("#panel").innerHTML = `<p class="note">Couldn't load map data (${esc(err.message)}). Serve this folder with a local web server, e.g. <code>python3 -m http.server</code>.</p>`; });
+})();
+</script>
+</body>
+</html>
