@@ -30,7 +30,7 @@ DATA = os.path.join(HERE, "..", "data")
 # "Not endorsed"; otherwise they're removed (and the race drops off if empty).
 NOT_ENDORSED = {
     "Michael Howard", "Omar Fateh", "Fue Lee", "Abdul Abdi", "Becca Dryden",
-    "Simon Trautmann Cordova", "Bobby Joe Champion",
+    "Simon Trautmann Cordova", "Bobby Joe Champion", "Shannon Gibney", "Angela Conley",
 }
 
 NOT_ENDORSED_NOTE = "We are not officially endorsing these candidates, but we are providing information on them."

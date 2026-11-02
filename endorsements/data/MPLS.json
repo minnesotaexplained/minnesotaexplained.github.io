@@ -2366,7 +2366,8 @@
               "url": "https://www.voteconley.com/"
             }
           ],
-          "image": "https://images.squarespace-cdn.com/content/v1/61c102ad81e517412b60e5c3/aa13ef78-5891-4699-aa31-4e0ea5291e71/GMC_3141.jpg"
+          "image": "https://images.squarespace-cdn.com/content/v1/61c102ad81e517412b60e5c3/aa13ef78-5891-4699-aa31-4e0ea5291e71/GMC_3141.jpg",
+          "endorsed": false
         }
       ]
     },
@@ -2666,7 +2667,8 @@
               "url": "https://www.shannonforschoolboard.com/"
             }
           ],
-          "image": "https://images.squarespace-cdn.com/content/v1/69c2d732df6ca04caac5883e/2a910386-f15f-4029-a732-c6d286b66d22/DFL.jpg"
+          "image": "https://images.squarespace-cdn.com/content/v1/69c2d732df6ca04caac5883e/2a910386-f15f-4029-a732-c6d286b66d22/DFL.jpg",
+          "endorsed": false
         }
       ]
     },
