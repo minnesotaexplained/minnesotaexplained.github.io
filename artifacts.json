@@ -1259,5 +1259,19 @@
 	"categories":[
 	    "Minneapolis Government"
 	]
+    },
+    {
+        "id": 23,
+        "title": "Ballot Endorsements: Minneapolis",
+        "description": "Minnesota Explained's endorsements for every race on a Minneapolis ballot in the November 3, 2026 general election, with the wards and precincts for each district race.",
+        "subtitle": "",
+        "footer": "",
+        "type": "link",
+        "image": "",
+        "link": "/endorsements/index.html?district=MPLS",
+        "categories": [
+            "Elected Officials",
+            "Spotlight"
+        ]
     }
 ]

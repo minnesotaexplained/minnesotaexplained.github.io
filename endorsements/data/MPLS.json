@@ -1,0 +1,3179 @@
+{
+  "district": "MPLS",
+  "title": "Minneapolis Endorsements",
+  "election": "State General Election",
+  "election_date": "11/03/2026",
+  "intro": "This page covers every Minneapolis ballot. Races marked \"District race\" appear only on some ballots; open \"Who votes in this race\" to see which wards and precincts. To find your ward and precinct, or to see your exact ballot, use the Secretary of State's ballot lookup.",
+  "voting_info": {
+    "title": "Voting on Tuesday, November 3",
+    "items": [
+      "Polls are open 7 a.m. to 8 p.m. If you are in line by 8 p.m., you can vote.",
+      "Not registered? You can register at your polling place on Election Day with proof of residence.",
+      "On the constitutional amendment, a blank answer counts as a \"no\" vote. Be sure to flip your ballot over.",
+      "Find your polling place and see your exact ballot with the Secretary of State's ballot lookup."
+    ],
+    "link": {
+      "label": "Find your polling place",
+      "url": "https://myballotmn.sos.mn.gov/"
+    }
+  },
+  "not_endorsed_note": "We are not officially endorsing these candidates, but we are providing information on them.",
+  "ballot_lookup_url": "https://myballotmn.sos.mn.gov/",
+  "offices": [
+    {
+      "office": "U.S. Senator",
+      "note": "",
+      "candidates": [
+        {
+          "name": "Peggy Flanagan",
+          "party": "DFL",
+          "description": "",
+          "links": [
+            {
+              "label": "Campaign website",
+              "url": "http://www.peggyflanagan.com"
+            },
+            {
+              "label": "Wikipedia",
+              "url": "https://en.wikipedia.org/wiki/Peggy_Flanagan"
+            }
+          ],
+          "analysis": "Lieutenant Governor since 2019 and a state representative before that (2015–2019). Flanagan beat Rep. Angie Craig and four others in the August 11 DFL primary for the open Senate seat. She is a citizen of the White Earth Nation and would be the first Native American woman in the U.S. Senate. Her campaign focuses on ending corruption, building a fairer economy, and confronting the Trump administration. She takes no corporate PAC money, and the Integrity Index gives her an A (93.77). Her legislative record is from the Minnesota House before 2019, which is older than the bill data on this site.",
+          "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/90/2026PeggyFlanagan_%28newcropped%29.jpg/500px-2026PeggyFlanagan_%28newcropped%29.jpg",
+          "integrity_index": {
+            "grade": "A",
+            "score": 93.77,
+            "url": "https://integrityindex.us/candidate/margaret-flanagan-e0cf3f94",
+            "as_of": "2026-11-02"
+          }
+        }
+      ]
+    },
+    {
+      "office": "U.S. Representative District 5",
+      "note": "",
+      "candidates": [
+        {
+          "name": "Ilhan Omar",
+          "party": "DFL",
+          "description": "",
+          "links": [
+            {
+              "label": "Campaign website",
+              "url": "https://ilhanomar.com/"
+            },
+            {
+              "label": "All sponsored bills (congress.gov)",
+              "url": "https://www.congress.gov/member/ilhan-omar/O000173"
+            },
+            {
+              "label": "Wikipedia",
+              "url": "https://en.wikipedia.org/wiki/Ilhan_Omar"
+            }
+          ],
+          "analysis": "Has represented the 5th District since 2019 and holds a leadership role in the Congressional Progressive Caucus. Her bills this Congress focus on immigration enforcement, police accountability, protest rights, and universal school meals. None have moved out of committee in the Republican-controlled House, which is normal for minority-party members. Her campaign cites more than $40 million in federal community-project funding for the district. Her Integrity Index grade is A+ (98.84), with no corporate PAC money and no stock holdings. She is a frequent target of Trump and national Republicans.",
+          "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5f/Ilhan_Omar%2C_official_portrait%2C_116th_Congress_%28cropped%29_A.jpg/500px-Ilhan_Omar%2C_official_portrait%2C_116th_Congress_%28cropped%29_A.jpg",
+          "integrity_index": {
+            "grade": "A+",
+            "score": 98.84,
+            "url": "https://integrityindex.us/candidate/ilhan-omar",
+            "as_of": "2026-11-02"
+          },
+          "legislation": [
+            {
+              "bill": "HR630",
+              "title": "Neighbors Not Enemies Act",
+              "session": "119th Congress",
+              "status": "Introduced, not passed",
+              "url": "https://www.congress.gov/bill/119th-congress/house-bill/630"
+            },
+            {
+              "bill": "HR10503",
+              "title": "Federal grants to reimburse states for costs and damage from mass deployments of federal immigration agents",
+              "session": "119th Congress",
+              "status": "Introduced, not passed",
+              "url": "https://www.congress.gov/bill/119th-congress/house-bill/10503"
+            },
+            {
+              "bill": "HR8798",
+              "title": "Universal School Meals Program Act of 2026",
+              "session": "119th Congress",
+              "status": "Introduced, not passed",
+              "url": "https://www.congress.gov/bill/119th-congress/house-bill/8798"
+            },
+            {
+              "bill": "HR3652",
+              "title": "National Police Misuse of Force Investigation Board Act of 2025",
+              "session": "119th Congress",
+              "status": "Introduced, not passed",
+              "url": "https://www.congress.gov/bill/119th-congress/house-bill/3652"
+            },
+            {
+              "bill": "HR3651",
+              "title": "Protecting Our Protesters Act of 2025",
+              "session": "119th Congress",
+              "status": "Introduced, not passed",
+              "url": "https://www.congress.gov/bill/119th-congress/house-bill/3651"
+            },
+            {
+              "bill": "HR4714",
+              "title": "End Polluter Welfare Act of 2025",
+              "session": "119th Congress",
+              "status": "Introduced, not passed",
+              "url": "https://www.congress.gov/bill/119th-congress/house-bill/4714"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "office": "State Senator District 59",
+      "note": "",
+      "coverage": {
+        "summary": "24 precincts in Wards 3, 4, 5, 7",
+        "wards": [
+          {
+            "ward": 3,
+            "all": false,
+            "precincts": [
+              "5",
+              "6",
+              "7",
+              "10",
+              "11",
+              "12"
+            ]
+          },
+          {
+            "ward": 4,
+            "all": true,
+            "precincts": [
+              "1",
+              "2",
+              "3",
+              "4",
+              "5",
+              "6",
+              "7",
+              "8",
+              "9"
+            ]
+          },
+          {
+            "ward": 5,
+            "all": false,
+            "precincts": [
+              "1",
+              "2",
+              "3",
+              "4",
+              "5",
+              "6",
+              "7",
+              "8"
+            ]
+          },
+          {
+            "ward": 7,
+            "all": false,
+            "precincts": [
+              "11"
+            ]
+          }
+        ]
+      },
+      "candidates": [
+        {
+          "name": "Bobby Joe Champion",
+          "party": "DFL",
+          "description": "",
+          "analysis": "President of the Minnesota Senate and the senator for north and downtown Minneapolis since 2013, after serving in the House. He is a lawyer. This biennium he chief-authored the jobs, labor, and economic development budget that became law, and his bills focus on economic opportunity for Black Minnesotans (an African American workforce and homeownership program), civil rights, and pushback on federal immigration enforcement, including a ban on masked immigration agents. His campaign has no website listed with the state. Unopposed on the ballot.",
+          "links": [
+            {
+              "label": "Senate profile",
+              "url": "https://www.senate.mn/members/member_bio.html?leg_id=15317"
+            },
+            {
+              "label": "Wikipedia",
+              "url": "https://en.wikipedia.org/wiki/Bobby_Joe_Champion"
+            }
+          ],
+          "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/56/Bobby_Joe_Champion_%2826140594060%29_%28cropped%29.jpg/500px-Bobby_Joe_Champion_%2826140594060%29_%28cropped%29.jpg",
+          "legislation": [
+            {
+              "bill": "SF17",
+              "title": "Jobs, labor, and economic development budget",
+              "session": "94th Legislature (2025 1st Special)",
+              "status": "Signed into law",
+              "url": "https://www.revisor.mn.gov/bills/94/2025/1/SF/17/"
+            },
+            {
+              "bill": "SF2423",
+              "title": "African American workforce and affordable homeownership program",
+              "session": "94th Legislature (2025 Regular)",
+              "status": "Introduced, not passed",
+              "url": "https://www.revisor.mn.gov/bills/94/2025/0/SF/2423/"
+            },
+            {
+              "bill": "SF3628",
+              "title": "Right to sue for civil rights violations by government officials",
+              "session": "94th Legislature (2026 Regular)",
+              "status": "Introduced, not passed",
+              "url": "https://www.revisor.mn.gov/bills/94/2026/0/SF/3628/"
+            },
+            {
+              "bill": "SF4448",
+              "title": "Ban on federal immigration agents wearing masks",
+              "session": "94th Legislature (2026 Regular)",
+              "status": "Introduced, not passed",
+              "url": "https://www.revisor.mn.gov/bills/94/2026/0/SF/4448/"
+            },
+            {
+              "bill": "SF2724",
+              "title": "Voter registration for people in jail",
+              "session": "94th Legislature (2025 Regular)",
+              "status": "Introduced, not passed",
+              "url": "https://www.revisor.mn.gov/bills/94/2025/0/SF/2724/"
+            },
+            {
+              "bill": "SF4872",
+              "title": "Use of Minneapolis local sales tax revenue",
+              "session": "94th Legislature (2026 Regular)",
+              "status": "Introduced, not passed",
+              "url": "https://www.revisor.mn.gov/bills/94/2026/0/SF/4872/"
+            }
+          ],
+          "endorsed": false
+        }
+      ]
+    },
+    {
+      "office": "State Senator District 60",
+      "note": "",
+      "coverage": {
+        "summary": "24 precincts in Wards 1, 2, 3, 6",
+        "wards": [
+          {
+            "ward": 1,
+            "all": true,
+            "precincts": [
+              "1",
+              "3",
+              "4",
+              "5",
+              "6",
+              "7",
+              "8",
+              "9",
+              "10",
+              "11"
+            ]
+          },
+          {
+            "ward": 2,
+            "all": false,
+            "precincts": [
+              "1",
+              "2",
+              "3",
+              "4",
+              "5",
+              "6",
+              "7"
+            ]
+          },
+          {
+            "ward": 3,
+            "all": false,
+            "precincts": [
+              "1",
+              "2",
+              "3",
+              "4",
+              "8",
+              "9"
+            ]
+          },
+          {
+            "ward": 6,
+            "all": false,
+            "precincts": [
+              "3"
+            ]
+          }
+        ]
+      },
+      "candidates": [
+        {
+          "name": "Doron Clark",
+          "party": "DFL",
+          "description": "",
+          "analysis": "Won Senate District 60 (Northeast and Southeast Minneapolis, including the University of Minnesota) in a January 2025 special election after Senate Majority Leader Kari Dziedzic died, and is running for a full term. He grew up on a farm in southeast Minnesota, worked at Target's downtown headquarters, and is an Edison High School parent who lives in Northeast. He has chief-authored 83 bills, focused on housing and safety-net access: allowing emergency shelters in more zoning districts, eviction-notice reform, ending drug tests for public-assistance recipients, Safe at Home privacy protections, and reporting on school resource officer contracts. Opponent: Abigail Wolters (R).",
+          "links": [
+            {
+              "label": "Campaign website",
+              "url": "https://www.doronforsenate.org/"
+            },
+            {
+              "label": "Senate profile",
+              "url": "https://www.senate.mn/members/member_bio.html?leg_id=15649"
+            },
+            {
+              "label": "Wikipedia",
+              "url": "https://en.wikipedia.org/wiki/Doron_Clark"
+            }
+          ],
+          "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3b/Doron_Clark_%28cropped%29.jpg/500px-Doron_Clark_%28cropped%29.jpg",
+          "legislation": [
+            {
+              "bill": "SF1999",
+              "title": "Allow emergency shelters in more zoning districts",
+              "session": "94th Legislature (2025 Regular)",
+              "status": "Introduced, not passed",
+              "url": "https://www.revisor.mn.gov/bills/94/2025/0/SF/1999/"
+            },
+            {
+              "bill": "SF3598",
+              "title": "Eviction notice requirements for nonpayment of rent",
+              "session": "94th Legislature (2026 Regular)",
+              "status": "Introduced, not passed",
+              "url": "https://www.revisor.mn.gov/bills/94/2026/0/SF/3598/"
+            },
+            {
+              "bill": "SF2868",
+              "title": "End drug testing for people receiving public assistance",
+              "session": "94th Legislature (2025 Regular)",
+              "status": "Introduced, not passed",
+              "url": "https://www.revisor.mn.gov/bills/94/2025/0/SF/2868/"
+            },
+            {
+              "bill": "SF3959",
+              "title": "Safe at Home address-privacy protections",
+              "session": "94th Legislature (2026 Regular)",
+              "status": "Introduced, not passed",
+              "url": "https://www.revisor.mn.gov/bills/94/2026/0/SF/3959/"
+            },
+            {
+              "bill": "SF3180",
+              "title": "Annual reporting on school resource officer contracts",
+              "session": "94th Legislature (2025 Regular)",
+              "status": "Introduced, not passed",
+              "url": "https://www.revisor.mn.gov/bills/94/2025/0/SF/3180/"
+            },
+            {
+              "bill": "SF4037",
+              "title": "Repeal of an alternative zoning approval process for first-class cities",
+              "session": "94th Legislature (2026 Regular)",
+              "status": "Introduced, not passed",
+              "url": "https://www.revisor.mn.gov/bills/94/2026/0/SF/4037/"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "office": "State Senator District 61",
+      "note": "",
+      "candidates": [
+        {
+          "name": "Scott Dibble",
+          "party": "DFL",
+          "description": "",
+          "links": [
+            {
+              "label": "Campaign website",
+              "url": "http://www.scottdibble.com"
+            },
+            {
+              "label": "Senate profile",
+              "url": "https://www.senate.mn/members/member_bio.html?leg_id=10142"
+            },
+            {
+              "label": "Wikipedia",
+              "url": "https://en.wikipedia.org/wiki/Scott_Dibble_(politician)"
+            }
+          ],
+          "analysis": "A senator with more than two decades in the Legislature. He wrote Minnesota's 2013 marriage equality law. This biennium he is chief author of 104 bills, including both cannabis omnibus bills that became law (2025 and 2026). He also carries proposals such as single-payer health care (the Minnesota Health Plan), a liability-insurance requirement for gun owners, and constitutional amendments on elections and equal rights. Many of Rep. Katie Jones's transit and planning bills are the House versions of his Senate bills. Unopposed on the ballot.",
+          "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0e/Scott_Dibble_Minneapolis_Bonding_%28cropped%29.jpg/330px-Scott_Dibble_Minneapolis_Bonding_%28cropped%29.jpg",
+          "legislation": [
+            {
+              "bill": "SF2370",
+              "title": "Omnibus cannabis policy bill",
+              "session": "94th Legislature (2025 Regular)",
+              "status": "Signed into law",
+              "url": "https://www.revisor.mn.gov/bills/94/2025/0/SF/2370/"
+            },
+            {
+              "bill": "SF4401",
+              "title": "Omnibus cannabis bill",
+              "session": "94th Legislature (2026 Regular)",
+              "status": "Signed into law",
+              "url": "https://www.revisor.mn.gov/bills/94/2026/0/SF/4401/"
+            },
+            {
+              "bill": "SF2971",
+              "title": "Kayla's HOPE Act",
+              "session": "94th Legislature (2025 Regular)",
+              "status": "Signed into law",
+              "url": "https://www.revisor.mn.gov/bills/94/2025/0/SF/2971/"
+            },
+            {
+              "bill": "SF1943",
+              "title": "Ban on pet shops selling cats and dogs",
+              "session": "94th Legislature (2025 Regular)",
+              "status": "Passed the Senate",
+              "url": "https://www.revisor.mn.gov/bills/94/2025/0/SF/1943/"
+            },
+            {
+              "bill": "SF931",
+              "title": "Minnesota Health Plan (single-payer health care)",
+              "session": "94th Legislature (2025 Regular)",
+              "status": "Introduced, not passed",
+              "url": "https://www.revisor.mn.gov/bills/94/2025/0/SF/931/"
+            },
+            {
+              "bill": "SF4837",
+              "title": "Liability insurance requirement for firearm owners",
+              "session": "94th Legislature (2026 Regular)",
+              "status": "Introduced, not passed",
+              "url": "https://www.revisor.mn.gov/bills/94/2026/0/SF/4837/"
+            },
+            {
+              "bill": "SF529",
+              "title": "Constitutional amendment for free, fair, and equal elections",
+              "session": "94th Legislature (2025 Regular)",
+              "status": "Introduced, not passed",
+              "url": "https://www.revisor.mn.gov/bills/94/2025/0/SF/529/"
+            },
+            {
+              "bill": "SF3652",
+              "title": "Ban on detaining and transporting people in vehicles not designed for detention",
+              "session": "94th Legislature (2026 Regular)",
+              "status": "Introduced, not passed",
+              "url": "https://www.revisor.mn.gov/bills/94/2026/0/SF/3652/"
+            }
+          ]
+        }
+      ],
+      "coverage": {
+        "summary": "29 precincts in Wards 5, 6, 7, 10, 13",
+        "wards": [
+          {
+            "ward": 5,
+            "all": false,
+            "precincts": [
+              "9"
+            ]
+          },
+          {
+            "ward": 6,
+            "all": false,
+            "precincts": [
+              "1",
+              "2"
+            ]
+          },
+          {
+            "ward": 7,
+            "all": false,
+            "precincts": [
+              "1",
+              "2",
+              "3",
+              "4",
+              "5",
+              "6",
+              "7",
+              "8",
+              "9",
+              "12"
+            ]
+          },
+          {
+            "ward": 10,
+            "all": false,
+            "precincts": [
+              "1",
+              "2",
+              "3",
+              "4",
+              "5"
+            ]
+          },
+          {
+            "ward": 13,
+            "all": false,
+            "precincts": [
+              "1",
+              "2",
+              "3",
+              "4",
+              "5",
+              "6",
+              "7",
+              "10",
+              "11",
+              "12",
+              "13"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "office": "State Senator District 62",
+      "note": "",
+      "coverage": {
+        "summary": "26 precincts in Wards 6, 7, 8, 9, 10, 11",
+        "wards": [
+          {
+            "ward": 6,
+            "all": false,
+            "precincts": [
+              "4",
+              "5",
+              "6",
+              "7"
+            ]
+          },
+          {
+            "ward": 7,
+            "all": false,
+            "precincts": [
+              "10"
+            ]
+          },
+          {
+            "ward": 8,
+            "all": false,
+            "precincts": [
+              "1",
+              "2",
+              "3",
+              "4",
+              "5",
+              "6",
+              "7",
+              "8",
+              "10",
+              "11"
+            ]
+          },
+          {
+            "ward": 9,
+            "all": false,
+            "precincts": [
+              "1",
+              "2",
+              "3",
+              "4",
+              "5",
+              "7"
+            ]
+          },
+          {
+            "ward": 10,
+            "all": false,
+            "precincts": [
+              "6",
+              "7",
+              "8",
+              "9"
+            ]
+          },
+          {
+            "ward": 11,
+            "all": false,
+            "precincts": [
+              "6"
+            ]
+          }
+        ]
+      },
+      "candidates": [
+        {
+          "name": "Omar Fateh",
+          "party": "DFL",
+          "description": "",
+          "analysis": "Senator for south Minneapolis since 2021 and a self-described democratic socialist. He ran for Minneapolis mayor in 2025 and lost to Jacob Frey; the state DFL revoked his city DFL endorsement in that race over convention irregularities. He is now seeking re-election to the Senate. He chaired the Senate's higher education committee and chief-authored the higher education budget that became law, including work on the North Star Promise free-tuition program. Other priorities include environmental justice reviews of transportation projects, a right to sue over civil rights violations, and limits on immigration enforcement. His campaign has no website listed with the state. Unopposed on the ballot.",
+          "links": [
+            {
+              "label": "Senate profile",
+              "url": "https://www.senate.mn/members/member_bio.html?leg_id=15559"
+            },
+            {
+              "label": "Wikipedia",
+              "url": "https://en.wikipedia.org/wiki/Omar_Fateh"
+            }
+          ],
+          "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8c/Omar_Fateh_at_Graze_Meet_%26_Greet.jpg/500px-Omar_Fateh_at_Graze_Meet_%26_Greet.jpg",
+          "legislation": [
+            {
+              "bill": "SF1",
+              "title": "Higher education budget",
+              "session": "94th Legislature (2025 1st Special)",
+              "status": "Signed into law",
+              "url": "https://www.revisor.mn.gov/bills/94/2025/1/SF/1/"
+            },
+            {
+              "bill": "SF3754",
+              "title": "Raise the income limit for North Star Promise free tuition",
+              "session": "94th Legislature (2026 Regular)",
+              "status": "Introduced, not passed",
+              "url": "https://www.revisor.mn.gov/bills/94/2026/0/SF/3754/"
+            },
+            {
+              "bill": "SF3222",
+              "title": "Cumulative-impact and environmental justice review for transportation projects",
+              "session": "94th Legislature (2025 Regular)",
+              "status": "Introduced, not passed",
+              "url": "https://www.revisor.mn.gov/bills/94/2025/0/SF/3222/"
+            },
+            {
+              "bill": "SF3629",
+              "title": "Right to sue for civil rights violations by government officials",
+              "session": "94th Legislature (2026 Regular)",
+              "status": "Introduced, not passed",
+              "url": "https://www.revisor.mn.gov/bills/94/2026/0/SF/3629/"
+            },
+            {
+              "bill": "SF5299",
+              "title": "Immigration enforcement changes",
+              "session": "94th Legislature (2026 Regular)",
+              "status": "Introduced, not passed",
+              "url": "https://www.revisor.mn.gov/bills/94/2026/0/SF/5299/"
+            }
+          ],
+          "endorsed": false
+        }
+      ]
+    },
+    {
+      "office": "State Senator District 63",
+      "note": "",
+      "coverage": {
+        "summary": "30 precincts in Wards 2, 6, 8, 9, 11, 12, 13",
+        "wards": [
+          {
+            "ward": 2,
+            "all": false,
+            "precincts": [
+              "8",
+              "9"
+            ]
+          },
+          {
+            "ward": 6,
+            "all": false,
+            "precincts": [
+              "8",
+              "9"
+            ]
+          },
+          {
+            "ward": 8,
+            "all": false,
+            "precincts": [
+              "9"
+            ]
+          },
+          {
+            "ward": 9,
+            "all": false,
+            "precincts": [
+              "6",
+              "8",
+              "9"
+            ]
+          },
+          {
+            "ward": 11,
+            "all": false,
+            "precincts": [
+              "1",
+              "2",
+              "4",
+              "5",
+              "7",
+              "8",
+              "9",
+              "10",
+              "11"
+            ]
+          },
+          {
+            "ward": 12,
+            "all": false,
+            "precincts": [
+              "1",
+              "2",
+              "3",
+              "4",
+              "5",
+              "6",
+              "7",
+              "8",
+              "9",
+              "10",
+              "11"
+            ]
+          },
+          {
+            "ward": 13,
+            "all": false,
+            "precincts": [
+              "8",
+              "9"
+            ]
+          }
+        ]
+      },
+      "candidates": [
+        {
+          "name": "Zaynab Mohamed",
+          "party": "DFL",
+          "description": "",
+          "analysis": "Senator for south and southeast Minneapolis since 2023; she is the youngest woman ever elected to the Minnesota Legislature and among the first Black women elected to the state Senate. She grew up in a working-class Somali immigrant family on the Southside and worked as an organizer and policy advocate before office. She has 90 chief-authored bills this biennium, with a focus on gun violence (an omnibus firearms bill and an assault-weapons ban), substance use and overdose response, and making traffic-safety cameras permanent. None became law in the divided Legislature. Opponent: Diane Napper (R).",
+          "links": [
+            {
+              "label": "Campaign website",
+              "url": "https://www.zaynabmohamed.org/"
+            },
+            {
+              "label": "Senate profile",
+              "url": "https://www.senate.mn/members/member_bio.html?leg_id=15588"
+            },
+            {
+              "label": "Wikipedia",
+              "url": "https://en.wikipedia.org/wiki/Zaynab_Mohamed"
+            }
+          ],
+          "image": "https://run.imgix.net/a0740662-b43b-498d-9d7b-bfdef0bdc3c9/77c2ceb1-d39c-4644-a366-69037fdcd41b/77c2ceb1-d39c-4644-a366-69037fdcd41b.jpg?ixlib=js-3.8.0&bri=0&con=0&sat=0&high=0&shad=0&usm=0&rect=493%2C0%2C2604%2C2640&auto=compress%2Cformat&fit=fillmax&w=2048&q=75&s=122348deafe2df5d3fdd1b0940d7b25b",
+          "legislation": [
+            {
+              "bill": "SF4067",
+              "title": "Omnibus firearms bill",
+              "session": "94th Legislature (2026 Regular)",
+              "status": "Introduced, not passed",
+              "url": "https://www.revisor.mn.gov/bills/94/2026/0/SF/4067/"
+            },
+            {
+              "bill": "SF3654",
+              "title": "Ban on semiautomatic military-style assault weapons",
+              "session": "94th Legislature (2026 Regular)",
+              "status": "Introduced, not passed",
+              "url": "https://www.revisor.mn.gov/bills/94/2026/0/SF/3654/"
+            },
+            {
+              "bill": "SF3731",
+              "title": "Liability protection for bystanders who respond to overdoses",
+              "session": "94th Legislature (2026 Regular)",
+              "status": "Introduced, not passed",
+              "url": "https://www.revisor.mn.gov/bills/94/2026/0/SF/3731/"
+            },
+            {
+              "bill": "SF3172",
+              "title": "Statewide substance use and addiction plan",
+              "session": "94th Legislature (2025 Regular)",
+              "status": "Introduced, not passed",
+              "url": "https://www.revisor.mn.gov/bills/94/2025/0/SF/3172/"
+            },
+            {
+              "bill": "SF3656",
+              "title": "Make the traffic-safety camera pilot permanent",
+              "session": "94th Legislature (2026 Regular)",
+              "status": "Introduced, not passed",
+              "url": "https://www.revisor.mn.gov/bills/94/2026/0/SF/3656/"
+            },
+            {
+              "bill": "SF2804",
+              "title": "Worker access to defibrillators (AEDs)",
+              "session": "94th Legislature (2025 Regular)",
+              "status": "Introduced, not passed",
+              "url": "https://www.revisor.mn.gov/bills/94/2025/0/SF/2804/"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "office": "State Representative District 59A",
+      "note": "",
+      "coverage": {
+        "summary": "10 precincts in Wards 4, 5",
+        "wards": [
+          {
+            "ward": 4,
+            "all": false,
+            "precincts": [
+              "1",
+              "2",
+              "3",
+              "4",
+              "5",
+              "6",
+              "7",
+              "8"
+            ]
+          },
+          {
+            "ward": 5,
+            "all": false,
+            "precincts": [
+              "1",
+              "3"
+            ]
+          }
+        ]
+      },
+      "candidates": [
+        {
+          "name": "Fue Lee",
+          "party": "DFL",
+          "description": "",
+          "analysis": "Representative for north Minneapolis since 2017 and the first Hmong American to represent Minneapolis in the Legislature. He has led the House Capital Investment Committee since 2021 and chief-authored both bonding bills that became law this biennium, which fund public construction projects statewide. His other bills target environmental justice in north Minneapolis (a tax on PFAS-producing companies, pollution limits on incinerators) and police and immigration enforcement (bans on tear gas and on masked federal agents). Unopposed on the ballot.",
+          "links": [
+            {
+              "label": "Campaign website",
+              "url": "http://WWW.FUELEE.ORG"
+            },
+            {
+              "label": "House profile",
+              "url": "https://www.house.mn.gov/members/profile/15468"
+            },
+            {
+              "label": "Wikipedia",
+              "url": "https://en.wikipedia.org/wiki/Fue_Lee"
+            }
+          ],
+          "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b7/Fue_Lee_2026_Bonding_Bill_in_St._Paul.jpg/500px-Fue_Lee_2026_Bonding_Bill_in_St._Paul.jpg",
+          "legislation": [
+            {
+              "bill": "HF2484",
+              "title": "Bonding bill (public construction projects)",
+              "session": "94th Legislature (2025 Regular)",
+              "status": "Signed into law",
+              "url": "https://www.revisor.mn.gov/bills/94/2025/0/HF/2484/"
+            },
+            {
+              "bill": "HF17",
+              "title": "Cash bonding bill",
+              "session": "94th Legislature (2025 1st Special)",
+              "status": "Signed into law",
+              "url": "https://www.revisor.mn.gov/bills/94/2025/1/HF/17/"
+            },
+            {
+              "bill": "HF726",
+              "title": "Tax on PFAS producers to fund cleanup",
+              "session": "94th Legislature (2025 Regular)",
+              "status": "Introduced, not passed",
+              "url": "https://www.revisor.mn.gov/bills/94/2025/0/HF/726/"
+            },
+            {
+              "bill": "HF4197",
+              "title": "Emission limits for municipal waste incinerators",
+              "session": "94th Legislature (2026 Regular)",
+              "status": "Introduced, not passed",
+              "url": "https://www.revisor.mn.gov/bills/94/2026/0/HF/4197/"
+            },
+            {
+              "bill": "HF3744",
+              "title": "Ban on police use of tear gas and kinetic weapons",
+              "session": "94th Legislature (2026 Regular)",
+              "status": "Introduced, not passed",
+              "url": "https://www.revisor.mn.gov/bills/94/2026/0/HF/3744/"
+            },
+            {
+              "bill": "HF4405",
+              "title": "Ban on federal immigration agents wearing masks",
+              "session": "94th Legislature (2026 Regular)",
+              "status": "Introduced, not passed",
+              "url": "https://www.revisor.mn.gov/bills/94/2026/0/HF/4405/"
+            }
+          ],
+          "endorsed": false
+        }
+      ]
+    },
+    {
+      "office": "State Representative District 59B",
+      "note": "",
+      "coverage": {
+        "summary": "14 precincts in Wards 3, 4, 5, 7",
+        "wards": [
+          {
+            "ward": 3,
+            "all": false,
+            "precincts": [
+              "5",
+              "6",
+              "7",
+              "10",
+              "11",
+              "12"
+            ]
+          },
+          {
+            "ward": 4,
+            "all": false,
+            "precincts": [
+              "9"
+            ]
+          },
+          {
+            "ward": 5,
+            "all": false,
+            "precincts": [
+              "2",
+              "4",
+              "5",
+              "6",
+              "7",
+              "8"
+            ]
+          },
+          {
+            "ward": 7,
+            "all": false,
+            "precincts": [
+              "11"
+            ]
+          }
+        ]
+      },
+      "candidates": [
+        {
+          "name": "Esther Agbaje",
+          "party": "DFL",
+          "description": "",
+          "analysis": "Representative for north and downtown Minneapolis since 2021; a lawyer, renter, and transit rider. Her work centers on tenants and housing: her campaign cites a tenants' rights law she authored and $150 million in down-payment help for first-generation homebuyers, and this biennium she is pushing just-cause eviction, a tenant right to repair, and a statewide landlord registry. Six of her chief-authored bills became law, including nursing-home minimum wage standards and free phone calls for people in custody. Opponent: Kenneth Smoron (R).",
+          "links": [
+            {
+              "label": "Campaign website",
+              "url": "https://estheragbaje.com/"
+            },
+            {
+              "label": "House profile",
+              "url": "https://www.house.mn.gov/members/profile/15551"
+            },
+            {
+              "label": "Wikipedia",
+              "url": "https://en.wikipedia.org/wiki/Esther_Agbaje"
+            }
+          ],
+          "image": "https://estheragbaje.com/wp-content/uploads/2025/11/Esther-Cutout.png",
+          "legislation": [
+            {
+              "bill": "HF2319",
+              "title": "Nursing home minimum wage standards",
+              "session": "94th Legislature (2025 Regular)",
+              "status": "Included in enacted law",
+              "url": "https://www.revisor.mn.gov/bills/94/2025/0/HF/2319/"
+            },
+            {
+              "bill": "HF1861",
+              "title": "Communication services for people in custody",
+              "session": "94th Legislature (2025 Regular)",
+              "status": "Included in enacted law",
+              "url": "https://www.revisor.mn.gov/bills/94/2025/0/HF/1861/"
+            },
+            {
+              "bill": "HF997",
+              "title": "Require just cause to end a tenancy",
+              "session": "94th Legislature (2025 Regular)",
+              "status": "Introduced, not passed",
+              "url": "https://www.revisor.mn.gov/bills/94/2025/0/HF/997/"
+            },
+            {
+              "bill": "HF4835",
+              "title": "Tenant right to repair rental violations",
+              "session": "94th Legislature (2026 Regular)",
+              "status": "Introduced, not passed",
+              "url": "https://www.revisor.mn.gov/bills/94/2026/0/HF/4835/"
+            },
+            {
+              "bill": "HF2966",
+              "title": "Statewide landlord registry",
+              "session": "94th Legislature (2025 Regular)",
+              "status": "Introduced, not passed",
+              "url": "https://www.revisor.mn.gov/bills/94/2025/0/HF/2966/"
+            },
+            {
+              "bill": "HF3614",
+              "title": "Disparate-impact protections in the Human Rights Act",
+              "session": "94th Legislature (2026 Regular)",
+              "status": "Introduced, not passed",
+              "url": "https://www.revisor.mn.gov/bills/94/2026/0/HF/3614/"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "office": "State Representative District 60A",
+      "note": "",
+      "coverage": {
+        "summary": "14 precincts in Wards 1, 3",
+        "wards": [
+          {
+            "ward": 1,
+            "all": true,
+            "precincts": [
+              "1",
+              "3",
+              "4",
+              "5",
+              "6",
+              "7",
+              "8",
+              "9",
+              "10",
+              "11"
+            ]
+          },
+          {
+            "ward": 3,
+            "all": false,
+            "precincts": [
+              "1",
+              "2",
+              "3",
+              "4"
+            ]
+          }
+        ]
+      },
+      "candidates": [
+        {
+          "name": "Sydney Jordan",
+          "party": "DFL",
+          "description": "",
+          "analysis": "Representative for Northeast Minneapolis since 2020 and a former organizer with the Minneapolis Federation of Teachers; she now directs the Campaign to Save the Boundary Waters. She is best known as the author of Minnesota's universal free school meals law (2023). This biennium she chief-authored the environment trust fund bill and a paraprofessional qualifications fix that became law, and is pushing limits on federal agents' access to schools and bans on toxic chemicals in packaging. Opponent: John Holmberg (R).",
+          "links": [
+            {
+              "label": "Campaign website",
+              "url": "https://www.sydneyjordan.org/"
+            },
+            {
+              "label": "House profile",
+              "url": "https://www.house.mn.gov/members/profile/15535"
+            },
+            {
+              "label": "Wikipedia",
+              "url": "https://en.wikipedia.org/wiki/Sydney_Jordan_(politician)"
+            }
+          ],
+          "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0f/Sydney_Jordan_Russian_Divestment_Bill_Signing_%2852144566304%29_%28cropped%29.png/500px-Sydney_Jordan_Russian_Divestment_Bill_Signing_%2852144566304%29_%28cropped%29.png",
+          "legislation": [
+            {
+              "bill": "HF3426",
+              "title": "Environment and Natural Resources Trust Fund bill",
+              "session": "94th Legislature (2026 Regular)",
+              "status": "Signed into law",
+              "url": "https://www.revisor.mn.gov/bills/94/2026/0/HF/3426/"
+            },
+            {
+              "bill": "HF3067",
+              "title": "Paraprofessional qualifications",
+              "session": "94th Legislature (2025 Regular)",
+              "status": "Signed into law",
+              "url": "https://www.revisor.mn.gov/bills/94/2025/0/HF/3067/"
+            },
+            {
+              "bill": "HF3435",
+              "title": "Limit federal officials' access to school sites",
+              "session": "94th Legislature (2026 Regular)",
+              "status": "Introduced, not passed",
+              "url": "https://www.revisor.mn.gov/bills/94/2026/0/HF/3435/"
+            },
+            {
+              "bill": "HF1486",
+              "title": "Ban certain chemicals in packaging",
+              "session": "94th Legislature (2025 Regular)",
+              "status": "Introduced, not passed",
+              "url": "https://www.revisor.mn.gov/bills/94/2025/0/HF/1486/"
+            },
+            {
+              "bill": "HF4516",
+              "title": "Ingredient disclosure for menstrual products",
+              "session": "94th Legislature (2026 Regular)",
+              "status": "Introduced, not passed",
+              "url": "https://www.revisor.mn.gov/bills/94/2026/0/HF/4516/"
+            },
+            {
+              "bill": "HF2327",
+              "title": "Protect culturally inclusive learning environments",
+              "session": "94th Legislature (2025 Regular)",
+              "status": "Introduced, not passed",
+              "url": "https://www.revisor.mn.gov/bills/94/2025/0/HF/2327/"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "office": "State Representative District 60B",
+      "note": "",
+      "coverage": {
+        "summary": "10 precincts in Wards 2, 3, 6",
+        "wards": [
+          {
+            "ward": 2,
+            "all": false,
+            "precincts": [
+              "1",
+              "2",
+              "3",
+              "4",
+              "5",
+              "6",
+              "7"
+            ]
+          },
+          {
+            "ward": 3,
+            "all": false,
+            "precincts": [
+              "8",
+              "9"
+            ]
+          },
+          {
+            "ward": 6,
+            "all": false,
+            "precincts": [
+              "3"
+            ]
+          }
+        ]
+      },
+      "candidates": [
+        {
+          "name": "Mohamud Noor",
+          "party": "DFL",
+          "description": "",
+          "analysis": "Representative for the Cedar-Riverside and University area since 2019 and a former director of the Confederation of Somali Community in Minnesota. He has chaired the House Human Services Finance Committee since 2023 and chief-authored the human services budget and several related bills that became law this biennium (five in total). With fraud in state programs a major issue, he has also carried bills on compliance training for high-risk Medicaid providers and protections for clients when a provider is under investigation. His campaign has no website listed with the state. Unopposed on the ballot.",
+          "links": [
+            {
+              "label": "House profile",
+              "url": "https://www.house.mn.gov/members/profile/15528"
+            },
+            {
+              "label": "Wikipedia",
+              "url": "https://en.wikipedia.org/wiki/Mohamud_Noor"
+            }
+          ],
+          "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/db/Mohamud_Noor_July_30%2C_2025_Medicaid_60th_Anniversary_%28cropped%29.jpg/500px-Mohamud_Noor_July_30%2C_2025_Medicaid_60th_Anniversary_%28cropped%29.jpg",
+          "legislation": [
+            {
+              "bill": "HF3",
+              "title": "Human services budget",
+              "session": "94th Legislature (2025 1st Special)",
+              "status": "Signed into law",
+              "url": "https://www.revisor.mn.gov/bills/94/2025/1/HF/3/"
+            },
+            {
+              "bill": "HF2995",
+              "title": "Human services forecast adjustments",
+              "session": "94th Legislature (2025 Regular)",
+              "status": "Included in enacted law",
+              "url": "https://www.revisor.mn.gov/bills/94/2025/0/HF/2995/"
+            },
+            {
+              "bill": "HF1579",
+              "title": "Housing support rates for certain facilities",
+              "session": "94th Legislature (2025 Regular)",
+              "status": "Included in enacted law",
+              "url": "https://www.revisor.mn.gov/bills/94/2025/0/HF/1579/"
+            },
+            {
+              "bill": "HF2331",
+              "title": "Assisted living staff wage requirement exemption",
+              "session": "94th Legislature (2025 Regular)",
+              "status": "Included in enacted law",
+              "url": "https://www.revisor.mn.gov/bills/94/2025/0/HF/2331/"
+            },
+            {
+              "bill": "HF4638",
+              "title": "Compliance training for high-risk Medicaid providers",
+              "session": "94th Legislature (2026 Regular)",
+              "status": "Introduced, not passed",
+              "url": "https://www.revisor.mn.gov/bills/94/2026/0/HF/4638/"
+            },
+            {
+              "bill": "HF4393",
+              "title": "Protect clients when a provider is under serious investigation",
+              "session": "94th Legislature (2026 Regular)",
+              "status": "Introduced, not passed",
+              "url": "https://www.revisor.mn.gov/bills/94/2026/0/HF/4393/"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "office": "State Representative District 61A",
+      "note": "",
+      "candidates": [
+        {
+          "name": "Katie Jones",
+          "party": "DFL",
+          "description": "",
+          "links": [
+            {
+              "label": "Campaign website",
+              "url": "http://www.katiejones.org"
+            },
+            {
+              "label": "House profile",
+              "url": "https://www.house.mn.gov/members/profile/15638"
+            },
+            {
+              "label": "MN Explained profile",
+              "url": "/katiejones.html"
+            },
+            {
+              "label": "Wikipedia",
+              "url": "https://en.wikipedia.org/wiki/Katie_Jones_(politician)"
+            }
+          ],
+          "analysis": "A first-term representative elected in 2024 to succeed Frank Hornstein, whom she worked with on climate and transportation policy. She is an engineer and clean-energy policy specialist, and her bills follow that background: transit-lane camera enforcement, reform of how MnDOT plans projects, building energy-performance standards, and single-stair apartment buildings (a housing-supply reform pushed by pro-housing advocates). She has also introduced some of the Legislature's first AI safety and disclosure bills. The House was tied 67–67 under a Republican speaker, so none of her 30 chief-authored bills passed. Many are paired with Sen. Dibble's Senate versions, which sets them up for next session. Unopposed on the ballot.",
+          "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/91/6.26.2025_-_Rep_Katie_Jones_at_the_Wedge_Live_Cat_Tour%2C_Minneapolis_%28cropped%29.jpg/500px-6.26.2025_-_Rep_Katie_Jones_at_the_Wedge_Live_Cat_Tour%2C_Minneapolis_%28cropped%29.jpg",
+          "legislation": [
+            {
+              "bill": "HF4545",
+              "title": "Allow single-exit stairway apartment buildings in the State Building Code",
+              "session": "94th Legislature (2026 Regular)",
+              "status": "Introduced, not passed",
+              "url": "https://www.revisor.mn.gov/bills/94/2026/0/HF/4545/"
+            },
+            {
+              "bill": "HF3966",
+              "title": "Transit and bike-lane parking enforcement with cameras",
+              "session": "94th Legislature (2026 Regular)",
+              "status": "Introduced, not passed",
+              "url": "https://www.revisor.mn.gov/bills/94/2026/0/HF/3966/"
+            },
+            {
+              "bill": "HF4449",
+              "title": "Transit planning, project development, and performance requirements",
+              "session": "94th Legislature (2026 Regular)",
+              "status": "Introduced, not passed",
+              "url": "https://www.revisor.mn.gov/bills/94/2026/0/HF/4449/"
+            },
+            {
+              "bill": "HF3179",
+              "title": "Energy performance standards for large buildings",
+              "session": "94th Legislature (2025 Regular)",
+              "status": "Introduced, not passed",
+              "url": "https://www.revisor.mn.gov/bills/94/2025/0/HF/3179/"
+            },
+            {
+              "bill": "HF4208",
+              "title": "Motor vehicle impact requirements",
+              "session": "94th Legislature (2026 Regular)",
+              "status": "Introduced, not passed",
+              "url": "https://www.revisor.mn.gov/bills/94/2026/0/HF/4208/"
+            },
+            {
+              "bill": "HF4532",
+              "title": "Artificial intelligence safety and disclosure requirements",
+              "session": "94th Legislature (2026 Regular)",
+              "status": "Introduced, not passed",
+              "url": "https://www.revisor.mn.gov/bills/94/2026/0/HF/4532/"
+            },
+            {
+              "bill": "HF3796",
+              "title": "Require employers to provide suitable seating for employees",
+              "session": "94th Legislature (2026 Regular)",
+              "status": "Introduced, not passed",
+              "url": "https://www.revisor.mn.gov/bills/94/2026/0/HF/3796/"
+            }
+          ]
+        }
+      ],
+      "coverage": {
+        "summary": "13 precincts in Wards 5, 6, 7, 10",
+        "wards": [
+          {
+            "ward": 5,
+            "all": false,
+            "precincts": [
+              "9"
+            ]
+          },
+          {
+            "ward": 6,
+            "all": false,
+            "precincts": [
+              "1",
+              "2"
+            ]
+          },
+          {
+            "ward": 7,
+            "all": false,
+            "precincts": [
+              "1",
+              "2",
+              "3",
+              "4",
+              "5",
+              "6",
+              "7",
+              "8",
+              "9"
+            ]
+          },
+          {
+            "ward": 10,
+            "all": false,
+            "precincts": [
+              "1"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "office": "State Representative District 61B",
+      "note": "",
+      "coverage": {
+        "summary": "16 precincts in Wards 7, 10, 13",
+        "wards": [
+          {
+            "ward": 7,
+            "all": false,
+            "precincts": [
+              "12"
+            ]
+          },
+          {
+            "ward": 10,
+            "all": false,
+            "precincts": [
+              "2",
+              "3",
+              "4",
+              "5"
+            ]
+          },
+          {
+            "ward": 13,
+            "all": false,
+            "precincts": [
+              "1",
+              "2",
+              "3",
+              "4",
+              "5",
+              "6",
+              "7",
+              "10",
+              "11",
+              "12",
+              "13"
+            ]
+          }
+        ]
+      },
+      "candidates": [
+        {
+          "name": "Jamie Long",
+          "party": "DFL",
+          "description": "",
+          "analysis": "Representative for southwest Minneapolis since 2019 and a House DFL leader: Majority Leader during the 2023–24 DFL trifecta, and now the DFL floor leader and chair of the Rules Committee in the tied House. He authored Minnesota's 100% clean electricity standard. Because leaders move the caucus agenda rather than carry many bills, he chief-authored only nine this biennium, including a right to sue over civil rights violations, an independent redistricting commission, and statutory equal rights protections. Unopposed on the ballot.",
+          "links": [
+            {
+              "label": "Campaign website",
+              "url": "https://www.jamielong.com/"
+            },
+            {
+              "label": "House profile",
+              "url": "https://www.house.mn.gov/members/profile/15529"
+            },
+            {
+              "label": "Wikipedia",
+              "url": "https://en.wikipedia.org/wiki/Jamie_Long"
+            }
+          ],
+          "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/db/Jamie_Long_2020_%28cropped%29.jpg/500px-Jamie_Long_2020_%28cropped%29.jpg",
+          "legislation": [
+            {
+              "bill": "HF3477",
+              "title": "Right to sue for civil rights violations by government officials",
+              "session": "94th Legislature (2026 Regular)",
+              "status": "Introduced, not passed",
+              "url": "https://www.revisor.mn.gov/bills/94/2026/0/HF/3477/"
+            },
+            {
+              "bill": "HF3270",
+              "title": "Independent Redistricting Commission",
+              "session": "94th Legislature (2025 Regular)",
+              "status": "Introduced, not passed",
+              "url": "https://www.revisor.mn.gov/bills/94/2025/0/HF/3270/"
+            },
+            {
+              "bill": "HF1762",
+              "title": "Equal rights under the law",
+              "session": "94th Legislature (2025 Regular)",
+              "status": "Introduced, not passed",
+              "url": "https://www.revisor.mn.gov/bills/94/2025/0/HF/1762/"
+            },
+            {
+              "bill": "HF1386",
+              "title": "Bakken Museum funding",
+              "session": "94th Legislature (2025 Regular)",
+              "status": "Included in enacted law",
+              "url": "https://www.revisor.mn.gov/bills/94/2025/0/HF/1386/"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "office": "State Representative District 62A",
+      "note": "",
+      "coverage": {
+        "summary": "13 precincts in Wards 6, 7, 8, 9, 10",
+        "wards": [
+          {
+            "ward": 6,
+            "all": false,
+            "precincts": [
+              "4",
+              "5",
+              "6"
+            ]
+          },
+          {
+            "ward": 7,
+            "all": false,
+            "precincts": [
+              "10"
+            ]
+          },
+          {
+            "ward": 8,
+            "all": false,
+            "precincts": [
+              "1",
+              "2",
+              "3",
+              "5"
+            ]
+          },
+          {
+            "ward": 9,
+            "all": false,
+            "precincts": [
+              "1"
+            ]
+          },
+          {
+            "ward": 10,
+            "all": false,
+            "precincts": [
+              "6",
+              "7",
+              "8",
+              "9"
+            ]
+          }
+        ]
+      },
+      "candidates": [
+        {
+          "name": "Aisha Gomez",
+          "party": "DFL",
+          "description": "",
+          "analysis": "Representative for south Minneapolis since 2019 whose work focuses on taxes and homelessness. She chaired the Tax Committee during the 2023–24 trifecta, passing a tax bill that she says made the wealthy pay more and invested in communities, and she chaired the homelessness prevention committee. This biennium she proposes a state wealth tax, a new top income tax bracket to offset federal Medicaid cuts, free direct tax filing, and a ban on government facial recognition. Unopposed on the ballot.",
+          "links": [
+            {
+              "label": "Campaign website",
+              "url": "https://www.aishagomez.com/"
+            },
+            {
+              "label": "House profile",
+              "url": "https://www.house.mn.gov/members/profile/15531"
+            },
+            {
+              "label": "Wikipedia",
+              "url": "https://en.wikipedia.org/wiki/Aisha_Gomez"
+            }
+          ],
+          "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b3/Aisha-Gomez.jpg/500px-Aisha-Gomez.jpg",
+          "legislation": [
+            {
+              "bill": "HF4616",
+              "title": "Minnesota wealth tax",
+              "session": "94th Legislature (2026 Regular)",
+              "status": "Introduced, not passed",
+              "url": "https://www.revisor.mn.gov/bills/94/2026/0/HF/4616/"
+            },
+            {
+              "bill": "HF11",
+              "title": "New top income tax bracket to offset lost federal Medicaid funding",
+              "session": "94th Legislature (2025 1st Special)",
+              "status": "Introduced, not passed",
+              "url": "https://www.revisor.mn.gov/bills/94/2025/1/HF/11/"
+            },
+            {
+              "bill": "HF3955",
+              "title": "Tip income tax break and expanded child tax credit",
+              "session": "94th Legislature (2026 Regular)",
+              "status": "Introduced, not passed",
+              "url": "https://www.revisor.mn.gov/bills/94/2026/0/HF/3955/"
+            },
+            {
+              "bill": "HF30",
+              "title": "Free direct tax filing with the state",
+              "session": "94th Legislature (2025 Regular)",
+              "status": "Introduced, not passed",
+              "url": "https://www.revisor.mn.gov/bills/94/2025/0/HF/30/"
+            },
+            {
+              "bill": "HF3661",
+              "title": "Ban on government facial recognition technology",
+              "session": "94th Legislature (2026 Regular)",
+              "status": "Introduced, not passed",
+              "url": "https://www.revisor.mn.gov/bills/94/2026/0/HF/3661/"
+            },
+            {
+              "bill": "HF4849",
+              "title": "Allow a Hennepin County local sales tax",
+              "session": "94th Legislature (2026 Regular)",
+              "status": "Introduced, not passed",
+              "url": "https://www.revisor.mn.gov/bills/94/2026/0/HF/4849/"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "office": "State Representative District 62B",
+      "note": "",
+      "coverage": {
+        "summary": "13 precincts in Wards 6, 8, 9, 11",
+        "wards": [
+          {
+            "ward": 6,
+            "all": false,
+            "precincts": [
+              "7"
+            ]
+          },
+          {
+            "ward": 8,
+            "all": false,
+            "precincts": [
+              "4",
+              "6",
+              "7",
+              "8",
+              "10",
+              "11"
+            ]
+          },
+          {
+            "ward": 9,
+            "all": false,
+            "precincts": [
+              "2",
+              "3",
+              "4",
+              "5",
+              "7"
+            ]
+          },
+          {
+            "ward": 11,
+            "all": false,
+            "precincts": [
+              "6"
+            ]
+          }
+        ]
+      },
+      "candidates": [
+        {
+          "name": "Anquam Mahamoud",
+          "party": "DFL",
+          "description": "",
+          "analysis": "First-term representative for Phillips and Powderhorn, elected in 2024. He grew up in East Phillips and was the state planning director for individual-market policy at MNsure, so his bills focus on health insurance: limits on prior authorization, a right to sue over wrongful claim denials, and access to opioid treatment. One of his bills, a contract-for-deed consumer protection, became law. Opponent: Bob Sullentrop (R).",
+          "links": [
+            {
+              "label": "Campaign website",
+              "url": "https://www.anquam62b.com/"
+            },
+            {
+              "label": "House profile",
+              "url": "https://www.house.mn.gov/members/profile/15639"
+            },
+            {
+              "label": "Wikipedia",
+              "url": "https://en.wikipedia.org/wiki/Anquam_Mahamoud"
+            }
+          ],
+          "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4b/11.4.2025_-_Anquam_Mahamoud_with_Slice_Pizza_at_Midtown_Global_Market_on_election_day%2C_Minneapolis.jpg/500px-11.4.2025_-_Anquam_Mahamoud_with_Slice_Pizza_at_Midtown_Global_Market_on_election_day%2C_Minneapolis.jpg",
+          "legislation": [
+            {
+              "bill": "HF1792",
+              "title": "Contract-for-deed protections",
+              "session": "94th Legislature (2025 Regular)",
+              "status": "Signed into law",
+              "url": "https://www.revisor.mn.gov/bills/94/2025/0/HF/1792/"
+            },
+            {
+              "bill": "HF3867",
+              "title": "Utilization review standards and right to sue over wrongful denials",
+              "session": "94th Legislature (2026 Regular)",
+              "status": "Introduced, not passed",
+              "url": "https://www.revisor.mn.gov/bills/94/2026/0/HF/3867/"
+            },
+            {
+              "bill": "HF3444",
+              "title": "Limit prior authorization for opioid-use treatment drugs",
+              "session": "94th Legislature (2026 Regular)",
+              "status": "Introduced, not passed",
+              "url": "https://www.revisor.mn.gov/bills/94/2026/0/HF/3444/"
+            },
+            {
+              "bill": "HF3273",
+              "title": "Expand maternal death studies",
+              "session": "94th Legislature (2025 Regular)",
+              "status": "Introduced, not passed",
+              "url": "https://www.revisor.mn.gov/bills/94/2025/0/HF/3273/"
+            },
+            {
+              "bill": "HF3777",
+              "title": "Consider customers' ability to pay in utility rates",
+              "session": "94th Legislature (2026 Regular)",
+              "status": "Introduced, not passed",
+              "url": "https://www.revisor.mn.gov/bills/94/2026/0/HF/3777/"
+            },
+            {
+              "bill": "HF5131",
+              "title": "Ban on certain animal testing",
+              "session": "94th Legislature (2026 Regular)",
+              "status": "Introduced, not passed",
+              "url": "https://www.revisor.mn.gov/bills/94/2026/0/HF/5131/"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "office": "State Representative District 63A",
+      "note": "",
+      "coverage": {
+        "summary": "15 precincts in Wards 2, 6, 9, 12",
+        "wards": [
+          {
+            "ward": 2,
+            "all": false,
+            "precincts": [
+              "8",
+              "9"
+            ]
+          },
+          {
+            "ward": 6,
+            "all": false,
+            "precincts": [
+              "8",
+              "9"
+            ]
+          },
+          {
+            "ward": 9,
+            "all": false,
+            "precincts": [
+              "6",
+              "8",
+              "9"
+            ]
+          },
+          {
+            "ward": 12,
+            "all": false,
+            "precincts": [
+              "1",
+              "2",
+              "3",
+              "4",
+              "5",
+              "6",
+              "7",
+              "9"
+            ]
+          }
+        ]
+      },
+      "candidates": [
+        {
+          "name": "Samantha Sencer-Mura",
+          "party": "DFL",
+          "description": "",
+          "analysis": "Representative for south Minneapolis since 2023; an educator and fourth-generation Japanese American who grew up in Minneapolis and went to South High. Her bills this biennium focus heavily on immigration enforcement: barring police from sensitive places like schools and churches, banning contracts for immigration detention, and protecting students' right to an education regardless of status. She also backs a minimum salary for teachers and permanent traffic-safety cameras. Opponent: Kyle Bragg (R).",
+          "links": [
+            {
+              "label": "Campaign website",
+              "url": "https://sencer-mura.org/"
+            },
+            {
+              "label": "House profile",
+              "url": "https://www.house.mn.gov/members/profile/15572"
+            },
+            {
+              "label": "Wikipedia",
+              "url": "https://en.wikipedia.org/wiki/Samantha_Sencer-Mura"
+            }
+          ],
+          "image": "https://images.squarespace-cdn.com/content/v1/62032266f577225b7ac0d871/6fa01fa7-8df8-4e5d-81fe-4851a73faf3a/SAM-FOR-THE-PEOPLE-1.jpg",
+          "legislation": [
+            {
+              "bill": "HF5149",
+              "title": "Restrict law enforcement access to sensitive locations",
+              "session": "94th Legislature (2026 Regular)",
+              "status": "Introduced, not passed",
+              "url": "https://www.revisor.mn.gov/bills/94/2026/0/HF/5149/"
+            },
+            {
+              "bill": "HF3886",
+              "title": "Ban contracts for immigration detention facilities",
+              "session": "94th Legislature (2026 Regular)",
+              "status": "Introduced, not passed",
+              "url": "https://www.revisor.mn.gov/bills/94/2026/0/HF/3886/"
+            },
+            {
+              "bill": "HF3409",
+              "title": "Ban denying education based on immigration status",
+              "session": "94th Legislature (2026 Regular)",
+              "status": "Introduced, not passed",
+              "url": "https://www.revisor.mn.gov/bills/94/2026/0/HF/3409/"
+            },
+            {
+              "bill": "HF3119",
+              "title": "Minimum pay for teachers and school staff",
+              "session": "94th Legislature (2025 Regular)",
+              "status": "Introduced, not passed",
+              "url": "https://www.revisor.mn.gov/bills/94/2025/0/HF/3119/"
+            },
+            {
+              "bill": "HF3431",
+              "title": "Make the traffic-safety camera pilot permanent",
+              "session": "94th Legislature (2026 Regular)",
+              "status": "Introduced, not passed",
+              "url": "https://www.revisor.mn.gov/bills/94/2026/0/HF/3431/"
+            },
+            {
+              "bill": "HF2979",
+              "title": "Minnesota Youth Poet Laureate",
+              "session": "94th Legislature (2025 Regular)",
+              "status": "Included in enacted law",
+              "url": "https://www.revisor.mn.gov/bills/94/2025/0/HF/2979/"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "office": "State Representative District 63B",
+      "note": "",
+      "coverage": {
+        "summary": "15 precincts in Wards 8, 11, 12, 13",
+        "wards": [
+          {
+            "ward": 8,
+            "all": false,
+            "precincts": [
+              "9"
+            ]
+          },
+          {
+            "ward": 11,
+            "all": false,
+            "precincts": [
+              "1",
+              "2",
+              "4",
+              "5",
+              "7",
+              "8",
+              "9",
+              "10",
+              "11"
+            ]
+          },
+          {
+            "ward": 12,
+            "all": false,
+            "precincts": [
+              "8",
+              "10",
+              "11"
+            ]
+          },
+          {
+            "ward": 13,
+            "all": false,
+            "precincts": [
+              "8",
+              "9"
+            ]
+          }
+        ]
+      },
+      "candidates": [
+        {
+          "name": "Emma Greenman",
+          "party": "DFL",
+          "description": "",
+          "analysis": "Representative for south Minneapolis since 2021 and a voting-rights attorney. She wrote the Democracy for the People Act, the House DFL's major 2023 elections bill that expanded voting access. This biennium she is focused on guns and corporate power: an assault-weapons ban, a ban on toxic lead ammunition, the Fair Competition Act limiting monopoly power, and bans on surveillance pricing and AI-driven dynamic pricing. Opponent: Nicholas Peters (R).",
+          "links": [
+            {
+              "label": "Campaign website",
+              "url": "http://emmagreenman.com"
+            },
+            {
+              "label": "House profile",
+              "url": "https://www.house.mn.gov/members/profile/15552"
+            },
+            {
+              "label": "Wikipedia",
+              "url": "https://en.wikipedia.org/wiki/Emma_Greenman"
+            }
+          ],
+          "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d7/Emma_Greenman_2024.jpg/500px-Emma_Greenman_2024.jpg",
+          "legislation": [
+            {
+              "bill": "HF3433",
+              "title": "Ban on semiautomatic military-style assault weapons",
+              "session": "94th Legislature (2026 Regular)",
+              "status": "Introduced, not passed",
+              "url": "https://www.revisor.mn.gov/bills/94/2026/0/HF/3433/"
+            },
+            {
+              "bill": "HF4743",
+              "title": "Ban on toxic lead ammunition",
+              "session": "94th Legislature (2026 Regular)",
+              "status": "Introduced, not passed",
+              "url": "https://www.revisor.mn.gov/bills/94/2026/0/HF/4743/"
+            },
+            {
+              "bill": "HF34",
+              "title": "Fair Competition Act (monopoly and price-gouging limits)",
+              "session": "94th Legislature (2025 Regular)",
+              "status": "Introduced, not passed",
+              "url": "https://www.revisor.mn.gov/bills/94/2025/0/HF/34/"
+            },
+            {
+              "bill": "HF3794",
+              "title": "Ban on surveillance-based pricing and wages",
+              "session": "94th Legislature (2026 Regular)",
+              "status": "Introduced, not passed",
+              "url": "https://www.revisor.mn.gov/bills/94/2026/0/HF/3794/"
+            },
+            {
+              "bill": "HF2452",
+              "title": "Ban on AI-driven dynamic pricing",
+              "session": "94th Legislature (2025 Regular)",
+              "status": "Introduced, not passed",
+              "url": "https://www.revisor.mn.gov/bills/94/2025/0/HF/2452/"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "office": "Governor & Lt Governor",
+      "note": "",
+      "candidates": [
+        {
+          "name": "Amy Klobuchar and Ben Schierer",
+          "party": "DFL",
+          "description": "",
+          "links": [
+            {
+              "label": "Campaign website",
+              "url": "https://www.amyklobuchar.com"
+            },
+            {
+              "label": "All sponsored bills (congress.gov)",
+              "url": "https://www.congress.gov/member/amy-klobuchar/K000367"
+            },
+            {
+              "label": "Wikipedia",
+              "url": "https://en.wikipedia.org/wiki/Amy_Klobuchar"
+            }
+          ],
+          "analysis": "U.S. Senator since 2007 and a former Hennepin County Attorney. Klobuchar is known for sponsoring bipartisan bills. In the Senate she leads on antitrust, prescription drug prices, and election administration, and two of her generic-drug bills this Congress made it out of committee. Her campaign for governor focuses on lower costs, rooting out fraud in state government, public safety, and the rural economy. Her running mate, Ben Schierer, is the two-term mayor of Fergus Falls and a former small-business owner who works on rural economic development, giving the ticket a Greater Minnesota balance. Her Integrity Index grade is B- (80.14). Opponents: Lisa Demuth (R) and Steven Young (Green).",
+          "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b7/Amy_Klobuchar%2C_official_portrait%2C_113th_Congress.jpg/500px-Amy_Klobuchar%2C_official_portrait%2C_113th_Congress.jpg",
+          "integrity_index": {
+            "grade": "B-",
+            "score": 80.14,
+            "url": "https://integrityindex.us/candidate/amy-klobuchar",
+            "as_of": "2026-11-02"
+          },
+          "legislation": [
+            {
+              "bill": "S1096",
+              "title": "Preserve Access to Affordable Generics and Biosimilars Act",
+              "session": "119th Congress",
+              "status": "Reported to the Senate floor",
+              "url": "https://www.congress.gov/bill/119th-congress/senate-bill/1096"
+            },
+            {
+              "bill": "S1095",
+              "title": "Stop STALLING Act",
+              "session": "119th Congress",
+              "status": "Reported to the Senate floor",
+              "url": "https://www.congress.gov/bill/119th-congress/senate-bill/1095"
+            },
+            {
+              "bill": "S641",
+              "title": "Safe and Affordable Drugs from Canada Act of 2025",
+              "session": "119th Congress",
+              "status": "Introduced, not passed",
+              "url": "https://www.congress.gov/bill/119th-congress/senate-bill/641"
+            },
+            {
+              "bill": "S4020",
+              "title": "Housing Supply and Affordability Act",
+              "session": "119th Congress",
+              "status": "Introduced, not passed",
+              "url": "https://www.congress.gov/bill/119th-congress/senate-bill/4020"
+            },
+            {
+              "bill": "S130",
+              "title": "Competition and Antitrust Law Enforcement Reform Act of 2025",
+              "session": "119th Congress",
+              "status": "Introduced, not passed",
+              "url": "https://www.congress.gov/bill/119th-congress/senate-bill/130"
+            },
+            {
+              "bill": "S1213",
+              "title": "Protect Elections from Deceptive AI Act",
+              "session": "119th Congress",
+              "status": "Introduced, not passed",
+              "url": "https://www.congress.gov/bill/119th-congress/senate-bill/1213"
+            },
+            {
+              "bill": "S2820",
+              "title": "Same Day Registration Act",
+              "session": "119th Congress",
+              "status": "Introduced, not passed",
+              "url": "https://www.congress.gov/bill/119th-congress/senate-bill/2820"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "office": "Secretary of State",
+      "note": "",
+      "candidates": [
+        {
+          "name": "Steve Simon",
+          "party": "DFL",
+          "description": "",
+          "links": [
+            {
+              "label": "Campaign website",
+              "url": "http://stevesimonmn.com"
+            },
+            {
+              "label": "Wikipedia",
+              "url": "https://en.wikipedia.org/wiki/Steve_Simon"
+            }
+          ],
+          "analysis": "Secretary of State since 2015 and a former state representative from Hopkins, now seeking a fourth term. He has been a national voice against election disinformation, and Minnesota has led the nation in turnout for three straight elections on his watch. As a legislator he wrote the law that lets any eligible Minnesotan vote absentee from home. His opponents are Tad Jude (R), Seth Kuhl-Stennes (Green), and George \"Chip\" Tangen (Libertarian). The Integrity Index does not grade state offices.",
+          "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5c/2026SteveSimon.jpg/500px-2026SteveSimon.jpg"
+        }
+      ]
+    },
+    {
+      "office": "State Auditor",
+      "note": "",
+      "candidates": [
+        {
+          "name": "Zack Filipovich",
+          "party": "DFL",
+          "description": "",
+          "links": [
+            {
+              "label": "Campaign website",
+              "url": "http://WWW.ZACKFORMN.COM"
+            }
+          ],
+          "analysis": "A Certified Management Accountant, nonprofit finance manager, and former Duluth City Council president (eight years on the council). His pitch is competence: \"the only accountant in the race.\" He wants to give local governments better financial data and training, add fraud safeguards, and run the office more openly. The race draws more attention than usual because his Republican opponent is Scott Jensen, the party's 2022 nominee for governor. Jay Reeves (Forward Independence) is also running.",
+          "image": "https://run.imgix.net/4b029c24-bcd3-415f-b045-26dd32ff4287/a3d21727-a4c3-4dd4-ba2d-2526f551e25f/a3d21727-a4c3-4dd4-ba2d-2526f551e25f.png?ixlib=js-3.8.0&bri=3&con=0&sat=0&high=0&shad=0&usm=0&rect=0%2C0%2C5079%2C4140&auto=compress%2Cformat&fit=fillmax&w=2048&q=75&s=8052a30f2b33128477e6e5028e0a90fe"
+        }
+      ]
+    },
+    {
+      "office": "Attorney General",
+      "note": "",
+      "candidates": [
+        {
+          "name": "Keith Ellison",
+          "party": "DFL",
+          "description": "",
+          "links": [
+            {
+              "label": "Campaign website",
+              "url": "http://keithellison.org"
+            },
+            {
+              "label": "Wikipedia",
+              "url": "https://en.wikipedia.org/wiki/Keith_Ellison"
+            }
+          ],
+          "analysis": "Attorney General since 2019, after 12 years in Congress and a term in the Minnesota House. He led the prosecution that convicted Derek Chauvin, took on insulin makers ($35 insulin), medical debt, and price-fixing, and has filed many lawsuits against the Trump administration. His campaign stresses more than 350 fraud convictions, a response to Republican attacks over Minnesota's fraud scandals. Opponent: Ronald J. Schutz (R).",
+          "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/62/Keith_Ellison_portrait.jpg/500px-Keith_Ellison_portrait.jpg"
+        }
+      ]
+    },
+    {
+      "office": "Constitutional Amendment 1: Increasing funding to school districts",
+      "note": "Shall the Minnesota Constitution be amended to increase the funding going to all school districts from the permanent school fund, which is a fund that supports school districts without raising individual income or property taxes, effective July 1, 2027?",
+      "candidates": [
+        {
+          "name": "Yes",
+          "party": "",
+          "description": "A \"yes\" vote changes how the Permanent School Fund pays out. The fund is a state trust that dates to statehood and is built from state school-trust lands. Right now the constitution lets only its investment income (interest and dividends) go to schools. The amendment would instead require the fund to be managed to keep its value over time, and a companion law passed with the amendment (HF 3900) would send up to 4.5% of the fund's three-year average value to every school district each year, starting July 1, 2027. That means more money for schools with no new income or property taxes. The House approved it unanimously (134–0).\n\nImportant: a blank answer counts as \"no.\" The amendment needs \"yes\" votes from a majority of everyone who votes in the election, so be sure to flip your ballot over and fill in \"yes.\"",
+          "links": []
+        }
+      ]
+    },
+    {
+      "office": "County Commissioner District 2",
+      "note": "",
+      "coverage": {
+        "summary": "32 precincts in Wards 1, 3, 4, 5",
+        "wards": [
+          {
+            "ward": 1,
+            "all": false,
+            "precincts": [
+              "1",
+              "3",
+              "4",
+              "5",
+              "6",
+              "7",
+              "8",
+              "9",
+              "10"
+            ]
+          },
+          {
+            "ward": 3,
+            "all": false,
+            "precincts": [
+              "1",
+              "2",
+              "3",
+              "5",
+              "6"
+            ]
+          },
+          {
+            "ward": 4,
+            "all": true,
+            "precincts": [
+              "1",
+              "2",
+              "3",
+              "4",
+              "5",
+              "6",
+              "7",
+              "8",
+              "9"
+            ]
+          },
+          {
+            "ward": 5,
+            "all": true,
+            "precincts": [
+              "1",
+              "2",
+              "3",
+              "4",
+              "5",
+              "6",
+              "7",
+              "8",
+              "9"
+            ]
+          }
+        ]
+      },
+      "candidates": [
+        {
+          "name": "Irene Fernando",
+          "party": "",
+          "description": "",
+          "analysis": "Hennepin County Commissioner for District 2 since 2019 and chair of the county board. She grew up in an immigrant family of health-care workers. In 2018 she and Angela Conley became the first people of color elected to the Hennepin County Board. She is endorsed by Stonewall DFL and AFSCME Council 5. Challenger: Sharon El-Amin, a current Minneapolis school board member.",
+          "links": [
+            {
+              "label": "Campaign website",
+              "url": "https://www.voteirene.com/"
+            }
+          ],
+          "image": "https://images.squarespace-cdn.com/content/61aea1923db45812527fea0e/1168d33a-7395-4919-a5f7-ef0661b539aa/Irene-Fernando_2-scaled.jpg?content-type=image%2Fjpeg"
+        }
+      ]
+    },
+    {
+      "office": "County Commissioner District 3",
+      "note": "",
+      "candidates": [
+        {
+          "name": "Marion Greene",
+          "party": "",
+          "description": "",
+          "links": [
+            {
+              "label": "Campaign website",
+              "url": "http://mariongreene.org"
+            },
+            {
+              "label": "Wikipedia",
+              "url": "https://en.wikipedia.org/wiki/Marion_Greene"
+            }
+          ],
+          "analysis": "Hennepin County Commissioner for District 3 since 2014 and a former state representative, where she was chief author of full funding for all-day kindergarten. On the county board she has pushed for more affordable housing, the region's first long-term dedicated transit funding, legal help for renters and immigrants, and the county's first Climate Action Plan. She lives in Uptown. Challenger: Abdihakim Arabow Ibrahim.",
+          "image": "https://images.squarespace-cdn.com/content/v1/69f59b7f756c2b65a311ed05/d9250f45-42fd-4148-929a-b310b8340962/Copy+of+18+Marion+Greene+by+Anna+Min+of+Min+Enterprises+Photography+LLC-10.jpg?format=500w"
+        }
+      ],
+      "coverage": {
+        "summary": "44 precincts in Wards 3, 6, 7, 8, 10, 11, 13",
+        "wards": [
+          {
+            "ward": 3,
+            "all": false,
+            "precincts": [
+              "10",
+              "11",
+              "12"
+            ]
+          },
+          {
+            "ward": 6,
+            "all": false,
+            "precincts": [
+              "4"
+            ]
+          },
+          {
+            "ward": 7,
+            "all": true,
+            "precincts": [
+              "1",
+              "2",
+              "3",
+              "4",
+              "5",
+              "6",
+              "7",
+              "8",
+              "9",
+              "10",
+              "11",
+              "12"
+            ]
+          },
+          {
+            "ward": 8,
+            "all": false,
+            "precincts": [
+              "1",
+              "2",
+              "3",
+              "4"
+            ]
+          },
+          {
+            "ward": 10,
+            "all": true,
+            "precincts": [
+              "1",
+              "2",
+              "3",
+              "4",
+              "5",
+              "6",
+              "7",
+              "8",
+              "9"
+            ]
+          },
+          {
+            "ward": 11,
+            "all": false,
+            "precincts": [
+              "1",
+              "2",
+              "4",
+              "5"
+            ]
+          },
+          {
+            "ward": 13,
+            "all": false,
+            "precincts": [
+              "1",
+              "2",
+              "3",
+              "4",
+              "5",
+              "6",
+              "9",
+              "10",
+              "11",
+              "12",
+              "13"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "office": "County Commissioner District 4",
+      "note": "",
+      "coverage": {
+        "summary": "57 precincts in Wards 1, 2, 3, 6, 8, 9, 11, 12",
+        "wards": [
+          {
+            "ward": 1,
+            "all": false,
+            "precincts": [
+              "11"
+            ]
+          },
+          {
+            "ward": 2,
+            "all": true,
+            "precincts": [
+              "1",
+              "2",
+              "3",
+              "4",
+              "5",
+              "6",
+              "7",
+              "8",
+              "9"
+            ]
+          },
+          {
+            "ward": 3,
+            "all": false,
+            "precincts": [
+              "4",
+              "7",
+              "8",
+              "9"
+            ]
+          },
+          {
+            "ward": 6,
+            "all": false,
+            "precincts": [
+              "1",
+              "2",
+              "3",
+              "5",
+              "6",
+              "7",
+              "8",
+              "9"
+            ]
+          },
+          {
+            "ward": 8,
+            "all": false,
+            "precincts": [
+              "5",
+              "6",
+              "7",
+              "8",
+              "9",
+              "10",
+              "11"
+            ]
+          },
+          {
+            "ward": 9,
+            "all": true,
+            "precincts": [
+              "1",
+              "2",
+              "3",
+              "4",
+              "5",
+              "6",
+              "7",
+              "8",
+              "9"
+            ]
+          },
+          {
+            "ward": 11,
+            "all": false,
+            "precincts": [
+              "6",
+              "7",
+              "8",
+              "9",
+              "10",
+              "11",
+              "12"
+            ]
+          },
+          {
+            "ward": 12,
+            "all": true,
+            "precincts": [
+              "1",
+              "2",
+              "3",
+              "4",
+              "5",
+              "6",
+              "7",
+              "8",
+              "9",
+              "10",
+              "11",
+              "12"
+            ]
+          }
+        ]
+      },
+      "candidates": [
+        {
+          "name": "Angela Conley",
+          "party": "",
+          "description": "",
+          "analysis": "Hennepin County Commissioner for District 4 since 2019 and the first Black person elected to the Hennepin County Board. A social worker raised in East Phillips, she has focused on housing, public health, and transit, and she chairs a national committee on community and workforce development for the National Association of Counties. Her campaign has spoken out against federal immigration enforcement in the district. Endorsed by Stonewall DFL. Unopposed on the ballot.",
+          "links": [
+            {
+              "label": "Campaign website",
+              "url": "https://www.voteconley.com/"
+            }
+          ],
+          "image": "https://images.squarespace-cdn.com/content/v1/61c102ad81e517412b60e5c3/aa13ef78-5891-4699-aa31-4e0ea5291e71/GMC_3141.jpg"
+        }
+      ]
+    },
+    {
+      "office": "County Sheriff",
+      "note": "",
+      "candidates": [
+        {
+          "name": "Joseph Banks",
+          "party": "",
+          "description": "",
+          "links": [
+            {
+              "label": "Campaign website",
+              "url": "http://banks4sheriff.com"
+            }
+          ],
+          "analysis": "Challenging incumbent Sheriff Dawanna Witt in a rematch of 2022, when Witt won 64% to 35%. Banks has more than 20 years in law enforcement, mostly with small departments in southwest Minnesota. He was police chief for the Upper Sioux Community and the city of Morton, and chief investigator and acting chief at Lower Sioux. He also served in the Marine Corps Reserve and the Minnesota Army National Guard.",
+          "image": "https://static.wixstatic.com/media/1c24c5_b252236a3a444bf3b7bd723cb643b15d~mv2.jpg"
+        }
+      ]
+    },
+    {
+      "office": "County Attorney",
+      "note": "",
+      "candidates": [
+        {
+          "name": "Cedrick Frazier",
+          "party": "",
+          "description": "",
+          "links": [
+            {
+              "label": "Campaign website",
+              "url": "http://cedrickfrazier.org"
+            },
+            {
+              "label": "House profile",
+              "url": "https://www.house.mn.gov/members/profile/15548"
+            },
+            {
+              "label": "Wikipedia",
+              "url": "https://en.wikipedia.org/wiki/Cedrick_Frazier"
+            }
+          ],
+          "analysis": "State representative from New Hope and Crystal since 2021, and before that a Hennepin County public defender and legal counsel for Minneapolis Public Schools. He is running for the open County Attorney seat and advanced from the August primary with Anders Folk, a former acting U.S. Attorney. His platform promises to stand up to Trump and to hold federal immigration agents accountable under state law (\"Prosecute ICE\"). His House record is heavy on criminal-justice reform: a task force on mandatory minimums, retroactive relief in felony-murder cases, a model policy for safe traffic stops, fair-chance housing, and local ranked-choice voting. Two of his bills this biennium became law.",
+          "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/16/Cedrick_Rommel_Frazier.jpg/500px-Cedrick_Rommel_Frazier.jpg",
+          "legislation": [
+            {
+              "bill": "HF688",
+              "title": "Service dog protections in housing accommodations for people with disabilities",
+              "session": "94th Legislature (2025 Regular)",
+              "status": "Signed into law",
+              "url": "https://www.revisor.mn.gov/bills/94/2025/0/HF/688/"
+            },
+            {
+              "bill": "HF2321",
+              "title": "Funding for public educational radio stations",
+              "session": "94th Legislature (2025 Regular)",
+              "status": "Included in enacted law (Chapter 36)",
+              "url": "https://www.revisor.mn.gov/bills/94/2025/0/HF/2321/"
+            },
+            {
+              "bill": "HF687",
+              "title": "Task Force on Mandatory Minimum Sentences",
+              "session": "94th Legislature (2025 Regular)",
+              "status": "Introduced, not passed",
+              "url": "https://www.revisor.mn.gov/bills/94/2025/0/HF/687/"
+            },
+            {
+              "bill": "HF1575",
+              "title": "Felony murder and aiding-and-abetting changes with retroactive relief",
+              "session": "94th Legislature (2025 Regular)",
+              "status": "Introduced, not passed",
+              "url": "https://www.revisor.mn.gov/bills/94/2025/0/HF/1575/"
+            },
+            {
+              "bill": "HF686",
+              "title": "Model policy for safe traffic stops",
+              "session": "94th Legislature (2025 Regular)",
+              "status": "Introduced, not passed",
+              "url": "https://www.revisor.mn.gov/bills/94/2025/0/HF/686/"
+            },
+            {
+              "bill": "HF2283",
+              "title": "Minnesota Fair Chance Access to Housing Act",
+              "session": "94th Legislature (2025 Regular)",
+              "status": "Introduced, not passed",
+              "url": "https://www.revisor.mn.gov/bills/94/2025/0/HF/2283/"
+            },
+            {
+              "bill": "HF683",
+              "title": "Allow local governments to adopt ranked-choice voting",
+              "session": "94th Legislature (2025 Regular)",
+              "status": "Introduced, not passed",
+              "url": "https://www.revisor.mn.gov/bills/94/2025/0/HF/683/"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "office": "School Board Member At Large (SSD #1) (Elect 2)",
+      "note": "",
+      "candidates": [
+        {
+          "name": "Christin Crabtree",
+          "party": "",
+          "description": "",
+          "links": [
+            {
+              "label": "Campaign website",
+              "url": "http://christincrabtree.com"
+            }
+          ],
+          "analysis": "A Minneapolis Public Schools parent for 21 years who started as a young single parent on a limited income and dealing with housing insecurity. She has served on PTOs and site councils and rallied alongside educators. She is endorsed by Stonewall DFL. She is running for one of two at-large seats.",
+          "image": "https://images.squarespace-cdn.com/content/v1/6977853b91c1550a116a777b/18ff9831-4e2a-44af-8279-cfee4ec3e7dc/014DA4B4-279B-4035-BCB9-D2BBB028DDC5.jpeg?format=750w"
+        },
+        {
+          "name": "Collin Beachy",
+          "party": "",
+          "description": "",
+          "links": [
+            {
+              "label": "Campaign website",
+              "url": "http://Beachy4schoolboard.com"
+            },
+            {
+              "label": "Board minutes (BoardBook)",
+              "url": "https://meetings.boardbook.org/Public/Organization/1807"
+            }
+          ],
+          "analysis": "Incumbent at-large member elected in 2022, chosen unanimously as board chair in 2024, and a special education teacher for more than 20 years. He has led the board through budget deficits and the MPS Transformation Plan. His priorities are pushing the state and federal governments to cover more special-education costs, requiring charter and magnet schools to provide the same services, and pay equity for educators. He is endorsed by Stonewall DFL, and his campaign lists endorsements from the Minneapolis Federation of Educators, the Minneapolis Regional Labor Federation, and SEIU.",
+          "image": "https://collinbeachy.com/images/collin-hero.jpg",
+          "board_record": {
+            "title": "School board record",
+            "summary": "Based on official minutes, January 2023 to September 2026: 298 roll-call votes, present for 293. Only 30 votes were split, and he was on the winning side of every one, with 6 'no' votes and no abstentions. He votes most often with Norvell and Abdi, and least often with Callahan, Jourdain, and Emerick.",
+            "source_url": "https://meetings.boardbook.org/Public/Organization/1807",
+            "items": [
+              {
+                "date": "2026-06-09",
+                "title": "2026–27 district budget (2026-0036)",
+                "action": "Voted yes",
+                "result": "Passed 7–1",
+                "url": "https://meetings.boardbook.org/Public/Minutes/1807?meeting=748461"
+              },
+              {
+                "date": "2026-01-06",
+                "title": "Elected board chair for 2026",
+                "action": "Elected",
+                "result": "No opposition",
+                "url": "https://meetings.boardbook.org/Public/Minutes/1807?meeting=723711"
+              },
+              {
+                "date": "2025-10-14",
+                "title": "Emerick amendment changing \"sweet spot\" to \"efficient at 70–89% capacity\" in the school-capacity resolution",
+                "action": "Voted no",
+                "result": "Failed 2–6",
+                "url": "https://meetings.boardbook.org/Public/Minutes/1807?meeting=711153"
+              },
+              {
+                "date": "2025-01-21",
+                "title": "Resolution on the dignity and rights of immigrant and LGBTQ+ students, staff, and families (2025-0017)",
+                "action": "Voted yes",
+                "result": "Passed 8–0",
+                "url": "https://meetings.boardbook.org/Public/Minutes/1807?meeting=669092"
+              },
+              {
+                "date": "2025-01-21",
+                "title": "Emerick substitute for the FY2025–26 budget values and priorities resolution",
+                "action": "Voted no",
+                "result": "Failed 3–5",
+                "url": "https://meetings.boardbook.org/Public/Minutes/1807?meeting=669092"
+              },
+              {
+                "date": "2025-01-21",
+                "title": "FY2025–26 budget values and priorities (2025-0018)",
+                "action": "Voted yes",
+                "result": "Passed 6–2",
+                "url": "https://meetings.boardbook.org/Public/Minutes/1807?meeting=669092"
+              },
+              {
+                "date": "2024-11-07",
+                "title": "Emerick motion to add discussion of the board-vacancy interview process to the agenda",
+                "action": "Voted no",
+                "result": "Failed 3–5",
+                "url": "https://meetings.boardbook.org/Public/Minutes/1807?meeting=661054"
+              },
+              {
+                "date": "2024-09-10",
+                "title": "Emerick motion to add school walk-throughs to the agenda",
+                "action": "Voted no",
+                "result": "Failed 3–4",
+                "url": "https://meetings.boardbook.org/Public/Minutes/1807?meeting=652774"
+              },
+              {
+                "date": "2024-08-06",
+                "title": "Made early-childhood literacy the 2024–25 Equity and Diversity Impact Assessment topic (2024-0042)",
+                "action": "Made the motion",
+                "result": "Passed 7–0",
+                "url": "https://meetings.boardbook.org/Public/Minutes/1807?meeting=645559"
+              },
+              {
+                "date": "2024-04-23",
+                "title": "Playground contracts (Flagship Recreation, Kompan), after a dispute over accessibility",
+                "action": "Made the motion, then voted no",
+                "result": "Failed 2–5",
+                "url": "https://meetings.boardbook.org/Public/Minutes/1807?meeting=633266"
+              },
+              {
+                "date": "2024-01-02",
+                "title": "Elected board chair for 2024",
+                "action": "Elected",
+                "result": "No opposition",
+                "url": "https://meetings.boardbook.org/Public/Minutes/1807?meeting=615199"
+              },
+              {
+                "date": "2023-12-12",
+                "title": "Started the School Transformation Process (2023-0072), which led to the later school closure and merger plan",
+                "action": "Made the motion",
+                "result": "Passed 9–0",
+                "url": "https://meetings.boardbook.org/Public/Minutes/1807?meeting=612306"
+              },
+              {
+                "date": "2023-12-12",
+                "title": "Certified the final property tax levy, payable 2024 (2023-0070)",
+                "action": "Made the motion",
+                "result": "Passed 9–0",
+                "url": "https://meetings.boardbook.org/Public/Minutes/1807?meeting=612306"
+              },
+              {
+                "date": "2023-06-13",
+                "title": "2023–24 board priorities (2023-0035)",
+                "action": "Made the motion",
+                "result": "Passed 9–0",
+                "url": "https://meetings.boardbook.org/Public/Minutes/1807?meeting=583361"
+              },
+              {
+                "date": "2023-03-14",
+                "title": "2023–2026 Achievement and Integration Plan and budget (2023-0019)",
+                "action": "Made the motion",
+                "result": "Passed unanimously",
+                "url": "https://meetings.boardbook.org/Public/Minutes/1807?meeting=570964"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "office": "School Board Member District 3 (SSD #1)",
+      "note": "",
+      "coverage": {
+        "summary": "20 precincts in Wards 2, 6, 8, 9, 10",
+        "wards": [
+          {
+            "ward": 2,
+            "all": false,
+            "precincts": [
+              "7",
+              "8"
+            ]
+          },
+          {
+            "ward": 6,
+            "all": false,
+            "precincts": [
+              "3",
+              "5",
+              "6",
+              "7",
+              "8",
+              "9"
+            ]
+          },
+          {
+            "ward": 8,
+            "all": false,
+            "precincts": [
+              "5",
+              "6"
+            ]
+          },
+          {
+            "ward": 9,
+            "all": false,
+            "precincts": [
+              "1",
+              "2",
+              "3",
+              "4",
+              "5",
+              "6",
+              "7"
+            ]
+          },
+          {
+            "ward": 10,
+            "all": false,
+            "precincts": [
+              "7",
+              "8",
+              "9"
+            ]
+          }
+        ]
+      },
+      "candidates": [
+        {
+          "name": "Shannon Gibney",
+          "party": "",
+          "description": "",
+          "analysis": "A writer, college professor, and organizer who has lived in Powderhorn Park for almost 25 years; her children attend Bancroft, Andersen, and South. As a Minneapolis Families for Public Schools organizer she pushed for enforceable class-size and special-ed caseload limits in the teachers' contract and coordinated mutual aid and school patrols at South High during the immigration enforcement surge. She is running on full public investment in schools and changing the board's culture. Unopposed on the ballot.",
+          "links": [
+            {
+              "label": "Campaign website",
+              "url": "https://www.shannonforschoolboard.com/"
+            }
+          ],
+          "image": "https://images.squarespace-cdn.com/content/v1/69c2d732df6ca04caac5883e/2a910386-f15f-4029-a732-c6d286b66d22/DFL.jpg"
+        }
+      ]
+    },
+    {
+      "office": "Associate Justice - Supreme Court 1",
+      "note": "",
+      "candidates": [
+        {
+          "name": "Sarah Hennesy",
+          "party": "",
+          "description": "",
+          "links": [
+            {
+              "label": "Campaign website",
+              "url": "http://justicesarahhennesy.com"
+            },
+            {
+              "label": "Wikipedia",
+              "url": "https://en.wikipedia.org/wiki/Sarah_Hennesy"
+            }
+          ],
+          "analysis": "Appointed by Gov. Walz in 2024; this is her first election to the Supreme Court. She was a district judge for 12 years in Milaca and St. Cloud and Chief Judge of the ten-county Seventh District from 2021 to 2024. Her focus is making courts easier to use for both rural and urban Minnesotans. Judicial races are nonpartisan, and judges can't campaign on issues. Unopposed on the ballot.",
+          "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d1/Sarah_Hennesy_April_2024.jpeg/500px-Sarah_Hennesy_April_2024.jpeg",
+          "endorsed": false
+        }
+      ]
+    },
+    {
+      "office": "Associate Justice - Supreme Court 4",
+      "note": "",
+      "candidates": [
+        {
+          "name": "Paul Thissen",
+          "party": "",
+          "description": "",
+          "links": [
+            {
+              "label": "Campaign website",
+              "url": "http://paulthissen.com"
+            },
+            {
+              "label": "Wikipedia",
+              "url": "https://en.wikipedia.org/wiki/Paul_Thissen"
+            }
+          ],
+          "analysis": "Appointed by Gov. Dayton in 2018 and elected in 2020. Before joining the court he was a DFL legislator and Speaker of the Minnesota House (2013–2015). Earlier he clerked on the Eighth Circuit, worked as an appellate public defender, and was a litigator at Briggs & Morgan. Unopposed on the ballot.",
+          "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fd/Paul_Thissen.jpg/500px-Paul_Thissen.jpg",
+          "endorsed": false
+        }
+      ]
+    },
+    {
+      "office": "Judge - Court of Appeals 1",
+      "note": "",
+      "candidates": [
+        {
+          "name": "Elizabeth Bentley",
+          "party": "",
+          "description": "",
+          "links": [
+            {
+              "label": "Campaign website",
+              "url": "http://electjudgebentley.com"
+            },
+            {
+              "label": "Judicial Branch profile",
+              "url": "https://mncourts.gov/about-the-courts/judicialdirectory/active-judicial-officers/court-of-appeals-judges/elizabeth-g.-bentley"
+            }
+          ],
+          "analysis": "Appointed to the Court of Appeals by Gov. Walz in 2024, after being a finalist for the Minnesota Supreme Court. She clerked for U.S. Supreme Court Justice Sonia Sotomayor and worked as a civil rights attorney, a legal aid lawyer, and a law professor. Unopposed on the ballot.",
+          "image": "https://electjudgebentley.com/assets/judge-portrait-CbaXDmdJ.jpg",
+          "endorsed": false
+        }
+      ]
+    },
+    {
+      "office": "Judge - Court of Appeals 7",
+      "note": "",
+      "candidates": [
+        {
+          "name": "Rachel Bond",
+          "party": "",
+          "description": "",
+          "links": [
+            {
+              "label": "Campaign website",
+              "url": "http://www.judgebond.com"
+            }
+          ],
+          "analysis": "Appointed by Gov. Walz in 2025 and running for a full six-year term. She was an appellate public defender who handled more than 200 appeals, and earlier a civil litigator at Faegre & Benson and Shearman & Sterling. She received the MSBA's 2024 William McGee Public Defender Award and served on the board of the Great North Innocence Project. Unopposed on the ballot.",
+          "image": "https://images.squarespace-cdn.com/content/v1/69e50dadb122a502c2d3e678/48ce360b-d9b2-44c0-9147-1afaa1659639/JudgeBond.png?format=750w",
+          "endorsed": false
+        }
+      ]
+    },
+    {
+      "office": "Judge - Court of Appeals 13",
+      "note": "",
+      "candidates": [
+        {
+          "name": "Jeanne Cochran",
+          "party": "",
+          "description": "",
+          "links": [
+            {
+              "label": "Campaign website",
+              "url": "http://judgejeannecochran.com"
+            },
+            {
+              "label": "Judicial Branch profile",
+              "url": "https://mncourts.gov/about-the-courts/judicialdirectory/active-judicial-officers/court-of-appeals-judges/jeanne-m.-cochran"
+            },
+            {
+              "label": "Wikipedia",
+              "url": "https://en.wikipedia.org/wiki/Jeanne_Cochran"
+            }
+          ],
+          "analysis": "Appointed by Gov. Dayton in 2018 and elected in 2020. She was an administrative law judge, an assistant attorney general representing the Public Utilities Commission, and an attorney at the Sierra Club Legal Defense Fund, giving her a strong background in environmental and regulatory law. Her campaign site is a placeholder. Unopposed on the ballot.",
+          "endorsed": false
+        }
+      ]
+    },
+    {
+      "office": "Judge - Court of Appeals 15",
+      "note": "",
+      "candidates": [
+        {
+          "name": "Kevin G. Ross",
+          "party": "",
+          "description": "",
+          "links": [
+            {
+              "label": "Campaign website",
+              "url": "http://judgekevinross.com"
+            }
+          ],
+          "analysis": "On the Court of Appeals since 2006 (appointed by Gov. Pawlenty) and retained by voters in 2008, 2014, and 2020. He was an Iowa City police officer before law school. His campaign says he has decided about 4,100 appeals and written about 1,300 majority opinions. Unopposed on the ballot.",
+          "image": "https://static.wixstatic.com/media/4a511a_09b373c53a4d4e8c8232ae93d7095c10~mv2.jpg/v1/fill/w_1200,h_500,al_c/4a511a_09b373c53a4d4e8c8232ae93d7095c10~mv2.jpg",
+          "endorsed": false
+        }
+      ]
+    },
+    {
+      "office": "Judge - Court of Appeals 18",
+      "note": "",
+      "candidates": [
+        {
+          "name": "JaPaul J. Harris",
+          "party": "",
+          "description": "",
+          "links": [
+            {
+              "label": "Campaign website",
+              "url": "https://www.japaulharris.com"
+            },
+            {
+              "label": "Judicial Branch profile",
+              "url": "https://mncourts.gov/about-the-courts/judicialdirectory/active-judicial-officers/court-of-appeals-judges/japaul-harris"
+            }
+          ],
+          "analysis": "Appointed to the Court of Appeals by Gov. Walz in 2024 after serving as a Ramsey County district judge (appointed by Gov. Dayton in 2018, elected in 2020). This is his first election to the appellate seat. He is active in community work, including coaching high school mock trial and mentoring. Unopposed on the ballot.",
+          "image": "https://japaulharris.com/wp-content/uploads/2026/05/IMG_2186-1.jpg",
+          "endorsed": false
+        }
+      ]
+    },
+    {
+      "office": "Judge - 4th District Court 1",
+      "note": "",
+      "candidates": [
+        {
+          "name": "William H. Koch",
+          "party": "",
+          "description": "",
+          "links": [
+            {
+              "label": "Campaign website",
+              "url": "http://www.reelectjudgekoch.org"
+            }
+          ],
+          "analysis": "A Hennepin County judge since 2007 (appointed by Gov. Pawlenty), re-elected in 2008, 2014, and 2020. He began as an Air Force JAG prosecutor and defense attorney, then litigated environmental and public law at private firms. In 2022 the County Attorney's Office tried to remove him from felony cases, and the chief judge ruled that effort improper. Unopposed on the ballot.",
+          "image": "https://static.wixstatic.com/media/aa2dc6_6c6d30af295644e8bfc9a1a678c769cf~mv2.jpg",
+          "endorsed": false
+        }
+      ]
+    },
+    {
+      "office": "Judge - 4th District Court 5",
+      "note": "",
+      "candidates": [
+        {
+          "name": "Kerry W. Meyer",
+          "party": "",
+          "description": "",
+          "links": [],
+          "endorsed": false
+        }
+      ]
+    },
+    {
+      "office": "Judge - 4th District Court 14",
+      "note": "",
+      "candidates": [
+        {
+          "name": "Dean Eyler",
+          "party": "",
+          "description": "",
+          "links": [],
+          "endorsed": false
+        }
+      ]
+    },
+    {
+      "office": "Judge - 4th District Court 16",
+      "note": "",
+      "candidates": [
+        {
+          "name": "Jane Maschka",
+          "party": "",
+          "description": "",
+          "links": [],
+          "endorsed": false
+        }
+      ]
+    },
+    {
+      "office": "Judge - 4th District Court 19",
+      "note": "",
+      "candidates": [
+        {
+          "name": "Gina M Brandt",
+          "party": "",
+          "description": "",
+          "links": [],
+          "endorsed": false
+        }
+      ]
+    },
+    {
+      "office": "Judge - 4th District Court 20",
+      "note": "",
+      "candidates": [
+        {
+          "name": "Daniel C. Moreno",
+          "party": "",
+          "description": "",
+          "links": [
+            {
+              "label": "Judicial Branch profile",
+              "url": "https://mncourts.gov/about-the-courts/judicialdirectory/active-judicial-officers/04-district/daniel-c.-moreno"
+            }
+          ],
+          "analysis": "A Hennepin County judge since 2006 (appointed by Gov. Pawlenty), re-elected in 2008, 2014, and 2020. Before joining the bench he was a Hennepin County assistant public defender. His campaign website is offline. Unopposed on the ballot.",
+          "endorsed": false
+        }
+      ]
+    },
+    {
+      "office": "Judge - 4th District Court 25",
+      "note": "",
+      "candidates": [
+        {
+          "name": "Michelle A. Hatcher",
+          "party": "",
+          "description": "",
+          "links": [],
+          "endorsed": false
+        }
+      ]
+    },
+    {
+      "office": "Judge - 4th District Court 27",
+      "note": "",
+      "candidates": [
+        {
+          "name": "Matthew M. Wilcox",
+          "party": "",
+          "description": "",
+          "links": [
+            {
+              "label": "Judicial Branch profile",
+              "url": "https://mncourts.gov/about-the-courts/judicialdirectory/active-judicial-officers/04-district/matthew-wilcox"
+            }
+          ],
+          "analysis": "Appointed by Gov. Walz in June 2025; this is his first election. He holds an LL.M. in organizational ethics and compliance. His campaign website is offline. Unopposed on the ballot.",
+          "endorsed": false
+        }
+      ]
+    },
+    {
+      "office": "Judge - 4th District Court 28",
+      "note": "",
+      "candidates": [
+        {
+          "name": "Dominick D. Mathews",
+          "party": "",
+          "description": "",
+          "links": [],
+          "endorsed": false
+        }
+      ]
+    },
+    {
+      "office": "Judge - 4th District Court 29",
+      "note": "",
+      "candidates": [
+        {
+          "name": "Todd M. Fellman",
+          "party": "",
+          "description": "",
+          "links": [
+            {
+              "label": "Judicial Branch profile",
+              "url": "https://mncourts.gov/about-the-courts/judicialdirectory/active-judicial-officers/04-district/todd-m.-fellman"
+            }
+          ],
+          "analysis": "Appointed by Gov. Dayton in 2019 and elected in 2020. He was a senior assistant Hennepin County attorney and teaches as an adjunct at Mitchell Hamline. His campaign website doesn't load. Unopposed on the ballot.",
+          "endorsed": false
+        }
+      ]
+    },
+    {
+      "office": "Judge - 4th District Court 30",
+      "note": "",
+      "candidates": [
+        {
+          "name": "Jennifer Olson",
+          "party": "",
+          "description": "",
+          "links": [
+            {
+              "label": "Campaign website",
+              "url": "http://www.judgejenniferolson.com"
+            }
+          ],
+          "analysis": "Appointed by Gov. Walz (announced December 2024); this is her first election. She hears misdemeanor and gross-misdemeanor cases on the downtown criminal team and was a trial lawyer for 14 years. Unopposed on the ballot.",
+          "image": "https://images.squarespace-cdn.com/content/v1/697e541696ad8d7feb59e60f/b07ed5eb-845b-4d8b-a09d-e572f3170688/Jennifer+Olson+Photo+JPG.jpg?format=750w",
+          "endorsed": false
+        }
+      ]
+    },
+    {
+      "office": "Judge - 4th District Court 32",
+      "note": "",
+      "candidates": [
+        {
+          "name": "Mariam Mokri",
+          "party": "",
+          "description": "",
+          "links": [
+            {
+              "label": "Campaign website",
+              "url": "http://www.judgeMariamMokri.com"
+            },
+            {
+              "label": "Judicial Branch profile",
+              "url": "https://mncourts.gov/about-the-courts/judicialdirectory/active-judicial-officers/04-district/mariam-mokri"
+            }
+          ],
+          "analysis": "Appointed by Gov. Walz (announced December 2024); this is her first election. She presides over criminal cases. She was previously a human services judge at the Department of Human Services, a housing court referee, and a Hennepin County public defender. Unopposed on the ballot.",
+          "image": "https://img1.wsimg.com/isteam/ip/208cde88-fbce-4950-8a18-b819e5dd9f10/MM%20HEADSHOT%20ROBE%20JPEG.JPG/:/rs=h:600,cg:true,m",
+          "endorsed": false
+        }
+      ]
+    },
+    {
+      "office": "Judge - 4th District Court 35",
+      "note": "",
+      "candidates": [
+        {
+          "name": "Sarah S. West",
+          "party": "",
+          "description": "",
+          "links": [],
+          "endorsed": false
+        }
+      ]
+    },
+    {
+      "office": "Judge - 4th District Court 42",
+      "note": "",
+      "candidates": [
+        {
+          "name": "Luis A. Bartolomei",
+          "party": "",
+          "description": "",
+          "links": [],
+          "endorsed": false
+        }
+      ]
+    },
+    {
+      "office": "Judge - 4th District Court 43",
+      "note": "",
+      "candidates": [
+        {
+          "name": "Bridget Ann Sullivan",
+          "party": "",
+          "description": "",
+          "links": [],
+          "endorsed": false
+        }
+      ]
+    },
+    {
+      "office": "Judge - 4th District Court 47",
+      "note": "",
+      "candidates": [
+        {
+          "name": "Kristen Marttila",
+          "party": "",
+          "description": "",
+          "links": [],
+          "endorsed": false
+        }
+      ]
+    },
+    {
+      "office": "Judge - 4th District Court 54",
+      "note": "",
+      "candidates": [
+        {
+          "name": "Emily J. Froehle",
+          "party": "",
+          "description": "",
+          "links": [],
+          "endorsed": false
+        }
+      ]
+    },
+    {
+      "office": "Judge - 4th District Court 56",
+      "note": "",
+      "candidates": [
+        {
+          "name": "Carrie Ryan Gallia",
+          "party": "",
+          "description": "",
+          "links": [],
+          "endorsed": false
+        }
+      ]
+    },
+    {
+      "office": "Judge - 4th District Court 57",
+      "note": "",
+      "candidates": [
+        {
+          "name": "Jeannice M. Reding",
+          "party": "",
+          "description": "",
+          "links": [],
+          "endorsed": false
+        }
+      ]
+    },
+    {
+      "office": "Judge - 4th District Court 61",
+      "note": "",
+      "candidates": [
+        {
+          "name": "Andrew Tweeten",
+          "party": "",
+          "description": "",
+          "links": [
+            {
+              "label": "Judicial Branch profile",
+              "url": "https://mncourts.gov/about-the-courts/judicialdirectory/active-judicial-officers/04-district/andrew-tweeten"
+            }
+          ],
+          "analysis": "Appointed by Gov. Walz in June 2025; this is his first election. He was an Assistant U.S. Attorney in the civil division (2018–2025) and an assistant solicitor general in the Minnesota Attorney General's Office (2015–2018). His campaign website doesn't load. Unopposed on the ballot.",
+          "endorsed": false
+        }
+      ]
+    },
+    {
+      "office": "Judge - 4th District Court 63",
+      "note": "",
+      "candidates": [
+        {
+          "name": "Angela Willms",
+          "party": "",
+          "description": "",
+          "links": [],
+          "endorsed": false
+        }
+      ]
+    }
+  ],
+  "coverage_note": "The precinct lists cover 135 of Minneapolis's 137 precincts. Ward 1 Precinct 2 and Ward 11 Precinct 3 are not included yet; if you vote there, check your exact ballot with the Secretary of State's ballot lookup."
+}

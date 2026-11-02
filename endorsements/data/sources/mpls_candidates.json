@@ -1,0 +1,979 @@
+{
+  "about": "Candidate profiles for Minneapolis district races that are not on the 61A ballot. Keyed by the candidate's name exactly as it appears on the ballot. Edit freely; scripts/build_mpls.py merges these into data/MPLS.json.",
+  "candidates": {
+    "Simon Trautmann Cordova": {
+      "analysis": "A former Richfield City Council member and attorney who represents small businesses and nonprofits run mostly by immigrants and people of color. He was born in Bloomington, grew up in the district, and is a second-generation Puerto Rican business owner. As a DFL Central Committee member he won the right for immigrants to take part in party caucuses regardless of federal status. His platform includes universal primary care pilots and the Minnesota Health Plan (single-payer), fully funded schools, and worker protections. He is a newcomer to the Legislature with no voting record yet. Senate District 51 is mostly Richfield and Bloomington; only one Minneapolis precinct votes in it. Opponent: Juline Birgersson (R).",
+      "links": [
+        {
+          "label": "Campaign website",
+          "url": "https://www.simonfor51.com/"
+        }
+      ]
+    },
+    "Bobby Joe Champion": {
+      "analysis": "President of the Minnesota Senate and the senator for north and downtown Minneapolis since 2013, after serving in the House. He is a lawyer. This biennium he chief-authored the jobs, labor, and economic development budget that became law, and his bills focus on economic opportunity for Black Minnesotans (an African American workforce and homeownership program), civil rights, and pushback on federal immigration enforcement, including a ban on masked immigration agents. His campaign has no website listed with the state. Unopposed on the ballot.",
+      "links": [
+        {
+          "label": "Senate profile",
+          "url": "https://www.senate.mn/members/member_bio.html?leg_id=15317"
+        },
+        {
+          "label": "Wikipedia",
+          "url": "https://en.wikipedia.org/wiki/Bobby_Joe_Champion"
+        }
+      ],
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/56/Bobby_Joe_Champion_%2826140594060%29_%28cropped%29.jpg/500px-Bobby_Joe_Champion_%2826140594060%29_%28cropped%29.jpg",
+      "legislation": [
+        {
+          "bill": "SF17",
+          "title": "Jobs, labor, and economic development budget",
+          "session": "94th Legislature (2025 1st Special)",
+          "status": "Signed into law",
+          "url": "https://www.revisor.mn.gov/bills/94/2025/1/SF/17/"
+        },
+        {
+          "bill": "SF2423",
+          "title": "African American workforce and affordable homeownership program",
+          "session": "94th Legislature (2025 Regular)",
+          "status": "Introduced, not passed",
+          "url": "https://www.revisor.mn.gov/bills/94/2025/0/SF/2423/"
+        },
+        {
+          "bill": "SF3628",
+          "title": "Right to sue for civil rights violations by government officials",
+          "session": "94th Legislature (2026 Regular)",
+          "status": "Introduced, not passed",
+          "url": "https://www.revisor.mn.gov/bills/94/2026/0/SF/3628/"
+        },
+        {
+          "bill": "SF4448",
+          "title": "Ban on federal immigration agents wearing masks",
+          "session": "94th Legislature (2026 Regular)",
+          "status": "Introduced, not passed",
+          "url": "https://www.revisor.mn.gov/bills/94/2026/0/SF/4448/"
+        },
+        {
+          "bill": "SF2724",
+          "title": "Voter registration for people in jail",
+          "session": "94th Legislature (2025 Regular)",
+          "status": "Introduced, not passed",
+          "url": "https://www.revisor.mn.gov/bills/94/2025/0/SF/2724/"
+        },
+        {
+          "bill": "SF4872",
+          "title": "Use of Minneapolis local sales tax revenue",
+          "session": "94th Legislature (2026 Regular)",
+          "status": "Introduced, not passed",
+          "url": "https://www.revisor.mn.gov/bills/94/2026/0/SF/4872/"
+        }
+      ]
+    },
+    "Doron Clark": {
+      "analysis": "Won Senate District 60 (Northeast and Southeast Minneapolis, including the University of Minnesota) in a January 2025 special election after Senate Majority Leader Kari Dziedzic died, and is running for a full term. He grew up on a farm in southeast Minnesota, worked at Target's downtown headquarters, and is an Edison High School parent who lives in Northeast. He has chief-authored 83 bills, focused on housing and safety-net access: allowing emergency shelters in more zoning districts, eviction-notice reform, ending drug tests for public-assistance recipients, Safe at Home privacy protections, and reporting on school resource officer contracts. Opponent: Abigail Wolters (R).",
+      "links": [
+        {
+          "label": "Campaign website",
+          "url": "https://www.doronforsenate.org/"
+        },
+        {
+          "label": "Senate profile",
+          "url": "https://www.senate.mn/members/member_bio.html?leg_id=15649"
+        },
+        {
+          "label": "Wikipedia",
+          "url": "https://en.wikipedia.org/wiki/Doron_Clark"
+        }
+      ],
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3b/Doron_Clark_%28cropped%29.jpg/500px-Doron_Clark_%28cropped%29.jpg",
+      "legislation": [
+        {
+          "bill": "SF1999",
+          "title": "Allow emergency shelters in more zoning districts",
+          "session": "94th Legislature (2025 Regular)",
+          "status": "Introduced, not passed",
+          "url": "https://www.revisor.mn.gov/bills/94/2025/0/SF/1999/"
+        },
+        {
+          "bill": "SF3598",
+          "title": "Eviction notice requirements for nonpayment of rent",
+          "session": "94th Legislature (2026 Regular)",
+          "status": "Introduced, not passed",
+          "url": "https://www.revisor.mn.gov/bills/94/2026/0/SF/3598/"
+        },
+        {
+          "bill": "SF2868",
+          "title": "End drug testing for people receiving public assistance",
+          "session": "94th Legislature (2025 Regular)",
+          "status": "Introduced, not passed",
+          "url": "https://www.revisor.mn.gov/bills/94/2025/0/SF/2868/"
+        },
+        {
+          "bill": "SF3959",
+          "title": "Safe at Home address-privacy protections",
+          "session": "94th Legislature (2026 Regular)",
+          "status": "Introduced, not passed",
+          "url": "https://www.revisor.mn.gov/bills/94/2026/0/SF/3959/"
+        },
+        {
+          "bill": "SF3180",
+          "title": "Annual reporting on school resource officer contracts",
+          "session": "94th Legislature (2025 Regular)",
+          "status": "Introduced, not passed",
+          "url": "https://www.revisor.mn.gov/bills/94/2025/0/SF/3180/"
+        },
+        {
+          "bill": "SF4037",
+          "title": "Repeal of an alternative zoning approval process for first-class cities",
+          "session": "94th Legislature (2026 Regular)",
+          "status": "Introduced, not passed",
+          "url": "https://www.revisor.mn.gov/bills/94/2026/0/SF/4037/"
+        }
+      ]
+    },
+    "Omar Fateh": {
+      "analysis": "Senator for south Minneapolis since 2021 and a self-described democratic socialist. He ran for Minneapolis mayor in 2025 and lost to Jacob Frey; the state DFL revoked his city DFL endorsement in that race over convention irregularities. He is now seeking re-election to the Senate. He chaired the Senate's higher education committee and chief-authored the higher education budget that became law, including work on the North Star Promise free-tuition program. Other priorities include environmental justice reviews of transportation projects, a right to sue over civil rights violations, and limits on immigration enforcement. His campaign has no website listed with the state. Unopposed on the ballot.",
+      "links": [
+        {
+          "label": "Senate profile",
+          "url": "https://www.senate.mn/members/member_bio.html?leg_id=15559"
+        },
+        {
+          "label": "Wikipedia",
+          "url": "https://en.wikipedia.org/wiki/Omar_Fateh"
+        }
+      ],
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8c/Omar_Fateh_at_Graze_Meet_%26_Greet.jpg/500px-Omar_Fateh_at_Graze_Meet_%26_Greet.jpg",
+      "legislation": [
+        {
+          "bill": "SF1",
+          "title": "Higher education budget",
+          "session": "94th Legislature (2025 1st Special)",
+          "status": "Signed into law",
+          "url": "https://www.revisor.mn.gov/bills/94/2025/1/SF/1/"
+        },
+        {
+          "bill": "SF3754",
+          "title": "Raise the income limit for North Star Promise free tuition",
+          "session": "94th Legislature (2026 Regular)",
+          "status": "Introduced, not passed",
+          "url": "https://www.revisor.mn.gov/bills/94/2026/0/SF/3754/"
+        },
+        {
+          "bill": "SF3222",
+          "title": "Cumulative-impact and environmental justice review for transportation projects",
+          "session": "94th Legislature (2025 Regular)",
+          "status": "Introduced, not passed",
+          "url": "https://www.revisor.mn.gov/bills/94/2025/0/SF/3222/"
+        },
+        {
+          "bill": "SF3629",
+          "title": "Right to sue for civil rights violations by government officials",
+          "session": "94th Legislature (2026 Regular)",
+          "status": "Introduced, not passed",
+          "url": "https://www.revisor.mn.gov/bills/94/2026/0/SF/3629/"
+        },
+        {
+          "bill": "SF5299",
+          "title": "Immigration enforcement changes",
+          "session": "94th Legislature (2026 Regular)",
+          "status": "Introduced, not passed",
+          "url": "https://www.revisor.mn.gov/bills/94/2026/0/SF/5299/"
+        }
+      ]
+    },
+    "Zaynab Mohamed": {
+      "analysis": "Senator for south and southeast Minneapolis since 2023; she is the youngest woman ever elected to the Minnesota Legislature and among the first Black women elected to the state Senate. She grew up in a working-class Somali immigrant family on the Southside and worked as an organizer and policy advocate before office. She has 90 chief-authored bills this biennium, with a focus on gun violence (an omnibus firearms bill and an assault-weapons ban), substance use and overdose response, and making traffic-safety cameras permanent. None became law in the divided Legislature. Opponent: Diane Napper (R).",
+      "links": [
+        {
+          "label": "Campaign website",
+          "url": "https://www.zaynabmohamed.org/"
+        },
+        {
+          "label": "Senate profile",
+          "url": "https://www.senate.mn/members/member_bio.html?leg_id=15588"
+        },
+        {
+          "label": "Wikipedia",
+          "url": "https://en.wikipedia.org/wiki/Zaynab_Mohamed"
+        }
+      ],
+      "image": "https://run.imgix.net/a0740662-b43b-498d-9d7b-bfdef0bdc3c9/77c2ceb1-d39c-4644-a366-69037fdcd41b/77c2ceb1-d39c-4644-a366-69037fdcd41b.jpg?ixlib=js-3.8.0&bri=0&con=0&sat=0&high=0&shad=0&usm=0&rect=493%2C0%2C2604%2C2640&auto=compress%2Cformat&fit=fillmax&w=2048&q=75&s=122348deafe2df5d3fdd1b0940d7b25b",
+      "legislation": [
+        {
+          "bill": "SF4067",
+          "title": "Omnibus firearms bill",
+          "session": "94th Legislature (2026 Regular)",
+          "status": "Introduced, not passed",
+          "url": "https://www.revisor.mn.gov/bills/94/2026/0/SF/4067/"
+        },
+        {
+          "bill": "SF3654",
+          "title": "Ban on semiautomatic military-style assault weapons",
+          "session": "94th Legislature (2026 Regular)",
+          "status": "Introduced, not passed",
+          "url": "https://www.revisor.mn.gov/bills/94/2026/0/SF/3654/"
+        },
+        {
+          "bill": "SF3731",
+          "title": "Liability protection for bystanders who respond to overdoses",
+          "session": "94th Legislature (2026 Regular)",
+          "status": "Introduced, not passed",
+          "url": "https://www.revisor.mn.gov/bills/94/2026/0/SF/3731/"
+        },
+        {
+          "bill": "SF3172",
+          "title": "Statewide substance use and addiction plan",
+          "session": "94th Legislature (2025 Regular)",
+          "status": "Introduced, not passed",
+          "url": "https://www.revisor.mn.gov/bills/94/2025/0/SF/3172/"
+        },
+        {
+          "bill": "SF3656",
+          "title": "Make the traffic-safety camera pilot permanent",
+          "session": "94th Legislature (2026 Regular)",
+          "status": "Introduced, not passed",
+          "url": "https://www.revisor.mn.gov/bills/94/2026/0/SF/3656/"
+        },
+        {
+          "bill": "SF2804",
+          "title": "Worker access to defibrillators (AEDs)",
+          "session": "94th Legislature (2025 Regular)",
+          "status": "Introduced, not passed",
+          "url": "https://www.revisor.mn.gov/bills/94/2025/0/SF/2804/"
+        }
+      ]
+    },
+    "Michael Howard": {
+      "analysis": "Representative for Richfield and a sliver of Minneapolis since 2019, and a former chair of the Housing Finance and Policy Committee. He got his start on Paul Wellstone's campaign and worked at the Capitol before running. This biennium he chief-authored the housing budget and supportive-housing grants that became law. Other bills target landlord practices (banning source-of-income discrimination and algorithmic rent-setting software) and health costs (no step therapy for insulin). House District 51A is mostly Richfield; only one Minneapolis precinct votes in it. Opponent: Frank Pafko (R).",
+      "links": [
+        {
+          "label": "Campaign website",
+          "url": "https://www.michaelhowardmn.com/"
+        },
+        {
+          "label": "House profile",
+          "url": "https://www.house.mn.gov/members/profile/15518"
+        },
+        {
+          "label": "Wikipedia",
+          "url": "https://en.wikipedia.org/wiki/Michael_Howard_(American_politician)"
+        }
+      ],
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/07/Michael_Howard_-_First_Generation_Homebuyers.jpg/500px-Michael_Howard_-_First_Generation_Homebuyers.jpg",
+      "legislation": [
+        {
+          "bill": "HF1141",
+          "title": "Housing finance and policy bill",
+          "session": "94th Legislature (2025 Regular)",
+          "status": "Signed into law",
+          "url": "https://www.revisor.mn.gov/bills/94/2025/0/HF/1141/"
+        },
+        {
+          "bill": "HF3425",
+          "title": "Supportive housing provider grants",
+          "session": "94th Legislature (2026 Regular)",
+          "status": "Signed into law",
+          "url": "https://www.revisor.mn.gov/bills/94/2026/0/HF/3425/"
+        },
+        {
+          "bill": "HF2021",
+          "title": "Ban on landlord discrimination by source of income",
+          "session": "94th Legislature (2025 Regular)",
+          "status": "Introduced, not passed",
+          "url": "https://www.revisor.mn.gov/bills/94/2025/0/HF/2021/"
+        },
+        {
+          "bill": "HF1142",
+          "title": "Ban on rent-setting software that uses competitors' private data",
+          "session": "94th Legislature (2025 Regular)",
+          "status": "Introduced, not passed",
+          "url": "https://www.revisor.mn.gov/bills/94/2025/0/HF/1142/"
+        },
+        {
+          "bill": "HF743",
+          "title": "Ban on step therapy for insulin",
+          "session": "94th Legislature (2025 Regular)",
+          "status": "Introduced, not passed",
+          "url": "https://www.revisor.mn.gov/bills/94/2025/0/HF/743/"
+        },
+        {
+          "bill": "HF4890",
+          "title": "Expand the child tax credit, paid for with a new top income tax bracket",
+          "session": "94th Legislature (2026 Regular)",
+          "status": "Introduced, not passed",
+          "url": "https://www.revisor.mn.gov/bills/94/2026/0/HF/4890/"
+        }
+      ]
+    },
+    "Fue Lee": {
+      "analysis": "Representative for north Minneapolis since 2017 and the first Hmong American to represent Minneapolis in the Legislature. He has led the House Capital Investment Committee since 2021 and chief-authored both bonding bills that became law this biennium, which fund public construction projects statewide. His other bills target environmental justice in north Minneapolis (a tax on PFAS-producing companies, pollution limits on incinerators) and police and immigration enforcement (bans on tear gas and on masked federal agents). Unopposed on the ballot.",
+      "links": [
+        {
+          "label": "Campaign website",
+          "url": "http://WWW.FUELEE.ORG"
+        },
+        {
+          "label": "House profile",
+          "url": "https://www.house.mn.gov/members/profile/15468"
+        },
+        {
+          "label": "Wikipedia",
+          "url": "https://en.wikipedia.org/wiki/Fue_Lee"
+        }
+      ],
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b7/Fue_Lee_2026_Bonding_Bill_in_St._Paul.jpg/500px-Fue_Lee_2026_Bonding_Bill_in_St._Paul.jpg",
+      "legislation": [
+        {
+          "bill": "HF2484",
+          "title": "Bonding bill (public construction projects)",
+          "session": "94th Legislature (2025 Regular)",
+          "status": "Signed into law",
+          "url": "https://www.revisor.mn.gov/bills/94/2025/0/HF/2484/"
+        },
+        {
+          "bill": "HF17",
+          "title": "Cash bonding bill",
+          "session": "94th Legislature (2025 1st Special)",
+          "status": "Signed into law",
+          "url": "https://www.revisor.mn.gov/bills/94/2025/1/HF/17/"
+        },
+        {
+          "bill": "HF726",
+          "title": "Tax on PFAS producers to fund cleanup",
+          "session": "94th Legislature (2025 Regular)",
+          "status": "Introduced, not passed",
+          "url": "https://www.revisor.mn.gov/bills/94/2025/0/HF/726/"
+        },
+        {
+          "bill": "HF4197",
+          "title": "Emission limits for municipal waste incinerators",
+          "session": "94th Legislature (2026 Regular)",
+          "status": "Introduced, not passed",
+          "url": "https://www.revisor.mn.gov/bills/94/2026/0/HF/4197/"
+        },
+        {
+          "bill": "HF3744",
+          "title": "Ban on police use of tear gas and kinetic weapons",
+          "session": "94th Legislature (2026 Regular)",
+          "status": "Introduced, not passed",
+          "url": "https://www.revisor.mn.gov/bills/94/2026/0/HF/3744/"
+        },
+        {
+          "bill": "HF4405",
+          "title": "Ban on federal immigration agents wearing masks",
+          "session": "94th Legislature (2026 Regular)",
+          "status": "Introduced, not passed",
+          "url": "https://www.revisor.mn.gov/bills/94/2026/0/HF/4405/"
+        }
+      ]
+    },
+    "Esther Agbaje": {
+      "analysis": "Representative for north and downtown Minneapolis since 2021; a lawyer, renter, and transit rider. Her work centers on tenants and housing: her campaign cites a tenants' rights law she authored and $150 million in down-payment help for first-generation homebuyers, and this biennium she is pushing just-cause eviction, a tenant right to repair, and a statewide landlord registry. Six of her chief-authored bills became law, including nursing-home minimum wage standards and free phone calls for people in custody. Opponent: Kenneth Smoron (R).",
+      "links": [
+        {
+          "label": "Campaign website",
+          "url": "https://estheragbaje.com/"
+        },
+        {
+          "label": "House profile",
+          "url": "https://www.house.mn.gov/members/profile/15551"
+        },
+        {
+          "label": "Wikipedia",
+          "url": "https://en.wikipedia.org/wiki/Esther_Agbaje"
+        }
+      ],
+      "image": "https://estheragbaje.com/wp-content/uploads/2025/11/Esther-Cutout.png",
+      "legislation": [
+        {
+          "bill": "HF2319",
+          "title": "Nursing home minimum wage standards",
+          "session": "94th Legislature (2025 Regular)",
+          "status": "Included in enacted law",
+          "url": "https://www.revisor.mn.gov/bills/94/2025/0/HF/2319/"
+        },
+        {
+          "bill": "HF1861",
+          "title": "Communication services for people in custody",
+          "session": "94th Legislature (2025 Regular)",
+          "status": "Included in enacted law",
+          "url": "https://www.revisor.mn.gov/bills/94/2025/0/HF/1861/"
+        },
+        {
+          "bill": "HF997",
+          "title": "Require just cause to end a tenancy",
+          "session": "94th Legislature (2025 Regular)",
+          "status": "Introduced, not passed",
+          "url": "https://www.revisor.mn.gov/bills/94/2025/0/HF/997/"
+        },
+        {
+          "bill": "HF4835",
+          "title": "Tenant right to repair rental violations",
+          "session": "94th Legislature (2026 Regular)",
+          "status": "Introduced, not passed",
+          "url": "https://www.revisor.mn.gov/bills/94/2026/0/HF/4835/"
+        },
+        {
+          "bill": "HF2966",
+          "title": "Statewide landlord registry",
+          "session": "94th Legislature (2025 Regular)",
+          "status": "Introduced, not passed",
+          "url": "https://www.revisor.mn.gov/bills/94/2025/0/HF/2966/"
+        },
+        {
+          "bill": "HF3614",
+          "title": "Disparate-impact protections in the Human Rights Act",
+          "session": "94th Legislature (2026 Regular)",
+          "status": "Introduced, not passed",
+          "url": "https://www.revisor.mn.gov/bills/94/2026/0/HF/3614/"
+        }
+      ]
+    },
+    "Sydney Jordan": {
+      "analysis": "Representative for Northeast Minneapolis since 2020 and a former organizer with the Minneapolis Federation of Teachers; she now directs the Campaign to Save the Boundary Waters. She is best known as the author of Minnesota's universal free school meals law (2023). This biennium she chief-authored the environment trust fund bill and a paraprofessional qualifications fix that became law, and is pushing limits on federal agents' access to schools and bans on toxic chemicals in packaging. Opponent: John Holmberg (R).",
+      "links": [
+        {
+          "label": "Campaign website",
+          "url": "https://www.sydneyjordan.org/"
+        },
+        {
+          "label": "House profile",
+          "url": "https://www.house.mn.gov/members/profile/15535"
+        },
+        {
+          "label": "Wikipedia",
+          "url": "https://en.wikipedia.org/wiki/Sydney_Jordan_(politician)"
+        }
+      ],
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0f/Sydney_Jordan_Russian_Divestment_Bill_Signing_%2852144566304%29_%28cropped%29.png/500px-Sydney_Jordan_Russian_Divestment_Bill_Signing_%2852144566304%29_%28cropped%29.png",
+      "legislation": [
+        {
+          "bill": "HF3426",
+          "title": "Environment and Natural Resources Trust Fund bill",
+          "session": "94th Legislature (2026 Regular)",
+          "status": "Signed into law",
+          "url": "https://www.revisor.mn.gov/bills/94/2026/0/HF/3426/"
+        },
+        {
+          "bill": "HF3067",
+          "title": "Paraprofessional qualifications",
+          "session": "94th Legislature (2025 Regular)",
+          "status": "Signed into law",
+          "url": "https://www.revisor.mn.gov/bills/94/2025/0/HF/3067/"
+        },
+        {
+          "bill": "HF3435",
+          "title": "Limit federal officials' access to school sites",
+          "session": "94th Legislature (2026 Regular)",
+          "status": "Introduced, not passed",
+          "url": "https://www.revisor.mn.gov/bills/94/2026/0/HF/3435/"
+        },
+        {
+          "bill": "HF1486",
+          "title": "Ban certain chemicals in packaging",
+          "session": "94th Legislature (2025 Regular)",
+          "status": "Introduced, not passed",
+          "url": "https://www.revisor.mn.gov/bills/94/2025/0/HF/1486/"
+        },
+        {
+          "bill": "HF4516",
+          "title": "Ingredient disclosure for menstrual products",
+          "session": "94th Legislature (2026 Regular)",
+          "status": "Introduced, not passed",
+          "url": "https://www.revisor.mn.gov/bills/94/2026/0/HF/4516/"
+        },
+        {
+          "bill": "HF2327",
+          "title": "Protect culturally inclusive learning environments",
+          "session": "94th Legislature (2025 Regular)",
+          "status": "Introduced, not passed",
+          "url": "https://www.revisor.mn.gov/bills/94/2025/0/HF/2327/"
+        }
+      ]
+    },
+    "Mohamud Noor": {
+      "analysis": "Representative for the Cedar-Riverside and University area since 2019 and a former director of the Confederation of Somali Community in Minnesota. He has chaired the House Human Services Finance Committee since 2023 and chief-authored the human services budget and several related bills that became law this biennium (five in total). With fraud in state programs a major issue, he has also carried bills on compliance training for high-risk Medicaid providers and protections for clients when a provider is under investigation. His campaign has no website listed with the state. Unopposed on the ballot.",
+      "links": [
+        {
+          "label": "House profile",
+          "url": "https://www.house.mn.gov/members/profile/15528"
+        },
+        {
+          "label": "Wikipedia",
+          "url": "https://en.wikipedia.org/wiki/Mohamud_Noor"
+        }
+      ],
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/db/Mohamud_Noor_July_30%2C_2025_Medicaid_60th_Anniversary_%28cropped%29.jpg/500px-Mohamud_Noor_July_30%2C_2025_Medicaid_60th_Anniversary_%28cropped%29.jpg",
+      "legislation": [
+        {
+          "bill": "HF3",
+          "title": "Human services budget",
+          "session": "94th Legislature (2025 1st Special)",
+          "status": "Signed into law",
+          "url": "https://www.revisor.mn.gov/bills/94/2025/1/HF/3/"
+        },
+        {
+          "bill": "HF2995",
+          "title": "Human services forecast adjustments",
+          "session": "94th Legislature (2025 Regular)",
+          "status": "Included in enacted law",
+          "url": "https://www.revisor.mn.gov/bills/94/2025/0/HF/2995/"
+        },
+        {
+          "bill": "HF1579",
+          "title": "Housing support rates for certain facilities",
+          "session": "94th Legislature (2025 Regular)",
+          "status": "Included in enacted law",
+          "url": "https://www.revisor.mn.gov/bills/94/2025/0/HF/1579/"
+        },
+        {
+          "bill": "HF2331",
+          "title": "Assisted living staff wage requirement exemption",
+          "session": "94th Legislature (2025 Regular)",
+          "status": "Included in enacted law",
+          "url": "https://www.revisor.mn.gov/bills/94/2025/0/HF/2331/"
+        },
+        {
+          "bill": "HF4638",
+          "title": "Compliance training for high-risk Medicaid providers",
+          "session": "94th Legislature (2026 Regular)",
+          "status": "Introduced, not passed",
+          "url": "https://www.revisor.mn.gov/bills/94/2026/0/HF/4638/"
+        },
+        {
+          "bill": "HF4393",
+          "title": "Protect clients when a provider is under serious investigation",
+          "session": "94th Legislature (2026 Regular)",
+          "status": "Introduced, not passed",
+          "url": "https://www.revisor.mn.gov/bills/94/2026/0/HF/4393/"
+        }
+      ]
+    },
+    "Jamie Long": {
+      "analysis": "Representative for southwest Minneapolis since 2019 and a House DFL leader: Majority Leader during the 2023–24 DFL trifecta, and now the DFL floor leader and chair of the Rules Committee in the tied House. He authored Minnesota's 100% clean electricity standard. Because leaders move the caucus agenda rather than carry many bills, he chief-authored only nine this biennium, including a right to sue over civil rights violations, an independent redistricting commission, and statutory equal rights protections. Unopposed on the ballot.",
+      "links": [
+        {
+          "label": "Campaign website",
+          "url": "https://www.jamielong.com/"
+        },
+        {
+          "label": "House profile",
+          "url": "https://www.house.mn.gov/members/profile/15529"
+        },
+        {
+          "label": "Wikipedia",
+          "url": "https://en.wikipedia.org/wiki/Jamie_Long"
+        }
+      ],
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/db/Jamie_Long_2020_%28cropped%29.jpg/500px-Jamie_Long_2020_%28cropped%29.jpg",
+      "legislation": [
+        {
+          "bill": "HF3477",
+          "title": "Right to sue for civil rights violations by government officials",
+          "session": "94th Legislature (2026 Regular)",
+          "status": "Introduced, not passed",
+          "url": "https://www.revisor.mn.gov/bills/94/2026/0/HF/3477/"
+        },
+        {
+          "bill": "HF3270",
+          "title": "Independent Redistricting Commission",
+          "session": "94th Legislature (2025 Regular)",
+          "status": "Introduced, not passed",
+          "url": "https://www.revisor.mn.gov/bills/94/2025/0/HF/3270/"
+        },
+        {
+          "bill": "HF1762",
+          "title": "Equal rights under the law",
+          "session": "94th Legislature (2025 Regular)",
+          "status": "Introduced, not passed",
+          "url": "https://www.revisor.mn.gov/bills/94/2025/0/HF/1762/"
+        },
+        {
+          "bill": "HF1386",
+          "title": "Bakken Museum funding",
+          "session": "94th Legislature (2025 Regular)",
+          "status": "Included in enacted law",
+          "url": "https://www.revisor.mn.gov/bills/94/2025/0/HF/1386/"
+        }
+      ]
+    },
+    "Aisha Gomez": {
+      "analysis": "Representative for south Minneapolis since 2019 whose work focuses on taxes and homelessness. She chaired the Tax Committee during the 2023–24 trifecta, passing a tax bill that she says made the wealthy pay more and invested in communities, and she chaired the homelessness prevention committee. This biennium she proposes a state wealth tax, a new top income tax bracket to offset federal Medicaid cuts, free direct tax filing, and a ban on government facial recognition. Unopposed on the ballot.",
+      "links": [
+        {
+          "label": "Campaign website",
+          "url": "https://www.aishagomez.com/"
+        },
+        {
+          "label": "House profile",
+          "url": "https://www.house.mn.gov/members/profile/15531"
+        },
+        {
+          "label": "Wikipedia",
+          "url": "https://en.wikipedia.org/wiki/Aisha_Gomez"
+        }
+      ],
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b3/Aisha-Gomez.jpg/500px-Aisha-Gomez.jpg",
+      "legislation": [
+        {
+          "bill": "HF4616",
+          "title": "Minnesota wealth tax",
+          "session": "94th Legislature (2026 Regular)",
+          "status": "Introduced, not passed",
+          "url": "https://www.revisor.mn.gov/bills/94/2026/0/HF/4616/"
+        },
+        {
+          "bill": "HF11",
+          "title": "New top income tax bracket to offset lost federal Medicaid funding",
+          "session": "94th Legislature (2025 1st Special)",
+          "status": "Introduced, not passed",
+          "url": "https://www.revisor.mn.gov/bills/94/2025/1/HF/11/"
+        },
+        {
+          "bill": "HF3955",
+          "title": "Tip income tax break and expanded child tax credit",
+          "session": "94th Legislature (2026 Regular)",
+          "status": "Introduced, not passed",
+          "url": "https://www.revisor.mn.gov/bills/94/2026/0/HF/3955/"
+        },
+        {
+          "bill": "HF30",
+          "title": "Free direct tax filing with the state",
+          "session": "94th Legislature (2025 Regular)",
+          "status": "Introduced, not passed",
+          "url": "https://www.revisor.mn.gov/bills/94/2025/0/HF/30/"
+        },
+        {
+          "bill": "HF3661",
+          "title": "Ban on government facial recognition technology",
+          "session": "94th Legislature (2026 Regular)",
+          "status": "Introduced, not passed",
+          "url": "https://www.revisor.mn.gov/bills/94/2026/0/HF/3661/"
+        },
+        {
+          "bill": "HF4849",
+          "title": "Allow a Hennepin County local sales tax",
+          "session": "94th Legislature (2026 Regular)",
+          "status": "Introduced, not passed",
+          "url": "https://www.revisor.mn.gov/bills/94/2026/0/HF/4849/"
+        }
+      ]
+    },
+    "Anquam Mahamoud": {
+      "analysis": "First-term representative for Phillips and Powderhorn, elected in 2024. He grew up in East Phillips and was the state planning director for individual-market policy at MNsure, so his bills focus on health insurance: limits on prior authorization, a right to sue over wrongful claim denials, and access to opioid treatment. One of his bills, a contract-for-deed consumer protection, became law. Opponent: Bob Sullentrop (R).",
+      "links": [
+        {
+          "label": "Campaign website",
+          "url": "https://www.anquam62b.com/"
+        },
+        {
+          "label": "House profile",
+          "url": "https://www.house.mn.gov/members/profile/15639"
+        },
+        {
+          "label": "Wikipedia",
+          "url": "https://en.wikipedia.org/wiki/Anquam_Mahamoud"
+        }
+      ],
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4b/11.4.2025_-_Anquam_Mahamoud_with_Slice_Pizza_at_Midtown_Global_Market_on_election_day%2C_Minneapolis.jpg/500px-11.4.2025_-_Anquam_Mahamoud_with_Slice_Pizza_at_Midtown_Global_Market_on_election_day%2C_Minneapolis.jpg",
+      "legislation": [
+        {
+          "bill": "HF1792",
+          "title": "Contract-for-deed protections",
+          "session": "94th Legislature (2025 Regular)",
+          "status": "Signed into law",
+          "url": "https://www.revisor.mn.gov/bills/94/2025/0/HF/1792/"
+        },
+        {
+          "bill": "HF3867",
+          "title": "Utilization review standards and right to sue over wrongful denials",
+          "session": "94th Legislature (2026 Regular)",
+          "status": "Introduced, not passed",
+          "url": "https://www.revisor.mn.gov/bills/94/2026/0/HF/3867/"
+        },
+        {
+          "bill": "HF3444",
+          "title": "Limit prior authorization for opioid-use treatment drugs",
+          "session": "94th Legislature (2026 Regular)",
+          "status": "Introduced, not passed",
+          "url": "https://www.revisor.mn.gov/bills/94/2026/0/HF/3444/"
+        },
+        {
+          "bill": "HF3273",
+          "title": "Expand maternal death studies",
+          "session": "94th Legislature (2025 Regular)",
+          "status": "Introduced, not passed",
+          "url": "https://www.revisor.mn.gov/bills/94/2025/0/HF/3273/"
+        },
+        {
+          "bill": "HF3777",
+          "title": "Consider customers' ability to pay in utility rates",
+          "session": "94th Legislature (2026 Regular)",
+          "status": "Introduced, not passed",
+          "url": "https://www.revisor.mn.gov/bills/94/2026/0/HF/3777/"
+        },
+        {
+          "bill": "HF5131",
+          "title": "Ban on certain animal testing",
+          "session": "94th Legislature (2026 Regular)",
+          "status": "Introduced, not passed",
+          "url": "https://www.revisor.mn.gov/bills/94/2026/0/HF/5131/"
+        }
+      ]
+    },
+    "Samantha Sencer-Mura": {
+      "analysis": "Representative for south Minneapolis since 2023; an educator and fourth-generation Japanese American who grew up in Minneapolis and went to South High. Her bills this biennium focus heavily on immigration enforcement: barring police from sensitive places like schools and churches, banning contracts for immigration detention, and protecting students' right to an education regardless of status. She also backs a minimum salary for teachers and permanent traffic-safety cameras. Opponent: Kyle Bragg (R).",
+      "links": [
+        {
+          "label": "Campaign website",
+          "url": "https://sencer-mura.org/"
+        },
+        {
+          "label": "House profile",
+          "url": "https://www.house.mn.gov/members/profile/15572"
+        },
+        {
+          "label": "Wikipedia",
+          "url": "https://en.wikipedia.org/wiki/Samantha_Sencer-Mura"
+        }
+      ],
+      "image": "https://images.squarespace-cdn.com/content/v1/62032266f577225b7ac0d871/6fa01fa7-8df8-4e5d-81fe-4851a73faf3a/SAM-FOR-THE-PEOPLE-1.jpg",
+      "legislation": [
+        {
+          "bill": "HF5149",
+          "title": "Restrict law enforcement access to sensitive locations",
+          "session": "94th Legislature (2026 Regular)",
+          "status": "Introduced, not passed",
+          "url": "https://www.revisor.mn.gov/bills/94/2026/0/HF/5149/"
+        },
+        {
+          "bill": "HF3886",
+          "title": "Ban contracts for immigration detention facilities",
+          "session": "94th Legislature (2026 Regular)",
+          "status": "Introduced, not passed",
+          "url": "https://www.revisor.mn.gov/bills/94/2026/0/HF/3886/"
+        },
+        {
+          "bill": "HF3409",
+          "title": "Ban denying education based on immigration status",
+          "session": "94th Legislature (2026 Regular)",
+          "status": "Introduced, not passed",
+          "url": "https://www.revisor.mn.gov/bills/94/2026/0/HF/3409/"
+        },
+        {
+          "bill": "HF3119",
+          "title": "Minimum pay for teachers and school staff",
+          "session": "94th Legislature (2025 Regular)",
+          "status": "Introduced, not passed",
+          "url": "https://www.revisor.mn.gov/bills/94/2025/0/HF/3119/"
+        },
+        {
+          "bill": "HF3431",
+          "title": "Make the traffic-safety camera pilot permanent",
+          "session": "94th Legislature (2026 Regular)",
+          "status": "Introduced, not passed",
+          "url": "https://www.revisor.mn.gov/bills/94/2026/0/HF/3431/"
+        },
+        {
+          "bill": "HF2979",
+          "title": "Minnesota Youth Poet Laureate",
+          "session": "94th Legislature (2025 Regular)",
+          "status": "Included in enacted law",
+          "url": "https://www.revisor.mn.gov/bills/94/2025/0/HF/2979/"
+        }
+      ]
+    },
+    "Emma Greenman": {
+      "analysis": "Representative for south Minneapolis since 2021 and a voting-rights attorney. She wrote the Democracy for the People Act, the House DFL's major 2023 elections bill that expanded voting access. This biennium she is focused on guns and corporate power: an assault-weapons ban, a ban on toxic lead ammunition, the Fair Competition Act limiting monopoly power, and bans on surveillance pricing and AI-driven dynamic pricing. Opponent: Nicholas Peters (R).",
+      "links": [
+        {
+          "label": "Campaign website",
+          "url": "http://emmagreenman.com"
+        },
+        {
+          "label": "House profile",
+          "url": "https://www.house.mn.gov/members/profile/15552"
+        },
+        {
+          "label": "Wikipedia",
+          "url": "https://en.wikipedia.org/wiki/Emma_Greenman"
+        }
+      ],
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d7/Emma_Greenman_2024.jpg/500px-Emma_Greenman_2024.jpg",
+      "legislation": [
+        {
+          "bill": "HF3433",
+          "title": "Ban on semiautomatic military-style assault weapons",
+          "session": "94th Legislature (2026 Regular)",
+          "status": "Introduced, not passed",
+          "url": "https://www.revisor.mn.gov/bills/94/2026/0/HF/3433/"
+        },
+        {
+          "bill": "HF4743",
+          "title": "Ban on toxic lead ammunition",
+          "session": "94th Legislature (2026 Regular)",
+          "status": "Introduced, not passed",
+          "url": "https://www.revisor.mn.gov/bills/94/2026/0/HF/4743/"
+        },
+        {
+          "bill": "HF34",
+          "title": "Fair Competition Act (monopoly and price-gouging limits)",
+          "session": "94th Legislature (2025 Regular)",
+          "status": "Introduced, not passed",
+          "url": "https://www.revisor.mn.gov/bills/94/2025/0/HF/34/"
+        },
+        {
+          "bill": "HF3794",
+          "title": "Ban on surveillance-based pricing and wages",
+          "session": "94th Legislature (2026 Regular)",
+          "status": "Introduced, not passed",
+          "url": "https://www.revisor.mn.gov/bills/94/2026/0/HF/3794/"
+        },
+        {
+          "bill": "HF2452",
+          "title": "Ban on AI-driven dynamic pricing",
+          "session": "94th Legislature (2025 Regular)",
+          "status": "Introduced, not passed",
+          "url": "https://www.revisor.mn.gov/bills/94/2025/0/HF/2452/"
+        }
+      ]
+    },
+    "Irene Fernando": {
+      "analysis": "Hennepin County Commissioner for District 2 since 2019 and chair of the county board. She grew up in an immigrant family of health-care workers. In 2018 she and Angela Conley became the first people of color elected to the Hennepin County Board. She is endorsed by Stonewall DFL and AFSCME Council 5. Challenger: Sharon El-Amin, a current Minneapolis school board member.",
+      "links": [
+        {
+          "label": "Campaign website",
+          "url": "https://www.voteirene.com/"
+        }
+      ],
+      "image": "https://images.squarespace-cdn.com/content/61aea1923db45812527fea0e/1168d33a-7395-4919-a5f7-ef0661b539aa/Irene-Fernando_2-scaled.jpg?content-type=image%2Fjpeg"
+    },
+    "Angela Conley": {
+      "analysis": "Hennepin County Commissioner for District 4 since 2019 and the first Black person elected to the Hennepin County Board. A social worker raised in East Phillips, she has focused on housing, public health, and transit, and she chairs a national committee on community and workforce development for the National Association of Counties. Her campaign has spoken out against federal immigration enforcement in the district. Endorsed by Stonewall DFL. Unopposed on the ballot.",
+      "links": [
+        {
+          "label": "Campaign website",
+          "url": "https://www.voteconley.com/"
+        }
+      ],
+      "image": "https://images.squarespace-cdn.com/content/v1/61c102ad81e517412b60e5c3/aa13ef78-5891-4699-aa31-4e0ea5291e71/GMC_3141.jpg"
+    },
+    "Abdul Abdi": {
+      "analysis": "Incumbent school board member for District 1 (Northeast and north Minneapolis) since 2023 and chair of the board's Finance Committee. He has made the motion on every district budget, levy, and major bond sale during his term, so he is closely tied to the board's financial decisions through deficits and school-closure planning. He is a parent and community advocate. Challenger: Ben Lattimore.",
+      "links": [
+        {
+          "label": "Campaign website",
+          "url": "http://AbdulForSchools.org"
+        },
+        {
+          "label": "Board minutes (BoardBook)",
+          "url": "https://meetings.boardbook.org/Public/Organization/1807"
+        }
+      ],
+      "image": "http://AbdulForSchools.org/abdulabdi.jpeg",
+      "board_record": {
+        "title": "School board record",
+        "summary": "Based on official minutes, January 2023 to September 2026: present for 281 of 297 roll-call votes. He chairs the Finance Committee and made the motion on every annual district budget since 2023, plus property tax levies, bond sales, and labor contracts. Of 28 split votes he was on the winning side of 27, with 3 'no' votes and no abstentions. He votes most often with Beachy (28 of 29 split votes) and Norvell.",
+        "source_url": "https://meetings.boardbook.org/Public/Organization/1807",
+        "items": [
+          {
+            "date": "2026-09-08",
+            "title": "Proposed property tax levy, payable 2027 (2026-0064)",
+            "action": "Made the motion",
+            "result": "Passed 6–0",
+            "url": "https://meetings.boardbook.org/Public/Minutes/1807?meeting=764123"
+          },
+          {
+            "date": "2026-06-09",
+            "title": "2026–27 district budget (2026-0036)",
+            "action": "Made the motion",
+            "result": "Passed 7–1",
+            "url": "https://meetings.boardbook.org/Public/Minutes/1807?meeting=748461"
+          },
+          {
+            "date": "2026-03-10",
+            "title": "2025–2027 labor contracts with district professional employees, administrators, and confidential administrators",
+            "action": "Made the motions",
+            "result": "Passed 8–0",
+            "url": "https://meetings.boardbook.org/Public/Minutes/1807?meeting=734373"
+          },
+          {
+            "date": "2025-12-09",
+            "title": "Final property tax levy (payable 2026) and three bond sales",
+            "action": "Made the motions",
+            "result": "Passed 6–0",
+            "url": "https://meetings.boardbook.org/Public/Minutes/1807?meeting=719951"
+          },
+          {
+            "date": "2025-10-14",
+            "title": "Emerick amendment changing \"sweet spot\" to \"efficient at 70–89% capacity\" in the school-capacity resolution",
+            "action": "Voted no",
+            "result": "Failed 2–6",
+            "url": "https://meetings.boardbook.org/Public/Minutes/1807?meeting=711153"
+          },
+          {
+            "date": "2025-06-10",
+            "title": "2025–26 district budget and capital plan",
+            "action": "Made the motions",
+            "result": "Passed 8–0",
+            "url": "https://meetings.boardbook.org/Public/Minutes/1807?meeting=691038"
+          },
+          {
+            "date": "2024-11-12",
+            "title": "Labor contracts with AFSCME Local 56 and Teamsters Local 320",
+            "action": "Made the motions",
+            "result": "Passed 8–0",
+            "url": "https://meetings.boardbook.org/Public/Minutes/1807?meeting=661055"
+          },
+          {
+            "date": "2024-08-06",
+            "title": "Renewal of expiring school referendum and the district's 2024 ballot question",
+            "action": "Made the motions",
+            "result": "Passed 7–0",
+            "url": "https://meetings.boardbook.org/Public/Minutes/1807?meeting=645559"
+          },
+          {
+            "date": "2024-06-11",
+            "title": "2024–25 district budget, capital plan, and revised playground contracts",
+            "action": "Made the motions",
+            "result": "Passed 8–0",
+            "url": "https://meetings.boardbook.org/Public/Minutes/1807?meeting=637216"
+          },
+          {
+            "date": "2024-04-16",
+            "title": "Sent a playground contract back for renegotiation to add an accessibility clause",
+            "action": "Made the motion",
+            "result": "Passed 8–0",
+            "url": "https://meetings.boardbook.org/Public/Minutes/1807?meeting=629544"
+          },
+          {
+            "date": "2023-06-13",
+            "title": "2023–24 district budget and capital plan",
+            "action": "Made the motions",
+            "result": "Passed 9–0",
+            "url": "https://meetings.boardbook.org/Public/Minutes/1807?meeting=583361"
+          }
+        ]
+      }
+    },
+    "Shannon Gibney": {
+      "analysis": "A writer, college professor, and organizer who has lived in Powderhorn Park for almost 25 years; her children attend Bancroft, Andersen, and South. As a Minneapolis Families for Public Schools organizer she pushed for enforceable class-size and special-ed caseload limits in the teachers' contract and coordinated mutual aid and school patrols at South High during the immigration enforcement surge. She is running on full public investment in schools and changing the board's culture. Unopposed on the ballot.",
+      "links": [
+        {
+          "label": "Campaign website",
+          "url": "https://www.shannonforschoolboard.com/"
+        }
+      ],
+      "image": "https://images.squarespace-cdn.com/content/v1/69c2d732df6ca04caac5883e/2a910386-f15f-4029-a732-c6d286b66d22/DFL.jpg"
+    },
+    "Becca Dryden": {
+      "analysis": "An MPS parent and organizer with Minneapolis Families for Public Schools, running for an open District 5 seat. She organized a school-based team of more than 150 caregivers during teacher contract negotiations and helped coordinate school patrols and mutual aid. Her campaign is built around stable leadership through the School Transformation plan and full funding for schools. Opponent: Molly Chase.",
+      "links": [
+        {
+          "label": "Campaign website",
+          "url": "https://www.beccadryden.com/"
+        }
+      ]
+    }
+  }
+}

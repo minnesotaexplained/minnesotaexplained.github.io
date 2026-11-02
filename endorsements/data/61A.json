@@ -1,0 +1,1211 @@
+{
+  "district": "61A",
+  "title": "House District 61A Endorsements",
+  "election": "State General Election",
+  "election_date": "11/03/2026",
+  "intro": "",
+  "voting_info": {
+    "title": "Voting on Tuesday, November 3",
+    "items": [
+      "Polls are open 7 a.m. to 8 p.m. If you are in line by 8 p.m., you can vote.",
+      "Not registered? You can register at your polling place on Election Day with proof of residence.",
+      "On the constitutional amendment, a blank answer counts as a \"no\" vote. Be sure to flip your ballot over.",
+      "Find your polling place and see your exact ballot with the Secretary of State's ballot lookup."
+    ],
+    "link": {
+      "label": "Find your polling place",
+      "url": "https://myballotmn.sos.mn.gov/"
+    }
+  },
+  "not_endorsed_note": "We are not officially endorsing these candidates, but we are providing information on them.",
+  "ballot_lookup_url": "https://myballotmn.sos.mn.gov/",
+  "offices": [
+    {
+      "office": "U.S. Senator",
+      "note": "",
+      "candidates": [
+        {
+          "name": "Peggy Flanagan",
+          "party": "DFL",
+          "description": "",
+          "links": [
+            {
+              "label": "Campaign website",
+              "url": "http://www.peggyflanagan.com"
+            },
+            {
+              "label": "Wikipedia",
+              "url": "https://en.wikipedia.org/wiki/Peggy_Flanagan"
+            }
+          ],
+          "analysis": "Lieutenant Governor since 2019 and a state representative before that (2015–2019). Flanagan beat Rep. Angie Craig and four others in the August 11 DFL primary for the open Senate seat. She is a citizen of the White Earth Nation and would be the first Native American woman in the U.S. Senate. Her campaign focuses on ending corruption, building a fairer economy, and confronting the Trump administration. She takes no corporate PAC money, and the Integrity Index gives her an A (93.77). Her legislative record is from the Minnesota House before 2019, which is older than the bill data on this site.",
+          "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/90/2026PeggyFlanagan_%28newcropped%29.jpg/500px-2026PeggyFlanagan_%28newcropped%29.jpg",
+          "integrity_index": {
+            "grade": "A",
+            "score": 93.77,
+            "url": "https://integrityindex.us/candidate/margaret-flanagan-e0cf3f94",
+            "as_of": "2026-11-02"
+          }
+        }
+      ]
+    },
+    {
+      "office": "U.S. Representative District 5",
+      "note": "",
+      "candidates": [
+        {
+          "name": "Ilhan Omar",
+          "party": "DFL",
+          "description": "",
+          "links": [
+            {
+              "label": "Campaign website",
+              "url": "https://ilhanomar.com/"
+            },
+            {
+              "label": "All sponsored bills (congress.gov)",
+              "url": "https://www.congress.gov/member/ilhan-omar/O000173"
+            },
+            {
+              "label": "Wikipedia",
+              "url": "https://en.wikipedia.org/wiki/Ilhan_Omar"
+            }
+          ],
+          "analysis": "Has represented the 5th District since 2019 and holds a leadership role in the Congressional Progressive Caucus. Her bills this Congress focus on immigration enforcement, police accountability, protest rights, and universal school meals. None have moved out of committee in the Republican-controlled House, which is normal for minority-party members. Her campaign cites more than $40 million in federal community-project funding for the district. Her Integrity Index grade is A+ (98.84), with no corporate PAC money and no stock holdings. She is a frequent target of Trump and national Republicans.",
+          "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5f/Ilhan_Omar%2C_official_portrait%2C_116th_Congress_%28cropped%29_A.jpg/500px-Ilhan_Omar%2C_official_portrait%2C_116th_Congress_%28cropped%29_A.jpg",
+          "integrity_index": {
+            "grade": "A+",
+            "score": 98.84,
+            "url": "https://integrityindex.us/candidate/ilhan-omar",
+            "as_of": "2026-11-02"
+          },
+          "legislation": [
+            {
+              "bill": "HR630",
+              "title": "Neighbors Not Enemies Act",
+              "session": "119th Congress",
+              "status": "Introduced, not passed",
+              "url": "https://www.congress.gov/bill/119th-congress/house-bill/630"
+            },
+            {
+              "bill": "HR10503",
+              "title": "Federal grants to reimburse states for costs and damage from mass deployments of federal immigration agents",
+              "session": "119th Congress",
+              "status": "Introduced, not passed",
+              "url": "https://www.congress.gov/bill/119th-congress/house-bill/10503"
+            },
+            {
+              "bill": "HR8798",
+              "title": "Universal School Meals Program Act of 2026",
+              "session": "119th Congress",
+              "status": "Introduced, not passed",
+              "url": "https://www.congress.gov/bill/119th-congress/house-bill/8798"
+            },
+            {
+              "bill": "HR3652",
+              "title": "National Police Misuse of Force Investigation Board Act of 2025",
+              "session": "119th Congress",
+              "status": "Introduced, not passed",
+              "url": "https://www.congress.gov/bill/119th-congress/house-bill/3652"
+            },
+            {
+              "bill": "HR3651",
+              "title": "Protecting Our Protesters Act of 2025",
+              "session": "119th Congress",
+              "status": "Introduced, not passed",
+              "url": "https://www.congress.gov/bill/119th-congress/house-bill/3651"
+            },
+            {
+              "bill": "HR4714",
+              "title": "End Polluter Welfare Act of 2025",
+              "session": "119th Congress",
+              "status": "Introduced, not passed",
+              "url": "https://www.congress.gov/bill/119th-congress/house-bill/4714"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "office": "State Senator District 61",
+      "note": "",
+      "candidates": [
+        {
+          "name": "Scott Dibble",
+          "party": "DFL",
+          "description": "",
+          "links": [
+            {
+              "label": "Campaign website",
+              "url": "http://www.scottdibble.com"
+            },
+            {
+              "label": "Senate profile",
+              "url": "https://www.senate.mn/members/member_bio.html?leg_id=10142"
+            },
+            {
+              "label": "Wikipedia",
+              "url": "https://en.wikipedia.org/wiki/Scott_Dibble_(politician)"
+            }
+          ],
+          "analysis": "A senator with more than two decades in the Legislature. He wrote Minnesota's 2013 marriage equality law. This biennium he is chief author of 104 bills, including both cannabis omnibus bills that became law (2025 and 2026). He also carries proposals such as single-payer health care (the Minnesota Health Plan), a liability-insurance requirement for gun owners, and constitutional amendments on elections and equal rights. Many of Rep. Katie Jones's transit and planning bills are the House versions of his Senate bills. Unopposed on the ballot.",
+          "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0e/Scott_Dibble_Minneapolis_Bonding_%28cropped%29.jpg/330px-Scott_Dibble_Minneapolis_Bonding_%28cropped%29.jpg",
+          "legislation": [
+            {
+              "bill": "SF2370",
+              "title": "Omnibus cannabis policy bill",
+              "session": "94th Legislature (2025 Regular)",
+              "status": "Signed into law",
+              "url": "https://www.revisor.mn.gov/bills/94/2025/0/SF/2370/"
+            },
+            {
+              "bill": "SF4401",
+              "title": "Omnibus cannabis bill",
+              "session": "94th Legislature (2026 Regular)",
+              "status": "Signed into law",
+              "url": "https://www.revisor.mn.gov/bills/94/2026/0/SF/4401/"
+            },
+            {
+              "bill": "SF2971",
+              "title": "Kayla's HOPE Act",
+              "session": "94th Legislature (2025 Regular)",
+              "status": "Signed into law",
+              "url": "https://www.revisor.mn.gov/bills/94/2025/0/SF/2971/"
+            },
+            {
+              "bill": "SF1943",
+              "title": "Ban on pet shops selling cats and dogs",
+              "session": "94th Legislature (2025 Regular)",
+              "status": "Passed the Senate",
+              "url": "https://www.revisor.mn.gov/bills/94/2025/0/SF/1943/"
+            },
+            {
+              "bill": "SF931",
+              "title": "Minnesota Health Plan (single-payer health care)",
+              "session": "94th Legislature (2025 Regular)",
+              "status": "Introduced, not passed",
+              "url": "https://www.revisor.mn.gov/bills/94/2025/0/SF/931/"
+            },
+            {
+              "bill": "SF4837",
+              "title": "Liability insurance requirement for firearm owners",
+              "session": "94th Legislature (2026 Regular)",
+              "status": "Introduced, not passed",
+              "url": "https://www.revisor.mn.gov/bills/94/2026/0/SF/4837/"
+            },
+            {
+              "bill": "SF529",
+              "title": "Constitutional amendment for free, fair, and equal elections",
+              "session": "94th Legislature (2025 Regular)",
+              "status": "Introduced, not passed",
+              "url": "https://www.revisor.mn.gov/bills/94/2025/0/SF/529/"
+            },
+            {
+              "bill": "SF3652",
+              "title": "Ban on detaining and transporting people in vehicles not designed for detention",
+              "session": "94th Legislature (2026 Regular)",
+              "status": "Introduced, not passed",
+              "url": "https://www.revisor.mn.gov/bills/94/2026/0/SF/3652/"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "office": "State Representative District 61A",
+      "note": "",
+      "candidates": [
+        {
+          "name": "Katie Jones",
+          "party": "DFL",
+          "description": "",
+          "links": [
+            {
+              "label": "Campaign website",
+              "url": "http://www.katiejones.org"
+            },
+            {
+              "label": "House profile",
+              "url": "https://www.house.mn.gov/members/profile/15638"
+            },
+            {
+              "label": "MN Explained profile",
+              "url": "/katiejones.html"
+            },
+            {
+              "label": "Wikipedia",
+              "url": "https://en.wikipedia.org/wiki/Katie_Jones_(politician)"
+            }
+          ],
+          "analysis": "A first-term representative elected in 2024 to succeed Frank Hornstein, whom she worked with on climate and transportation policy. She is an engineer and clean-energy policy specialist, and her bills follow that background: transit-lane camera enforcement, reform of how MnDOT plans projects, building energy-performance standards, and single-stair apartment buildings (a housing-supply reform pushed by pro-housing advocates). She has also introduced some of the Legislature's first AI safety and disclosure bills. The House was tied 67–67 under a Republican speaker, so none of her 30 chief-authored bills passed. Many are paired with Sen. Dibble's Senate versions, which sets them up for next session. Unopposed on the ballot.",
+          "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/91/6.26.2025_-_Rep_Katie_Jones_at_the_Wedge_Live_Cat_Tour%2C_Minneapolis_%28cropped%29.jpg/500px-6.26.2025_-_Rep_Katie_Jones_at_the_Wedge_Live_Cat_Tour%2C_Minneapolis_%28cropped%29.jpg",
+          "legislation": [
+            {
+              "bill": "HF4545",
+              "title": "Allow single-exit stairway apartment buildings in the State Building Code",
+              "session": "94th Legislature (2026 Regular)",
+              "status": "Introduced, not passed",
+              "url": "https://www.revisor.mn.gov/bills/94/2026/0/HF/4545/"
+            },
+            {
+              "bill": "HF3966",
+              "title": "Transit and bike-lane parking enforcement with cameras",
+              "session": "94th Legislature (2026 Regular)",
+              "status": "Introduced, not passed",
+              "url": "https://www.revisor.mn.gov/bills/94/2026/0/HF/3966/"
+            },
+            {
+              "bill": "HF4449",
+              "title": "Transit planning, project development, and performance requirements",
+              "session": "94th Legislature (2026 Regular)",
+              "status": "Introduced, not passed",
+              "url": "https://www.revisor.mn.gov/bills/94/2026/0/HF/4449/"
+            },
+            {
+              "bill": "HF3179",
+              "title": "Energy performance standards for large buildings",
+              "session": "94th Legislature (2025 Regular)",
+              "status": "Introduced, not passed",
+              "url": "https://www.revisor.mn.gov/bills/94/2025/0/HF/3179/"
+            },
+            {
+              "bill": "HF4208",
+              "title": "Motor vehicle impact requirements",
+              "session": "94th Legislature (2026 Regular)",
+              "status": "Introduced, not passed",
+              "url": "https://www.revisor.mn.gov/bills/94/2026/0/HF/4208/"
+            },
+            {
+              "bill": "HF4532",
+              "title": "Artificial intelligence safety and disclosure requirements",
+              "session": "94th Legislature (2026 Regular)",
+              "status": "Introduced, not passed",
+              "url": "https://www.revisor.mn.gov/bills/94/2026/0/HF/4532/"
+            },
+            {
+              "bill": "HF3796",
+              "title": "Require employers to provide suitable seating for employees",
+              "session": "94th Legislature (2026 Regular)",
+              "status": "Introduced, not passed",
+              "url": "https://www.revisor.mn.gov/bills/94/2026/0/HF/3796/"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "office": "Governor & Lt Governor",
+      "note": "",
+      "candidates": [
+        {
+          "name": "Amy Klobuchar and Ben Schierer",
+          "party": "DFL",
+          "description": "",
+          "links": [
+            {
+              "label": "Campaign website",
+              "url": "https://www.amyklobuchar.com"
+            },
+            {
+              "label": "All sponsored bills (congress.gov)",
+              "url": "https://www.congress.gov/member/amy-klobuchar/K000367"
+            },
+            {
+              "label": "Wikipedia",
+              "url": "https://en.wikipedia.org/wiki/Amy_Klobuchar"
+            }
+          ],
+          "analysis": "U.S. Senator since 2007 and a former Hennepin County Attorney. Klobuchar is known for sponsoring bipartisan bills. In the Senate she leads on antitrust, prescription drug prices, and election administration, and two of her generic-drug bills this Congress made it out of committee. Her campaign for governor focuses on lower costs, rooting out fraud in state government, public safety, and the rural economy. Her running mate, Ben Schierer, is the two-term mayor of Fergus Falls and a former small-business owner who works on rural economic development, giving the ticket a Greater Minnesota balance. Her Integrity Index grade is B- (80.14). Opponents: Lisa Demuth (R) and Steven Young (Green).",
+          "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b7/Amy_Klobuchar%2C_official_portrait%2C_113th_Congress.jpg/500px-Amy_Klobuchar%2C_official_portrait%2C_113th_Congress.jpg",
+          "integrity_index": {
+            "grade": "B-",
+            "score": 80.14,
+            "url": "https://integrityindex.us/candidate/amy-klobuchar",
+            "as_of": "2026-11-02"
+          },
+          "legislation": [
+            {
+              "bill": "S1096",
+              "title": "Preserve Access to Affordable Generics and Biosimilars Act",
+              "session": "119th Congress",
+              "status": "Reported to the Senate floor",
+              "url": "https://www.congress.gov/bill/119th-congress/senate-bill/1096"
+            },
+            {
+              "bill": "S1095",
+              "title": "Stop STALLING Act",
+              "session": "119th Congress",
+              "status": "Reported to the Senate floor",
+              "url": "https://www.congress.gov/bill/119th-congress/senate-bill/1095"
+            },
+            {
+              "bill": "S641",
+              "title": "Safe and Affordable Drugs from Canada Act of 2025",
+              "session": "119th Congress",
+              "status": "Introduced, not passed",
+              "url": "https://www.congress.gov/bill/119th-congress/senate-bill/641"
+            },
+            {
+              "bill": "S4020",
+              "title": "Housing Supply and Affordability Act",
+              "session": "119th Congress",
+              "status": "Introduced, not passed",
+              "url": "https://www.congress.gov/bill/119th-congress/senate-bill/4020"
+            },
+            {
+              "bill": "S130",
+              "title": "Competition and Antitrust Law Enforcement Reform Act of 2025",
+              "session": "119th Congress",
+              "status": "Introduced, not passed",
+              "url": "https://www.congress.gov/bill/119th-congress/senate-bill/130"
+            },
+            {
+              "bill": "S1213",
+              "title": "Protect Elections from Deceptive AI Act",
+              "session": "119th Congress",
+              "status": "Introduced, not passed",
+              "url": "https://www.congress.gov/bill/119th-congress/senate-bill/1213"
+            },
+            {
+              "bill": "S2820",
+              "title": "Same Day Registration Act",
+              "session": "119th Congress",
+              "status": "Introduced, not passed",
+              "url": "https://www.congress.gov/bill/119th-congress/senate-bill/2820"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "office": "Secretary of State",
+      "note": "",
+      "candidates": [
+        {
+          "name": "Steve Simon",
+          "party": "DFL",
+          "description": "",
+          "links": [
+            {
+              "label": "Campaign website",
+              "url": "http://stevesimonmn.com"
+            },
+            {
+              "label": "Wikipedia",
+              "url": "https://en.wikipedia.org/wiki/Steve_Simon"
+            }
+          ],
+          "analysis": "Secretary of State since 2015 and a former state representative from Hopkins, now seeking a fourth term. He has been a national voice against election disinformation, and Minnesota has led the nation in turnout for three straight elections on his watch. As a legislator he wrote the law that lets any eligible Minnesotan vote absentee from home. His opponents are Tad Jude (R), Seth Kuhl-Stennes (Green), and George \"Chip\" Tangen (Libertarian). The Integrity Index does not grade state offices.",
+          "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5c/2026SteveSimon.jpg/500px-2026SteveSimon.jpg"
+        }
+      ]
+    },
+    {
+      "office": "State Auditor",
+      "note": "",
+      "candidates": [
+        {
+          "name": "Zack Filipovich",
+          "party": "DFL",
+          "description": "",
+          "links": [
+            {
+              "label": "Campaign website",
+              "url": "http://WWW.ZACKFORMN.COM"
+            }
+          ],
+          "analysis": "A Certified Management Accountant, nonprofit finance manager, and former Duluth City Council president (eight years on the council). His pitch is competence: \"the only accountant in the race.\" He wants to give local governments better financial data and training, add fraud safeguards, and run the office more openly. The race draws more attention than usual because his Republican opponent is Scott Jensen, the party's 2022 nominee for governor. Jay Reeves (Forward Independence) is also running.",
+          "image": "https://run.imgix.net/4b029c24-bcd3-415f-b045-26dd32ff4287/a3d21727-a4c3-4dd4-ba2d-2526f551e25f/a3d21727-a4c3-4dd4-ba2d-2526f551e25f.png?ixlib=js-3.8.0&bri=3&con=0&sat=0&high=0&shad=0&usm=0&rect=0%2C0%2C5079%2C4140&auto=compress%2Cformat&fit=fillmax&w=2048&q=75&s=8052a30f2b33128477e6e5028e0a90fe"
+        }
+      ]
+    },
+    {
+      "office": "Attorney General",
+      "note": "",
+      "candidates": [
+        {
+          "name": "Keith Ellison",
+          "party": "DFL",
+          "description": "",
+          "links": [
+            {
+              "label": "Campaign website",
+              "url": "http://keithellison.org"
+            },
+            {
+              "label": "Wikipedia",
+              "url": "https://en.wikipedia.org/wiki/Keith_Ellison"
+            }
+          ],
+          "analysis": "Attorney General since 2019, after 12 years in Congress and a term in the Minnesota House. He led the prosecution that convicted Derek Chauvin, took on insulin makers ($35 insulin), medical debt, and price-fixing, and has filed many lawsuits against the Trump administration. His campaign stresses more than 350 fraud convictions, a response to Republican attacks over Minnesota's fraud scandals. Opponent: Ronald J. Schutz (R).",
+          "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/62/Keith_Ellison_portrait.jpg/500px-Keith_Ellison_portrait.jpg"
+        }
+      ]
+    },
+    {
+      "office": "Constitutional Amendment 1: Increasing funding to school districts",
+      "note": "Shall the Minnesota Constitution be amended to increase the funding going to all school districts from the permanent school fund, which is a fund that supports school districts without raising individual income or property taxes, effective July 1, 2027?",
+      "candidates": [
+        {
+          "name": "Yes",
+          "party": "",
+          "description": "A \"yes\" vote changes how the Permanent School Fund pays out. The fund is a state trust that dates to statehood and is built from state school-trust lands. Right now the constitution lets only its investment income (interest and dividends) go to schools. The amendment would instead require the fund to be managed to keep its value over time, and a companion law passed with the amendment (HF 3900) would send up to 4.5% of the fund's three-year average value to every school district each year, starting July 1, 2027. That means more money for schools with no new income or property taxes. The House approved it unanimously (134–0).\n\nImportant: a blank answer counts as \"no.\" The amendment needs \"yes\" votes from a majority of everyone who votes in the election, so be sure to flip your ballot over and fill in \"yes.\"",
+          "links": []
+        }
+      ]
+    },
+    {
+      "office": "County Commissioner District 3",
+      "note": "",
+      "candidates": [
+        {
+          "name": "Marion Greene",
+          "party": "",
+          "description": "",
+          "links": [
+            {
+              "label": "Campaign website",
+              "url": "http://mariongreene.org"
+            },
+            {
+              "label": "Wikipedia",
+              "url": "https://en.wikipedia.org/wiki/Marion_Greene"
+            }
+          ],
+          "analysis": "Hennepin County Commissioner for District 3 since 2014 and a former state representative, where she was chief author of full funding for all-day kindergarten. On the county board she has pushed for more affordable housing, the region's first long-term dedicated transit funding, legal help for renters and immigrants, and the county's first Climate Action Plan. She lives in Uptown. Challenger: Abdihakim Arabow Ibrahim.",
+          "image": "https://images.squarespace-cdn.com/content/v1/69f59b7f756c2b65a311ed05/d9250f45-42fd-4148-929a-b310b8340962/Copy+of+18+Marion+Greene+by+Anna+Min+of+Min+Enterprises+Photography+LLC-10.jpg?format=500w"
+        }
+      ]
+    },
+    {
+      "office": "County Sheriff",
+      "note": "",
+      "candidates": [
+        {
+          "name": "Joseph Banks",
+          "party": "",
+          "description": "",
+          "links": [
+            {
+              "label": "Campaign website",
+              "url": "http://banks4sheriff.com"
+            }
+          ],
+          "analysis": "Challenging incumbent Sheriff Dawanna Witt in a rematch of 2022, when Witt won 64% to 35%. Banks has more than 20 years in law enforcement, mostly with small departments in southwest Minnesota. He was police chief for the Upper Sioux Community and the city of Morton, and chief investigator and acting chief at Lower Sioux. He also served in the Marine Corps Reserve and the Minnesota Army National Guard.",
+          "image": "https://static.wixstatic.com/media/1c24c5_b252236a3a444bf3b7bd723cb643b15d~mv2.jpg"
+        }
+      ]
+    },
+    {
+      "office": "County Attorney",
+      "note": "",
+      "candidates": [
+        {
+          "name": "Cedrick Frazier",
+          "party": "",
+          "description": "",
+          "links": [
+            {
+              "label": "Campaign website",
+              "url": "http://cedrickfrazier.org"
+            },
+            {
+              "label": "House profile",
+              "url": "https://www.house.mn.gov/members/profile/15548"
+            },
+            {
+              "label": "Wikipedia",
+              "url": "https://en.wikipedia.org/wiki/Cedrick_Frazier"
+            }
+          ],
+          "analysis": "State representative from New Hope and Crystal since 2021, and before that a Hennepin County public defender and legal counsel for Minneapolis Public Schools. He is running for the open County Attorney seat and advanced from the August primary with Anders Folk, a former acting U.S. Attorney. His platform promises to stand up to Trump and to hold federal immigration agents accountable under state law (\"Prosecute ICE\"). His House record is heavy on criminal-justice reform: a task force on mandatory minimums, retroactive relief in felony-murder cases, a model policy for safe traffic stops, fair-chance housing, and local ranked-choice voting. Two of his bills this biennium became law.",
+          "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/16/Cedrick_Rommel_Frazier.jpg/500px-Cedrick_Rommel_Frazier.jpg",
+          "legislation": [
+            {
+              "bill": "HF688",
+              "title": "Service dog protections in housing accommodations for people with disabilities",
+              "session": "94th Legislature (2025 Regular)",
+              "status": "Signed into law",
+              "url": "https://www.revisor.mn.gov/bills/94/2025/0/HF/688/"
+            },
+            {
+              "bill": "HF2321",
+              "title": "Funding for public educational radio stations",
+              "session": "94th Legislature (2025 Regular)",
+              "status": "Included in enacted law (Chapter 36)",
+              "url": "https://www.revisor.mn.gov/bills/94/2025/0/HF/2321/"
+            },
+            {
+              "bill": "HF687",
+              "title": "Task Force on Mandatory Minimum Sentences",
+              "session": "94th Legislature (2025 Regular)",
+              "status": "Introduced, not passed",
+              "url": "https://www.revisor.mn.gov/bills/94/2025/0/HF/687/"
+            },
+            {
+              "bill": "HF1575",
+              "title": "Felony murder and aiding-and-abetting changes with retroactive relief",
+              "session": "94th Legislature (2025 Regular)",
+              "status": "Introduced, not passed",
+              "url": "https://www.revisor.mn.gov/bills/94/2025/0/HF/1575/"
+            },
+            {
+              "bill": "HF686",
+              "title": "Model policy for safe traffic stops",
+              "session": "94th Legislature (2025 Regular)",
+              "status": "Introduced, not passed",
+              "url": "https://www.revisor.mn.gov/bills/94/2025/0/HF/686/"
+            },
+            {
+              "bill": "HF2283",
+              "title": "Minnesota Fair Chance Access to Housing Act",
+              "session": "94th Legislature (2025 Regular)",
+              "status": "Introduced, not passed",
+              "url": "https://www.revisor.mn.gov/bills/94/2025/0/HF/2283/"
+            },
+            {
+              "bill": "HF683",
+              "title": "Allow local governments to adopt ranked-choice voting",
+              "session": "94th Legislature (2025 Regular)",
+              "status": "Introduced, not passed",
+              "url": "https://www.revisor.mn.gov/bills/94/2025/0/HF/683/"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "office": "School Board Member At Large (SSD #1) (Elect 2)",
+      "note": "",
+      "candidates": [
+        {
+          "name": "Christin Crabtree",
+          "party": "",
+          "description": "",
+          "links": [
+            {
+              "label": "Campaign website",
+              "url": "http://christincrabtree.com"
+            }
+          ],
+          "analysis": "A Minneapolis Public Schools parent for 21 years who started as a young single parent on a limited income and dealing with housing insecurity. She has served on PTOs and site councils and rallied alongside educators. She is endorsed by Stonewall DFL. She is running for one of two at-large seats.",
+          "image": "https://images.squarespace-cdn.com/content/v1/6977853b91c1550a116a777b/18ff9831-4e2a-44af-8279-cfee4ec3e7dc/014DA4B4-279B-4035-BCB9-D2BBB028DDC5.jpeg?format=750w"
+        },
+        {
+          "name": "Collin Beachy",
+          "party": "",
+          "description": "",
+          "links": [
+            {
+              "label": "Campaign website",
+              "url": "http://Beachy4schoolboard.com"
+            },
+            {
+              "label": "Board minutes (BoardBook)",
+              "url": "https://meetings.boardbook.org/Public/Organization/1807"
+            }
+          ],
+          "analysis": "Incumbent at-large member elected in 2022, chosen unanimously as board chair in 2024, and a special education teacher for more than 20 years. He has led the board through budget deficits and the MPS Transformation Plan. His priorities are pushing the state and federal governments to cover more special-education costs, requiring charter and magnet schools to provide the same services, and pay equity for educators. He is endorsed by Stonewall DFL, and his campaign lists endorsements from the Minneapolis Federation of Educators, the Minneapolis Regional Labor Federation, and SEIU.",
+          "image": "https://collinbeachy.com/images/collin-hero.jpg",
+          "board_record": {
+            "title": "School board record",
+            "summary": "Based on official minutes, January 2023 to September 2026: 298 roll-call votes, present for 293. Only 30 votes were split, and he was on the winning side of every one, with 6 'no' votes and no abstentions. He votes most often with Norvell and Abdi, and least often with Callahan, Jourdain, and Emerick.",
+            "source_url": "https://meetings.boardbook.org/Public/Organization/1807",
+            "items": [
+              {
+                "date": "2026-06-09",
+                "title": "2026–27 district budget (2026-0036)",
+                "action": "Voted yes",
+                "result": "Passed 7–1",
+                "url": "https://meetings.boardbook.org/Public/Minutes/1807?meeting=748461"
+              },
+              {
+                "date": "2026-01-06",
+                "title": "Elected board chair for 2026",
+                "action": "Elected",
+                "result": "No opposition",
+                "url": "https://meetings.boardbook.org/Public/Minutes/1807?meeting=723711"
+              },
+              {
+                "date": "2025-10-14",
+                "title": "Emerick amendment changing \"sweet spot\" to \"efficient at 70–89% capacity\" in the school-capacity resolution",
+                "action": "Voted no",
+                "result": "Failed 2–6",
+                "url": "https://meetings.boardbook.org/Public/Minutes/1807?meeting=711153"
+              },
+              {
+                "date": "2025-01-21",
+                "title": "Resolution on the dignity and rights of immigrant and LGBTQ+ students, staff, and families (2025-0017)",
+                "action": "Voted yes",
+                "result": "Passed 8–0",
+                "url": "https://meetings.boardbook.org/Public/Minutes/1807?meeting=669092"
+              },
+              {
+                "date": "2025-01-21",
+                "title": "Emerick substitute for the FY2025–26 budget values and priorities resolution",
+                "action": "Voted no",
+                "result": "Failed 3–5",
+                "url": "https://meetings.boardbook.org/Public/Minutes/1807?meeting=669092"
+              },
+              {
+                "date": "2025-01-21",
+                "title": "FY2025–26 budget values and priorities (2025-0018)",
+                "action": "Voted yes",
+                "result": "Passed 6–2",
+                "url": "https://meetings.boardbook.org/Public/Minutes/1807?meeting=669092"
+              },
+              {
+                "date": "2024-11-07",
+                "title": "Emerick motion to add discussion of the board-vacancy interview process to the agenda",
+                "action": "Voted no",
+                "result": "Failed 3–5",
+                "url": "https://meetings.boardbook.org/Public/Minutes/1807?meeting=661054"
+              },
+              {
+                "date": "2024-09-10",
+                "title": "Emerick motion to add school walk-throughs to the agenda",
+                "action": "Voted no",
+                "result": "Failed 3–4",
+                "url": "https://meetings.boardbook.org/Public/Minutes/1807?meeting=652774"
+              },
+              {
+                "date": "2024-08-06",
+                "title": "Made early-childhood literacy the 2024–25 Equity and Diversity Impact Assessment topic (2024-0042)",
+                "action": "Made the motion",
+                "result": "Passed 7–0",
+                "url": "https://meetings.boardbook.org/Public/Minutes/1807?meeting=645559"
+              },
+              {
+                "date": "2024-04-23",
+                "title": "Playground contracts (Flagship Recreation, Kompan), after a dispute over accessibility",
+                "action": "Made the motion, then voted no",
+                "result": "Failed 2–5",
+                "url": "https://meetings.boardbook.org/Public/Minutes/1807?meeting=633266"
+              },
+              {
+                "date": "2024-01-02",
+                "title": "Elected board chair for 2024",
+                "action": "Elected",
+                "result": "No opposition",
+                "url": "https://meetings.boardbook.org/Public/Minutes/1807?meeting=615199"
+              },
+              {
+                "date": "2023-12-12",
+                "title": "Started the School Transformation Process (2023-0072), which led to the later school closure and merger plan",
+                "action": "Made the motion",
+                "result": "Passed 9–0",
+                "url": "https://meetings.boardbook.org/Public/Minutes/1807?meeting=612306"
+              },
+              {
+                "date": "2023-12-12",
+                "title": "Certified the final property tax levy, payable 2024 (2023-0070)",
+                "action": "Made the motion",
+                "result": "Passed 9–0",
+                "url": "https://meetings.boardbook.org/Public/Minutes/1807?meeting=612306"
+              },
+              {
+                "date": "2023-06-13",
+                "title": "2023–24 board priorities (2023-0035)",
+                "action": "Made the motion",
+                "result": "Passed 9–0",
+                "url": "https://meetings.boardbook.org/Public/Minutes/1807?meeting=583361"
+              },
+              {
+                "date": "2023-03-14",
+                "title": "2023–2026 Achievement and Integration Plan and budget (2023-0019)",
+                "action": "Made the motion",
+                "result": "Passed unanimously",
+                "url": "https://meetings.boardbook.org/Public/Minutes/1807?meeting=570964"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "office": "Associate Justice - Supreme Court 1",
+      "note": "",
+      "candidates": [
+        {
+          "name": "Sarah Hennesy",
+          "party": "",
+          "description": "",
+          "links": [
+            {
+              "label": "Campaign website",
+              "url": "http://justicesarahhennesy.com"
+            },
+            {
+              "label": "Wikipedia",
+              "url": "https://en.wikipedia.org/wiki/Sarah_Hennesy"
+            }
+          ],
+          "analysis": "Appointed by Gov. Walz in 2024; this is her first election to the Supreme Court. She was a district judge for 12 years in Milaca and St. Cloud and Chief Judge of the ten-county Seventh District from 2021 to 2024. Her focus is making courts easier to use for both rural and urban Minnesotans. Judicial races are nonpartisan, and judges can't campaign on issues. Unopposed on the ballot.",
+          "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d1/Sarah_Hennesy_April_2024.jpeg/500px-Sarah_Hennesy_April_2024.jpeg",
+          "endorsed": false
+        }
+      ]
+    },
+    {
+      "office": "Associate Justice - Supreme Court 4",
+      "note": "",
+      "candidates": [
+        {
+          "name": "Paul Thissen",
+          "party": "",
+          "description": "",
+          "links": [
+            {
+              "label": "Campaign website",
+              "url": "http://paulthissen.com"
+            },
+            {
+              "label": "Wikipedia",
+              "url": "https://en.wikipedia.org/wiki/Paul_Thissen"
+            }
+          ],
+          "analysis": "Appointed by Gov. Dayton in 2018 and elected in 2020. Before joining the court he was a DFL legislator and Speaker of the Minnesota House (2013–2015). Earlier he clerked on the Eighth Circuit, worked as an appellate public defender, and was a litigator at Briggs & Morgan. Unopposed on the ballot.",
+          "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fd/Paul_Thissen.jpg/500px-Paul_Thissen.jpg",
+          "endorsed": false
+        }
+      ]
+    },
+    {
+      "office": "Judge - Court of Appeals 1",
+      "note": "",
+      "candidates": [
+        {
+          "name": "Elizabeth Bentley",
+          "party": "",
+          "description": "",
+          "links": [
+            {
+              "label": "Campaign website",
+              "url": "http://electjudgebentley.com"
+            },
+            {
+              "label": "Judicial Branch profile",
+              "url": "https://mncourts.gov/about-the-courts/judicialdirectory/active-judicial-officers/court-of-appeals-judges/elizabeth-g.-bentley"
+            }
+          ],
+          "analysis": "Appointed to the Court of Appeals by Gov. Walz in 2024, after being a finalist for the Minnesota Supreme Court. She clerked for U.S. Supreme Court Justice Sonia Sotomayor and worked as a civil rights attorney, a legal aid lawyer, and a law professor. Unopposed on the ballot.",
+          "image": "https://electjudgebentley.com/assets/judge-portrait-CbaXDmdJ.jpg",
+          "endorsed": false
+        }
+      ]
+    },
+    {
+      "office": "Judge - Court of Appeals 7",
+      "note": "",
+      "candidates": [
+        {
+          "name": "Rachel Bond",
+          "party": "",
+          "description": "",
+          "links": [
+            {
+              "label": "Campaign website",
+              "url": "http://www.judgebond.com"
+            }
+          ],
+          "analysis": "Appointed by Gov. Walz in 2025 and running for a full six-year term. She was an appellate public defender who handled more than 200 appeals, and earlier a civil litigator at Faegre & Benson and Shearman & Sterling. She received the MSBA's 2024 William McGee Public Defender Award and served on the board of the Great North Innocence Project. Unopposed on the ballot.",
+          "image": "https://images.squarespace-cdn.com/content/v1/69e50dadb122a502c2d3e678/48ce360b-d9b2-44c0-9147-1afaa1659639/JudgeBond.png?format=750w",
+          "endorsed": false
+        }
+      ]
+    },
+    {
+      "office": "Judge - Court of Appeals 13",
+      "note": "",
+      "candidates": [
+        {
+          "name": "Jeanne Cochran",
+          "party": "",
+          "description": "",
+          "links": [
+            {
+              "label": "Campaign website",
+              "url": "http://judgejeannecochran.com"
+            },
+            {
+              "label": "Judicial Branch profile",
+              "url": "https://mncourts.gov/about-the-courts/judicialdirectory/active-judicial-officers/court-of-appeals-judges/jeanne-m.-cochran"
+            },
+            {
+              "label": "Wikipedia",
+              "url": "https://en.wikipedia.org/wiki/Jeanne_Cochran"
+            }
+          ],
+          "analysis": "Appointed by Gov. Dayton in 2018 and elected in 2020. She was an administrative law judge, an assistant attorney general representing the Public Utilities Commission, and an attorney at the Sierra Club Legal Defense Fund, giving her a strong background in environmental and regulatory law. Her campaign site is a placeholder. Unopposed on the ballot.",
+          "endorsed": false
+        }
+      ]
+    },
+    {
+      "office": "Judge - Court of Appeals 15",
+      "note": "",
+      "candidates": [
+        {
+          "name": "Kevin G. Ross",
+          "party": "",
+          "description": "",
+          "links": [
+            {
+              "label": "Campaign website",
+              "url": "http://judgekevinross.com"
+            }
+          ],
+          "analysis": "On the Court of Appeals since 2006 (appointed by Gov. Pawlenty) and retained by voters in 2008, 2014, and 2020. He was an Iowa City police officer before law school. His campaign says he has decided about 4,100 appeals and written about 1,300 majority opinions. Unopposed on the ballot.",
+          "image": "https://static.wixstatic.com/media/4a511a_09b373c53a4d4e8c8232ae93d7095c10~mv2.jpg/v1/fill/w_1200,h_500,al_c/4a511a_09b373c53a4d4e8c8232ae93d7095c10~mv2.jpg",
+          "endorsed": false
+        }
+      ]
+    },
+    {
+      "office": "Judge - Court of Appeals 18",
+      "note": "",
+      "candidates": [
+        {
+          "name": "JaPaul J. Harris",
+          "party": "",
+          "description": "",
+          "links": [
+            {
+              "label": "Campaign website",
+              "url": "https://www.japaulharris.com"
+            },
+            {
+              "label": "Judicial Branch profile",
+              "url": "https://mncourts.gov/about-the-courts/judicialdirectory/active-judicial-officers/court-of-appeals-judges/japaul-harris"
+            }
+          ],
+          "analysis": "Appointed to the Court of Appeals by Gov. Walz in 2024 after serving as a Ramsey County district judge (appointed by Gov. Dayton in 2018, elected in 2020). This is his first election to the appellate seat. He is active in community work, including coaching high school mock trial and mentoring. Unopposed on the ballot.",
+          "image": "https://japaulharris.com/wp-content/uploads/2026/05/IMG_2186-1.jpg",
+          "endorsed": false
+        }
+      ]
+    },
+    {
+      "office": "Judge - 4th District Court 1",
+      "note": "",
+      "candidates": [
+        {
+          "name": "William H. Koch",
+          "party": "",
+          "description": "",
+          "links": [
+            {
+              "label": "Campaign website",
+              "url": "http://www.reelectjudgekoch.org"
+            }
+          ],
+          "analysis": "A Hennepin County judge since 2007 (appointed by Gov. Pawlenty), re-elected in 2008, 2014, and 2020. He began as an Air Force JAG prosecutor and defense attorney, then litigated environmental and public law at private firms. In 2022 the County Attorney's Office tried to remove him from felony cases, and the chief judge ruled that effort improper. Unopposed on the ballot.",
+          "image": "https://static.wixstatic.com/media/aa2dc6_6c6d30af295644e8bfc9a1a678c769cf~mv2.jpg",
+          "endorsed": false
+        }
+      ]
+    },
+    {
+      "office": "Judge - 4th District Court 5",
+      "note": "",
+      "candidates": [
+        {
+          "name": "Kerry W. Meyer",
+          "party": "",
+          "description": "",
+          "links": [],
+          "endorsed": false
+        }
+      ]
+    },
+    {
+      "office": "Judge - 4th District Court 14",
+      "note": "",
+      "candidates": [
+        {
+          "name": "Dean Eyler",
+          "party": "",
+          "description": "",
+          "links": [],
+          "endorsed": false
+        }
+      ]
+    },
+    {
+      "office": "Judge - 4th District Court 16",
+      "note": "",
+      "candidates": [
+        {
+          "name": "Jane Maschka",
+          "party": "",
+          "description": "",
+          "links": [],
+          "endorsed": false
+        }
+      ]
+    },
+    {
+      "office": "Judge - 4th District Court 19",
+      "note": "",
+      "candidates": [
+        {
+          "name": "Gina M Brandt",
+          "party": "",
+          "description": "",
+          "links": [],
+          "endorsed": false
+        }
+      ]
+    },
+    {
+      "office": "Judge - 4th District Court 20",
+      "note": "",
+      "candidates": [
+        {
+          "name": "Daniel C. Moreno",
+          "party": "",
+          "description": "",
+          "links": [
+            {
+              "label": "Judicial Branch profile",
+              "url": "https://mncourts.gov/about-the-courts/judicialdirectory/active-judicial-officers/04-district/daniel-c.-moreno"
+            }
+          ],
+          "analysis": "A Hennepin County judge since 2006 (appointed by Gov. Pawlenty), re-elected in 2008, 2014, and 2020. Before joining the bench he was a Hennepin County assistant public defender. His campaign website is offline. Unopposed on the ballot.",
+          "endorsed": false
+        }
+      ]
+    },
+    {
+      "office": "Judge - 4th District Court 25",
+      "note": "",
+      "candidates": [
+        {
+          "name": "Michelle A. Hatcher",
+          "party": "",
+          "description": "",
+          "links": [],
+          "endorsed": false
+        }
+      ]
+    },
+    {
+      "office": "Judge - 4th District Court 27",
+      "note": "",
+      "candidates": [
+        {
+          "name": "Matthew M. Wilcox",
+          "party": "",
+          "description": "",
+          "links": [
+            {
+              "label": "Judicial Branch profile",
+              "url": "https://mncourts.gov/about-the-courts/judicialdirectory/active-judicial-officers/04-district/matthew-wilcox"
+            }
+          ],
+          "analysis": "Appointed by Gov. Walz in June 2025; this is his first election. He holds an LL.M. in organizational ethics and compliance. His campaign website is offline. Unopposed on the ballot.",
+          "endorsed": false
+        }
+      ]
+    },
+    {
+      "office": "Judge - 4th District Court 28",
+      "note": "",
+      "candidates": [
+        {
+          "name": "Dominick D. Mathews",
+          "party": "",
+          "description": "",
+          "links": [],
+          "endorsed": false
+        }
+      ]
+    },
+    {
+      "office": "Judge - 4th District Court 29",
+      "note": "",
+      "candidates": [
+        {
+          "name": "Todd M. Fellman",
+          "party": "",
+          "description": "",
+          "links": [
+            {
+              "label": "Judicial Branch profile",
+              "url": "https://mncourts.gov/about-the-courts/judicialdirectory/active-judicial-officers/04-district/todd-m.-fellman"
+            }
+          ],
+          "analysis": "Appointed by Gov. Dayton in 2019 and elected in 2020. He was a senior assistant Hennepin County attorney and teaches as an adjunct at Mitchell Hamline. His campaign website doesn't load. Unopposed on the ballot.",
+          "endorsed": false
+        }
+      ]
+    },
+    {
+      "office": "Judge - 4th District Court 30",
+      "note": "",
+      "candidates": [
+        {
+          "name": "Jennifer Olson",
+          "party": "",
+          "description": "",
+          "links": [
+            {
+              "label": "Campaign website",
+              "url": "http://www.judgejenniferolson.com"
+            }
+          ],
+          "analysis": "Appointed by Gov. Walz (announced December 2024); this is her first election. She hears misdemeanor and gross-misdemeanor cases on the downtown criminal team and was a trial lawyer for 14 years. Unopposed on the ballot.",
+          "image": "https://images.squarespace-cdn.com/content/v1/697e541696ad8d7feb59e60f/b07ed5eb-845b-4d8b-a09d-e572f3170688/Jennifer+Olson+Photo+JPG.jpg?format=750w",
+          "endorsed": false
+        }
+      ]
+    },
+    {
+      "office": "Judge - 4th District Court 32",
+      "note": "",
+      "candidates": [
+        {
+          "name": "Mariam Mokri",
+          "party": "",
+          "description": "",
+          "links": [
+            {
+              "label": "Campaign website",
+              "url": "http://www.judgeMariamMokri.com"
+            },
+            {
+              "label": "Judicial Branch profile",
+              "url": "https://mncourts.gov/about-the-courts/judicialdirectory/active-judicial-officers/04-district/mariam-mokri"
+            }
+          ],
+          "analysis": "Appointed by Gov. Walz (announced December 2024); this is her first election. She presides over criminal cases. She was previously a human services judge at the Department of Human Services, a housing court referee, and a Hennepin County public defender. Unopposed on the ballot.",
+          "image": "https://img1.wsimg.com/isteam/ip/208cde88-fbce-4950-8a18-b819e5dd9f10/MM%20HEADSHOT%20ROBE%20JPEG.JPG/:/rs=h:600,cg:true,m",
+          "endorsed": false
+        }
+      ]
+    },
+    {
+      "office": "Judge - 4th District Court 35",
+      "note": "",
+      "candidates": [
+        {
+          "name": "Sarah S. West",
+          "party": "",
+          "description": "",
+          "links": [],
+          "endorsed": false
+        }
+      ]
+    },
+    {
+      "office": "Judge - 4th District Court 42",
+      "note": "",
+      "candidates": [
+        {
+          "name": "Luis A. Bartolomei",
+          "party": "",
+          "description": "",
+          "links": [],
+          "endorsed": false
+        }
+      ]
+    },
+    {
+      "office": "Judge - 4th District Court 43",
+      "note": "",
+      "candidates": [
+        {
+          "name": "Bridget Ann Sullivan",
+          "party": "",
+          "description": "",
+          "links": [],
+          "endorsed": false
+        }
+      ]
+    },
+    {
+      "office": "Judge - 4th District Court 47",
+      "note": "",
+      "candidates": [
+        {
+          "name": "Kristen Marttila",
+          "party": "",
+          "description": "",
+          "links": [],
+          "endorsed": false
+        }
+      ]
+    },
+    {
+      "office": "Judge - 4th District Court 54",
+      "note": "",
+      "candidates": [
+        {
+          "name": "Emily J. Froehle",
+          "party": "",
+          "description": "",
+          "links": [],
+          "endorsed": false
+        }
+      ]
+    },
+    {
+      "office": "Judge - 4th District Court 56",
+      "note": "",
+      "candidates": [
+        {
+          "name": "Carrie Ryan Gallia",
+          "party": "",
+          "description": "",
+          "links": [],
+          "endorsed": false
+        }
+      ]
+    },
+    {
+      "office": "Judge - 4th District Court 57",
+      "note": "",
+      "candidates": [
+        {
+          "name": "Jeannice M. Reding",
+          "party": "",
+          "description": "",
+          "links": [],
+          "endorsed": false
+        }
+      ]
+    },
+    {
+      "office": "Judge - 4th District Court 61",
+      "note": "",
+      "candidates": [
+        {
+          "name": "Andrew Tweeten",
+          "party": "",
+          "description": "",
+          "links": [
+            {
+              "label": "Judicial Branch profile",
+              "url": "https://mncourts.gov/about-the-courts/judicialdirectory/active-judicial-officers/04-district/andrew-tweeten"
+            }
+          ],
+          "analysis": "Appointed by Gov. Walz in June 2025; this is his first election. He was an Assistant U.S. Attorney in the civil division (2018–2025) and an assistant solicitor general in the Minnesota Attorney General's Office (2015–2018). His campaign website doesn't load. Unopposed on the ballot.",
+          "endorsed": false
+        }
+      ]
+    },
+    {
+      "office": "Judge - 4th District Court 63",
+      "note": "",
+      "candidates": [
+        {
+          "name": "Angela Willms",
+          "party": "",
+          "description": "",
+          "links": [],
+          "endorsed": false
+        }
+      ]
+    }
+  ]
+}
