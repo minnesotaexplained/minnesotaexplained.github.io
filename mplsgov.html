@@ -1,459 +1,712 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Minneapolis City Government Structure</title>
-    <style>
-        :root {
-            --accent-primary: #2563eb;
-            --accent-secondary: #7c3aed;
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Minneapolis City Government Structure</title>
+<link rel="stylesheet" href="css/navbar.css">
+<style>
+  :root {
+    --bg: #f5f5f7;
+    --card: #ffffff;
+    --line: #d2d2d7;
+    --hair: #e5e5ea;
+    --text: #1d1d1f;
+    --muted: #6e6e73;
+    --faint: #86868b;
+    --blue: #0071e3;
+    --red: #e3342f;
+    --exec: #34a853;
+    --leg: #ff9500;
+    --ind: #af52de;
+    --font: -apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro Display", "Helvetica Neue", "Inter", Arial, sans-serif;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { height: 100%; }
+  body {
+    font-family: var(--font);
+    background: var(--bg);
+    color: var(--text);
+    display: flex; flex-direction: column;
+    overflow: hidden;
+    -webkit-font-smoothing: antialiased;
+    letter-spacing: -0.01em;
+  }
+  .mx-nav { padding: 10px 24px; }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            min-height: 100vh;
-        }
+  /* ── header ── */
+  header.bar {
+    display: grid; grid-template-columns: 1fr auto 1fr; align-items: center;
+    padding: 14px 24px 6px; flex-shrink: 0;
+  }
+  header.bar .meta { font-size: 12px; color: var(--faint); }
+  .segmented {
+    display: inline-flex; background: #e8e8ed; border-radius: 9px; padding: 2px;
+  }
+  .segmented button {
+    border: 0; background: transparent; font: inherit; font-size: 13px; font-weight: 500;
+    color: var(--text); padding: 6px 16px; border-radius: 7px; cursor: pointer;
+    transition: background .2s, box-shadow .2s;
+  }
+  .segmented button.active { background: #fff; box-shadow: 0 1px 3px rgba(0,0,0,.12), 0 0 0 .5px rgba(0,0,0,.04); }
+  header.bar .right { justify-self: end; font-size: 12px; color: var(--faint); display: flex; gap: 14px; }
+  .key { display: inline-flex; align-items: center; gap: 5px; }
+  .dot { width: 7px; height: 7px; border-radius: 50%; display: inline-block; flex-shrink: 0; }
 
-        .navbar {
-            background: linear-gradient(135deg, var(--accent-secondary) 0%, var(--accent-primary) 100%);
-            color: white;
-            padding: 20px 40px;
-            box-shadow: var(--shadow-md);
-            top: 0;
-            display: flex;
-            align-items: center;
-            gap: 20px;
-        }
+  /* ── stage: the tree is scaled to fit ── */
+  .stage { flex: 1; min-height: 0; position: relative; }
+  .tree {
+    position: absolute; left: 50%; top: 50%;
+    transform-origin: center center; width: max-content;
+    padding: 4px 8px;
+  }
+  svg.wires { position: absolute; left: 0; top: 0; overflow: visible; pointer-events: none; }
+  svg.wires.flow { z-index: 5; }
+  .flabels { position: absolute; left: 0; top: 0; pointer-events: none; z-index: 6; }
+  .flabel {
+    position: absolute; transform: translate(-50%, -50%);
+    background: var(--blue); color: #fff; font-size: 11px; font-weight: 600;
+    padding: 2px 8px; border-radius: 999px; white-space: nowrap;
+  }
+  .flabel.veto { background: var(--red); }
 
-        .navbar-content {
-            flex: 1;
-        }
+  .root { display: flex; justify-content: center; margin-bottom: 30px; }
+  .branches { display: flex; gap: 44px; align-items: flex-start; }
+  .branch { display: flex; flex-direction: column; align-items: center; }
+  .kids { display: flex; gap: 14px; align-items: flex-start; margin-top: 30px; }
+  .col { display: flex; flex-direction: column; align-items: stretch; }
+  .ind-row { display: flex; gap: 14px; align-items: flex-start; }
 
-        .navbar-title {
-            font-size: 1.8em;
-            font-weight: 700;
-            margin: 0 0 5px 0;
-        }
+  /* ── cards ── */
+  .card {
+    position: relative; z-index: 2;
+    background: var(--card);
+    border-radius: 14px;
+    box-shadow: 0 0 0 .5px rgba(0,0,0,.08), 0 1px 2px rgba(0,0,0,.04), 0 4px 14px rgba(0,0,0,.04);
+    padding: 10px 12px;
+    cursor: pointer;
+    transition: transform .2s ease, box-shadow .2s ease, opacity .3s ease;
+  }
+  .card:hover { transform: translateY(-1px); box-shadow: 0 0 0 .5px rgba(0,0,0,.1), 0 6px 20px rgba(0,0,0,.08); }
+  .tag { font-size: 10px; font-weight: 600; text-transform: uppercase; letter-spacing: .06em; color: var(--faint); display: flex; align-items: center; gap: 5px; }
+  .name { font-size: 14px; font-weight: 600; line-height: 1.25; margin-top: 2px; }
+  .role { font-size: 12px; color: var(--muted); line-height: 1.3; margin-top: 1px; }
+  .pill { font-size: 10px; font-weight: 600; color: #b25000; background: #fff4e5; border-radius: 4px; padding: 0 5px; margin-left: 4px; vertical-align: 1px; }
 
-        .navbar-subtitle {
-            font-size: 1em;
-            opacity: 0.9;
-            margin: 0;
-        }
+  .voters { border-radius: 999px; padding: 8px 20px; display: flex; align-items: center; gap: 10px; }
+  .voters .name { margin: 0; font-size: 14px; }
+  .voters .role { margin: 0; }
 
-        
-        .container {
-            max-width: 900px;
-            margin: 0 auto;
-            padding: 30px;
-        }
-        
-        .container h1 {
-            text-align: center;
-            color: #2d3748;
-            margin-bottom: 10px;
-            font-size: 2em;
-        }
-        
-        .subtitle {
-            text-align: center;
-            color: #718096;
-            margin-bottom: 30px;
-            font-size: 0.95em;
-        }
-        
-        .gov-structure {
-            display: flex;
-            flex-direction: column;
-            gap: 30px;
-        }
-        
-        .branch {
-            background: #f7fafc;
-            border-radius: 12px;
-            padding: 25px;
-            border: 2px solid #e2e8f0;
-            transition: transform 0.2s, box-shadow 0.2s;
-        }
-        
-        .branch:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
-        }
-        
-        .branch-header {
-            display: flex;
-            align-items: center;
-            margin-bottom: 20px;
-            padding-bottom: 15px;
-            border-bottom: 3px solid #4299e1;
-        }
-        
-        .branch-icon {
-            font-size: 2em;
-            margin-right: 15px;
-        }
-        
-        .branch-title {
-            flex: 1;
-        }
-        
-        .branch-title h2 {
-            color: #2d3748;
-            font-size: 1.5em;
-            margin-bottom: 5px;
-        }
-        
-        .branch-title .description {
-            color: #718096;
-            font-size: 0.9em;
-        }
-        
-        .members-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-            gap: 15px;
-            margin-top: 15px;
-        }
-        
-        .member-card {
-            background: white;
-            padding: 15px;
-            border-radius: 8px;
-            border-left: 4px solid #4299e1;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-            transition: all 0.2s;
-        }
-        
-        .member-card:hover {
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-            transform: translateX(3px);
-        }
-        
-        .member-name {
-            font-weight: 600;
-            color: #2d3748;
-            margin-bottom: 5px;
-            font-size: 1.05em;
-        }
-        
-        .member-role {
-            color: #4a5568;
-            font-size: 0.9em;
-            margin-bottom: 3px;
-        }
-        
-        .member-party {
-            color: #718096;
-            font-size: 0.85em;
-            font-style: italic;
-        }
-        
-        .member-link {
-            display: inline-block;
-            margin-top: 8px;
-            color: #4299e1;
-            font-size: 0.85em;
-            text-decoration: none;
-            font-weight: 500;
-            transition: color 0.2s;
-        }
-        
-        .member-link:hover {
-            color: #2b6cb0;
-            text-decoration: underline;
-        }
-        
-        .executive {
-            border-color: #48bb78;
-            background: #f0fff4;
-        }
-        
-        .executive .branch-header {
-            border-bottom-color: #48bb78;
-        }
-        
-        .executive .member-card {
-            border-left-color: #48bb78;
-        }
-        
-        .legislative {
-            border-color: #ed8936;
-            background: #fffaf0;
-        }
-        
-        .legislative .branch-header {
-            border-bottom-color: #ed8936;
-        }
-        
-        .legislative .member-card {
-            border-left-color: #ed8936;
-        }
-        
-        .independent-boards {
-            border-color: #9f7aea;
-            background: #faf5ff;
-        }
-        
-        .independent-boards .branch-header {
-            border-bottom-color: #9f7aea;
-        }
-        
-        .independent-boards .member-card {
-            border-left-color: #9f7aea;
-        }
-        
-        .leadership-box {
-            background: #edf2f7;
-            padding: 15px;
-            border-radius: 8px;
-            margin-bottom: 15px;
-        }
-        
-        .leadership-title {
-            font-weight: 600;
-            color: #2d3748;
-            margin-bottom: 10px;
-            font-size: 1.1em;
-        }
-        
-        .hierarchy-note {
-            background: #bee3f8;
-            padding: 15px;
-            border-radius: 8px;
-            margin-top: 20px;
-            border-left: 4px solid #3182ce;
-        }
-        
-        .hierarchy-note h3 {
-            color: #2c5282;
-            margin-bottom: 8px;
-        }
-        
-        .hierarchy-note p {
-            color: #2d3748;
-            line-height: 1.6;
-        }
-    </style>
-    <link rel="stylesheet" href="css/navbar.css">
+  .l1 { height: 92px; display: flex; align-items: center; gap: 12px; }
+  .l2 { height: 80px; }
+  .avatar { width: 56px; height: 56px; border-radius: 50%; object-fit: cover; flex-shrink: 0; background: #e8e8ed; }
+  .faces { display: flex; margin-top: 7px; }
+  .faces img, .faces .ph {
+    width: 26px; height: 26px; border-radius: 50%; object-fit: cover; background: #e8e8ed;
+    border: 2px solid #fff; margin-left: -6px; flex-shrink: 0;
+  }
+  .faces img:first-child { margin-left: 0; }
+  .faces .ph { display: inline-flex; align-items: center; justify-content: center; font-size: 9px; font-weight: 600; color: var(--muted); }
+
+  /* ── file-tree style department lists ── */
+  .list { list-style: none; margin: 0 0 0 18px; padding-top: 6px; }
+  .list li {
+    position: relative; padding: 2px 6px 2px 16px; font-size: 12px; color: #424245; line-height: 1.3;
+    border-radius: 6px; cursor: pointer; transition: background .15s, color .15s, opacity .3s;
+  }
+  .list li::before { /* vertical rail */
+    content: ""; position: absolute; left: 0; top: -6px; bottom: 0; border-left: 1px solid var(--line);
+  }
+  .list li:last-child::before { bottom: auto; height: calc(50% + 6px); }
+  .list li::after { /* tick */
+    content: ""; position: absolute; left: 0; top: 50%; width: 10px; border-top: 1px solid var(--line);
+  }
+  .list li:hover { background: rgba(0,0,0,.04); }
+  .list li small { display: block; color: var(--faint); font-size: 11px; }
+  .note { font-size: 11px; color: var(--faint); line-height: 1.4; max-width: 150px; margin-top: 14px; padding-left: 4px; }
+
+  /* ── flow highlighting ── */
+  body.flowing .card, body.flowing .list li, body.flowing .note { opacity: .32; }
+  body.flowing svg.wires.base { opacity: .4; }
+  body.flowing .card.hl { opacity: 1; box-shadow: 0 0 0 2px var(--blue), 0 8px 24px rgba(0,113,227,.18); }
+  body.flowing .list li.hl { opacity: 1; color: var(--blue); font-weight: 600; }
+  body.flowing .list li.hl small { color: var(--blue); font-weight: 500; }
+  @keyframes dash { to { stroke-dashoffset: -16; } }
+  path.anim { animation: dash .9s linear infinite; }
+
+  /* ── bottom caption ── */
+  .caption {
+    flex-shrink: 0; display: flex; justify-content: center; padding: 0 24px 16px;
+  }
+  .cap {
+    width: min(820px, 100%);
+    background: rgba(255,255,255,.85); backdrop-filter: saturate(180%) blur(20px);
+    border-radius: 16px; box-shadow: 0 0 0 .5px rgba(0,0,0,.08), 0 6px 24px rgba(0,0,0,.06);
+    padding: 12px 14px 12px 18px; display: flex; align-items: center; gap: 16px; min-height: 64px;
+  }
+  .cap .txt { flex: 1; font-size: 13px; line-height: 1.45; color: #424245; }
+  .cap .txt b { color: var(--text); }
+  .cap .stepno { font-size: 11px; font-weight: 600; color: var(--blue); text-transform: uppercase; letter-spacing: .05em; }
+  .cap .stitle { font-size: 15px; font-weight: 600; color: var(--text); margin: 1px 0 2px; }
+  .dots { display: flex; gap: 5px; margin-top: 7px; }
+  .dots i { width: 6px; height: 6px; border-radius: 50%; background: #d2d2d7; cursor: pointer; }
+  .dots i.on { background: var(--blue); width: 16px; border-radius: 3px; }
+  .navbtn {
+    width: 34px; height: 34px; border-radius: 50%; border: 0; cursor: pointer; flex-shrink: 0;
+    background: #e8e8ed; color: var(--text); font-size: 16px; display: flex; align-items: center; justify-content: center;
+  }
+  .navbtn.primary { background: var(--blue); color: #fff; }
+  .navbtn:disabled { opacity: .35; cursor: default; }
+
+  /* ── modal ── */
+  .scrim {
+    position: fixed; inset: 0; background: rgba(0,0,0,.25); backdrop-filter: blur(6px);
+    display: flex; align-items: center; justify-content: center; z-index: 2000;
+    opacity: 0; pointer-events: none; transition: opacity .2s;
+  }
+  .scrim.open { opacity: 1; pointer-events: auto; }
+  .sheet {
+    width: min(520px, calc(100vw - 32px)); max-height: calc(100vh - 64px); overflow-y: auto;
+    background: #fff; border-radius: 18px; box-shadow: 0 24px 64px rgba(0,0,0,.22);
+    padding: 26px 28px 24px; position: relative;
+    transform: scale(.96) translateY(8px); transition: transform .25s cubic-bezier(.2,.8,.2,1);
+  }
+  .scrim.open .sheet { transform: none; }
+  .sheet .close {
+    position: absolute; top: 14px; right: 14px; width: 28px; height: 28px; border-radius: 50%;
+    border: 0; background: #e8e8ed; color: var(--muted); font-size: 15px; cursor: pointer;
+  }
+  .sheet .head { display: flex; align-items: center; gap: 14px; margin-bottom: 12px; }
+  .sheet .head img { width: 64px; height: 64px; border-radius: 50%; object-fit: cover; }
+  .sheet h2 { font-size: 22px; font-weight: 700; letter-spacing: -0.02em; }
+  .sheet .body { font-size: 14px; line-height: 1.55; color: #424245; }
+  .sheet .body p { margin-bottom: 10px; }
+  .sheet .body ul { padding-left: 18px; margin-bottom: 10px; }
+  .sheet .body li { margin-bottom: 4px; }
+  .sheet .body a { color: var(--blue); text-decoration: none; }
+  .sheet .body a:hover { text-decoration: underline; }
+  .sheet .callout { background: var(--bg); border-radius: 10px; padding: 10px 12px; font-size: 13px; }
+  .members { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px 8px; margin: 6px 0 14px; }
+  .member { display: flex; align-items: center; gap: 8px; min-width: 0; }
+  .member img { width: 36px; height: 36px; border-radius: 50%; object-fit: cover; background: #e8e8ed; flex-shrink: 0; }
+  .member div { min-width: 0; font-size: 12px; line-height: 1.25; }
+  .member b { display: block; font-weight: 600; color: var(--text); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .member span { color: var(--faint); }
+</style>
 </head>
 <body>
-    <nav class="mx-nav" aria-label="Site">
-        <a href="/" class="mx-nav-logo" title="Minnesota Explained home">MX</a>
-        <div class="mx-nav-text">
-            <div class="mx-nav-title">Minneapolis City Government</div>
-            <div class="mx-nav-subtitle">Minnesota Explained</div>
-        </div>
-    </nav>
+<nav class="mx-nav" aria-label="Site">
+  <a href="/" class="mx-nav-logo" title="Minnesota Explained home">MX</a>
+  <div class="mx-nav-text">
+    <div class="mx-nav-title">Minneapolis City Government</div>
+    <div class="mx-nav-subtitle">Minnesota Explained</div>
+  </div>
+</nav>
 
-    <div class="container">
-        <h1>Minneapolis City Government Structure</h1>
-        <p class="subtitle">Strong Mayor - Legislative Council System (as of January 2026)</p>
-        
-        <div class="gov-structure">
-            <!-- Executive Branch -->
-            <div class="branch executive">
-                <div class="branch-header">
-                    <div class="branch-icon">⚖️</div>
-                    <div class="branch-title">
-                        <h2>Executive Branch</h2>
-                        <p class="description">Mayor holds executive power, appoints department heads, proposes budget</p>
-                    </div>
-                </div>
-                
-                <div class="members-grid">
-                    <div class="member-card">
-                        <div class="member-name">Jacob Frey</div>
-                        <div class="member-role">Mayor (48th, 3rd term)</div>
-                        <div class="member-party">DFL - Inaugurated January 5, 2026</div>
-                        <a href="https://www.minneapolismn.gov/government/mayor/" target="_blank" class="member-link">View Mayor's Page →</a>
-                    </div>
-                </div>
-                
-                <div class="hierarchy-note" style="margin-top: 20px;">
-                    <h3>Executive Powers:</h3>
-                    <p>Since the 2021 charter amendment, the Mayor has strengthened executive authority including appointing department heads, proposing budgets and policies, serving as city spokesperson, declaring emergencies, and directing public safety functions.</p>
-                </div>
-            </div>
-            
-            <!-- Legislative Branch -->
-            <div class="branch legislative">
-                <div class="branch-header">
-                    <div class="branch-icon">🏛️</div>
-                    <div class="branch-title">
-                        <h2>Legislative Branch - City Council</h2>
-                        <p class="description">13 Council Members elected by ward, makes laws and approves budget</p>
-                    </div>
-                </div>
-                
-                <div class="leadership-box">
-                    <div class="leadership-title">Council Leadership (2026-2029):</div>
-                    <div class="members-grid">
-                        <div class="member-card">
-                            <div class="member-name">Elliott Payne</div>
-                            <div class="member-role">Council President (Ward 1)</div>
-                            <div class="member-party">DFL</div>
-                            <a href="https://www.minneapolismn.gov/government/city-council/members/ward-1/" target="_blank" class="member-link">View Profile →</a>
-                        </div>
-                        <div class="member-card">
-                            <div class="member-name">Jamal Osman</div>
-                            <div class="member-role">Vice President (Ward 6)</div>
-                            <div class="member-party">DFL</div>
-                            <a href="https://www.minneapolismn.gov/government/city-council/members/ward-6/" target="_blank" class="member-link">View Profile →</a>
-                        </div>
-                        <div class="member-card">
-                            <div class="member-name">Aisha Chughtai</div>
-                            <div class="member-role">Majority Leader (Ward 10)</div>
-                            <div class="member-party">DFL/DSA</div>
-                            <a href="https://www.minneapolismn.gov/government/city-council/members/ward-10/" target="_blank" class="member-link">View Profile →</a>
-                        </div>
-                        <div class="member-card">
-                            <div class="member-name">Robin Wonsley</div>
-                            <div class="member-role">Minority Leader (Ward 2)</div>
-                            <div class="member-party">Independent DSA</div>
-                            <a href="https://www.minneapolismn.gov/government/city-council/members/ward-2/" target="_blank" class="member-link">View Profile →</a>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="leadership-title">All Council Members by Ward:</div>
-                <div class="members-grid">
-                    <div class="member-card">
-                        <div class="member-name">Elliott Payne</div>
-                        <div class="member-role">Ward 1 (President)</div>
-                        <div class="member-party">DFL</div>
-                        <a href="https://www.minneapolismn.gov/government/city-council/members/ward-1/" target="_blank" class="member-link">View Profile →</a>
-                    </div>
-                    <div class="member-card">
-                        <div class="member-name">Robin Wonsley</div>
-                        <div class="member-role">Ward 2 (Minority Leader)</div>
-                        <div class="member-party">Independent DSA</div>
-                        <a href="https://www.minneapolismn.gov/government/city-council/members/ward-2/" target="_blank" class="member-link">View Profile →</a>
-                    </div>
-                    <div class="member-card">
-                        <div class="member-name">Michael Rainville</div>
-                        <div class="member-role">Ward 3</div>
-                        <div class="member-party">DFL</div>
-                        <a href="https://www.minneapolismn.gov/government/city-council/members/ward-3/" target="_blank" class="member-link">View Profile →</a>
-                    </div>
-                    <div class="member-card">
-                        <div class="member-name">LaTrisha Vetaw</div>
-                        <div class="member-role">Ward 4</div>
-                        <div class="member-party">DFL</div>
-                        <a href="https://www.minneapolismn.gov/government/city-council/members/ward-4/" target="_blank" class="member-link">View Profile →</a>
-                    </div>
-                    <div class="member-card">
-                        <div class="member-name">Pearll Warren</div>
-                        <div class="member-role">Ward 5 (New 2026)</div>
-                        <div class="member-party">DFL</div>
-                        <a href="https://www.minneapolismn.gov/government/city-council/members/ward-5/" target="_blank" class="member-link">View Profile →</a>
-                    </div>
-                    <div class="member-card">
-                        <div class="member-name">Jamal Osman</div>
-                        <div class="member-role">Ward 6 (Vice President)</div>
-                        <div class="member-party">DFL</div>
-                        <a href="https://www.minneapolismn.gov/government/city-council/members/ward-6/" target="_blank" class="member-link">View Profile →</a>
-                    </div>
-                    <div class="member-card">
-                        <div class="member-name">Elizabeth Shaffer</div>
-                        <div class="member-role">Ward 7 (New 2026)</div>
-                        <div class="member-party">DFL</div>
-                        <a href="https://www.minneapolismn.gov/government/city-council/members/ward-7/" target="_blank" class="member-link">View Profile →</a>
-                    </div>
-                    <div class="member-card">
-                        <div class="member-name">Soren Stevenson</div>
-                        <div class="member-role">Ward 8 (New 2026)</div>
-                        <div class="member-party">DFL/DSA</div>
-                        <a href="https://www.minneapolismn.gov/government/city-council/members/ward-8/" target="_blank" class="member-link">View Profile →</a>
-                    </div>
-                    <div class="member-card">
-                        <div class="member-name">Jason Chavez</div>
-                        <div class="member-role">Ward 9</div>
-                        <div class="member-party">DFL/DSA</div>
-                        <a href="https://www.minneapolismn.gov/government/city-council/members/ward-9/" target="_blank" class="member-link">View Profile →</a>
-                    </div>
-                    <div class="member-card">
-                        <div class="member-name">Aisha Chughtai</div>
-                        <div class="member-role">Ward 10 (Majority Leader)</div>
-                        <div class="member-party">DFL/DSA</div>
-                        <a href="https://www.minneapolismn.gov/government/city-council/members/ward-10/" target="_blank" class="member-link">View Profile →</a>
-                    </div>
-                    <div class="member-card">
-                        <div class="member-name">Jamison Whiting</div>
-                        <div class="member-role">Ward 11 (New 2026)</div>
-                        <div class="member-party">DFL</div>
-                        <a href="https://www.minneapolismn.gov/government/city-council/members/ward-11/" target="_blank" class="member-link">View Profile →</a>
-                    </div>
-                    <div class="member-card">
-                        <div class="member-name">Aurin Chowdhury</div>
-                        <div class="member-role">Ward 12</div>
-                        <div class="member-party">DFL</div>
-                        <a href="https://www.minneapolismn.gov/government/city-council/members/ward-12/" target="_blank" class="member-link">View Profile →</a>
-                    </div>
-                    <div class="member-card">
-                        <div class="member-name">Linea Palmisano</div>
-                        <div class="member-role">Ward 13</div>
-                        <div class="member-party">DFL</div>
-                        <a href="https://www.minneapolismn.gov/government/city-council/members/ward-13/" target="_blank" class="member-link">View Profile →</a>
-                    </div>
-                </div>
-                
-                <div class="hierarchy-note">
-                    <h3>Legislative Powers:</h3>
-                    <p>The Council creates and modifies laws, policies, and ordinances. They approve the budget working with the Mayor, and can override mayoral vetoes with 9 votes. The Council has purely legislative duties after the 2021 charter amendment shifted executive power to the Mayor.</p>
-                </div>
-            </div>
-            
-            <!-- Independent Boards -->
-            <div class="branch independent-boards">
-                <div class="branch-header">
-                    <div class="branch-icon">🏢</div>
-                    <div class="branch-title">
-                        <h2>Independent Boards & Commissions</h2>
-                        <p class="description">Separate elected/appointed bodies with specific authorities</p>
-                    </div>
-                </div>
-                
-                <div class="members-grid">
-                    <div class="member-card">
-                        <div class="member-name">Board of Estimate and Taxation</div>
-                        <div class="member-role">6 members</div>
-                        <div class="member-party">2 elected + Mayor + Council President + Budget Committee Chair + Park Board member</div>
-                        <a href="https://www.minneapolismn.gov/government/boards-and-commissions/bet/" target="_blank" class="member-link">View Board Page →</a>
-                    </div>
-                    <div class="member-card">
-                        <div class="member-name">Minneapolis Park and Recreation Board</div>
-                        <div class="member-role">9 elected members</div>
-                        <div class="member-party">Manages parks, parkways, and boulevard trees</div>
-                        <a href="https://www.minneapolisparks.org/about-us/leadership-and-structure/park-board-commissioners/" target="_blank" class="member-link">View Board Page →</a>
-                    </div>
-                    <div class="member-card">
-                        <div class="member-name">Municipal Building Commission</div>
-                        <div class="member-role">4 commissioners</div>
-                        <div class="member-party">Operates City Hall/County Courthouse building</div>
-                        <a href="https://www.minneapolismn.gov/government/boards-and-commissions/" target="_blank" class="member-link">View Boards & Commissions →</a>
-                    </div>
-                </div>
-                
-                <div class="hierarchy-note">
-                    <h3>Independent Authority:</h3>
-                    <p>These boards have authority to levy taxes and fees within their areas, subject to limitations set by the Board of Estimate and Taxation. The Park Board is elected by voters citywide and operates semi-independently from the City Council.</p>
-                </div>
-            </div>
-        </div>
-        
-        <div class="hierarchy-note" style="margin-top: 30px; background: #f7fafc; border-left-color: #4a5568;">
-            <h3>Government Structure Overview:</h3>
-            <p><strong>2021 Charter Amendment:</strong> Minneapolis voters approved transitioning from a "weak mayor-strong council" to a "strong mayor-legislative council" system. The Mayor now holds executive power and appoints department heads, while the Council has purely legislative duties. This change clarified the separation of powers between branches.</p>
-            <p style="margin-top: 10px;"><strong>Composition:</strong> As of January 2026, the City Council has 12 DFL members and 1 Independent (Robin Wonsley). Four members identify with Democratic Socialists of America (DSA): Aisha Chughtai, Robin Wonsley, Jason Chavez, and Soren Stevenson.</p>
-        </div>
+<header class="bar">
+  <div class="meta">Strong-mayor system · as of November 2026</div>
+  <div class="segmented" role="tablist">
+    <button data-mode="structure" class="active">Structure</button>
+    <button data-mode="ordinance">Passing a law</button>
+    <button data-mode="budget">The budget</button>
+    <button data-mode="executive">Executive power</button>
+  </div>
+  <div class="right">
+    <span class="key"><span class="dot" style="background:var(--exec)"></span>Executive</span>
+    <span class="key"><span class="dot" style="background:var(--leg)"></span>Legislative</span>
+    <span class="key"><span class="dot" style="background:var(--ind)"></span>Independent</span>
+  </div>
+</header>
+
+<main class="stage" id="stage">
+  <div class="tree" id="tree">
+    <svg class="wires base" id="wires"></svg>
+    <svg class="wires flow" id="fwires"></svg>
+    <div class="flabels" id="flabels"></div>
+
+    <div class="root">
+      <div class="card voters" id="voters">
+        <div class="name">Minneapolis Voters</div>
+        <div class="role">elect the Mayor, Council, Park Board &amp; 2 Estimate &amp; Taxation members</div>
+      </div>
     </div>
+
+    <div class="branches">
+      <!-- Executive -->
+      <div class="branch">
+        <div class="card l1" id="mayor">
+          <img class="avatar" src="https://www.minneapolismn.gov/media/-www-content-assets/images/headshots/Mayor-Jacob-Frey-th.jpg" alt="Jacob Frey">
+          <div>
+            <div class="tag"><span class="dot" style="background:var(--exec)"></span>Executive</div>
+            <div class="name">Jacob Frey</div>
+            <div class="role">Mayor · 3rd term</div>
+          </div>
+        </div>
+        <div class="kids">
+          <div class="col" style="width:118px">
+            <div class="card l2" id="mayorsoffice">
+              <div class="tag">Staff</div>
+              <div class="name">Mayor's Office</div>
+              <div class="role">Chief of staff</div>
+            </div>
+            <ul class="list" id="list-mo">
+              <li id="d-comms">Communications</li>
+              <li id="d-igr">Intergovernmental Relations</li>
+            </ul>
+          </div>
+          <div class="col" style="width:224px">
+            <div class="card l2" id="coo">
+              <div class="tag">Appointed</div>
+              <div class="name">Margaret Anderson Kelliher</div>
+              <div class="role">City Operations Officer</div>
+            </div>
+            <ul class="list" id="list-coo">
+              <li id="d-pw">Public Works</li>
+              <li id="d-cped">Community Planning &amp; Econ. Dev.</li>
+              <li id="d-health">Health</li>
+              <li id="d-reg">Regulatory Services</li>
+              <li id="d-finance">Finance &amp; Property Services</li>
+              <li id="d-civil">Civil Rights</li>
+              <li id="d-hr">Human Resources</li>
+              <li id="d-it">Information Technology</li>
+              <li id="d-311">311</li>
+              <li id="d-assess">Assessing</li>
+              <li id="d-ncr">Neighborhood &amp; Community Rel.</li>
+              <li id="d-arts">Arts &amp; Cultural Affairs</li>
+              <li id="d-reib">Racial Equity &amp; Belonging</li>
+              <li id="d-pmi">Performance Mgmt. &amp; Innovation</li>
+              <li id="d-mcc">Convention Center</li>
+            </ul>
+          </div>
+          <div class="col" style="width:170px">
+            <div class="card l2" id="ocs">
+              <div class="tag">Appointed</div>
+              <div class="name">Todd Barnette<span class="pill">Leaving</span></div>
+              <div class="role">Community Safety</div>
+            </div>
+            <ul class="list" id="list-ocs">
+              <li id="d-police">Police<small>Interim Chief Bill Peterson</small></li>
+              <li id="d-fire">Fire<small>Chief Reginald Freeman</small></li>
+              <li id="d-911">911</li>
+              <li id="d-em">Emergency Management</li>
+              <li id="d-ns">Neighborhood Safety</li>
+            </ul>
+          </div>
+          <div class="col" style="width:118px">
+            <div class="card l2" id="attorney">
+              <div class="tag">Appointed</div>
+              <div class="name">Kristyn Anderson</div>
+              <div class="role">City Attorney</div>
+            </div>
+            <ul class="list" id="list-atty">
+              <li id="d-civlaw">Civil Division</li>
+              <li id="d-crim">Criminal Division</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Legislative -->
+      <div class="branch">
+        <div class="card l1" id="council" style="flex-direction:column;align-items:flex-start;justify-content:center;gap:0">
+          <div class="tag"><span class="dot" style="background:var(--leg)"></span>Legislative</div>
+          <div class="name">City Council</div>
+          <div class="role">13 members · President Elliott Payne</div>
+          <div class="faces" id="faces"></div>
+        </div>
+        <div class="kids">
+          <div class="col" style="width:178px">
+            <div class="card l2" id="committees">
+              <div class="tag">Council members</div>
+              <div class="name">Standing Committees</div>
+              <div class="role">Hearings &amp; first votes</div>
+            </div>
+            <ul class="list" id="list-comm">
+              <li id="c-bhz">Business, Housing &amp; Zoning</li>
+              <li id="c-ci">Climate &amp; Infrastructure</li>
+              <li id="c-phse">Public Health, Safety &amp; Equity</li>
+              <li id="c-elr">Enterprise &amp; Labor Relations</li>
+              <li id="c-budget">Budget</li>
+              <li id="c-audit">Audit</li>
+              <li id="c-cow">Committee of the Whole</li>
+            </ul>
+          </div>
+          <div class="col" style="width:128px">
+            <div class="card l2" id="clerk">
+              <div class="tag">Appointed</div>
+              <div class="name">City Clerk</div>
+              <div class="role">Legislative record</div>
+            </div>
+            <ul class="list" id="list-clerk">
+              <li id="d-elections">Elections &amp; Voter Services</li>
+              <li id="d-records">Records &amp; publication</li>
+            </ul>
+          </div>
+          <div class="col" style="width:112px">
+            <div class="card l2" id="auditor">
+              <div class="tag">Appointed</div>
+              <div class="name">City Auditor</div>
+              <div class="role">Internal audit</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Independent -->
+      <div class="branch">
+        <div class="ind-row">
+          <div class="col" style="width:150px">
+            <div class="card l1" id="parkboard" style="flex-direction:column;align-items:flex-start;justify-content:center;gap:0">
+              <div class="tag"><span class="dot" style="background:var(--ind)"></span>Independent</div>
+              <div class="name">Park &amp; Recreation Board</div>
+              <div class="role">9 elected commissioners</div>
+            </div>
+            <div class="card l2" id="super" style="margin-top:30px">
+              <div class="tag">Hired by board</div>
+              <div class="name">Superintendent</div>
+              <div class="role">Park system staff</div>
+            </div>
+            <ul class="list" id="list-park">
+              <li id="d-parks">Parks &amp; recreation</li>
+              <li id="d-forestry">Forestry</li>
+              <li id="d-ppd">Park Police</li>
+            </ul>
+          </div>
+          <div class="col" style="width:150px">
+            <div class="card l1" id="bet" style="flex-direction:column;align-items:flex-start;justify-content:center;gap:0">
+              <div class="tag"><span class="dot" style="background:var(--ind)"></span>Independent</div>
+              <div class="name">Board of Estimate &amp; Taxation</div>
+              <div class="role">Caps tax levies</div>
+            </div>
+            <div class="note">Also independent: Public Housing Authority and Municipal Building Commission (board members appointed jointly).</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<div class="caption">
+  <div class="cap" id="cap"></div>
+</div>
+
+<div class="scrim" id="scrim">
+  <div class="sheet" role="dialog" aria-modal="true">
+    <button class="close" id="close" aria-label="Close">✕</button>
+    <div class="head" id="m-head"></div>
+    <div class="body" id="m-body"></div>
+  </div>
+</div>
+
+<script>
+// ── Council (headshot links from city_council/index.html) ──
+const HS = 'https://www.minneapolismn.gov/media/-www-content-assets/images/headshots/';
+const FREY = HS + 'Mayor-Jacob-Frey-th.jpg';
+const COUNCIL = [
+  { name: "Elliott Payne",     ward: 1,  role: "President" },
+  { name: "Robin Wonsley",     ward: 2,  role: "Minority Leader" },
+  { name: "Michael Rainville", ward: 3 },
+  { name: "LaTrisha Vetaw",    ward: 4 },
+  { name: "Pearll Warren",     ward: 5 },
+  { name: "Jamal Osman",       ward: 6,  role: "Vice President" },
+  { name: "Elizabeth Shaffer", ward: 7 },
+  { name: "Soren Stevenson",   ward: 8 },
+  { name: "Jason Chavez",      ward: 9 },
+  { name: "Aisha Chughtai",    ward: 10, role: "Majority Leader" },
+  { name: "Jamison Whiting",   ward: 11 },
+  { name: "Aurin Chowdhury",   ward: 12 },
+  { name: "Linea Palmisano",   ward: 13 },
+].map(m => ({ ...m, img: `${HS}Ward-${m.ward}-${m.name.replace(/ /g, '-')}.jpg` }));
+const fallback = n => `this.outerHTML='<span class=ph>${n.split(' ').map(s => s[0]).join('')}</span>'`;
+document.getElementById('faces').innerHTML = COUNCIL.map(m =>
+  `<img src="${m.img}" alt="${m.name}" title="${m.name} · Ward ${m.ward}" onerror="${fallback(m.name)}">`).join('');
+
+// ── Modal content ──
+const INFO = {
+  voters: { title: "Minneapolis Voters", body:
+    `<p>Every four years voters elect the <b>Mayor</b>, all <b>13 Council Members</b> (one per ward), <b>9 Park Board commissioners</b> and <b>2 members</b> of the Board of Estimate &amp; Taxation. Minneapolis uses ranked-choice voting.</p>
+     <p>Voters can also amend the City Charter by ballot question. That is how the current strong-mayor system was adopted in 2021.</p>` },
+  mayor: { title: "Mayor Jacob Frey", img: FREY, sub: "DFL · 3rd term, inaugurated January 5, 2026", body:
+    `<p>The Mayor is the city's chief executive. Since the <b>2021 charter amendment</b>, the Mayor alone directs city departments; the Council can no longer give orders to staff.</p>
+     <ul><li>Nominates the City Operations Officer, Community Safety Commissioner, City Attorney and department heads (Council confirms)</li>
+     <li>Signs or vetoes ordinances; 9 Council votes override a veto</li>
+     <li>Proposes the annual budget by August 15</li>
+     <li>Has full command of the Police Department</li>
+     <li>Can declare a local emergency (3 days unless the Council extends it)</li>
+     <li>Sits on the Board of Estimate &amp; Taxation</li></ul>
+     <p><a href="https://www.minneapolismn.gov/government/mayor/" target="_blank">Mayor's website ↗</a></p>` },
+  council: { title: "City Council", sub: "13 members · 2026–2029 term", body: () =>
+    `<div class="members">${COUNCIL.map(m => `<div class="member"><img src="${m.img}" alt=""><div><b>${m.name}</b><span>Ward ${m.ward}${m.role ? ' · ' + m.role : ''}</span></div></div>`).join('')}</div>
+     <p>The Council writes ordinances (city laws), adopts the budget, confirms the Mayor's nominees, and can override a veto with <b>9 of 13</b> votes.</p>
+     <p>12 members are DFL and 1 is independent (Wonsley). Four are affiliated with the Democratic Socialists of America.</p>
+     <p><a href="city_council/index.html">Voting records dashboard →</a></p>` },
+  parkboard: { title: "Park & Recreation Board", sub: "9 elected commissioners", body:
+    `<p>A separately elected board that runs the city's parks, parkways, lakes, recreation centers and the urban forest. It hires its own superintendent and sets its own tax levy within limits set by the Board of Estimate &amp; Taxation.</p>
+     <p>Neither the Mayor nor the Council directs the Park Board.</p>
+     <p><a href="https://www.minneapolisparks.org/about-us/leadership-and-structure/park-board-commissioners/" target="_blank">Commissioners ↗</a></p>` },
+  bet: { title: "Board of Estimate & Taxation", sub: "6 members", body:
+    `<p>Sets the <b>maximum</b> property tax levy for the City and Park Board, and authorizes city borrowing. The Council can adopt a lower levy, but not a higher one.</p>
+     <p>Members: 2 elected citywide, the Mayor, the Council President, the Budget Committee chair and a Park Board commissioner.</p>
+     <p><a href="https://www.minneapolismn.gov/government/boards-and-commissions/bet/" target="_blank">Board page ↗</a></p>` },
+  mayorsoffice: { title: "Mayor's Office", body:
+    `<p>The Mayor's own staff: chief of staff, policy advisors and constituent services. <b>Communications</b> and <b>Intergovernmental Relations</b>, the city's lobbyists at the Capitol and in Washington, report directly to the Mayor.</p>` },
+  coo: { title: "Margaret Anderson Kelliher", sub: "City Operations Officer", body:
+    `<p>She runs day-to-day operations of most city departments and reports directly to the Mayor. She took office in January 2024 as the first permanent City Operations Officer, and Mayor Frey renominated her in 2026 for a term through 2030.</p>` },
+  ocs: { title: "Todd Barnette", sub: "Commissioner of Community Safety", body:
+    `<p>The Office of Community Safety was created in 2022 to put Police, Fire, 911, Emergency Management and Neighborhood Safety under one commissioner.</p>
+     <p class="callout"><b>2026:</b> The Council voted 7–6 against reappointing Barnette. The Mayor vetoed that vote and the Council couldn't reach 9 votes to override. Barnette has said he will step down by the end of the year. In October, the Council advanced a plan to dissolve and reorganize the office.</p>` },
+  attorney: { title: "Kristyn Anderson", sub: "City Attorney", body:
+    `<p>The city's lawyer. Her office drafts and reviews ordinances for the Council, defends the city in lawsuits, and prosecutes misdemeanors. Felonies are prosecuted by Hennepin County. She was renominated in 2026.</p>` },
+  committees: { title: "Standing Committees", sub: "Groups of Council Members", body:
+    `<p>Most legislation goes to a committee first. Committees hold public hearings, can amend proposals, and vote on a recommendation before the full Council acts.</p>
+     <ul><li><b>Business, Housing &amp; Zoning</b>: development, housing, licenses</li>
+     <li><b>Climate &amp; Infrastructure</b>: streets, utilities, sustainability</li>
+     <li><b>Public Health, Safety &amp; Equity</b>: policing, health, civil rights</li>
+     <li><b>Enterprise &amp; Labor Relations</b>: operations, contracts, labor</li>
+     <li><b>Budget</b>: the Mayor's budget and spending</li>
+     <li><b>Audit</b>: oversees the City Auditor</li>
+     <li><b>Committee of the Whole</b>: all 13 members, citywide topics</li></ul>` },
+  clerk: { title: "City Clerk", sub: "Appointed by the Council", body:
+    `<p>Keeps the official legislative record, runs Council meetings and agendas, publishes adopted ordinances, and runs <b>Elections &amp; Voter Services</b>.</p>` },
+  auditor: { title: "City Auditor", sub: "Reports to the Audit Committee", body:
+    `<p>Independently reviews city departments and programs for risk, waste and compliance, and reports findings to the Council.</p>` },
+  super: { title: "Park Superintendent", sub: "Hired by the Park Board", body:
+    `<p>Runs about 180 parks, the Grand Rounds, recreation centers, the urban forest and the Park Police on behalf of the elected board.</p>` },
+};
+const DEPTS = {
+  'd-comms': ["Communications", "City news, public messaging and the city website."],
+  'd-igr': ["Intergovernmental Relations", "Represents the city at the State Capitol, Hennepin County, the Met Council and in Washington."],
+  'd-pw': ["Public Works", "Streets, plowing, water, sewers, trash and recycling, traffic and parking."],
+  'd-cped': ["Community Planning & Economic Development", "Zoning, development review, housing programs and business support."],
+  'd-health': ["Health", "Public health programs, food safety inspections and environmental health."],
+  'd-reg': ["Regulatory Services", "Rental licensing, housing inspections, animal care and traffic control."],
+  'd-finance': ["Finance & Property Services", "Accounting, purchasing, city buildings and fleet."],
+  'd-civil': ["Civil Rights", "Enforces the civil rights ordinance, contract compliance and police conduct oversight."],
+  'd-hr': ["Human Resources", "Hiring, pay, benefits and labor relations for city employees."],
+  'd-it': ["Information Technology", "City technology systems and data."],
+  'd-311': ["311", "The city's service line for non-emergency requests and questions."],
+  'd-assess': ["Assessing", "Values every property in the city for property taxes."],
+  'd-ncr': ["Neighborhood & Community Relations", "Supports neighborhood organizations and community engagement."],
+  'd-arts': ["Arts & Cultural Affairs", "Public art and the creative economy."],
+  'd-reib': ["Racial Equity, Inclusion & Belonging", "Advances racial equity across city policy and operations."],
+  'd-pmi': ["Performance Management & Innovation", "Data analysis and process improvement for departments."],
+  'd-mcc': ["Minneapolis Convention Center", "Runs the Convention Center and Target Center."],
+  'd-police': ["Police", "Interim Chief <b>Bill Peterson</b>, appointed June 2026 after Brian O'Hara resigned May 27, 2026. A national search for a permanent chief is underway. The Mayor has command of the department."],
+  'd-fire': ["Fire", "Chief <b>Reginald Freeman</b>, confirmed in 2026. Fire suppression, EMS response and fire inspections."],
+  'd-911': ["911", "Emergency call-taking and dispatch."],
+  'd-em': ["Emergency Management", "Disaster planning, preparedness and coordination."],
+  'd-ns': ["Neighborhood Safety", "Violence prevention, violence interrupters and behavioral crisis response."],
+  'd-civlaw': ["Civil Division", "Advises city officials, drafts ordinances and defends the city in lawsuits."],
+  'd-crim': ["Criminal Division", "Prosecutes misdemeanors and gross misdemeanors in Minneapolis."],
+  'c-bhz': ["Business, Housing & Zoning Committee", "Development, housing policy, zoning and business licenses."],
+  'c-ci': ["Climate & Infrastructure Committee", "Streets, utilities, transportation and sustainability."],
+  'c-phse': ["Public Health, Safety & Equity Committee", "Policing, public health and civil rights."],
+  'c-elr': ["Enterprise & Labor Relations Committee", "City operations, contracts and labor agreements."],
+  'c-budget': ["Budget Committee", "Reviews the Mayor's recommended budget and spending changes."],
+  'c-audit': ["Audit Committee", "Oversees the City Auditor and audit findings."],
+  'c-cow': ["Committee of the Whole", "All 13 members meeting as a committee on citywide topics."],
+  'd-elections': ["Elections & Voter Services", "Runs city elections, voter registration and polling places."],
+  'd-records': ["Records & publication", "The official legislative record (LIMS) and publication of ordinances."],
+  'd-parks': ["Parks & recreation", "Parks, parkways, lakes, beaches and recreation centers."],
+  'd-forestry': ["Forestry", "Boulevard and park trees across the city."],
+  'd-ppd': ["Park Police", "A separate police department that patrols the park system."],
+};
+
+// ── Structure (tree edges) ──
+const TREE = [
+  ['voters', ['mayor', 'council', 'parkboard', 'bet']],
+  ['mayor', ['mayorsoffice', 'coo', 'ocs', 'attorney']],
+  ['council', ['committees', 'clerk', 'auditor']],
+  ['parkboard', ['super']],
+];
+
+// ── Flows ──
+const FLOWS = {
+  ordinance: { title: "Passing a law", steps: [
+    { t: "Idea & drafting", n: ['voters', 'council', 'attorney'], e: [['voters', 'council', 'residents ask'], ['council', 'attorney', 'drafting help']],
+      d: "A Council Member (the <b>author</b>) takes an idea from residents, advocates, staff or the Mayor. The City Attorney's office helps draft the legal language." },
+    { t: "Notice & introduction", n: ['council', 'clerk'], h: ['d-records'], e: [['council', 'clerk', 'introduced']],
+      d: "The author gives <b>notice of intent</b> at a Council meeting, then <b>introduces</b> the ordinance at a later one. The Clerk enters it in the official record." },
+    { t: "Referred to committee", n: ['council', 'committees'], h: ['c-bhz', 'c-ci', 'c-phse', 'c-elr'], e: [['council', 'committees', 'referred']],
+      d: "The ordinance is sent to the committee that covers its topic. For example, a rental rule goes to Business, Housing &amp; Zoning." },
+    { t: "Public hearing", n: ['voters', 'committees'], h: ['c-bhz', 'c-ci', 'c-phse', 'c-elr'], e: [['voters', 'committees', 'testimony']],
+      d: "The committee holds a <b>public hearing</b> where anyone can testify, may amend the text, and then votes on a recommendation." },
+    { t: "Full Council vote", n: ['committees', 'council'], e: [['committees', 'council', 'recommendation']],
+      d: "The full Council debates and votes. Passage takes a majority: <b>7 of 13</b>." },
+    { t: "Mayor signs or vetoes", n: ['council', 'mayor'], e: [['council', 'mayor', 'passed']],
+      d: "The Mayor has <b>5 days</b> to sign or veto. If the Mayor does neither, it becomes law without a signature." },
+    { t: "Veto override", n: ['mayor', 'council'], e: [['mayor', 'council', 'veto', 'veto']],
+      d: "The Council can override a veto with <b>9 of 13</b> votes. In 2026 several override attempts fell short, so those vetoes stood." },
+    { t: "Becomes law", n: ['clerk', 'coo', 'ocs'], h: ['d-records'], e: [['clerk', 'coo', 'published'], ['clerk', 'ocs', '']],
+      d: "The Clerk publishes the ordinance and it takes effect. Departments enforce it under the Mayor's direction." },
+  ]},
+  budget: { title: "The budget", steps: [
+    { t: "Departments request", n: ['coo', 'ocs', 'mayorsoffice', 'attorney'], h: ['d-pw', 'd-health', 'd-police', 'd-fire'], e: [['list-coo', 'coo', ''], ['list-ocs', 'ocs', '']],
+      d: "In spring, each department builds a spending request, reviewed by the City Operations Officer and Community Safety Commissioner." },
+    { t: "Mayor proposes", n: ['mayor', 'coo', 'ocs', 'council'], e: [['coo', 'mayor', ''], ['ocs', 'mayor', ''], ['mayor', 'council', 'by Aug 15']],
+      d: "The Mayor presents a <b>recommended budget</b> to the Council by <b>August 15</b>." },
+    { t: "Levy cap set", n: ['bet', 'mayor', 'council', 'parkboard'], e: [['council', 'bet', 'proposed levy'], ['bet', 'parkboard', 'cap']],
+      d: "In September the <b>Board of Estimate &amp; Taxation</b> sets the maximum property tax levy for the City and Park Board. The final levy can go down, but not up." },
+    { t: "Hearings", n: ['committees', 'voters', 'coo', 'ocs'], h: ['c-budget'], e: [['coo', 'committees', 'presentations'], ['voters', 'committees', 'Truth-in-Taxation']],
+      d: "Departments present to the <b>Budget Committee</b>. Residents testify at the Truth-in-Taxation hearing in early December." },
+    { t: "Council adopts", n: ['council', 'committees'], h: ['c-budget'], e: [['committees', 'council', 'amendments']],
+      d: "Council Members amend the budget to move money between programs, then adopt it in <b>December</b> by majority vote." },
+    { t: "Mayor's veto", n: ['council', 'mayor'], e: [['council', 'mayor', 'adopted'], ['mayor', 'council', 'veto?', 'veto']],
+      d: "The Mayor can veto the budget. The Council needs <b>9 votes</b> to override." },
+    { t: "Departments spend", n: ['mayor', 'coo', 'ocs', 'mayorsoffice', 'attorney'], all: ['list-coo', 'list-ocs', 'list-mo', 'list-atty'], e: [['mayor', 'coo', ''], ['mayor', 'ocs', '']],
+      d: "Starting January 1, departments spend as budgeted. Changes during the year need Council approval." },
+  ]},
+  executive: { title: "Executive power", steps: [
+    { t: "Voters elect", n: ['voters', 'mayor'], e: [['voters', 'mayor', 'elect']],
+      d: "Voters elect the Mayor to a 4-year term. Jacob Frey began his third term in January 2026." },
+    { t: "Mayor nominates", n: ['mayor', 'coo', 'ocs', 'attorney'], e: [['mayor', 'coo', 'nominates'], ['mayor', 'ocs', ''], ['mayor', 'attorney', '']],
+      d: "The Mayor nominates the City Operations Officer, Community Safety Commissioner, City Attorney and every department head, including the police and fire chiefs." },
+    { t: "Council confirms", n: ['council', 'ocs', 'coo', 'attorney'], e: [['council', 'ocs', 'confirm / reject', 'veto']],
+      d: "Nominees need Council approval. <b>In 2026</b> the Council voted 7–6 to reject Todd Barnette's reappointment. The Mayor vetoed the rejection, the override failed, and Barnette later said he'd leave by the end of the year." },
+    { t: "Mayor directs", n: ['mayor', 'coo', 'ocs', 'mayorsoffice'], e: [['mayor', 'coo', 'directives'], ['mayor', 'ocs', 'executive orders']],
+      d: "The Mayor sets policy through <b>executive orders</b> and directives, and has sole command of the Police Department." },
+    { t: "Departments act", n: ['coo', 'ocs'], all: ['list-coo', 'list-ocs'], e: [['coo', 'list-coo', ''], ['ocs', 'list-ocs', '']],
+      d: "The City Operations Officer and Community Safety Commissioner turn those directions into daily work across about 20 departments." },
+    { t: "Emergencies", n: ['mayor', 'ocs', 'council'], h: ['d-em', 'd-police', 'd-fire'], e: [['mayor', 'ocs', 'declares emergency'], ['council', 'mayor', 'extends after 3 days']],
+      d: "The Mayor can declare a <b>local emergency</b>, which allows emergency spending and orders such as curfews. It lasts 3 days unless the Council votes to extend it." },
+    { t: "Council oversight", n: ['council', 'committees', 'auditor', 'coo', 'ocs'], h: ['c-audit'], e: [['auditor', 'coo', 'audits'], ['committees', 'ocs', 'hearings']],
+      d: "The Council can't direct staff. It oversees them through committee hearings, City Auditor reviews, the budget, and ordinances that departments must follow." },
+  ]},
+};
+
+// ── Layout & drawing ──
+const $ = id => document.getElementById(id);
+const tree = $('tree'), stage = $('stage');
+let mode = 'structure', step = 0, scale = 1;
+
+function box(id) {
+  let el = $(id), x = 0, y = 0;
+  const w = el.offsetWidth, h = el.offsetHeight;
+  while (el && el !== tree) { x += el.offsetLeft; y += el.offsetTop; el = el.offsetParent; }
+  return { x, y, w, h, cx: x + w / 2, cy: y + h / 2 };
+}
+
+function fit() {
+  tree.style.transform = 'none';
+  const tw = tree.offsetWidth, th = tree.offsetHeight;
+  scale = Math.min(1.15, (stage.clientWidth - 32) / tw, (stage.clientHeight - 8) / th);
+  tree.style.transform = `translate(-50%, -50%) scale(${scale})`;
+  for (const s of [$('wires'), $('fwires')]) { s.setAttribute('width', tw); s.setAttribute('height', th); }
+  drawTree(); drawFlow();
+}
+
+function drawTree() {
+  let d = '';
+  for (const [p, kids] of TREE) {
+    const a = box(p), y0 = a.y + a.h;
+    const bs = kids.map(box), midY = y0 + (bs[0].y - y0) / 2;
+    d += `M${a.cx},${y0} V${midY} `;
+    const xs = bs.map(b => b.cx);
+    d += `M${Math.min(a.cx, ...xs)},${midY} H${Math.max(a.cx, ...xs)} `;
+    for (const b of bs) d += `M${b.cx},${midY} V${b.y} `;
+  }
+  $('wires').innerHTML = `<path d="${d}" fill="none" stroke="#c7c7cc" stroke-width="1"/>`;
+}
+
+function curve(a, b) {
+  const overlapY = !(a.y + a.h < b.y || b.y + b.h < a.y);
+  let p1, p2, c1, c2;
+  if (overlapY) { // side by side: arc above (rightward) or below (leftward)
+    const right = b.cx > a.cx, off = Math.min(60, a.w / 3, b.w / 3);
+    p1 = { x: right ? a.x + a.w - off : a.x + off, y: right ? a.y : a.y + a.h };
+    p2 = { x: right ? b.x + off : b.x + b.w - off, y: right ? b.y : b.y + b.h };
+    const lift = right ? -40 : 40;
+    c1 = { x: p1.x, y: p1.y + lift }; c2 = { x: p2.x, y: p2.y + lift };
+  } else {
+    const down = b.cy > a.cy;
+    p1 = { x: a.cx, y: down ? a.y + a.h : a.y };
+    p2 = { x: b.cx, y: down ? b.y : b.y + b.h };
+    const k = Math.max(30, Math.abs(p2.y - p1.y) * .5) * (down ? 1 : -1);
+    c1 = { x: p1.x, y: p1.y + k }; c2 = { x: p2.x, y: p2.y - k };
+  }
+  const mid = { x: (p1.x + 3 * c1.x + 3 * c2.x + p2.x) / 8, y: (p1.y + 3 * c1.y + 3 * c2.y + p2.y) / 8 };
+  return { d: `M${p1.x},${p1.y} C${c1.x},${c1.y} ${c2.x},${c2.y} ${p2.x},${p2.y}`, mid };
+}
+
+function drawFlow() {
+  const svg = $('fwires'), lab = $('flabels');
+  if (mode === 'structure') { svg.innerHTML = ''; lab.innerHTML = ''; return; }
+  const s = FLOWS[mode].steps[step];
+  let out = `<defs>
+    <marker id="ab" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#0071e3"/></marker>
+    <marker id="ar" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#e3342f"/></marker></defs>`;
+  let labels = '';
+  for (const [a, b, text, kind] of s.e) {
+    const { d, mid } = curve(box(a), box(b));
+    const red = kind === 'veto';
+    out += `<path class="anim" d="${d}" fill="none" stroke="${red ? '#e3342f' : '#0071e3'}" stroke-width="2" stroke-dasharray="6 4" stroke-linecap="round" marker-end="url(#${red ? 'ar' : 'ab'})"/>`;
+    if (text) labels += `<div class="flabel ${red ? 'veto' : ''}" style="left:${mid.x}px;top:${mid.y}px">${text}</div>`;
+  }
+  svg.innerHTML = out; lab.innerHTML = labels;
+}
+
+function render() {
+  document.querySelectorAll('.hl').forEach(e => e.classList.remove('hl'));
+  document.body.classList.toggle('flowing', mode !== 'structure');
+  document.querySelectorAll('.segmented button').forEach(b => b.classList.toggle('active', b.dataset.mode === mode));
+  const cap = $('cap');
+  if (mode === 'structure') {
+    cap.innerHTML = `<div class="txt">Minneapolis voters elect three separate centers of power. <b>Higher on the tree means more authority</b>, and each box answers to the one it hangs from. Click any box or department for details, or choose a process above to walk through it step by step.</div>`;
+  } else {
+    const f = FLOWS[mode], s = f.steps[step];
+    s.n.forEach(id => $(id).classList.add('hl'));
+    (s.h || []).forEach(id => $(id).classList.add('hl'));
+    (s.all || []).forEach(id => $(id).querySelectorAll('li').forEach(li => li.classList.add('hl')));
+    cap.innerHTML = `
+      <button class="navbtn" id="prev" ${step === 0 ? 'disabled' : ''} aria-label="Previous">‹</button>
+      <div class="txt">
+        <div class="stepno">${f.title} · Step ${step + 1} of ${f.steps.length}</div>
+        <div class="stitle">${s.t}</div>
+        <div>${s.d}</div>
+        <div class="dots">${f.steps.map((_, i) => `<i class="${i === step ? 'on' : ''}" data-i="${i}" title="${f.steps[i].t}"></i>`).join('')}</div>
+      </div>
+      <button class="navbtn primary" id="next" aria-label="Next">${step === f.steps.length - 1 ? '↺' : '›'}</button>`;
+    $('prev').onclick = () => go(step - 1);
+    $('next').onclick = () => go((step + 1) % f.steps.length);
+    cap.querySelectorAll('.dots i').forEach(d => d.onclick = () => go(+d.dataset.i));
+  }
+  fit();
+}
+function go(i) { const n = FLOWS[mode].steps.length; step = Math.max(0, Math.min(n - 1, i)); render(); }
+
+// ── Modal ──
+function openModal(id) {
+  let title, sub = '', img, body;
+  if (INFO[id]) { ({ title, sub = '', img } = INFO[id]); body = typeof INFO[id].body === 'function' ? INFO[id].body() : INFO[id].body; }
+  else if (DEPTS[id]) {
+    title = DEPTS[id][0]; body = `<p>${DEPTS[id][1]}</p>`;
+    const parent = $(id).closest('.col').querySelector('.card');
+    sub = 'Under ' + (INFO[parent.id]?.sub || INFO[parent.id]?.title || '');
+  } else return;
+  $('m-head').innerHTML = `${img ? `<img src="${img}" alt="">` : ''}<div><h2>${title}</h2>${sub ? `<div class="role" style="font-size:13px">${sub}</div>` : ''}</div>`;
+  $('m-body').innerHTML = body;
+  $('scrim').classList.add('open');
+}
+function closeModal() { $('scrim').classList.remove('open'); }
+$('close').onclick = closeModal;
+$('scrim').onclick = e => { if (e.target === $('scrim')) closeModal(); };
+document.querySelectorAll('.card').forEach(c => c.onclick = () => openModal(c.id));
+document.querySelectorAll('.list li').forEach(li => li.onclick = () => openModal(li.id));
+
+document.querySelectorAll('.segmented button').forEach(b => b.onclick = () => { mode = b.dataset.mode; step = 0; render(); });
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') return closeModal();
+  if (mode === 'structure' || $('scrim').classList.contains('open')) return;
+  if (e.key === 'ArrowRight') go((step + 1) % FLOWS[mode].steps.length);
+  if (e.key === 'ArrowLeft') go(step - 1);
+});
+window.addEventListener('resize', fit);
+if (document.fonts) document.fonts.ready.then(fit);
+
+// deep link: #ordinance, #budget-3, #executive-2
+const m = location.hash.match(/^#(ordinance|budget|executive)(?:-(\d+))?/);
+if (m) { mode = m[1]; step = Math.max(0, Math.min(FLOWS[mode].steps.length - 1, (+m[2] || 1) - 1)); }
+render();
+</script>
 </body>
 </html>
