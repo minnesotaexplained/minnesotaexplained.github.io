@@ -760,20 +760,18 @@
             }
         }
     </style>
+    <link rel="stylesheet" href="css/navbar.css">
+    <script src="js/navbar.js"></script>
 </head>
 <body>
     <div id="app">
-        <nav class="navbar">
-            <button class="back-button" id="backButton" onclick="showCards()">← Back</button>
-            <div class="navbar-content">
-                <h1 class="navbar-title">Minnesota Explained</h1>
-                <p class="navbar-subtitle" id="navbarSubtitle"></p>
+        <nav class="mx-nav" aria-label="Site">
+            <a href="/" class="mx-nav-logo" title="Minnesota Explained home">MX</a>
+            <div class="mx-nav-text">
+                <div class="mx-nav-title">Minnesota Explained</div>
+                <div class="mx-nav-subtitle">Guides, data, and tools for understanding Minnesota government</div>
             </div>
-            <div class="dark-mode-toggle">
-                <div class="toggle-switch" onclick="toggleDarkMode()">
-                    <div class="toggle-slider"></div>
-                </div>
-            </div>
+            <button class="mx-nav-toggle" type="button" aria-label="Toggle dark mode"><span class="mx-nav-toggle-slider"></span></button>
         </nav>
         <div>
             <router-view></router-view>
@@ -821,13 +819,6 @@
         function initDarkMode() {
             const savedTheme = localStorage.getItem('theme') || 'dark';
             document.documentElement.setAttribute('data-theme', savedTheme);
-        }
-
-        function toggleDarkMode() {
-            const currentTheme = document.documentElement.getAttribute('data-theme');
-            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-            document.documentElement.setAttribute('data-theme', newTheme);
-            localStorage.setItem('theme', newTheme);
         }
 
 

@@ -358,11 +358,18 @@
                 flex-direction: column;
             }
         }
+        body > .mx-nav { margin: -2rem -2rem 2rem; }
+        @media (max-width: 768px) { body > .mx-nav { margin: -1rem -1rem 1rem; } }
     </style>
+    <link rel="stylesheet" href="css/navbar.css">
 </head>
 <body>
-    <nav style="margin:0; text-align: center;">
-        <h3><a href="/" style="color:white; text-decoration: none;">Minnesota Explained</a></h3>
+    <nav class="mx-nav" aria-label="Site">
+        <a href="/" class="mx-nav-logo" title="Minnesota Explained home">MX</a>
+        <div class="mx-nav-text">
+            <div class="mx-nav-title">Delegation of Parental Authority (DOPA)</div>
+            <div class="mx-nav-subtitle">Minnesota Explained</div>
+        </div>
     </nav>
 
     <div class="header">

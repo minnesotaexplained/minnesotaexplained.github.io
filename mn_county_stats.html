@@ -6,6 +6,7 @@
     <title>Minnesota Counties Explorer</title>
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="js/config.js"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Bitter:wght@400;700&family=IBM+Plex+Mono:wght@400;600&display=swap" rel="stylesheet">
@@ -364,9 +365,18 @@
             margin-right: 0.5rem;
             border: 1px solid var(--border);
         }
+        body > .mx-nav { margin: -2rem -2rem 2rem; }
     </style>
+    <link rel="stylesheet" href="css/navbar.css">
 </head>
 <body>
+    <nav class="mx-nav" aria-label="Site">
+        <a href="/" class="mx-nav-logo" title="Minnesota Explained home">MX</a>
+        <div class="mx-nav-text">
+            <div class="mx-nav-title">Minnesota County Statistics</div>
+            <div class="mx-nav-subtitle">Minnesota Explained</div>
+        </div>
+    </nav>
     <div class="container">
         <header>
             <h1>Minnesota Counties</h1>
@@ -628,7 +638,7 @@
         // Initialize map
         const map = L.map('map').setView([46.5, -94.5], 6);
 
-        L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
+        L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png?api_key=' + CARTO_API_KEY, {
             attribution: '© OpenStreetMap © CartoDB',
             maxZoom: 19
         }).addTo(map);

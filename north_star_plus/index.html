@@ -530,20 +530,18 @@
             }
         }
     </style>
+    <link rel="stylesheet" href="../css/navbar.css">
+    <script src="../js/navbar.js"></script>
 </head>
 <body>
     <div id="app">
-        <nav class="navbar">
-            <a href="../index.html" class="mx-logo">MX</a>
-            <div class="navbar-content">
-                <h1 class="navbar-title">North Star Plus</h1>
-                <p class="navbar-subtitle">Minnesota Explained - Endorsed Legislative Proposals</p>
+        <nav class="mx-nav" aria-label="Site">
+            <a href="/" class="mx-nav-logo" title="Minnesota Explained home">MX</a>
+            <div class="mx-nav-text">
+                <div class="mx-nav-title">North Star Plus</div>
+                <div class="mx-nav-subtitle">Minnesota Explained — Endorsed Legislative Proposals</div>
             </div>
-            <div class="dark-mode-toggle">
-                <div class="toggle-switch" @click="toggleDarkMode">
-                    <div class="toggle-slider"></div>
-                </div>
-            </div>
+            <button class="mx-nav-toggle" type="button" aria-label="Toggle dark mode"><span class="mx-nav-toggle-slider"></span></button>
         </nav>
 
         <div class="container">
@@ -719,12 +717,6 @@
                     const d = new Date(dateStr + 'T00:00:00');
                     if (isNaN(d)) return dateStr;
                     return d.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' });
-                },
-                toggleDarkMode() {
-                    const current = document.documentElement.getAttribute('data-theme');
-                    const next = current === 'dark' ? 'light' : 'dark';
-                    document.documentElement.setAttribute('data-theme', next);
-                    localStorage.setItem('theme', next);
                 }
             }
         }).mount('#app');

@@ -1340,11 +1340,17 @@
         .activity-date { color: #888; font-size: 0.85em; white-space: nowrap; }
         #activity-loading { padding: 24px 14px; color: #888; font-size: 0.9em; }
         #activity-error { padding: 24px 14px; color: #dc3545; font-size: 0.9em; }
+        body > .mx-nav { margin: -40px -20px 40px; }
     </style>
+    <link rel="stylesheet" href="css/navbar.css">
 </head>
 <body>
-    <nav style="margin:0; text-align: center;">
-        <h3><a href="/" style="text-decoration: none;">Minnesota Explained</a></h3>
+    <nav class="mx-nav" aria-label="Site">
+        <a href="/" class="mx-nav-logo" title="Minnesota Explained home">MX</a>
+        <div class="mx-nav-text">
+            <div class="mx-nav-title">Minnesota Legislature</div>
+            <div class="mx-nav-subtitle">Minnesota Explained</div>
+        </div>
     </nav>
     <div class="container">
         <h1>Minnesota Legislature</h1>
@@ -1543,6 +1549,7 @@
 
     <!-- Leaflet JS -->
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="js/config.js"></script>
     
     <!-- Proj4 and Proj4Leaflet -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/proj4js/2.11.0/proj4.js"></script>
@@ -1603,7 +1610,7 @@
                     doubleClickZoom: false,
                     touchZoom: false,
                 });
-                L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png').addTo(modalMap);
+                L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png?api_key=' + CARTO_API_KEY).addTo(modalMap);
             }
 
             if (modalDistrictLayer) {
@@ -1645,7 +1652,7 @@
         function initializeMap() {
             map = L.map('map').setView([46.3, -94.2], 7);
 
-            L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
+            L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png?api_key=' + CARTO_API_KEY, {
                 attribution: '&copy; OpenStreetMap'
             }).addTo(map);
 

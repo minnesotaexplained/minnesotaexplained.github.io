@@ -442,22 +442,18 @@
             .headshot { width: 64px; height: 64px; }
         }
     </style>
+    <link rel="stylesheet" href="../css/navbar.css">
+    <script src="../js/navbar.js"></script>
 </head>
 <body>
     <div id="app">
-        <nav class="navbar">
-            <a href="../index.html" class="mx-logo">MX</a>
-            <div class="navbar-content">
-                <h1 class="navbar-title">Ballot Endorsements</h1>
-                <p class="navbar-subtitle">
-                    Minnesota Explained<template v-if="ballot"> — {{ ballot.election }}, {{ ballot.election_date }}</template>
-                </p>
+        <nav class="mx-nav" aria-label="Site">
+            <a href="/" class="mx-nav-logo" title="Minnesota Explained home">MX</a>
+            <div class="mx-nav-text">
+                <div class="mx-nav-title">Ballot Endorsements</div>
+                <div class="mx-nav-subtitle">Minnesota Explained<template v-if="ballot"> — {{ ballot.election }}, {{ ballot.election_date }}</template></div>
             </div>
-            <div class="dark-mode-toggle">
-                <div class="toggle-switch" @click="toggleDarkMode">
-                    <div class="toggle-slider"></div>
-                </div>
-            </div>
+            <button class="mx-nav-toggle" type="button" aria-label="Toggle dark mode"><span class="mx-nav-toggle-slider"></span></button>
         </nav>
 
         <div class="container">
@@ -687,11 +683,6 @@
                 gradeClass(grade) {
                     const letter = (grade || '').charAt(0).toUpperCase();
                     return letter === 'A' ? 'grade-a' : letter === 'B' ? 'grade-b' : 'grade-low';
-                },
-                toggleDarkMode() {
-                    const next = document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
-                    document.documentElement.setAttribute('data-theme', next);
-                    localStorage.setItem('theme', next);
                 },
             },
         }).mount('#app');

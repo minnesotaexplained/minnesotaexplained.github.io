@@ -767,24 +767,18 @@
     .db-stat-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-bottom: 14px; }
     @media (max-width: 700px) { .db-stat-row { grid-template-columns: 1fr; } }
   </style>
+    <link rel="stylesheet" href="../css/navbar.css">
 </head>
 <body>
 
-<!-- ─── Header ─── -->
-<header class="page-header">
-  <div class="header-inner">
-    <div class="header-top">
-      <a href="/" class="mx-logo">MX</a>
-      <h1>Minneapolis City Council <span>Voting Dashboard</span></h1>
-      <span class="header-badge">2026</span>
-      <button class="theme-toggle" id="theme-toggle" title="Toggle light/dark mode">
-        <svg id="theme-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
-        </svg>
-      </button>
+<nav class="mx-nav" aria-label="Site">
+    <a href="/" class="mx-nav-logo" title="Minnesota Explained home">MX</a>
+    <div class="mx-nav-text">
+        <div class="mx-nav-title">Minneapolis City Council</div>
+        <div class="mx-nav-subtitle">Minnesota Explained — Voting Dashboard 2026</div>
     </div>
-  </div>
-</header>
+    <button class="mx-nav-toggle" type="button" aria-label="Toggle dark mode" data-custom><span class="mx-nav-toggle-slider"></span></button>
+</nav>
 
 <!-- ─── Tabs ─── -->
 <nav class="tab-nav">
@@ -1045,6 +1039,7 @@ issues.forEach(issue => {
 </div>
 
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+<script src="../js/config.js"></script>
 <script>
 // ── theme toggle ──────────────────────────────────────────────
 // Icons represent the current mode; cycle: dark → light → white → dark
@@ -1061,21 +1056,18 @@ const THEME_TITLES = {
 };
 (function initTheme() {
   const saved = localStorage.getItem('cc-theme') || 'dark';
-  if (saved === 'light' || saved === 'white') document.documentElement.dataset.theme = saved;
+  document.documentElement.dataset.theme = saved;
 })();
 document.addEventListener('DOMContentLoaded', () => {
-  const btn  = document.getElementById('theme-toggle');
-  const icon = document.getElementById('theme-icon');
+  const btn = document.querySelector('.mx-nav-toggle');
   function currentTheme() { return document.documentElement.dataset.theme || 'dark'; }
   function syncIcon() {
-    const t = currentTheme();
-    icon.innerHTML = THEME_ICONS[t];
-    btn.title = THEME_TITLES[t];
+    btn.title = THEME_TITLES[currentTheme()];
   }
   syncIcon();
   btn.addEventListener('click', () => {
     const next = THEME_CYCLE[(THEME_CYCLE.indexOf(currentTheme()) + 1) % 3];
-    document.documentElement.dataset.theme = next === 'dark' ? '' : next;
+    document.documentElement.dataset.theme = next;
     localStorage.setItem('cc-theme', next);
     syncIcon();
   });
@@ -1206,7 +1198,7 @@ function ringCentroid(ring) {
 function loadWardMap() {
   const map = L.map('ward-map', { scrollWheelZoom: false }).setView([44.9778, -93.2650], 11);
 
-  L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
+  L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png?api_key=' + CARTO_API_KEY, {
     subdomains: 'abcd',
     maxZoom: 19,
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions" target="_blank" rel="noopener">CARTO</a>',
