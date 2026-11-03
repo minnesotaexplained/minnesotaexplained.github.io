@@ -3,239 +3,462 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Your Guide to Minnesota State Agencies</title>
+    <title>The Great Houses of Minnesota — Your Guide to State Agencies</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --parchment: #f5eedc;
+            --parchment-dark: #e9dfc4;
+            --ink: #2b2418;
+            --ink-soft: #5c5240;
+            --gold: #b8892d;
+            --card: #fffdf7;
+            --night: #1b2233;
         }
 
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-            background: #f8f9fa;
-            color: #2d3748;
+            font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: var(--parchment);
+            color: var(--ink);
             line-height: 1.6;
         }
 
-        .navbar {
-            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
-            color: white;
-            padding: 1rem 1rem;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-        }
-
-        .navbar h1 {
-            font-size: 2rem;
-            font-weight: 700;
-            margin-bottom: 0.5rem;
-        }
-
-        .navbar-subtitle {
-            font-size: 1.1rem;
-            opacity: 0.95;
-        }
+        a { color: #1e3c72; }
 
         .container {
-            max-width: 900px;
+            max-width: 1200px;
             margin: 0 auto;
-            padding: 2rem;
+            padding: 0 1.5rem 4rem;
         }
 
-        .intro-box {
-            background: white;
-            padding: 2rem;
-            border-radius: 12px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-            margin-bottom: 2rem;
-            border-left: 4px solid #2a5298;
+        /* ---------- Hero ---------- */
+        .hero {
+            text-align: center;
+            padding: 1.6rem 1rem 0.4rem;
         }
 
-        .intro-box p {
-            font-size: 1.1rem;
-            color: #4a5568;
-            margin-bottom: 1rem;
+        .hero h1 {
+            font-weight: 700;
+            font-size: clamp(1.7rem, 4vw, 2.4rem);
+            line-height: 1.15;
         }
 
-        .intro-box p:last-child {
-            margin-bottom: 0;
+        .hero p {
+            max-width: 680px;
+            margin: 0.3rem auto 0;
+            color: var(--ink-soft);
         }
 
-        .section {
-            background: white;
-            padding: 2rem;
-            border-radius: 12px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-            margin-bottom: 2rem;
-        }
-
-        .section h2 {
-            color: #1e3c72;
-            font-size: 1.75rem;
-            margin-bottom: 1.5rem;
+        /* ---------- Tabs ---------- */
+        .tabs {
             display: flex;
+            justify-content: center;
+            gap: 0.5rem;
+            margin: 1rem 0;
+            flex-wrap: wrap;
+        }
+
+        .tab {
+            font: inherit;
+            font-weight: 600;
+            padding: 0.5rem 1.2rem;
+            border: 2px solid var(--ink);
+            background: transparent;
+            color: var(--ink);
+            border-radius: 999px;
+            cursor: pointer;
+            transition: background 0.2s, color 0.2s;
+        }
+
+        .tab:hover { background: var(--parchment-dark); }
+
+        .tab[aria-selected="true"] {
+            background: var(--ink);
+            color: var(--parchment);
+        }
+
+        .panel[hidden] { display: none; }
+
+        /* ---------- Filters ---------- */
+        .controls {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
             align-items: center;
-            gap: 0.75rem;
+            gap: 0.5rem;
+            margin-bottom: 1.2rem;
         }
 
-        .section h3 {
-            color: #2a5298;
-            font-size: 1.3rem;
-            margin-top: 1.5rem;
-            margin-bottom: 1rem;
+        .search {
+            width: 260px;
+            max-width: 100%;
+            padding: 0.4rem 0.9rem;
+            font: inherit;
+            font-size: 0.9rem;
+            border: 1px solid var(--ink-soft);
+            border-radius: 999px;
+            background: var(--card);
+            color: var(--ink);
         }
 
-        .icon {
-            font-size: 1.5rem;
+        .search:focus { outline: none; border-color: var(--gold); box-shadow: 0 0 0 2px rgba(184, 137, 45, 0.25); }
+
+        .alliance {
+            font: inherit;
+            font-size: 0.85rem;
+            padding: 0.35rem 0.85rem;
+            border: 1px solid var(--ink-soft);
+            border-radius: 999px;
+            background: var(--card);
+            color: var(--ink);
+            cursor: pointer;
         }
 
-        .card-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 1.5rem;
-            margin-top: 1.5rem;
+        .alliance:hover { border-color: var(--gold); }
+
+        .alliance[aria-pressed="true"] {
+            background: var(--gold);
+            border-color: var(--gold);
+            color: #fff;
         }
 
-        .info-card {
-            background: #f8f9ff;
-            padding: 1.5rem;
-            border-radius: 8px;
-            border-left: 3px solid #667eea;
-        }
-
-        .info-card h4 {
-            color: #1e3c72;
-            font-size: 1.1rem;
-            margin-bottom: 0.75rem;
-        }
-
-        .info-card p {
-            color: #4a5568;
-            font-size: 0.95rem;
-        }
-
-        .tip-box {
-            background: #e6f7ff;
-            border-left: 4px solid #1890ff;
-            padding: 1.25rem;
-            border-radius: 6px;
-            margin: 1.5rem 0;
-        }
-
-        .tip-box strong {
-            color: #0066cc;
-            display: block;
-            margin-bottom: 0.5rem;
-        }
-
-        .resource-list {
-            list-style: none;
-            margin-top: 1rem;
-        }
-
-        .resource-list li {
-            background: #f8f9fa;
-            padding: 1rem 1.25rem;
-            margin-bottom: 0.75rem;
-            border-radius: 6px;
-            border-left: 3px solid #667eea;
-            transition: all 0.2s;
-        }
-
-        .resource-list li:hover {
-            background: #f0f4ff;
-            transform: translateX(5px);
-        }
-
-        .resource-list strong {
-            color: #1e3c72;
-            display: block;
-            margin-bottom: 0.25rem;
-        }
-
-        .resource-list a {
-            color: #2a5298;
-            text-decoration: none;
-            font-weight: 500;
-        }
-
-        .resource-list a:hover {
-            text-decoration: underline;
-        }
-
-        .step-list {
-            counter-reset: step-counter;
-            list-style: none;
-            margin-top: 1rem;
-        }
-
-        .step-list li {
-            counter-increment: step-counter;
-            padding: 1.25rem;
-            margin-bottom: 1rem;
-            background: #f8f9fa;
-            border-radius: 8px;
-            position: relative;
-            padding-left: 4rem;
-        }
-
-        .step-list li::before {
-            content: counter(step-counter);
-            position: absolute;
-            left: 1.25rem;
-            top: 1.25rem;
-            background: #667eea;
-            color: white;
-            width: 2rem;
-            height: 2rem;
-            border-radius: 50%;
+        /* ---------- Honeycomb ---------- */
+        /* JS sets --w (hex width), --g (gap), and lays hexes out in rows. */
+        .honeycomb {
+            --w: 140px;
+            --g: 8px;
+            --h: calc(var(--w) * 1.1547);
             display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .hex-row {
+            display: flex;
+            gap: var(--g);
+        }
+
+        .hex-row + .hex-row { margin-top: calc(var(--h) * -0.25 + var(--g) * 0.87); }
+        /* stagger alternate rows by half a hex, split both ways so the comb stays centered */
+        .hex-row { transform: translateX(calc((var(--w) + var(--g)) / -4)); }
+        .hex-row.offset { transform: translateX(calc((var(--w) + var(--g)) / 4)); }
+
+        .hex {
+            --hex: polygon(50% 0, 100% 25%, 100% 75%, 50% 100%, 0 75%, 0 25%);
+            position: relative;
+            width: var(--w);
+            height: var(--h);
+            flex-shrink: 0;
+            border: none;
+            padding: 0;
+            background: var(--trim);
+            clip-path: var(--hex);
+            cursor: pointer;
+            font: inherit;
+            color: #fff;
+            transition: transform 0.2s ease, opacity 0.25s ease, filter 0.2s ease;
+        }
+
+        .hex::before {
+            /* inner field, inset from the trim */
+            content: '';
+            position: absolute;
+            inset: calc(var(--w) * 0.035);
+            background: var(--field);
+            clip-path: var(--hex);
+        }
+
+        .hex-inner {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            flex-direction: column;
             align-items: center;
             justify-content: center;
-            font-weight: bold;
+            gap: calc(var(--w) * 0.03);
+            padding: 0 14%;
+            text-align: center;
         }
 
-        .highlight {
-            background: #fff3cd;
-            padding: 0.2rem 0.4rem;
-            border-radius: 3px;
+        .hex-sigil {
+            font-size: calc(var(--w) * 0.27);
+            line-height: 1;
+            filter: drop-shadow(0 2px 2px rgba(0, 0, 0, 0.35));
+            transition: transform 0.25s ease;
         }
 
-        .agency-examples {
+        .hex-label {
+            font-size: clamp(10px, calc(var(--w) * 0.088), 15px);
+            font-weight: 700;
+            line-height: 1.15;
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.35);
+        }
+
+        .hex:hover, .hex:focus-visible {
+            transform: scale(1.08);
+            z-index: 2;
+            filter: brightness(1.1);
+            outline: none;
+        }
+
+        .hex:hover .hex-sigil { transform: rotate(-8deg) scale(1.1); }
+
+        .hex.dim {
+            opacity: 0.18;
+            filter: grayscale(0.8);
+        }
+
+        .no-results {
+            text-align: center;
+            padding: 1rem;
+            color: var(--ink-soft);
+            font-style: italic;
+        }
+
+        .footnote {
+            text-align: center;
+            font-size: 0.8rem;
+            color: var(--ink-soft);
+            margin-top: 1.2rem;
+        }
+
+        /* ---------- Department modal ---------- */
+        .modal {
+            margin: auto;
+            border: none;
+            border-radius: 16px;
+            padding: 0;
+            width: min(520px, calc(100vw - 2rem));
+            max-height: calc(100vh - 2rem);
+            background: var(--card);
+            color: var(--ink);
+            box-shadow: 0 24px 60px rgba(0, 0, 0, 0.35);
+        }
+
+        .modal::backdrop {
+            background: rgba(27, 34, 51, 0.6);
+            backdrop-filter: blur(2px);
+        }
+
+        .modal[open] { animation: rise 0.25s ease; }
+
+        @keyframes rise {
+            from { opacity: 0; transform: translateY(16px) scale(0.98); }
+            to { opacity: 1; transform: none; }
+        }
+
+        .modal-close, .modal-nav {
+            position: absolute;
+            top: 0.8rem;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            border: 1px solid var(--parchment-dark);
+            background: var(--card);
+            color: var(--ink);
+            font-size: 1.1rem;
+            cursor: pointer;
+            z-index: 1;
+        }
+
+        .modal-close { right: 0.8rem; }
+        .modal-nav.prev { left: 0.8rem; }
+        .modal-nav.next { left: 3.3rem; }
+        .modal-close:hover, .modal-nav:hover { background: var(--parchment); }
+
+        .modal-top {
+            padding-top: 0.8rem;
+            background: linear-gradient(var(--parchment), var(--card));
+        }
+
+        .banner-rod {
+            height: 8px;
+            width: 52%;
+            margin: 0 auto;
+            border-radius: 4px;
+            background: linear-gradient(#7a5a1e, #c99a3e, #7a5a1e);
+        }
+
+        .banner {
+            position: relative;
+            margin: 0 auto;
+            width: 40%;
+            height: 150px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 0.3rem;
+            background: var(--field);
+            clip-path: polygon(0 0, 100% 0, 100% 100%, 50% 82%, 0 100%);
+            transform-origin: top center;
+            box-shadow: inset 0 0 0 6px var(--trim);
+            animation: sway 1.6s ease-in-out;
+        }
+
+        .banner::before {
+            content: '';
+            position: absolute;
+            inset: 10px 10px 0;
+            border: 2px solid var(--trim);
+            border-bottom: none;
+            opacity: 0.7;
+        }
+
+        @keyframes sway {
+            0%, 100% { transform: rotate(0deg); }
+            25% { transform: rotate(2.5deg); }
+            60% { transform: rotate(-2deg); }
+        }
+
+        .sigil {
+            font-size: 3rem;
+            line-height: 1;
+            margin-top: -1.2rem;
+            filter: drop-shadow(0 3px 2px rgba(0, 0, 0, 0.35));
+        }
+
+        .alliance-label {
+            font-size: 0.6rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--trim);
+        }
+
+        .modal-body {
+            padding: 0.8rem 1.6rem 1.6rem;
+            text-align: center;
+        }
+
+        .agency-name {
+            font-weight: 700;
+            font-size: 1.35rem;
+            line-height: 1.25;
+        }
+
+        .house-name {
+            font-size: 0.85rem;
+            color: var(--ink-soft);
+            margin-top: 0.25rem;
+        }
+
+        .motto {
+            font-style: italic;
+            color: #8a6418;
+            margin: 0.7rem 0;
+        }
+
+        .facts {
+            text-align: left;
+            font-size: 0.9rem;
+            border-top: 1px dashed var(--parchment-dark);
+            border-bottom: 1px dashed var(--parchment-dark);
+            padding: 0.6rem 0;
+            margin-bottom: 0.8rem;
+        }
+
+        .facts div { margin: 0.15rem 0; }
+        .facts b { font-weight: 700; }
+
+        .description {
+            text-align: left;
+            font-size: 0.95rem;
+            color: var(--ink-soft);
+        }
+
+        .visit {
+            display: inline-block;
+            margin-top: 1.1rem;
+            padding: 0.6rem 1.3rem;
+            border-radius: 999px;
+            background: var(--field);
+            color: #fff;
+            text-decoration: none;
+            font-weight: 700;
+            border: 2px solid var(--trim);
+            transition: filter 0.2s;
+        }
+
+        .visit:hover { filter: brightness(1.15); }
+        /* ---------- Guide tab ---------- */
+        .guide {
+            max-width: 860px;
+            margin: 0 auto;
+        }
+
+        .scroll {
+            background: var(--card);
+            border: 1px solid var(--parchment-dark);
+            border-radius: 14px;
+            padding: 2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .scroll h2 {
+            font-size: 1.4rem;
+            margin-bottom: 0.8rem;
+        }
+
+        .scroll h3 {
+            font-size: 1.05rem;
+            margin: 1.4rem 0 0.4rem;
+        }
+
+        .scroll p { margin-bottom: 0.7rem; }
+
+        .scroll ul, .scroll ol { padding-left: 1.3rem; }
+        .scroll li { margin-bottom: 0.6rem; }
+
+        .callout {
+            background: #fbf3dd;
+            border-left: 4px solid var(--gold);
+            border-radius: 8px;
+            padding: 1rem 1.2rem;
+            margin: 1rem 0;
+        }
+
+        .engage-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
             gap: 1rem;
             margin-top: 1rem;
         }
 
-        .agency-tag {
-            background: white;
-            padding: 0.75rem 1rem;
-            border-radius: 6px;
-            border: 2px solid #e2e8f0;
-            text-align: center;
-            font-weight: 500;
-            color: #2d3748;
-            transition: all 0.2s;
+        .engage-grid div {
+            background: var(--parchment);
+            border-radius: 10px;
+            padding: 1rem;
+            font-size: 0.92rem;
         }
 
-        .agency-tag:hover {
-            border-color: #667eea;
-            background: #f8f9ff;
+        .engage-grid h4 { margin-bottom: 0.3rem; }
+
+        .code {
+            background: var(--parchment-dark);
+            padding: 0.1rem 0.4rem;
+            border-radius: 4px;
+            font-family: ui-monospace, monospace;
+            font-size: 0.9em;
         }
 
-        @media (max-width: 768px) {
-            .navbar h1 {
-                font-size: 1.5rem;
-            }
-            
-            .container {
-                padding: 1rem;
-            }
-            
-            .section {
-                padding: 1.5rem;
-            }
+        .to-houses {
+            font: inherit;
+            background: none;
+            border: none;
+            color: #1e3c72;
+            text-decoration: underline;
+            cursor: pointer;
+            padding: 0;
+        }
+
+
+        @media (max-width: 600px) {
+            .hero { padding-top: 2rem; }
+            .scroll { padding: 1.3rem; }
         }
     </style>
     <link rel="stylesheet" href="css/navbar.css">
@@ -250,385 +473,439 @@
     </nav>
 
     <div class="container">
-        <div style="margin-bottom:30px">
-            <h1>🏛️ Your Guide to Minnesota State Agencies</h1>
-            <div class="navbar-subtitle">Learn where to find information and stay informed about state government</div>
+        <header class="hero">
+            <h1>The Great Houses of Minnesota</h1>
+            <p>Two dozen agencies run the state, from the roads you drive to the lakes you fish. Pick a house to meet it.</p>
+        </header>
+
+        <div class="tabs" role="tablist" aria-label="Guide sections">
+            <button class="tab" role="tab" id="tab-houses" aria-controls="panel-houses" aria-selected="true">⚔️ The Houses</button>
+            <button class="tab" role="tab" id="tab-guide" aria-controls="panel-guide" aria-selected="false">📜 What's a State Agency?</button>
         </div>
 
-        <div class="intro-box">
-            <p><strong>Did you know?</strong> Minnesota has over 20 major state agencies working every day on issues that affect your life—from healthcare and education to transportation and environmental protection.</p>
-            <p>This guide will show you exactly where to find information about these agencies and how to keep track of what they're doing.</p>
-        </div>
-
-        <div class="section">
-            <h2><span class="icon">🏢</span> What Are State Agencies?</h2>
-            <p>State agencies are departments of Minnesota government that carry out specific functions. Each agency has a commissioner (like a CEO) appointed by the Governor, and they employ thousands of Minnesotans to deliver services.</p>
-            
-            <div class="agency-examples">
-                <div class="agency-tag">Health</div>
-                <div class="agency-tag">Education</div>
-                <div class="agency-tag">Transportation</div>
-                <div class="agency-tag">Revenue</div>
-                <div class="agency-tag">Agriculture</div>
-                <div class="agency-tag">Human Services</div>
-            </div>
-        </div>
-
-        <div class="section">
-            <h2><span class="icon">🔍</span> Where to Find Agency Information</h2>
-            
-            <h3>1. Official Agency Websites</h3>
-            <p>Every state agency has its own website with detailed information about their programs and services.</p>
-            
-            <ul class="resource-list">
-                <li>
-                    <strong>Main Portal: MN.gov</strong>
-                    Visit <a href="https://mn.gov" target="_blank">mn.gov</a> to find links to all state agencies
-                </li>
-                <li>
-                    <strong>Agency URLs</strong>
-                    Most follow the pattern: <span class="highlight">agency-name.state.mn.us</span> or <span class="highlight">mn.gov/agency-name</span>
-                </li>
-                <li>
-                    <strong>Example:</strong>
-                    Department of Health: <a href="https://health.state.mn.us" target="_blank">health.state.mn.us</a>
-                </li>
-            </ul>
-
-            <h3>2. Minnesota State Directory</h3>
-            <p>The Secretary of State publishes an annual directory of all state agencies, commissioners, and contact information.</p>
-            
-            <div class="tip-box">
-                <strong>💡 Pro Tip:</strong>
-                Search "Minnesota Blue Book" or "Minnesota State Agency Directory" to find the official list of all agencies with their current leadership and phone numbers.
+        <!-- ===================== Houses ===================== -->
+        <section class="panel" id="panel-houses" role="tabpanel" aria-labelledby="tab-houses">
+            <div class="controls">
+                <input class="search" id="search" type="search" placeholder="Search, e.g. &quot;taxes&quot;" aria-label="Search agencies">
+                <div class="alliances" id="alliances" aria-label="Filter by alliance" style="display: contents"></div>
             </div>
 
-            <h3>3. Open Meeting Portal</h3>
-            <ul class="resource-list">
-                <li>
-                    <strong>Public Meetings Calendar</strong>
-                    Many agencies post their meeting schedules and agendas online. Check individual agency websites for "Meetings" or "Calendar" sections.
-                </li>
-            </ul>
-        </div>
+            <div class="honeycomb" id="honeycomb"></div>
+            <p class="no-results" id="noResults" hidden>No house answers to that name. Try another search.</p>
 
-        <div class="section">
-            <h2><span class="icon">📰</span> How to Stay Informed</h2>
-            
-            <ol class="step-list">
-                <li>
-                    <strong>Subscribe to Agency Newsletters</strong><br>
-                    Most agencies offer email newsletters with updates on programs, rule changes, and public meetings. Look for "Subscribe" or "Email Updates" on agency websites.
-                </li>
-                <li>
-                    <strong>Follow on Social Media</strong><br>
-                    Many agencies maintain active Twitter, Facebook, and LinkedIn accounts with real-time updates.
-                </li>
-                <li>
-                    <strong>Check News & Press Releases</strong><br>
-                    Agencies publish press releases about major announcements. Find them under "News" or "Press Room" sections.
-                </li>
-                <li>
-                    <strong>Review Annual Reports</strong><br>
-                    Agencies publish yearly reports detailing their activities, accomplishments, and budgets. Search for "Annual Report" on agency websites.
-                </li>
-                <li>
-                    <strong>Monitor Rulemaking</strong><br>
-                    When agencies create new rules, they must hold public comment periods. Visit the State Register at <a href="https://www.revisor.mn.gov/state_register" target="_blank">revisor.mn.gov</a> to see proposed rules.
-                </li>
-            </ol>
-        </div>
+            <p class="footnote">House names, sigils, and mottos are just for fun. Agency names, leaders, descriptions, and staff counts are real (staff counts from the FY 2023 Workforce Report).</p>
+        </section>
 
-        <div class="section">
-            <h2><span class="icon">🗣️</span> Ways to Engage with Agencies</h2>
-            
-            <div class="card-grid">
-                <div class="info-card">
-                    <h4>📞 Call or Email</h4>
-                    <p>Every agency has a public information office. Contact details are on their websites.</p>
-                </div>
-                <div class="info-card">
-                    <h4>📝 Submit Comments</h4>
-                    <p>Agencies accept public comments on proposed rules and policies during official comment periods.</p>
-                </div>
-                <div class="info-card">
-                    <h4>🎤 Attend Meetings</h4>
-                    <p>Many agency meetings are open to the public. Check calendars for upcoming meetings.</p>
-                </div>
-                <div class="info-card">
-                    <h4>📄 File Complaints</h4>
-                    <p>If you have concerns about an agency's services, most have formal complaint processes.</p>
+        <dialog class="modal" id="modal" aria-labelledby="modalTitle">
+            <button class="modal-nav prev" id="modalPrev" aria-label="Previous house">‹</button>
+            <button class="modal-nav next" id="modalNext" aria-label="Next house">›</button>
+            <button class="modal-close" id="modalClose" aria-label="Close">✕</button>
+            <div id="modalContent"></div>
+        </dialog>
+        <!-- ===================== Guide ===================== -->
+        <section class="panel guide" id="panel-guide" role="tabpanel" aria-labelledby="tab-guide" hidden>
+            <div class="scroll">
+                <h2>🏢 What Are State Agencies?</h2>
+                <p>State agencies are departments of Minnesota government that carry out specific functions. Each agency has a commissioner (like a CEO) appointed by the Governor, and together they employ thousands of Minnesotans to deliver services, from health and education to transportation and environmental protection.</p>
+                <p>The Legislature writes the laws and sets the budget. The agencies put those laws to work: they run programs, issue licenses, write detailed rules, and enforce them.</p>
+                <div class="callout">
+                    <strong>Did you know?</strong> Minnesota has over 20 major state agencies working every day on issues that affect your life. <button class="to-houses" data-goto="houses">Meet them all →</button>
                 </div>
             </div>
-        </div>
 
-        <div class="section">
-            <h2><span class="icon">📊</span> Finding Specific Information</h2>
-            
-            <h3>Budget & Spending</h3>
-            <ul class="resource-list">
-                <li>
-                    <strong>Minnesota Management & Budget</strong>
-                    <a href="https://mn.gov/mmb" target="_blank">mn.gov/mmb</a> - View state budget information and agency spending
-                </li>
-                <li>
-                    <strong>Open Checkbook</strong>
-                    Search state expenditures and see where tax dollars go
-                </li>
-            </ul>
+            <div class="scroll">
+                <h2>🔍 Where to Find Agency Information</h2>
 
-            <h3>Employment Data</h3>
-            <ul class="resource-list">
-                <li>
-                    <strong>Workforce Reports</strong>
-                    Minnesota Management & Budget publishes annual workforce statistics showing how many people work for each agency
-                </li>
-            </ul>
+                <h3>1. Official agency websites</h3>
+                <p>Every state agency has its own website with detailed information about its programs and services.</p>
+                <ul>
+                    <li><strong>Main portal:</strong> visit <a href="https://mn.gov" target="_blank" rel="noopener">mn.gov</a> to find links to all state agencies.</li>
+                    <li><strong>Agency URLs</strong> usually look like <span class="code">agency-name.state.mn.us</span> or <span class="code">mn.gov/agency-name</span>.</li>
+                    <li><strong>Example:</strong> Department of Health is at <a href="https://health.state.mn.us" target="_blank" rel="noopener">health.state.mn.us</a>.</li>
+                </ul>
 
-            <h3>Performance & Results</h3>
-            <ul class="resource-list">
-                <li>
-                    <strong>Agency Performance Reports</strong>
-                    Look for "Performance Dashboard" or "Results" sections on agency websites to see metrics and outcomes
-                </li>
-            </ul>
-        </div>
+                <h3>2. Minnesota State Directory</h3>
+                <p>The Secretary of State publishes an annual directory of all state agencies, commissioners, and contact information.</p>
+                <div class="callout">
+                    <strong>💡 Pro tip:</strong> Search "Minnesota Blue Book" or "Minnesota State Agency Directory" to find the official list of agencies with their current leadership and phone numbers.
+                </div>
 
-        <div class="section">
-            <h2><span class="icon">⚡</span> Quick Reference</h2>
-            
-            <div class="tip-box">
-                <strong>Need help fast?</strong>
-                Call <span class="highlight">651-296-6013</span> (Minnesota State Operator) to be directed to the right agency or service.
+                <h3>3. Public meetings</h3>
+                <p>Many agencies post their meeting schedules and agendas online. Check individual agency websites for "Meetings" or "Calendar" sections.</p>
             </div>
 
-            <h3>Most Commonly Searched Agencies:</h3>
-            <ul class="resource-list">
-                <li><strong>Driver's Licenses & Vehicle Registration:</strong> Department of Public Safety - Driver & Vehicle Services</li>
-                <li><strong>Taxes:</strong> Department of Revenue</li>
-                <li><strong>Health Insurance (Medical Assistance):</strong> Department of Human Services</li>
-                <li><strong>Unemployment Benefits:</strong> Department of Employment & Economic Development</li>
-                <li><strong>Child Care Assistance:</strong> Department of Children, Youth & Families</li>
-                <li><strong>Environmental Concerns:</strong> Pollution Control Agency or Department of Natural Resources</li>
-            </ul>
-        </div>
-
-        <div class="section">
-            <h2><span class="icon">🔎</span> Agency Lookup Directory</h2>
-            <p>Search or browse all Minnesota state agencies below. Click on any agency to visit their official website.</p>
-            
-            <div style="margin: 1.5rem 0;">
-                <input type="text" id="searchBox" placeholder="Search agencies by name or description..." style="width: 100%; padding: 0.75rem; border: 2px solid #e2e8f0; border-radius: 8px; font-size: 1rem;">
+            <div class="scroll">
+                <h2>📰 How to Stay Informed</h2>
+                <ol>
+                    <li><strong>Subscribe to agency newsletters.</strong> Most agencies offer email updates on programs, rule changes, and public meetings. Look for "Subscribe" or "Email Updates."</li>
+                    <li><strong>Follow on social media.</strong> Many agencies post real-time updates on social platforms.</li>
+                    <li><strong>Check news and press releases.</strong> Find them under "News" or "Press Room."</li>
+                    <li><strong>Review annual reports.</strong> Agencies publish yearly reports on their activities, accomplishments, and budgets.</li>
+                    <li><strong>Monitor rulemaking.</strong> When agencies create new rules, they must hold public comment periods. See proposed rules in the <a href="https://www.revisor.mn.gov/state_register" target="_blank" rel="noopener">State Register</a>.</li>
+                </ol>
             </div>
 
-            <div id="agencyList"></div>
-            
-            <div id="noResults" style="display: none; text-align: center; padding: 2rem; color: #718096;">
-                No agencies found matching your search.
+            <div class="scroll">
+                <h2>🗣️ Ways to Engage with Agencies</h2>
+                <div class="engage-grid">
+                    <div><h4>📞 Call or email</h4>Every agency has a public information office. Contact details are on their websites.</div>
+                    <div><h4>📝 Submit comments</h4>Agencies accept public comments on proposed rules and policies during official comment periods.</div>
+                    <div><h4>🎤 Attend meetings</h4>Many agency meetings are open to the public. Check calendars for upcoming meetings.</div>
+                    <div><h4>📄 File complaints</h4>If you have concerns about an agency's services, most have formal complaint processes.</div>
+                </div>
             </div>
-        </div>
 
-        <div class="intro-box" style="margin-top: 2rem;">
-            <p><strong>Remember:</strong> State agencies work for you! They're required to be transparent about their activities and responsive to public questions. Don't hesitate to reach out if you need information or assistance.</p>
-        </div>
+            <div class="scroll">
+                <h2>📊 Finding Specific Information</h2>
+                <h3>Budget and spending</h3>
+                <ul>
+                    <li><strong>Minnesota Management &amp; Budget</strong> (<a href="https://mn.gov/mmb" target="_blank" rel="noopener">mn.gov/mmb</a>): state budget information and agency spending.</li>
+                    <li><strong>Open Checkbook:</strong> search state expenditures and see where tax dollars go.</li>
+                </ul>
+                <h3>Employment data</h3>
+                <ul>
+                    <li><strong>Workforce reports:</strong> Minnesota Management &amp; Budget publishes annual workforce statistics showing how many people work for each agency.</li>
+                </ul>
+                <h3>Performance and results</h3>
+                <ul>
+                    <li><strong>Agency performance reports:</strong> look for "Performance Dashboard" or "Results" sections on agency websites.</li>
+                </ul>
+            </div>
+
+            <div class="scroll">
+                <h2>⚡ Quick Reference</h2>
+                <div class="callout">
+                    <strong>Need help fast?</strong> Call <span class="code">651-296-6013</span> (Minnesota State Operator) to be directed to the right agency or service.
+                </div>
+                <h3>Most commonly searched agencies</h3>
+                <ul>
+                    <li><strong>Driver's licenses &amp; vehicle registration:</strong> Department of Public Safety, Driver &amp; Vehicle Services</li>
+                    <li><strong>Taxes:</strong> Department of Revenue</li>
+                    <li><strong>Health insurance (Medical Assistance):</strong> Department of Human Services</li>
+                    <li><strong>Unemployment benefits:</strong> Department of Employment &amp; Economic Development</li>
+                    <li><strong>Child care assistance:</strong> Department of Children, Youth &amp; Families</li>
+                    <li><strong>Environmental concerns:</strong> Pollution Control Agency or Department of Natural Resources</li>
+                </ul>
+            </div>
+
+            <div class="callout">
+                <strong>Remember:</strong> State agencies work for you! They're required to be transparent about their activities and responsive to public questions. Don't hesitate to reach out if you need information or assistance.
+            </div>
+        </section>
     </div>
 
     <script>
-        const agencies = [
-            {
-                name: "Department of Administration",
-                commissioner: "Tamar Gronvall",
-                description: "Manages and administers centralized operations of state agencies, including procurement of goods and services, travel and fleet services, building construction and maintenance, real estate leasing and management, and facilities and maintenance services.",
-                url: "https://mn.gov/admin"
-            },
-            {
-                name: "Department of Agriculture",
-                commissioner: "Thom Petersen",
-                description: "Encourages and promotes agricultural industries, assists in the marketing of farm products, and exercises regulatory powers to ensure the continued high quality of Minnesota agricultural production.",
-                url: "https://mda.state.mn.us"
-            },
-            {
-                name: "Department of Children, Youth and Families",
-                commissioner: "Tikki Brown",
-                description: "Administers programs that provide critical supports for children, youth, and families across Minnesota. Works to advance equitable outcomes through transformative, partnership-driven policies, programs and practices.",
-                url: "https://dcyf.mn.gov"
-            },
-            {
-                name: "Department of Commerce",
-                commissioner: "Grace Arnold (Interim)",
-                description: "Regulates financial service industries in Minnesota including insurance, state-chartered banks, credit unions, securities, and real estate. Also enforces Public Utilities Commission rules and orders.",
-                url: "https://mn.gov/commerce"
-            },
-            {
-                name: "Department of Corrections",
-                commissioner: "Paul Schnell",
-                description: "Accepts persons committed by the courts for care, custody, and rehabilitation. Operates 10 correctional facilities across Minnesota providing facility safety and security, health services, and rehabilitation programs.",
-                url: "https://mn.gov/doc"
-            },
-            {
-                name: "Department of Education",
-                commissioner: "Willie Jett",
-                description: "Serves approximately 870,000 pre-K to grade 12 students and their families, all of Minnesota's school districts and charter schools, educators, school staff, and adult learners. Mission is ensuring every child receives a quality education.",
-                url: "https://education.state.mn.us"
-            },
-            {
-                name: "Department of Employment and Economic Development",
-                commissioner: "Matt Varilek",
-                description: "The state's principal economic development agency, with programs promoting business recruitment, expansion, and retention; workforce development; international trade; and community development.",
-                url: "https://mn.gov/deed"
-            },
-            {
-                name: "Department of Health",
-                commissioner: "Brooke Cunningham",
-                description: "Responsible for the development and maintenance of an organized system of programs to protect, maintain, and improve the health of citizens. Identifies public health problems and provides services to prevent and control disease.",
-                url: "https://health.state.mn.us"
-            },
-            {
-                name: "Department of Human Rights",
-                commissioner: "Rebecca Lucero",
-                description: "Enforces one of the strongest civil rights laws in the country, the Minnesota Human Rights Act, which prohibits discrimination. Mission is to make Minnesota discrimination free.",
-                url: "https://mn.gov/mdhr"
-            },
-            {
-                name: "Department of Human Services",
-                commissioner: "Shireen Gandhi (Temporary)",
-                description: "Helps provide essential services to Minnesota's most vulnerable residents. Administers publicly funded health care programs, economic self-sufficiency programs, and community-based services to persons with disabilities.",
-                url: "https://mn.gov/dhs"
-            },
-            {
-                name: "Department of Labor and Industry",
-                commissioner: "Nicole Blissenbach",
-                description: "Administers laws relating to workers' compensation, occupational safety and health, wages, child labor, construction codes and licensing, and combative sports.",
-                url: "https://doli.mn.gov"
-            },
-            {
-                name: "Department of Military Affairs",
-                commissioner: "Shawn Manke (Adjutant General)",
-                description: "Administrative head of the military department with responsibility for the military forces and reservations of the state. Serves as the civilian leadership for the Minnesota National Guard.",
-                url: "https://minnesotanationalguard.ng.mil"
-            },
-            {
-                name: "Department of Natural Resources",
-                commissioner: "Sarah Strommen",
-                description: "Manages the state's natural resources, including its public lands and waters. Works to conserve and manage natural resources, provide outdoor recreation opportunities, and provide for commercial uses in a sustainable way.",
-                url: "https://mndnr.gov"
-            },
-            {
-                name: "Department of Public Safety",
-                commissioner: "Bob Jacobson",
-                description: "Coordinates and directs the functions and services of the state relating to the safety and convenience of its citizens. Includes Bureau of Criminal Apprehension, State Patrol, and Driver and Vehicle Services.",
-                url: "https://dps.mn.gov"
-            },
-            {
-                name: "Department of Revenue",
-                commissioner: "Paul Marquart",
-                description: "Supervises the administration of Minnesota tax laws. Administers over 30 taxes with annual tax collections of approximately $33 billion that fund schools, property tax relief, local government aids, and state programs.",
-                url: "https://revenue.state.mn.us"
-            },
-            {
-                name: "Department of Transportation",
-                commissioner: "Nancy Daubenberger",
-                description: "Manages a statewide transportation system that includes aeronautics, highways, motor carriers, ports, public transit, and railroads. Plans, builds, operates, and maintains Minnesota's transportation infrastructure.",
-                url: "https://dot.state.mn.us"
-            },
-            {
-                name: "Department of Veterans Affairs",
-                commissioner: "Brad Lindsay",
-                description: "Provides services and benefits to Veterans and their families through quality healthcare. Operates Minnesota Veterans Homes in eight locations and assists Minnesota's 287,000 Veterans in obtaining federal benefits.",
-                url: "https://MinnesotaVeteran.org"
-            },
-            {
-                name: "Housing Finance Agency",
-                commissioner: "Jennifer Leimaile Ho",
-                description: "Facilitates the construction, acquisition, improvement, and rehabilitation of housing for low- and moderate-income Minnesotans by providing affordable financing and related assistance.",
-                url: "https://mnhousing.gov"
-            },
-            {
-                name: "Iron Range Resources and Rehabilitation Board",
-                commissioner: "Ida Rukavina",
-                description: "Development agency that promotes and invests in business, community and workforce development for northeastern Minnesota. Provides funding for businesses relocating or expanding in the region.",
-                url: "https://mn.gov/IRRRB"
-            },
-            {
-                name: "Minnesota Management and Budget",
-                commissioner: "Erin Campbell",
-                description: "Oversees human resources, labor relations, and overall finance and management of the state. Prepares the biennial budget and manages state accounting, banking, and payroll systems.",
-                url: "https://mn.gov/mmb"
-            },
-            {
-                name: "Minnesota Pollution Control Agency",
-                commissioner: "Katrina Kessler",
-                description: "Administers the laws relating to preservation of the environment and protection of public health. Measures environmental quality, develops protective rules, and regulates air, water, and hazardous waste.",
-                url: "https://pca.state.mn.us"
-            },
-            {
-                name: "Department of Information Technology Services (MN.IT)",
-                commissioner: "Tarek Tomes",
-                description: "State chief information officer responsible for providing IT systems and services to state agencies. Sets IT standards and policies, manages cybersecurity, and ensures efficient delivery of government services through technology.",
-                url: "https://mn.gov/mnit"
-            },
-            {
-                name: "Bureau of Mediation Services",
-                commissioner: "Johnny Villarreal",
-                description: "Promotes stable and constructive relationships between labor and management. Provides mediation services for collective bargaining contract and grievance disputes, and conducts representation hearings.",
-                url: "https://mn.gov/bms"
-            },
-            {
-                name: "Office of Higher Education",
-                commissioner: "Dennis Olson (Director)",
-                description: "Performs statewide services that support access to post-secondary education, including student financial aid. Administers State Grant program, interstate reciprocity agreements, and manages the Minnesota College Savings Plan.",
-                url: "https://ohe.state.mn.us"
-            }
+        const ALLIANCES = {
+            hearth: 'Hearth & Healing',
+            lands:  'Lakes & Lands',
+            coin:   'Coin & Commerce',
+            shield: 'Shield & Watch',
+            stone:  'Stone & Wire',
+            quill:  'Quill & Lamp',
+        };
+
+        // House name, sigil, colors, and motto are playful; everything else is real agency data.
+        const houses = [
+            { house: 'House of Keys', sigil: '🗝️', field: '#5b4a3a', trim: '#e0c48a', alliance: 'stone',
+              motto: 'We Keep the Keep.',
+              name: 'Department of Administration', short: 'Administration', commissioner: 'Tamar Gronvall', staff: 524,
+              seek: 'state buildings, state contracts and purchasing',
+              description: 'Manages centralized operations of state agencies, including procurement of goods and services, travel and fleet services, building construction and maintenance, real estate leasing, and facilities management.',
+              url: 'https://mn.gov/admin' },
+            { house: 'House of the Harvest', sigil: '🌽', field: '#6b7d2a', trim: '#f2d76b', alliance: 'lands',
+              motto: 'From Seed, Plenty.',
+              name: 'Department of Agriculture', short: 'Agriculture', commissioner: 'Thom Petersen', staff: 548,
+              seek: 'farm programs, food and feed safety, pesticide rules',
+              description: 'Encourages and promotes agricultural industries, assists in marketing farm products, and regulates to ensure the continued high quality of Minnesota agricultural production.',
+              url: 'https://mda.state.mn.us' },
+            { house: 'House of the Hearth', sigil: '🪁', field: '#c0563f', trim: '#ffe2b8', alliance: 'hearth',
+              motto: 'Every Child, Every Hearth.',
+              name: 'Department of Children, Youth and Families', short: 'Children, Youth & Families', commissioner: 'Tikki Brown',
+              seek: 'child care assistance, family support programs',
+              description: 'Administers programs that provide critical supports for children, youth, and families across Minnesota, working to advance equitable outcomes through partnership-driven policies and programs.',
+              url: 'https://dcyf.mn.gov' },
+            { house: 'House of Fair Trade', sigil: '🪙', field: '#24506b', trim: '#e8c66a', alliance: 'coin',
+              motto: 'A Fair Deal for All.',
+              name: 'Department of Commerce', short: 'Commerce', commissioner: 'Grace Arnold (Interim)', staff: 390,
+              seek: 'insurance and banking complaints, energy assistance',
+              description: 'Regulates financial service industries in Minnesota, including insurance, state-chartered banks, credit unions, securities, and real estate.',
+              url: 'https://mn.gov/commerce' },
+            { house: 'House of the Second Chance', sigil: '🌅', field: '#4a4f5c', trim: '#f0a860', alliance: 'shield',
+              motto: 'What Is Broken May Be Mended.',
+              name: 'Department of Corrections', short: 'Corrections', commissioner: 'Paul Schnell', staff: 4082,
+              seek: 'prison and supervised release information',
+              description: 'Accepts persons committed by the courts for care, custody, and rehabilitation. Operates correctional facilities across Minnesota providing safety and security, health services, and rehabilitation programs.',
+              url: 'https://mn.gov/doc' },
+            { house: 'House of Learning', sigil: '📚', field: '#2f4a8a', trim: '#f4d35e', alliance: 'quill',
+              motto: 'Knowledge for Every Child.',
+              name: 'Department of Education', short: 'Education', commissioner: 'Willie Jett', staff: 441,
+              seek: 'school data and report cards, special education',
+              description: "Serves about 870,000 pre-K to grade 12 students and their families, all of Minnesota's school districts and charter schools, educators, and adult learners.",
+              url: 'https://education.state.mn.us' },
+            { house: 'House of Enterprise', sigil: '💼', field: '#1f6f6b', trim: '#f6d27a', alliance: 'coin',
+              motto: 'Work for Every Hand.',
+              name: 'Department of Employment and Economic Development', short: 'Employment & Economic Dev.', commissioner: 'Matt Varilek', staff: 1446,
+              seek: 'unemployment insurance, job search help, business support',
+              description: "The state's principal economic development agency, with programs for business recruitment and expansion, workforce development, international trade, and community development.",
+              url: 'https://mn.gov/deed' },
+            { house: 'House of Healing', sigil: '🩺', field: '#a3243b', trim: '#ffd6dc', alliance: 'hearth',
+              motto: 'Prevent, Protect, Heal.',
+              name: 'Department of Health', short: 'Health', commissioner: 'Brooke Cunningham', staff: 1896,
+              seek: 'birth and death records, public health guidance',
+              description: 'Protects, maintains, and improves the health of Minnesotans. Identifies public health problems and provides services to prevent and control disease.',
+              url: 'https://health.state.mn.us' },
+            { house: 'House of Justice', sigil: '⚖️', field: '#5a2d6e', trim: '#e7c8f0', alliance: 'shield',
+              motto: 'None Shall Be Turned Away.',
+              name: 'Department of Human Rights', short: 'Human Rights', commissioner: 'Rebecca Lucero',
+              seek: 'discrimination complaints',
+              description: 'Enforces the Minnesota Human Rights Act, one of the strongest civil rights laws in the country, which prohibits discrimination. Its mission is to make Minnesota discrimination free.',
+              url: 'https://mn.gov/mdhr' },
+            { house: 'House of the Helping Hand', sigil: '🤝', field: '#2e6e9e', trim: '#ffe9a8', alliance: 'hearth',
+              motto: 'No One Left in the Cold.',
+              name: 'Department of Human Services', short: 'Human Services', commissioner: 'Shireen Gandhi (Temporary)', staff: 7360,
+              seek: 'Medical Assistance (health coverage), disability services',
+              description: "Provides essential services to Minnesota's most vulnerable residents. Administers publicly funded health care programs and community-based services for people with disabilities.",
+              url: 'https://mn.gov/dhs' },
+            { house: 'House of the Hard Hat', sigil: '⛑️', field: '#a8650c', trim: '#ffe08a', alliance: 'coin',
+              motto: 'Every Worker Home Safe.',
+              name: 'Department of Labor and Industry', short: 'Labor & Industry', commissioner: 'Nicole Blissenbach', staff: 468,
+              seek: "wage complaints, workers' comp, contractor licenses",
+              description: "Administers laws on workers' compensation, workplace safety and health, wages, child labor, construction codes and licensing, and combative sports.",
+              url: 'https://doli.mn.gov' },
+            { house: 'House of the Guard', sigil: '🛡️', field: '#3d5230', trim: '#d9c98a', alliance: 'shield',
+              motto: 'Ready When Called.',
+              name: 'Department of Military Affairs', short: 'Military Affairs', commissioner: 'Shawn Manke (Adjutant General)', staff: 493,
+              seek: 'the Minnesota National Guard',
+              description: 'Responsible for the military forces and reservations of the state, and serves as the civilian leadership for the Minnesota National Guard.',
+              url: 'https://minnesotanationalguard.ng.mil' },
+            { house: 'House of Ten Thousand Lakes', sigil: '🌲', field: '#1d5a3c', trim: '#a8e0c4', alliance: 'lands',
+              motto: 'The Woods and Waters Endure.',
+              name: 'Department of Natural Resources', short: 'Natural Resources', commissioner: 'Sarah Strommen', staff: 2936,
+              seek: 'hunting and fishing licenses, state parks',
+              description: "Manages the state's public lands and waters. Conserves natural resources, provides outdoor recreation, and allows for commercial uses in a sustainable way.",
+              url: 'https://mndnr.gov' },
+            { house: 'House of the Watch', sigil: '🚓', field: '#1f2f5c', trim: '#f2c94c', alliance: 'shield',
+              motto: 'Safe Roads, Safe Homes.',
+              name: 'Department of Public Safety', short: 'Public Safety', commissioner: 'Bob Jacobson', staff: 2061,
+              seek: "driver's licenses, vehicle registration",
+              description: 'Coordinates state services for the safety of Minnesotans. Includes the Bureau of Criminal Apprehension, State Patrol, and Driver and Vehicle Services.',
+              url: 'https://dps.mn.gov' },
+            { house: 'House of the Treasury', sigil: '💰', field: '#245c36', trim: '#e9cf7a', alliance: 'coin',
+              motto: 'Every Coin Counted.',
+              name: 'Department of Revenue', short: 'Revenue', commissioner: 'Paul Marquart', staff: 1384,
+              seek: 'state income tax, property tax refunds',
+              description: 'Administers over 30 taxes, collecting about $33 billion a year that funds schools, property tax relief, local government aid, and state programs.',
+              url: 'https://revenue.state.mn.us' },
+            { house: 'House of the Open Road', sigil: '🛣️', field: '#3b4a5e', trim: '#ffb347', alliance: 'stone',
+              motto: 'All Roads Lead Home.',
+              name: 'Department of Transportation', short: 'Transportation', commissioner: 'Nancy Daubenberger', staff: 5184,
+              seek: 'road conditions, highway construction projects',
+              description: "Manages a statewide transportation system including highways, aeronautics, ports, public transit, and railroads. Plans, builds, operates, and maintains Minnesota's transportation infrastructure.",
+              url: 'https://dot.state.mn.us' },
+            { house: 'House of the Honored', sigil: '🎖️', field: '#6b1f2a', trim: '#e3c27a', alliance: 'hearth',
+              motto: 'We Remember Our Own.',
+              name: 'Department of Veterans Affairs', short: 'Veterans Affairs', commissioner: 'Brad Lindsay', staff: 1289,
+              seek: 'veteran benefits, veterans homes',
+              description: "Provides services and benefits to veterans and their families. Operates Minnesota Veterans Homes and helps Minnesota's veterans obtain federal benefits.",
+              url: 'https://MinnesotaVeteran.org' },
+            { house: 'House of Houses', sigil: '🏠', field: '#8a4b2a', trim: '#ffd9a0', alliance: 'hearth',
+              motto: 'A Roof Over Every Head.',
+              name: 'Housing Finance Agency', short: 'Housing Finance', commissioner: 'Jennifer Leimaile Ho', staff: 296,
+              seek: 'first-time homebuyer loans, affordable housing',
+              description: 'Finances the construction, purchase, improvement, and rehabilitation of housing for low- and moderate-income Minnesotans through affordable loans and related assistance.',
+              url: 'https://mnhousing.gov' },
+            { house: 'House of Iron', sigil: '⛏️', field: '#7a2f1d', trim: '#c9c9c9', alliance: 'lands',
+              motto: 'From the Range, Renewal.',
+              name: 'Iron Range Resources and Rehabilitation Board', short: 'Iron Range (IRRRB)', commissioner: 'Ida Rukavina',
+              seek: 'business and community grants in northeastern Minnesota',
+              description: 'Promotes and invests in business, community, and workforce development for northeastern Minnesota, including funding for businesses relocating or expanding in the region.',
+              url: 'https://mn.gov/IRRRB' },
+            { house: 'House of the Ledger', sigil: '📊', field: '#33405a', trim: '#9fd3c7', alliance: 'coin',
+              motto: 'The Books Must Balance.',
+              name: 'Minnesota Management and Budget', short: 'Management & Budget', commissioner: 'Erin Campbell', staff: 289,
+              seek: 'the state budget, state employee pay and benefits',
+              description: 'Oversees human resources, labor relations, and the finances of the state. Prepares the two-year budget and manages state accounting, banking, and payroll.',
+              url: 'https://mn.gov/mmb' },
+            { house: 'House of Clear Waters', sigil: '💧', field: '#1b6f8f', trim: '#c4ecf7', alliance: 'lands',
+              motto: 'Clear Skies, Clean Waters.',
+              name: 'Minnesota Pollution Control Agency', short: 'Pollution Control', commissioner: 'Katrina Kessler', staff: 883,
+              seek: 'air and water quality, pollution complaints',
+              description: 'Protects the environment and public health. Measures environmental quality, develops protective rules, and regulates air, water, and hazardous waste.',
+              url: 'https://pca.state.mn.us' },
+            { house: 'House of the Wire', sigil: '💻', field: '#2b2b3d', trim: '#7ef0c2', alliance: 'stone',
+              motto: 'Patch Early, Patch Often.',
+              name: 'Department of Information Technology Services (MN.IT)', short: 'MN.IT', commissioner: 'Tarek Tomes', staff: 2534,
+              seek: 'state technology and cybersecurity (mostly behind the scenes)',
+              description: 'Provides IT systems and services to state agencies, sets IT standards and policies, and manages cybersecurity for state government.',
+              url: 'https://mn.gov/mnit' },
+            { house: 'House of the Dove', sigil: '🕊️', field: '#5d7a99', trim: '#ffffff', alliance: 'coin',
+              motto: 'Let Us Talk It Out.',
+              name: 'Bureau of Mediation Services', short: 'Mediation Services', commissioner: 'Johnny Villarreal',
+              seek: 'labor-management disputes, union representation elections',
+              description: 'Promotes stable relationships between labor and management. Mediates contract and grievance disputes and conducts union representation hearings.',
+              url: 'https://mn.gov/bms' },
+            { house: 'House of the Scholar', sigil: '🎓', field: '#4b2a6b', trim: '#f2d16b', alliance: 'quill',
+              motto: 'Onward to Learning.',
+              name: 'Office of Higher Education', short: 'Higher Education', commissioner: 'Dennis Olson (Director)',
+              seek: 'state grants for college, the Minnesota College Savings Plan',
+              description: 'Supports access to college and other post-secondary education, including student financial aid, the State Grant program, interstate tuition reciprocity, and the Minnesota College Savings Plan.',
+              url: 'https://ohe.state.mn.us' },
         ];
 
-        function renderAgencies(filteredAgencies) {
-            const agencyList = document.getElementById('agencyList');
-            const noResults = document.getElementById('noResults');
-            
-            if (filteredAgencies.length === 0) {
-                agencyList.innerHTML = '';
-                noResults.style.display = 'block';
-                return;
+        // ---------- rendering ----------
+        const esc = (s) => String(s).replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+        const colors = (h) => `--field:${h.field}; --trim:${h.trim}`;
+
+        function hexButton(h, i) {
+            return `
+                <button class="hex" data-i="${i}" style="${colors(h)}" aria-label="${esc(h.name)}">
+                    <span class="hex-inner">
+                        <span class="hex-sigil" aria-hidden="true">${h.sigil}</span>
+                        <span class="hex-label">${esc(h.short)}</span>
+                    </span>
+                </button>`;
+        }
+
+        // Pick the column count that gives the biggest hexes while (on desktop)
+        // keeping the whole honeycomb on screen without scrolling.
+        function layout() {
+            const comb = document.getElementById('honeycomb');
+            const n = houses.length;
+            const g = 8;
+            const W = comb.clientWidth;
+            const H = window.innerHeight - comb.getBoundingClientRect().top - window.scrollY - 24;
+            const sizeFor = (cols, useHeight) => {
+                const rows = Math.ceil(n / cols);
+                const byWidth = (W - (cols - 1) * g - g / 2) / (cols + 0.5);
+                const byHeight = (H - (rows - 1) * g) / (1.1547 * (1 + 0.75 * (rows - 1)));
+                return Math.min(byWidth, useHeight ? byHeight : Infinity, 175);
+            };
+
+            let best = { cols: 3, w: 0 };
+            for (let cols = 3; cols <= 8; cols++) {
+                const w = sizeFor(cols, true);
+                if (w > best.w) best = { cols, w };
             }
-            
-            noResults.style.display = 'none';
-            
-            agencyList.innerHTML = filteredAgencies.map(agency => `
-                <div style="background: #f8f9fa; padding: 1.5rem; margin-bottom: 1rem; border-radius: 8px; border-left: 4px solid #667eea; transition: all 0.2s;" 
-                     onmouseover="this.style.background='#f0f4ff'; this.style.transform='translateX(5px)'" 
-                     onmouseout="this.style.background='#f8f9fa'; this.style.transform='translateX(0)'">
-                    <h4 style="color: #1e3c72; margin-bottom: 0.5rem; font-size: 1.15rem;">
-                        <a href="${agency.url}" target="_blank" rel="noopener noreferrer" style="color: #1e3c72; text-decoration: none;">
-                            ${agency.name} →
-                        </a>
-                    </h4>
-                    <p style="color: #718096; font-size: 0.9rem; margin-bottom: 0.5rem;"><strong>Commissioner:</strong> ${agency.commissioner}</p>
-                    <p style="color: #4a5568; font-size: 0.95rem; line-height: 1.6;">${agency.description}</p>
-                    <a href="${agency.url}" target="_blank" rel="noopener noreferrer" style="color: #2a5298; text-decoration: none; font-weight: 500; font-size: 0.9rem; display: inline-block; margin-top: 0.5rem;">
-                        Visit Website →
-                    </a>
-                </div>
-            `).join('');
+            if (best.w < 105) {
+                // Small screen: let it scroll and keep hexes readable.
+                best = { cols: 3, w: sizeFor(3, false) };
+                for (let cols = 8; cols > 3; cols--) {
+                    if (sizeFor(cols, false) >= 105) { best = { cols, w: sizeFor(cols, false) }; break; }
+                }
+            }
+
+            comb.style.setProperty('--w', Math.floor(best.w) + 'px');
+            comb.style.setProperty('--g', g + 'px');
+            let html = '';
+            for (let r = 0; r * best.cols < n; r++) {
+                const row = houses.slice(r * best.cols, (r + 1) * best.cols)
+                    .map((h, j) => hexButton(h, r * best.cols + j)).join('');
+                html += `<div class="hex-row${r % 2 ? ' offset' : ''}">${row}</div>`;
+            }
+            comb.innerHTML = html;
+            applyFilter();
         }
 
-        function filterAgencies(searchTerm) {
-            const term = searchTerm.toLowerCase();
-            return agencies.filter(agency => 
-                agency.name.toLowerCase().includes(term) ||
-                agency.description.toLowerCase().includes(term) ||
-                agency.commissioner.toLowerCase().includes(term)
-            );
+        let activeAlliance = 'all';
+
+        // Filters dim non-matching hexes instead of removing them, so the honeycomb keeps its shape.
+        function applyFilter() {
+            const term = document.getElementById('search').value.trim().toLowerCase();
+            let matches = 0;
+            document.querySelectorAll('.hex').forEach((el) => {
+                const h = houses[el.dataset.i];
+                const hit = (activeAlliance === 'all' || h.alliance === activeAlliance) &&
+                    (!term || [h.house, h.name, h.short, h.commissioner, h.seek, h.description, h.motto]
+                        .some((f) => f.toLowerCase().includes(term)));
+                el.classList.toggle('dim', !hit);
+                if (hit) matches++;
+            });
+            document.getElementById('noResults').hidden = matches > 0;
         }
 
-        // Initial render
-        renderAgencies(agencies);
+        function renderAlliances() {
+            const box = document.getElementById('alliances');
+            const opts = [['all', 'All houses'], ...Object.entries(ALLIANCES)];
+            box.innerHTML = opts.map(([key, label]) =>
+                `<button class="alliance" data-key="${key}" aria-pressed="${key === activeAlliance}">${label}</button>`).join('');
+        }
 
-        // Search functionality
-        document.getElementById('searchBox').addEventListener('input', (e) => {
-            const searchTerm = e.target.value;
-            const filtered = filterAgencies(searchTerm);
-            renderAgencies(filtered);
+        document.getElementById('alliances').addEventListener('click', (e) => {
+            const btn = e.target.closest('.alliance');
+            if (!btn) return;
+            activeAlliance = btn.dataset.key;
+            renderAlliances();
+            applyFilter();
         });
+
+        document.getElementById('search').addEventListener('input', applyFilter);
+
+        // ---------- department modal ----------
+        const modal = document.getElementById('modal');
+        let current = 0;
+
+        function openHouse(i) {
+            current = (i + houses.length) % houses.length;
+            const h = houses[current];
+            const staff = h.staff ? `<div><b>Sworn bannermen:</b> ${h.staff.toLocaleString()} staff</div>` : '';
+            document.getElementById('modalContent').innerHTML = `
+                <div style="${colors(h)}">
+                    <div class="modal-top">
+                        <div class="banner-rod"></div>
+                        <div class="banner" aria-hidden="true">
+                            <div class="sigil">${h.sigil}</div>
+                            <div class="alliance-label">${esc(ALLIANCES[h.alliance])}</div>
+                        </div>
+                    </div>
+                    <div class="modal-body">
+                        <div class="agency-name" id="modalTitle">${esc(h.name)}</div>
+                        <div class="house-name">${esc(h.house)}</div>
+                        <div class="motto">“${esc(h.motto)}”</div>
+                        <div class="facts">
+                            <div><b>Head of house:</b> ${esc(h.commissioner)}</div>
+                            <div><b>Come here for:</b> ${esc(h.seek)}</div>
+                            ${staff}
+                        </div>
+                        <p class="description">${esc(h.description)}</p>
+                        <a class="visit" href="${esc(h.url)}" target="_blank" rel="noopener noreferrer">Visit their hall →</a>
+                    </div>
+                </div>`;
+            if (!modal.open) modal.showModal();
+        }
+
+        document.getElementById('honeycomb').addEventListener('click', (e) => {
+            const hex = e.target.closest('.hex');
+            if (hex) openHouse(Number(hex.dataset.i));
+        });
+        document.getElementById('modalClose').addEventListener('click', () => modal.close());
+        document.getElementById('modalPrev').addEventListener('click', () => openHouse(current - 1));
+        document.getElementById('modalNext').addEventListener('click', () => openHouse(current + 1));
+        modal.addEventListener('click', (e) => { if (e.target === modal) modal.close(); }); // backdrop
+        modal.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowLeft') openHouse(current - 1);
+            if (e.key === 'ArrowRight') openHouse(current + 1);
+        });
+
+        let resizeTimer;
+        window.addEventListener('resize', () => { clearTimeout(resizeTimer); resizeTimer = setTimeout(layout, 100); });
+        // ---------- tabs (#guide in the URL opens the guide tab) ----------
+        function showTab(name) {
+            for (const t of ['houses', 'guide']) {
+                document.getElementById('tab-' + t).setAttribute('aria-selected', t === name);
+                document.getElementById('panel-' + t).hidden = t !== name;
+            }
+            history.replaceState(null, '', name === 'guide' ? '#guide' : location.pathname);
+            if (name === 'houses') layout(); // it can't measure itself while hidden
+        }
+
+        document.getElementById('tab-houses').addEventListener('click', () => showTab('houses'));
+        document.getElementById('tab-guide').addEventListener('click', () => showTab('guide'));
+        document.querySelectorAll('[data-goto]').forEach((b) =>
+            b.addEventListener('click', () => { showTab(b.dataset.goto); window.scrollTo({ top: 0, behavior: 'smooth' }); }));
+
+        renderAlliances();
+        layout();
+        if (location.hash === '#guide') showTab('guide');
     </script>
 </body>
 </html>
