@@ -27,8 +27,8 @@
   html, body { margin: 0; height: 100%; }
   body {
     font-family: 'Space Grotesk', system-ui, sans-serif; background: var(--bg); color: var(--text);
-    display: grid; grid-template-columns: minmax(0, 1fr) 420px; grid-template-rows: auto minmax(0, 1fr);
-    grid-template-areas: "top top" "map panel"; height: 100vh; height: 100dvh;
+    display: grid; grid-template-columns: minmax(0, 1fr) 420px; grid-template-rows: auto auto minmax(0, 1fr);
+    grid-template-areas: "nav nav" "top top" "map panel"; height: 100vh; height: 100dvh;
   }
   a { color: var(--accent); text-decoration: none; }
   a:hover { text-decoration: underline; }
@@ -96,7 +96,7 @@
   .intro p { color: var(--text-2); line-height: 1.6; font-size: 0.92rem; }
 
   @media (max-width: 860px) {
-    body { grid-template-columns: minmax(0, 1fr); grid-template-rows: auto 55vh minmax(0, 1fr); grid-template-areas: "top" "map" "panel"; }
+    body { grid-template-columns: minmax(0, 1fr); grid-template-rows: auto auto 55vh minmax(0, 1fr); grid-template-areas: "nav" "top" "map" "panel"; }
     header { padding: 12px 16px; }
     #panel { border-left: none; border-top: 1px solid var(--border); padding: 18px 16px 50px; }
     .controls { left: 52px; right: 10px; }
@@ -104,7 +104,7 @@
   }
 
   /* shared section tabs */
-  header nav.tabs { margin-left: auto; display: flex; align-items: center; gap: 4px; font-size: 0.9rem; }
+  header nav.tabs { margin-left: 0; display: flex; align-items: center; gap: 4px; font-size: 0.9rem; }
   header nav.tabs a { color: var(--text-2); padding: 6px 11px; border-radius: 7px; white-space: nowrap; }
   header nav.tabs a:hover { background: var(--bg-3); text-decoration: none; color: var(--text); }
   header nav.tabs a.active { background: var(--accent-soft); color: var(--text); font-weight: 600; }
@@ -120,17 +120,24 @@
     header h1 { display: none; }
     header nav.tabs { margin-left: 0; flex: 1; justify-content: space-between; }
   }
+  .mx-nav { grid-area: nav; }
 </style>
+    <link rel="stylesheet" href="../css/navbar.css">
 </head>
 <body>
+<nav class="mx-nav mx-nav-system" aria-label="Site">
+    <a href="/" class="mx-nav-logo" title="Minnesota Explained home">MX</a>
+    <div class="mx-nav-text">
+        <div class="mx-nav-title">Minneapolis Zoning Code</div>
+        <div class="mx-nav-subtitle">Minnesota Explained — Title 20</div>
+    </div>
+</nav>
 <header>
-  <h1>Minneapolis Zoning Map</h1>
   <nav class="tabs">
     <a href="index.html"><span class="full">Zoning code</span><span class="short">Code</span></a>
     <a href="map.html" class="active" aria-current="page"><span class="full">Zoning map</span><span class="short">Map</span></a>
     <a href="sim.html"><span class="full">Simulator</span><span class="short">Sim</span></a>
     <a href="legislation.html"><span class="full">Proposed ordinances</span><span class="short">Ordinances</span></a>
-    <a class="site" href="../">Minnesota Explained</a>
   </nav>
 </header>
 <div class="map-wrap">
