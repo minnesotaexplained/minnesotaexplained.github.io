@@ -1007,7 +1007,7 @@ issues.forEach(issue => {
   area *= 0.5;
   return [x / (6 * area), y / (6 * area)];
 }</div>
-    <div class="db-prose">The basemap is CARTO's dark tile set (<code>dark_all</code>) via Leaflet — no API key required, chosen to match the dashboard's dark theme rather than for any data reason.</div>
+    <div class="db-prose">The basemap is CARTO's dark tile set (<code>dark_all</code>) via Leaflet, chosen to match the dashboard's dark theme rather than for any data reason.</div>
   </div>
 
   <div class="chart-card db-section">
@@ -1198,7 +1198,7 @@ function ringCentroid(ring) {
 function loadWardMap() {
   const map = L.map('ward-map', { scrollWheelZoom: false }).setView([44.9778, -93.2650], 11);
 
-  L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png?api_key=' + CARTO_API_KEY, {
+  L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png?key=' + CARTO_API_KEY, {
     subdomains: 'abcd',
     maxZoom: 19,
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions" target="_blank" rel="noopener">CARTO</a>',

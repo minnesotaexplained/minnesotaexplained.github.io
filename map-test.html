@@ -51,7 +51,7 @@
         const map = L.map('map').setView([46.3, -94.2], 7);
 
         // Add a grayscale tile layer to make the red vertices pop
-        L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png?api_key=' + CARTO_API_KEY, {
+        L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png?key=' + CARTO_API_KEY, {
             attribution: '&copy; OpenStreetMap'
         }).addTo(map);
 

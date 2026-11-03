@@ -638,7 +638,7 @@
         // Initialize map
         const map = L.map('map').setView([46.5, -94.5], 6);
 
-        L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png?api_key=' + CARTO_API_KEY, {
+        L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png?key=' + CARTO_API_KEY, {
             attribution: '© OpenStreetMap © CartoDB',
             maxZoom: 19
         }).addTo(map);
