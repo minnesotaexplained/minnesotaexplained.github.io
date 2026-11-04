@@ -499,6 +499,74 @@
         .page-section { display: none; }
         .page-section.active { display: block; }
 
+        /* 2026 Results */
+        .er-status { text-align: center; color: #888; font-size: 0.85em; margin: -10px 0 28px; }
+        .er-source { text-align: center; color: #888; font-size: 0.8em; max-width: 720px; margin: -18px auto 28px; line-height: 1.6; }
+        .er-source a { color: #0d6efd; }
+        .er-seat-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; margin-bottom: 36px; }
+        @media (max-width: 768px) { .er-seat-grid { grid-template-columns: 1fr; } }
+        .er-card { background: #fff; border: 1px solid #e5e7eb; border-radius: 10px; padding: 20px 22px; }
+        .er-card h3 { margin: 0 0 4px; font-size: 1.15em; }
+        .er-card-sub { color: #888; font-size: 0.85em; margin-bottom: 16px; }
+        .er-bar-label { display: flex; justify-content: space-between; font-size: 0.82em; color: #666; margin: 10px 0 4px; }
+        .er-bar { position: relative; display: flex; height: 26px; border-radius: 5px; overflow: hidden; background: #eee; }
+        .er-bar > div { display: flex; align-items: center; justify-content: center; color: #fff; font-weight: 700; font-size: 0.85em; }
+        .er-bar .er-majority { position: absolute; top: -3px; bottom: -3px; width: 2px; background: #111; }
+        .er-dfl { background: #0d6efd; }
+        .er-r { background: #dc3545; }
+        .er-other { background: #6c757d; }
+        .er-bar.muted .er-dfl { background: #9ec5fe; color: #1f4e8c; }
+        .er-bar.muted .er-r { background: #f1aeb5; color: #8c1f2b; }
+        .er-bar.muted .er-other { background: #ced4da; color: #495057; }
+        .er-bar.muted .er-majority { background: #888; }
+        .er-bar-label.muted { color: #999; }
+        .er-change { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 14px; }
+        .er-pill { padding: 4px 10px; border-radius: 999px; font-size: 0.82em; font-weight: 700; background: #f1f3f5; }
+        .er-pill.dfl { color: #0d6efd; } .er-pill.r { color: #dc3545; }
+        .er-control { margin-top: 12px; font-weight: 600; font-size: 0.95em; }
+
+        .er-map-head { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; margin-bottom: 12px; }
+        .er-toggle { display: inline-flex; border: 1px solid #d0d4d9; border-radius: 6px; overflow: hidden; }
+        .er-toggle button { padding: 7px 18px; border: none; background: #fff; cursor: pointer; font-weight: 600; color: #666; }
+        .er-toggle button.active { background: #111; color: #fff; }
+        .er-legend { display: flex; flex-wrap: wrap; gap: 14px; font-size: 0.82em; color: #555; }
+        .er-legend span { display: inline-flex; align-items: center; gap: 6px; }
+        .er-swatch { width: 16px; height: 16px; border-radius: 3px; display: inline-block; }
+        .er-swatch.flip { outline: 3px solid #f5b301; outline-offset: -1px; }
+        .er-maps { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+        @media (max-width: 900px) { .er-maps { grid-template-columns: 1fr; } }
+        .er-map-caption { font-size: 0.82em; color: #777; margin-bottom: 6px; min-height: 2.6em; }
+        .er-map-caption b { color: #333; }
+        .er-map-wrap { border: 2px solid #ddd; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
+        #results-map { width: 100%; height: 560px; background: #f0f0f0; }
+        .er-tiles-wrap { height: 560px; background: #fafafa; display: flex; align-items: center; justify-content: center; }
+        #results-tiles, #results-tiles svg { width: 100%; height: 100%; }
+        @media (max-width: 768px) { #results-map, .er-tiles-wrap { height: 440px; } }
+        .er-tile { cursor: pointer; }
+        .er-tile text { font-size: 0.27px; font-weight: 600; text-anchor: middle; dominant-baseline: central; pointer-events: none; }
+        .er-tile.hover polygon { stroke: #111 !important; stroke-width: 0.09 !important; }
+        .er-tile-tip { position: fixed; z-index: 1000; pointer-events: none; display: none; background: #fff; border: 1px solid #ccc;
+            border-radius: 4px; padding: 6px 8px; box-shadow: 0 1px 4px rgba(0,0,0,0.3); font-size: 12px; }
+        .er-tip table { border-collapse: collapse; font-size: 12px; margin-top: 4px; }
+        .er-tip td { padding: 1px 6px 1px 0; }
+        .er-tip .er-tip-flip { color: #b8860b; font-weight: 700; }
+
+        .er-section { margin-top: 40px; }
+        .er-table-wrap { height: auto; }
+        .er-section h3 { margin-bottom: 6px; }
+        .er-note { color: #888; font-size: 0.85em; margin-bottom: 14px; }
+        .er-votes-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; }
+        @media (max-width: 768px) { .er-votes-grid { grid-template-columns: 1fr; } }
+        .er-tag { display: inline-block; padding: 1px 7px; border-radius: 4px; font-size: 0.75em; font-weight: 700; margin-left: 6px; }
+        .er-tag.flip { background: #f5b301; color: #111; }
+        .er-loser, .er-loser .er-party-dfl, .er-loser .er-party-r { color: #aaa; }
+        .er-open-seat { font-size: 0.78em; color: #aaa; margin-top: 2px; }
+        .er-votes-col { text-align: center; white-space: nowrap; }
+        .er-party-dfl { color: #0d6efd; font-weight: 600; }
+        .er-party-r { color: #dc3545; font-weight: 600; }
+        .er-uncontested { columns: 2; font-size: 0.9em; color: #555; }
+        @media (max-width: 600px) { .er-uncontested { columns: 1; } }
+
         /* Strategy 2026 */
         .strategy-intro {
             max-width: 680px;
@@ -1342,7 +1410,7 @@
         #activity-error { padding: 24px 14px; color: #dc3545; font-size: 0.9em; }
         body > .mx-nav { margin: -40px -20px 40px; }
     </style>
-    <link rel="stylesheet" href="css/navbar.css">
+    <link rel="stylesheet" href="../css/navbar.css">
 </head>
 <body>
     <nav class="mx-nav" aria-label="Site">
@@ -1358,13 +1426,12 @@
 
         <!-- Page Tab Nav -->
         <div class="page-tabs">
-            <button class="page-tab-btn active" data-section="legislature">Legislature</button>
-            <button class="page-tab-btn" data-section="contested">Contested Races</button>
-            <button class="page-tab-btn" data-section="strategy">Strategy 2026</button>
+            <button class="page-tab-btn active" data-section="results">2026 Results</button>
+            <button class="page-tab-btn" data-section="legislature">Current Legislature</button>
         </div>
 
         <!-- Legislature Tab -->
-        <div class="page-section active" id="section-legislature">
+        <div class="page-section" id="section-legislature">
             <!-- House of Representatives Section -->
             <div class="chamber-section">
                 <h2 class="chamber-title">House of Representatives</h2>
@@ -1395,35 +1462,84 @@
             </div>
         </div>
 
-        <!-- Contested Races Tab -->
-        <div class="page-section" id="section-contested">
+
+        <!-- 2026 Results Tab -->
+        <div class="page-section active" id="section-results">
             <div class="chamber-section">
-                <h2 class="chamber-title">Most Contested Races</h2>
-                <p class="chamber-subtitle">Ranked by closest margin of victory · House 2024 · Senate 2022</p>
-                <div class="contested-table-wrapper">
-                    <table class="contested-table">
-                        <thead>
-                            <tr>
-                                <th>#</th>
-                                <th>Chamber</th>
-                                <th>District</th>
-                                <th>Winner</th>
-                                <th class="ct-num">Winner</th>
-                                <th>Runner-up</th>
-                                <th class="ct-num">Runner-up</th>
-                                <th class="ct-num">Margin</th>
-                                <th class="ct-num">Reelection</th>
-                            </tr>
-                        </thead>
-                        <tbody id="contested-tbody"></tbody>
-                    </table>
+                <h2 class="chamber-title">2026 Election Results</h2>
+                <p class="er-status" id="er-status">Loading results…</p>
+                <p class="er-source" id="er-source"></p>
+
+                <div class="er-seat-grid" id="er-seats"></div>
+
+                <div class="er-map-head">
+                    <div class="er-toggle" id="er-toggle">
+                        <button class="active" data-chamber="house">House</button>
+                        <button data-chamber="senate">Senate</button>
+                    </div>
+                    <div class="er-legend">
+                        <span><i class="er-swatch" style="background:#9ec5fe"></i>DFL hold</span>
+                        <span><i class="er-swatch" style="background:#f1aeb5"></i>R hold</span>
+                        <span><i class="er-swatch flip" style="background:#0d6efd"></i>Flipped to DFL</span>
+                        <span><i class="er-swatch flip" style="background:#dc3545"></i>Flipped to R</span>
+                    </div>
+                </div>
+                <div class="er-maps">
+                    <div class="er-map-panel">
+                        <div class="er-map-caption"><b>Geographic</b> · districts drawn by land area</div>
+                        <div class="er-map-wrap">
+                            <div id="results-map"></div>
+                        </div>
+                    </div>
+                    <div class="er-map-panel">
+                        <div class="er-map-caption"><b>Equal population</b> · one hexagon per district (each has about the same number of people)</div>
+                        <div class="er-map-wrap er-tiles-wrap">
+                            <div id="results-tiles"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="er-tile-tip" id="er-tile-tip"></div>
+
+                <div class="er-section">
+                    <h3>Votes vs. seats</h3>
+                    <p class="er-note" id="er-votes-note"></p>
+                    <div class="er-votes-grid" id="er-votes"></div>
+                </div>
+
+                <div class="er-section">
+                    <h3>Flipped seats</h3>
+                    <div class="contested-table-wrapper er-table-wrap">
+                        <table class="contested-table">
+                            <thead><tr>
+                                <th>Chamber</th><th>District</th><th>Previous</th>
+                                <th class="er-votes-col">Votes</th><th>Winner</th><th class="ct-num">Margin</th>
+                            </tr></thead>
+                            <tbody id="er-flips"></tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="er-section">
+                    <h3>Closest races</h3>
+                    <p class="er-note">Contested races sorted by margin of victory.</p>
+                    <div class="contested-table-wrapper er-table-wrap">
+                        <table class="contested-table">
+                            <thead><tr>
+                                <th>#</th><th>Chamber</th><th>District</th><th>Winner</th><th>Runner-up</th>
+                                <th class="ct-num">Votes</th><th class="ct-num">Margin</th>
+                            </tr></thead>
+                            <tbody id="er-closest"></tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="er-section">
+                    <h3>Uncontested races</h3>
+                    <p class="er-note">Only one candidate on the ballot (write-ins aside). Left out of the vote totals above.</p>
+                    <div class="er-uncontested" id="er-uncontested"></div>
                 </div>
             </div>
-            <div id="section-targets"></div>
         </div>
-
-        <!-- Strategy 2026 Tab -->
-        <div class="page-section" id="section-strategy"></div>
     </div>
 
     <!-- Modal -->
@@ -1549,7 +1665,7 @@
 
     <!-- Leaflet JS -->
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-    <script src="js/config.js"></script>
+    <script src="../js/config.js"></script>
     
     <!-- Proj4 and Proj4Leaflet -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/proj4js/2.11.0/proj4.js"></script>
@@ -2080,7 +2196,17 @@
                 btn.classList.add('active');
                 document.getElementById('section-' + btn.dataset.section).classList.add('active');
                 if (btn.dataset.section === 'legislature' && map) {
-                    setTimeout(() => map.invalidateSize(), 50);
+                    setTimeout(() => {
+                        map.invalidateSize();
+                        // The map loads while its tab is hidden, so fit it to the districts on first view
+                        if (!map._fittedVisible && geoLayer) {
+                            map.fitBounds(geoLayer.getBounds());
+                            map._fittedVisible = true;
+                        }
+                    }, 50);
+                }
+                if (btn.dataset.section === 'results') {
+                    setTimeout(erInitMap, 50);
                 }
             });
         });
@@ -2244,446 +2370,358 @@
                 });
         }
 
-        function buildPlaybook() {
+        // ===== 2026 Results tab =====
+        const ER = {
+            data: null,
+            map: null,
+            layer: null,
+            chamber: 'house',
+            byKey: {},  // 'house:01A' / 'senate:01' -> race
+            geoByKey: {},  // district key -> Leaflet layers on the geographic map
+            tiles: null,  // district_tiles.json
+        };
+        const ER_COLORS = {
+            hold: { DFL: '#9ec5fe', R: '#f1aeb5' },
+            flip: { DFL: '#0d6efd', R: '#dc3545' },
+            other: '#adb5bd',
+            flipBorder: '#f5b301',
+        };
+        const ER_SEATS = { house: 134, senate: 67 };
 
-            return `
-            <div class="playbook-wrapper" style="margin-top:48px;">
-                <div class="playbook-header">
-                    <h3>The 2026 Red-to-Blue Playbook</h3>
-                    <p>A field guide for flipping contested Minnesota House &amp; Senate districts — based on DFL deep-organizing strategy</p>
-                </div>
+        function erEsc(s) {
+            return String(s ?? '').replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+        }
+        function erPartyClass(p) { return p === 'DFL' ? 'er-party-dfl' : p === 'R' ? 'er-party-r' : ''; }
+        function erChamberLabel(c) { return c === 'house' ? 'House' : 'Senate'; }
+        function erDistrictLabel(r) { return (r.chamber === 'house' ? 'HD ' : 'SD ') + r.district.replace(/^0/, ''); }
 
-                <div class="guide-steps">
-                    <div class="guide-step">
-                        <div class="guide-step-num">1</div>
-                        <div class="guide-step-content">
-                            <h4>Ground Truth Infrastructure</h4>
-                            <p>Before a candidate is finalized, the foundation must be built. Calculate the <strong>"Win Number"</strong> — 50% of expected turnout + 1. In Minnesota midterms, turnout hovers at 60–65%, but 2024 hit 76%. Aim for a high-turnout model.</p>
-                            <p>Use the Voter File (VAN) to segment the district into three buckets:</p>
-                            <ul>
-                                <li><strong>Base (Blue)</strong> — Must be mobilized. Focus on turnout.</li>
-                                <li><strong>Swing (Purple)</strong> — Must be engaged. Focus on persuasion.</li>
-                                <li><strong>Opponent (Red)</strong> — Generally ignored to conserve resources.</li>
-                            </ul>
-                            <p>Start door-knocking 12–18 months out — not to ask for votes, but to run <em>listening sessions</em> that identify the top 3 local concerns (e.g., a specific bridge, school funding, or property taxes).</p>
-                        </div>
-                    </div>
-
-                    <div class="guide-step">
-                        <div class="guide-step-num">2</div>
-                        <div class="guide-step-content">
-                            <h4>Messaging: The Kitchen Table &amp; The Shield</h4>
-                            <p><strong>Offensive (Kitchen Table)</strong> — Lead with tangible 2023–2025 DFL accomplishments that put money back in constituents' pockets: Universal School Meals (~$1,200/year per family), Paid Family Leave, the Child Tax Credit, and local infrastructure wins from the Bonding Bill.</p>
-                            <p><strong>Defensive (The Shield)</strong> — In 2026, position the DFL candidate as a check on federal overreach. Use local autonomy and "state rights" language — protecting Minnesota's healthcare standards and insulin price caps from federal policy shifts.</p>
-                        </div>
-                    </div>
-
-                    <div class="guide-step">
-                        <div class="guide-step-num">3</div>
-                        <div class="guide-step-content">
-                            <h4>Tactical Execution Phases</h4>
-                            <div class="phase-grid">
-                                <div class="phase-card">
-                                    <div class="phase-tag">Phase 1</div>
-                                    <div class="phase-title">Persistence</div>
-                                    <div class="phase-focus">Build Name ID</div>
-                                    <div class="phase-activity">Community events, parades, and "Meet the Candidate" coffees. Be seen everywhere.</div>
-                                </div>
-                                <div class="phase-card">
-                                    <div class="phase-tag">Phase 2</div>
-                                    <div class="phase-title">Persuasion</div>
-                                    <div class="phase-focus">Deep Canvassing</div>
-                                    <div class="phase-activity">Shift from lit drops to 10-minute conversations at the door. Listen more than you talk.</div>
-                                </div>
-                                <div class="phase-card">
-                                    <div class="phase-tag">Phase 3</div>
-                                    <div class="phase-title">Pressure</div>
-                                    <div class="phase-focus">Earned Media</div>
-                                    <div class="phase-activity">Op-eds in local papers highlighting the opponent's votes against school meals, EMS, and paid leave.</div>
-                                </div>
-                                <div class="phase-card">
-                                    <div class="phase-tag">Phase 4</div>
-                                    <div class="phase-title">GOTV</div>
-                                    <div class="phase-focus">Turnout</div>
-                                    <div class="phase-activity">The 72-hour push. Phone banks, text banks, and rides to the polls. Every base vote counts.</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="guide-step">
-                        <div class="guide-step-num">4</div>
-                        <div class="guide-step-content">
-                            <h4>Turnout Likelihood</h4>
-                            <p>Minnesota midterm turnout historically runs 60–65%, though 2024 hit 76%. In 2026, the <strong>"Trump Factor"</strong> is significant — if the GOP incumbent is closely tied to unpopular federal policies (like Medicaid funding freezes), soft Republicans may stay home, lowering the flip threshold.</p>
-                            <ul>
-                                <li><strong>Suburban Swing (High Likelihood)</strong> — Areas like Plymouth, Eden Prairie, or Lakeville see 70%+ turnout. Primary targets; swing voters here are motivated by education and reproductive rights.</li>
-                                <li><strong>Greater MN / Regional Centers (Moderate)</strong> — Cities like Mankato or Moorhead have high student populations. Turnout is lower (50–55%) but can be surged with campus organizing.</li>
-                            </ul>
-                        </div>
-                    </div>
-
-                    <div class="guide-step">
-                        <div class="guide-step-num">5</div>
-                        <div class="guide-step-content">
-                            <h4>Red Flags to Avoid</h4>
-                            <div class="red-flag-list">
-                                <div class="red-flag-item">
-                                    <span class="red-flag-icon">&#9888;</span>
-                                    <div><strong>The Nationalization Trap</strong> — Do not let the race become about national culture wars. Keep the focus on what bills passed and how they helped the specific district.</div>
-                                </div>
-                                <div class="red-flag-item">
-                                    <span class="red-flag-icon">&#9888;</span>
-                                    <div><strong>Ignoring Rural Issues</strong> — If the district has an agricultural base, the candidate must speak to Rural EMS funding and Biofuel infrastructure, or they will be successfully branded as "Metro-centric."</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div style="padding:0 28px 28px;">
-                    <h4 style="font-size:1em;font-weight:700;color:#111;margin-bottom:16px;">3 Golden Rules for 2026 Canvassing</h4>
-                    <div class="golden-rules">
-                        <div class="golden-rule">
-                            <div class="golden-rule-num">I</div>
-                            <div>
-                                <div class="golden-rule-title">Lead with Local</div>
-                                <div class="golden-rule-body">Always pivot from a national headline to a local bill — "I know the news is talking about the border, but in this district, we're focused on the $27M for rural ambulances."</div>
-                            </div>
-                        </div>
-                        <div class="golden-rule">
-                            <div class="golden-rule-num">II</div>
-                            <div>
-                                <div class="golden-rule-title">The "Check" Argument</div>
-                                <div class="golden-rule-body">To moderates, frame the DFL-controlled House as a "Common Sense Check" that prevents the state from falling into the extremes of national politics.</div>
-                            </div>
-                        </div>
-                        <div class="golden-rule">
-                            <div class="golden-rule-num">III</div>
-                            <div>
-                                <div class="golden-rule-title">Cost of Living is King</div>
-                                <div class="golden-rule-body">Every response should eventually circle back to how a policy saves the voter money or protects their property value.</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>`;
+        function erCount(races, getParty) {
+            const n = { DFL: 0, R: 0, other: 0 };
+            races.forEach(r => {
+                const p = getParty(r);
+                if (p === 'DFL' || p === 'R') n[p]++;
+                else if (p) n.other++;
+            });
+            return n;
         }
 
-        function buildStrategySection(reps, senators, accomplishments) {
-            const getContested = (members) => members
-                .filter(m => m.latest_election && !m.latest_election.ran_unopposed)
-                .map(m => {
-                    const e = m.latest_election;
-                    const winPct = parseFloat(e.rep_vote_pct);
-                    const oppPct = parseFloat(e.opponent_vote_pct);
-                    return { member: m, margin: winPct - oppPct, voteGap: e.rep_votes - e.opponent_votes };
-                })
-                .filter(r => !isNaN(r.margin))
-                .sort((a, b) => a.margin - b.margin)
-                .slice(0, 10);
-
-            const contestedReps = getContested(reps);
-            const contestedSenators = getContested(senators);
-            const maxGap = Math.max(...contestedReps.concat(contestedSenators).map(r => r.voteGap));
-
-            const renderCard = (race, i) => {
-                const cssClass = race.member.party === 'Republican' ? 'republican'
-                    : race.member.party === 'Democratic-Farmer-Labor' ? 'dfl' : 'other';
-                const color = cssClass === 'republican' ? '#dc3545' : '#0d6efd';
-                const badgeLabel = cssClass === 'dfl' ? 'DFL' : 'R';
-                const marginClass = race.margin < 2 ? 'margin-tight'
-                    : race.margin < 5 ? 'margin-close' : 'margin-comfortable';
-                const barWidth = Math.max(3, (race.voteGap / maxGap) * 100);
-                return `<div class="strategy-card">
-                    <div class="strategy-rank">${i + 1}</div>
-                    <div class="strategy-card-body">
-                        <div class="strategy-member-name">${race.member.name}<span class="party-badge ${cssClass}">${badgeLabel}</span></div>
-                        <div class="strategy-district">${race.member.district_name} &middot; ${race.member.district_location}</div>
-                        <div class="strategy-stats">
-                            <div class="strategy-stat">Margin <strong class="${marginClass}">+${race.margin.toFixed(2)}%</strong></div>
-                            <div class="strategy-stat">Votes to flip <strong>${(race.voteGap + 1).toLocaleString()}</strong></div>
-                        </div>
-                        <div class="vote-gap-bar-track">
-                            <div class="vote-gap-bar-fill" style="width:${barWidth}%; background:${color};"></div>
-                        </div>
-                    </div>
-                </div>`;
-            };
-
-            const accomplishmentRows = [...accomplishments]
-                .sort((a, b) => new Date(b.passed_date) - new Date(a.passed_date))
-                .map(a => `
-                <tr>
-                    <td>
-                        <div class="acc-bill-name">${a.name}</div>
-                        <div class="acc-bill-id">${a.bill_id}</div>
-                    </td>
-                    <td class="acc-description">${a.description}</td>
-                    <td class="acc-date">${a.passed_date}</td>
-                    <td class="acc-author">${a.author}</td>
-                </tr>`).join('');
-
-            const qaRows = [
-                [1, '"The state is spending too much. Why do we have a $66 billion budget?"', '"We\'re investing in things that save families money directly. Programs like Universal School Meals save the average family $1,200 a year. We\'re choosing to put that money into your pocket rather than keeping it in St. Paul."'],
-                [2, '"Why are we giving healthcare and tuition to undocumented immigrants?"', '"The 2025 compromise focused on children. We believe every child in a MN classroom should be healthy enough to learn. It\'s also about public health — it\'s cheaper for taxpayers if people go to a clinic than an Emergency Room."'],
-                [3, '"The fraud in programs like \'Feeding Our Future\' is out of control."', '"Taxpayers deserve total accountability. That\'s why we created the independent Office of Inspector General in 2025. We are focused on \'Fraud Isn\'t Free\' — firing anyone who mismanages public funds and clawing back every cent."'],
-                [4, '"Democrats are making MN a \'Sanctuary State\' and blocking ICE."', '"This is about public safety. When federal agents don\'t wear IDs or masks, it creates chaos. We want federal agents to follow the same rules as our local police — render aid when someone is hurt and identify themselves so our kids feel safe."'],
-                [5, '"My property taxes keep going up while the state sits on a surplus."', '"That\'s exactly why we passed the $700 million Bonding Bill. By the state paying for local water and bridge repairs, your city doesn\'t have to raise your property taxes to fix that crumbling infrastructure."'],
-                [6, '"The 100% Clean Energy law is going to double my electric bill."', '"The goal is energy independence. By moving to wind and solar made right here in the Midwest, we stop being dependent on global oil prices. We also provided grants to help rural co-ops upgrade without passing the cost to you."'],
-                [7, '"The DFL has a \'War on Cars\' with the new EV and delivery taxes."', '"Minnesota\'s roads are aging. We had a choice: let the potholes get worse or find a fair way to fund repairs. Those who use the roads most — like heavy delivery vans — should help pay to keep them safe for everyone."'],
-                [8, '"Why are you pushing \'Red Flag\' laws? It\'s a 2nd Amendment violation."', '"This is a family safety issue. It\'s a tool for families and law enforcement to temporarily intervene during a mental health crisis. It\'s about preventing a tragedy before it happens, with full due process in court."'],
-                [9, '"The Paid Family Leave mandate is going to hurt my small business."', '"Actually, it helps small businesses compete with giant corporations. Now, a \'Main Street\' shop can offer the same benefits as a big tech company, funded through a tiny state pool, helping you keep your best employees."'],
-                [10, '"Minnesota is becoming too liberal; it doesn\'t feel like the state I grew up in."', '"Minnesota has always been about looking out for your neighbor. Whether it\'s ensuring a farmer gets paid for his grain or making sure a rural senior has an ambulance nearby, we\'re protecting the \'Minnesota Way\' from outside chaos."'],
-            ].map(([n, q, r]) => `<tr>
-                <td style="color:#bbb;font-size:0.82em;text-align:right;padding-right:10px;white-space:nowrap;">${n}</td>
-                <td class="qa-question">${q}</td>
-                <td class="qa-response">${r}</td>
-            </tr>`).join('');
-
-            document.getElementById('section-targets').innerHTML = `
-                <div class="chamber-section">
-                    <h2 class="chamber-title">2026 Top Targets</h2>
-                    <p class="chamber-subtitle">Most winnable seats ranked by closest prior margin of victory. The closer the race, the fewer additional votes needed to flip.</p>
-                    <div class="strategy-grid">
-                        <div>
-                            <div class="strategy-column-title">
-                                <span class="legend-dot" style="background:#555;"></span> House — Top Targets
-                            </div>
-                            ${contestedReps.map(renderCard).join('')}
-                        </div>
-                        <div>
-                            <div class="strategy-column-title">
-                                <span class="legend-dot" style="background:#555;"></span> Senate — Top Targets
-                            </div>
-                            ${contestedSenators.map(renderCard).join('')}
-                        </div>
-                    </div>
-                </div>`;
-
-            document.getElementById('section-strategy').innerHTML = `
-                <div class="">
-                    <h2 class="chamber-title">Strategy 2026</h2>
-                    <div class="timeline-section">
-                        <div class="timeline-title">Road to November 2026</div>
-                        <div class="timeline-scroll">
-                            <div class="timeline-canvas" id="tl-canvas"></div>
-                        </div>
-                    </div>
-
-                    <h3 class="chamber-title" style="margin-top:48px; font-size:1.3em;">Legislative Accomplishments</h3>
-                    <p class="chamber-subtitle">Bills passed during the current DFL legislative majority.</p>
-                    <div class="accomplishments-wrapper">
-                        <table class="accomplishments-table">
-                            <thead>
-                                <tr>
-                                    <th>Bill</th>
-                                    <th>Description</th>
-                                    <th>Passed</th>
-                                    <th>Author</th>
-                                </tr>
-                            </thead>
-                            <tbody>${accomplishmentRows}</tbody>
-                        </table>
-                    </div>
-
-                    <div class="playbook-qa-grid">
-                        ${buildPlaybook()}
-                        <div class="playbook-wrapper">
-                            <div class="playbook-header">
-                                <h3>Common Questions &amp; Responses</h3>
-                                <p>How to respond to the most common objections you'll hear at the door.</p>
-                            </div>
-                            <div class="accomplishments-wrapper" style="height:auto;max-height:none;overflow-y:visible;">
-                                <table class="accomplishments-table">
-                                    <thead>
-                                        <tr>
-                                            <th style="width:24px;">#</th>
-                                            <th>Question / Statement</th>
-                                            <th>Response</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>${qaRows}</tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-                </div>`;
+        function erBar(n, total, muted = false) {
+            const majority = Math.floor(total / 2) + 1;
+            const seg = (cls, v) => v ? `<div class="${cls}" style="width:${100 * v / total}%">${v}</div>` : '';
+            return `<div class="er-bar${muted ? ' muted' : ''}">${seg('er-dfl', n.DFL)}${seg('er-other', n.other)}${seg('er-r', n.R)}
+                <div class="er-majority" style="left:${100 * majority / total}%" title="${majority} seats for a majority"></div></div>`;
         }
 
-        function buildTimeline() {
-            const canvas = document.getElementById('tl-canvas');
-            if (!canvas) return;
+        function erControl(n, total) {
+            const majority = Math.floor(total / 2) + 1;
+            if (n.DFL >= majority) return '<span class="er-party-dfl">DFL majority</span>';
+            if (n.R >= majority) return '<span class="er-party-r">Republican majority</span>';
+            return 'No majority';
+        }
 
-            const milestones = [
-                { date: new Date(2026, 1, 3),  label: 'Precinct\nCaucus' },
-                { date: new Date(2026, 2, 10), label: 'Township\nElections' },
-                { date: new Date(2026, 5, 26), label: 'Early Voting\nBegins (Primary)' },
-                { date: new Date(2026, 6, 21), label: 'Primary Reg.\nDeadline' },
-                { date: new Date(2026, 7, 10), label: 'Early Voting\nEnds (Primary)' },
-                { date: new Date(2026, 7, 11), label: 'Primary\nElection' },
-                { date: new Date(2026, 8, 18), label: 'Early Voting\nBegins (General)' },
-                { date: new Date(2026, 9, 13), label: 'General Reg.\nDeadline' },
-                { date: new Date(2026, 10, 2), label: 'Early Voting\nEnds (General)' },
-                { date: new Date(2026, 10, 3), label: 'General\nElection Day' },
-            ];
+        function buildResultsSeats(races) {
+            const html = ['house', 'senate'].map(ch => {
+                const rs = races.filter(r => r.chamber === ch);
+                const total = ER_SEATS[ch];
+                const before = erCount(rs, r => r.previous && r.previous.party);
+                const after = erCount(rs, r => r.winner.party);
+                const flipsTo = p => rs.filter(r => r.flip && r.winner.party === p).length;
+                const net = after.DFL - before.DFL;
+                const netPill = net === 0 ? '<span class="er-pill">No net change</span>'
+                    : `<span class="er-pill ${net > 0 ? 'dfl' : 'r'}">${net > 0 ? 'DFL' : 'R'} +${Math.abs(net)} net</span>`;
+                return `<div class="er-card">
+                    <h3>${ch === 'house' ? 'House of Representatives' : 'State Senate'}</h3>
+                    <div class="er-card-sub">${total} seats · ${Math.floor(total / 2) + 1} for a majority</div>
+                    <div class="er-bar-label muted"><span>Before</span><span>DFL ${before.DFL} – R ${before.R}${before.other ? ' – Other ' + before.other : ''}</span></div>
+                    ${erBar(before, total, true)}
+                    <div class="er-bar-label"><span><b>After 2026</b></span><span><b>DFL ${after.DFL} – R ${after.R}${after.other ? ' – Other ' + after.other : ''}</b></span></div>
+                    ${erBar(after, total)}
+                    <div class="er-change">
+                        ${netPill}
+                        <span class="er-pill dfl">${flipsTo('DFL')} flipped to DFL</span>
+                        <span class="er-pill r">${flipsTo('R')} flipped to R</span>
+                    </div>
+                    <div class="er-control">${erControl(before, total)} → ${erControl(after, total)}</div>
+                </div>`;
+            }).join('');
+            document.getElementById('er-seats').innerHTML = html;
+        }
 
-            const today = new Date();
-            today.setHours(0, 0, 0, 0);
+        function buildResultsVotes(races) {
+            const contested = races.filter(r => !r.uncontested);
+            const skipped = races.length - contested.length;
+            document.getElementById('er-votes-note').textContent =
+                `Total votes for DFL and Republican candidates in contested races (${skipped} uncontested races left out), compared with the share of seats each party won.`;
+            const html = ['house', 'senate'].map(ch => {
+                const rs = contested.filter(r => r.chamber === ch);
+                const votes = { DFL: 0, R: 0 };
+                rs.forEach(r => r.candidates.forEach(c => { if (c.party in votes) votes[c.party] += c.votes; }));
+                const twoParty = votes.DFL + votes.R;
+                const all = races.filter(r => r.chamber === ch);
+                const seats = erCount(all, r => r.winner.party);
+                const pct = (v, t) => t ? (100 * v / t).toFixed(1) : '0.0';
+                const row = (label, d, r, dTxt, rTxt) => `
+                    <div class="er-bar-label"><span>${label}</span><span><span class="er-party-dfl">${dTxt}</span> · <span class="er-party-r">${rTxt}</span></span></div>
+                    <div class="er-bar"><div class="er-dfl" style="width:${d}%">${d}%</div><div class="er-r" style="width:${r}%">${r}%</div></div>`;
+                return `<div class="er-card">
+                    <h3>${ch === 'house' ? 'House' : 'Senate'}</h3>
+                    ${row('Vote share (two-party)', pct(votes.DFL, twoParty), pct(votes.R, twoParty),
+                        votes.DFL.toLocaleString() + ' DFL', votes.R.toLocaleString() + ' R')}
+                    ${row('Seat share', pct(seats.DFL, all.length), pct(seats.R, all.length),
+                        seats.DFL + ' DFL', seats.R + ' R')}
+                    <div class="er-card-sub" style="margin:12px 0 0">DFL vote margin: ${(votes.DFL - votes.R) >= 0 ? '+' : ''}${(votes.DFL - votes.R).toLocaleString()} votes</div>
+                </div>`;
+            }).join('');
+            document.getElementById('er-votes').innerHTML = html;
+        }
 
-            // Timeline spans from Jan 1 2026 to Nov 30 2026
-            const tStart = new Date(2026, 0, 1).getTime();
-            const tEnd   = new Date(2026, 10, 30).getTime();
-            const tRange = tEnd - tStart;
+        // Loose name match so 'Wayne Johnson' == 'Wayne A Johnson'
+        function erSamePerson(a, b) {
+            const parts = n => n.toLowerCase().replace(/[^a-z\s]/g, '').split(/\s+/).filter(Boolean);
+            const pa = parts(a), pb = parts(b);
+            return pa[0] === pb[0] && pa[pa.length - 1] === pb[pb.length - 1];
+        }
+        function erRunnerUp(r) { return r.candidates.find((c, i) => i > 0 && c.party !== 'WI') || r.candidates[1]; }
 
-            const PAD = 60; // px padding each side
-            const W = canvas.offsetWidth || 1200;
-            const usable = W - PAD;
+        function buildResultsTables(races) {
+            const flips = races.filter(r => r.flip)
+                .sort((a, b) => a.chamber.localeCompare(b.chamber) || a.district.localeCompare(b.district));
+            document.getElementById('er-flips').innerHTML = flips.length ? flips.map(r => {
+                const w = r.candidates[0];
+                // Loser = the candidate from the party that held the seat before
+                const l = r.candidates.find(c => c.party === r.previous.party) || erRunnerUp(r);
+                const openSeat = !erSamePerson(l.name, r.previous.name);
+                return `<tr data-chamber="${r.chamber}" data-district="${r.district}">
+                    <td>${erChamberLabel(r.chamber)}</td>
+                    <td>${erDistrictLabel(r)}</td>
+                    <td class="er-loser"><span class="${erPartyClass(l.party)}">${erEsc(l.party)}</span> ${erEsc(l.name)}
+                        ${openSeat ? `<div class="er-open-seat">Open seat, held by ${erEsc(r.previous.name)}</div>` : ''}</td>
+                    <td class="er-votes-col"><span class="er-loser">${l.votes.toLocaleString()}</span> → <b>${w.votes.toLocaleString()}</b></td>
+                    <td><span class="${erPartyClass(w.party)}">${erEsc(w.party)}</span> <b>${erEsc(w.name)}</b></td>
+                    <td class="ct-num">+${r.margin.pct.toFixed(2)}%</td>
+                </tr>`;
+            }).join('') : '<tr><td colspan="6" style="color:#888">No seats changed party.</td></tr>';
 
-            const toX = (d) => PAD + (d.getTime() - tStart) / tRange * usable;
+            const closest = races.filter(r => !r.uncontested).sort((a, b) => a.margin.pct - b.margin.pct).slice(0, 20);
+            document.getElementById('er-closest').innerHTML = closest.map((r, i) => {
+                const w = r.candidates[0], ru = erRunnerUp(r);
+                return `<tr data-chamber="${r.chamber}" data-district="${r.district}">
+                    <td>${i + 1}</td>
+                    <td>${erChamberLabel(r.chamber)}</td>
+                    <td>${erDistrictLabel(r)}${r.flip ? '<span class="er-tag flip">Flip</span>' : ''}</td>
+                    <td><span class="${erPartyClass(w.party)}">${erEsc(w.party)}</span> ${erEsc(w.name)}</td>
+                    <td><span class="${erPartyClass(ru.party)}">${erEsc(ru.party)}</span> ${erEsc(ru.name)}</td>
+                    <td class="ct-num">${w.votes.toLocaleString()} – ${ru.votes.toLocaleString()}</td>
+                    <td class="ct-num">+${r.margin.votes.toLocaleString()} (${r.margin.pct.toFixed(2)}%)</td>
+                </tr>`;
+            }).join('');
 
-            // Track
-            const track = document.createElement('div');
-            track.className = 'tl-track';
-            canvas.appendChild(track);
+            const unc = races.filter(r => r.uncontested);
+            document.getElementById('er-uncontested').innerHTML = unc.length ? unc.map(r =>
+                `<div>${erDistrictLabel(r)}: <span class="${erPartyClass(r.winner.party)}">${erEsc(r.winner.party)}</span> ${erEsc(r.winner.name)}</div>`
+            ).join('') : 'None';
 
-            // Past overlay on track
-            const todayX = Math.min(Math.max(toX(today), PAD), PAD + usable);
-            const pastPct = ((todayX - PAD) / usable * 100).toFixed(2);
-            const pastBar = document.createElement('div');
-            pastBar.className = 'tl-track-past';
-            pastBar.style.width = pastPct + '%';
-            track.appendChild(pastBar);
+            // Clicking a row switches the map to that chamber and zooms to the district
+            document.querySelectorAll('#er-flips tr[data-district], #er-closest tr[data-district]').forEach(tr => {
+                tr.addEventListener('click', () => erFocusDistrict(tr.dataset.chamber, tr.dataset.district));
+            });
+        }
 
-            // Month ticks
-            for (let m = 0; m <= 10; m++) {
-                const d = new Date(2026, m, 1);
-                const x = toX(d);
-                const tick = document.createElement('div');
-                tick.className = 'tl-month-tick';
-                tick.style.left = x + 'px';
-                tick.innerHTML = `<div class="tl-month-tick-line"></div><div class="tl-month-label">${d.toLocaleString('default',{month:'short'})}</div>`;
-                canvas.appendChild(tick);
-            }
+        // Map polygons are House districts (e.g. '01A'); the Senate view uses the first two characters.
+        function erKeyForHouseDistrict(d) { return ER.chamber === 'house' ? d : d.substring(0, 2); }
+        function erRaceFor(key) { return ER.byKey[ER.chamber + ':' + key]; }
+        function erRaceForFeature(feature) { return erRaceFor(erKeyForHouseDistrict(feature.properties.DISTRICT)); }
 
-            // Milestones – alternate labels above (even) and below (odd) to avoid overlap
-            const LABEL_H = 44; // px from center to bottom of label area (above line)
+        // Shared coloring for both maps: muted = held, full color + gold border = flipped
+        function erColors(r) {
+            if (!r) return { fill: ER_COLORS.other, flip: false };
+            const p = r.winner.party;
+            return r.flip
+                ? { fill: ER_COLORS.flip[p] || ER_COLORS.other, flip: true }
+                : { fill: ER_COLORS.hold[p] || ER_COLORS.other, flip: false };
+        }
 
-            milestones.forEach((ms, i) => {
-                const x = toX(ms.date);
-                const isPast = ms.date < today;
-                const cls = isPast ? ' past' : '';
-                const isBelow = i % 2 === 1;
-                const belowCls = isBelow ? ' below' : '';
+        function erStyle(feature) {
+            const c = erColors(erRaceForFeature(feature));
+            return c.flip
+                ? { fillColor: c.fill, color: ER_COLORS.flipBorder, weight: 3, fillOpacity: 0.95 }
+                : { fillColor: c.fill, color: '#fff', weight: 1, fillOpacity: 0.9 };
+        }
 
-                // Connector line between label and dot
-                const conn = document.createElement('div');
-                conn.className = 'tl-connector' + cls;
-                conn.style.left = x + 'px';
-                if (isBelow) {
-                    conn.style.height = '26px';
-                    conn.style.marginTop = '4px';
-                } else {
-                    conn.style.height = (LABEL_H - 6) + 'px';
-                    conn.style.marginTop = -(LABEL_H - 6) + 'px';
+        function erTooltipForRace(r) {
+            if (!r) return 'No result';
+            const rows = r.candidates.filter(c => c.party !== 'WI' || c.votes > 0).map(c =>
+                `<tr><td class="${erPartyClass(c.party)}">${erEsc(c.party)}</td><td>${erEsc(c.name)}</td>
+                 <td style="text-align:right">${c.votes.toLocaleString()}</td><td style="text-align:right">${c.pct.toFixed(1)}%</td></tr>`).join('');
+            const prev = r.previous ? `Previous: ${erEsc(r.previous.party)} (${erEsc(r.previous.name)})` : 'Previous: vacant';
+            return `<div class="er-tip"><b>${erChamberLabel(r.chamber)} District ${r.district.replace(/^0/, '')}</b>
+                ${r.flip ? `<span class="er-tip-flip"> · FLIP ${erEsc(r.flip.replace('->', ' → '))}</span>` : ''}
+                <table>${rows}</table>
+                <div>Margin: ${r.uncontested ? 'uncontested' : `${r.margin.votes.toLocaleString()} votes (${r.margin.pct.toFixed(2)}%)`}</div>
+                <div style="color:#888">${prev}</div></div>`;
+        }
+
+        // Linked hover: highlight a district on both maps
+        function erHighlight(key, on) {
+            const tile = document.querySelector(`#results-tiles .er-tile[data-key="${key}"]`);
+            if (tile) tile.classList.toggle('hover', on);
+            (ER.geoByKey[key] || []).forEach(l => {
+                l.setStyle(on ? { color: '#111', weight: 3, fillOpacity: 0.6 } : erStyle(l.feature));
+                if (!on && erRaceForFeature(l.feature)?.flip) l.bringToFront();
+            });
+        }
+
+        function erRenderMap() {
+            if (!ER.map || !geoData || !ER.data) return;
+            if (ER.layer) ER.map.removeLayer(ER.layer);
+            const flipped = [];
+            ER.geoByKey = {};
+            ER.layer = L.geoJSON(geoData, {
+                coordsToLatLng: coords => {
+                    const t = proj4(MN_UTM15_DEF, 'WGS84', [coords[0], coords[1]]);
+                    return new L.LatLng(t[1], t[0]);
+                },
+                smoothFactor: 2.0,
+                renderer: L.canvas(),
+                style: erStyle,
+                onEachFeature: (feature, layer) => {
+                    const key = erKeyForHouseDistrict(feature.properties.DISTRICT);
+                    (ER.geoByKey[key] = ER.geoByKey[key] || []).push(layer);
+                    layer.bindTooltip(() => erTooltipForRace(erRaceFor(key)), { sticky: true });
+                    layer.on('mouseover', () => erHighlight(key, true));
+                    layer.on('mouseout', () => erHighlight(key, false));
+                    if (erRaceFor(key)?.flip) flipped.push(layer);
                 }
-                conn.style.top = '50%';
-                canvas.appendChild(conn);
-
-                // Dot
-                const dot = document.createElement('div');
-                dot.className = 'tl-dot' + cls;
-                dot.style.left = x + 'px';
-                canvas.appendChild(dot);
-
-                // Label
-                const label = document.createElement('div');
-                label.className = 'tl-label' + cls + belowCls;
-                label.style.left = x + 'px';
-                const [line1, line2] = ms.label.split('\n');
-                const dateStr = ms.date.toLocaleDateString('default', { month: 'short', day: 'numeric' });
-                label.innerHTML = `${line1}${line2 ? '<br>' + line2 : ''}<span class="tl-label-date">${dateStr}</span>`;
-                canvas.appendChild(label);
-            });
-
-            // Today marker
-            if (today >= new Date(2026, 0, 1) && today <= new Date(2026, 10, 30)) {
-                const todayDot = document.createElement('div');
-                todayDot.className = 'tl-today';
-                todayDot.style.left = todayX + 'px';
-                canvas.appendChild(todayDot);
-
-                const todayLbl = document.createElement('div');
-                todayLbl.className = 'tl-today-label';
-                todayLbl.style.left = todayX + 'px';
-                todayLbl.textContent = 'Today';
-                canvas.appendChild(todayLbl);
-            }
+            }).addTo(ER.map);
+            // Draw flipped districts last so their borders aren't covered by neighbors
+            flipped.forEach(l => l.bringToFront());
+            if (!ER.fitted) { ER.map.fitBounds(ER.layer.getBounds(), { padding: [10, 10] }); ER.fitted = true; }
         }
 
-        function buildContestedTable(reps, senators) {
-            const races = [];
+        // Equal-population tile map: one pointy-top hexagon per district.
+        // Layout comes from district_tiles.json (built by build_tiles.py), [col, row] in odd-r offset coords.
+        function erRenderTiles() {
+            const el = document.getElementById('results-tiles');
+            if (!ER.tiles || !ER.data) return;
+            const layout = ER.tiles[ER.chamber];
+            const H = Math.sqrt(3) / 2, R = 1 / Math.sqrt(3);  // row spacing, hex radius (unit width)
+            const center = ([c, r]) => [c + (r % 2 ? 0.5 : 0), r * H];
+            const hexPoints = (x, y, rad) => [30, 90, 150, 210, 270, 330].map(a => {
+                const t = a * Math.PI / 180;
+                return `${(x + rad * Math.cos(t)).toFixed(3)},${(y + rad * Math.sin(t)).toFixed(3)}`;
+            }).join(' ');
+            const pts = Object.values(layout).map(center);
+            const minX = Math.min(...pts.map(p => p[0])) - 0.7, maxX = Math.max(...pts.map(p => p[0])) + 0.7;
+            const minY = Math.min(...pts.map(p => p[1])) - 0.7, maxY = Math.max(...pts.map(p => p[1])) + 0.7;
+            // Draw flipped tiles last so their gold borders sit on top
+            const keys = Object.keys(layout).sort((a, b) => (erRaceFor(a)?.flip ? 1 : 0) - (erRaceFor(b)?.flip ? 1 : 0));
+            const tiles = keys.map(key => {
+                const [x, y] = center(layout[key]);
+                const c = erColors(erRaceFor(key));
+                const label = key.replace(/^0/, '');
+                const textColor = c.flip ? '#fff' : '#333';
+                return `<g class="er-tile" data-key="${key}">
+                    <polygon points="${hexPoints(x, y, c.flip ? R * 0.9 : R * 0.96)}" fill="${c.fill}"
+                        stroke="${c.flip ? ER_COLORS.flipBorder : '#fff'}" stroke-width="${c.flip ? 0.09 : 0.04}"/>
+                    <text x="${x.toFixed(3)}" y="${y.toFixed(3)}" fill="${textColor}">${label}</text>
+                </g>`;
+            }).join('');
+            el.innerHTML = `<svg viewBox="${minX} ${minY} ${maxX - minX} ${maxY - minY}" preserveAspectRatio="xMidYMid meet"
+                role="img" aria-label="${erChamberLabel(ER.chamber)} results, one hexagon per district">${tiles}</svg>`;
 
-            const collect = (members, chamber) => {
-                members.forEach(m => {
-                    if (!m.latest_election || m.latest_election.ran_unopposed) return;
-                    const winPct = parseFloat(m.latest_election.rep_vote_pct);
-                    const oppPct = parseFloat(m.latest_election.opponent_vote_pct);
-                    if (isNaN(winPct) || isNaN(oppPct)) return;
-                    races.push({ chamber, member: m, winPct, oppPct, margin: winPct - oppPct });
+            const tip = document.getElementById('er-tile-tip');
+            el.querySelectorAll('.er-tile').forEach(g => {
+                const key = g.dataset.key;
+                g.addEventListener('mouseenter', () => {
+                    tip.innerHTML = erTooltipForRace(erRaceFor(key));
+                    tip.style.display = 'block';
+                    erHighlight(key, true);
                 });
-            };
-
-            collect(reps, 'House');
-            collect(senators, 'Senate');
-            races.sort((a, b) => a.margin - b.margin);
-
-            const tbody = document.getElementById('contested-tbody');
-            races.forEach((race, i) => {
-                const e = race.member.latest_election;
-                const cssClass = race.member.party === 'Republican' ? 'republican'
-                    : race.member.party === 'Democratic-Farmer-Labor' ? 'dfl' : 'other';
-                const marginClass = race.margin < 2 ? 'margin-tight'
-                    : race.margin < 5 ? 'margin-close' : 'margin-comfortable';
-                const badgeLabel = cssClass === 'dfl' ? 'DFL' : cssClass === 'republican' ? 'R' : '?';
-
-                const termYear = parseInt(race.member.term_expires);
-
-                const tr = document.createElement('tr');
-                tr.innerHTML = `
-                    <td style="color:#bbb; font-size:0.85em;">${i + 1}</td>
-                    <td style="color:#666;">${race.chamber}</td>
-                    <td style="font-size:0.88em; color:#555;">${race.member.district_name}</td>
-                    <td style="font-weight:600;">${race.member.name}<span class="party-badge ${cssClass}">${badgeLabel}</span></td>
-                    <td class="ct-num">${e.rep_vote_pct} <span style="color:#bbb; font-size:0.82em;">${e.rep_votes.toLocaleString()}</span></td>
-                    <td style="color:#777;">${e.opponent_name}</td>
-                    <td class="ct-num" style="color:#999;">${e.opponent_vote_pct} <span style="color:#bbb; font-size:0.82em;">${e.opponent_votes.toLocaleString()}</span></td>
-                    <td class="ct-num ${marginClass}">+${race.margin.toFixed(2)}%</td>
-                    <td class="ct-num" style="color:#999;">${termYear}</td>
-                `;
-                tr.addEventListener('click', () => {
-                    reset_layers(ALL_LAYERS);
-                    const districtName = race.member.district_name.replace('District ', '');
-                    highlightDotFromMap(districtName);
-                    openModal(race.member, cssClass);
+                g.addEventListener('mousemove', e => {
+                    // Keep the tooltip on screen
+                    const w = tip.offsetWidth, h = tip.offsetHeight;
+                    const x = e.clientX + 14 + w > window.innerWidth ? e.clientX - w - 14 : e.clientX + 14;
+                    const y = e.clientY + 14 + h > window.innerHeight ? e.clientY - h - 14 : e.clientY + 14;
+                    tip.style.left = x + 'px';
+                    tip.style.top = y + 'px';
                 });
-                tbody.appendChild(tr);
+                g.addEventListener('mouseleave', () => {
+                    tip.style.display = 'none';
+                    erHighlight(key, false);
+                });
+                g.addEventListener('click', () => erFocusDistrict(ER.chamber, key, false));
             });
+        }
+
+        function erInitMap() {
+            if (ER.map) { ER.map.invalidateSize(); return; }
+            ER.map = L.map('results-map').setView([46.3, -94.2], 6);
+            L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png?key=' + CARTO_API_KEY, {
+                attribution: '&copy; OpenStreetMap'
+            }).addTo(ER.map);
+            // District shapes are loaded by the main map; wait for them if needed
+            const waitForShapes = () => geoData ? erRenderMap() : setTimeout(waitForShapes, 200);
+            waitForShapes();
+        }
+
+        function erFocusDistrict(chamber, district, scroll = true) {
+            if (ER.chamber !== chamber) erSetChamber(chamber);
+            const layers = ER.geoByKey?.[district] || [];
+            if (!layers.length) return;
+            ER.map.fitBounds(L.featureGroup(layers).getBounds(), { maxZoom: 11, padding: [30, 30] });
+            layers[0].openTooltip(layers[0].getCenter());
+            if (scroll) document.getElementById('results-map').scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+
+        function erSetChamber(chamber) {
+            ER.chamber = chamber;
+            document.querySelectorAll('#er-toggle button').forEach(b => b.classList.toggle('active', b.dataset.chamber === chamber));
+            erRenderMap();
+            erRenderTiles();
+        }
+
+        document.querySelectorAll('#er-toggle button').forEach(b => b.addEventListener('click', () => erSetChamber(b.dataset.chamber)));
+
+        function loadElectionResults() {
+            const getJson = f => fetch(f).then(r => { if (!r.ok) throw new Error(f + ' not found'); return r.json(); });
+            Promise.all([getJson('election_2026.json'), getJson('district_tiles.json')])
+                .then(([data, tiles]) => {
+                    ER.data = data;
+                    ER.tiles = tiles;
+                    data.races.forEach(r => { ER.byKey[r.chamber + ':' + r.district] = r; });
+                    const when = new Date(data.election.scraped_at).toLocaleString('en-US', { dateStyle: 'medium', timeStyle: 'short' });
+                    document.getElementById('er-status').textContent =
+                        `${data.election.status === 'unofficial' ? 'Unofficial results' : 'Certified results'} · ` +
+                        `${data.election.all_precincts_reported ? 'All precincts reported' : 'Precincts still reporting'} · ` +
+                        `Updated ${when}`;
+                    const src = data.election.sources;
+                    document.getElementById('er-source').innerHTML =
+                        `Data from the Minnesota Secretary of State election results site: ` +
+                        `<a href="${erEsc(src.pages.house)}" target="_blank" rel="noopener">State House results</a> · ` +
+                        `<a href="${erEsc(src.pages.senate)}" target="_blank" rel="noopener">State Senate results</a>. ` +
+                        `Vote counts come from the SOS downloadable results files ` +
+                        `(<a href="${erEsc(src.data.house)}" target="_blank" rel="noopener">House</a>, ` +
+                        `<a href="${erEsc(src.data.senate)}" target="_blank" rel="noopener">Senate</a>), ` +
+                        `retrieved ${when}.` +
+                        (data.election.status === 'unofficial' ? ' Results are unofficial until certified by the State Canvassing Board.' : '');
+                    buildResultsSeats(data.races);
+                    buildResultsVotes(data.races);
+                    buildResultsTables(data.races);
+                    erRenderMap();
+                    erRenderTiles();
+                })
+                .catch(err => {
+                    console.error('Results error:', err);
+                    document.getElementById('er-status').textContent = 'Could not load election results.';
+                });
         }
 
         // Initialize everything
+        loadElectionResults();
+        erInitMap();
         initializeMap();
         loadMembers('reps.json', 'house-container', 'house-summary-stats', true);
         loadMembers('senate.json', 'senate-container', 'senate-summary-stats', false);
-        Promise.all([
-            fetch('reps.json').then(r => r.json()),
-            fetch('senate.json').then(r => r.json()),
-            fetch('mn-legislative-accomplishments.json').then(r => r.json())
-        ]).then(([reps, senators, accomplishments]) => {
-            buildContestedTable(reps, senators);
-            buildStrategySection(reps, senators, accomplishments);
-            buildTimeline();
-        });
     </script>
 </body>
 </html>

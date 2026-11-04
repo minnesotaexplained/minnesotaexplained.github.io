@@ -1,0 +1,8574 @@
+{
+ "election": {
+  "id": 201,
+  "date": "2026-11-03",
+  "status": "unofficial",
+  "scraped_at": "2026-11-04T15:45:02+00:00",
+  "all_precincts_reported": true,
+  "sources": {
+   "data": {
+    "house": "https://electionresultsfiles.sos.mn.gov/20261103/LegislativeByDistrict.txt",
+    "senate": "https://electionresultsfiles.sos.mn.gov/20261103/stsenate.txt"
+   },
+   "pages": {
+    "house": "https://electionresults.sos.mn.gov/Results/Index?ersElectionId=201&scenario=StateRepresentative",
+    "senate": "https://electionresults.sos.mn.gov/Results/Index?ersElectionId=201&scenario=StateSenate"
+   }
+  }
+ },
+ "races": [
+  {
+   "chamber": "senate",
+   "district": "01",
+   "precincts": {
+    "reported": 315,
+    "total": 315
+   },
+   "candidates": [
+    {
+     "name": "Mark Johnson",
+     "party": "R",
+     "votes": 24012,
+     "pct": 68.01
+    },
+    {
+     "name": "Bjorn Solberg",
+     "party": "DFL",
+     "votes": 11278,
+     "pct": 31.94
+    },
+    {
+     "name": "WRITE-IN",
+     "party": "WI",
+     "votes": 19,
+     "pct": 0.05
+    }
+   ],
+   "total_votes": 35309,
+   "winner": {
+    "name": "Mark Johnson",
+    "party": "R"
+   },
+   "uncontested": false,
+   "margin": {
+    "votes": 12734,
+    "pct": 36.06
+   },
+   "previous": {
+    "name": "Mark Johnson",
+    "party": "R"
+   },
+   "flip": null
+  },
+  {
+   "chamber": "senate",
+   "district": "02",
+   "precincts": {
+    "reported": 189,
+    "total": 189
+   },
+   "candidates": [
+    {
+     "name": "Steve Green",
+     "party": "R",
+     "votes": 20443,
+     "pct": 54.09
+    },
+    {
+     "name": "Dan R. Rogers",
+     "party": "DFL",
+     "votes": 16692,
+     "pct": 44.16
+    },
+    {
+     "name": "Calvin Larson Jr",
+     "party": "UNI",
+     "votes": 649,
+     "pct": 1.72
+    },
+    {
+     "name": "WRITE-IN",
+     "party": "WI",
+     "votes": 12,
+     "pct": 0.03
+    }
+   ],
+   "total_votes": 37796,
+   "winner": {
+    "name": "Steve Green",
+    "party": "R"
+   },
+   "uncontested": false,
+   "margin": {
+    "votes": 3751,
+    "pct": 9.92
+   },
+   "previous": {
+    "name": "Steve Green",
+    "party": "R"
+   },
+   "flip": null
+  },
+  {
+   "chamber": "senate",
+   "district": "03",
+   "precincts": {
+    "reported": 132,
+    "total": 132
+   },
+   "candidates": [
+    {
+     "name": "Grant Hauschild",
+     "party": "DFL",
+     "votes": 24873,
+     "pct": 54.3
+    },
+    {
+     "name": "Andrea Zupancich",
+     "party": "R",
+     "votes": 20866,
+     "pct": 45.55
+    },
+    {
+     "name": "WRITE-IN",
+     "party": "WI",
+     "votes": 69,
+     "pct": 0.15
+    }
+   ],
+   "total_votes": 45808,
+   "winner": {
+    "name": "Grant Hauschild",
+    "party": "DFL"
+   },
+   "uncontested": false,
+   "margin": {
+    "votes": 4007,
+    "pct": 8.75
+   },
+   "previous": {
+    "name": "Grant Hauschild",
+    "party": "DFL"
+   },
+   "flip": null
+  },
+  {
+   "chamber": "senate",
+   "district": "04",
+   "precincts": {
+    "reported": 68,
+    "total": 68
+   },
+   "candidates": [
+    {
+     "name": "Austin Peterson",
+     "party": "R",
+     "votes": 18107,
+     "pct": 49.95
+    },
+    {
+     "name": "Rob Kupec",
+     "party": "DFL",
+     "votes": 18103,
+     "pct": 49.94
+    },
+    {
+     "name": "WRITE-IN",
+     "party": "WI",
+     "votes": 42,
+     "pct": 0.12
+    }
+   ],
+   "total_votes": 36252,
+   "winner": {
+    "name": "Austin Peterson",
+    "party": "R"
+   },
+   "uncontested": false,
+   "margin": {
+    "votes": 4,
+    "pct": 0.01
+   },
+   "previous": {
+    "name": "Rob Kupec",
+    "party": "DFL"
+   },
+   "flip": "DFL->R"
+  },
+  {
+   "chamber": "senate",
+   "district": "05",
+   "precincts": {
+    "reported": 143,
+    "total": 143
+   },
+   "candidates": [
+    {
+     "name": "Mike Wiener",
+     "party": "R",
+     "votes": 30380,
+     "pct": 71.19
+    },
+    {
+     "name": "Skylar Fynboh",
+     "party": "DFL",
+     "votes": 12197,
+     "pct": 28.58
+    },
+    {
+     "name": "WRITE-IN",
+     "party": "WI",
+     "votes": 99,
+     "pct": 0.23
+    }
+   ],
+   "total_votes": 42676,
+   "winner": {
+    "name": "Mike Wiener",
+    "party": "R"
+   },
+   "uncontested": false,
+   "margin": {
+    "votes": 18183,
+    "pct": 42.61
+   },
+   "previous": {
+    "name": "Paul Utke",
+    "party": "R"
+   },
+   "flip": null
+  },
+  {
+   "chamber": "senate",
+   "district": "06",
+   "precincts": {
+    "reported": 80,
+    "total": 80
+   },
+   "candidates": [
+    {
+     "name": "Keri Heintzeman",
+     "party": "R",
+     "votes": 27503,
+     "pct": 62.02
+    },
+    {
+     "name": "Denise Slipy",
+     "party": "DFL",
+     "votes": 16799,
+     "pct": 37.89
+    },
+    {
+     "name": "WRITE-IN",
+     "party": "WI",
+     "votes": 40,
+     "pct": 0.09
+    }
+   ],
+   "total_votes": 44342,
+   "winner": {
+    "name": "Keri Heintzeman",
+    "party": "R"
+   },
+   "uncontested": false,
+   "margin": {
+    "votes": 10704,
+    "pct": 24.14
+   },
+   "previous": {
+    "name": "Keri Heintzeman",
+    "party": "R"
+   },
+   "flip": null
+  },
+  {
+   "chamber": "senate",
+   "district": "07",
+   "precincts": {
+    "reported": 127,
+    "total": 127
+   },
+   "candidates": [
+    {
+     "name": "Robert Farnsworth",
+     "party": "R",
+     "votes": 21773,
+     "pct": 54.41
+    },
+    {
+     "name": "Kim (Kotonias) McLaughlin",
+     "party": "DFL",
+     "votes": 18222,
+     "pct": 45.53
+    },
+    {
+     "name": "WRITE-IN",
+     "party": "WI",
+     "votes": 23,
+     "pct": 0.06
+    }
+   ],
+   "total_votes": 40018,
+   "winner": {
+    "name": "Robert Farnsworth",
+    "party": "R"
+   },
+   "uncontested": false,
+   "margin": {
+    "votes": 3551,
+    "pct": 8.87
+   },
+   "previous": {
+    "name": "Robert Farnsworth",
+    "party": "R"
+   },
+   "flip": null
+  },
+  {
+   "chamber": "senate",
+   "district": "08",
+   "precincts": {
+    "reported": 33,
+    "total": 33
+   },
+   "candidates": [
+    {
+     "name": "Jen McEwen",
+     "party": "DFL",
+     "votes": 31668,
+     "pct": 76.03
+    },
+    {
+     "name": "Darrick Law",
+     "party": "R",
+     "votes": 9951,
+     "pct": 23.89
+    },
+    {
+     "name": "WRITE-IN",
+     "party": "WI",
+     "votes": 33,
+     "pct": 0.08
+    }
+   ],
+   "total_votes": 41652,
+   "winner": {
+    "name": "Jen McEwen",
+    "party": "DFL"
+   },
+   "uncontested": false,
+   "margin": {
+    "votes": 21717,
+    "pct": 52.14
+   },
+   "previous": {
+    "name": "Jen McEwen",
+    "party": "DFL"
+   },
+   "flip": null
+  },
+  {
+   "chamber": "senate",
+   "district": "09",
+   "precincts": {
+    "reported": 183,
+    "total": 183
+   },
+   "candidates": [
+    {
+     "name": "Jordan Rasmusson",
+     "party": "R",
+     "votes": 30091,
+     "pct": 69.59
+    },
+    {
+     "name": "Krystyne M. Knutson",
+     "party": "DFL",
+     "votes": 13116,
+     "pct": 30.33
+    },
+    {
+     "name": "WRITE-IN",
+     "party": "WI",
+     "votes": 31,
+     "pct": 0.07
+    }
+   ],
+   "total_votes": 43238,
+   "winner": {
+    "name": "Jordan Rasmusson",
+    "party": "R"
+   },
+   "uncontested": false,
+   "margin": {
+    "votes": 16975,
+    "pct": 39.26
+   },
+   "previous": {
+    "name": "Jordan Rasmusson",
+    "party": "R"
+   },
+   "flip": null
+  },
+  {
+   "chamber": "senate",
+   "district": "10",
+   "precincts": {
+    "reported": 123,
+    "total": 123
+   },
+   "candidates": [
+    {
+     "name": "Nathan Wesenberg",
+     "party": "R",
+     "votes": 30655,
+     "pct": 72.46
+    },
+    {
+     "name": "Tara Killen",
+     "party": "DFL",
+     "votes": 11593,
+     "pct": 27.4
+    },
+    {
+     "name": "WRITE-IN",
+     "party": "WI",
+     "votes": 59,
+     "pct": 0.14
+    }
+   ],
+   "total_votes": 42307,
+   "winner": {
+    "name": "Nathan Wesenberg",
+    "party": "R"
+   },
+   "uncontested": false,
+   "margin": {
+    "votes": 19062,
+    "pct": 45.06
+   },
+   "previous": {
+    "name": "Nathan Wesenberg",
+    "party": "R"
+   },
+   "flip": null
+  },
+  {
+   "chamber": "senate",
+   "district": "11",
+   "precincts": {
+    "reported": 106,
+    "total": 106
+   },
+   "candidates": [
+    {
+     "name": "Jason Rarick",
+     "party": "R",
+     "votes": 22240,
+     "pct": 55.33
+    },
+    {
+     "name": "Mary Carlson",
+     "party": "DFL",
+     "votes": 16937,
+     "pct": 42.13
+    },
+    {
+     "name": "Monique Doward",
+     "party": "FI",
+     "votes": 996,
+     "pct": 2.48
+    },
+    {
+     "name": "WRITE-IN",
+     "party": "WI",
+     "votes": 25,
+     "pct": 0.06
+    }
+   ],
+   "total_votes": 40198,
+   "winner": {
+    "name": "Jason Rarick",
+    "party": "R"
+   },
+   "uncontested": false,
+   "margin": {
+    "votes": 5303,
+    "pct": 13.19
+   },
+   "previous": {
+    "name": "Jason Rarick",
+    "party": "R"
+   },
+   "flip": null
+  },
+  {
+   "chamber": "senate",
+   "district": "12",
+   "precincts": {
+    "reported": 157,
+    "total": 157
+   },
+   "candidates": [
+    {
+     "name": "Torrey Westrom",
+     "party": "R",
+     "votes": 28957,
+     "pct": 69.29
+    },
+    {
+     "name": "Kari Dorry",
+     "party": "DFL",
+     "votes": 12813,
+     "pct": 30.66
+    },
+    {
+     "name": "WRITE-IN",
+     "party": "WI",
+     "votes": 24,
+     "pct": 0.06
+    }
+   ],
+   "total_votes": 41794,
+   "winner": {
+    "name": "Torrey Westrom",
+    "party": "R"
+   },
+   "uncontested": false,
+   "margin": {
+    "votes": 16144,
+    "pct": 38.63
+   },
+   "previous": {
+    "name": "Torrey Westrom",
+    "party": "R"
+   },
+   "flip": null
+  },
+  {
+   "chamber": "senate",
+   "district": "13",
+   "precincts": {
+    "reported": 49,
+    "total": 49
+   },
+   "candidates": [
+    {
+     "name": "Jared J. Gapinski",
+     "party": "R",
+     "votes": 28815,
+     "pct": 66.84
+    },
+    {
+     "name": "Trent C Dilks",
+     "party": "DFL",
+     "votes": 14169,
+     "pct": 32.87
+    },
+    {
+     "name": "WRITE-IN",
+     "party": "WI",
+     "votes": 124,
+     "pct": 0.29
+    }
+   ],
+   "total_votes": 43108,
+   "winner": {
+    "name": "Jared J. Gapinski",
+    "party": "R"
+   },
+   "uncontested": false,
+   "margin": {
+    "votes": 14646,
+    "pct": 33.98
+   },
+   "previous": {
+    "name": "Jeff Howe",
+    "party": "R"
+   },
+   "flip": null
+  },
+  {
+   "chamber": "senate",
+   "district": "14",
+   "precincts": {
+    "reported": 38,
+    "total": 38
+   },
+   "candidates": [
+    {
+     "name": "Aric Putnam",
+     "party": "DFL",
+     "votes": 19679,
+     "pct": 55.94
+    },
+    {
+     "name": "Bernie Perryman",
+     "party": "R",
+     "votes": 15448,
+     "pct": 43.92
+    },
+    {
+     "name": "WRITE-IN",
+     "party": "WI",
+     "votes": 49,
+     "pct": 0.14
+    }
+   ],
+   "total_votes": 35176,
+   "winner": {
+    "name": "Aric Putnam",
+    "party": "DFL"
+   },
+   "uncontested": false,
+   "margin": {
+    "votes": 4231,
+    "pct": 12.03
+   },
+   "previous": {
+    "name": "Aric Putnam",
+    "party": "DFL"
+   },
+   "flip": null
+  },
+  {
+   "chamber": "senate",
+   "district": "15",
+   "precincts": {
+    "reported": 171,
+    "total": 171
+   },
+   "candidates": [
+    {
+     "name": "Braxton John Seifert",
+     "party": "R",
+     "votes": 25174,
+     "pct": 66.74
+    },
+    {
+     "name": "Andrea Boettger",
+     "party": "DFL",
+     "votes": 12518,
+     "pct": 33.19
+    },
+    {
+     "name": "WRITE-IN",
+     "party": "WI",
+     "votes": 26,
+     "pct": 0.07
+    }
+   ],
+   "total_votes": 37718,
+   "winner": {
+    "name": "Braxton John Seifert",
+    "party": "R"
+   },
+   "uncontested": false,
+   "margin": {
+    "votes": 12656,
+    "pct": 33.55
+   },
+   "previous": {
+    "name": "Gary Dahms",
+    "party": "R"
+   },
+   "flip": null
+  },
+  {
+   "chamber": "senate",
+   "district": "16",
+   "precincts": {
+    "reported": 129,
+    "total": 129
+   },
+   "candidates": [
+    {
+     "name": "Andrew R. Lang",
+     "party": "R",
+     "votes": 24919,
+     "pct": 66.99
+    },
+    {
+     "name": "Kathy Jorgenson",
+     "party": "DFL",
+     "votes": 12261,
+     "pct": 32.96
+    },
+    {
+     "name": "WRITE-IN",
+     "party": "WI",
+     "votes": 16,
+     "pct": 0.04
+    }
+   ],
+   "total_votes": 37196,
+   "winner": {
+    "name": "Andrew R. Lang",
+    "party": "R"
+   },
+   "uncontested": false,
+   "margin": {
+    "votes": 12658,
+    "pct": 34.03
+   },
+   "previous": {
+    "name": "Andrew Lang",
+    "party": "R"
+   },
+   "flip": null
+  },
+  {
+   "chamber": "senate",
+   "district": "17",
+   "precincts": {
+    "reported": 76,
+    "total": 76
+   },
+   "candidates": [
+    {
+     "name": "Glenn H Gruenhagen",
+     "party": "R",
+     "votes": 28402,
+     "pct": 67.14
+    },
+    {
+     "name": "Julie Kelzer",
+     "party": "DFL",
+     "votes": 13860,
+     "pct": 32.77
+    },
+    {
+     "name": "WRITE-IN",
+     "party": "WI",
+     "votes": 39,
+     "pct": 0.09
+    }
+   ],
+   "total_votes": 42301,
+   "winner": {
+    "name": "Glenn H Gruenhagen",
+    "party": "R"
+   },
+   "uncontested": false,
+   "margin": {
+    "votes": 14542,
+    "pct": 34.38
+   },
+   "previous": {
+    "name": "Glenn Gruenhagen",
+    "party": "R"
+   },
+   "flip": null
+  },
+  {
+   "chamber": "senate",
+   "district": "18",
+   "precincts": {
+    "reported": 53,
+    "total": 53
+   },
+   "candidates": [
+    {
+     "name": "Nick Frentz",
+     "party": "DFL",
+     "votes": 21992,
+     "pct": 59.42
+    },
+    {
+     "name": "Jackie Henry",
+     "party": "R",
+     "votes": 14992,
+     "pct": 40.5
+    },
+    {
+     "name": "WRITE-IN",
+     "party": "WI",
+     "votes": 29,
+     "pct": 0.08
+    }
+   ],
+   "total_votes": 37013,
+   "winner": {
+    "name": "Nick Frentz",
+    "party": "DFL"
+   },
+   "uncontested": false,
+   "margin": {
+    "votes": 7000,
+    "pct": 18.91
+   },
+   "previous": {
+    "name": "Nick Frentz",
+    "party": "DFL"
+   },
+   "flip": null
+  },
+  {
+   "chamber": "senate",
+   "district": "19",
+   "precincts": {
+    "reported": 53,
+    "total": 53
+   },
+   "candidates": [
+    {
+     "name": "John R. Jasinski",
+     "party": "R",
+     "votes": 22607,
+     "pct": 60.19
+    },
+    {
+     "name": "Sam Powell",
+     "party": "DFL",
+     "votes": 14924,
+     "pct": 39.73
+    },
+    {
+     "name": "WRITE-IN",
+     "party": "WI",
+     "votes": 31,
+     "pct": 0.08
+    }
+   ],
+   "total_votes": 37562,
+   "winner": {
+    "name": "John R. Jasinski",
+    "party": "R"
+   },
+   "uncontested": false,
+   "margin": {
+    "votes": 7683,
+    "pct": 20.45
+   },
+   "previous": {
+    "name": "John Jasinski",
+    "party": "R"
+   },
+   "flip": null
+  },
+  {
+   "chamber": "senate",
+   "district": "20",
+   "precincts": {
+    "reported": 91,
+    "total": 91
+   },
+   "candidates": [
+    {
+     "name": "Steven E Jacob",
+     "party": "R",
+     "votes": 24874,
+     "pct": 57.4
+    },
+    {
+     "name": "Jason Lohmann",
+     "party": "DFL",
+     "votes": 18430,
+     "pct": 42.53
+    },
+    {
+     "name": "WRITE-IN",
+     "party": "WI",
+     "votes": 32,
+     "pct": 0.07
+    }
+   ],
+   "total_votes": 43336,
+   "winner": {
+    "name": "Steven E Jacob",
+    "party": "R"
+   },
+   "uncontested": false,
+   "margin": {
+    "votes": 6444,
+    "pct": 14.87
+   },
+   "previous": {
+    "name": "Steve Drazkowski",
+    "party": "R"
+   },
+   "flip": null
+  },
+  {
+   "chamber": "senate",
+   "district": "21",
+   "precincts": {
+    "reported": 209,
+    "total": 209
+   },
+   "candidates": [
+    {
+     "name": "Chris Knoll",
+     "party": "R",
+     "votes": 23002,
+     "pct": 67.1
+    },
+    {
+     "name": "Caitlyn Sanow-Minett",
+     "party": "DFL",
+     "votes": 11257,
+     "pct": 32.84
+    },
+    {
+     "name": "WRITE-IN",
+     "party": "WI",
+     "votes": 19,
+     "pct": 0.06
+    }
+   ],
+   "total_votes": 34278,
+   "winner": {
+    "name": "Chris Knoll",
+    "party": "R"
+   },
+   "uncontested": false,
+   "margin": {
+    "votes": 11745,
+    "pct": 34.26
+   },
+   "previous": {
+    "name": "Bill Weber",
+    "party": "R"
+   },
+   "flip": null
+  },
+  {
+   "chamber": "senate",
+   "district": "22",
+   "precincts": {
+    "reported": 110,
+    "total": 110
+   },
+   "candidates": [
+    {
+     "name": "Jeremy Munson",
+     "party": "R",
+     "votes": 25169,
+     "pct": 65.4
+    },
+    {
+     "name": "Marisa Ulmen",
+     "party": "DFL",
+     "votes": 13278,
+     "pct": 34.5
+    },
+    {
+     "name": "WRITE-IN",
+     "party": "WI",
+     "votes": 35,
+     "pct": 0.09
+    }
+   ],
+   "total_votes": 38482,
+   "winner": {
+    "name": "Jeremy Munson",
+    "party": "R"
+   },
+   "uncontested": false,
+   "margin": {
+    "votes": 11891,
+    "pct": 30.9
+   },
+   "previous": {
+    "name": "Rich Draheim",
+    "party": "R"
+   },
+   "flip": null
+  },
+  {
+   "chamber": "senate",
+   "district": "23",
+   "precincts": {
+    "reported": 113,
+    "total": 113
+   },
+   "candidates": [
+    {
+     "name": "Gene Dornink",
+     "party": "R",
+     "votes": 19686,
+     "pct": 54.98
+    },
+    {
+     "name": "Angie Hanson",
+     "party": "DFL",
+     "votes": 16091,
+     "pct": 44.94
+    },
+    {
+     "name": "WRITE-IN",
+     "party": "WI",
+     "votes": 29,
+     "pct": 0.08
+    }
+   ],
+   "total_votes": 35806,
+   "winner": {
+    "name": "Gene Dornink",
+    "party": "R"
+   },
+   "uncontested": false,
+   "margin": {
+    "votes": 3595,
+    "pct": 10.04
+   },
+   "previous": {
+    "name": "Gene Dornink",
+    "party": "R"
+   },
+   "flip": null
+  },
+  {
+   "chamber": "senate",
+   "district": "24",
+   "precincts": {
+    "reported": 63,
+    "total": 63
+   },
+   "candidates": [
+    {
+     "name": "Simon Glaser",
+     "party": "DFL",
+     "votes": 21082,
+     "pct": 50.77
+    },
+    {
+     "name": "Nels T. Pierson",
+     "party": "R",
+     "votes": 20403,
+     "pct": 49.13
+    },
+    {
+     "name": "WRITE-IN",
+     "party": "WI",
+     "votes": 42,
+     "pct": 0.1
+    }
+   ],
+   "total_votes": 41527,
+   "winner": {
+    "name": "Simon Glaser",
+    "party": "DFL"
+   },
+   "uncontested": false,
+   "margin": {
+    "votes": 679,
+    "pct": 1.64
+   },
+   "previous": {
+    "name": "Carla Nelson",
+    "party": "R"
+   },
+   "flip": "R->DFL"
+  },
+  {
+   "chamber": "senate",
+   "district": "25",
+   "precincts": {
+    "reported": 56,
+    "total": 56
+   },
+   "candidates": [
+    {
+     "name": "Liz Boldon",
+     "party": "DFL",
+     "votes": 26126,
+     "pct": 66.01
+    },
+    {
+     "name": "John Howie",
+     "party": "R",
+     "votes": 13418,
+     "pct": 33.9
+    },
+    {
+     "name": "WRITE-IN",
+     "party": "WI",
+     "votes": 33,
+     "pct": 0.08
+    }
+   ],
+   "total_votes": 39577,
+   "winner": {
+    "name": "Liz Boldon",
+    "party": "DFL"
+   },
+   "uncontested": false,
+   "margin": {
+    "votes": 12708,
+    "pct": 32.11
+   },
+   "previous": {
+    "name": "Liz Boldon",
+    "party": "DFL"
+   },
+   "flip": null
+  },
+  {
+   "chamber": "senate",
+   "district": "26",
+   "precincts": {
+    "reported": 108,
+    "total": 108
+   },
+   "candidates": [
+    {
+     "name": "Cherie Johnson",
+     "party": "R",
+     "votes": 20629,
+     "pct": 51.36
+    },
+    {
+     "name": "Jack Hedin",
+     "party": "DFL",
+     "votes": 19509,
+     "pct": 48.57
+    },
+    {
+     "name": "WRITE-IN",
+     "party": "WI",
+     "votes": 26,
+     "pct": 0.06
+    }
+   ],
+   "total_votes": 40164,
+   "winner": {
+    "name": "Cherie Johnson",
+    "party": "R"
+   },
+   "uncontested": false,
+   "margin": {
+    "votes": 1120,
+    "pct": 2.79
+   },
+   "previous": {
+    "name": "Jeremy Miller",
+    "party": "R"
+   },
+   "flip": null
+  },
+  {
+   "chamber": "senate",
+   "district": "27",
+   "precincts": {
+    "reported": 32,
+    "total": 32
+   },
+   "candidates": [
+    {
+     "name": "Andrew Mathews",
+     "party": "R",
+     "votes": 28596,
+     "pct": 69.35
+    },
+    {
+     "name": "Brandon Van Dover",
+     "party": "DFL",
+     "votes": 12619,
+     "pct": 30.6
+    },
+    {
+     "name": "WRITE-IN",
+     "party": "WI",
+     "votes": 20,
+     "pct": 0.05
+    }
+   ],
+   "total_votes": 41235,
+   "winner": {
+    "name": "Andrew Mathews",
+    "party": "R"
+   },
+   "uncontested": false,
+   "margin": {
+    "votes": 15977,
+    "pct": 38.75
+   },
+   "previous": {
+    "name": "Andrew Mathews",
+    "party": "R"
+   },
+   "flip": null
+  },
+  {
+   "chamber": "senate",
+   "district": "28",
+   "precincts": {
+    "reported": 36,
+    "total": 36
+   },
+   "candidates": [
+    {
+     "name": "Mark Koran",
+     "party": "R",
+     "votes": 28084,
+     "pct": 64.84
+    },
+    {
+     "name": "Max Glenna",
+     "party": "DFL",
+     "votes": 15149,
+     "pct": 34.98
+    },
+    {
+     "name": "WRITE-IN",
+     "party": "WI",
+     "votes": 79,
+     "pct": 0.18
+    }
+   ],
+   "total_votes": 43312,
+   "winner": {
+    "name": "Mark Koran",
+    "party": "R"
+   },
+   "uncontested": false,
+   "margin": {
+    "votes": 12935,
+    "pct": 29.86
+   },
+   "previous": {
+    "name": "Mark Koran",
+    "party": "R"
+   },
+   "flip": null
+  },
+  {
+   "chamber": "senate",
+   "district": "29",
+   "precincts": {
+    "reported": 37,
+    "total": 37
+   },
+   "candidates": [
+    {
+     "name": "Michael Holmstrom Jr",
+     "party": "R",
+     "votes": 27444,
+     "pct": 63.38
+    },
+    {
+     "name": "Louis McNutt",
+     "party": "DFL",
+     "votes": 15836,
+     "pct": 36.57
+    },
+    {
+     "name": "WRITE-IN",
+     "party": "WI",
+     "votes": 24,
+     "pct": 0.06
+    }
+   ],
+   "total_votes": 43304,
+   "winner": {
+    "name": "Michael Holmstrom Jr",
+    "party": "R"
+   },
+   "uncontested": false,
+   "margin": {
+    "votes": 11608,
+    "pct": 26.81
+   },
+   "previous": {
+    "name": "Michael Holmstrom",
+    "party": "R"
+   },
+   "flip": null
+  },
+  {
+   "chamber": "senate",
+   "district": "30",
+   "precincts": {
+    "reported": 25,
+    "total": 25
+   },
+   "candidates": [
+    {
+     "name": "Eric Lucero",
+     "party": "R",
+     "votes": 28534,
+     "pct": 60.33
+    },
+    {
+     "name": "Leah Temple",
+     "party": "DFL",
+     "votes": 18743,
+     "pct": 39.63
+    },
+    {
+     "name": "WRITE-IN",
+     "party": "WI",
+     "votes": 19,
+     "pct": 0.04
+    }
+   ],
+   "total_votes": 47296,
+   "winner": {
+    "name": "Eric Lucero",
+    "party": "R"
+   },
+   "uncontested": false,
+   "margin": {
+    "votes": 9791,
+    "pct": 20.7
+   },
+   "previous": {
+    "name": "Eric Lucero",
+    "party": "R"
+   },
+   "flip": null
+  },
+  {
+   "chamber": "senate",
+   "district": "31",
+   "precincts": {
+    "reported": 28,
+    "total": 28
+   },
+   "candidates": [
+    {
+     "name": "Calvin Bahr",
+     "party": "R",
+     "votes": 27808,
+     "pct": 61.12
+    },
+    {
+     "name": "Gadisa Berkessa",
+     "party": "DFL",
+     "votes": 17640,
+     "pct": 38.77
+    },
+    {
+     "name": "WRITE-IN",
+     "party": "WI",
+     "votes": 48,
+     "pct": 0.11
+    }
+   ],
+   "total_votes": 45496,
+   "winner": {
+    "name": "Calvin Bahr",
+    "party": "R"
+   },
+   "uncontested": false,
+   "margin": {
+    "votes": 10168,
+    "pct": 22.35
+   },
+   "previous": {
+    "name": "Cal Bahr",
+    "party": "R"
+   },
+   "flip": null
+  },
+  {
+   "chamber": "senate",
+   "district": "32",
+   "precincts": {
+    "reported": 32,
+    "total": 32
+   },
+   "candidates": [
+    {
+     "name": "Chris Ford",
+     "party": "DFL",
+     "votes": 23761,
+     "pct": 53.07
+    },
+    {
+     "name": "Michael Kreun",
+     "party": "R",
+     "votes": 20978,
+     "pct": 46.85
+    },
+    {
+     "name": "WRITE-IN",
+     "party": "WI",
+     "votes": 37,
+     "pct": 0.08
+    }
+   ],
+   "total_votes": 44776,
+   "winner": {
+    "name": "Chris Ford",
+    "party": "DFL"
+   },
+   "uncontested": false,
+   "margin": {
+    "votes": 2783,
+    "pct": 6.22
+   },
+   "previous": {
+    "name": "Michael Kreun",
+    "party": "R"
+   },
+   "flip": "R->DFL"
+  },
+  {
+   "chamber": "senate",
+   "district": "33",
+   "precincts": {
+    "reported": 27,
+    "total": 27
+   },
+   "candidates": [
+    {
+     "name": "Karin Housley",
+     "party": "R",
+     "votes": 23977,
+     "pct": 50.0
+    },
+    {
+     "name": "Nat Smith",
+     "party": "DFL",
+     "votes": 23935,
+     "pct": 49.92
+    },
+    {
+     "name": "WRITE-IN",
+     "party": "WI",
+     "votes": 39,
+     "pct": 0.08
+    }
+   ],
+   "total_votes": 47951,
+   "winner": {
+    "name": "Karin Housley",
+    "party": "R"
+   },
+   "uncontested": false,
+   "margin": {
+    "votes": 42,
+    "pct": 0.09
+   },
+   "previous": {
+    "name": "Karin Housley",
+    "party": "R"
+   },
+   "flip": null
+  },
+  {
+   "chamber": "senate",
+   "district": "34",
+   "precincts": {
+    "reported": 25,
+    "total": 25
+   },
+   "candidates": [
+    {
+     "name": "John Hoffman",
+     "party": "DFL",
+     "votes": 29217,
+     "pct": 62.22
+    },
+    {
+     "name": "Karen Attia",
+     "party": "R",
+     "votes": 17704,
+     "pct": 37.7
+    },
+    {
+     "name": "WRITE-IN",
+     "party": "WI",
+     "votes": 40,
+     "pct": 0.09
+    }
+   ],
+   "total_votes": 46961,
+   "winner": {
+    "name": "John Hoffman",
+    "party": "DFL"
+   },
+   "uncontested": false,
+   "margin": {
+    "votes": 11513,
+    "pct": 24.52
+   },
+   "previous": {
+    "name": "John Hoffman",
+    "party": "DFL"
+   },
+   "flip": null
+  },
+  {
+   "chamber": "senate",
+   "district": "35",
+   "precincts": {
+    "reported": 30,
+    "total": 30
+   },
+   "candidates": [
+    {
+     "name": "Angela Nelson",
+     "party": "DFL",
+     "votes": 21268,
+     "pct": 53.75
+    },
+    {
+     "name": "Jim Abeler",
+     "party": "R",
+     "votes": 18248,
+     "pct": 46.12
+    },
+    {
+     "name": "WRITE-IN",
+     "party": "WI",
+     "votes": 53,
+     "pct": 0.13
+    }
+   ],
+   "total_votes": 39569,
+   "winner": {
+    "name": "Angela Nelson",
+    "party": "DFL"
+   },
+   "uncontested": false,
+   "margin": {
+    "votes": 3020,
+    "pct": 7.63
+   },
+   "previous": {
+    "name": "Jim Abeler",
+    "party": "R"
+   },
+   "flip": "R->DFL"
+  },
+  {
+   "chamber": "senate",
+   "district": "36",
+   "precincts": {
+    "reported": 29,
+    "total": 29
+   },
+   "candidates": [
+    {
+     "name": "Heather Gustafson",
+     "party": "DFL",
+     "votes": 27492,
+     "pct": 57.01
+    },
+    {
+     "name": "Heidi Heino",
+     "party": "R",
+     "votes": 20698,
+     "pct": 42.92
+    },
+    {
+     "name": "WRITE-IN",
+     "party": "WI",
+     "votes": 29,
+     "pct": 0.06
+    }
+   ],
+   "total_votes": 48219,
+   "winner": {
+    "name": "Heather Gustafson",
+    "party": "DFL"
+   },
+   "uncontested": false,
+   "margin": {
+    "votes": 6794,
+    "pct": 14.09
+   },
+   "previous": {
+    "name": "Heather Gustafson",
+    "party": "DFL"
+   },
+   "flip": null
+  },
+  {
+   "chamber": "senate",
+   "district": "37",
+   "precincts": {
+    "reported": 23,
+    "total": 23
+   },
+   "candidates": [
+    {
+     "name": "Kristy Janigo",
+     "party": "DFL",
+     "votes": 27849,
+     "pct": 54.0
+    },
+    {
+     "name": "Brady Hoag",
+     "party": "R",
+     "votes": 23667,
+     "pct": 45.89
+    },
+    {
+     "name": "WRITE-IN",
+     "party": "WI",
+     "votes": 52,
+     "pct": 0.1
+    }
+   ],
+   "total_votes": 51568,
+   "winner": {
+    "name": "Kristy Janigo",
+    "party": "DFL"
+   },
+   "uncontested": false,
+   "margin": {
+    "votes": 4182,
+    "pct": 8.11
+   },
+   "previous": {
+    "name": "Warren Limmer",
+    "party": "R"
+   },
+   "flip": "R->DFL"
+  },
+  {
+   "chamber": "senate",
+   "district": "38",
+   "precincts": {
+    "reported": 21,
+    "total": 21
+   },
+   "candidates": [
+    {
+     "name": "Susan Pha",
+     "party": "DFL",
+     "votes": 21015,
+     "pct": 76.16
+    },
+    {
+     "name": "Brad Olson",
+     "party": "R",
+     "votes": 6511,
+     "pct": 23.6
+    },
+    {
+     "name": "WRITE-IN",
+     "party": "WI",
+     "votes": 66,
+     "pct": 0.24
+    }
+   ],
+   "total_votes": 27592,
+   "winner": {
+    "name": "Susan Pha",
+    "party": "DFL"
+   },
+   "uncontested": false,
+   "margin": {
+    "votes": 14504,
+    "pct": 52.57
+   },
+   "previous": {
+    "name": "Susan Pha",
+    "party": "DFL"
+   },
+   "flip": null
+  },
+  {
+   "chamber": "senate",
+   "district": "39",
+   "precincts": {
+    "reported": 30,
+    "total": 30
+   },
+   "candidates": [
+    {
+     "name": "Mary K Kunesh",
+     "party": "DFL",
+     "votes": 26141,
+     "pct": 70.76
+    },
+    {
+     "name": "Pam Wolf",
+     "party": "R",
+     "votes": 9757,
+     "pct": 26.41
+    },
+    {
+     "name": "Ngone Saliou Niang",
+     "party": "GP",
+     "votes": 1023,
+     "pct": 2.77
+    },
+    {
+     "name": "WRITE-IN",
+     "party": "WI",
+     "votes": 21,
+     "pct": 0.06
+    }
+   ],
+   "total_votes": 36942,
+   "winner": {
+    "name": "Mary K Kunesh",
+    "party": "DFL"
+   },
+   "uncontested": false,
+   "margin": {
+    "votes": 16384,
+    "pct": 44.35
+   },
+   "previous": {
+    "name": "Mary Kunesh",
+    "party": "DFL"
+   },
+   "flip": null
+  },
+  {
+   "chamber": "senate",
+   "district": "40",
+   "precincts": {
+    "reported": 26,
+    "total": 26
+   },
+   "candidates": [
+    {
+     "name": "John Marty",
+     "party": "DFL",
+     "votes": 31233,
+     "pct": 68.84
+    },
+    {
+     "name": "Rachel Japuntich",
+     "party": "R",
+     "votes": 14092,
+     "pct": 31.06
+    },
+    {
+     "name": "WRITE-IN",
+     "party": "WI",
+     "votes": 46,
+     "pct": 0.1
+    }
+   ],
+   "total_votes": 45371,
+   "winner": {
+    "name": "John Marty",
+    "party": "DFL"
+   },
+   "uncontested": false,
+   "margin": {
+    "votes": 17141,
+    "pct": 37.78
+   },
+   "previous": {
+    "name": "John Marty",
+    "party": "DFL"
+   },
+   "flip": null
+  },
+  {
+   "chamber": "senate",
+   "district": "41",
+   "precincts": {
+    "reported": 32,
+    "total": 32
+   },
+   "candidates": [
+    {
+     "name": "Judy Seeberger",
+     "party": "DFL",
+     "votes": 25547,
+     "pct": 52.38
+    },
+    {
+     "name": "Tom Dippel",
+     "party": "R",
+     "votes": 23184,
+     "pct": 47.53
+    },
+    {
+     "name": "WRITE-IN",
+     "party": "WI",
+     "votes": 42,
+     "pct": 0.09
+    }
+   ],
+   "total_votes": 48773,
+   "winner": {
+    "name": "Judy Seeberger",
+    "party": "DFL"
+   },
+   "uncontested": false,
+   "margin": {
+    "votes": 2363,
+    "pct": 4.84
+   },
+   "previous": {
+    "name": "Judy Seeberger",
+    "party": "DFL"
+   },
+   "flip": null
+  },
+  {
+   "chamber": "senate",
+   "district": "42",
+   "precincts": {
+    "reported": 22,
+    "total": 22
+   },
+   "candidates": [
+    {
+     "name": "Bonnie Westlin",
+     "party": "DFL",
+     "votes": 28366,
+     "pct": 63.39
+    },
+    {
+     "name": "Kevin Peterson",
+     "party": "R",
+     "votes": 16343,
+     "pct": 36.52
+    },
+    {
+     "name": "WRITE-IN",
+     "party": "WI",
+     "votes": 36,
+     "pct": 0.08
+    }
+   ],
+   "total_votes": 44745,
+   "winner": {
+    "name": "Bonnie Westlin",
+    "party": "DFL"
+   },
+   "uncontested": false,
+   "margin": {
+    "votes": 12023,
+    "pct": 26.87
+   },
+   "previous": {
+    "name": "Bonnie Westlin",
+    "party": "DFL"
+   },
+   "flip": null
+  },
+  {
+   "chamber": "senate",
+   "district": "43",
+   "precincts": {
+    "reported": 26,
+    "total": 26
+   },
+   "candidates": [
+    {
+     "name": "Mike Freiberg",
+     "party": "DFL",
+     "votes": 34034,
+     "pct": 97.21
+    },
+    {
+     "name": "WRITE-IN",
+     "party": "WI",
+     "votes": 976,
+     "pct": 2.79
+    }
+   ],
+   "total_votes": 35010,
+   "winner": {
+    "name": "Mike Freiberg",
+    "party": "DFL"
+   },
+   "uncontested": true,
+   "margin": {
+    "votes": 33058,
+    "pct": 94.42
+   },
+   "previous": {
+    "name": "Ann Rest",
+    "party": "DFL"
+   },
+   "flip": null
+  },
+  {
+   "chamber": "senate",
+   "district": "44",
+   "precincts": {
+    "reported": 27,
+    "total": 27
+   },
+   "candidates": [
+    {
+     "name": "Sam Rosemark",
+     "party": "DFL",
+     "votes": 24793,
+     "pct": 66.15
+    },
+    {
+     "name": "James Tacheny",
+     "party": "R",
+     "votes": 12603,
+     "pct": 33.63
+    },
+    {
+     "name": "WRITE-IN",
+     "party": "WI",
+     "votes": 83,
+     "pct": 0.22
+    }
+   ],
+   "total_votes": 37479,
+   "winner": {
+    "name": "Sam Rosemark",
+    "party": "DFL"
+   },
+   "uncontested": false,
+   "margin": {
+    "votes": 12190,
+    "pct": 32.52
+   },
+   "previous": {
+    "name": "Tou Xiong",
+    "party": "DFL"
+   },
+   "flip": null
+  },
+  {
+   "chamber": "senate",
+   "district": "45",
+   "precincts": {
+    "reported": 38,
+    "total": 38
+   },
+   "candidates": [
+    {
+     "name": "Ann Johnson Stewart",
+     "party": "DFL",
+     "votes": 29279,
+     "pct": 57.0
+    },
+    {
+     "name": "Shannon Bruce",
+     "party": "R",
+     "votes": 22059,
+     "pct": 42.94
+    },
+    {
+     "name": "WRITE-IN",
+     "party": "WI",
+     "votes": 30,
+     "pct": 0.06
+    }
+   ],
+   "total_votes": 51368,
+   "winner": {
+    "name": "Ann Johnson Stewart",
+    "party": "DFL"
+   },
+   "uncontested": false,
+   "margin": {
+    "votes": 7220,
+    "pct": 14.06
+   },
+   "previous": {
+    "name": "Ann Johnson Stewart",
+    "party": "DFL"
+   },
+   "flip": null
+  },
+  {
+   "chamber": "senate",
+   "district": "46",
+   "precincts": {
+    "reported": 22,
+    "total": 22
+   },
+   "candidates": [
+    {
+     "name": "Ron Latz",
+     "party": "DFL",
+     "votes": 35832,
+     "pct": 77.1
+    },
+    {
+     "name": "Kayla Wright",
+     "party": "R",
+     "votes": 10522,
+     "pct": 22.64
+    },
+    {
+     "name": "WRITE-IN",
+     "party": "WI",
+     "votes": 123,
+     "pct": 0.26
+    }
+   ],
+   "total_votes": 46477,
+   "winner": {
+    "name": "Ron Latz",
+    "party": "DFL"
+   },
+   "uncontested": false,
+   "margin": {
+    "votes": 25310,
+    "pct": 54.46
+   },
+   "previous": {
+    "name": "Ron Latz",
+    "party": "DFL"
+   },
+   "flip": null
+  },
+  {
+   "chamber": "senate",
+   "district": "47",
+   "precincts": {
+    "reported": 19,
+    "total": 19
+   },
+   "candidates": [
+    {
+     "name": "Amanda Hemmingsen-Jaeger",
+     "party": "DFL",
+     "votes": 29076,
+     "pct": 63.99
+    },
+    {
+     "name": "Brian Stalboerger",
+     "party": "R",
+     "votes": 16330,
+     "pct": 35.94
+    },
+    {
+     "name": "WRITE-IN",
+     "party": "WI",
+     "votes": 34,
+     "pct": 0.07
+    }
+   ],
+   "total_votes": 45440,
+   "winner": {
+    "name": "Amanda Hemmingsen-Jaeger",
+    "party": "DFL"
+   },
+   "uncontested": false,
+   "margin": {
+    "votes": 12746,
+    "pct": 28.05
+   },
+   "previous": {
+    "name": "Amanda Hemmingsen-Jaeger",
+    "party": "DFL"
+   },
+   "flip": null
+  },
+  {
+   "chamber": "senate",
+   "district": "48",
+   "precincts": {
+    "reported": 27,
+    "total": 27
+   },
+   "candidates": [
+    {
+     "name": "Julia Coleman",
+     "party": "R",
+     "votes": 25122,
+     "pct": 50.96
+    },
+    {
+     "name": "Dan Kessler",
+     "party": "DFL",
+     "votes": 24141,
+     "pct": 48.97
+    },
+    {
+     "name": "WRITE-IN",
+     "party": "WI",
+     "votes": 36,
+     "pct": 0.07
+    }
+   ],
+   "total_votes": 49299,
+   "winner": {
+    "name": "Julia Coleman",
+    "party": "R"
+   },
+   "uncontested": false,
+   "margin": {
+    "votes": 981,
+    "pct": 1.99
+   },
+   "previous": {
+    "name": "Julia Coleman",
+    "party": "R"
+   },
+   "flip": null
+  },
+  {
+   "chamber": "senate",
+   "district": "49",
+   "precincts": {
+    "reported": 29,
+    "total": 29
+   },
+   "candidates": [
+    {
+     "name": "Krish Subrahmanian",
+     "party": "DFL",
+     "votes": 29406,
+     "pct": 62.63
+    },
+    {
+     "name": "Dustin R. DuFault",
+     "party": "R",
+     "votes": 15528,
+     "pct": 33.07
+    },
+    {
+     "name": "Kris Babler",
+     "party": "IND",
+     "votes": 2003,
+     "pct": 4.27
+    },
+    {
+     "name": "WRITE-IN",
+     "party": "WI",
+     "votes": 14,
+     "pct": 0.03
+    }
+   ],
+   "total_votes": 46951,
+   "winner": {
+    "name": "Krish Subrahmanian",
+    "party": "DFL"
+   },
+   "uncontested": false,
+   "margin": {
+    "votes": 13878,
+    "pct": 29.56
+   },
+   "previous": {
+    "name": "Steve Cwodzinski",
+    "party": "DFL"
+   },
+   "flip": null
+  },
+  {
+   "chamber": "senate",
+   "district": "50",
+   "precincts": {
+    "reported": 28,
+    "total": 28
+   },
+   "candidates": [
+    {
+     "name": "Karla Hult",
+     "party": "DFL",
+     "votes": 33770,
+     "pct": 68.92
+    },
+    {
+     "name": "Owen Michaelson",
+     "party": "R",
+     "votes": 15185,
+     "pct": 30.99
+    },
+    {
+     "name": "WRITE-IN",
+     "party": "WI",
+     "votes": 47,
+     "pct": 0.1
+    }
+   ],
+   "total_votes": 49002,
+   "winner": {
+    "name": "Karla Hult",
+    "party": "DFL"
+   },
+   "uncontested": false,
+   "margin": {
+    "votes": 18585,
+    "pct": 37.93
+   },
+   "previous": {
+    "name": "Alice Mann",
+    "party": "DFL"
+   },
+   "flip": null
+  },
+  {
+   "chamber": "senate",
+   "district": "51",
+   "precincts": {
+    "reported": 25,
+    "total": 25
+   },
+   "candidates": [
+    {
+     "name": "Simon Trautmann Cordova",
+     "party": "DFL",
+     "votes": 29588,
+     "pct": 74.19
+    },
+    {
+     "name": "Juline Birgersson",
+     "party": "R",
+     "votes": 10220,
+     "pct": 25.62
+    },
+    {
+     "name": "WRITE-IN",
+     "party": "WI",
+     "votes": 75,
+     "pct": 0.19
+    }
+   ],
+   "total_votes": 39883,
+   "winner": {
+    "name": "Simon Trautmann Cordova",
+    "party": "DFL"
+   },
+   "uncontested": false,
+   "margin": {
+    "votes": 19368,
+    "pct": 48.56
+   },
+   "previous": {
+    "name": "Melissa Halvorson Wiklund",
+    "party": "DFL"
+   },
+   "flip": null
+  },
+  {
+   "chamber": "senate",
+   "district": "52",
+   "precincts": {
+    "reported": 25,
+    "total": 25
+   },
+   "candidates": [
+    {
+     "name": "Liz Reyer",
+     "party": "DFL",
+     "votes": 30349,
+     "pct": 67.13
+    },
+    {
+     "name": "Brady O'Neil",
+     "party": "R",
+     "votes": 14837,
+     "pct": 32.82
+    },
+    {
+     "name": "WRITE-IN",
+     "party": "WI",
+     "votes": 25,
+     "pct": 0.06
+    }
+   ],
+   "total_votes": 45211,
+   "winner": {
+    "name": "Liz Reyer",
+    "party": "DFL"
+   },
+   "uncontested": false,
+   "margin": {
+    "votes": 15512,
+    "pct": 34.31
+   },
+   "previous": {
+    "name": "Jim Carlson",
+    "party": "DFL"
+   },
+   "flip": null
+  },
+  {
+   "chamber": "senate",
+   "district": "53",
+   "precincts": {
+    "reported": 30,
+    "total": 30
+   },
+   "candidates": [
+    {
+     "name": "Paul Cumings",
+     "party": "DFL",
+     "votes": 26272,
+     "pct": 61.78
+    },
+    {
+     "name": "Todd Podgorski",
+     "party": "R",
+     "votes": 16219,
+     "pct": 38.14
+    },
+    {
+     "name": "WRITE-IN",
+     "party": "WI",
+     "votes": 32,
+     "pct": 0.08
+    }
+   ],
+   "total_votes": 42523,
+   "winner": {
+    "name": "Paul Cumings",
+    "party": "DFL"
+   },
+   "uncontested": false,
+   "margin": {
+    "votes": 10053,
+    "pct": 23.64
+   },
+   "previous": {
+    "name": "Matt Klein",
+    "party": "DFL"
+   },
+   "flip": null
+  },
+  {
+   "chamber": "senate",
+   "district": "54",
+   "precincts": {
+    "reported": 33,
+    "total": 33
+   },
+   "candidates": [
+    {
+     "name": "Rick Olson",
+     "party": "DFL",
+     "votes": 22360,
+     "pct": 50.53
+    },
+    {
+     "name": "Ben Bakeberg",
+     "party": "R",
+     "votes": 21848,
+     "pct": 49.38
+    },
+    {
+     "name": "WRITE-IN",
+     "party": "WI",
+     "votes": 40,
+     "pct": 0.09
+    }
+   ],
+   "total_votes": 44248,
+   "winner": {
+    "name": "Rick Olson",
+    "party": "DFL"
+   },
+   "uncontested": false,
+   "margin": {
+    "votes": 512,
+    "pct": 1.16
+   },
+   "previous": {
+    "name": "Eric Pratt",
+    "party": "R"
+   },
+   "flip": "R->DFL"
+  },
+  {
+   "chamber": "senate",
+   "district": "55",
+   "precincts": {
+    "reported": 23,
+    "total": 23
+   },
+   "candidates": [
+    {
+     "name": "Lindsey Port",
+     "party": "DFL",
+     "votes": 24856,
+     "pct": 62.46
+    },
+    {
+     "name": "Van Holston",
+     "party": "R",
+     "votes": 14910,
+     "pct": 37.47
+    },
+    {
+     "name": "WRITE-IN",
+     "party": "WI",
+     "votes": 29,
+     "pct": 0.07
+    }
+   ],
+   "total_votes": 39795,
+   "winner": {
+    "name": "Lindsey Port",
+    "party": "DFL"
+   },
+   "uncontested": false,
+   "margin": {
+    "votes": 9946,
+    "pct": 24.99
+   },
+   "previous": {
+    "name": "Lindsey Port",
+    "party": "DFL"
+   },
+   "flip": null
+  },
+  {
+   "chamber": "senate",
+   "district": "56",
+   "precincts": {
+    "reported": 24,
+    "total": 24
+   },
+   "candidates": [
+    {
+     "name": "Erin Maye Quade",
+     "party": "DFL",
+     "votes": 28435,
+     "pct": 62.93
+    },
+    {
+     "name": "Raymond David Petersen",
+     "party": "R",
+     "votes": 16709,
+     "pct": 36.98
+    },
+    {
+     "name": "WRITE-IN",
+     "party": "WI",
+     "votes": 43,
+     "pct": 0.1
+    }
+   ],
+   "total_votes": 45187,
+   "winner": {
+    "name": "Erin Maye Quade",
+    "party": "DFL"
+   },
+   "uncontested": false,
+   "margin": {
+    "votes": 11726,
+    "pct": 25.95
+   },
+   "previous": {
+    "name": "Erin Maye Quade",
+    "party": "DFL"
+   },
+   "flip": null
+  },
+  {
+   "chamber": "senate",
+   "district": "57",
+   "precincts": {
+    "reported": 23,
+    "total": 23
+   },
+   "candidates": [
+    {
+     "name": "Zach Duckworth",
+     "party": "R",
+     "votes": 26262,
+     "pct": 54.02
+    },
+    {
+     "name": "Steven Schroer",
+     "party": "DFL",
+     "votes": 22325,
+     "pct": 45.92
+    },
+    {
+     "name": "WRITE-IN",
+     "party": "WI",
+     "votes": 29,
+     "pct": 0.06
+    }
+   ],
+   "total_votes": 48616,
+   "winner": {
+    "name": "Zach Duckworth",
+    "party": "R"
+   },
+   "uncontested": false,
+   "margin": {
+    "votes": 3937,
+    "pct": 8.1
+   },
+   "previous": {
+    "name": "Zach Duckworth",
+    "party": "R"
+   },
+   "flip": null
+  },
+  {
+   "chamber": "senate",
+   "district": "58",
+   "precincts": {
+    "reported": 46,
+    "total": 46
+   },
+   "candidates": [
+    {
+     "name": "Mark Legvold",
+     "party": "DFL",
+     "votes": 22889,
+     "pct": 50.7
+    },
+    {
+     "name": "Bill Lieske",
+     "party": "R",
+     "votes": 22226,
+     "pct": 49.23
+    },
+    {
+     "name": "WRITE-IN",
+     "party": "WI",
+     "votes": 35,
+     "pct": 0.08
+    }
+   ],
+   "total_votes": 45150,
+   "winner": {
+    "name": "Mark Legvold",
+    "party": "DFL"
+   },
+   "uncontested": false,
+   "margin": {
+    "votes": 663,
+    "pct": 1.47
+   },
+   "previous": {
+    "name": "Bill Lieske",
+    "party": "R"
+   },
+   "flip": "R->DFL"
+  },
+  {
+   "chamber": "senate",
+   "district": "59",
+   "precincts": {
+    "reported": 24,
+    "total": 24
+   },
+   "candidates": [
+    {
+     "name": "Bobby Joe Champion",
+     "party": "DFL",
+     "votes": 28994,
+     "pct": 98.36
+    },
+    {
+     "name": "WRITE-IN",
+     "party": "WI",
+     "votes": 484,
+     "pct": 1.64
+    }
+   ],
+   "total_votes": 29478,
+   "winner": {
+    "name": "Bobby Joe Champion",
+    "party": "DFL"
+   },
+   "uncontested": true,
+   "margin": {
+    "votes": 28510,
+    "pct": 96.72
+   },
+   "previous": {
+    "name": "Bobby Joe Champion",
+    "party": "DFL"
+   },
+   "flip": null
+  },
+  {
+   "chamber": "senate",
+   "district": "60",
+   "precincts": {
+    "reported": 25,
+    "total": 25
+   },
+   "candidates": [
+    {
+     "name": "Doron Clark",
+     "party": "DFL",
+     "votes": 33261,
+     "pct": 90.24
+    },
+    {
+     "name": "Abigail Wolters",
+     "party": "R",
+     "votes": 3550,
+     "pct": 9.63
+    },
+    {
+     "name": "WRITE-IN",
+     "party": "WI",
+     "votes": 49,
+     "pct": 0.13
+    }
+   ],
+   "total_votes": 36860,
+   "winner": {
+    "name": "Doron Clark",
+    "party": "DFL"
+   },
+   "uncontested": false,
+   "margin": {
+    "votes": 29711,
+    "pct": 80.6
+   },
+   "previous": {
+    "name": "Doron Clark",
+    "party": "DFL"
+   },
+   "flip": null
+  },
+  {
+   "chamber": "senate",
+   "district": "61",
+   "precincts": {
+    "reported": 29,
+    "total": 29
+   },
+   "candidates": [
+    {
+     "name": "Scott Dibble",
+     "party": "DFL",
+     "votes": 43594,
+     "pct": 98.9
+    },
+    {
+     "name": "WRITE-IN",
+     "party": "WI",
+     "votes": 483,
+     "pct": 1.1
+    }
+   ],
+   "total_votes": 44077,
+   "winner": {
+    "name": "Scott Dibble",
+    "party": "DFL"
+   },
+   "uncontested": true,
+   "margin": {
+    "votes": 43111,
+    "pct": 97.81
+   },
+   "previous": {
+    "name": "D. Scott Dibble",
+    "party": "DFL"
+   },
+   "flip": null
+  },
+  {
+   "chamber": "senate",
+   "district": "62",
+   "precincts": {
+    "reported": 26,
+    "total": 26
+   },
+   "candidates": [
+    {
+     "name": "Omar Fateh",
+     "party": "DFL",
+     "votes": 29733,
+     "pct": 97.3
+    },
+    {
+     "name": "WRITE-IN",
+     "party": "WI",
+     "votes": 826,
+     "pct": 2.7
+    }
+   ],
+   "total_votes": 30559,
+   "winner": {
+    "name": "Omar Fateh",
+    "party": "DFL"
+   },
+   "uncontested": true,
+   "margin": {
+    "votes": 28907,
+    "pct": 94.59
+   },
+   "previous": {
+    "name": "Omar Fateh",
+    "party": "DFL"
+   },
+   "flip": null
+  },
+  {
+   "chamber": "senate",
+   "district": "63",
+   "precincts": {
+    "reported": 31,
+    "total": 31
+   },
+   "candidates": [
+    {
+     "name": "Zaynab Mohamed",
+     "party": "DFL",
+     "votes": 44769,
+     "pct": 87.92
+    },
+    {
+     "name": "Diane Napper",
+     "party": "R",
+     "votes": 6023,
+     "pct": 11.83
+    },
+    {
+     "name": "WRITE-IN",
+     "party": "WI",
+     "votes": 126,
+     "pct": 0.25
+    }
+   ],
+   "total_votes": 50918,
+   "winner": {
+    "name": "Zaynab Mohamed",
+    "party": "DFL"
+   },
+   "uncontested": false,
+   "margin": {
+    "votes": 38746,
+    "pct": 76.09
+   },
+   "previous": {
+    "name": "Zaynab Mohamed",
+    "party": "DFL"
+   },
+   "flip": null
+  },
+  {
+   "chamber": "senate",
+   "district": "64",
+   "precincts": {
+    "reported": 24,
+    "total": 24
+   },
+   "candidates": [
+    {
+     "name": "Erin Murphy",
+     "party": "DFL",
+     "votes": 41957,
+     "pct": 86.77
+    },
+    {
+     "name": "Robert Bushard",
+     "party": "R",
+     "votes": 6339,
+     "pct": 13.11
+    },
+    {
+     "name": "WRITE-IN",
+     "party": "WI",
+     "votes": 57,
+     "pct": 0.12
+    }
+   ],
+   "total_votes": 48353,
+   "winner": {
+    "name": "Erin Murphy",
+    "party": "DFL"
+   },
+   "uncontested": false,
+   "margin": {
+    "votes": 35618,
+    "pct": 73.66
+   },
+   "previous": {
+    "name": "Erin Murphy",
+    "party": "DFL"
+   },
+   "flip": null
+  },
+  {
+   "chamber": "senate",
+   "district": "65",
+   "precincts": {
+    "reported": 24,
+    "total": 24
+   },
+   "candidates": [
+    {
+     "name": "Robyn Gulley",
+     "party": "DFL",
+     "votes": 26470,
+     "pct": 85.61
+    },
+    {
+     "name": "_ Rocco",
+     "party": "R",
+     "votes": 4303,
+     "pct": 13.92
+    },
+    {
+     "name": "WRITE-IN",
+     "party": "WI",
+     "votes": 145,
+     "pct": 0.47
+    }
+   ],
+   "total_votes": 30918,
+   "winner": {
+    "name": "Robyn Gulley",
+    "party": "DFL"
+   },
+   "uncontested": false,
+   "margin": {
+    "votes": 22167,
+    "pct": 71.7
+   },
+   "previous": {
+    "name": "Sandra Pappas",
+    "party": "DFL"
+   },
+   "flip": null
+  },
+  {
+   "chamber": "senate",
+   "district": "66",
+   "precincts": {
+    "reported": 24,
+    "total": 24
+   },
+   "candidates": [
+    {
+     "name": "Clare Oumou Verbeten",
+     "party": "DFL",
+     "votes": 29868,
+     "pct": 84.68
+    },
+    {
+     "name": "Kathleen Bart",
+     "party": "R",
+     "votes": 5342,
+     "pct": 15.14
+    },
+    {
+     "name": "WRITE-IN",
+     "party": "WI",
+     "votes": 63,
+     "pct": 0.18
+    }
+   ],
+   "total_votes": 35273,
+   "winner": {
+    "name": "Clare Oumou Verbeten",
+    "party": "DFL"
+   },
+   "uncontested": false,
+   "margin": {
+    "votes": 24526,
+    "pct": 69.53
+   },
+   "previous": {
+    "name": "Clare Oumou Verbeten",
+    "party": "DFL"
+   },
+   "flip": null
+  },
+  {
+   "chamber": "senate",
+   "district": "67",
+   "precincts": {
+    "reported": 23,
+    "total": 23
+   },
+   "candidates": [
+    {
+     "name": "Foung Hawj",
+     "party": "DFL",
+     "votes": 19293,
+     "pct": 81.27
+    },
+    {
+     "name": "Toby Hesselgrave",
+     "party": "R",
+     "votes": 4402,
+     "pct": 18.54
+    },
+    {
+     "name": "WRITE-IN",
+     "party": "WI",
+     "votes": 44,
+     "pct": 0.19
+    }
+   ],
+   "total_votes": 23739,
+   "winner": {
+    "name": "Foung Hawj",
+    "party": "DFL"
+   },
+   "uncontested": false,
+   "margin": {
+    "votes": 14891,
+    "pct": 62.73
+   },
+   "previous": {
+    "name": "Foung Hawj",
+    "party": "DFL"
+   },
+   "flip": null
+  },
+  {
+   "chamber": "house",
+   "district": "01A",
+   "precincts": {
+    "reported": 174,
+    "total": 174
+   },
+   "candidates": [
+    {
+     "name": "John Burkel",
+     "party": "R",
+     "votes": 13221,
+     "pct": 71.72
+    },
+    {
+     "name": "Leanna Sandahl",
+     "party": "DFL",
+     "votes": 5205,
+     "pct": 28.23
+    },
+    {
+     "name": "WRITE-IN",
+     "party": "WI",
+     "votes": 9,
+     "pct": 0.05
+    }
+   ],
+   "total_votes": 18435,
+   "winner": {
+    "name": "John Burkel",
+    "party": "R"
+   },
+   "uncontested": false,
+   "margin": {
+    "votes": 8016,
+    "pct": 43.48
+   },
+   "previous": {
+    "name": "John Burkel",
+    "party": "R"
+   },
+   "flip": null
+  },
+  {
+   "chamber": "house",
+   "district": "01B",
+   "precincts": {
+    "reported": 141,
+    "total": 141
+   },
+   "candidates": [
+    {
+     "name": "Steve Gander",
+     "party": "R",
+     "votes": 11092,
+     "pct": 65.96
+    },
+    {
+     "name": "Jennifer Compeau",
+     "party": "DFL",
+     "votes": 5716,
+     "pct": 33.99
+    },
+    {
+     "name": "WRITE-IN",
+     "party": "WI",
+     "votes": 9,
+     "pct": 0.05
+    }
+   ],
+   "total_votes": 16817,
+   "winner": {
+    "name": "Steve Gander",
+    "party": "R"
+   },
+   "uncontested": false,
+   "margin": {
+    "votes": 5376,
+    "pct": 31.97
+   },
+   "previous": {
+    "name": "Steve Gander",
+    "party": "R"
+   },
+   "flip": null
+  },
+  {
+   "chamber": "house",
+   "district": "02A",
+   "precincts": {
+    "reported": 64,
+    "total": 64
+   },
+   "candidates": [
+    {
+     "name": "Bidal Duran Jr",
+     "party": "R",
+     "votes": 9120,
+     "pct": 50.53
+    },
+    {
+     "name": "Reed J. Olson",
+     "party": "DFL",
+     "votes": 8879,
+     "pct": 49.2
+    },
+    {
+     "name": "WRITE-IN",
+     "party": "WI",
+     "votes": 49,
+     "pct": 0.27
+    }
+   ],
+   "total_votes": 18048,
+   "winner": {
+    "name": "Bidal Duran Jr",
+    "party": "R"
+   },
+   "uncontested": false,
+   "margin": {
+    "votes": 241,
+    "pct": 1.34
+   },
+   "previous": {
+    "name": "Bidal Duran",
+    "party": "R"
+   },
+   "flip": null
+  },
+  {
+   "chamber": "house",
+   "district": "02B",
+   "precincts": {
+    "reported": 125,
+    "total": 125
+   },
+   "candidates": [
+    {
+     "name": "Matt Bliss",
+     "party": "R",
+     "votes": 12008,
+     "pct": 61.14
+    },
+    {
+     "name": "Emily Thabes",
+     "party": "DFL",
+     "votes": 7621,
+     "pct": 38.8
+    },
+    {
+     "name": "WRITE-IN",
+     "party": "WI",
+     "votes": 12,
+     "pct": 0.06
+    }
+   ],
+   "total_votes": 19641,
+   "winner": {
+    "name": "Matt Bliss",
+    "party": "R"
+   },
+   "uncontested": false,
+   "margin": {
+    "votes": 4387,
+    "pct": 22.34
+   },
+   "previous": {
+    "name": "Matt Bliss",
+    "party": "R"
+   },
+   "flip": null
+  },
+  {
+   "chamber": "house",
+   "district": "03A",
+   "precincts": {
+    "reported": 102,
+    "total": 102
+   },
+   "candidates": [
+    {
+     "name": "Roger J. Skraba",
+     "party": "R",
+     "votes": 11716,
+     "pct": 51.79
+    },
+    {
+     "name": "Aaron Kania",
+     "party": "DFL",
+     "votes": 10888,
+     "pct": 48.13
+    },
+    {
+     "name": "WRITE-IN",
+     "party": "WI",
+     "votes": 18,
+     "pct": 0.08
+    }
+   ],
+   "total_votes": 22622,
+   "winner": {
+    "name": "Roger J. Skraba",
+    "party": "R"
+   },
+   "uncontested": false,
+   "margin": {
+    "votes": 828,
+    "pct": 3.66
+   },
+   "previous": {
+    "name": "Roger Skraba",
+    "party": "R"
+   },
+   "flip": null
+  },
+  {
+   "chamber": "house",
+   "district": "03B",
+   "precincts": {
+    "reported": 30,
+    "total": 30
+   },
+   "candidates": [
+    {
+     "name": "Aaron Schweiger",
+     "party": "DFL",
+     "votes": 12262,
+     "pct": 53.01
+    },
+    {
+     "name": "Natalie Zeleznikar",
+     "party": "R",
+     "votes": 10851,
+     "pct": 46.91
+    },
+    {
+     "name": "WRITE-IN",
+     "party": "WI",
+     "votes": 18,
+     "pct": 0.08
+    }
+   ],
+   "total_votes": 23131,
+   "winner": {
+    "name": "Aaron Schweiger",
+    "party": "DFL"
+   },
+   "uncontested": false,
+   "margin": {
+    "votes": 1411,
+    "pct": 6.1
+   },
+   "previous": {
+    "name": "Natalie Zeleznikar",
+    "party": "R"
+   },
+   "flip": "R->DFL"
+  },
+  {
+   "chamber": "house",
+   "district": "04A",
+   "precincts": {
+    "reported": 13,
+    "total": 13
+   },
+   "candidates": [
+    {
+     "name": "Erika Yoney",
+     "party": "DFL",
+     "votes": 10761,
+     "pct": 66.39
+    },
+    {
+     "name": "Andrew Rockhold",
+     "party": "R",
+     "votes": 5414,
+     "pct": 33.4
+    },
+    {
+     "name": "WRITE-IN",
+     "party": "WI",
+     "votes": 33,
+     "pct": 0.2
+    }
+   ],
+   "total_votes": 16208,
+   "winner": {
+    "name": "Erika Yoney",
+    "party": "DFL"
+   },
+   "uncontested": false,
+   "margin": {
+    "votes": 5347,
+    "pct": 32.99
+   },
+   "previous": {
+    "name": "Heather Keeler",
+    "party": "DFL"
+   },
+   "flip": null
+  },
+  {
+   "chamber": "house",
+   "district": "04B",
+   "precincts": {
+    "reported": 55,
+    "total": 55
+   },
+   "candidates": [
+    {
+     "name": "Jim Joy",
+     "party": "R",
+     "votes": 12350,
+     "pct": 62.61
+    },
+    {
+     "name": "Thaddeus Laugisch",
+     "party": "DFL",
+     "votes": 7365,
+     "pct": 37.34
+    },
+    {
+     "name": "WRITE-IN",
+     "party": "WI",
+     "votes": 10,
+     "pct": 0.05
+    }
+   ],
+   "total_votes": 19725,
+   "winner": {
+    "name": "Jim Joy",
+    "party": "R"
+   },
+   "uncontested": false,
+   "margin": {
+    "votes": 4985,
+    "pct": 25.27
+   },
+   "previous": {
+    "name": "Jim Joy",
+    "party": "R"
+   },
+   "flip": null
+  },
+  {
+   "chamber": "house",
+   "district": "05A",
+   "precincts": {
+    "reported": 78,
+    "total": 78
+   },
+   "candidates": [
+    {
+     "name": "Krista Knudsen",
+     "party": "R",
+     "votes": 15910,
+     "pct": 69.16
+    },
+    {
+     "name": "Dan S. Mitchell",
+     "party": "DFL",
+     "votes": 7082,
+     "pct": 30.78
+    },
+    {
+     "name": "WRITE-IN",
+     "party": "WI",
+     "votes": 14,
+     "pct": 0.06
+    }
+   ],
+   "total_votes": 23006,
+   "winner": {
+    "name": "Krista Knudsen",
+    "party": "R"
+   },
+   "uncontested": false,
+   "margin": {
+    "votes": 8828,
+    "pct": 38.37
+   },
+   "previous": {
+    "name": "Krista Knudsen",
+    "party": "R"
+   },
+   "flip": null
+  },
+  {
+   "chamber": "house",
+   "district": "05B",
+   "precincts": {
+    "reported": 65,
+    "total": 65
+   },
+   "candidates": [
+    {
+     "name": "Jonathan Claussen",
+     "party": "R",
+     "votes": 14453,
+     "pct": 74.12
+    },
+    {
+     "name": "Maggie Evers",
+     "party": "DFL",
+     "votes": 5041,
+     "pct": 25.85
+    },
+    {
+     "name": "WRITE-IN",
+     "party": "WI",
+     "votes": 5,
+     "pct": 0.03
+    }
+   ],
+   "total_votes": 19499,
+   "winner": {
+    "name": "Jonathan Claussen",
+    "party": "R"
+   },
+   "uncontested": false,
+   "margin": {
+    "votes": 9412,
+    "pct": 48.27
+   },
+   "previous": {
+    "name": "Mike Wiener",
+    "party": "R"
+   },
+   "flip": null
+  },
+  {
+   "chamber": "house",
+   "district": "06A",
+   "precincts": {
+    "reported": 55,
+    "total": 55
+   },
+   "candidates": [
+    {
+     "name": "Ben Davis",
+     "party": "R",
+     "votes": 14401,
+     "pct": 62.09
+    },
+    {
+     "name": "Samuel Grigsby",
+     "party": "DFL",
+     "votes": 8780,
+     "pct": 37.85
+    },
+    {
+     "name": "WRITE-IN",
+     "party": "WI",
+     "votes": 13,
+     "pct": 0.06
+    }
+   ],
+   "total_votes": 23194,
+   "winner": {
+    "name": "Ben Davis",
+    "party": "R"
+   },
+   "uncontested": false,
+   "margin": {
+    "votes": 5621,
+    "pct": 24.23
+   },
+   "previous": {
+    "name": "Ben Davis",
+    "party": "R"
+   },
+   "flip": null
+  },
+  {
+   "chamber": "house",
+   "district": "06B",
+   "precincts": {
+    "reported": 25,
+    "total": 25
+   },
+   "candidates": [
+    {
+     "name": "Josh Heintzeman",
+     "party": "R",
+     "votes": 12785,
+     "pct": 60.83
+    },
+    {
+     "name": "Nicky Hardy",
+     "party": "DFL",
+     "votes": 8220,
+     "pct": 39.11
+    },
+    {
+     "name": "WRITE-IN",
+     "party": "WI",
+     "votes": 14,
+     "pct": 0.07
+    }
+   ],
+   "total_votes": 21019,
+   "winner": {
+    "name": "Josh Heintzeman",
+    "party": "R"
+   },
+   "uncontested": false,
+   "margin": {
+    "votes": 4565,
+    "pct": 21.72
+   },
+   "previous": {
+    "name": "Josh Heintzeman",
+    "party": "R"
+   },
+   "flip": null
+  },
+  {
+   "chamber": "house",
+   "district": "07A",
+   "precincts": {
+    "reported": 70,
+    "total": 70
+   },
+   "candidates": [
+    {
+     "name": "Spencer Igo",
+     "party": "R",
+     "votes": 11284,
+     "pct": 57.3
+    },
+    {
+     "name": "Erin McCabe Ningen",
+     "party": "DFL",
+     "votes": 8401,
+     "pct": 42.66
+    },
+    {
+     "name": "WRITE-IN",
+     "party": "WI",
+     "votes": 9,
+     "pct": 0.05
+    }
+   ],
+   "total_votes": 19694,
+   "winner": {
+    "name": "Spencer Igo",
+    "party": "R"
+   },
+   "uncontested": false,
+   "margin": {
+    "votes": 2883,
+    "pct": 14.64
+   },
+   "previous": {
+    "name": "Spencer Igo",
+    "party": "R"
+   },
+   "flip": null
+  },
+  {
+   "chamber": "house",
+   "district": "07B",
+   "precincts": {
+    "reported": 57,
+    "total": 57
+   },
+   "candidates": [
+    {
+     "name": "Cal Warwas",
+     "party": "R",
+     "votes": 10866,
+     "pct": 53.66
+    },
+    {
+     "name": "Dan Horoshak",
+     "party": "DFL",
+     "votes": 9373,
+     "pct": 46.29
+    },
+    {
+     "name": "WRITE-IN",
+     "party": "WI",
+     "votes": 11,
+     "pct": 0.05
+    }
+   ],
+   "total_votes": 20250,
+   "winner": {
+    "name": "Cal Warwas",
+    "party": "R"
+   },
+   "uncontested": false,
+   "margin": {
+    "votes": 1493,
+    "pct": 7.37
+   },
+   "previous": {
+    "name": "Cal Warwas",
+    "party": "R"
+   },
+   "flip": null
+  },
+  {
+   "chamber": "house",
+   "district": "08A",
+   "precincts": {
+    "reported": 17,
+    "total": 17
+   },
+   "candidates": [
+    {
+     "name": "Peter Johnson",
+     "party": "DFL",
+     "votes": 14302,
+     "pct": 75.76
+    },
+    {
+     "name": "Allan Kehr II",
+     "party": "R",
+     "votes": 4551,
+     "pct": 24.11
+    },
+    {
+     "name": "WRITE-IN",
+     "party": "WI",
+     "votes": 24,
+     "pct": 0.13
+    }
+   ],
+   "total_votes": 18877,
+   "winner": {
+    "name": "Peter Johnson",
+    "party": "DFL"
+   },
+   "uncontested": false,
+   "margin": {
+    "votes": 9751,
+    "pct": 51.66
+   },
+   "previous": {
+    "name": "Pete Johnson",
+    "party": "DFL"
+   },
+   "flip": null
+  },
+  {
+   "chamber": "house",
+   "district": "08B",
+   "precincts": {
+    "reported": 16,
+    "total": 16
+   },
+   "candidates": [
+    {
+     "name": "Liish Kozlowski",
+     "party": "DFL",
+     "votes": 17100,
+     "pct": 75.76
+    },
+    {
+     "name": "Shawn Savela",
+     "party": "R",
+     "votes": 5449,
+     "pct": 24.14
+    },
+    {
+     "name": "WRITE-IN",
+     "party": "WI",
+     "votes": 21,
+     "pct": 0.09
+    }
+   ],
+   "total_votes": 22570,
+   "winner": {
+    "name": "Liish Kozlowski",
+    "party": "DFL"
+   },
+   "uncontested": false,
+   "margin": {
+    "votes": 11651,
+    "pct": 51.62
+   },
+   "previous": {
+    "name": "Liish Kozlowski",
+    "party": "DFL"
+   },
+   "flip": null
+  },
+  {
+   "chamber": "house",
+   "district": "09A",
+   "precincts": {
+    "reported": 106,
+    "total": 106
+   },
+   "candidates": [
+    {
+     "name": "Jeff Backer",
+     "party": "R",
+     "votes": 12412,
+     "pct": 64.26
+    },
+    {
+     "name": "Nicholas Hanson",
+     "party": "DFL",
+     "votes": 6887,
+     "pct": 35.66
+    },
+    {
+     "name": "WRITE-IN",
+     "party": "WI",
+     "votes": 16,
+     "pct": 0.08
+    }
+   ],
+   "total_votes": 19315,
+   "winner": {
+    "name": "Jeff Backer",
+    "party": "R"
+   },
+   "uncontested": false,
+   "margin": {
+    "votes": 5525,
+    "pct": 28.6
+   },
+   "previous": {
+    "name": "Jeff Backer",
+    "party": "R"
+   },
+   "flip": null
+  },
+  {
+   "chamber": "house",
+   "district": "09B",
+   "precincts": {
+    "reported": 77,
+    "total": 77
+   },
+   "candidates": [
+    {
+     "name": "Tom Murphy",
+     "party": "R",
+     "votes": 16375,
+     "pct": 68.88
+    },
+    {
+     "name": "Owen Werner",
+     "party": "DFL",
+     "votes": 7380,
+     "pct": 31.04
+    },
+    {
+     "name": "WRITE-IN",
+     "party": "WI",
+     "votes": 17,
+     "pct": 0.07
+    }
+   ],
+   "total_votes": 23772,
+   "winner": {
+    "name": "Tom Murphy",
+    "party": "R"
+   },
+   "uncontested": false,
+   "margin": {
+    "votes": 8995,
+    "pct": 37.84
+   },
+   "previous": {
+    "name": "Tom Murphy",
+    "party": "R"
+   },
+   "flip": null
+  },
+  {
+   "chamber": "house",
+   "district": "10A",
+   "precincts": {
+    "reported": 73,
+    "total": 73
+   },
+   "candidates": [
+    {
+     "name": "Mark Striemer",
+     "party": "R",
+     "votes": 14462,
+     "pct": 68.18
+    },
+    {
+     "name": "Melissa Maertens",
+     "party": "DFL",
+     "votes": 6719,
+     "pct": 31.67
+    },
+    {
+     "name": "WRITE-IN",
+     "party": "WI",
+     "votes": 32,
+     "pct": 0.15
+    }
+   ],
+   "total_votes": 21213,
+   "winner": {
+    "name": "Mark Striemer",
+    "party": "R"
+   },
+   "uncontested": false,
+   "margin": {
+    "votes": 7743,
+    "pct": 36.5
+   },
+   "previous": {
+    "name": "Ron Kresha",
+    "party": "R"
+   },
+   "flip": null
+  },
+  {
+   "chamber": "house",
+   "district": "10B",
+   "precincts": {
+    "reported": 50,
+    "total": 50
+   },
+   "candidates": [
+    {
+     "name": "Isaac Schultz",
+     "party": "R",
+     "votes": 16285,
+     "pct": 77.48
+    },
+    {
+     "name": "Jeff Larson",
+     "party": "DFL",
+     "votes": 4725,
+     "pct": 22.48
+    },
+    {
+     "name": "WRITE-IN",
+     "party": "WI",
+     "votes": 9,
+     "pct": 0.04
+    }
+   ],
+   "total_votes": 21019,
+   "winner": {
+    "name": "Isaac Schultz",
+    "party": "R"
+   },
+   "uncontested": false,
+   "margin": {
+    "votes": 11560,
+    "pct": 55.0
+   },
+   "previous": {
+    "name": "Isaac Schultz",
+    "party": "R"
+   },
+   "flip": null
+  },
+  {
+   "chamber": "house",
+   "district": "11A",
+   "precincts": {
+    "reported": 57,
+    "total": 57
+   },
+   "candidates": [
+    {
+     "name": "Chris Swanson",
+     "party": "DFL",
+     "votes": 11403,
+     "pct": 55.57
+    },
+    {
+     "name": "Jeff Dotseth",
+     "party": "R",
+     "votes": 9093,
+     "pct": 44.31
+    },
+    {
+     "name": "WRITE-IN",
+     "party": "WI",
+     "votes": 24,
+     "pct": 0.12
+    }
+   ],
+   "total_votes": 20520,
+   "winner": {
+    "name": "Chris Swanson",
+    "party": "DFL"
+   },
+   "uncontested": false,
+   "margin": {
+    "votes": 2310,
+    "pct": 11.26
+   },
+   "previous": {
+    "name": "Jeff Dotseth",
+    "party": "R"
+   },
+   "flip": "R->DFL"
+  },
+  {
+   "chamber": "house",
+   "district": "11B",
+   "precincts": {
+    "reported": 49,
+    "total": 49
+   },
+   "candidates": [
+    {
+     "name": "Nathan Nelson",
+     "party": "R",
+     "votes": 13193,
+     "pct": 67.34
+    },
+    {
+     "name": "Jack L'Heureux",
+     "party": "DFL",
+     "votes": 6385,
+     "pct": 32.59
+    },
+    {
+     "name": "WRITE-IN",
+     "party": "WI",
+     "votes": 14,
+     "pct": 0.07
+    }
+   ],
+   "total_votes": 19592,
+   "winner": {
+    "name": "Nathan Nelson",
+    "party": "R"
+   },
+   "uncontested": false,
+   "margin": {
+    "votes": 6808,
+    "pct": 34.75
+   },
+   "previous": {
+    "name": "Nathan Nelson",
+    "party": "R"
+   },
+   "flip": null
+  },
+  {
+   "chamber": "house",
+   "district": "12A",
+   "precincts": {
+    "reported": 125,
+    "total": 125
+   },
+   "candidates": [
+    {
+     "name": "Paul H. Anderson",
+     "party": "R",
+     "votes": 14385,
+     "pct": 71.66
+    },
+    {
+     "name": "Talitha Anderson",
+     "party": "DFL",
+     "votes": 5678,
+     "pct": 28.28
+    },
+    {
+     "name": "WRITE-IN",
+     "party": "WI",
+     "votes": 12,
+     "pct": 0.06
+    }
+   ],
+   "total_votes": 20075,
+   "winner": {
+    "name": "Paul H. Anderson",
+    "party": "R"
+   },
+   "uncontested": false,
+   "margin": {
+    "votes": 8707,
+    "pct": 43.37
+   },
+   "previous": {
+    "name": "Paul Anderson",
+    "party": "R"
+   },
+   "flip": null
+  },
+  {
+   "chamber": "house",
+   "district": "12B",
+   "precincts": {
+    "reported": 32,
+    "total": 32
+   },
+   "candidates": [
+    {
+     "name": "Mary Franson",
+     "party": "R",
+     "votes": 14647,
+     "pct": 67.86
+    },
+    {
+     "name": "Michael Gardner",
+     "party": "DFL",
+     "votes": 6919,
+     "pct": 32.06
+    },
+    {
+     "name": "WRITE-IN",
+     "party": "WI",
+     "votes": 18,
+     "pct": 0.08
+    }
+   ],
+   "total_votes": 21584,
+   "winner": {
+    "name": "Mary Franson",
+    "party": "R"
+   },
+   "uncontested": false,
+   "margin": {
+    "votes": 7728,
+    "pct": 35.8
+   },
+   "previous": {
+    "name": "Mary Franson",
+    "party": "R"
+   },
+   "flip": null
+  },
+  {
+   "chamber": "house",
+   "district": "13A",
+   "precincts": {
+    "reported": 27,
+    "total": 27
+   },
+   "candidates": [
+    {
+     "name": "Tanja Goering",
+     "party": "R",
+     "votes": 16223,
+     "pct": 71.6
+    },
+    {
+     "name": "Arlis Sayler",
+     "party": "DFL",
+     "votes": 6423,
+     "pct": 28.35
+    },
+    {
+     "name": "WRITE-IN",
+     "party": "WI",
+     "votes": 11,
+     "pct": 0.05
+    }
+   ],
+   "total_votes": 22657,
+   "winner": {
+    "name": "Tanja Goering",
+    "party": "R"
+   },
+   "uncontested": false,
+   "margin": {
+    "votes": 9800,
+    "pct": 43.25
+   },
+   "previous": {
+    "name": "Lisa Demuth",
+    "party": "R"
+   },
+   "flip": null
+  },
+  {
+   "chamber": "house",
+   "district": "13B",
+   "precincts": {
+    "reported": 22,
+    "total": 22
+   },
+   "candidates": [
+    {
+     "name": "Dawn Loberg",
+     "party": "R",
+     "votes": 12365,
+     "pct": 60.85
+    },
+    {
+     "name": "Justin Doyle",
+     "party": "DFL",
+     "votes": 7946,
+     "pct": 39.1
+    },
+    {
+     "name": "WRITE-IN",
+     "party": "WI",
+     "votes": 9,
+     "pct": 0.04
+    }
+   ],
+   "total_votes": 20320,
+   "winner": {
+    "name": "Dawn Loberg",
+    "party": "R"
+   },
+   "uncontested": false,
+   "margin": {
+    "votes": 4419,
+    "pct": 21.75
+   },
+   "previous": {
+    "name": "Tim O'Driscoll",
+    "party": "R"
+   },
+   "flip": null
+  },
+  {
+   "chamber": "house",
+   "district": "14A",
+   "precincts": {
+    "reported": 18,
+    "total": 18
+   },
+   "candidates": [
+    {
+     "name": "Abdi Daisane",
+     "party": "DFL",
+     "votes": 9164,
+     "pct": 51.6
+    },
+    {
+     "name": "Mike Conway",
+     "party": "R",
+     "votes": 8570,
+     "pct": 48.25
+    },
+    {
+     "name": "WRITE-IN",
+     "party": "WI",
+     "votes": 27,
+     "pct": 0.15
+    }
+   ],
+   "total_votes": 17761,
+   "winner": {
+    "name": "Abdi Daisane",
+    "party": "DFL"
+   },
+   "uncontested": false,
+   "margin": {
+    "votes": 594,
+    "pct": 3.34
+   },
+   "previous": {
+    "name": "Bernie Perryman",
+    "party": "R"
+   },
+   "flip": "R->DFL"
+  },
+  {
+   "chamber": "house",
+   "district": "14B",
+   "precincts": {
+    "reported": 20,
+    "total": 20
+   },
+   "candidates": [
+    {
+     "name": "Zachary \"Zach\" Dorholt",
+     "party": "DFL",
+     "votes": 9896,
+     "pct": 56.88
+    },
+    {
+     "name": "Sue Ek",
+     "party": "R",
+     "votes": 7480,
+     "pct": 42.99
+    },
+    {
+     "name": "WRITE-IN",
+     "party": "WI",
+     "votes": 22,
+     "pct": 0.13
+    }
+   ],
+   "total_votes": 17398,
+   "winner": {
+    "name": "Zachary \"Zach\" Dorholt",
+    "party": "DFL"
+   },
+   "uncontested": false,
+   "margin": {
+    "votes": 2416,
+    "pct": 13.89
+   },
+   "previous": {
+    "name": "Dan Wolgamott",
+    "party": "DFL"
+   },
+   "flip": null
+  },
+  {
+   "chamber": "house",
+   "district": "15A",
+   "precincts": {
+    "reported": 94,
+    "total": 94
+   },
+   "candidates": [
+    {
+     "name": "Bradley L Hennen",
+     "party": "R",
+     "votes": 12374,
+     "pct": 66.04
+    },
+    {
+     "name": "Nathan Schmig",
+     "party": "DFL",
+     "votes": 6350,
+     "pct": 33.89
+    },
+    {
+     "name": "WRITE-IN",
+     "party": "WI",
+     "votes": 13,
+     "pct": 0.07
+    }
+   ],
+   "total_votes": 18737,
+   "winner": {
+    "name": "Bradley L Hennen",
+    "party": "R"
+   },
+   "uncontested": false,
+   "margin": {
+    "votes": 6024,
+    "pct": 32.15
+   },
+   "previous": {
+    "name": "Chris Swedzinski",
+    "party": "R"
+   },
+   "flip": null
+  },
+  {
+   "chamber": "house",
+   "district": "15B",
+   "precincts": {
+    "reported": 77,
+    "total": 77
+   },
+   "candidates": [
+    {
+     "name": "Geri Theis",
+     "party": "R",
+     "votes": 12302,
+     "pct": 65.67
+    },
+    {
+     "name": "Keith R. Klawitter",
+     "party": "DFL",
+     "votes": 6421,
+     "pct": 34.28
+    },
+    {
+     "name": "WRITE-IN",
+     "party": "WI",
+     "votes": 10,
+     "pct": 0.05
+    }
+   ],
+   "total_votes": 18733,
+   "winner": {
+    "name": "Geri Theis",
+    "party": "R"
+   },
+   "uncontested": false,
+   "margin": {
+    "votes": 5881,
+    "pct": 31.39
+   },
+   "previous": {
+    "name": "Paul Torkelson",
+    "party": "R"
+   },
+   "flip": null
+  },
+  {
+   "chamber": "house",
+   "district": "16A",
+   "precincts": {
+    "reported": 86,
+    "total": 86
+   },
+   "candidates": [
+    {
+     "name": "Scott Van Binsbergen",
+     "party": "R",
+     "votes": 12627,
+     "pct": 68.84
+    },
+    {
+     "name": "David J Torgelson",
+     "party": "DFL",
+     "votes": 5699,
+     "pct": 31.07
+    },
+    {
+     "name": "WRITE-IN",
+     "party": "WI",
+     "votes": 16,
+     "pct": 0.09
+    }
+   ],
+   "total_votes": 18342,
+   "winner": {
+    "name": "Scott Van Binsbergen",
+    "party": "R"
+   },
+   "uncontested": false,
+   "margin": {
+    "votes": 6928,
+    "pct": 37.77
+   },
+   "previous": {
+    "name": "Scott Van Binsbergen",
+    "party": "R"
+   },
+   "flip": null
+  },
+  {
+   "chamber": "house",
+   "district": "16B",
+   "precincts": {
+    "reported": 43,
+    "total": 43
+   },
+   "candidates": [
+    {
+     "name": "Dave Baker",
+     "party": "R",
+     "votes": 12694,
+     "pct": 67.12
+    },
+    {
+     "name": "Julie Henslin",
+     "party": "DFL",
+     "votes": 6207,
+     "pct": 32.82
+    },
+    {
+     "name": "WRITE-IN",
+     "party": "WI",
+     "votes": 10,
+     "pct": 0.05
+    }
+   ],
+   "total_votes": 18911,
+   "winner": {
+    "name": "Dave Baker",
+    "party": "R"
+   },
+   "uncontested": false,
+   "margin": {
+    "votes": 6487,
+    "pct": 34.3
+   },
+   "previous": {
+    "name": "Dave Baker",
+    "party": "R"
+   },
+   "flip": null
+  },
+  {
+   "chamber": "house",
+   "district": "17A",
+   "precincts": {
+    "reported": 36,
+    "total": 36
+   },
+   "candidates": [
+    {
+     "name": "Dawn Gillman",
+     "party": "R",
+     "votes": 13917,
+     "pct": 69.38
+    },
+    {
+     "name": "Mali Anderson",
+     "party": "DFL",
+     "votes": 6124,
+     "pct": 30.53
+    },
+    {
+     "name": "WRITE-IN",
+     "party": "WI",
+     "votes": 18,
+     "pct": 0.09
+    }
+   ],
+   "total_votes": 20059,
+   "winner": {
+    "name": "Dawn Gillman",
+    "party": "R"
+   },
+   "uncontested": false,
+   "margin": {
+    "votes": 7793,
+    "pct": 38.85
+   },
+   "previous": {
+    "name": "Dawn Gillman",
+    "party": "R"
+   },
+   "flip": null
+  },
+  {
+   "chamber": "house",
+   "district": "17B",
+   "precincts": {
+    "reported": 40,
+    "total": 40
+   },
+   "candidates": [
+    {
+     "name": "Bobbie Harder",
+     "party": "R",
+     "votes": 14783,
+     "pct": 66.9
+    },
+    {
+     "name": "Ben Wieman",
+     "party": "DFL",
+     "votes": 7299,
+     "pct": 33.03
+    },
+    {
+     "name": "WRITE-IN",
+     "party": "WI",
+     "votes": 15,
+     "pct": 0.07
+    }
+   ],
+   "total_votes": 22097,
+   "winner": {
+    "name": "Bobbie Harder",
+    "party": "R"
+   },
+   "uncontested": false,
+   "margin": {
+    "votes": 7484,
+    "pct": 33.87
+   },
+   "previous": {
+    "name": "Bobbie Harder",
+    "party": "R"
+   },
+   "flip": null
+  },
+  {
+   "chamber": "house",
+   "district": "18A",
+   "precincts": {
+    "reported": 35,
+    "total": 35
+   },
+   "candidates": [
+    {
+     "name": "Leah Hanson",
+     "party": "DFL",
+     "votes": 10818,
+     "pct": 52.6
+    },
+    {
+     "name": "Erica Schwartz",
+     "party": "R",
+     "votes": 9729,
+     "pct": 47.3
+    },
+    {
+     "name": "WRITE-IN",
+     "party": "WI",
+     "votes": 20,
+     "pct": 0.1
+    }
+   ],
+   "total_votes": 20567,
+   "winner": {
+    "name": "Leah Hanson",
+    "party": "DFL"
+   },
+   "uncontested": false,
+   "margin": {
+    "votes": 1089,
+    "pct": 5.29
+   },
+   "previous": {
+    "name": "Erica Schwartz",
+    "party": "R"
+   },
+   "flip": "R->DFL"
+  },
+  {
+   "chamber": "house",
+   "district": "18B",
+   "precincts": {
+    "reported": 18,
+    "total": 18
+   },
+   "candidates": [
+    {
+     "name": "Luke Frederick",
+     "party": "DFL",
+     "votes": 12114,
+     "pct": 96.06
+    },
+    {
+     "name": "WRITE-IN",
+     "party": "WI",
+     "votes": 497,
+     "pct": 3.94
+    }
+   ],
+   "total_votes": 12611,
+   "winner": {
+    "name": "Luke Frederick",
+    "party": "DFL"
+   },
+   "uncontested": true,
+   "margin": {
+    "votes": 11617,
+    "pct": 92.12
+   },
+   "previous": {
+    "name": "Luke Frederick",
+    "party": "DFL"
+   },
+   "flip": null
+  },
+  {
+   "chamber": "house",
+   "district": "19A",
+   "precincts": {
+    "reported": 26,
+    "total": 26
+   },
+   "candidates": [
+    {
+     "name": "Keith Allen",
+     "party": "R",
+     "votes": 10812,
+     "pct": 59.59
+    },
+    {
+     "name": "Martha Brown",
+     "party": "DFL",
+     "votes": 7313,
+     "pct": 40.31
+    },
+    {
+     "name": "WRITE-IN",
+     "party": "WI",
+     "votes": 19,
+     "pct": 0.1
+    }
+   ],
+   "total_votes": 18144,
+   "winner": {
+    "name": "Keith Allen",
+    "party": "R"
+   },
+   "uncontested": false,
+   "margin": {
+    "votes": 3499,
+    "pct": 19.28
+   },
+   "previous": {
+    "name": "Keith Allen",
+    "party": "R"
+   },
+   "flip": null
+  },
+  {
+   "chamber": "house",
+   "district": "19B",
+   "precincts": {
+    "reported": 27,
+    "total": 27
+   },
+   "candidates": [
+    {
+     "name": "Thomas J. Sexton",
+     "party": "R",
+     "votes": 11393,
+     "pct": 59.15
+    },
+    {
+     "name": "Zack Meyman",
+     "party": "DFL",
+     "votes": 7856,
+     "pct": 40.78
+    },
+    {
+     "name": "WRITE-IN",
+     "party": "WI",
+     "votes": 13,
+     "pct": 0.07
+    }
+   ],
+   "total_votes": 19262,
+   "winner": {
+    "name": "Thomas J. Sexton",
+    "party": "R"
+   },
+   "uncontested": false,
+   "margin": {
+    "votes": 3537,
+    "pct": 18.36
+   },
+   "previous": {
+    "name": "Tom Sexton",
+    "party": "R"
+   },
+   "flip": null
+  },
+  {
+   "chamber": "house",
+   "district": "20A",
+   "precincts": {
+    "reported": 40,
+    "total": 40
+   },
+   "candidates": [
+    {
+     "name": "Pam Altendorf",
+     "party": "R",
+     "votes": 11622,
+     "pct": 53.81
+    },
+    {
+     "name": "Heather Arndt",
+     "party": "DFL",
+     "votes": 9962,
+     "pct": 46.12
+    },
+    {
+     "name": "WRITE-IN",
+     "party": "WI",
+     "votes": 14,
+     "pct": 0.06
+    }
+   ],
+   "total_votes": 21598,
+   "winner": {
+    "name": "Pam Altendorf",
+    "party": "R"
+   },
+   "uncontested": false,
+   "margin": {
+    "votes": 1660,
+    "pct": 7.69
+   },
+   "previous": {
+    "name": "Pam Altendorf",
+    "party": "R"
+   },
+   "flip": null
+  },
+  {
+   "chamber": "house",
+   "district": "20B",
+   "precincts": {
+    "reported": 51,
+    "total": 51
+   },
+   "candidates": [
+    {
+     "name": "Sara Bertschinger",
+     "party": "R",
+     "votes": 13529,
+     "pct": 62.55
+    },
+    {
+     "name": "Steve Holm",
+     "party": "DFL",
+     "votes": 8083,
+     "pct": 37.37
+    },
+    {
+     "name": "WRITE-IN",
+     "party": "WI",
+     "votes": 18,
+     "pct": 0.08
+    }
+   ],
+   "total_votes": 21630,
+   "winner": {
+    "name": "Sara Bertschinger",
+    "party": "R"
+   },
+   "uncontested": false,
+   "margin": {
+    "votes": 5446,
+    "pct": 25.18
+   },
+   "previous": {
+    "name": "Steven Jacob",
+    "party": "R"
+   },
+   "flip": null
+  },
+  {
+   "chamber": "house",
+   "district": "21A",
+   "precincts": {
+    "reported": 126,
+    "total": 126
+   },
+   "candidates": [
+    {
+     "name": "Krist Wollum",
+     "party": "R",
+     "votes": 13384,
+     "pct": 70.25
+    },
+    {
+     "name": "LS Rusty Nelson",
+     "party": "DFL",
+     "votes": 5661,
+     "pct": 29.71
+    },
+    {
+     "name": "WRITE-IN",
+     "party": "WI",
+     "votes": 8,
+     "pct": 0.04
+    }
+   ],
+   "total_votes": 19053,
+   "winner": {
+    "name": "Krist Wollum",
+    "party": "R"
+   },
+   "uncontested": false,
+   "margin": {
+    "votes": 7723,
+    "pct": 40.53
+   },
+   "previous": {
+    "name": "Joe Schomacker",
+    "party": "R"
+   },
+   "flip": null
+  },
+  {
+   "chamber": "house",
+   "district": "21B",
+   "precincts": {
+    "reported": 83,
+    "total": 83
+   },
+   "candidates": [
+    {
+     "name": "Marj J Fogelman",
+     "party": "R",
+     "votes": 9353,
+     "pct": 61.34
+    },
+    {
+     "name": "Jon Wilson",
+     "party": "DFL",
+     "votes": 5887,
+     "pct": 38.61
+    },
+    {
+     "name": "WRITE-IN",
+     "party": "WI",
+     "votes": 7,
+     "pct": 0.05
+    }
+   ],
+   "total_votes": 15247,
+   "winner": {
+    "name": "Marj J Fogelman",
+    "party": "R"
+   },
+   "uncontested": false,
+   "margin": {
+    "votes": 3466,
+    "pct": 22.73
+   },
+   "previous": {
+    "name": "Marj Fogelman",
+    "party": "R"
+   },
+   "flip": null
+  },
+  {
+   "chamber": "house",
+   "district": "22A",
+   "precincts": {
+    "reported": 75,
+    "total": 75
+   },
+   "candidates": [
+    {
+     "name": "Bjorn Olson",
+     "party": "R",
+     "votes": 12450,
+     "pct": 67.07
+    },
+    {
+     "name": "Sonja L. Denn",
+     "party": "DFL",
+     "votes": 6099,
+     "pct": 32.86
+    },
+    {
+     "name": "WRITE-IN",
+     "party": "WI",
+     "votes": 14,
+     "pct": 0.08
+    }
+   ],
+   "total_votes": 18563,
+   "winner": {
+    "name": "Bjorn Olson",
+    "party": "R"
+   },
+   "uncontested": false,
+   "margin": {
+    "votes": 6351,
+    "pct": 34.21
+   },
+   "previous": {
+    "name": "Bjorn Olson",
+    "party": "R"
+   },
+   "flip": null
+  },
+  {
+   "chamber": "house",
+   "district": "22B",
+   "precincts": {
+    "reported": 35,
+    "total": 35
+   },
+   "candidates": [
+    {
+     "name": "Terry Matthew Stier",
+     "party": "R",
+     "votes": 13316,
+     "pct": 67.01
+    },
+    {
+     "name": "Mary Nesgoda",
+     "party": "DFL",
+     "votes": 6538,
+     "pct": 32.9
+    },
+    {
+     "name": "WRITE-IN",
+     "party": "WI",
+     "votes": 19,
+     "pct": 0.1
+    }
+   ],
+   "total_votes": 19873,
+   "winner": {
+    "name": "Terry Matthew Stier",
+    "party": "R"
+   },
+   "uncontested": false,
+   "margin": {
+    "votes": 6778,
+    "pct": 34.11
+   },
+   "previous": {
+    "name": "Terry Stier",
+    "party": "R"
+   },
+   "flip": null
+  },
+  {
+   "chamber": "house",
+   "district": "23A",
+   "precincts": {
+    "reported": 70,
+    "total": 70
+   },
+   "candidates": [
+    {
+     "name": "Nick Ronnenberg",
+     "party": "R",
+     "votes": 11034,
+     "pct": 58.16
+    },
+    {
+     "name": "Joe Staloch",
+     "party": "DFL",
+     "votes": 7914,
+     "pct": 41.72
+    },
+    {
+     "name": "WRITE-IN",
+     "party": "WI",
+     "votes": 23,
+     "pct": 0.12
+    }
+   ],
+   "total_votes": 18971,
+   "winner": {
+    "name": "Nick Ronnenberg",
+    "party": "R"
+   },
+   "uncontested": false,
+   "margin": {
+    "votes": 3120,
+    "pct": 16.45
+   },
+   "previous": {
+    "name": "Peggy Bennett",
+    "party": "R"
+   },
+   "flip": null
+  },
+  {
+   "chamber": "house",
+   "district": "23B",
+   "precincts": {
+    "reported": 43,
+    "total": 43
+   },
+   "candidates": [
+    {
+     "name": "Patricia Mueller",
+     "party": "R",
+     "votes": 8744,
+     "pct": 52.31
+    },
+    {
+     "name": "Christoph Dundas",
+     "party": "DFL",
+     "votes": 7961,
+     "pct": 47.62
+    },
+    {
+     "name": "WRITE-IN",
+     "party": "WI",
+     "votes": 12,
+     "pct": 0.07
+    }
+   ],
+   "total_votes": 16717,
+   "winner": {
+    "name": "Patricia Mueller",
+    "party": "R"
+   },
+   "uncontested": false,
+   "margin": {
+    "votes": 783,
+    "pct": 4.68
+   },
+   "previous": {
+    "name": "Patricia Mueller",
+    "party": "R"
+   },
+   "flip": null
+  },
+  {
+   "chamber": "house",
+   "district": "24A",
+   "precincts": {
+    "reported": 34,
+    "total": 34
+   },
+   "candidates": [
+    {
+     "name": "Duane Quam",
+     "party": "R",
+     "votes": 12280,
+     "pct": 58.35
+    },
+    {
+     "name": "Heather Holmes",
+     "party": "DFL",
+     "votes": 8754,
+     "pct": 41.6
+    },
+    {
+     "name": "WRITE-IN",
+     "party": "WI",
+     "votes": 11,
+     "pct": 0.05
+    }
+   ],
+   "total_votes": 21045,
+   "winner": {
+    "name": "Duane Quam",
+    "party": "R"
+   },
+   "uncontested": false,
+   "margin": {
+    "votes": 3526,
+    "pct": 16.75
+   },
+   "previous": {
+    "name": "Duane Quam",
+    "party": "R"
+   },
+   "flip": null
+  },
+  {
+   "chamber": "house",
+   "district": "24B",
+   "precincts": {
+    "reported": 29,
+    "total": 29
+   },
+   "candidates": [
+    {
+     "name": "Tina Liebling",
+     "party": "DFL",
+     "votes": 12849,
+     "pct": 63.07
+    },
+    {
+     "name": "John Michael Ajouri",
+     "party": "R",
+     "votes": 7501,
+     "pct": 36.82
+    },
+    {
+     "name": "WRITE-IN",
+     "party": "WI",
+     "votes": 23,
+     "pct": 0.11
+    }
+   ],
+   "total_votes": 20373,
+   "winner": {
+    "name": "Tina Liebling",
+    "party": "DFL"
+   },
+   "uncontested": false,
+   "margin": {
+    "votes": 5348,
+    "pct": 26.25
+   },
+   "previous": {
+    "name": "Tina Liebling",
+    "party": "DFL"
+   },
+   "flip": null
+  },
+  {
+   "chamber": "house",
+   "district": "25A",
+   "precincts": {
+    "reported": 28,
+    "total": 28
+   },
+   "candidates": [
+    {
+     "name": "Kim Hicks",
+     "party": "DFL",
+     "votes": 13103,
+     "pct": 61.35
+    },
+    {
+     "name": "Brad Trahan",
+     "party": "R",
+     "votes": 8243,
+     "pct": 38.59
+    },
+    {
+     "name": "WRITE-IN",
+     "party": "WI",
+     "votes": 12,
+     "pct": 0.06
+    }
+   ],
+   "total_votes": 21358,
+   "winner": {
+    "name": "Kim Hicks",
+    "party": "DFL"
+   },
+   "uncontested": false,
+   "margin": {
+    "votes": 4860,
+    "pct": 22.75
+   },
+   "previous": {
+    "name": "Kim Hicks",
+    "party": "DFL"
+   },
+   "flip": null
+  },
+  {
+   "chamber": "house",
+   "district": "25B",
+   "precincts": {
+    "reported": 28,
+    "total": 28
+   },
+   "candidates": [
+    {
+     "name": "Andy Smith",
+     "party": "DFL",
+     "votes": 12676,
+     "pct": 70.23
+    },
+    {
+     "name": "Wes Lund",
+     "party": "R",
+     "votes": 5338,
+     "pct": 29.58
+    },
+    {
+     "name": "WRITE-IN",
+     "party": "WI",
+     "votes": 35,
+     "pct": 0.19
+    }
+   ],
+   "total_votes": 18049,
+   "winner": {
+    "name": "Andy Smith",
+    "party": "DFL"
+   },
+   "uncontested": false,
+   "margin": {
+    "votes": 7338,
+    "pct": 40.66
+   },
+   "previous": {
+    "name": "Andy Smith",
+    "party": "DFL"
+   },
+   "flip": null
+  },
+  {
+   "chamber": "house",
+   "district": "26A",
+   "precincts": {
+    "reported": 38,
+    "total": 38
+   },
+   "candidates": [
+    {
+     "name": "Dan Wilson",
+     "party": "DFL",
+     "votes": 10704,
+     "pct": 55.02
+    },
+    {
+     "name": "Aaron Repinski",
+     "party": "R",
+     "votes": 8742,
+     "pct": 44.94
+    },
+    {
+     "name": "WRITE-IN",
+     "party": "WI",
+     "votes": 7,
+     "pct": 0.04
+    }
+   ],
+   "total_votes": 19453,
+   "winner": {
+    "name": "Dan Wilson",
+    "party": "DFL"
+   },
+   "uncontested": false,
+   "margin": {
+    "votes": 1962,
+    "pct": 10.09
+   },
+   "previous": {
+    "name": "Aaron Repinski",
+    "party": "R"
+   },
+   "flip": "R->DFL"
+  },
+  {
+   "chamber": "house",
+   "district": "26B",
+   "precincts": {
+    "reported": 70,
+    "total": 70
+   },
+   "candidates": [
+    {
+     "name": "Gregory M. Davids",
+     "party": "R",
+     "votes": 12252,
+     "pct": 59.1
+    },
+    {
+     "name": "Allie Wolf",
+     "party": "DFL",
+     "votes": 8438,
+     "pct": 40.7
+    },
+    {
+     "name": "WRITE-IN",
+     "party": "WI",
+     "votes": 40,
+     "pct": 0.19
+    }
+   ],
+   "total_votes": 20730,
+   "winner": {
+    "name": "Gregory M. Davids",
+    "party": "R"
+   },
+   "uncontested": false,
+   "margin": {
+    "votes": 3814,
+    "pct": 18.4
+   },
+   "previous": {
+    "name": "Greg Davids",
+    "party": "R"
+   },
+   "flip": null
+  },
+  {
+   "chamber": "house",
+   "district": "27A",
+   "precincts": {
+    "reported": 14,
+    "total": 14
+   },
+   "candidates": [
+    {
+     "name": "Shane Mekeland",
+     "party": "R",
+     "votes": 14084,
+     "pct": 67.86
+    },
+    {
+     "name": "Vanessa Davenport",
+     "party": "DFL",
+     "votes": 6658,
+     "pct": 32.08
+    },
+    {
+     "name": "WRITE-IN",
+     "party": "WI",
+     "votes": 14,
+     "pct": 0.07
+    }
+   ],
+   "total_votes": 20756,
+   "winner": {
+    "name": "Shane Mekeland",
+    "party": "R"
+   },
+   "uncontested": false,
+   "margin": {
+    "votes": 7426,
+    "pct": 35.78
+   },
+   "previous": {
+    "name": "Shane Mekeland",
+    "party": "R"
+   },
+   "flip": null
+  },
+  {
+   "chamber": "house",
+   "district": "27B",
+   "precincts": {
+    "reported": 18,
+    "total": 18
+   },
+   "candidates": [
+    {
+     "name": "Bryan Lawrence",
+     "party": "R",
+     "votes": 14400,
+     "pct": 70.55
+    },
+    {
+     "name": "Charles A. McConaughay",
+     "party": "DFL",
+     "votes": 5998,
+     "pct": 29.39
+    },
+    {
+     "name": "WRITE-IN",
+     "party": "WI",
+     "votes": 12,
+     "pct": 0.06
+    }
+   ],
+   "total_votes": 20410,
+   "winner": {
+    "name": "Bryan Lawrence",
+    "party": "R"
+   },
+   "uncontested": false,
+   "margin": {
+    "votes": 8402,
+    "pct": 41.17
+   },
+   "previous": {
+    "name": "Bryan Lawrence",
+    "party": "R"
+   },
+   "flip": null
+  },
+  {
+   "chamber": "house",
+   "district": "28A",
+   "precincts": {
+    "reported": 17,
+    "total": 17
+   },
+   "candidates": [
+    {
+     "name": "James \"Jimmy\" Gordon",
+     "party": "R",
+     "votes": 13570,
+     "pct": 63.71
+    },
+    {
+     "name": "Tim Dummer",
+     "party": "DFL",
+     "votes": 7699,
+     "pct": 36.15
+    },
+    {
+     "name": "WRITE-IN",
+     "party": "WI",
+     "votes": 31,
+     "pct": 0.15
+    }
+   ],
+   "total_votes": 21300,
+   "winner": {
+    "name": "James \"Jimmy\" Gordon",
+    "party": "R"
+   },
+   "uncontested": false,
+   "margin": {
+    "votes": 5871,
+    "pct": 27.56
+   },
+   "previous": {
+    "name": "Jimmy Gordon",
+    "party": "R"
+   },
+   "flip": null
+  },
+  {
+   "chamber": "house",
+   "district": "28B",
+   "precincts": {
+    "reported": 19,
+    "total": 19
+   },
+   "candidates": [
+    {
+     "name": "Max Rymer",
+     "party": "R",
+     "votes": 13883,
+     "pct": 62.77
+    },
+    {
+     "name": "Daniel Colten Schmidt",
+     "party": "DFL",
+     "votes": 8223,
+     "pct": 37.18
+    },
+    {
+     "name": "WRITE-IN",
+     "party": "WI",
+     "votes": 12,
+     "pct": 0.05
+    }
+   ],
+   "total_votes": 22118,
+   "winner": {
+    "name": "Max Rymer",
+    "party": "R"
+   },
+   "uncontested": false,
+   "margin": {
+    "votes": 5660,
+    "pct": 25.59
+   },
+   "previous": {
+    "name": "Max Rymer",
+    "party": "R"
+   },
+   "flip": null
+  },
+  {
+   "chamber": "house",
+   "district": "29A",
+   "precincts": {
+    "reported": 23,
+    "total": 23
+   },
+   "candidates": [
+    {
+     "name": "Joe McDonald",
+     "party": "R",
+     "votes": 15580,
+     "pct": 67.47
+    },
+    {
+     "name": "Emily Dahlgren",
+     "party": "DFL",
+     "votes": 7493,
+     "pct": 32.45
+    },
+    {
+     "name": "WRITE-IN",
+     "party": "WI",
+     "votes": 18,
+     "pct": 0.08
+    }
+   ],
+   "total_votes": 23091,
+   "winner": {
+    "name": "Joe McDonald",
+    "party": "R"
+   },
+   "uncontested": false,
+   "margin": {
+    "votes": 8087,
+    "pct": 35.02
+   },
+   "previous": {
+    "name": "Joe McDonald",
+    "party": "R"
+   },
+   "flip": null
+  },
+  {
+   "chamber": "house",
+   "district": "29B",
+   "precincts": {
+    "reported": 14,
+    "total": 14
+   },
+   "candidates": [
+    {
+     "name": "Marion (O'Neill) Rarick",
+     "party": "R",
+     "votes": 12377,
+     "pct": 61.58
+    },
+    {
+     "name": "Colton Kratky",
+     "party": "DFL",
+     "votes": 7708,
+     "pct": 38.35
+    },
+    {
+     "name": "WRITE-IN",
+     "party": "WI",
+     "votes": 14,
+     "pct": 0.07
+    }
+   ],
+   "total_votes": 20099,
+   "winner": {
+    "name": "Marion (O'Neill) Rarick",
+    "party": "R"
+   },
+   "uncontested": false,
+   "margin": {
+    "votes": 4669,
+    "pct": 23.23
+   },
+   "previous": {
+    "name": "Marion Rarick",
+    "party": "R"
+   },
+   "flip": null
+  },
+  {
+   "chamber": "house",
+   "district": "30A",
+   "precincts": {
+    "reported": 11,
+    "total": 11
+   },
+   "candidates": [
+    {
+     "name": "Walter Hudson",
+     "party": "R",
+     "votes": 14292,
+     "pct": 59.13
+    },
+    {
+     "name": "Joey Smyth",
+     "party": "DFL",
+     "votes": 9864,
+     "pct": 40.81
+    },
+    {
+     "name": "WRITE-IN",
+     "party": "WI",
+     "votes": 13,
+     "pct": 0.05
+    }
+   ],
+   "total_votes": 24169,
+   "winner": {
+    "name": "Walter Hudson",
+    "party": "R"
+   },
+   "uncontested": false,
+   "margin": {
+    "votes": 4428,
+    "pct": 18.32
+   },
+   "previous": {
+    "name": "Walter Hudson",
+    "party": "R"
+   },
+   "flip": null
+  },
+  {
+   "chamber": "house",
+   "district": "30B",
+   "precincts": {
+    "reported": 14,
+    "total": 14
+   },
+   "candidates": [
+    {
+     "name": "Chad Westberg",
+     "party": "R",
+     "votes": 13959,
+     "pct": 61.5
+    },
+    {
+     "name": "Keenan Gentry",
+     "party": "DFL",
+     "votes": 8732,
+     "pct": 38.47
+    },
+    {
+     "name": "WRITE-IN",
+     "party": "WI",
+     "votes": 8,
+     "pct": 0.04
+    }
+   ],
+   "total_votes": 22699,
+   "winner": {
+    "name": "Chad Westberg",
+    "party": "R"
+   },
+   "uncontested": false,
+   "margin": {
+    "votes": 5227,
+    "pct": 23.03
+   },
+   "previous": {
+    "name": "Paul Novotny",
+    "party": "R"
+   },
+   "flip": null
+  },
+  {
+   "chamber": "house",
+   "district": "31A",
+   "precincts": {
+    "reported": 14,
+    "total": 14
+   },
+   "candidates": [
+    {
+     "name": "Harry Niska",
+     "party": "R",
+     "votes": 12303,
+     "pct": 55.08
+    },
+    {
+     "name": "Brian Walker",
+     "party": "DFL",
+     "votes": 10014,
+     "pct": 44.84
+    },
+    {
+     "name": "WRITE-IN",
+     "party": "WI",
+     "votes": 18,
+     "pct": 0.08
+    }
+   ],
+   "total_votes": 22335,
+   "winner": {
+    "name": "Harry Niska",
+    "party": "R"
+   },
+   "uncontested": false,
+   "margin": {
+    "votes": 2289,
+    "pct": 10.25
+   },
+   "previous": {
+    "name": "Harry Niska",
+    "party": "R"
+   },
+   "flip": null
+  },
+  {
+   "chamber": "house",
+   "district": "31B",
+   "precincts": {
+    "reported": 14,
+    "total": 14
+   },
+   "candidates": [
+    {
+     "name": "Peggy Scott",
+     "party": "R",
+     "votes": 15238,
+     "pct": 65.78
+    },
+    {
+     "name": "Jen Bloomquist",
+     "party": "DFL",
+     "votes": 7909,
+     "pct": 34.14
+    },
+    {
+     "name": "WRITE-IN",
+     "party": "WI",
+     "votes": 19,
+     "pct": 0.08
+    }
+   ],
+   "total_votes": 23166,
+   "winner": {
+    "name": "Peggy Scott",
+    "party": "R"
+   },
+   "uncontested": false,
+   "margin": {
+    "votes": 7329,
+    "pct": 31.64
+   },
+   "previous": {
+    "name": "Peggy Scott",
+    "party": "R"
+   },
+   "flip": null
+  },
+  {
+   "chamber": "house",
+   "district": "32A",
+   "precincts": {
+    "reported": 15,
+    "total": 15
+   },
+   "candidates": [
+    {
+     "name": "Nolan West",
+     "party": "R",
+     "votes": 11833,
+     "pct": 50.0
+    },
+    {
+     "name": "Amanda Matchett",
+     "party": "DFL",
+     "votes": 11811,
+     "pct": 49.91
+    },
+    {
+     "name": "WRITE-IN",
+     "party": "WI",
+     "votes": 22,
+     "pct": 0.09
+    }
+   ],
+   "total_votes": 23666,
+   "winner": {
+    "name": "Nolan West",
+    "party": "R"
+   },
+   "uncontested": false,
+   "margin": {
+    "votes": 22,
+    "pct": 0.09
+   },
+   "previous": {
+    "name": "Nolan West",
+    "party": "R"
+   },
+   "flip": null
+  },
+  {
+   "chamber": "house",
+   "district": "32B",
+   "precincts": {
+    "reported": 17,
+    "total": 17
+   },
+   "candidates": [
+    {
+     "name": "Matt Norris",
+     "party": "DFL",
+     "votes": 12026,
+     "pct": 57.24
+    },
+    {
+     "name": "Leslie Larson",
+     "party": "R",
+     "votes": 8966,
+     "pct": 42.67
+    },
+    {
+     "name": "WRITE-IN",
+     "party": "WI",
+     "votes": 19,
+     "pct": 0.09
+    }
+   ],
+   "total_votes": 21011,
+   "winner": {
+    "name": "Matt Norris",
+    "party": "DFL"
+   },
+   "uncontested": false,
+   "margin": {
+    "votes": 3060,
+    "pct": 14.56
+   },
+   "previous": {
+    "name": "Matt Norris",
+    "party": "DFL"
+   },
+   "flip": null
+  },
+  {
+   "chamber": "house",
+   "district": "33A",
+   "precincts": {
+    "reported": 14,
+    "total": 14
+   },
+   "candidates": [
+    {
+     "name": "Stacey Stout",
+     "party": "R",
+     "votes": 12558,
+     "pct": 52.87
+    },
+    {
+     "name": "Angela Thompson",
+     "party": "DFL",
+     "votes": 11180,
+     "pct": 47.07
+    },
+    {
+     "name": "WRITE-IN",
+     "party": "WI",
+     "votes": 13,
+     "pct": 0.05
+    }
+   ],
+   "total_votes": 23751,
+   "winner": {
+    "name": "Stacey Stout",
+    "party": "R"
+   },
+   "uncontested": false,
+   "margin": {
+    "votes": 1378,
+    "pct": 5.8
+   },
+   "previous": {
+    "name": "Patti Anderson",
+    "party": "R"
+   },
+   "flip": null
+  },
+  {
+   "chamber": "house",
+   "district": "33B",
+   "precincts": {
+    "reported": 13,
+    "total": 13
+   },
+   "candidates": [
+    {
+     "name": "Josiah Hill",
+     "party": "DFL",
+     "votes": 13289,
+     "pct": 55.48
+    },
+    {
+     "name": "Jessica L. Johnson",
+     "party": "R",
+     "votes": 10634,
+     "pct": 44.39
+    },
+    {
+     "name": "WRITE-IN",
+     "party": "WI",
+     "votes": 31,
+     "pct": 0.13
+    }
+   ],
+   "total_votes": 23954,
+   "winner": {
+    "name": "Josiah Hill",
+    "party": "DFL"
+   },
+   "uncontested": false,
+   "margin": {
+    "votes": 2655,
+    "pct": 11.08
+   },
+   "previous": {
+    "name": "Josiah Hill",
+    "party": "DFL"
+   },
+   "flip": null
+  },
+  {
+   "chamber": "house",
+   "district": "34A",
+   "precincts": {
+    "reported": 11,
+    "total": 11
+   },
+   "candidates": [
+    {
+     "name": "Jason Heaser",
+     "party": "DFL",
+     "votes": 13897,
+     "pct": 51.95
+    },
+    {
+     "name": "Danny Nadeau",
+     "party": "R",
+     "votes": 12836,
+     "pct": 47.98
+    },
+    {
+     "name": "WRITE-IN",
+     "party": "WI",
+     "votes": 19,
+     "pct": 0.07
+    }
+   ],
+   "total_votes": 26752,
+   "winner": {
+    "name": "Jason Heaser",
+    "party": "DFL"
+   },
+   "uncontested": false,
+   "margin": {
+    "votes": 1061,
+    "pct": 3.97
+   },
+   "previous": {
+    "name": "Danny Nadeau",
+    "party": "R"
+   },
+   "flip": "R->DFL"
+  },
+  {
+   "chamber": "house",
+   "district": "34B",
+   "precincts": {
+    "reported": 14,
+    "total": 14
+   },
+   "candidates": [
+    {
+     "name": "Xp Lee",
+     "party": "DFL",
+     "votes": 13531,
+     "pct": 67.63
+    },
+    {
+     "name": "Ruth Bittner",
+     "party": "R",
+     "votes": 6450,
+     "pct": 32.24
+    },
+    {
+     "name": "WRITE-IN",
+     "party": "WI",
+     "votes": 25,
+     "pct": 0.12
+    }
+   ],
+   "total_votes": 20006,
+   "winner": {
+    "name": "Xp Lee",
+    "party": "DFL"
+   },
+   "uncontested": false,
+   "margin": {
+    "votes": 7081,
+    "pct": 35.39
+   },
+   "previous": {
+    "name": "Xp Lee",
+    "party": "DFL"
+   },
+   "flip": null
+  },
+  {
+   "chamber": "house",
+   "district": "35A",
+   "precincts": {
+    "reported": 16,
+    "total": 16
+   },
+   "candidates": [
+    {
+     "name": "Zack Stephenson",
+     "party": "DFL",
+     "votes": 11042,
+     "pct": 55.99
+    },
+    {
+     "name": "Josh Jungling",
+     "party": "R",
+     "votes": 8655,
+     "pct": 43.89
+    },
+    {
+     "name": "WRITE-IN",
+     "party": "WI",
+     "votes": 23,
+     "pct": 0.12
+    }
+   ],
+   "total_votes": 19720,
+   "winner": {
+    "name": "Zack Stephenson",
+    "party": "DFL"
+   },
+   "uncontested": false,
+   "margin": {
+    "votes": 2387,
+    "pct": 12.1
+   },
+   "previous": {
+    "name": "Zack Stephenson",
+    "party": "DFL"
+   },
+   "flip": null
+  },
+  {
+   "chamber": "house",
+   "district": "35B",
+   "precincts": {
+    "reported": 14,
+    "total": 14
+   },
+   "candidates": [
+    {
+     "name": "Kari Rehrauer",
+     "party": "DFL",
+     "votes": 11021,
+     "pct": 55.82
+    },
+    {
+     "name": "Steve Pape",
+     "party": "R",
+     "votes": 8702,
+     "pct": 44.08
+    },
+    {
+     "name": "WRITE-IN",
+     "party": "WI",
+     "votes": 20,
+     "pct": 0.1
+    }
+   ],
+   "total_votes": 19743,
+   "winner": {
+    "name": "Kari Rehrauer",
+    "party": "DFL"
+   },
+   "uncontested": false,
+   "margin": {
+    "votes": 2319,
+    "pct": 11.75
+   },
+   "previous": {
+    "name": "Kari Rehrauer",
+    "party": "DFL"
+   },
+   "flip": null
+  },
+  {
+   "chamber": "house",
+   "district": "36A",
+   "precincts": {
+    "reported": 14,
+    "total": 14
+   },
+   "candidates": [
+    {
+     "name": "Jim DeMay",
+     "party": "DFL",
+     "votes": 13189,
+     "pct": 52.31
+    },
+    {
+     "name": "Sebastian Stoss",
+     "party": "R",
+     "votes": 12002,
+     "pct": 47.6
+    },
+    {
+     "name": "WRITE-IN",
+     "party": "WI",
+     "votes": 21,
+     "pct": 0.08
+    }
+   ],
+   "total_votes": 25212,
+   "winner": {
+    "name": "Jim DeMay",
+    "party": "DFL"
+   },
+   "uncontested": false,
+   "margin": {
+    "votes": 1187,
+    "pct": 4.71
+   },
+   "previous": {
+    "name": "Elliott Engen",
+    "party": "R"
+   },
+   "flip": "R->DFL"
+  },
+  {
+   "chamber": "house",
+   "district": "36B",
+   "precincts": {
+    "reported": 15,
+    "total": 15
+   },
+   "candidates": [
+    {
+     "name": "Brion Curran",
+     "party": "DFL",
+     "votes": 13267,
+     "pct": 58.16
+    },
+    {
+     "name": "Patty Bradway",
+     "party": "R",
+     "votes": 9521,
+     "pct": 41.73
+    },
+    {
+     "name": "WRITE-IN",
+     "party": "WI",
+     "votes": 25,
+     "pct": 0.11
+    }
+   ],
+   "total_votes": 22813,
+   "winner": {
+    "name": "Brion Curran",
+    "party": "DFL"
+   },
+   "uncontested": false,
+   "margin": {
+    "votes": 3746,
+    "pct": 16.42
+   },
+   "previous": {
+    "name": "Brion Curran",
+    "party": "DFL"
+   },
+   "flip": null
+  },
+  {
+   "chamber": "house",
+   "district": "37A",
+   "precincts": {
+    "reported": 13,
+    "total": 13
+   },
+   "candidates": [
+    {
+     "name": "Tom McKee",
+     "party": "R",
+     "votes": 13808,
+     "pct": 51.99
+    },
+    {
+     "name": "Darci Smith",
+     "party": "DFL",
+     "votes": 12728,
+     "pct": 47.93
+    },
+    {
+     "name": "WRITE-IN",
+     "party": "WI",
+     "votes": 22,
+     "pct": 0.08
+    }
+   ],
+   "total_votes": 26558,
+   "winner": {
+    "name": "Tom McKee",
+    "party": "R"
+   },
+   "uncontested": false,
+   "margin": {
+    "votes": 1080,
+    "pct": 4.07
+   },
+   "previous": {
+    "name": "Kristin Robbins",
+    "party": "R"
+   },
+   "flip": null
+  },
+  {
+   "chamber": "house",
+   "district": "37B",
+   "precincts": {
+    "reported": 10,
+    "total": 10
+   },
+   "candidates": [
+    {
+     "name": "Kristin Bahner",
+     "party": "DFL",
+     "votes": 15055,
+     "pct": 60.95
+    },
+    {
+     "name": "Luke Doerer",
+     "party": "R",
+     "votes": 9620,
+     "pct": 38.95
+    },
+    {
+     "name": "WRITE-IN",
+     "party": "WI",
+     "votes": 25,
+     "pct": 0.1
+    }
+   ],
+   "total_votes": 24700,
+   "winner": {
+    "name": "Kristin Bahner",
+    "party": "DFL"
+   },
+   "uncontested": false,
+   "margin": {
+    "votes": 5435,
+    "pct": 22.0
+   },
+   "previous": {
+    "name": "Kristin Bahner",
+    "party": "DFL"
+   },
+   "flip": null
+  },
+  {
+   "chamber": "house",
+   "district": "38A",
+   "precincts": {
+    "reported": 12,
+    "total": 12
+   },
+   "candidates": [
+    {
+     "name": "Huldah Momanyi-Hiltsley",
+     "party": "DFL",
+     "votes": 9852,
+     "pct": 71.8
+    },
+    {
+     "name": "Charlie Kistler",
+     "party": "R",
+     "votes": 3840,
+     "pct": 27.99
+    },
+    {
+     "name": "WRITE-IN",
+     "party": "WI",
+     "votes": 29,
+     "pct": 0.21
+    }
+   ],
+   "total_votes": 13721,
+   "winner": {
+    "name": "Huldah Momanyi-Hiltsley",
+    "party": "DFL"
+   },
+   "uncontested": false,
+   "margin": {
+    "votes": 6012,
+    "pct": 43.82
+   },
+   "previous": {
+    "name": "Huldah Momanyi-Hiltsley",
+    "party": "DFL"
+   },
+   "flip": null
+  },
+  {
+   "chamber": "house",
+   "district": "38B",
+   "precincts": {
+    "reported": 9,
+    "total": 9
+   },
+   "candidates": [
+    {
+     "name": "Samantha Vang",
+     "party": "DFL",
+     "votes": 10794,
+     "pct": 79.12
+    },
+    {
+     "name": "Robert Marvin",
+     "party": "R",
+     "votes": 2820,
+     "pct": 20.67
+    },
+    {
+     "name": "WRITE-IN",
+     "party": "WI",
+     "votes": 29,
+     "pct": 0.21
+    }
+   ],
+   "total_votes": 13643,
+   "winner": {
+    "name": "Samantha Vang",
+    "party": "DFL"
+   },
+   "uncontested": false,
+   "margin": {
+    "votes": 7974,
+    "pct": 58.45
+   },
+   "previous": {
+    "name": "Samantha Vang",
+    "party": "DFL"
+   },
+   "flip": null
+  },
+  {
+   "chamber": "house",
+   "district": "39A",
+   "precincts": {
+    "reported": 16,
+    "total": 16
+   },
+   "candidates": [
+    {
+     "name": "Aaron Klemz",
+     "party": "DFL",
+     "votes": 12074,
+     "pct": 69.85
+    },
+    {
+     "name": "Andy Macko",
+     "party": "R",
+     "votes": 5183,
+     "pct": 29.98
+    },
+    {
+     "name": "WRITE-IN",
+     "party": "WI",
+     "votes": 29,
+     "pct": 0.17
+    }
+   ],
+   "total_votes": 17286,
+   "winner": {
+    "name": "Aaron Klemz",
+    "party": "DFL"
+   },
+   "uncontested": false,
+   "margin": {
+    "votes": 6891,
+    "pct": 39.86
+   },
+   "previous": {
+    "name": "Erin Koegel",
+    "party": "DFL"
+   },
+   "flip": null
+  },
+  {
+   "chamber": "house",
+   "district": "39B",
+   "precincts": {
+    "reported": 14,
+    "total": 14
+   },
+   "candidates": [
+    {
+     "name": "Am\u00e1da M\u00e1rquez Simula",
+     "party": "DFL",
+     "votes": 14638,
+     "pct": 75.95
+    },
+    {
+     "name": "KT Jacobs",
+     "party": "R",
+     "votes": 4595,
+     "pct": 23.84
+    },
+    {
+     "name": "WRITE-IN",
+     "party": "WI",
+     "votes": 40,
+     "pct": 0.21
+    }
+   ],
+   "total_votes": 19273,
+   "winner": {
+    "name": "Am\u00e1da M\u00e1rquez Simula",
+    "party": "DFL"
+   },
+   "uncontested": false,
+   "margin": {
+    "votes": 10043,
+    "pct": 52.11
+   },
+   "previous": {
+    "name": "Sandra Feist",
+    "party": "DFL"
+   },
+   "flip": null
+  },
+  {
+   "chamber": "house",
+   "district": "40A",
+   "precincts": {
+    "reported": 14,
+    "total": 14
+   },
+   "candidates": [
+    {
+     "name": "Aisha Elmquist",
+     "party": "DFL",
+     "votes": 14328,
+     "pct": 65.3
+    },
+    {
+     "name": "Luis Withrow",
+     "party": "R",
+     "votes": 7597,
+     "pct": 34.62
+    },
+    {
+     "name": "WRITE-IN",
+     "party": "WI",
+     "votes": 17,
+     "pct": 0.08
+    }
+   ],
+   "total_votes": 21942,
+   "winner": {
+    "name": "Aisha Elmquist",
+    "party": "DFL"
+   },
+   "uncontested": false,
+   "margin": {
+    "votes": 6731,
+    "pct": 30.68
+   },
+   "previous": {
+    "name": "Kelly Moller",
+    "party": "DFL"
+   },
+   "flip": null
+  },
+  {
+   "chamber": "house",
+   "district": "40B",
+   "precincts": {
+    "reported": 12,
+    "total": 12
+   },
+   "candidates": [
+    {
+     "name": "David Gottfried",
+     "party": "DFL",
+     "votes": 16640,
+     "pct": 72.22
+    },
+    {
+     "name": "Allen Shen",
+     "party": "R",
+     "votes": 6379,
+     "pct": 27.69
+    },
+    {
+     "name": "WRITE-IN",
+     "party": "WI",
+     "votes": 22,
+     "pct": 0.1
+    }
+   ],
+   "total_votes": 23041,
+   "winner": {
+    "name": "David Gottfried",
+    "party": "DFL"
+   },
+   "uncontested": false,
+   "margin": {
+    "votes": 10261,
+    "pct": 44.53
+   },
+   "previous": {
+    "name": "David Gottfried",
+    "party": "DFL"
+   },
+   "flip": null
+  },
+  {
+   "chamber": "house",
+   "district": "41A",
+   "precincts": {
+    "reported": 17,
+    "total": 17
+   },
+   "candidates": [
+    {
+     "name": "Cole Birkeland",
+     "party": "DFL",
+     "votes": 14869,
+     "pct": 54.08
+    },
+    {
+     "name": "Wayne A Johnson",
+     "party": "R",
+     "votes": 12611,
+     "pct": 45.87
+    },
+    {
+     "name": "WRITE-IN",
+     "party": "WI",
+     "votes": 12,
+     "pct": 0.04
+    }
+   ],
+   "total_votes": 27492,
+   "winner": {
+    "name": "Cole Birkeland",
+    "party": "DFL"
+   },
+   "uncontested": false,
+   "margin": {
+    "votes": 2258,
+    "pct": 8.21
+   },
+   "previous": {
+    "name": "Wayne Johnson",
+    "party": "R"
+   },
+   "flip": "R->DFL"
+  },
+  {
+   "chamber": "house",
+   "district": "41B",
+   "precincts": {
+    "reported": 15,
+    "total": 15
+   },
+   "candidates": [
+    {
+     "name": "Jen Fox",
+     "party": "DFL",
+     "votes": 11363,
+     "pct": 53.98
+    },
+    {
+     "name": "William Beck",
+     "party": "R",
+     "votes": 9656,
+     "pct": 45.87
+    },
+    {
+     "name": "WRITE-IN",
+     "party": "WI",
+     "votes": 33,
+     "pct": 0.16
+    }
+   ],
+   "total_votes": 21052,
+   "winner": {
+    "name": "Jen Fox",
+    "party": "DFL"
+   },
+   "uncontested": false,
+   "margin": {
+    "votes": 1707,
+    "pct": 8.11
+   },
+   "previous": {
+    "name": "Tom Dippel",
+    "party": "R"
+   },
+   "flip": "R->DFL"
+  },
+  {
+   "chamber": "house",
+   "district": "42A",
+   "precincts": {
+    "reported": 10,
+    "total": 10
+   },
+   "candidates": [
+    {
+     "name": "Ned Carroll",
+     "party": "DFL",
+     "votes": 14054,
+     "pct": 62.21
+    },
+    {
+     "name": "Kathy Burkett",
+     "party": "R",
+     "votes": 8529,
+     "pct": 37.75
+    },
+    {
+     "name": "WRITE-IN",
+     "party": "WI",
+     "votes": 10,
+     "pct": 0.04
+    }
+   ],
+   "total_votes": 22593,
+   "winner": {
+    "name": "Ned Carroll",
+    "party": "DFL"
+   },
+   "uncontested": false,
+   "margin": {
+    "votes": 5525,
+    "pct": 24.45
+   },
+   "previous": {
+    "name": "Ned Carroll",
+    "party": "DFL"
+   },
+   "flip": null
+  },
+  {
+   "chamber": "house",
+   "district": "42B",
+   "precincts": {
+    "reported": 12,
+    "total": 12
+   },
+   "candidates": [
+    {
+     "name": "Ginny Klevorn",
+     "party": "DFL",
+     "votes": 16239,
+     "pct": 95.0
+    },
+    {
+     "name": "WRITE-IN",
+     "party": "WI",
+     "votes": 854,
+     "pct": 5.0
+    }
+   ],
+   "total_votes": 17093,
+   "winner": {
+    "name": "Ginny Klevorn",
+    "party": "DFL"
+   },
+   "uncontested": true,
+   "margin": {
+    "votes": 15385,
+    "pct": 90.01
+   },
+   "previous": {
+    "name": "Ginny Klevorn",
+    "party": "DFL"
+   },
+   "flip": null
+  },
+  {
+   "chamber": "house",
+   "district": "43A",
+   "precincts": {
+    "reported": 12,
+    "total": 12
+   },
+   "candidates": [
+    {
+     "name": "Kyrstin Schuette",
+     "party": "DFL",
+     "votes": 13666,
+     "pct": 71.35
+    },
+    {
+     "name": "Todd Hesemann",
+     "party": "R",
+     "votes": 5456,
+     "pct": 28.49
+    },
+    {
+     "name": "WRITE-IN",
+     "party": "WI",
+     "votes": 31,
+     "pct": 0.16
+    }
+   ],
+   "total_votes": 19153,
+   "winner": {
+    "name": "Kyrstin Schuette",
+    "party": "DFL"
+   },
+   "uncontested": false,
+   "margin": {
+    "votes": 8210,
+    "pct": 42.87
+   },
+   "previous": {
+    "name": "Cedrick Frazier",
+    "party": "DFL"
+   },
+   "flip": null
+  },
+  {
+   "chamber": "house",
+   "district": "43B",
+   "precincts": {
+    "reported": 14,
+    "total": 14
+   },
+   "candidates": [
+    {
+     "name": "Jess Lewis",
+     "party": "DFL",
+     "votes": 18834,
+     "pct": 97.67
+    },
+    {
+     "name": "WRITE-IN",
+     "party": "WI",
+     "votes": 449,
+     "pct": 2.33
+    }
+   ],
+   "total_votes": 19283,
+   "winner": {
+    "name": "Jess Lewis",
+    "party": "DFL"
+   },
+   "uncontested": true,
+   "margin": {
+    "votes": 18385,
+    "pct": 95.34
+   },
+   "previous": {
+    "name": "Mike Freiberg",
+    "party": "DFL"
+   },
+   "flip": null
+  },
+  {
+   "chamber": "house",
+   "district": "44A",
+   "precincts": {
+    "reported": 12,
+    "total": 12
+   },
+   "candidates": [
+    {
+     "name": "Peter M Fischer",
+     "party": "DFL",
+     "votes": 12235,
+     "pct": 69.98
+    },
+    {
+     "name": "Justin Middaugh",
+     "party": "R",
+     "votes": 5229,
+     "pct": 29.91
+    },
+    {
+     "name": "WRITE-IN",
+     "party": "WI",
+     "votes": 19,
+     "pct": 0.11
+    }
+   ],
+   "total_votes": 17483,
+   "winner": {
+    "name": "Peter M Fischer",
+    "party": "DFL"
+   },
+   "uncontested": false,
+   "margin": {
+    "votes": 7006,
+    "pct": 40.07
+   },
+   "previous": {
+    "name": "Peter Fischer",
+    "party": "DFL"
+   },
+   "flip": null
+  },
+  {
+   "chamber": "house",
+   "district": "44B",
+   "precincts": {
+    "reported": 15,
+    "total": 15
+   },
+   "candidates": [
+    {
+     "name": "Leon M. Lillie",
+     "party": "DFL",
+     "votes": 12603,
+     "pct": 66.6
+    },
+    {
+     "name": "TJ Hawthorne",
+     "party": "IND",
+     "votes": 6251,
+     "pct": 33.03
+    },
+    {
+     "name": "WRITE-IN",
+     "party": "WI",
+     "votes": 69,
+     "pct": 0.36
+    }
+   ],
+   "total_votes": 18923,
+   "winner": {
+    "name": "Leon M. Lillie",
+    "party": "DFL"
+   },
+   "uncontested": false,
+   "margin": {
+    "votes": 6352,
+    "pct": 33.57
+   },
+   "previous": {
+    "name": "Leon Lillie",
+    "party": "DFL"
+   },
+   "flip": null
+  },
+  {
+   "chamber": "house",
+   "district": "45A",
+   "precincts": {
+    "reported": 20,
+    "total": 20
+   },
+   "candidates": [
+    {
+     "name": "Andrew Myers",
+     "party": "R",
+     "votes": 13546,
+     "pct": 52.37
+    },
+    {
+     "name": "Tracey Breazeale",
+     "party": "DFL",
+     "votes": 12304,
+     "pct": 47.57
+    },
+    {
+     "name": "WRITE-IN",
+     "party": "WI",
+     "votes": 14,
+     "pct": 0.05
+    }
+   ],
+   "total_votes": 25864,
+   "winner": {
+    "name": "Andrew Myers",
+    "party": "R"
+   },
+   "uncontested": false,
+   "margin": {
+    "votes": 1242,
+    "pct": 4.8
+   },
+   "previous": {
+    "name": "Andrew Myers",
+    "party": "R"
+   },
+   "flip": null
+  },
+  {
+   "chamber": "house",
+   "district": "45B",
+   "precincts": {
+    "reported": 18,
+    "total": 18
+   },
+   "candidates": [
+    {
+     "name": "Patty Acomb",
+     "party": "DFL",
+     "votes": 16611,
+     "pct": 64.93
+    },
+    {
+     "name": "Thomas Bergerson",
+     "party": "R",
+     "votes": 8950,
+     "pct": 34.99
+    },
+    {
+     "name": "WRITE-IN",
+     "party": "WI",
+     "votes": 20,
+     "pct": 0.08
+    }
+   ],
+   "total_votes": 25581,
+   "winner": {
+    "name": "Patty Acomb",
+    "party": "DFL"
+   },
+   "uncontested": false,
+   "margin": {
+    "votes": 7661,
+    "pct": 29.95
+   },
+   "previous": {
+    "name": "Patty Acomb",
+    "party": "DFL"
+   },
+   "flip": null
+  },
+  {
+   "chamber": "house",
+   "district": "46A",
+   "precincts": {
+    "reported": 10,
+    "total": 10
+   },
+   "candidates": [
+    {
+     "name": "Larry Kraft",
+     "party": "DFL",
+     "votes": 18893,
+     "pct": 81.64
+    },
+    {
+     "name": "Karl Olson",
+     "party": "R",
+     "votes": 4224,
+     "pct": 18.25
+    },
+    {
+     "name": "WRITE-IN",
+     "party": "WI",
+     "votes": 25,
+     "pct": 0.11
+    }
+   ],
+   "total_votes": 23142,
+   "winner": {
+    "name": "Larry Kraft",
+    "party": "DFL"
+   },
+   "uncontested": false,
+   "margin": {
+    "votes": 14669,
+    "pct": 63.39
+   },
+   "previous": {
+    "name": "Larry Kraft",
+    "party": "DFL"
+   },
+   "flip": null
+  },
+  {
+   "chamber": "house",
+   "district": "46B",
+   "precincts": {
+    "reported": 12,
+    "total": 12
+   },
+   "candidates": [
+    {
+     "name": "Cheryl Youakim",
+     "party": "DFL",
+     "votes": 16896,
+     "pct": 72.88
+    },
+    {
+     "name": "Kim Rich",
+     "party": "R",
+     "votes": 6264,
+     "pct": 27.02
+    },
+    {
+     "name": "WRITE-IN",
+     "party": "WI",
+     "votes": 24,
+     "pct": 0.1
+    }
+   ],
+   "total_votes": 23184,
+   "winner": {
+    "name": "Cheryl Youakim",
+    "party": "DFL"
+   },
+   "uncontested": false,
+   "margin": {
+    "votes": 10632,
+    "pct": 45.86
+   },
+   "previous": {
+    "name": "Cheryl Youakim",
+    "party": "DFL"
+   },
+   "flip": null
+  },
+  {
+   "chamber": "house",
+   "district": "47A",
+   "precincts": {
+    "reported": 11,
+    "total": 11
+   },
+   "candidates": [
+    {
+     "name": "Shelley Buck",
+     "party": "DFL",
+     "votes": 15179,
+     "pct": 95.68
+    },
+    {
+     "name": "WRITE-IN",
+     "party": "WI",
+     "votes": 686,
+     "pct": 4.32
+    }
+   ],
+   "total_votes": 15865,
+   "winner": {
+    "name": "Shelley Buck",
+    "party": "DFL"
+   },
+   "uncontested": true,
+   "margin": {
+    "votes": 14493,
+    "pct": 91.35
+   },
+   "previous": {
+    "name": "Amanda Hemmingsen-Jaeger",
+    "party": "DFL"
+   },
+   "flip": null
+  },
+  {
+   "chamber": "house",
+   "district": "47B",
+   "precincts": {
+    "reported": 8,
+    "total": 8
+   },
+   "candidates": [
+    {
+     "name": "Ethan Cha",
+     "party": "DFL",
+     "votes": 14362,
+     "pct": 61.56
+    },
+    {
+     "name": "Kim Wilson",
+     "party": "IND",
+     "votes": 8903,
+     "pct": 38.16
+    },
+    {
+     "name": "WRITE-IN",
+     "party": "WI",
+     "votes": 65,
+     "pct": 0.28
+    }
+   ],
+   "total_votes": 23330,
+   "winner": {
+    "name": "Ethan Cha",
+    "party": "DFL"
+   },
+   "uncontested": false,
+   "margin": {
+    "votes": 5459,
+    "pct": 23.4
+   },
+   "previous": {
+    "name": "Ethan Cha",
+    "party": "DFL"
+   },
+   "flip": null
+  },
+  {
+   "chamber": "house",
+   "district": "48A",
+   "precincts": {
+    "reported": 16,
+    "total": 16
+   },
+   "candidates": [
+    {
+     "name": "Jim Nash",
+     "party": "R",
+     "votes": 14343,
+     "pct": 55.22
+    },
+    {
+     "name": "Joe Brothers",
+     "party": "DFL",
+     "votes": 11610,
+     "pct": 44.7
+    },
+    {
+     "name": "WRITE-IN",
+     "party": "WI",
+     "votes": 21,
+     "pct": 0.08
+    }
+   ],
+   "total_votes": 25974,
+   "winner": {
+    "name": "Jim Nash",
+    "party": "R"
+   },
+   "uncontested": false,
+   "margin": {
+    "votes": 2733,
+    "pct": 10.52
+   },
+   "previous": {
+    "name": "Jim Nash",
+    "party": "R"
+   },
+   "flip": null
+  },
+  {
+   "chamber": "house",
+   "district": "48B",
+   "precincts": {
+    "reported": 11,
+    "total": 11
+   },
+   "candidates": [
+    {
+     "name": "Lucille \"Lucy\" Rehm",
+     "party": "DFL",
+     "votes": 12655,
+     "pct": 54.89
+    },
+    {
+     "name": "Caleb Steffenhagen",
+     "party": "R",
+     "votes": 10386,
+     "pct": 45.05
+    },
+    {
+     "name": "WRITE-IN",
+     "party": "WI",
+     "votes": 13,
+     "pct": 0.06
+    }
+   ],
+   "total_votes": 23054,
+   "winner": {
+    "name": "Lucille \"Lucy\" Rehm",
+    "party": "DFL"
+   },
+   "uncontested": false,
+   "margin": {
+    "votes": 2269,
+    "pct": 9.84
+   },
+   "previous": {
+    "name": "Lucy Rehm",
+    "party": "DFL"
+   },
+   "flip": null
+  },
+  {
+   "chamber": "house",
+   "district": "49A",
+   "precincts": {
+    "reported": 16,
+    "total": 16
+   },
+   "candidates": [
+    {
+     "name": "Alex Falconer",
+     "party": "DFL",
+     "votes": 16254,
+     "pct": 66.16
+    },
+    {
+     "name": "Jeff Houdek",
+     "party": "R",
+     "votes": 8297,
+     "pct": 33.77
+    },
+    {
+     "name": "WRITE-IN",
+     "party": "WI",
+     "votes": 17,
+     "pct": 0.07
+    }
+   ],
+   "total_votes": 24568,
+   "winner": {
+    "name": "Alex Falconer",
+    "party": "DFL"
+   },
+   "uncontested": false,
+   "margin": {
+    "votes": 7957,
+    "pct": 32.39
+   },
+   "previous": {
+    "name": "Alex Falconer",
+    "party": "DFL"
+   },
+   "flip": null
+  },
+  {
+   "chamber": "house",
+   "district": "49B",
+   "precincts": {
+    "reported": 13,
+    "total": 13
+   },
+   "candidates": [
+    {
+     "name": "Carlie Kotyza-Witthuhn",
+     "party": "DFL",
+     "votes": 13844,
+     "pct": 62.49
+    },
+    {
+     "name": "Wendy Cregg",
+     "party": "R",
+     "votes": 8297,
+     "pct": 37.45
+    },
+    {
+     "name": "WRITE-IN",
+     "party": "WI",
+     "votes": 14,
+     "pct": 0.06
+    }
+   ],
+   "total_votes": 22155,
+   "winner": {
+    "name": "Carlie Kotyza-Witthuhn",
+    "party": "DFL"
+   },
+   "uncontested": false,
+   "margin": {
+    "votes": 5547,
+    "pct": 25.04
+   },
+   "previous": {
+    "name": "Carlie Kotyza-Witthuhn",
+    "party": "DFL"
+   },
+   "flip": null
+  },
+  {
+   "chamber": "house",
+   "district": "50A",
+   "precincts": {
+    "reported": 13,
+    "total": 13
+   },
+   "candidates": [
+    {
+     "name": "Julie Greene",
+     "party": "DFL",
+     "votes": 17025,
+     "pct": 69.79
+    },
+    {
+     "name": "Chris Wedum",
+     "party": "R",
+     "votes": 7354,
+     "pct": 30.15
+    },
+    {
+     "name": "WRITE-IN",
+     "party": "WI",
+     "votes": 16,
+     "pct": 0.07
+    }
+   ],
+   "total_votes": 24395,
+   "winner": {
+    "name": "Julie Greene",
+    "party": "DFL"
+   },
+   "uncontested": false,
+   "margin": {
+    "votes": 9671,
+    "pct": 39.64
+   },
+   "previous": {
+    "name": "Julie Greene",
+    "party": "DFL"
+   },
+   "flip": null
+  },
+  {
+   "chamber": "house",
+   "district": "50B",
+   "precincts": {
+    "reported": 15,
+    "total": 15
+   },
+   "candidates": [
+    {
+     "name": "Steve Elkins",
+     "party": "DFL",
+     "votes": 17829,
+     "pct": 95.81
+    },
+    {
+     "name": "WRITE-IN",
+     "party": "WI",
+     "votes": 780,
+     "pct": 4.19
+    }
+   ],
+   "total_votes": 18609,
+   "winner": {
+    "name": "Steve Elkins",
+    "party": "DFL"
+   },
+   "uncontested": true,
+   "margin": {
+    "votes": 17049,
+    "pct": 91.62
+   },
+   "previous": {
+    "name": "Steve Elkins",
+    "party": "DFL"
+   },
+   "flip": null
+  },
+  {
+   "chamber": "house",
+   "district": "51A",
+   "precincts": {
+    "reported": 12,
+    "total": 12
+   },
+   "candidates": [
+    {
+     "name": "Michael Howard",
+     "party": "DFL",
+     "votes": 15841,
+     "pct": 79.24
+    },
+    {
+     "name": "Frank Pafko",
+     "party": "R",
+     "votes": 4117,
+     "pct": 20.59
+    },
+    {
+     "name": "WRITE-IN",
+     "party": "WI",
+     "votes": 34,
+     "pct": 0.17
+    }
+   ],
+   "total_votes": 19992,
+   "winner": {
+    "name": "Michael Howard",
+    "party": "DFL"
+   },
+   "uncontested": false,
+   "margin": {
+    "votes": 11724,
+    "pct": 58.64
+   },
+   "previous": {
+    "name": "Michael Howard",
+    "party": "DFL"
+   },
+   "flip": null
+  },
+  {
+   "chamber": "house",
+   "district": "51B",
+   "precincts": {
+    "reported": 13,
+    "total": 13
+   },
+   "candidates": [
+    {
+     "name": "Nathan Coulter",
+     "party": "DFL",
+     "votes": 13883,
+     "pct": 70.09
+    },
+    {
+     "name": "Jim Lund",
+     "party": "R",
+     "votes": 5899,
+     "pct": 29.78
+    },
+    {
+     "name": "WRITE-IN",
+     "party": "WI",
+     "votes": 26,
+     "pct": 0.13
+    }
+   ],
+   "total_votes": 19808,
+   "winner": {
+    "name": "Nathan Coulter",
+    "party": "DFL"
+   },
+   "uncontested": false,
+   "margin": {
+    "votes": 7984,
+    "pct": 40.31
+   },
+   "previous": {
+    "name": "Nathan Coulter",
+    "party": "DFL"
+   },
+   "flip": null
+  },
+  {
+   "chamber": "house",
+   "district": "52A",
+   "precincts": {
+    "reported": 11,
+    "total": 11
+   },
+   "candidates": [
+    {
+     "name": "Christos Roy Jensen",
+     "party": "DFL",
+     "votes": 14208,
+     "pct": 68.55
+    },
+    {
+     "name": "George Gilmour",
+     "party": "R",
+     "votes": 6503,
+     "pct": 31.38
+    },
+    {
+     "name": "WRITE-IN",
+     "party": "WI",
+     "votes": 15,
+     "pct": 0.07
+    }
+   ],
+   "total_votes": 20726,
+   "winner": {
+    "name": "Christos Roy Jensen",
+    "party": "DFL"
+   },
+   "uncontested": false,
+   "margin": {
+    "votes": 7705,
+    "pct": 37.18
+   },
+   "previous": {
+    "name": "Liz Reyer",
+    "party": "DFL"
+   },
+   "flip": null
+  },
+  {
+   "chamber": "house",
+   "district": "52B",
+   "precincts": {
+    "reported": 14,
+    "total": 14
+   },
+   "candidates": [
+    {
+     "name": "Bianca Virnig",
+     "party": "DFL",
+     "votes": 15899,
+     "pct": 65.52
+    },
+    {
+     "name": "Tom Lopac",
+     "party": "R",
+     "votes": 8354,
+     "pct": 34.43
+    },
+    {
+     "name": "WRITE-IN",
+     "party": "WI",
+     "votes": 14,
+     "pct": 0.06
+    }
+   ],
+   "total_votes": 24267,
+   "winner": {
+    "name": "Bianca Virnig",
+    "party": "DFL"
+   },
+   "uncontested": false,
+   "margin": {
+    "votes": 7545,
+    "pct": 31.09
+   },
+   "previous": {
+    "name": "Bianca Virnig",
+    "party": "DFL"
+   },
+   "flip": null
+  },
+  {
+   "chamber": "house",
+   "district": "53A",
+   "precincts": {
+    "reported": 16,
+    "total": 16
+   },
+   "candidates": [
+    {
+     "name": "Mary Frances Clardy",
+     "party": "DFL",
+     "votes": 14233,
+     "pct": 63.01
+    },
+    {
+     "name": "AJ Gubash",
+     "party": "R",
+     "votes": 8338,
+     "pct": 36.91
+    },
+    {
+     "name": "WRITE-IN",
+     "party": "WI",
+     "votes": 17,
+     "pct": 0.08
+    }
+   ],
+   "total_votes": 22588,
+   "winner": {
+    "name": "Mary Frances Clardy",
+    "party": "DFL"
+   },
+   "uncontested": false,
+   "margin": {
+    "votes": 5895,
+    "pct": 26.1
+   },
+   "previous": {
+    "name": "Mary Frances Clardy",
+    "party": "DFL"
+   },
+   "flip": null
+  },
+  {
+   "chamber": "house",
+   "district": "53B",
+   "precincts": {
+    "reported": 14,
+    "total": 14
+   },
+   "candidates": [
+    {
+     "name": "Rick Hansen",
+     "party": "DFL",
+     "votes": 12683,
+     "pct": 64.15
+    },
+    {
+     "name": "Patti Mikulski",
+     "party": "R",
+     "votes": 7068,
+     "pct": 35.75
+    },
+    {
+     "name": "WRITE-IN",
+     "party": "WI",
+     "votes": 20,
+     "pct": 0.1
+    }
+   ],
+   "total_votes": 19771,
+   "winner": {
+    "name": "Rick Hansen",
+    "party": "DFL"
+   },
+   "uncontested": false,
+   "margin": {
+    "votes": 5615,
+    "pct": 28.4
+   },
+   "previous": {
+    "name": "Rick Hansen",
+    "party": "DFL"
+   },
+   "flip": null
+  },
+  {
+   "chamber": "house",
+   "district": "54A",
+   "precincts": {
+    "reported": 15,
+    "total": 15
+   },
+   "candidates": [
+    {
+     "name": "Brad Tabke",
+     "party": "DFL",
+     "votes": 11938,
+     "pct": 57.09
+    },
+    {
+     "name": "Aaron Paul",
+     "party": "R",
+     "votes": 8937,
+     "pct": 42.74
+    },
+    {
+     "name": "WRITE-IN",
+     "party": "WI",
+     "votes": 35,
+     "pct": 0.17
+    }
+   ],
+   "total_votes": 20910,
+   "winner": {
+    "name": "Brad Tabke",
+    "party": "DFL"
+   },
+   "uncontested": false,
+   "margin": {
+    "votes": 3001,
+    "pct": 14.35
+   },
+   "previous": {
+    "name": "Brad Tabke",
+    "party": "DFL"
+   },
+   "flip": null
+  },
+  {
+   "chamber": "house",
+   "district": "54B",
+   "precincts": {
+    "reported": 18,
+    "total": 18
+   },
+   "candidates": [
+    {
+     "name": "Natalie Barnes",
+     "party": "R",
+     "votes": 12972,
+     "pct": 55.69
+    },
+    {
+     "name": "Christopher Kartschoke",
+     "party": "DFL",
+     "votes": 10307,
+     "pct": 44.25
+    },
+    {
+     "name": "WRITE-IN",
+     "party": "WI",
+     "votes": 13,
+     "pct": 0.06
+    }
+   ],
+   "total_votes": 23292,
+   "winner": {
+    "name": "Natalie Barnes",
+    "party": "R"
+   },
+   "uncontested": false,
+   "margin": {
+    "votes": 2665,
+    "pct": 11.44
+   },
+   "previous": {
+    "name": "Ben Bakeberg",
+    "party": "R"
+   },
+   "flip": null
+  },
+  {
+   "chamber": "house",
+   "district": "55A",
+   "precincts": {
+    "reported": 12,
+    "total": 12
+   },
+   "candidates": [
+    {
+     "name": "Jessica Hanson",
+     "party": "DFL",
+     "votes": 12189,
+     "pct": 57.93
+    },
+    {
+     "name": "Pam Myhra",
+     "party": "R",
+     "votes": 8833,
+     "pct": 41.98
+    },
+    {
+     "name": "WRITE-IN",
+     "party": "WI",
+     "votes": 20,
+     "pct": 0.1
+    }
+   ],
+   "total_votes": 21042,
+   "winner": {
+    "name": "Jessica Hanson",
+    "party": "DFL"
+   },
+   "uncontested": false,
+   "margin": {
+    "votes": 3356,
+    "pct": 15.95
+   },
+   "previous": {
+    "name": "Jessica Hanson",
+    "party": "DFL"
+   },
+   "flip": null
+  },
+  {
+   "chamber": "house",
+   "district": "55B",
+   "precincts": {
+    "reported": 11,
+    "total": 11
+   },
+   "candidates": [
+    {
+     "name": "Hunter Cantrell",
+     "party": "DFL",
+     "votes": 12388,
+     "pct": 66.36
+    },
+    {
+     "name": "Todd Buchwald",
+     "party": "R",
+     "votes": 6271,
+     "pct": 33.59
+    },
+    {
+     "name": "WRITE-IN",
+     "party": "WI",
+     "votes": 9,
+     "pct": 0.05
+    }
+   ],
+   "total_votes": 18668,
+   "winner": {
+    "name": "Hunter Cantrell",
+    "party": "DFL"
+   },
+   "uncontested": false,
+   "margin": {
+    "votes": 6117,
+    "pct": 32.77
+   },
+   "previous": {
+    "name": "Kaela Berg",
+    "party": "DFL"
+   },
+   "flip": null
+  },
+  {
+   "chamber": "house",
+   "district": "56A",
+   "precincts": {
+    "reported": 12,
+    "total": 12
+   },
+   "candidates": [
+    {
+     "name": "Robert Bierman",
+     "party": "DFL",
+     "votes": 13895,
+     "pct": 67.14
+    },
+    {
+     "name": "A.J. Prospect",
+     "party": "R",
+     "votes": 6784,
+     "pct": 32.78
+    },
+    {
+     "name": "WRITE-IN",
+     "party": "WI",
+     "votes": 18,
+     "pct": 0.09
+    }
+   ],
+   "total_votes": 20697,
+   "winner": {
+    "name": "Robert Bierman",
+    "party": "DFL"
+   },
+   "uncontested": false,
+   "margin": {
+    "votes": 7111,
+    "pct": 34.36
+   },
+   "previous": {
+    "name": "Robert Bierman",
+    "party": "DFL"
+   },
+   "flip": null
+  },
+  {
+   "chamber": "house",
+   "district": "56B",
+   "precincts": {
+    "reported": 12,
+    "total": 12
+   },
+   "candidates": [
+    {
+     "name": "John Huot",
+     "party": "DFL",
+     "votes": 14839,
+     "pct": 60.74
+    },
+    {
+     "name": "Andrew Hattaway",
+     "party": "R",
+     "votes": 9578,
+     "pct": 39.2
+    },
+    {
+     "name": "WRITE-IN",
+     "party": "WI",
+     "votes": 14,
+     "pct": 0.06
+    }
+   ],
+   "total_votes": 24431,
+   "winner": {
+    "name": "John Huot",
+    "party": "DFL"
+   },
+   "uncontested": false,
+   "margin": {
+    "votes": 5261,
+    "pct": 21.53
+   },
+   "previous": {
+    "name": "John Huot",
+    "party": "DFL"
+   },
+   "flip": null
+  },
+  {
+   "chamber": "house",
+   "district": "57A",
+   "precincts": {
+    "reported": 12,
+    "total": 12
+   },
+   "candidates": [
+    {
+     "name": "Jon Koznick",
+     "party": "R",
+     "votes": 13867,
+     "pct": 58.25
+    },
+    {
+     "name": "JD Delgado",
+     "party": "DFL",
+     "votes": 9927,
+     "pct": 41.7
+    },
+    {
+     "name": "WRITE-IN",
+     "party": "WI",
+     "votes": 11,
+     "pct": 0.05
+    }
+   ],
+   "total_votes": 23805,
+   "winner": {
+    "name": "Jon Koznick",
+    "party": "R"
+   },
+   "uncontested": false,
+   "margin": {
+    "votes": 3940,
+    "pct": 16.55
+   },
+   "previous": {
+    "name": "Jon Koznick",
+    "party": "R"
+   },
+   "flip": null
+  },
+  {
+   "chamber": "house",
+   "district": "57B",
+   "precincts": {
+    "reported": 11,
+    "total": 11
+   },
+   "candidates": [
+    {
+     "name": "Brian Cohn",
+     "party": "DFL",
+     "votes": 13284,
+     "pct": 53.89
+    },
+    {
+     "name": "Jeff Witte",
+     "party": "R",
+     "votes": 11343,
+     "pct": 46.02
+    },
+    {
+     "name": "WRITE-IN",
+     "party": "WI",
+     "votes": 21,
+     "pct": 0.09
+    }
+   ],
+   "total_votes": 24648,
+   "winner": {
+    "name": "Brian Cohn",
+    "party": "DFL"
+   },
+   "uncontested": false,
+   "margin": {
+    "votes": 1941,
+    "pct": 7.87
+   },
+   "previous": {
+    "name": "Jeff Witte",
+    "party": "R"
+   },
+   "flip": "R->DFL"
+  },
+  {
+   "chamber": "house",
+   "district": "58A",
+   "precincts": {
+    "reported": 17,
+    "total": 17
+   },
+   "candidates": [
+    {
+     "name": "Kristi Pursell",
+     "party": "DFL",
+     "votes": 12523,
+     "pct": 56.02
+    },
+    {
+     "name": "Steven E. Cherney",
+     "party": "R",
+     "votes": 9809,
+     "pct": 43.88
+    },
+    {
+     "name": "WRITE-IN",
+     "party": "WI",
+     "votes": 22,
+     "pct": 0.1
+    }
+   ],
+   "total_votes": 22354,
+   "winner": {
+    "name": "Kristi Pursell",
+    "party": "DFL"
+   },
+   "uncontested": false,
+   "margin": {
+    "votes": 2714,
+    "pct": 12.14
+   },
+   "previous": {
+    "name": "Kristi Pursell",
+    "party": "DFL"
+   },
+   "flip": null
+  },
+  {
+   "chamber": "house",
+   "district": "58B",
+   "precincts": {
+    "reported": 29,
+    "total": 29
+   },
+   "candidates": [
+    {
+     "name": "Drew Roach",
+     "party": "R",
+     "votes": 12454,
+     "pct": 55.32
+    },
+    {
+     "name": "Ed Fellows",
+     "party": "DFL",
+     "votes": 10043,
+     "pct": 44.61
+    },
+    {
+     "name": "WRITE-IN",
+     "party": "WI",
+     "votes": 17,
+     "pct": 0.08
+    }
+   ],
+   "total_votes": 22514,
+   "winner": {
+    "name": "Drew Roach",
+    "party": "R"
+   },
+   "uncontested": false,
+   "margin": {
+    "votes": 2411,
+    "pct": 10.71
+   },
+   "previous": {
+    "name": "Drew Roach",
+    "party": "R"
+   },
+   "flip": null
+  },
+  {
+   "chamber": "house",
+   "district": "59A",
+   "precincts": {
+    "reported": 10,
+    "total": 10
+   },
+   "candidates": [
+    {
+     "name": "Fue Lee",
+     "party": "DFL",
+     "votes": 11487,
+     "pct": 97.96
+    },
+    {
+     "name": "WRITE-IN",
+     "party": "WI",
+     "votes": 239,
+     "pct": 2.04
+    }
+   ],
+   "total_votes": 11726,
+   "winner": {
+    "name": "Fue Lee",
+    "party": "DFL"
+   },
+   "uncontested": true,
+   "margin": {
+    "votes": 11248,
+    "pct": 95.92
+   },
+   "previous": {
+    "name": "Fue Lee",
+    "party": "DFL"
+   },
+   "flip": null
+  },
+  {
+   "chamber": "house",
+   "district": "59B",
+   "precincts": {
+    "reported": 14,
+    "total": 14
+   },
+   "candidates": [
+    {
+     "name": "Esther Agbaje",
+     "party": "DFL",
+     "votes": 16831,
+     "pct": 87.14
+    },
+    {
+     "name": "Kenneth Smoron",
+     "party": "R",
+     "votes": 2446,
+     "pct": 12.66
+    },
+    {
+     "name": "WRITE-IN",
+     "party": "WI",
+     "votes": 37,
+     "pct": 0.19
+    }
+   ],
+   "total_votes": 19314,
+   "winner": {
+    "name": "Esther Agbaje",
+    "party": "DFL"
+   },
+   "uncontested": false,
+   "margin": {
+    "votes": 14385,
+    "pct": 74.48
+   },
+   "previous": {
+    "name": "Esther Agbaje",
+    "party": "DFL"
+   },
+   "flip": null
+  },
+  {
+   "chamber": "house",
+   "district": "60A",
+   "precincts": {
+    "reported": 15,
+    "total": 15
+   },
+   "candidates": [
+    {
+     "name": "Sydney Jordan",
+     "party": "DFL",
+     "votes": 20646,
+     "pct": 89.21
+    },
+    {
+     "name": "John Holmberg",
+     "party": "R",
+     "votes": 2465,
+     "pct": 10.65
+    },
+    {
+     "name": "WRITE-IN",
+     "party": "WI",
+     "votes": 32,
+     "pct": 0.14
+    }
+   ],
+   "total_votes": 23143,
+   "winner": {
+    "name": "Sydney Jordan",
+    "party": "DFL"
+   },
+   "uncontested": false,
+   "margin": {
+    "votes": 18181,
+    "pct": 78.56
+   },
+   "previous": {
+    "name": "Sydney Jordan",
+    "party": "DFL"
+   },
+   "flip": null
+  },
+  {
+   "chamber": "house",
+   "district": "60B",
+   "precincts": {
+    "reported": 10,
+    "total": 10
+   },
+   "candidates": [
+    {
+     "name": "Mohamud Noor",
+     "party": "DFL",
+     "votes": 12319,
+     "pct": 98.66
+    },
+    {
+     "name": "WRITE-IN",
+     "party": "WI",
+     "votes": 167,
+     "pct": 1.34
+    }
+   ],
+   "total_votes": 12486,
+   "winner": {
+    "name": "Mohamud Noor",
+    "party": "DFL"
+   },
+   "uncontested": true,
+   "margin": {
+    "votes": 12152,
+    "pct": 97.33
+   },
+   "previous": {
+    "name": "Mohamud Noor",
+    "party": "DFL"
+   },
+   "flip": null
+  },
+  {
+   "chamber": "house",
+   "district": "61A",
+   "precincts": {
+    "reported": 13,
+    "total": 13
+   },
+   "candidates": [
+    {
+     "name": "Katie Jones",
+     "party": "DFL",
+     "votes": 19479,
+     "pct": 98.75
+    },
+    {
+     "name": "WRITE-IN",
+     "party": "WI",
+     "votes": 246,
+     "pct": 1.25
+    }
+   ],
+   "total_votes": 19725,
+   "winner": {
+    "name": "Katie Jones",
+    "party": "DFL"
+   },
+   "uncontested": true,
+   "margin": {
+    "votes": 19233,
+    "pct": 97.51
+   },
+   "previous": {
+    "name": "Katie Jones",
+    "party": "DFL"
+   },
+   "flip": null
+  },
+  {
+   "chamber": "house",
+   "district": "61B",
+   "precincts": {
+    "reported": 16,
+    "total": 16
+   },
+   "candidates": [
+    {
+     "name": "Jamie Long",
+     "party": "DFL",
+     "votes": 23609,
+     "pct": 99.04
+    },
+    {
+     "name": "WRITE-IN",
+     "party": "WI",
+     "votes": 230,
+     "pct": 0.96
+    }
+   ],
+   "total_votes": 23839,
+   "winner": {
+    "name": "Jamie Long",
+    "party": "DFL"
+   },
+   "uncontested": true,
+   "margin": {
+    "votes": 23379,
+    "pct": 98.07
+   },
+   "previous": {
+    "name": "Jamie Long",
+    "party": "DFL"
+   },
+   "flip": null
+  },
+  {
+   "chamber": "house",
+   "district": "62A",
+   "precincts": {
+    "reported": 13,
+    "total": 13
+   },
+   "candidates": [
+    {
+     "name": "Aisha Gomez",
+     "party": "DFL",
+     "votes": 14047,
+     "pct": 98.56
+    },
+    {
+     "name": "WRITE-IN",
+     "party": "WI",
+     "votes": 205,
+     "pct": 1.44
+    }
+   ],
+   "total_votes": 14252,
+   "winner": {
+    "name": "Aisha Gomez",
+    "party": "DFL"
+   },
+   "uncontested": true,
+   "margin": {
+    "votes": 13842,
+    "pct": 97.12
+   },
+   "previous": {
+    "name": "Aisha Gomez",
+    "party": "DFL"
+   },
+   "flip": null
+  },
+  {
+   "chamber": "house",
+   "district": "62B",
+   "precincts": {
+    "reported": 13,
+    "total": 13
+   },
+   "candidates": [
+    {
+     "name": "Anquam Mahamoud",
+     "party": "DFL",
+     "votes": 15408,
+     "pct": 91.19
+    },
+    {
+     "name": "Bob Sullentrop",
+     "party": "R",
+     "votes": 1422,
+     "pct": 8.42
+    },
+    {
+     "name": "WRITE-IN",
+     "party": "WI",
+     "votes": 66,
+     "pct": 0.39
+    }
+   ],
+   "total_votes": 16896,
+   "winner": {
+    "name": "Anquam Mahamoud",
+    "party": "DFL"
+   },
+   "uncontested": false,
+   "margin": {
+    "votes": 13986,
+    "pct": 82.78
+   },
+   "previous": {
+    "name": "Anquam Mahamoud",
+    "party": "DFL"
+   },
+   "flip": null
+  },
+  {
+   "chamber": "house",
+   "district": "63A",
+   "precincts": {
+    "reported": 15,
+    "total": 15
+   },
+   "candidates": [
+    {
+     "name": "Samantha Sencer-Mura",
+     "party": "DFL",
+     "votes": 22580,
+     "pct": 92.02
+    },
+    {
+     "name": "Kyle Bragg",
+     "party": "R",
+     "votes": 1925,
+     "pct": 7.84
+    },
+    {
+     "name": "WRITE-IN",
+     "party": "WI",
+     "votes": 33,
+     "pct": 0.13
+    }
+   ],
+   "total_votes": 24538,
+   "winner": {
+    "name": "Samantha Sencer-Mura",
+    "party": "DFL"
+   },
+   "uncontested": false,
+   "margin": {
+    "votes": 20655,
+    "pct": 84.18
+   },
+   "previous": {
+    "name": "Samantha Sencer-Mura",
+    "party": "DFL"
+   },
+   "flip": null
+  },
+  {
+   "chamber": "house",
+   "district": "63B",
+   "precincts": {
+    "reported": 16,
+    "total": 16
+   },
+   "candidates": [
+    {
+     "name": "Emma Greenman",
+     "party": "DFL",
+     "votes": 23248,
+     "pct": 88.73
+    },
+    {
+     "name": "Nicholas Peters",
+     "party": "R",
+     "votes": 2928,
+     "pct": 11.17
+    },
+    {
+     "name": "WRITE-IN",
+     "party": "WI",
+     "votes": 26,
+     "pct": 0.1
+    }
+   ],
+   "total_votes": 26202,
+   "winner": {
+    "name": "Emma Greenman",
+    "party": "DFL"
+   },
+   "uncontested": false,
+   "margin": {
+    "votes": 20320,
+    "pct": 77.55
+   },
+   "previous": {
+    "name": "Emma Greenman",
+    "party": "DFL"
+   },
+   "flip": null
+  },
+  {
+   "chamber": "house",
+   "district": "64A",
+   "precincts": {
+    "reported": 12,
+    "total": 12
+   },
+   "candidates": [
+    {
+     "name": "Meg Luger-Nikolai",
+     "party": "DFL",
+     "votes": 19567,
+     "pct": 98.59
+    },
+    {
+     "name": "WRITE-IN",
+     "party": "WI",
+     "votes": 280,
+     "pct": 1.41
+    }
+   ],
+   "total_votes": 19847,
+   "winner": {
+    "name": "Meg Luger-Nikolai",
+    "party": "DFL"
+   },
+   "uncontested": true,
+   "margin": {
+    "votes": 19287,
+    "pct": 97.18
+   },
+   "previous": {
+    "name": "Kaohly Vang Her",
+    "party": "DFL"
+   },
+   "flip": null
+  },
+  {
+   "chamber": "house",
+   "district": "64B",
+   "precincts": {
+    "reported": 12,
+    "total": 12
+   },
+   "candidates": [
+    {
+     "name": "Dave Pinto",
+     "party": "DFL",
+     "votes": 20940,
+     "pct": 98.02
+    },
+    {
+     "name": "WRITE-IN",
+     "party": "WI",
+     "votes": 423,
+     "pct": 1.98
+    }
+   ],
+   "total_votes": 21363,
+   "winner": {
+    "name": "Dave Pinto",
+    "party": "DFL"
+   },
+   "uncontested": true,
+   "margin": {
+    "votes": 20517,
+    "pct": 96.04
+   },
+   "previous": {
+    "name": "Dave Pinto",
+    "party": "DFL"
+   },
+   "flip": null
+  },
+  {
+   "chamber": "house",
+   "district": "65A",
+   "precincts": {
+    "reported": 12,
+    "total": 12
+   },
+   "candidates": [
+    {
+     "name": "Samakab Hussein",
+     "party": "DFL",
+     "votes": 10363,
+     "pct": 96.99
+    },
+    {
+     "name": "WRITE-IN",
+     "party": "WI",
+     "votes": 322,
+     "pct": 3.01
+    }
+   ],
+   "total_votes": 10685,
+   "winner": {
+    "name": "Samakab Hussein",
+    "party": "DFL"
+   },
+   "uncontested": true,
+   "margin": {
+    "votes": 10041,
+    "pct": 93.97
+   },
+   "previous": {
+    "name": "Samakab Hussein",
+    "party": "DFL"
+   },
+   "flip": null
+  },
+  {
+   "chamber": "house",
+   "district": "65B",
+   "precincts": {
+    "reported": 12,
+    "total": 12
+   },
+   "candidates": [
+    {
+     "name": "Sebastian Ellefson",
+     "party": "DFL",
+     "votes": 15064,
+     "pct": 97.75
+    },
+    {
+     "name": "WRITE-IN",
+     "party": "WI",
+     "votes": 346,
+     "pct": 2.25
+    }
+   ],
+   "total_votes": 15410,
+   "winner": {
+    "name": "Sebastian Ellefson",
+    "party": "DFL"
+   },
+   "uncontested": true,
+   "margin": {
+    "votes": 14718,
+    "pct": 95.51
+   },
+   "previous": {
+    "name": "Mar\u00eda Isa P\u00e9rez-Vega",
+    "party": "DFL"
+   },
+   "flip": null
+  },
+  {
+   "chamber": "house",
+   "district": "66A",
+   "precincts": {
+    "reported": 15,
+    "total": 15
+   },
+   "candidates": [
+    {
+     "name": "Leigh Finke",
+     "party": "DFL",
+     "votes": 18711,
+     "pct": 85.33
+    },
+    {
+     "name": "Mark Born",
+     "party": "R",
+     "votes": 3172,
+     "pct": 14.46
+    },
+    {
+     "name": "WRITE-IN",
+     "party": "WI",
+     "votes": 46,
+     "pct": 0.21
+    }
+   ],
+   "total_votes": 21929,
+   "winner": {
+    "name": "Leigh Finke",
+    "party": "DFL"
+   },
+   "uncontested": false,
+   "margin": {
+    "votes": 15539,
+    "pct": 70.86
+   },
+   "previous": {
+    "name": "Leigh Finke",
+    "party": "DFL"
+   },
+   "flip": null
+  },
+  {
+   "chamber": "house",
+   "district": "66B",
+   "precincts": {
+    "reported": 9,
+    "total": 9
+   },
+   "candidates": [
+    {
+     "name": "Athena Hollins",
+     "party": "DFL",
+     "votes": 10962,
+     "pct": 83.3
+    },
+    {
+     "name": "Mary O'Neal",
+     "party": "R",
+     "votes": 2173,
+     "pct": 16.51
+    },
+    {
+     "name": "WRITE-IN",
+     "party": "WI",
+     "votes": 24,
+     "pct": 0.18
+    }
+   ],
+   "total_votes": 13159,
+   "winner": {
+    "name": "Athena Hollins",
+    "party": "DFL"
+   },
+   "uncontested": false,
+   "margin": {
+    "votes": 8789,
+    "pct": 66.79
+   },
+   "previous": {
+    "name": "Athena Hollins",
+    "party": "DFL"
+   },
+   "flip": null
+  },
+  {
+   "chamber": "house",
+   "district": "67A",
+   "precincts": {
+    "reported": 11,
+    "total": 11
+   },
+   "candidates": [
+    {
+     "name": "Liz Lee",
+     "party": "DFL",
+     "votes": 8825,
+     "pct": 80.83
+    },
+    {
+     "name": "Jennifer McPherson",
+     "party": "R",
+     "votes": 2070,
+     "pct": 18.96
+    },
+    {
+     "name": "WRITE-IN",
+     "party": "WI",
+     "votes": 23,
+     "pct": 0.21
+    }
+   ],
+   "total_votes": 10918,
+   "winner": {
+    "name": "Liz Lee",
+    "party": "DFL"
+   },
+   "uncontested": false,
+   "margin": {
+    "votes": 6755,
+    "pct": 61.87
+   },
+   "previous": {
+    "name": "Liz Lee",
+    "party": "DFL"
+   },
+   "flip": null
+  },
+  {
+   "chamber": "house",
+   "district": "67B",
+   "precincts": {
+    "reported": 12,
+    "total": 12
+   },
+   "candidates": [
+    {
+     "name": "Jay Xiong",
+     "party": "DFL",
+     "votes": 10439,
+     "pct": 97.32
+    },
+    {
+     "name": "WRITE-IN",
+     "party": "WI",
+     "votes": 287,
+     "pct": 2.68
+    }
+   ],
+   "total_votes": 10726,
+   "winner": {
+    "name": "Jay Xiong",
+    "party": "DFL"
+   },
+   "uncontested": true,
+   "margin": {
+    "votes": 10152,
+    "pct": 94.65
+   },
+   "previous": {
+    "name": "Jay Xiong",
+    "party": "DFL"
+   },
+   "flip": null
+  }
+ ]
+}

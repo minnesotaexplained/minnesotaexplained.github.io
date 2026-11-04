@@ -57,7 +57,7 @@
 
         // --- 2. DATA LOADING ---
         // Replace 'districts.json' with your actual filename
-        fetch('districts.json')
+        fetch('mn_legislature/districts.json')
             .then(response => {
                 if (!response.ok) throw new Error("File not found. Ensure districts.json is in this folder.");
                 return response.json();

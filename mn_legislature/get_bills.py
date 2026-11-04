@@ -1,4 +1,5 @@
-import requests, re, json, time
+import requests, re, json, time, os
+os.chdir(os.path.dirname(os.path.abspath(__file__)))  # data files live next to this script
 from bs4 import BeautifulSoup
 
 with open("senate.json") as f:
