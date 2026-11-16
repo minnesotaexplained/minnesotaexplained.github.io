@@ -1,0 +1,1870 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MN Bills Explorer</title>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <style>
+        /* "Light" mode — semi-dark slate */
+        :root {
+            --bg-primary: #1e2433;
+            --bg-secondary: #252d3d;
+            --bg-tertiary: #2a3347;
+            --text-primary: #dce4f0;
+            --text-secondary: #90a4be;
+            --text-tertiary: #6b82a0;
+            --text-quaternary: #56708a;
+            --border-primary: #2e3d55;
+            --border-secondary: #2e3d55;
+            --border-tertiary: #2e3d55;
+            --accent-primary: #5b9bd5;
+            --accent-secondary: #1e3c72;
+            --accent-tertiary: #667eea;
+            --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.25);
+            --shadow-md: 0 2px 8px rgba(0, 0, 0, 0.25);
+            --shadow-lg: 0 4px 16px rgba(0, 0, 0, 0.35);
+            --hover-bg: #253045;
+            --table-hover: #253045;
+            --diff-add-bg: rgba(46, 160, 67, 0.18);
+            --diff-add-text: #4fae63;
+            --diff-del-bg: rgba(248, 81, 73, 0.18);
+            --diff-del-text: #d9534f;
+        }
+
+        /* Dark mode — deeper charcoal */
+        [data-theme="dark"] {
+            --bg-primary: #0f1117;
+            --bg-secondary: #161b27;
+            --bg-tertiary: #1a2030;
+            --text-primary: #e2e8f0;
+            --text-secondary: #8898aa;
+            --text-tertiary: #637080;
+            --text-quaternary: #4a5568;
+            --border-primary: #1e2a3a;
+            --border-secondary: #1e2a3a;
+            --border-tertiary: #1e2a3a;
+            --accent-primary: #4299e1;
+            --accent-secondary: #2b6cb0;
+            --accent-tertiary: #667eea;
+            --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.4);
+            --shadow-md: 0 2px 8px rgba(0, 0, 0, 0.4);
+            --shadow-lg: 0 4px 16px rgba(0, 0, 0, 0.6);
+            --hover-bg: #161b27;
+            --table-hover: #161b27;
+            --diff-add-bg: rgba(46, 160, 67, 0.15);
+            --diff-add-text: #56d364;
+            --diff-del-bg: rgba(248, 81, 73, 0.15);
+            --diff-del-text: #ff7b72;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            min-height: 100vh;
+            margin: 0;
+            padding: 0;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        .navbar {
+            background: linear-gradient(135deg, var(--accent-secondary) 0%, var(--accent-primary) 100%);
+            color: white;
+            padding: 20px 40px;
+            box-shadow: var(--shadow-md);
+            top: 0;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        [data-theme="dark"] .navbar {
+            background: #0a0d14;
+            border-bottom: 1px solid #1e2a3a;
+        }
+
+        .mx-logo {
+            font-size: 0.8rem;
+            font-weight: 800;
+            letter-spacing: -0.02em;
+            color: white;
+            text-decoration: none;
+            background: rgba(255, 255, 255, 0.15);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 6px;
+            padding: 5px 9px;
+            flex-shrink: 0;
+            transition: background 0.15s ease;
+        }
+
+        .mx-logo:hover {
+            background: rgba(255, 255, 255, 0.3);
+        }
+
+        .back-button {
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border-primary);
+            color: var(--accent-primary);
+            padding: 8px 16px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 500;
+            transition: all 0.2s ease;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .back-button:hover {
+            background: var(--hover-bg);
+            border-color: var(--accent-primary);
+        }
+
+        .navbar-content {
+            flex: 1;
+        }
+
+        .navbar-title {
+            font-size: 1.3em;
+            font-weight: 700;
+            margin: 0 0 5px 0;
+        }
+
+        .navbar-subtitle {
+            font-size: 1em;
+            opacity: 0.9;
+            margin: 0;
+        }
+
+        /* Dark Mode Toggle */
+        .dark-mode-toggle {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-left: auto;
+        }
+
+        .toggle-switch {
+            position: relative;
+            width: 60px;
+            height: 30px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 15px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            flex-shrink: 0;
+        }
+
+        .toggle-switch:hover {
+            background: rgba(255, 255, 255, 0.3);
+        }
+
+        .toggle-slider {
+            position: absolute;
+            top: 3px;
+            left: 3px;
+            width: 22px;
+            height: 22px;
+            background: white;
+            border-radius: 50%;
+            transition: transform 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+        }
+
+        .toggle-slider::before {
+            content: '☀️';
+        }
+
+        [data-theme="dark"] .toggle-slider {
+            transform: translateX(30px);
+        }
+
+        [data-theme="dark"] .toggle-slider::before {
+            content: '🌙';
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 20px auto;
+            padding: 0 30px 60px;
+        }
+
+        .page-intro {
+            margin-bottom: 24px;
+        }
+
+        .page-intro h1 {
+            font-size: 1.6rem;
+            margin: 0 0 6px 0;
+            color: var(--text-primary);
+        }
+
+        .page-intro p {
+            color: var(--text-secondary);
+            margin: 0;
+            line-height: 1.6;
+        }
+
+        /* Controls */
+        .controls {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-bottom: 18px;
+        }
+
+        .search-box {
+            flex: 1;
+            min-width: 240px;
+            position: relative;
+        }
+
+        .search-box input {
+            width: 100%;
+            padding: 10px 14px;
+            border-radius: 8px;
+            border: 1px solid var(--border-primary);
+            background: var(--bg-secondary);
+            color: var(--text-primary);
+            font-size: 14px;
+        }
+
+        .search-box input:focus {
+            outline: none;
+            border-color: var(--accent-primary);
+        }
+
+        .search-box input::placeholder {
+            color: var(--text-tertiary);
+        }
+
+        select {
+            padding: 10px 14px;
+            border-radius: 8px;
+            border: 1px solid var(--border-primary);
+            background: var(--bg-secondary);
+            color: var(--text-primary);
+            font-size: 14px;
+            cursor: pointer;
+        }
+
+        .result-count {
+            color: var(--text-tertiary);
+            font-size: 13px;
+            margin-bottom: 10px;
+        }
+
+        /* Table */
+        .table-wrapper {
+            overflow-x: auto;
+            border: 1px solid var(--border-primary);
+            border-radius: 8px;
+            box-shadow: var(--shadow-md);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 14px;
+            background: var(--bg-secondary);
+        }
+
+        thead {
+            background: var(--bg-tertiary);
+        }
+
+        th {
+            padding: 14px 15px;
+            text-align: left;
+            font-weight: 600;
+            color: var(--text-primary);
+            border-bottom: 2px solid var(--accent-tertiary);
+            text-transform: uppercase;
+            font-size: 11px;
+            letter-spacing: 0.5px;
+            white-space: nowrap;
+        }
+
+        td {
+            padding: 14px 15px;
+            border-bottom: 1px solid var(--border-tertiary);
+            vertical-align: top;
+        }
+
+        tbody tr {
+            cursor: pointer;
+            transition: background 0.15s ease;
+        }
+
+        tbody tr:hover {
+            background: var(--table-hover);
+        }
+
+        tbody tr:last-child td {
+            border-bottom: none;
+        }
+
+        .bill-title {
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .bill-sub {
+            color: var(--text-tertiary);
+            font-size: 12px;
+            margin-top: 2px;
+        }
+
+        .status-badge {
+            display: inline-block;
+            padding: 3px 10px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: 600;
+            background: var(--bg-tertiary);
+            color: var(--text-secondary);
+            border: 1px solid var(--border-secondary);
+            white-space: nowrap;
+        }
+
+        .chamber-tag {
+            display: inline-block;
+            background: var(--bg-tertiary);
+            color: var(--accent-tertiary);
+            padding: 3px 10px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: 500;
+            border: 1px solid var(--border-secondary);
+            white-space: nowrap;
+            margin-right: 4px;
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 3rem 2rem;
+            color: var(--text-tertiary);
+        }
+
+        /* Pagination */
+        .pagination {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 14px;
+            margin-top: 20px;
+            color: var(--text-secondary);
+            font-size: 13px;
+        }
+
+        .page-btn {
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border-primary);
+            color: var(--accent-primary);
+            padding: 6px 14px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 13px;
+        }
+
+        .page-btn:disabled {
+            opacity: 0.4;
+            cursor: not-allowed;
+        }
+
+        .page-btn:not(:disabled):hover {
+            background: var(--hover-bg);
+        }
+
+        /* Detail panel */
+        .detail-header {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: baseline;
+            gap: 12px;
+            margin: 20px 0 6px 0;
+        }
+
+        .detail-header h2 {
+            margin: 0;
+            font-size: 1.5rem;
+            color: var(--text-primary);
+        }
+
+        .detail-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            align-items: center;
+            margin-bottom: 24px;
+            color: var(--text-tertiary);
+            font-size: 13px;
+        }
+
+        .detail-meta .dot {
+            opacity: 0.5;
+        }
+
+        .detail-section {
+            margin-bottom: 32px;
+        }
+
+        .detail-section h3 {
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: var(--text-tertiary);
+            margin: 0 0 14px 0;
+            font-weight: 600;
+        }
+
+        .prose {
+            color: var(--text-secondary);
+            line-height: 1.75;
+        }
+
+        .prose a {
+            color: var(--accent-primary);
+        }
+
+        .chambers-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 20px;
+        }
+
+        .chamber-card {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-primary);
+            border-radius: 8px;
+            padding: 16px 20px;
+        }
+
+        .chamber-card h4 {
+            margin: 0 0 10px 0;
+            color: var(--accent-tertiary);
+            font-size: 1rem;
+        }
+
+        .chamber-card .field-label {
+            color: var(--text-tertiary);
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-top: 12px;
+            margin-bottom: 4px;
+            font-weight: 600;
+        }
+
+        .authors-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+        }
+
+        .author-chip {
+            display: inline-block;
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border-secondary);
+            border-radius: 12px;
+            padding: 2px 10px;
+            font-size: 12px;
+            color: var(--text-secondary);
+        }
+
+        .author-chip a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        .author-chip a:hover {
+            color: var(--accent-primary);
+        }
+
+        .actions-timeline {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .actions-timeline li {
+            padding: 8px 0;
+            border-bottom: 1px solid var(--border-tertiary);
+            font-size: 13px;
+            display: flex;
+            gap: 12px;
+        }
+
+        .actions-timeline li:last-child {
+            border-bottom: none;
+        }
+
+        .actions-timeline .action-date {
+            color: var(--text-tertiary);
+            white-space: nowrap;
+            min-width: 80px;
+        }
+
+        .actions-timeline .action-text {
+            color: var(--text-secondary);
+        }
+
+        .actions-timeline a {
+            color: var(--accent-primary);
+            text-decoration: none;
+            font-size: 12px;
+        }
+
+        .bill-text-tabs {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 14px;
+        }
+
+        .bill-text-tab {
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border-primary);
+            color: var(--text-secondary);
+            padding: 6px 14px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 13px;
+        }
+
+        .bill-text-tab.active {
+            color: white;
+            background: var(--accent-secondary);
+            border-color: var(--accent-secondary);
+        }
+
+        .diff-box {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-primary);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .diff-box-header {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            padding: 10px 18px;
+            background: var(--bg-tertiary);
+            border-bottom: 1px solid var(--border-primary);
+            font-size: 12px;
+            color: var(--text-tertiary);
+        }
+
+        .diff-legend {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .diff-legend .swatch {
+            width: 10px;
+            height: 10px;
+            border-radius: 2px;
+            display: inline-block;
+        }
+
+        .diff-legend .swatch.add {
+            background: var(--diff-add-text);
+        }
+
+        .diff-legend .swatch.del {
+            background: var(--diff-del-text);
+        }
+
+        .diff-content {
+            padding: 18px 24px;
+            font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
+            font-size: 13.5px;
+            line-height: 1.85;
+            color: var(--text-secondary);
+            white-space: pre-wrap;
+        }
+
+        .diff-content del {
+            background: var(--diff-del-bg);
+            color: var(--diff-del-text);
+            text-decoration: line-through;
+            text-decoration-thickness: 1px;
+            padding: 1px 3px;
+            border-radius: 3px;
+        }
+
+        .diff-content ins {
+            background: var(--diff-add-bg);
+            color: var(--diff-add-text);
+            text-decoration: none;
+            padding: 1px 3px;
+            border-radius: 3px;
+        }
+
+        .loading, .error {
+            text-align: center;
+            padding: 4rem 2rem;
+            color: var(--text-tertiary);
+        }
+
+        .loading-spinner {
+            width: 40px;
+            height: 40px;
+            border: 4px solid var(--border-primary);
+            border-top: 4px solid var(--accent-primary);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 1rem;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            color: var(--text-quaternary);
+            font-size: 13px;
+            border-top: 1px solid var(--border-tertiary);
+        }
+
+        /* Tabs */
+        .view-tabs {
+            display: flex;
+            gap: 4px;
+            border-bottom: 1px solid var(--border-primary);
+            margin-bottom: 24px;
+            overflow-x: auto;
+        }
+
+        .view-tab {
+            background: none;
+            border: none;
+            border-bottom: 2px solid transparent;
+            color: var(--text-secondary);
+            padding: 10px 16px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            white-space: nowrap;
+        }
+
+        .view-tab:hover { color: var(--text-primary); }
+
+        .view-tab.active {
+            color: var(--accent-primary);
+            border-bottom-color: var(--accent-primary);
+        }
+
+        /* Stage badges */
+        .stage-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 3px 10px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: 600;
+            white-space: nowrap;
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border-secondary);
+            color: var(--text-secondary);
+        }
+
+        .stage-badge::before {
+            content: '';
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            background: var(--stage-color, var(--text-tertiary));
+        }
+
+        .chamber-card .stage-badge {
+            margin-bottom: 12px;
+        }
+
+        .filter-chip {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: var(--accent-secondary);
+            color: white;
+            border-radius: 16px;
+            padding: 6px 8px 6px 14px;
+            font-size: 13px;
+            margin-bottom: 12px;
+            margin-right: 8px;
+        }
+
+        .filter-chip button {
+            background: rgba(255,255,255,0.2);
+            border: none;
+            color: white;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            cursor: pointer;
+            line-height: 1;
+        }
+
+        /* Swimlane board */
+        .board-scroll {
+            overflow-x: auto;
+            border: 1px solid var(--border-primary);
+            border-radius: 8px;
+            background: var(--bg-secondary);
+            box-shadow: var(--shadow-md);
+        }
+
+        .board {
+            display: grid;
+            grid-template-columns: 120px repeat(8, minmax(118px, 1fr));
+            min-width: 1080px;
+        }
+
+        .board-colhead {
+            padding: 12px 10px;
+            font-size: 11px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: var(--text-tertiary);
+            border-bottom: 2px solid var(--accent-tertiary);
+            background: var(--bg-tertiary);
+        }
+
+        .board-colhead .step {
+            display: block;
+            color: var(--accent-primary);
+            font-size: 10px;
+            margin-bottom: 2px;
+        }
+
+        .lane-label {
+            padding: 14px 12px;
+            font-weight: 700;
+            font-size: 13px;
+            color: var(--text-primary);
+            background: var(--bg-tertiary);
+            border-bottom: 1px solid var(--border-primary);
+            border-right: 1px solid var(--border-primary);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .lane-label small {
+            font-weight: 400;
+            color: var(--text-tertiary);
+            font-size: 11px;
+            margin-top: 2px;
+        }
+
+        .lane-slot {
+            border-bottom: 1px solid var(--border-primary);
+            padding: 10px 6px;
+            position: relative;
+            display: flex;
+            align-items: stretch;
+        }
+
+        /* faint track running through each lane */
+        .lane-slot::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            right: 0;
+            top: 50%;
+            border-top: 1px dashed var(--border-primary);
+        }
+
+        .stage-cell {
+            position: relative;
+            flex: 1;
+            border-radius: 8px;
+            border: 1px solid var(--border-secondary);
+            background: var(--bg-primary);
+            padding: 10px 10px 12px;
+            cursor: pointer;
+            text-align: left;
+            color: var(--text-primary);
+            font: inherit;
+            transition: border-color 0.15s ease, transform 0.15s ease;
+            overflow: hidden;
+        }
+
+        .stage-cell:hover { border-color: var(--accent-primary); }
+
+        .stage-cell.selected {
+            border-color: var(--accent-primary);
+            box-shadow: 0 0 0 2px var(--accent-primary);
+        }
+
+        .stage-cell.empty { opacity: 0.5; }
+
+        .stage-cell .fill {
+            position: absolute;
+            inset: 0;
+            background: var(--stage-color);
+            opacity: var(--fill, 0);
+            pointer-events: none;
+        }
+
+        .stage-cell .count {
+            position: relative;
+            font-size: 1.35rem;
+            font-weight: 700;
+            font-variant-numeric: tabular-nums;
+        }
+
+        .stage-cell .label {
+            position: relative;
+            display: block;
+            font-size: 11.5px;
+            color: var(--text-secondary);
+            margin-top: 2px;
+            line-height: 1.3;
+        }
+
+        .stage-cell .sub {
+            position: relative;
+            display: block;
+            font-size: 10.5px;
+            color: var(--text-tertiary);
+            margin-top: 4px;
+        }
+
+        .offramps {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 14px;
+        }
+
+        .offramps .stage-cell {
+            flex: 0 1 230px;
+        }
+
+        .board-note {
+            color: var(--text-tertiary);
+            font-size: 12.5px;
+            line-height: 1.6;
+            margin-top: 12px;
+        }
+
+        .section-heading {
+            display: flex;
+            align-items: baseline;
+            gap: 12px;
+            margin: 28px 0 12px;
+        }
+
+        .section-heading h2 {
+            margin: 0;
+            font-size: 1.15rem;
+        }
+
+        /* Legislators */
+        .seg {
+            display: inline-flex;
+            border: 1px solid var(--border-primary);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .seg button {
+            background: var(--bg-secondary);
+            color: var(--text-secondary);
+            border: none;
+            padding: 10px 16px;
+            font-size: 14px;
+            cursor: pointer;
+        }
+
+        .seg button.active {
+            background: var(--accent-secondary);
+            color: white;
+        }
+
+        th.sortable { cursor: pointer; user-select: none; }
+        th.sortable:hover { color: var(--accent-primary); }
+        th.num, td.num { text-align: right; font-variant-numeric: tabular-nums; }
+
+        .bar-cell {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            justify-content: flex-end;
+        }
+
+        .bar-track {
+            width: 110px;
+            height: 8px;
+            background: var(--bg-tertiary);
+            border-radius: 4px;
+            overflow: hidden;
+            flex-shrink: 0;
+        }
+
+        .bar-track span {
+            display: block;
+            height: 100%;
+            background: var(--accent-primary);
+            border-radius: 4px;
+        }
+
+        .rank { color: var(--text-tertiary); width: 36px; }
+
+        .party-badge {
+            display: inline-block;
+            min-width: 38px;
+            text-align: center;
+            padding: 2px 8px;
+            border-radius: 10px;
+            font-size: 11px;
+            font-weight: 700;
+            color: var(--party-color);
+            border: 1px solid var(--party-color);
+            background: color-mix(in srgb, var(--party-color) 14%, transparent);
+        }
+
+        .party-summary {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 16px;
+        }
+
+        .party-card {
+            flex: 1 1 320px;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 6px 16px;
+            padding: 10px 14px;
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-primary);
+            border-left: 3px solid var(--party-color);
+            border-radius: 8px;
+            font-size: 13px;
+            color: var(--text-secondary);
+        }
+
+        .party-card b { color: var(--text-primary); }
+
+        @media (max-width: 768px) {
+            .bar-track { width: 50px; }
+            .navbar {
+                padding: 15px 20px;
+            }
+
+            .navbar-title {
+                font-size: 1.15em;
+            }
+
+            .navbar-subtitle {
+                font-size: 0.85em;
+            }
+
+            .container {
+                padding: 0 16px 40px;
+            }
+
+            table {
+                font-size: 13px;
+            }
+
+            th, td {
+                padding: 10px;
+            }
+
+            .col-optional {
+                display: none;
+            }
+
+            .diff-content {
+                padding: 14px 16px;
+                font-size: 12.5px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <nav class="navbar">
+            <a href="../index.html" class="mx-logo">MX</a>
+            <div class="navbar-content">
+                <h1 class="navbar-title">MN Bills Explorer</h1>
+                <p class="navbar-subtitle">Minnesota Explained — Legislature Bill Tracker (Session 94)</p>
+            </div>
+            <div class="dark-mode-toggle">
+                <div class="toggle-switch" @click="toggleDarkMode">
+                    <div class="toggle-slider"></div>
+                </div>
+            </div>
+        </nav>
+
+        <div class="container">
+            <div v-if="loading" class="loading">
+                <div class="loading-spinner"></div>
+                <p>Loading bills…</p>
+            </div>
+
+            <div v-else-if="error" class="error">
+                <p>Could not load bill data — {{ error }}</p>
+            </div>
+
+            <template v-else>
+                <div class="view-tabs" v-if="view !== 'detail'">
+                    <button class="view-tab" :class="{ active: view === 'list' }" @click="go('bills')">Bills</button>
+                    <button class="view-tab" :class="{ active: view === 'pipeline' }" @click="go('pipeline')">Pipeline</button>
+                    <button class="view-tab" :class="{ active: view === 'legislators' }" @click="go('legislators')">Legislators</button>
+                </div>
+
+                <div v-if="view === 'list'">
+                    <div class="page-intro">
+                        <h1>Minnesota Bills, 94th Legislature</h1>
+                        <p>Search and browse every House and Senate bill from the 2025–2026 session, pulled from the Office of the Revisor of Statutes.</p>
+                    </div>
+
+                    <div v-if="authorFilter">
+                        <span class="filter-chip">
+                            Authored by {{ legislatorLabel(authorFilter) }}
+                            <button @click="authorFilter = ''" aria-label="Clear author filter">×</button>
+                        </span>
+                    </div>
+
+                    <div class="controls">
+                        <div class="search-box">
+                            <input
+                                type="text"
+                                v-model="search"
+                                placeholder="Search by bill number, description, author, or revisor number…"
+                            />
+                        </div>
+                        <select v-model="sessionFilter">
+                            <option value="">All sessions</option>
+                            <option v-for="s in sessions" :key="s" :value="s">{{ s }}</option>
+                        </select>
+                        <select v-model="chamberFilter">
+                            <option value="">House &amp; Senate</option>
+                            <option value="house">House only</option>
+                            <option value="senate">Senate only</option>
+                            <option value="both">Companion bills (both)</option>
+                        </select>
+                        <select v-model="stageFilter">
+                            <option value="">Any stage</option>
+                            <option v-for="s in stageOptions" :key="s" :value="s">{{ STAGES[s].label }}</option>
+                        </select>
+                    </div>
+
+                    <div class="result-count">
+                        {{ filteredBills.length.toLocaleString() }} bill{{ filteredBills.length === 1 ? '' : 's' }} found
+                    </div>
+
+                    <div class="table-wrapper">
+                        <table v-if="pagedBills.length > 0">
+                            <thead>
+                                <tr>
+                                    <th>Bill</th>
+                                    <th>Description</th>
+                                    <th class="col-optional">Session</th>
+                                    <th>Stage</th>
+                                    <th class="col-optional">Latest Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr
+                                    v-for="b in pagedBills"
+                                    :key="b.revisor_number"
+                                    @click="go('bill/' + b.revisor_number)"
+                                >
+                                    <td>
+                                        <div class="bill-title">
+                                            <span v-if="b.house_bill" class="chamber-tag">{{ b.house_bill }}</span>
+                                            <span v-if="b.senate_bill" class="chamber-tag">{{ b.senate_bill }}</span>
+                                        </div>
+                                        <div class="bill-sub">{{ b.revisor_number }}</div>
+                                    </td>
+                                    <td>{{ b.description || '—' }}</td>
+                                    <td class="col-optional">
+                                        <span class="status-badge">{{ b.session }}</span>
+                                    </td>
+                                    <td>
+                                        <span v-if="b.stage" class="stage-badge" :style="{ '--stage-color': STAGES[b.stage].color }">{{ STAGES[b.stage].short }}</span>
+                                        <span v-else class="bill-sub">Resolution</span>
+                                    </td>
+                                    <td class="col-optional">
+                                        <div>{{ b.latest_action && b.latest_action.text }}</div>
+                                        <div class="bill-sub">{{ b.latest_action && b.latest_action.date }}</div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <div v-else class="empty-state">No bills match your search.</div>
+                    </div>
+
+                    <div class="pagination" v-if="totalPages > 1">
+                        <button class="page-btn" :disabled="page === 1" @click="page--">← Prev</button>
+                        <span>Page {{ page }} of {{ totalPages }}</span>
+                        <button class="page-btn" :disabled="page === totalPages" @click="page++">Next →</button>
+                    </div>
+                </div>
+
+                <div v-else-if="view === 'pipeline'">
+                    <div class="page-intro">
+                        <h1>Where every bill stands</h1>
+                        <p>Each lane is a body a bill has to get through. Bills start in committee in their chamber of origin, cross to the other chamber, reconcile any differences, and go to the governor. Select a stage to list the bills sitting there.</p>
+                    </div>
+
+                    <div class="controls">
+                        <select v-model="pipelineSession">
+                            <option value="">All sessions</option>
+                            <option v-for="s in sessions" :key="s" :value="s">{{ s }}</option>
+                        </select>
+                    </div>
+
+                    <div class="board-scroll">
+                        <div class="board">
+                            <div class="board-colhead"></div>
+                            <div class="board-colhead" v-for="(c, i) in BOARD_COLUMNS" :key="c">
+                                <span class="step">Step {{ i + 1 }}</span>{{ c }}
+                            </div>
+                            <template v-for="lane in BOARD_LANES" :key="lane.id">
+                                <div class="lane-label">{{ lane.label }}<small>{{ lane.sub }}</small></div>
+                                <div class="lane-slot" v-for="col in 8" :key="lane.id + col">
+                                    <button
+                                        v-if="laneCell(lane, col)"
+                                        class="stage-cell"
+                                        :class="{ selected: selectedCell === laneCell(lane, col).key, empty: !cellCount(laneCell(lane, col).key) }"
+                                        :style="cellStyle(laneCell(lane, col))"
+                                        @click="selectCell(laneCell(lane, col).key)"
+                                    >
+                                        <span class="fill"></span>
+                                        <span class="count">{{ cellCount(laneCell(lane, col).key).toLocaleString() }}</span>
+                                        <span class="label">{{ laneCell(lane, col).label }}</span>
+                                        <span class="sub" v-if="laneCell(lane, col).sub">{{ cellSub(laneCell(lane, col)) }}</span>
+                                    </button>
+                                </div>
+                            </template>
+                        </div>
+                    </div>
+
+                    <div class="offramps">
+                        <button
+                            v-for="c in OFFRAMP_CELLS"
+                            :key="c.key"
+                            class="stage-cell"
+                            :class="{ selected: selectedCell === c.key, empty: !cellCount(c.key) }"
+                            :style="cellStyle(c)"
+                            @click="selectCell(c.key)"
+                        >
+                            <span class="fill"></span>
+                            <span class="count">{{ cellCount(c.key).toLocaleString() }}</span>
+                            <span class="label">{{ c.label }}</span>
+                            <span class="sub">{{ c.sub }}</span>
+                        </button>
+                    </div>
+
+                    <p class="board-note">
+                        Counts are House Files and Senate Files, counted separately: companion bills move through both chambers in parallel, and usually only one of the pair goes all the way. Resolutions are not included.
+                        Data runs through {{ lastActionDate }}; the 94th Legislature has adjourned, so a bill not signed into law did not pass this biennium.
+                    </p>
+
+                    <div v-if="selectedCell">
+                        <div class="section-heading">
+                            <h2>{{ cellLabel(selectedCell) }}</h2>
+                            <span class="result-count">{{ cellFiles.length.toLocaleString() }} file{{ cellFiles.length === 1 ? '' : 's' }}</span>
+                        </div>
+                        <div class="table-wrapper">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>File</th>
+                                        <th>Description</th>
+                                        <th class="col-optional">Latest Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr v-for="f in pagedCellFiles" :key="f.file.n" @click="go('bill/' + f.bill.revisor_number)">
+                                        <td>
+                                            <div class="bill-title"><span class="chamber-tag">{{ f.file.n }}</span></div>
+                                            <div class="bill-sub">{{ companionOf(f) ? 'Companion ' + companionOf(f) : f.bill.revisor_number }}</div>
+                                        </td>
+                                        <td>{{ f.bill.description || '—' }}</td>
+                                        <td class="col-optional">
+                                            <div>{{ f.bill.latest_action && f.bill.latest_action.text }}</div>
+                                            <div class="bill-sub">{{ f.bill.latest_action && f.bill.latest_action.date }}</div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="pagination" v-if="cellPages > 1">
+                            <button class="page-btn" :disabled="cellPage === 1" @click="cellPage--">← Prev</button>
+                            <span>Page {{ cellPage }} of {{ cellPages }}</span>
+                            <button class="page-btn" :disabled="cellPage === cellPages" @click="cellPage++">Next →</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div v-else-if="view === 'legislators'">
+                    <div class="page-intro">
+                        <h1>Who's authoring the most</h1>
+                        <p>Authorship across every House and Senate file this biennium. The chief author is the legislator listed first on a bill. "Passed a chamber" and "Became law" count chief-authored bills where the bill or its companion got that far.</p>
+                    </div>
+
+                    <div class="controls">
+                        <div class="seg">
+                            <button :class="{ active: legChamber === 'house' }" @click="legChamber = 'house'">House ({{ legCount('house') }})</button>
+                            <button :class="{ active: legChamber === 'senate' }" @click="legChamber = 'senate'">Senate ({{ legCount('senate') }})</button>
+                        </div>
+                        <div class="seg">
+                            <button :class="{ active: legParty === '' }" @click="legParty = ''">All parties</button>
+                            <button v-for="p in PARTIES" :key="p" :class="{ active: legParty === p }" @click="legParty = p">{{ p }}</button>
+                        </div>
+                        <div class="search-box">
+                            <input type="text" v-model="legSearch" placeholder="Search by name or district…" />
+                        </div>
+                    </div>
+
+                    <div class="party-summary" v-if="partySummary.length">
+                        <div class="party-card" v-for="p in partySummary" :key="p.party" :style="{ '--party-color': partyColor(p.party) }">
+                            <span class="party-badge">{{ p.party }}</span>
+                            <span><b>{{ p.members }}</b> members</span>
+                            <span><b>{{ p.chief.toLocaleString() }}</b> bills as chief author <span class="bill-sub">({{ p.perMember }} per member)</span></span>
+                            <span><b>{{ p.law }}</b> became law</span>
+                        </div>
+                    </div>
+
+                    <div v-if="legLoading" class="loading"><div class="loading-spinner"></div><p>Loading legislators…</p></div>
+                    <div v-else-if="legError" class="error"><p>Could not load legislators — {{ legError }}</p></div>
+                    <div v-else class="table-wrapper">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th class="col-optional">#</th>
+                                    <th class="sortable" @click="sortLeg('name')">Legislator {{ sortArrow('name') }}</th>
+                                    <th class="sortable" @click="sortLeg('party')">Party {{ sortArrow('party') }}</th>
+                                    <th class="sortable num" @click="sortLeg('chief')">Chief author {{ sortArrow('chief') }}</th>
+                                    <th class="sortable num col-optional" @click="sortLeg('coauthor')">Co-author {{ sortArrow('coauthor') }}</th>
+                                    <th class="sortable num col-optional" @click="sortLeg('total')">Total {{ sortArrow('total') }}</th>
+                                    <th class="sortable num col-optional" @click="sortLeg('chief_passed')">Passed a chamber {{ sortArrow('chief_passed') }}</th>
+                                    <th class="sortable num" @click="sortLeg('chief_law')">Became law {{ sortArrow('chief_law') }}</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr v-for="(l, i) in sortedLegislators" :key="l.key" @click="showAuthor(l.key)">
+                                    <td class="rank col-optional">{{ i + 1 }}</td>
+                                    <td>
+                                        <div class="bill-title">{{ l.name }}</div>
+                                        <div class="bill-sub">
+                                            <template v-if="l.full_name">{{ l.full_name }} · </template>
+                                            <template v-if="l.district">District {{ l.district }} · </template>
+                                            <a v-if="l.url" :href="l.url" target="_blank" rel="noopener" @click.stop style="color: inherit">Profile ↗</a>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <span v-if="l.party" class="party-badge" :style="{ '--party-color': partyColor(l.party) }">{{ l.party }}</span>
+                                        <span v-else class="bill-sub">—</span>
+                                    </td>
+                                    <td class="num">
+                                        <div class="bar-cell">
+                                            {{ l.chief }}
+                                            <span class="bar-track"><span :style="{ width: (100 * l.chief / maxChief) + '%' }"></span></span>
+                                        </div>
+                                    </td>
+                                    <td class="num col-optional">{{ l.coauthor }}</td>
+                                    <td class="num col-optional">{{ l.total }}</td>
+                                    <td class="num col-optional">{{ l.chief_passed }}</td>
+                                    <td class="num">{{ l.chief_law }}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <div v-if="sortedLegislators.length === 0" class="empty-state">No legislators match your search.</div>
+                    </div>
+                </div>
+
+                <div class="detail-panel" v-else-if="view === 'detail'">
+                    <button class="back-button" @click="goBack">← Back</button>
+
+                    <div v-if="detailLoading" class="loading">
+                        <div class="loading-spinner"></div>
+                        <p>Loading bill…</p>
+                    </div>
+                    <div v-else-if="detailError" class="error">
+                        <p>Could not load bill — {{ detailError }}</p>
+                    </div>
+                    <template v-else-if="selectedBill">
+                        <div class="detail-header">
+                            <h2>{{ selectedBill.house ? selectedBill.house.bill_number : selectedBill.senate.bill_number }}<span v-if="selectedBill.house && selectedBill.senate"> / {{ selectedBill.senate.bill_number }}</span></h2>
+                            <span class="status-badge">{{ selectedBill.session }}</span>
+                        </div>
+                        <div class="detail-meta">
+                            <span>{{ selectedBill.revisor_number }}</span>
+                            <span class="dot">·</span>
+                            <span>{{ selectedBill.latest_action && selectedBill.latest_action.text }}</span>
+                            <span class="dot" v-if="selectedBill.latest_action && selectedBill.latest_action.date">·</span>
+                            <span v-if="selectedBill.latest_action && selectedBill.latest_action.date">{{ selectedBill.latest_action.date }}</span>
+                        </div>
+
+                        <div class="detail-section" v-if="selectedBill.description">
+                            <h3>Summary</h3>
+                            <div class="prose">{{ selectedBill.description }}</div>
+                        </div>
+
+                        <div class="detail-section">
+                            <h3>Chambers</h3>
+                            <div class="chambers-grid">
+                                <template v-for="ch in ['house', 'senate']" :key="ch">
+                                <div class="chamber-card" v-if="selectedBill[ch]">
+                                    <h4>{{ ch === 'house' ? 'House' : 'Senate' }} — {{ selectedBill[ch].bill_number }}</h4>
+                                    <span v-if="fileStage(ch)" class="stage-badge" :style="{ '--stage-color': STAGES[fileStage(ch)].color }">{{ fileStageLabel(ch) }}</span>
+                                    <div v-if="selectedBill[ch].description">{{ selectedBill[ch].description }}</div>
+
+                                    <div class="field-label">Authors</div>
+                                    <div class="authors-list">
+                                        <span class="author-chip" v-for="a in selectedBill[ch].authors" :key="a.name">
+                                            <a v-if="a.url" :href="a.url" target="_blank" rel="noopener">{{ a.name }}</a>
+                                            <template v-else>{{ a.name }}</template>
+                                        </span>
+                                    </div>
+
+                                    <div class="field-label" v-if="selectedBill[ch].companion_url">Companion</div>
+                                    <div v-if="selectedBill[ch].companion_url">
+                                        <a :href="selectedBill[ch].companion_url" target="_blank" rel="noopener">{{ selectedBill[ch].companion_url }}</a>
+                                    </div>
+
+                                    <div class="field-label">Actions</div>
+                                    <ul class="actions-timeline">
+                                        <li v-for="(a, i) in chamberActions(selectedBill[ch], ch)" :key="i">
+                                            <span class="action-date">{{ a.date }}</span>
+                                            <span class="action-text">
+                                                {{ a.text }}
+                                                <a v-if="a.version_link" :href="a.version_link" target="_blank" rel="noopener">[version]</a>
+                                            </span>
+                                        </li>
+                                    </ul>
+
+                                    <div class="field-label" v-if="selectedBill[ch].url">Full record</div>
+                                    <div v-if="selectedBill[ch].url">
+                                        <a :href="selectedBill[ch].url" target="_blank" rel="noopener">{{ selectedBill[ch].url }}</a>
+                                    </div>
+                                </div>
+                                </template>
+                            </div>
+                        </div>
+
+                        <div class="detail-section" v-if="hasBillText">
+                            <h3>Bill Text</h3>
+                            <div class="bill-text-tabs">
+                                <template v-for="ch in ['house', 'senate']" :key="ch">
+                                <button
+                                    v-if="selectedBill[ch] && selectedBill[ch].bill_text"
+                                    class="bill-text-tab"
+                                    :class="{ active: activeTextChamber === ch }"
+                                    @click="activeTextChamber = ch"
+                                >{{ ch === 'house' ? 'House' : 'Senate' }} text</button>
+                                </template>
+                            </div>
+                            <div class="diff-box" v-if="activeBillText">
+                                <div class="diff-box-header">
+                                    <span>{{ activeBillText.version_label }} · posted {{ activeBillText.posted_date }}</span>
+                                    <div class="diff-legend"><span class="swatch del"></span> removed</div>
+                                    <div class="diff-legend"><span class="swatch add"></span> added</div>
+                                </div>
+                                <div class="diff-content" v-html="renderBillText(activeBillText.text_with_changes)"></div>
+                            </div>
+                        </div>
+                    </template>
+                </div>
+            </template>
+        </div>
+
+        <footer>Minnesota Explained — Bills Explorer</footer>
+    </div>
+
+    <script>
+        const { createApp } = Vue;
+
+        function initDarkMode() {
+            const savedTheme = localStorage.getItem('theme') || 'dark';
+            document.documentElement.setAttribute('data-theme', savedTheme);
+        }
+        initDarkMode();
+
+        function escapeHtml(str) {
+            return str
+                .replace(/&/g, '&amp;')
+                .replace(/</g, '&lt;')
+                .replace(/>/g, '&gt;');
+        }
+
+        // "MM/DD/YYYY" -> sortable "YYYYMMDD" ('' if missing)
+        function sortableDate(d) {
+            const m = /^(\d\d)\/(\d\d)\/(\d{4})/.exec(d || '');
+            return m ? m[3] + m[1] + m[2] : '';
+        }
+
+        const PAGE_SIZE = 50;
+
+        // Stage metadata; keys match build_data.py
+        const STAGES = {
+            committee:      { label: 'In committee',              short: 'In committee',       color: '#8a99ad' },
+            floor:          { label: 'On the floor',              short: 'On the floor',       color: '#5b9bd5' },
+            passed_origin:  { label: 'Passed first chamber',      short: 'Passed 1 chamber',   color: '#667eea' },
+            second_chamber: { label: 'In second chamber',         short: 'In 2nd chamber',     color: '#8b6fe0' },
+            passed_second:  { label: 'Passed both chambers',      short: 'Passed both',        color: '#b265d6' },
+            reconcile:      { label: 'Concurrence / conference',  short: 'Reconciling',        color: '#d1609e' },
+            governor:       { label: 'Sent to governor',          short: 'At governor',        color: '#e0a93b' },
+            law:            { label: 'Signed into law',           short: 'Law',                color: '#3fb27f' },
+            vetoed:         { label: 'Vetoed',                    short: 'Vetoed',             color: '#e05252' },
+            replaced:       { label: 'Replaced by companion',     short: 'Replaced',           color: '#6b7a90' },
+            folded:         { label: 'Folded into another bill',  short: 'Folded in',          color: '#c08a3e' },
+        };
+        const STAGE_ORDER = Object.keys(STAGES);
+
+        const PARTIES = ['DFL', 'R'];
+        const PARTY_COLORS = { DFL: '#4a8fe7', R: '#e05a5a' };
+
+        const BOARD_COLUMNS = ['Committee', 'Floor vote', 'Passed', 'Other chamber', 'Passed other', 'Reconcile', 'Governor', 'Enacted'];
+
+        // Each cell = (lane, column) -> a cell key "<lane>:<stage>"
+        const BOARD_LANES = [
+            { id: 'house', label: 'House', sub: '134 members', cells: {
+                1: { key: 'house:committee',      stage: 'committee',      label: 'House Files in committee', sub: 'reported' },
+                2: { key: 'house:floor',          stage: 'floor',          label: 'House Files on the floor' },
+                3: { key: 'house:passed_origin',  stage: 'passed_origin',  label: 'Passed House, not yet in Senate' },
+                4: { key: 'house:second_chamber', stage: 'second_chamber', label: 'Senate Files in the House' },
+                5: { key: 'house:passed_second',  stage: 'passed_second',  label: 'Senate Files passed by House' },
+            } },
+            { id: 'senate', label: 'Senate', sub: '67 members', cells: {
+                1: { key: 'senate:committee',      stage: 'committee',      label: 'Senate Files in committee', sub: 'reported' },
+                2: { key: 'senate:floor',          stage: 'floor',          label: 'Senate Files on the floor' },
+                3: { key: 'senate:passed_origin',  stage: 'passed_origin',  label: 'Passed Senate, not yet in House' },
+                4: { key: 'senate:second_chamber', stage: 'second_chamber', label: 'House Files in the Senate' },
+                5: { key: 'senate:passed_second',  stage: 'passed_second',  label: 'House Files passed by Senate' },
+            } },
+            { id: 'both', label: 'Both chambers', sub: 'Concurrence or conference', cells: {
+                6: { key: 'both:reconcile', stage: 'reconcile', label: 'Reconciling differences' },
+            } },
+            { id: 'gov', label: 'Governor', sub: 'Sign or veto', cells: {
+                7: { key: 'gov:governor', stage: 'governor', label: 'Awaiting governor' },
+                8: { key: 'gov:law',      stage: 'law',      label: 'Signed into law' },
+            } },
+        ];
+
+        const OFFRAMP_CELLS = [
+            { key: 'off:replaced', stage: 'replaced', label: 'Replaced by companion', sub: 'The other chamber\'s version moved forward instead' },
+            { key: 'off:folded',   stage: 'folded',   label: 'Folded into another bill', sub: 'Content rolled into an omnibus or other bill' },
+            { key: 'off:vetoed',   stage: 'vetoed',   label: 'Vetoed', sub: 'Rejected by the governor' },
+        ];
+
+        const ALL_CELLS = {};
+        BOARD_LANES.forEach(l => Object.values(l.cells).forEach(c => { ALL_CELLS[c.key] = c; }));
+        OFFRAMP_CELLS.forEach(c => { ALL_CELLS[c.key] = c; });
+
+        function fileCellKey(file) {
+            const st = file.st;
+            if (!st) return null;
+            const origin = file.ch;
+            const other = origin === 'house' ? 'senate' : 'house';
+            if (st === 'committee' || st === 'floor' || st === 'passed_origin') return `${origin}:${st}`;
+            if (st === 'second_chamber' || st === 'passed_second') return `${other}:${st}`;
+            if (st === 'reconcile') return 'both:reconcile';
+            if (st === 'governor' || st === 'law') return `gov:${st}`;
+            return `off:${st}`;
+        }
+
+        createApp({
+            data() {
+                return {
+                    STAGES, BOARD_COLUMNS, BOARD_LANES, OFFRAMP_CELLS, PARTIES,
+
+                    bills: [],
+                    view: 'list',
+                    loading: true,
+                    error: null,
+
+                    search: '',
+                    sessionFilter: '',
+                    chamberFilter: '',
+                    stageFilter: '',
+                    authorFilter: '',
+                    page: 1,
+
+                    pipelineSession: '',
+                    selectedCell: '',
+                    cellPage: 1,
+
+                    legislators: [],
+                    legLoading: false,
+                    legError: null,
+                    legChamber: 'house',
+                    legSearch: '',
+                    legParty: '',
+                    legSortKey: 'chief',
+                    legSortDir: -1,
+
+                    selectedBill: null,
+                    detailLoading: false,
+                    detailError: null,
+                    activeTextChamber: 'house',
+                };
+            },
+            computed: {
+                sessions() {
+                    return [...new Set(this.bills.map(b => b.session))].sort();
+                },
+                stageOptions() {
+                    const present = new Set(this.bills.map(b => b.stage).filter(Boolean));
+                    return STAGE_ORDER.filter(s => present.has(s));
+                },
+                billsByRn() {
+                    const m = {};
+                    this.bills.forEach(b => { m[b.revisor_number] = b; });
+                    return m;
+                },
+                lastActionDate() {
+                    let best = '', label = '';
+                    this.bills.forEach(b => {
+                        const d = b.latest_action && b.latest_action.date;
+                        const s = sortableDate(d);
+                        if (s > best) { best = s; label = d; }
+                    });
+                    return label;
+                },
+                filteredBills() {
+                    let list = this.bills;
+
+                    if (this.sessionFilter) {
+                        list = list.filter(b => b.session === this.sessionFilter);
+                    }
+
+                    if (this.chamberFilter === 'house') {
+                        list = list.filter(b => b.house_bill && !b.senate_bill);
+                    } else if (this.chamberFilter === 'senate') {
+                        list = list.filter(b => b.senate_bill && !b.house_bill);
+                    } else if (this.chamberFilter === 'both') {
+                        list = list.filter(b => b.house_bill && b.senate_bill);
+                    }
+
+                    if (this.stageFilter) {
+                        list = list.filter(b => b.stage === this.stageFilter);
+                    }
+
+                    if (this.authorFilter) {
+                        list = list.filter(b => b.author_keys.includes(this.authorFilter));
+                    }
+
+                    const q = this.search.trim().toLowerCase();
+                    if (q) {
+                        list = list.filter(b => {
+                            if (b.revisor_number.toLowerCase().includes(q)) return true;
+                            if (b.description && b.description.toLowerCase().includes(q)) return true;
+                            if (b.bill_numbers.some(n => n.toLowerCase().includes(q))) return true;
+                            if (b.authors.some(a => a.toLowerCase().includes(q))) return true;
+                            return false;
+                        });
+                    }
+
+                    return list;
+                },
+                totalPages() {
+                    return Math.max(1, Math.ceil(this.filteredBills.length / PAGE_SIZE));
+                },
+                pagedBills() {
+                    const start = (this.page - 1) * PAGE_SIZE;
+                    return this.filteredBills.slice(start, start + PAGE_SIZE);
+                },
+
+                // --- Pipeline ---
+                pipelineFiles() {
+                    const out = [];
+                    this.bills.forEach(b => {
+                        if (this.pipelineSession && b.session !== this.pipelineSession) return;
+                        b.files.forEach(f => {
+                            const key = fileCellKey(f);
+                            if (key) out.push({ bill: b, file: f, key });
+                        });
+                    });
+                    return out;
+                },
+                cellCounts() {
+                    const counts = {}, reported = {};
+                    this.pipelineFiles.forEach(({ file, key }) => {
+                        counts[key] = (counts[key] || 0) + 1;
+                        if (file.cr) reported[key] = (reported[key] || 0) + 1;
+                    });
+                    return { counts, reported };
+                },
+                maxCellCount() {
+                    return Math.max(1, ...Object.values(this.cellCounts.counts));
+                },
+                cellFiles() {
+                    if (!this.selectedCell) return [];
+                    return this.pipelineFiles
+                        .filter(f => f.key === this.selectedCell)
+                        .sort((a, b) => sortableDate(b.bill.latest_action && b.bill.latest_action.date)
+                            .localeCompare(sortableDate(a.bill.latest_action && a.bill.latest_action.date)));
+                },
+                cellPages() {
+                    return Math.max(1, Math.ceil(this.cellFiles.length / PAGE_SIZE));
+                },
+                pagedCellFiles() {
+                    const start = (this.cellPage - 1) * PAGE_SIZE;
+                    return this.cellFiles.slice(start, start + PAGE_SIZE);
+                },
+
+                // --- Legislators ---
+                legislatorsByKey() {
+                    const m = {};
+                    this.legislators.forEach(l => { m[l.key] = l; });
+                    return m;
+                },
+                chamberLegislators() {
+                    return this.legislators
+                        .filter(l => l.chamber === this.legChamber)
+                        .map(l => ({ ...l, total: l.chief + l.coauthor }));
+                },
+                partySummary() {
+                    // Totals per party for the selected chamber
+                    const by = {};
+                    this.chamberLegislators.forEach(l => {
+                        if (!l.party) return;
+                        const p = by[l.party] || (by[l.party] = { party: l.party, members: 0, chief: 0, law: 0 });
+                        p.members++;
+                        p.chief += l.chief;
+                        p.law += l.chief_law;
+                    });
+                    return Object.values(by)
+                        .sort((a, b) => b.members - a.members)
+                        .map(p => ({ ...p, perMember: (p.chief / p.members).toFixed(1) }));
+                },
+                maxChief() {
+                    return Math.max(1, ...this.chamberLegislators.map(l => l.chief));
+                },
+                sortedLegislators() {
+                    const q = this.legSearch.trim().toLowerCase();
+                    const key = this.legSortKey, dir = this.legSortDir;
+                    return this.chamberLegislators
+                        .filter(l => !this.legParty || l.party === this.legParty)
+                        .filter(l => !q
+                            || l.name.toLowerCase().includes(q)
+                            || (l.full_name || '').toLowerCase().includes(q)
+                            || (l.district || '').toLowerCase() === q)
+                        .sort((a, b) => {
+                            const av = a[key] ?? '', bv = b[key] ?? '';
+                            const c = typeof av === 'string' ? av.localeCompare(bv) : av - bv;
+                            return c * dir || b.chief - a.chief || a.name.localeCompare(b.name);
+                        });
+                },
+
+                // --- Detail ---
+                hasBillText() {
+                    if (!this.selectedBill) return false;
+                    return !!((this.selectedBill.house && this.selectedBill.house.bill_text) ||
+                              (this.selectedBill.senate && this.selectedBill.senate.bill_text));
+                },
+                activeBillText() {
+                    if (!this.selectedBill) return null;
+                    const ch = this.selectedBill[this.activeTextChamber];
+                    return ch ? ch.bill_text : null;
+                },
+            },
+            watch: {
+                search() { this.page = 1; },
+                sessionFilter() { this.page = 1; },
+                chamberFilter() { this.page = 1; },
+                stageFilter() { this.page = 1; },
+                authorFilter() { this.page = 1; },
+                pipelineSession() { this.cellPage = 1; },
+            },
+            async created() {
+                try {
+                    const response = await fetch('./data/bills_index.json');
+                    if (!response.ok) throw new Error(`HTTP ${response.status}`);
+                    this.bills = await response.json();
+                } catch (err) {
+                    this.error = err.message;
+                    console.error('Error loading bills_index.json:', err);
+                } finally {
+                    this.loading = false;
+                }
+                this.loadLegislators();
+                window.addEventListener('hashchange', () => this.route());
+                this.route();
+            },
+            methods: {
+                // --- Routing: #bills, #pipeline, #legislators, #bill/<revisor number> ---
+                go(path) {
+                    if (location.hash === '#' + path) this.route();
+                    else location.hash = path;
+                },
+                goBack() {
+                    if (history.length > 1) history.back();
+                    else this.go('bills');
+                },
+                route() {
+                    const h = decodeURIComponent(location.hash.replace(/^#/, ''));
+                    if (h.startsWith('bill/')) {
+                        this.openBill(h.slice(5));
+                    } else if (h === 'pipeline') {
+                        this.view = 'pipeline';
+                    } else if (h === 'legislators') {
+                        this.view = 'legislators';
+                    } else {
+                        this.view = 'list';
+                        this.selectedBill = null;
+                    }
+                },
+
+                // --- Pipeline ---
+                laneCell(lane, col) {
+                    return lane.cells[col] || null;
+                },
+                cellCount(key) {
+                    return this.cellCounts.counts[key] || 0;
+                },
+                cellSub(cell) {
+                    if (cell.sub === 'reported') {
+                        const n = this.cellCounts.reported[cell.key] || 0;
+                        return `${n.toLocaleString()} cleared at least one committee`;
+                    }
+                    return cell.sub;
+                },
+                cellStyle(cell) {
+                    const n = this.cellCount(cell.key);
+                    // sqrt scale so small stages stay visible next to the huge committee pile
+                    const fill = n ? 0.08 + 0.32 * Math.sqrt(n / this.maxCellCount) : 0;
+                    return { '--stage-color': STAGES[cell.stage].color, '--fill': fill.toFixed(3) };
+                },
+                cellLabel(key) {
+                    const c = ALL_CELLS[key];
+                    if (!c) return key;
+                    const lane = BOARD_LANES.find(l => key.startsWith(l.id + ':'));
+                    return lane && !c.label.includes(lane.label) ? `${lane.label}: ${c.label}` : c.label;
+                },
+                selectCell(key) {
+                    this.selectedCell = this.selectedCell === key ? '' : key;
+                    this.cellPage = 1;
+                },
+                companionOf(f) {
+                    const other = f.bill.files.find(x => x.n !== f.file.n);
+                    return other ? other.n : null;
+                },
+
+                // --- Legislators ---
+                async loadLegislators() {
+                    if (this.legislators.length || this.legLoading) return;
+                    this.legLoading = true;
+                    try {
+                        const response = await fetch('./data/legislators.json');
+                        if (!response.ok) throw new Error(`HTTP ${response.status}`);
+                        this.legislators = await response.json();
+                    } catch (err) {
+                        this.legError = err.message;
+                        console.error('Error loading legislators.json:', err);
+                    } finally {
+                        this.legLoading = false;
+                    }
+                },
+                legCount(chamber) {
+                    return this.legislators.filter(l => l.chamber === chamber).length;
+                },
+                sortLeg(key) {
+                    if (this.legSortKey === key) {
+                        this.legSortDir = -this.legSortDir;
+                    } else {
+                        this.legSortKey = key;
+                        this.legSortDir = key === 'name' || key === 'party' ? 1 : -1;
+                    }
+                },
+                sortArrow(key) {
+                    if (this.legSortKey !== key) return '';
+                    return this.legSortDir === 1 ? '▲' : '▼';
+                },
+                showAuthor(key) {
+                    this.authorFilter = key;
+                    this.search = '';
+                    this.stageFilter = '';
+                    this.go('bills');
+                },
+                legislatorLabel(key) {
+                    const l = this.legislatorsByKey[key];
+                    if (!l) return key;
+                    const tag = [l.party, l.district].filter(Boolean).join('-');
+                    return `${l.chamber === 'house' ? 'Rep.' : 'Sen.'} ${l.name}${tag ? ` (${tag})` : ''}`;
+                },
+                partyColor(p) {
+                    return PARTY_COLORS[p] || 'var(--text-tertiary)';
+                },
+
+                // --- Detail ---
+                fileStage(ch) {
+                    const b = this.selectedBill && this.billsByRn[this.selectedBill.revisor_number];
+                    const f = b && b.files.find(x => x.ch === ch);
+                    return f ? f.st : null;
+                },
+                fileStageLabel(ch) {
+                    const st = this.fileStage(ch);
+                    if (st === 'passed_origin') return ch === 'house' ? 'Passed House' : 'Passed Senate';
+                    if (st === 'second_chamber') return ch === 'house' ? 'In the Senate' : 'In the House';
+                    return STAGES[st].label;
+                },
+                async openBill(revisorNumber) {
+                    this.view = 'detail';
+                    this.detailLoading = true;
+                    this.detailError = null;
+                    this.selectedBill = null;
+                    try {
+                        const response = await fetch(`./data/bills/${encodeURIComponent(revisorNumber)}.json`);
+                        if (!response.ok) throw new Error(`HTTP ${response.status}`);
+                        const bill = await response.json();
+                        this.selectedBill = bill;
+                        this.activeTextChamber = bill.house && bill.house.bill_text ? 'house' : 'senate';
+                    } catch (err) {
+                        this.detailError = err.message;
+                        console.error('Error loading bill detail:', err);
+                    } finally {
+                        this.detailLoading = false;
+                    }
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                },
+                chamberActions(chamberData, chamberKey) {
+                    if (!chamberData || !chamberData.actions) return [];
+                    const label = chamberKey === 'house' ? 'House' : 'Senate';
+                    return chamberData.actions[label] || [];
+                },
+                renderBillText(text) {
+                    if (!text) return '';
+                    let html = escapeHtml(text);
+                    html = html.replace(/\[\+([\s\S]*?)\+\]/g, '<ins>$1</ins>');
+                    html = html.replace(/\[-([\s\S]*?)-\]/g, '<del>$1</del>');
+                    return html;
+                },
+                toggleDarkMode() {
+                    const current = document.documentElement.getAttribute('data-theme');
+                    const next = current === 'dark' ? 'light' : 'dark';
+                    document.documentElement.setAttribute('data-theme', next);
+                    localStorage.setItem('theme', next);
+                }
+            }
+        }).mount('#app');
+    </script>
+</body>
+</html>

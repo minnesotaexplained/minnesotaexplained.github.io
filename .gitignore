@@ -5,3 +5,7 @@ districts/
 package*
 **/.env
 __pycache__
+# revisor_app: raw scrape output (regenerate with scrape_bills.py)
+revisor_app/bills_94.json
+revisor_app/bills_94.json.progress.jsonl
+revisor_app/scrape.log

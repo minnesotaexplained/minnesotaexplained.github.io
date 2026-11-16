@@ -1273,5 +1273,19 @@
             "Elected Officials",
             "Spotlight"
         ]
+    },
+    {
+        "id": 24,
+        "title": "MN Bills Explorer",
+        "description": "Search every bill from the 94th Legislature (2025–2026), see where each one stopped on the way to becoming law, and find out which legislators authored the most.",
+        "subtitle": "",
+        "footer": "Data sourced from the Office of the Revisor of Statutes",
+        "type": "link",
+        "image": "/img/capitol.jpeg",
+        "link": "/revisor_app/index.html",
+        "categories": [
+            "State Government",
+            "Spotlight"
+        ]
     }
 ]
