@@ -966,6 +966,230 @@
 
         .party-card b { color: var(--text-primary); }
 
+        /* Committees */
+        .cm-layout {
+            display: grid;
+            grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr);
+            gap: 20px;
+            align-items: start;
+            margin-bottom: 28px;
+        }
+
+        .cm-card {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-primary);
+            border-radius: 8px;
+            box-shadow: var(--shadow-md);
+            padding: 16px 18px;
+        }
+
+        .cm-map-head {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 6px 16px;
+            align-items: baseline;
+            margin-bottom: 8px;
+        }
+
+        .cm-map-head h2 { margin: 0; font-size: 1.05rem; }
+        .cm-map-head .bill-sub { margin: 0; }
+
+        .seat-bar {
+            display: flex;
+            height: 10px;
+            border-radius: 5px;
+            overflow: hidden;
+            background: var(--bg-tertiary);
+            margin: 6px 0 4px;
+        }
+
+        .seat-bar span { display: block; height: 100%; }
+
+        .seat-bar-label {
+            display: flex;
+            justify-content: space-between;
+            font-size: 12px;
+            color: var(--text-secondary);
+        }
+
+        .hex-map svg {
+            display: block;
+            width: 100%;
+            max-height: 620px;
+            margin: 8px auto 0;
+        }
+
+        .hex-tile { cursor: pointer; }
+        .hex-tile polygon { transition: fill 0.15s ease, opacity 0.15s ease; }
+        .hex-tile text {
+            font-size: 0.26px;
+            font-weight: 600;
+            text-anchor: middle;
+            dominant-baseline: central;
+            pointer-events: none;
+            fill: #fff;
+        }
+        .hex-tile.off polygon { opacity: 0.16; }
+        .hex-tile.off text { fill: var(--text-tertiary); }
+        .hex-tile:hover polygon, .hex-tile.picked polygon { stroke: var(--text-primary) !important; stroke-width: 0.1 !important; }
+        .hex-tile.picked polygon { opacity: 1; }
+
+        .hex-legend {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px 16px;
+            margin-top: 10px;
+            font-size: 12px;
+            color: var(--text-tertiary);
+        }
+
+        .hex-legend span { display: inline-flex; align-items: center; gap: 6px; }
+        .hex-legend svg { width: 14px; height: 14px; }
+
+        .hex-tip {
+            position: fixed;
+            z-index: 1000;
+            pointer-events: none;
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border-primary);
+            border-radius: 8px;
+            box-shadow: var(--shadow-lg);
+            padding: 10px 12px;
+            font-size: 12.5px;
+            color: var(--text-secondary);
+            max-width: 280px;
+            line-height: 1.5;
+        }
+
+        .hex-tip b { color: var(--text-primary); }
+
+        .cm-panel { position: sticky; top: 16px; }
+        .cm-panel h2 { margin: 0 0 4px; font-size: 1.15rem; }
+        .cm-panel .back-button { margin-bottom: 12px; padding: 4px 10px; font-size: 12px; }
+
+        .cm-panel-empty {
+            color: var(--text-tertiary);
+            font-size: 13.5px;
+            line-height: 1.7;
+        }
+
+        .cm-panel-empty b { color: var(--text-secondary); }
+
+        .cm-stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            margin-top: 16px;
+        }
+
+        .cm-stat {
+            background: var(--bg-tertiary);
+            border-radius: 6px;
+            padding: 10px;
+        }
+
+        .cm-stat b {
+            display: block;
+            font-size: 1.3rem;
+            color: var(--text-primary);
+            font-variant-numeric: tabular-nums;
+        }
+
+        .cm-stat span { font-size: 11.5px; color: var(--text-tertiary); }
+
+        .roster { list-style: none; margin: 10px 0 0; padding: 0; }
+
+        .roster li {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 7px 6px;
+            border-bottom: 1px solid var(--border-tertiary);
+            font-size: 13.5px;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+
+        .roster li:last-child { border-bottom: none; }
+        .roster li:hover, .roster li.hot { background: var(--hover-bg); }
+        .roster .who { flex: 1; min-width: 0; }
+        .roster .who .bill-sub { margin: 0; }
+
+        .role-tag {
+            font-size: 11px;
+            font-weight: 600;
+            color: var(--accent-primary);
+            white-space: nowrap;
+        }
+
+        .roster-group {
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: var(--text-tertiary);
+            font-weight: 600;
+            margin-top: 16px;
+        }
+
+        .cm-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px 16px;
+            margin-top: 14px;
+            font-size: 13px;
+        }
+
+        .cm-links a, .cm-links button {
+            color: var(--accent-primary);
+            text-decoration: none;
+            background: none;
+            border: none;
+            padding: 0;
+            font: inherit;
+            cursor: pointer;
+        }
+
+        .next-note {
+            margin-top: 12px;
+            padding: 8px 10px;
+            border-radius: 6px;
+            background: var(--bg-tertiary);
+            font-size: 12.5px;
+            color: var(--text-secondary);
+        }
+
+        .cm-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+            gap: 12px;
+        }
+
+        .cm-tile {
+            text-align: left;
+            font: inherit;
+            color: var(--text-primary);
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-primary);
+            border-radius: 8px;
+            padding: 12px 14px;
+            cursor: pointer;
+            transition: border-color 0.15s ease;
+        }
+
+        .cm-tile:hover { border-color: var(--accent-primary); }
+        .cm-tile.selected { border-color: var(--accent-primary); box-shadow: 0 0 0 2px var(--accent-primary); }
+        .cm-tile .name { font-weight: 600; line-height: 1.35; }
+        .cm-tile .sub-kind { font-size: 11px; color: var(--text-tertiary); font-weight: 400; }
+        .cm-tile .chairs { font-size: 12px; color: var(--text-secondary); margin-top: 6px; }
+        .cm-tile .meta { display: flex; justify-content: space-between; font-size: 11.5px; color: var(--text-tertiary); margin-top: 8px; }
+        .cm-tile .seat-bar { height: 6px; margin: 6px 0 0; }
+
+        @media (max-width: 1000px) {
+            .cm-layout { grid-template-columns: 1fr; }
+            .cm-panel { position: static; }
+        }
+
         @media (max-width: 768px) {
             .bar-track { width: 50px; }
             .navbar {
@@ -1033,6 +1257,7 @@
                     <button class="view-tab" :class="{ active: view === 'list' }" @click="go('bills')">Bills</button>
                     <button class="view-tab" :class="{ active: view === 'pipeline' }" @click="go('pipeline')">Pipeline</button>
                     <button class="view-tab" :class="{ active: view === 'legislators' }" @click="go('legislators')">Legislators</button>
+                    <button class="view-tab" :class="{ active: view === 'committees' }" @click="go('committees')">Committees</button>
                 </div>
 
                 <div v-if="view === 'list'">
@@ -1299,6 +1524,160 @@
                     </div>
                 </div>
 
+                <div v-else-if="view === 'committees'">
+                    <div class="page-intro">
+                        <h1>Who sits on what</h1>
+                        <p>Every standing committee in the House and Senate for the 2025–2026 session, and its members. Pick a committee to light up its members on the map, or pick a district to see that legislator's assignments.</p>
+                    </div>
+
+                    <div v-if="cmLoading" class="loading"><div class="loading-spinner"></div><p>Loading committees…</p></div>
+                    <div v-else-if="cmError" class="error"><p>Could not load committees — {{ cmError }}</p></div>
+                    <template v-else-if="cm">
+                        <div class="controls">
+                            <div class="seg">
+                                <button :class="{ active: cmChamber === 'house' }" @click="go('committees/house')">House ({{ cmCommitteeCount('house') }})</button>
+                                <button :class="{ active: cmChamber === 'senate' }" @click="go('committees/senate')">Senate ({{ cmCommitteeCount('senate') }})</button>
+                            </div>
+                            <div class="search-box">
+                                <input type="text" v-model="cmSearch" placeholder="Find a committee or legislator…" />
+                            </div>
+                        </div>
+
+                        <div class="cm-layout">
+                            <div class="cm-card hex-map">
+                                <div class="cm-map-head">
+                                    <h2>{{ cmChamber === 'house' ? 'House of Representatives' : 'State Senate' }}</h2>
+                                    <p class="bill-sub">One hexagon per district, placed roughly where it is on the map</p>
+                                </div>
+                                <div class="seat-bar">
+                                    <span v-for="p in cmPartySeats" :key="p.party" :style="{ width: (100 * p.n / cmSeatTotal) + '%', background: partyColor(p.party) }"></span>
+                                </div>
+                                <div class="seat-bar-label">
+                                    <span v-for="p in cmPartySeats" :key="p.party" :style="{ color: partyColor(p.party) }"><b>{{ p.n }}</b> {{ p.party }}</span>
+                                </div>
+                                <svg v-if="cmTiles.length" v-bind="{ viewBox: cmViewBox }" preserveAspectRatio="xMidYMid meet"
+                                     role="img" :aria-label="(cmChamber === 'house' ? 'House' : 'Senate') + ' seats, one hexagon per district'">
+                                    <g v-for="t in cmTiles" :key="t.key" class="hex-tile" :class="cmTileClass(t)"
+                                       @mouseenter="cmHover(t, $event)" @mousemove="cmMoveTip($event)" @mouseleave="cmUnhover"
+                                       @click="go('committees/' + t.key)">
+                                        <polygon :points="t.points" :style="{ fill: partyColor(t.seat && t.seat.party),
+                                                 stroke: cmIsLead(t) ? 'var(--text-primary)' : 'var(--bg-secondary)',
+                                                 strokeWidth: cmIsLead(t) ? 0.09 : 0.04 }"/>
+                                        <text :x="t.x" :y="t.y">{{ t.label }}</text>
+                                    </g>
+                                </svg>
+                                <div class="hex-legend">
+                                    <span v-for="p in PARTIES" :key="p"><svg viewBox="-1 -1 2 2"><polygon :points="HEX_ICON" :style="{ fill: partyColor(p) }"/></svg>{{ p }}</span>
+                                    <template v-if="cmSelCommittee">
+                                        <span><svg viewBox="-1 -1 2 2"><polygon :points="HEX_ICON" style="fill: var(--text-tertiary); stroke: var(--text-primary); stroke-width: 0.3"/></svg>Chair, vice chair, or lead</span>
+                                        <span><svg viewBox="-1 -1 2 2"><polygon :points="HEX_ICON" style="fill: var(--text-tertiary); opacity: 0.25"/></svg>Not on this committee</span>
+                                    </template>
+                                </div>
+                            </div>
+
+                            <div class="cm-card cm-panel">
+                                <!-- Committee -->
+                                <template v-if="cmSelCommittee">
+                                    <button class="back-button" @click="go('committees/' + cmChamber)">× Clear</button>
+                                    <h2>{{ cmSelCommittee.name }}</h2>
+                                    <div class="bill-sub" v-if="cmSelCommittee.meets">Meets {{ cmSelCommittee.meets }}</div>
+                                    <div class="seat-bar">
+                                        <span v-for="p in cmCommitteeParties(cmSelCommittee)" :key="p.party" :style="{ width: (100 * p.n / cmSelCommittee.members.length) + '%', background: partyColor(p.party) }"></span>
+                                    </div>
+                                    <div class="seat-bar-label">
+                                        <span>{{ cmSelCommittee.members.length }} members</span>
+                                        <span><template v-for="(p, i) in cmCommitteeParties(cmSelCommittee)" :key="p.party"><template v-if="i"> · </template><span :style="{ color: partyColor(p.party) }">{{ p.n }} {{ p.party }}</span></template></span>
+                                    </div>
+                                    <template v-for="grp in cmRosterGroups(cmSelCommittee)" :key="grp.label">
+                                        <div class="roster-group">{{ grp.label }}</div>
+                                        <ul class="roster">
+                                            <li v-for="m in grp.members" :key="m.district" :class="{ hot: cmHoverKey === cmChamber + ':' + m.district }"
+                                                @mouseenter="cmHoverKey = cmChamber + ':' + m.district" @mouseleave="cmHoverKey = ''"
+                                                @click="go('committees/' + cmChamber + ':' + m.district)">
+                                                <span class="party-badge" :style="{ '--party-color': partyColor(m.party) }">{{ m.party }}</span>
+                                                <span class="who">{{ m.name }} <span class="bill-sub">· District {{ m.district.replace(/^0/, '') }}</span></span>
+                                                <span class="role-tag" v-if="m.role !== 'Member'">{{ m.role }}</span>
+                                            </li>
+                                        </ul>
+                                    </template>
+                                    <div class="cm-links">
+                                        <a :href="cmSelCommittee.url" target="_blank" rel="noopener">Committee page ↗</a>
+                                    </div>
+                                </template>
+
+                                <!-- Legislator -->
+                                <template v-else-if="cmSelSeat">
+                                    <button class="back-button" @click="go('committees/' + cmChamber)">× Clear</button>
+                                    <h2>{{ cmChamber === 'house' ? 'Rep.' : 'Sen.' }} {{ cmSelSeat.name }}</h2>
+                                    <div class="detail-meta" style="margin-bottom: 4px">
+                                        <span class="party-badge" :style="{ '--party-color': partyColor(cmSelSeat.party) }">{{ cmSelSeat.party }}</span>
+                                        <span>District {{ cmSelSeat.district.replace(/^0/, '') }}</span>
+                                    </div>
+                                    <div class="roster-group">{{ cmSelSeat.committees.length ? cmSelSeat.committees.length + ' committee' + (cmSelSeat.committees.length === 1 ? '' : 's') : 'Committees' }}</div>
+                                    <ul class="roster" v-if="cmSelSeat.committees.length">
+                                        <li v-for="c in cmSeatCommittees(cmSelSeat)" :key="c.id" @click="go('committees/' + c.id)">
+                                            <span class="who">{{ c.name }}</span>
+                                            <span class="role-tag" v-if="c.role !== 'Member'">{{ c.role }}</span>
+                                        </li>
+                                    </ul>
+                                    <p v-else class="cm-panel-empty">Not listed on any {{ cmChamber === 'house' ? 'House' : 'Senate' }} committee roster.</p>
+                                    <div class="next-note" v-if="cmSelSeat.next">
+                                        2026 election:
+                                        <template v-if="cmSamePerson(cmSelSeat.next.name, cmSelSeat.name)">re-elected.</template>
+                                        <template v-else>seat won by <b>{{ cmSelSeat.next.name }}</b> ({{ cmSelSeat.next.party }}){{ cmSelSeat.next.flip ? ', a party flip' : '' }}. New committee assignments come with the 2027 session.</template>
+                                    </div>
+                                    <div class="cm-links">
+                                        <button v-if="cmSelSeat.key && legislatorsByKey[cmSelSeat.key]" @click="showAuthor(cmSelSeat.key)">Bills authored ({{ legislatorsByKey[cmSelSeat.key].chief }} as chief) →</button>
+                                        <a v-if="cmSelSeat.url" :href="cmSelSeat.url" target="_blank" rel="noopener">Profile ↗</a>
+                                    </div>
+                                </template>
+
+                                <!-- Nothing selected -->
+                                <template v-else>
+                                    <h2>{{ cmChamber === 'house' ? 'House' : 'Senate' }} committees</h2>
+                                    <p class="cm-panel-empty">
+                                        <template v-if="cmChamber === 'house'">Under this session's power-sharing agreement, each House committee has <b>co-chairs</b>, one from each party.</template>
+                                        <template v-else>Senate committees have a <b>chair</b> and <b>vice chair</b> from the majority, and a <b>ranking minority member</b> who leads the other party's side.</template>
+                                        Select a committee below, or a hexagon on the map.
+                                    </p>
+                                    <div class="cm-stats">
+                                        <div class="cm-stat"><b>{{ cmCommitteeCount(cmChamber) }}</b><span>committees &amp; subcommittees</span></div>
+                                        <div class="cm-stat"><b>{{ cmAvgSize }}</b><span>members per committee</span></div>
+                                        <div class="cm-stat"><b>{{ cmAvgLoad }}</b><span>assignments per legislator</span></div>
+                                    </div>
+                                </template>
+                            </div>
+                        </div>
+
+                        <div class="section-heading">
+                            <h2>{{ cmChamber === 'house' ? 'House' : 'Senate' }} committees</h2>
+                            <span class="result-count">{{ cmFiltered.length }} shown<template v-if="cmSearch.trim()"> · matching “{{ cmSearch.trim() }}”</template></span>
+                        </div>
+                        <div class="cm-grid">
+                            <button v-for="c in cmFiltered" :key="c.id" class="cm-tile" :class="{ selected: cmSel === c.id }" @click="go('committees/' + (cmSel === c.id ? cmChamber : c.id))">
+                                <div class="name">{{ c.name }} <span class="sub-kind" v-if="c.kind === 'subcommittee'">· {{ /division/i.test(c.name) ? 'Division' : 'Subcommittee' }}</span></div>
+                                <div class="chairs">{{ cmChairLine(c) }}</div>
+                                <div class="seat-bar">
+                                    <span v-for="p in cmCommitteeParties(c)" :key="p.party" :style="{ width: (100 * p.n / c.members.length) + '%', background: partyColor(p.party) }"></span>
+                                </div>
+                                <div class="meta">
+                                    <span>{{ c.members.length }} members</span>
+                                    <span v-if="cmSearchHits(c)">{{ cmSearchHits(c) }}</span>
+                                </div>
+                            </button>
+                        </div>
+                        <div v-if="!cmFiltered.length" class="empty-state">No committees match your search.</div>
+                        <p class="board-note">Rosters from the <a :href="cm.sources.house" target="_blank" rel="noopener" style="color: inherit">House</a> and <a :href="cm.sources.senate" target="_blank" rel="noopener" style="color: inherit">Senate</a> committee pages, retrieved {{ cmScrapedAt }}. Members are current through the end of the 2025–2026 session; committees for the 2027 session haven't been named yet.</p>
+
+                        <div class="hex-tip" v-if="cmTip" :style="{ left: cmTipPos.x + 'px', top: cmTipPos.y + 'px' }">
+                            <b>{{ cmTip.seat ? cmTip.seat.name : 'Vacant' }}</b> <span v-if="cmTip.seat">({{ cmTip.seat.party }})</span><br>
+                            District {{ cmTip.label }}<template v-if="cmTip.seat"> · {{ cmTip.seat.committees.length }} committee{{ cmTip.seat.committees.length === 1 ? '' : 's' }}</template>
+                            <div v-if="cmSelCommittee && cmTip.role">{{ cmTip.role === 'Member' ? 'Member' : cmTip.role }} of {{ cmSelCommittee.name }}</div>
+                            <div v-else-if="cmSelCommittee" style="opacity: 0.7">Not on this committee</div>
+                        </div>
+                    </template>
+                </div>
+
                 <div class="detail-panel" v-else-if="view === 'detail'">
                     <button class="back-button" @click="goBack">← Back</button>
 
@@ -1441,6 +1820,17 @@
         const PARTIES = ['DFL', 'R'];
         const PARTY_COLORS = { DFL: '#4a8fe7', R: '#e05a5a' };
 
+        // Hex seat map: odd-r pointy-top layout from data/committees.json (see scrape_committees.py)
+        const HEX_ROW = Math.sqrt(3) / 2, HEX_R = 1 / Math.sqrt(3);
+        function hexPoints(x, y, rad) {
+            return [30, 90, 150, 210, 270, 330].map(a => {
+                const t = a * Math.PI / 180;
+                return `${(x + rad * Math.cos(t)).toFixed(3)},${(y + rad * Math.sin(t)).toFixed(3)}`;
+            }).join(' ');
+        }
+        const HEX_ICON = hexPoints(0, 0, 0.95);
+        const LEAD_RANK = { 'Chair': 0, 'Co-Chair': 0, 'Vice Chair': 1, 'Co-Vice Chair': 1, 'Ranking Minority Member': 2, 'Republican Lead': 2, 'DFL Lead': 2 };
+
         const BOARD_COLUMNS = ['Committee', 'Floor vote', 'Passed', 'Other chamber', 'Passed other', 'Reconcile', 'Governor', 'Enacted'];
 
         // Each cell = (lane, column) -> a cell key "<lane>:<stage>"
@@ -1493,7 +1883,7 @@
         createApp({
             data() {
                 return {
-                    STAGES, BOARD_COLUMNS, BOARD_LANES, OFFRAMP_CELLS, PARTIES,
+                    STAGES, BOARD_COLUMNS, BOARD_LANES, OFFRAMP_CELLS, PARTIES, HEX_ICON,
 
                     bills: [],
                     view: 'list',
@@ -1519,6 +1909,15 @@
                     legParty: '',
                     legSortKey: 'chief',
                     legSortDir: -1,
+
+                    cm: null,
+                    cmLoading: false,
+                    cmError: null,
+                    cmChamber: 'house',
+                    cmSel: '',          // selected committee id ('h94001') or seat key ('house:12A')
+                    cmSearch: '',
+                    cmHoverKey: '',
+                    cmTipPos: { x: 0, y: 0 },
 
                     selectedBill: null,
                     detailLoading: false,
@@ -1674,6 +2073,82 @@
                         });
                 },
 
+                // --- Committees ---
+                cmById() {
+                    const m = {};
+                    (this.cm ? this.cm.committees : []).forEach(c => { m[c.id] = c; });
+                    return m;
+                },
+                cmSelCommittee() {
+                    return this.cmById[this.cmSel] || null;
+                },
+                cmSelSeat() {
+                    return (this.cm && this.cm.seats[this.cmSel]) || null;
+                },
+                // district -> role on the selected committee
+                cmRoles() {
+                    const m = {};
+                    if (this.cmSelCommittee) this.cmSelCommittee.members.forEach(x => { m[x.district] = x.role; });
+                    return m;
+                },
+                cmTiles() {
+                    if (!this.cm || !this.cm.tiles) return [];
+                    const layout = this.cm.tiles[this.cmChamber];
+                    return Object.keys(layout).sort().map(d => {
+                        const [c, r] = layout[d];
+                        const x = c + (r % 2 ? 0.5 : 0), y = r * HEX_ROW;
+                        const key = `${this.cmChamber}:${d}`;
+                        return { key, d, x: x.toFixed(3), y: y.toFixed(3), cx: x, cy: y,
+                                 label: d.replace(/^0/, ''), seat: this.cm.seats[key],
+                                 points: hexPoints(x, y, HEX_R * 0.95) };
+                    });
+                },
+                cmViewBox() {
+                    const xs = this.cmTiles.map(t => t.cx), ys = this.cmTiles.map(t => t.cy);
+                    const x0 = Math.min(...xs) - 0.7, y0 = Math.min(...ys) - 0.7;
+                    return `${x0} ${y0} ${Math.max(...xs) + 0.7 - x0} ${Math.max(...ys) + 0.7 - y0}`;
+                },
+                cmChamberSeats() {
+                    if (!this.cm) return [];
+                    return Object.entries(this.cm.seats).filter(([k]) => k.startsWith(this.cmChamber + ':')).map(([, s]) => s);
+                },
+                cmSeatTotal() {
+                    return this.cmChamber === 'house' ? 134 : 67;
+                },
+                cmPartySeats() {
+                    const n = {};
+                    this.cmChamberSeats.forEach(s => { n[s.party] = (n[s.party] || 0) + 1; });
+                    return Object.keys(n).sort((a, b) => (PARTIES.indexOf(a) + 1 || 9) - (PARTIES.indexOf(b) + 1 || 9))
+                        .map(party => ({ party, n: n[party] }));
+                },
+                cmChamberCommittees() {
+                    return this.cm ? this.cm.committees.filter(c => c.chamber === this.cmChamber) : [];
+                },
+                cmFiltered() {
+                    const q = this.cmSearch.trim().toLowerCase();
+                    return this.cmChamberCommittees
+                        .filter(c => !q || c.name.toLowerCase().includes(q) || c.members.some(m => m.name.toLowerCase().includes(q)))
+                        .sort((a, b) => a.name.localeCompare(b.name));
+                },
+                cmAvgSize() {
+                    const cs = this.cmChamberCommittees.filter(c => c.kind === 'committee');
+                    return cs.length ? (cs.reduce((t, c) => t + c.members.length, 0) / cs.length).toFixed(0) : '—';
+                },
+                cmAvgLoad() {
+                    const ss = this.cmChamberSeats;
+                    return ss.length ? (ss.reduce((t, s) => t + s.committees.length, 0) / ss.length).toFixed(1) : '—';
+                },
+                cmTip() {
+                    if (!this.cmHoverKey) return null;
+                    const t = this.cmTiles.find(x => x.key === this.cmHoverKey);
+                    // Only show the floating tip while the pointer is over the map
+                    if (!t || !this.cmTipPos.fromMap) return null;
+                    return { ...t, role: this.cmRoles[t.d] };
+                },
+                cmScrapedAt() {
+                    return this.cm ? new Date(this.cm.scraped_at).toLocaleDateString('en-US', { dateStyle: 'medium' }) : '';
+                },
+
                 // --- Detail ---
                 hasBillText() {
                     if (!this.selectedBill) return false;
@@ -1727,6 +2202,10 @@
                         this.view = 'pipeline';
                     } else if (h === 'legislators') {
                         this.view = 'legislators';
+                    } else if (h === 'committees' || h.startsWith('committees/')) {
+                        // #committees, #committees/<chamber>, #committees/<committee id>, #committees/<chamber>:<district>
+                        this.view = 'committees';
+                        this.loadCommittees().then(() => this.cmRoute(h.slice(11)));
                     } else {
                         this.view = 'list';
                         this.selectedBill = null;
@@ -1812,6 +2291,108 @@
                 },
                 partyColor(p) {
                     return PARTY_COLORS[p] || 'var(--text-tertiary)';
+                },
+
+                // --- Committees ---
+                loadCommittees() {
+                    // One shared request, so a route change mid-load still waits for the data
+                    if (!this.cmLoadPromise) this.cmLoadPromise = this.fetchCommittees();
+                    return this.cmLoadPromise;
+                },
+                async fetchCommittees() {
+                    this.cmLoading = true;
+                    try {
+                        const response = await fetch('./data/committees.json');
+                        if (!response.ok) throw new Error(`HTTP ${response.status}`);
+                        this.cm = await response.json();
+                    } catch (err) {
+                        this.cmError = err.message;
+                        console.error('Error loading committees.json:', err);
+                    } finally {
+                        this.cmLoading = false;
+                    }
+                },
+                cmRoute(arg) {
+                    this.cmHoverKey = '';
+                    if (arg === 'house' || arg === 'senate') {
+                        this.cmChamber = arg;
+                        this.cmSel = '';
+                        return;
+                    }
+                    const c = this.cmById[arg];
+                    const seatChamber = /^(house|senate):/.exec(arg);
+                    if (c) this.cmChamber = c.chamber;
+                    else if (seatChamber && this.cm && this.cm.seats[arg]) this.cmChamber = seatChamber[1];
+                    this.cmSel = c || (seatChamber && this.cm && this.cm.seats[arg]) ? arg : '';
+                },
+                cmCommitteeCount(chamber) {
+                    return this.cm ? this.cm.committees.filter(c => c.chamber === chamber).length : 0;
+                },
+                cmIsLead(t) {
+                    const role = this.cmRoles[t.d];
+                    return !!role && role in LEAD_RANK;
+                },
+                cmTileClass(t) {
+                    return {
+                        off: !!this.cmSelCommittee && !this.cmRoles[t.d],
+                        picked: this.cmSel === t.key || this.cmHoverKey === t.key,
+                    };
+                },
+                cmHover(t, e) {
+                    this.cmHoverKey = t.key;
+                    this.cmMoveTip(e);
+                },
+                cmUnhover() {
+                    this.cmHoverKey = '';
+                    this.cmTipPos = { ...this.cmTipPos, fromMap: false };
+                },
+                cmMoveTip(e) {
+                    // Keep the tooltip on screen (assume ~280x110)
+                    const w = 290, h = 120;
+                    this.cmTipPos = {
+                        x: e.clientX + 14 + w > window.innerWidth ? e.clientX - w - 14 : e.clientX + 14,
+                        y: e.clientY + 14 + h > window.innerHeight ? e.clientY - h - 14 : e.clientY + 14,
+                        fromMap: true,
+                    };
+                },
+                cmCommitteeParties(c) {
+                    const n = {};
+                    c.members.forEach(m => { n[m.party] = (n[m.party] || 0) + 1; });
+                    return Object.keys(n).sort((a, b) => (PARTIES.indexOf(a) + 1 || 9) - (PARTIES.indexOf(b) + 1 || 9))
+                        .map(party => ({ party, n: n[party] }));
+                },
+                cmRosterGroups(c) {
+                    const lead = c.members.filter(m => m.role in LEAD_RANK);
+                    const rest = c.members.filter(m => !(m.role in LEAD_RANK));
+                    return [
+                        { label: 'Leadership', members: lead },
+                        { label: 'Members', members: rest },
+                    ].filter(g => g.members.length);
+                },
+                cmChairLine(c) {
+                    const chairs = c.members.filter(m => LEAD_RANK[m.role] === 0);
+                    if (!chairs.length) return 'No chair listed';
+                    const label = chairs.length > 1 ? 'Co-chairs' : 'Chair';
+                    return `${label}: ${chairs.map(m => `${m.name} (${m.party})`).join(', ')}`;
+                },
+                cmSearchHits(c) {
+                    const q = this.cmSearch.trim().toLowerCase();
+                    if (!q || c.name.toLowerCase().includes(q)) return '';
+                    const hits = c.members.filter(m => m.name.toLowerCase().includes(q));
+                    return hits.length ? hits.map(m => m.name).join(', ') + (hits.length === 1 ? ' is a member' : ' are members') : '';
+                },
+                cmSeatCommittees(seat) {
+                    return seat.committees.map(id => {
+                        const c = this.cmById[id];
+                        const me = c.members.find(m => m.district === seat.district);
+                        return { id, name: c.name, role: me ? me.role : 'Member', rank: me && me.role in LEAD_RANK ? LEAD_RANK[me.role] : 9 };
+                    }).sort((a, b) => a.rank - b.rank || a.name.localeCompare(b.name));
+                },
+                // Loose name match so 'Wayne Johnson' == 'Wayne A. Johnson'
+                cmSamePerson(a, b) {
+                    const parts = n => n.toLowerCase().replace(/[^a-z\s]/g, '').split(/\s+/).filter(Boolean);
+                    const pa = parts(a), pb = parts(b);
+                    return pa[0] === pb[0] && pa[pa.length - 1] === pb[pb.length - 1];
                 },
 
                 // --- Detail ---
